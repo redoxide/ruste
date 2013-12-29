@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<crate xmlns="https://github.com/hayden/ruste-native-parser" name="extra" startLine="11" startPos="0" endLine="127" endPos="0">
+	<module vis="public" path="" ident="c_vec" startLine="50" startPos="0" endLine="50" endPos="14">
+		<structure vis="public" ident="CVec" startLine="46" startPos="0" endLine="50" endPos="1">
+		</structure>
+		<function vis="public" ident="CVec" returns="CVec&lt;T&gt;" startLine="87" startPos="0" endLine="93" endPos="1">
+			<arg pat="base" type="*mut T" startLine="87" startPos="22" endLine="87" endPos="34">
+			</arg>
+			<arg pat="len" type="uint" startLine="87" startPos="36" endLine="87" endPos="45">
+			</arg>
+		</function>
+		<function vis="public" ident="c_vec_with_dtor" returns="CVec&lt;T&gt;" startLine="106" startPos="0" endLine="113" endPos="1">
+			<arg pat="base" type="*mut T" startLine="106" startPos="33" endLine="106" endPos="45">
+			</arg>
+			<arg pat="len" type="uint" startLine="106" startPos="47" endLine="106" endPos="56">
+			</arg>
+			<arg pat="dtor" type="~Runnable" startLine="106" startPos="58" endLine="106" endPos="73">
+			</arg>
+		</function>
+		<function vis="public" ident="get" returns="T" startLine="124" startPos="0" endLine="129" endPos="1">
+			<arg pat="t" type="CVec&lt;T&gt;" startLine="124" startPos="20" endLine="124" endPos="30">
+			</arg>
+			<arg pat="ofs" type="uint" startLine="124" startPos="32" endLine="124" endPos="41">
+			</arg>
+		</function>
+		<function vis="public" ident="set" returns="" startLine="136" startPos="0" endLine="139" endPos="1">
+			<arg pat="t" type="CVec&lt;T&gt;" startLine="136" startPos="14" endLine="136" endPos="24">
+			</arg>
+			<arg pat="ofs" type="uint" startLine="136" startPos="26" endLine="136" endPos="35">
+			</arg>
+			<arg pat="v" type="T" startLine="136" startPos="37" endLine="136" endPos="41">
+			</arg>
+		</function>
+		<function vis="public" ident="len" returns="uint" startLine="146" startPos="0" endLine="146" endPos="43">
+			<arg pat="t" type="CVec&lt;T&gt;" startLine="146" startPos="14" endLine="146" endPos="24">
+			</arg>
+		</function>
+		<function vis="public" ident="ptr" returns="*mut T" startLine="149" startPos="0" endLine="149" endPos="53">
+			<arg pat="t" type="CVec&lt;T&gt;" startLine="149" startPos="21" endLine="149" endPos="31">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="sync" startLine="54" startPos="0" endLine="54" endPos="13">
+		<structure vis="public" ident="Condvar" startLine="169" startPos="0" endLine="182" endPos="1">
+		</structure>
+		<structure vis="public" ident="Mutex" startLine="384" startPos="0" endLine="384" endPos="48">
+		</structure>
+		<structure vis="public" ident="RWLock" startLine="450" startPos="0" endLine="454" endPos="1">
+		</structure>
+		<structure vis="public" ident="RWLockWriteMode" startLine="671" startPos="0" endLine="671" endPos="87">
+		</structure>
+		<structure vis="public" ident="RWLockReadMode" startLine="673" startPos="0" endLine="674" endPos="60">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="arc" startLine="55" startPos="0" endLine="55" endPos="12">
+		<structure vis="public" ident="Condvar" startLine="52" startPos="0" endLine="56" endPos="1">
+		</structure>
+		<structure vis="public" ident="Arc" startLine="111" startPos="0" endLine="111" endPos="42">
+		</structure>
+		<structure vis="public" ident="MutexArc" startLine="168" startPos="0" endLine="168" endPos="62">
+		</structure>
+		<structure vis="public" ident="RWArc" startLine="348" startPos="0" endLine="350" endPos="1">
+		</structure>
+		<structure vis="public" ident="RWWriteMode" startLine="526" startPos="0" endLine="530" endPos="1">
+		</structure>
+		<structure vis="public" ident="RWReadMode" startLine="533" startPos="0" endLine="536" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="comm" startLine="56" startPos="0" endLine="56" endPos="13">
+		<structure vis="public" ident="DuplexStream" startLine="25" startPos="0" endLine="28" endPos="1">
+		</structure>
+		<function vis="public" ident="DuplexStream" returns="(DuplexStream&lt;T, U&gt;, DuplexStream&lt;U, T&gt;)" startLine="78" startPos="0" endLine="91" endPos="1">
+		</function>
+		<structure vis="public" ident="SyncChan" startLine="94" startPos="0" endLine="94" endPos="66">
+		</structure>
+		<structure vis="public" ident="SyncPort" startLine="96" startPos="0" endLine="96" endPos="66">
+		</structure>
+		<function vis="public" ident="rendezvous" returns="(SyncPort&lt;T&gt;, SyncChan&lt;T&gt;)" startLine="131" startPos="0" endLine="134" endPos="1">
+		</function>
+	</module>
+	<module vis="public" path="" ident="future" startLine="57" startPos="0" endLine="57" endPos="15">
+		<structure vis="public" ident="Future" startLine="34" startPos="0" endLine="36" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="task_pool" startLine="58" startPos="0" endLine="58" endPos="18">
+		<structure vis="public" ident="TaskPool" startLine="30" startPos="0" endLine="33" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="container" startLine="62" startPos="0" endLine="62" endPos="18">
+		<trait vis="public" ident="Deque" startLine="16" startPos="0" endLine="40" endPos="1">
+			<traitMethod ident="front" returns="Option&lt;&amp;'a T&gt;" startLine="18" startPos="4" endLine="18" endPos="43">
+			</traitMethod>
+			<traitMethod ident="front_mut" returns="Option&lt;&amp;'a mut T&gt;" startLine="21" startPos="4" endLine="21" endPos="55">
+			</traitMethod>
+			<traitMethod ident="back" returns="Option&lt;&amp;'a T&gt;" startLine="24" startPos="4" endLine="24" endPos="42">
+			</traitMethod>
+			<traitMethod ident="back_mut" returns="Option&lt;&amp;'a mut T&gt;" startLine="27" startPos="4" endLine="27" endPos="54">
+			</traitMethod>
+			<traitMethod ident="push_front" returns="" startLine="30" startPos="4" endLine="30" endPos="36">
+				<arg pat="elt" type="T" startLine="30" startPos="29" endLine="30" endPos="35">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="push_back" returns="" startLine="33" startPos="4" endLine="33" endPos="35">
+				<arg pat="elt" type="T" startLine="33" startPos="28" endLine="33" endPos="34">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="pop_back" returns="Option&lt;T&gt;" startLine="36" startPos="4" endLine="36" endPos="39">
+			</traitMethod>
+			<traitMethod ident="pop_front" returns="Option&lt;T&gt;" startLine="39" startPos="4" endLine="39" endPos="40">
+			</traitMethod>
+		</trait>
+		<module vis="public" path="" ident="bench" startLine="43" startPos="0" endLine="122" endPos="1">
+			<function vis="public" ident="insert_rand_n" returns="" startLine="49" startPos="4" endLine="66" endPos="5">
+				<arg pat="n" type="uint" startLine="49" startPos="50" endLine="49" endPos="57">
+				</arg>
+				<arg pat="map" type="&amp;mut M" startLine="50" startPos="50" endLine="50" endPos="61">
+				</arg>
+				<arg pat="bh" type="&amp;mut BenchHarness" startLine="51" startPos="50" endLine="51" endPos="71">
+				</arg>
+			</function>
+			<function vis="public" ident="insert_seq_n" returns="" startLine="68" startPos="4" endLine="84" endPos="5">
+				<arg pat="n" type="uint" startLine="68" startPos="49" endLine="68" endPos="56">
+				</arg>
+				<arg pat="map" type="&amp;mut M" startLine="69" startPos="49" endLine="69" endPos="60">
+				</arg>
+				<arg pat="bh" type="&amp;mut BenchHarness" startLine="70" startPos="49" endLine="70" endPos="70">
+				</arg>
+			</function>
+			<function vis="public" ident="find_rand_n" returns="" startLine="86" startPos="4" endLine="105" endPos="5">
+				<arg pat="n" type="uint" startLine="86" startPos="48" endLine="86" endPos="55">
+				</arg>
+				<arg pat="map" type="&amp;mut M" startLine="87" startPos="48" endLine="87" endPos="59">
+				</arg>
+				<arg pat="bh" type="&amp;mut BenchHarness" startLine="88" startPos="48" endLine="88" endPos="69">
+				</arg>
+			</function>
+			<function vis="public" ident="find_seq_n" returns="" startLine="107" startPos="4" endLine="121" endPos="6">
+				<arg pat="n" type="uint" startLine="107" startPos="47" endLine="107" endPos="54">
+				</arg>
+				<arg pat="map" type="&amp;mut M" startLine="108" startPos="47" endLine="108" endPos="58">
+				</arg>
+				<arg pat="bh" type="&amp;mut BenchHarness" startLine="109" startPos="47" endLine="109" endPos="68">
+				</arg>
+			</function>
+		</module>
+	</module>
+	<module vis="public" path="" ident="bitv" startLine="63" startPos="0" endLine="63" endPos="13">
+		<structure vis="public" ident="Bitv" startLine="227" startPos="0" endLine="232" endPos="1">
+		</structure>
+		<function vis="public" ident="from_bytes" returns="Bitv" startLine="526" startPos="0" endLine="532" endPos="1">
+			<arg pat="bytes" type="&amp;[u8]" startLine="526" startPos="18" endLine="526" endPos="30">
+			</arg>
+		</function>
+		<function vis="public" ident="from_bools" returns="Bitv" startLine="537" startPos="0" endLine="539" endPos="1">
+			<arg pat="bools" type="&amp;[bool]" startLine="537" startPos="18" endLine="537" endPos="32">
+			</arg>
+		</function>
+		<function vis="public" ident="from_fn" returns="Bitv" startLine="545" startPos="0" endLine="551" endPos="1">
+			<arg pat="len" type="uint" startLine="545" startPos="15" endLine="545" endPos="24">
+			</arg>
+			<arg pat="f" type="|index: uint| -&gt; bool" startLine="545" startPos="26" endLine="545" endPos="50">
+			</arg>
+		</function>
+		<structure vis="public" ident="BitvIterator" startLine="575" startPos="0" endLine="579" endPos="1">
+		</structure>
+		<structure vis="public" ident="BitvSet" startLine="636" startPos="0" endLine="643" endPos="1">
+		</structure>
+		<structure vis="public" ident="BitvSetIterator" startLine="902" startPos="0" endLine="905" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="list" startLine="64" startPos="0" endLine="64" endPos="13">
+		<enumeration vis="public" ident="List" startLine="17" startPos="0" endLine="20" endPos="1">
+			<variant ident="Cons" startLine="18" startPos="4" endLine="18" endPos="21">
+			</variant>
+			<variant ident="Nil" startLine="19" startPos="4" endLine="19" endPos="7">
+			</variant>
+		</enumeration>
+		<enumeration vis="public" ident="MutList" startLine="24" startPos="0" endLine="27" endPos="1">
+			<variant ident="MutCons" startLine="25" startPos="4" endLine="25" endPos="31">
+			</variant>
+			<variant ident="MutNil" startLine="26" startPos="4" endLine="26" endPos="10">
+			</variant>
+		</enumeration>
+		<function vis="public" ident="from_vec" returns="@List&lt;T&gt;" startLine="30" startPos="0" endLine="32" endPos="1">
+			<arg pat="v" type="&amp;[T]" startLine="30" startPos="35" endLine="30" endPos="42">
+			</arg>
+		</function>
+		<function vis="public" ident="foldl" returns="T" startLine="47" startPos="0" endLine="51" endPos="1">
+			<arg pat="z" type="T" startLine="47" startPos="24" endLine="47" endPos="28">
+			</arg>
+			<arg pat="ls" type="@List&lt;U&gt;" startLine="47" startPos="30" endLine="47" endPos="42">
+			</arg>
+			<arg pat="f" type="|&amp;T, &amp;U| -&gt; T" startLine="47" startPos="44" endLine="47" endPos="60">
+			</arg>
+		</function>
+		<function vis="public" ident="find" returns="Option&lt;T&gt;" startLine="60" startPos="0" endLine="71" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="60" startPos="21" endLine="60" endPos="33">
+			</arg>
+			<arg pat="f" type="|&amp;T| -&gt; bool" startLine="60" startPos="35" endLine="60" endPos="50">
+			</arg>
+		</function>
+		<function vis="public" ident="has" returns="bool" startLine="74" startPos="0" endLine="80" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="74" startPos="17" endLine="74" endPos="29">
+			</arg>
+			<arg pat="elt" type="T" startLine="74" startPos="31" endLine="74" endPos="37">
+			</arg>
+		</function>
+		<function vis="public" ident="is_empty" returns="bool" startLine="83" startPos="0" endLine="88" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="83" startPos="19" endLine="83" endPos="31">
+			</arg>
+		</function>
+		<function vis="public" ident="len" returns="uint" startLine="91" startPos="0" endLine="95" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="91" startPos="14" endLine="91" endPos="26">
+			</arg>
+		</function>
+		<function vis="public" ident="tail" returns="@List&lt;T&gt;" startLine="98" startPos="0" endLine="103" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="98" startPos="15" endLine="98" endPos="27">
+			</arg>
+		</function>
+		<function vis="public" ident="head" returns="T" startLine="106" startPos="0" endLine="112" endPos="1">
+			<arg pat="ls" type="@List&lt;T&gt;" startLine="106" startPos="21" endLine="106" endPos="33">
+			</arg>
+		</function>
+		<function vis="public" ident="append" returns="@List&lt;T&gt;" startLine="115" startPos="0" endLine="123" endPos="1">
+			<arg pat="l" type="@List&lt;T&gt;" startLine="115" startPos="33" endLine="115" endPos="44">
+			</arg>
+			<arg pat="m" type="@List&lt;T&gt;" startLine="115" startPos="46" endLine="115" endPos="57">
+			</arg>
+		</function>
+		<function vis="public" ident="iter" returns="" startLine="134" startPos="0" endLine="145" endPos="1">
+			<arg pat="l" type="@List&lt;T&gt;" startLine="134" startPos="15" endLine="134" endPos="26">
+			</arg>
+			<arg pat="f" type="|&amp;T|" startLine="134" startPos="28" endLine="134" endPos="35">
+			</arg>
+		</function>
+		<function vis="public" ident="each" returns="bool" startLine="148" startPos="0" endLine="159" endPos="1">
+			<arg pat="l" type="@List&lt;T&gt;" startLine="148" startPos="15" endLine="148" endPos="26">
+			</arg>
+			<arg pat="f" type="|&amp;T| -&gt; bool" startLine="148" startPos="28" endLine="148" endPos="43">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="ringbuf" startLine="65" startPos="0" endLine="65" endPos="16">
+		<structure vis="public" ident="RingBuf" startLine="27" startPos="0" endLine="31" endPos="1">
+		</structure>
+		<structure vis="public" ident="RingBufIterator" startLine="250" startPos="0" endLine="255" endPos="1">
+		</structure>
+		<structure vis="public" ident="RingBufMutIterator" startLine="277" startPos="0" endLine="282" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="priority_queue" startLine="66" startPos="0" endLine="66" endPos="23">
+		<structure vis="public" ident="PriorityQueue" startLine="22" startPos="0" endLine="24" endPos="1">
+		</structure>
+		<structure vis="public" ident="PriorityQueueIterator" startLine="180" startPos="0" endLine="182" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="smallintmap" startLine="67" startPos="0" endLine="67" endPos="20">
+		<structure vis="public" ident="SmallIntMap" startLine="24" startPos="0" endLine="26" endPos="1">
+		</structure>
+		<structure vis="public" ident="SmallIntMapIterator" startLine="237" startPos="0" endLine="241" endPos="1">
+		</structure>
+		<structure vis="public" ident="SmallIntMapMutIterator" startLine="247" startPos="0" endLine="251" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="sort" startLine="69" startPos="0" endLine="69" endPos="13">
+		<function vis="public" ident="merge_sort" returns="~[T]" startLine="26" startPos="0" endLine="65" endPos="1">
+			<arg pat="v" type="&amp;[T]" startLine="26" startPos="27" endLine="26" endPos="34">
+			</arg>
+			<arg pat="le" type="Le&lt;T&gt;" startLine="26" startPos="36" endLine="26" endPos="45">
+			</arg>
+		</function>
+		<function vis="public" ident="quick_sort" returns="" startLine="102" startPos="0" endLine="106" endPos="1">
+			<arg pat="arr" type="&amp;mut [T]" startLine="102" startPos="21" endLine="102" endPos="34">
+			</arg>
+			<arg pat="compare_func" type="Le&lt;T&gt;" startLine="102" startPos="36" endLine="102" endPos="55">
+			</arg>
+		</function>
+		<function vis="public" ident="quick_sort3" returns="" startLine="165" startPos="0" endLine="169" endPos="1">
+			<arg pat="arr" type="&amp;mut [T]" startLine="165" startPos="39" endLine="165" endPos="52">
+			</arg>
+		</function>
+		<trait vis="public" ident="Sort" startLine="172" startPos="0" endLine="174" endPos="1">
+			<traitMethod ident="qsort" returns="" startLine="173" startPos="4" endLine="173" endPos="18">
+			</traitMethod>
+		</trait>
+		<function vis="public" ident="tim_sort" returns="" startLine="185" startPos="0" endLine="227" endPos="1">
+			<arg pat="array" type="&amp;mut [T]" startLine="185" startPos="31" endLine="185" endPos="46">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="dlist" startLine="71" startPos="0" endLine="71" endPos="14">
+		<structure vis="public" ident="DList" startLine="34" startPos="0" endLine="38" endPos="1">
+		</structure>
+		<structure vis="public" ident="DListIterator" startLine="51" startPos="0" endLine="55" endPos="1">
+		</structure>
+		<structure vis="public" ident="MutDListIterator" startLine="58" startPos="0" endLine="63" endPos="1">
+		</structure>
+		<structure vis="public" ident="MoveIterator" startLine="67" startPos="0" endLine="69" endPos="1">
+		</structure>
+		<trait vis="public" ident="ListInsertion" startLine="516" startPos="0" endLine="524" endPos="1">
+			<traitMethod ident="insert_next" returns="" startLine="520" startPos="4" endLine="520" endPos="37">
+				<arg pat="elt" type="A" startLine="520" startPos="30" endLine="520" endPos="36">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="peek_next" returns="Option&lt;&amp;'a mut A&gt;" startLine="523" startPos="4" endLine="523" endPos="55">
+			</traitMethod>
+		</trait>
+		<function vis="public" ident="check_links" returns="" startLine="627" startPos="0" endLine="657" endPos="1">
+			<arg pat="list" type="&amp;DList&lt;T&gt;" startLine="627" startPos="22" endLine="627" endPos="37">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="treemap" startLine="72" startPos="0" endLine="72" endPos="16">
+		<structure vis="public" ident="TreeMap" startLine="38" startPos="0" endLine="41" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeMapIterator" startLine="231" startPos="0" endLine="236" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeMapRevIterator" startLine="287" startPos="0" endLine="289" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeMapMoveIterator" startLine="344" startPos="0" endLine="347" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeSet" startLine="412" startPos="0" endLine="414" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeSetIterator" startLine="564" startPos="0" endLine="566" endPos="1">
+		</structure>
+		<structure vis="public" ident="TreeSetRevIterator" startLine="569" startPos="0" endLine="571" endPos="1">
+		</structure>
+		<structure vis="public" ident="Difference" startLine="574" startPos="0" endLine="577" endPos="1">
+		</structure>
+		<structure vis="public" ident="SymDifference" startLine="580" startPos="0" endLine="583" endPos="1">
+		</structure>
+		<structure vis="public" ident="Intersection" startLine="586" startPos="0" endLine="589" endPos="1">
+		</structure>
+		<structure vis="public" ident="Union" startLine="592" startPos="0" endLine="595" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="btree" startLine="73" startPos="0" endLine="73" endPos="14">
+		<structure vis="public" ident="BTree" startLine="25" startPos="0" endLine="30" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="url" startLine="77" startPos="0" endLine="77" endPos="12">
+		<structure vis="public" ident="Url" startLine="23" startPos="0" endLine="31" endPos="1">
+		</structure>
+		<structure vis="public" ident="UserInfo" startLine="34" startPos="0" endLine="37" endPos="1">
+		</structure>
+		<function vis="public" ident="encode" returns="~str" startLine="118" startPos="0" endLine="120" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="118" startPos="14" endLine="118" endPos="21">
+			</arg>
+		</function>
+		<function vis="public" ident="encode_component" returns="~str" startLine="129" startPos="0" endLine="131" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="129" startPos="24" endLine="129" endPos="31">
+			</arg>
+		</function>
+		<function vis="public" ident="decode" returns="~str" startLine="184" startPos="0" endLine="186" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="184" startPos="14" endLine="184" endPos="21">
+			</arg>
+		</function>
+		<function vis="public" ident="decode_component" returns="~str" startLine="191" startPos="0" endLine="193" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="191" startPos="24" endLine="191" endPos="31">
+			</arg>
+		</function>
+		<function vis="public" ident="encode_form_urlencoded" returns="~str" startLine="220" startPos="0" endLine="240" endPos="1">
+			<arg pat="m" type="&amp;HashMap&lt;~str, ~[~str]&gt;" startLine="220" startPos="30" endLine="220" endPos="56">
+			</arg>
+		</function>
+		<function vis="public" ident="decode_form_urlencoded" returns="HashMap&lt;~str, ~[~str]&gt;" startLine="246" startPos="0" endLine="310" endPos="1">
+			<arg pat="s" type="&amp;[u8]" startLine="246" startPos="30" endLine="246" endPos="38">
+			</arg>
+		</function>
+		<function vis="public" ident="query_to_str" returns="~str" startLine="377" startPos="0" endLine="390" endPos="1">
+			<arg pat="query" type="&amp;Query" startLine="377" startPos="20" endLine="377" endPos="33">
+			</arg>
+		</function>
+		<function vis="public" ident="get_scheme" returns="Result&lt;(~str, ~str), ~str&gt;" startLine="393" startPos="0" endLine="417" endPos="1">
+			<arg pat="rawurl" type="&amp;str" startLine="393" startPos="18" endLine="393" endPos="30">
+			</arg>
+		</function>
+		<function vis="public" ident="from_str" returns="Result&lt;Url, ~str&gt;" startLine="648" startPos="0" endLine="675" endPos="1">
+			<arg pat="rawurl" type="&amp;str" startLine="648" startPos="16" endLine="648" endPos="28">
+			</arg>
+		</function>
+		<function vis="public" ident="to_str" returns="~str" startLine="701" startPos="0" endLine="729" endPos="1">
+			<arg pat="url" type="&amp;Url" startLine="701" startPos="14" endLine="701" endPos="23">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="ebml" startLine="78" startPos="0" endLine="78" endPos="13">
+		<structure vis="public" ident="Doc" startLine="32" startPos="0" endLine="36" endPos="1">
+		</structure>
+		<structure vis="public" ident="TaggedDoc" startLine="52" startPos="0" endLine="55" endPos="1">
+		</structure>
+		<enumeration vis="public" ident="EbmlEncoderTag" startLine="57" startPos="0" endLine="88" endPos="1">
+			<variant ident="EsUint" startLine="58" startPos="4" endLine="58" endPos="10">
+			</variant>
+			<variant ident="EsU64" startLine="59" startPos="4" endLine="59" endPos="9">
+			</variant>
+			<variant ident="EsU32" startLine="60" startPos="4" endLine="60" endPos="9">
+			</variant>
+			<variant ident="EsU16" startLine="61" startPos="4" endLine="61" endPos="9">
+			</variant>
+			<variant ident="EsU8" startLine="62" startPos="4" endLine="62" endPos="8">
+			</variant>
+			<variant ident="EsInt" startLine="63" startPos="4" endLine="63" endPos="9">
+			</variant>
+			<variant ident="EsI64" startLine="64" startPos="4" endLine="64" endPos="9">
+			</variant>
+			<variant ident="EsI32" startLine="65" startPos="4" endLine="65" endPos="9">
+			</variant>
+			<variant ident="EsI16" startLine="66" startPos="4" endLine="66" endPos="9">
+			</variant>
+			<variant ident="EsI8" startLine="67" startPos="4" endLine="67" endPos="8">
+			</variant>
+			<variant ident="EsBool" startLine="68" startPos="4" endLine="68" endPos="10">
+			</variant>
+			<variant ident="EsChar" startLine="69" startPos="4" endLine="69" endPos="10">
+			</variant>
+			<variant ident="EsStr" startLine="70" startPos="4" endLine="70" endPos="9">
+			</variant>
+			<variant ident="EsF64" startLine="71" startPos="4" endLine="71" endPos="9">
+			</variant>
+			<variant ident="EsF32" startLine="72" startPos="4" endLine="72" endPos="9">
+			</variant>
+			<variant ident="EsFloat" startLine="73" startPos="4" endLine="73" endPos="11">
+			</variant>
+			<variant ident="EsEnum" startLine="74" startPos="4" endLine="74" endPos="10">
+			</variant>
+			<variant ident="EsEnumVid" startLine="75" startPos="4" endLine="75" endPos="13">
+			</variant>
+			<variant ident="EsEnumBody" startLine="76" startPos="4" endLine="76" endPos="14">
+			</variant>
+			<variant ident="EsVec" startLine="77" startPos="4" endLine="77" endPos="9">
+			</variant>
+			<variant ident="EsVecLen" startLine="78" startPos="4" endLine="78" endPos="12">
+			</variant>
+			<variant ident="EsVecElt" startLine="79" startPos="4" endLine="79" endPos="12">
+			</variant>
+			<variant ident="EsMap" startLine="80" startPos="4" endLine="80" endPos="9">
+			</variant>
+			<variant ident="EsMapLen" startLine="81" startPos="4" endLine="81" endPos="12">
+			</variant>
+			<variant ident="EsMapKey" startLine="82" startPos="4" endLine="82" endPos="12">
+			</variant>
+			<variant ident="EsMapVal" startLine="83" startPos="4" endLine="83" endPos="12">
+			</variant>
+			<variant ident="EsOpaque" startLine="85" startPos="4" endLine="85" endPos="12">
+			</variant>
+			<variant ident="EsLabel" startLine="87" startPos="4" endLine="87" endPos="11">
+			</variant>
+		</enumeration>
+		<module vis="public" path="" ident="reader" startLine="91" startPos="0" endLine="596" endPos="1">
+			<function vis="public" ident="vuint_at" returns="Res" startLine="138" startPos="4" endLine="174" endPos="5">
+				<arg pat="data" type="&amp;[u8]" startLine="138" startPos="20" endLine="138" endPos="31">
+				</arg>
+				<arg pat="start" type="uint" startLine="138" startPos="33" endLine="138" endPos="44">
+				</arg>
+			</function>
+			<function vis="public" ident="vuint_at" returns="Res" startLine="177" startPos="4" endLine="179" endPos="5">
+				<arg pat="data" type="&amp;[u8]" startLine="177" startPos="20" endLine="177" endPos="31">
+				</arg>
+				<arg pat="start" type="uint" startLine="177" startPos="33" endLine="177" endPos="44">
+				</arg>
+			</function>
+			<function vis="public" ident="Doc" returns="Doc" startLine="181" startPos="4" endLine="183" endPos="5">
+				<arg pat="data" type="@~[u8]" startLine="181" startPos="15" endLine="181" endPos="27">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_at" returns="TaggedDoc" startLine="185" startPos="4" endLine="193" endPos="5">
+				<arg pat="data" type="@~[u8]" startLine="185" startPos="18" endLine="185" endPos="30">
+				</arg>
+				<arg pat="start" type="uint" startLine="185" startPos="32" endLine="185" endPos="43">
+				</arg>
+			</function>
+			<function vis="public" ident="maybe_get_doc" returns="Option&lt;Doc&gt;" startLine="195" startPos="4" endLine="207" endPos="5">
+				<arg pat="d" type="Doc" startLine="195" startPos="25" endLine="195" endPos="31">
+				</arg>
+				<arg pat="tg" type="uint" startLine="195" startPos="33" endLine="195" endPos="41">
+				</arg>
+			</function>
+			<function vis="public" ident="get_doc" returns="Doc" startLine="209" startPos="4" endLine="217" endPos="5">
+				<arg pat="d" type="Doc" startLine="209" startPos="19" endLine="209" endPos="25">
+				</arg>
+				<arg pat="tg" type="uint" startLine="209" startPos="27" endLine="209" endPos="35">
+				</arg>
+			</function>
+			<function vis="public" ident="docs" returns="bool" startLine="219" startPos="4" endLine="231" endPos="5">
+				<arg pat="d" type="Doc" startLine="219" startPos="16" endLine="219" endPos="22">
+				</arg>
+				<arg pat="it" type="|uint, Doc| -&gt; bool" startLine="219" startPos="24" endLine="219" endPos="47">
+				</arg>
+			</function>
+			<function vis="public" ident="tagged_docs" returns="bool" startLine="233" startPos="4" endLine="248" endPos="5">
+				<arg pat="d" type="Doc" startLine="233" startPos="23" endLine="233" endPos="29">
+				</arg>
+				<arg pat="tg" type="uint" startLine="233" startPos="31" endLine="233" endPos="39">
+				</arg>
+				<arg pat="it" type="|Doc| -&gt; bool" startLine="233" startPos="41" endLine="233" endPos="58">
+				</arg>
+			</function>
+			<function vis="public" ident="with_doc_data" returns="T" startLine="250" startPos="4" endLine="252" endPos="5">
+				<arg pat="d" type="Doc" startLine="250" startPos="28" endLine="250" endPos="34">
+				</arg>
+				<arg pat="f" type="|x: &amp;[u8]| -&gt; T" startLine="250" startPos="36" endLine="250" endPos="54">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_u8" returns="u8" startLine="255" startPos="4" endLine="258" endPos="5">
+				<arg pat="d" type="Doc" startLine="255" startPos="21" endLine="255" endPos="27">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_u16" returns="u16" startLine="260" startPos="4" endLine="263" endPos="5">
+				<arg pat="d" type="Doc" startLine="260" startPos="22" endLine="260" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_u32" returns="u32" startLine="265" startPos="4" endLine="268" endPos="5">
+				<arg pat="d" type="Doc" startLine="265" startPos="22" endLine="265" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_u64" returns="u64" startLine="270" startPos="4" endLine="273" endPos="5">
+				<arg pat="d" type="Doc" startLine="270" startPos="22" endLine="270" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_i8" returns="i8" startLine="275" startPos="4" endLine="275" endPos="57">
+				<arg pat="d" type="Doc" startLine="275" startPos="21" endLine="275" endPos="27">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_i16" returns="i16" startLine="276" startPos="4" endLine="276" endPos="61">
+				<arg pat="d" type="Doc" startLine="276" startPos="22" endLine="276" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_i32" returns="i32" startLine="277" startPos="4" endLine="277" endPos="61">
+				<arg pat="d" type="Doc" startLine="277" startPos="22" endLine="277" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="doc_as_i64" returns="i64" startLine="278" startPos="4" endLine="278" endPos="61">
+				<arg pat="d" type="Doc" startLine="278" startPos="22" endLine="278" endPos="28">
+				</arg>
+			</function>
+			<structure vis="public" ident="Decoder" startLine="280" startPos="4" endLine="283" endPos="5">
+			</structure>
+			<function vis="public" ident="Decoder" returns="Decoder" startLine="285" startPos="4" endLine="290" endPos="5">
+				<arg pat="d" type="Doc" startLine="285" startPos="19" endLine="285" endPos="25">
+				</arg>
+			</function>
+		</module>
+		<module vis="public" path="" ident="writer" startLine="598" startPos="0" endLine="944" endPos="1">
+			<structure vis="public" ident="Encoder" startLine="609" startPos="4" endLine="613" endPos="5">
+			</structure>
+			<function vis="public" ident="Encoder" returns="Encoder" startLine="644" startPos="4" endLine="650" endPos="5">
+				<arg pat="w" type="@mut MemWriter" startLine="644" startPos="19" endLine="644" endPos="36">
+				</arg>
+			</function>
+		</module>
+	</module>
+	<module vis="public" path="" ident="getopts" startLine="79" startPos="0" endLine="79" endPos="16">
+		<enumeration vis="public" ident="Name" startLine="89" startPos="0" endLine="92" endPos="1">
+			<variant ident="Long" startLine="90" startPos="4" endLine="90" endPos="14">
+			</variant>
+			<variant ident="Short" startLine="91" startPos="4" endLine="91" endPos="15">
+			</variant>
+		</enumeration>
+		<enumeration vis="public" ident="HasArg" startLine="97" startPos="0" endLine="101" endPos="1">
+			<variant ident="Yes" startLine="98" startPos="4" endLine="98" endPos="7">
+			</variant>
+			<variant ident="No" startLine="99" startPos="4" endLine="99" endPos="6">
+			</variant>
+			<variant ident="Maybe" startLine="100" startPos="4" endLine="100" endPos="9">
+			</variant>
+		</enumeration>
+		<enumeration vis="public" ident="Occur" startLine="106" startPos="0" endLine="110" endPos="1">
+			<variant ident="Req" startLine="107" startPos="4" endLine="107" endPos="7">
+			</variant>
+			<variant ident="Optional" startLine="108" startPos="4" endLine="108" endPos="12">
+			</variant>
+			<variant ident="Multi" startLine="109" startPos="4" endLine="109" endPos="9">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="Opt" startLine="114" startPos="0" endLine="123" endPos="1">
+		</structure>
+		<structure vis="public" ident="Matches" startLine="135" startPos="0" endLine="142" endPos="1">
+		</structure>
+		<enumeration vis="public" ident="Fail_" startLine="149" startPos="0" endLine="155" endPos="1">
+			<variant ident="ArgumentMissing" startLine="150" startPos="4" endLine="150" endPos="25">
+			</variant>
+			<variant ident="UnrecognizedOption" startLine="151" startPos="4" endLine="151" endPos="28">
+			</variant>
+			<variant ident="OptionMissing" startLine="152" startPos="4" endLine="152" endPos="23">
+			</variant>
+			<variant ident="OptionDuplicated" startLine="153" startPos="4" endLine="153" endPos="26">
+			</variant>
+			<variant ident="UnexpectedArgument" startLine="154" startPos="4" endLine="154" endPos="28">
+			</variant>
+		</enumeration>
+		<enumeration vis="public" ident="FailType" startLine="160" startPos="0" endLine="166" endPos="1">
+			<variant ident="ArgumentMissing_" startLine="161" startPos="4" endLine="161" endPos="20">
+			</variant>
+			<variant ident="UnrecognizedOption_" startLine="162" startPos="4" endLine="162" endPos="23">
+			</variant>
+			<variant ident="OptionMissing_" startLine="163" startPos="4" endLine="163" endPos="18">
+			</variant>
+			<variant ident="OptionDuplicated_" startLine="164" startPos="4" endLine="164" endPos="21">
+			</variant>
+			<variant ident="UnexpectedArgument_" startLine="165" startPos="4" endLine="165" endPos="23">
+			</variant>
+		</enumeration>
+		<function vis="public" ident="reqopt" returns="Opt" startLine="304" startPos="0" endLine="311" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="304" startPos="14" endLine="304" endPos="24">
+			</arg>
+		</function>
+		<function vis="public" ident="optopt" returns="Opt" startLine="314" startPos="0" endLine="321" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="314" startPos="14" endLine="314" endPos="24">
+			</arg>
+		</function>
+		<function vis="public" ident="optflag" returns="Opt" startLine="324" startPos="0" endLine="331" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="324" startPos="15" endLine="324" endPos="25">
+			</arg>
+		</function>
+		<function vis="public" ident="optflagmulti" returns="Opt" startLine="335" startPos="0" endLine="342" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="335" startPos="20" endLine="335" endPos="30">
+			</arg>
+		</function>
+		<function vis="public" ident="optflagopt" returns="Opt" startLine="345" startPos="0" endLine="352" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="345" startPos="18" endLine="345" endPos="28">
+			</arg>
+		</function>
+		<function vis="public" ident="optmulti" returns="Opt" startLine="356" startPos="0" endLine="363" endPos="1">
+			<arg pat="name" type="&amp;str" startLine="356" startPos="16" endLine="356" endPos="26">
+			</arg>
+		</function>
+		<function vis="public" ident="getopts" returns="Result" startLine="393" startPos="0" endLine="517" endPos="1">
+			<arg pat="args" type="&amp;[~str]" startLine="393" startPos="15" endLine="393" endPos="28">
+			</arg>
+			<arg pat="opts" type="&amp;[Opt]" startLine="393" startPos="30" endLine="393" endPos="42">
+			</arg>
+		</function>
+		<module vis="public" path="" ident="groups" startLine="521" startPos="0" endLine="854" endPos="1">
+			<structure vis="public" ident="OptGroup" startLine="528" startPos="4" endLine="541" endPos="5">
+			</structure>
+			<function vis="public" ident="reqopt" returns="OptGroup" startLine="588" startPos="4" endLine="599" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="588" startPos="18" endLine="588" endPos="34">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="588" startPos="36" endLine="588" endPos="51">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="588" startPos="53" endLine="588" endPos="63">
+				</arg>
+				<arg pat="hint" type="&amp;str" startLine="588" startPos="65" endLine="588" endPos="75">
+				</arg>
+			</function>
+			<function vis="public" ident="optopt" returns="OptGroup" startLine="602" startPos="4" endLine="613" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="602" startPos="18" endLine="602" endPos="34">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="602" startPos="36" endLine="602" endPos="51">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="602" startPos="53" endLine="602" endPos="63">
+				</arg>
+				<arg pat="hint" type="&amp;str" startLine="602" startPos="65" endLine="602" endPos="75">
+				</arg>
+			</function>
+			<function vis="public" ident="optflag" returns="OptGroup" startLine="616" startPos="4" endLine="627" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="616" startPos="19" endLine="616" endPos="35">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="616" startPos="37" endLine="616" endPos="52">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="616" startPos="54" endLine="616" endPos="64">
+				</arg>
+			</function>
+			<function vis="public" ident="optflagmulti" returns="OptGroup" startLine="631" startPos="4" endLine="642" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="631" startPos="24" endLine="631" endPos="40">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="631" startPos="42" endLine="631" endPos="57">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="631" startPos="59" endLine="631" endPos="69">
+				</arg>
+			</function>
+			<function vis="public" ident="optflagopt" returns="OptGroup" startLine="645" startPos="4" endLine="656" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="645" startPos="22" endLine="645" endPos="38">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="645" startPos="40" endLine="645" endPos="55">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="645" startPos="57" endLine="645" endPos="67">
+				</arg>
+				<arg pat="hint" type="&amp;str" startLine="645" startPos="69" endLine="645" endPos="79">
+				</arg>
+			</function>
+			<function vis="public" ident="optmulti" returns="OptGroup" startLine="660" startPos="4" endLine="671" endPos="5">
+				<arg pat="short_name" type="&amp;str" startLine="660" startPos="20" endLine="660" endPos="36">
+				</arg>
+				<arg pat="long_name" type="&amp;str" startLine="660" startPos="38" endLine="660" endPos="53">
+				</arg>
+				<arg pat="desc" type="&amp;str" startLine="660" startPos="55" endLine="660" endPos="65">
+				</arg>
+				<arg pat="hint" type="&amp;str" startLine="660" startPos="67" endLine="660" endPos="77">
+				</arg>
+			</function>
+			<function vis="public" ident="getopts" returns="::getopts::Result" startLine="674" startPos="4" endLine="676" endPos="5">
+				<arg pat="args" type="&amp;[~str]" startLine="674" startPos="19" endLine="674" endPos="32">
+				</arg>
+				<arg pat="opts" type="&amp;[OptGroup]" startLine="674" startPos="34" endLine="674" endPos="51">
+				</arg>
+			</function>
+			<function vis="public" ident="usage" returns="~str" startLine="679" startPos="4" endLine="758" endPos="5">
+				<arg pat="brief" type="&amp;str" startLine="679" startPos="17" endLine="679" endPos="28">
+				</arg>
+				<arg pat="opts" type="&amp;[OptGroup]" startLine="679" startPos="30" endLine="679" endPos="47">
+				</arg>
+			</function>
+		</module>
+	</module>
+	<module vis="public" path="" ident="json" startLine="80" startPos="0" endLine="80" endPos="13">
+		<enumeration vis="public" ident="Json" startLine="36" startPos="0" endLine="43" endPos="1">
+			<variant ident="Number" startLine="37" startPos="4" endLine="37" endPos="15">
+			</variant>
+			<variant ident="String" startLine="38" startPos="4" endLine="38" endPos="16">
+			</variant>
+			<variant ident="Boolean" startLine="39" startPos="4" endLine="39" endPos="17">
+			</variant>
+			<variant ident="List" startLine="40" startPos="4" endLine="40" endPos="14">
+			</variant>
+			<variant ident="Object" startLine="41" startPos="4" endLine="41" endPos="19">
+			</variant>
+			<variant ident="Null" startLine="42" startPos="4" endLine="42" endPos="8">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="Error" startLine="51" startPos="0" endLine="58" endPos="1">
+		</structure>
+		<structure vis="public" ident="Encoder" startLine="89" startPos="0" endLine="91" endPos="1">
+		</structure>
+		<function vis="public" ident="Encoder" returns="Encoder" startLine="95" startPos="0" endLine="97" endPos="1">
+			<arg pat="wr" type="@mut io::Writer" startLine="95" startPos="15" endLine="95" endPos="34">
+			</arg>
+		</function>
+		<structure vis="public" ident="PrettyEncoder" startLine="243" startPos="0" endLine="246" endPos="1">
+		</structure>
+		<function vis="public" ident="PrettyEncoder" returns="PrettyEncoder" startLine="249" startPos="0" endLine="254" endPos="1">
+			<arg pat="wr" type="@mut io::Writer" startLine="249" startPos="21" endLine="249" endPos="40">
+			</arg>
+		</function>
+		<structure vis="public" ident="Parser" startLine="469" startPos="0" endLine="474" endPos="1">
+		</structure>
+		<function vis="public" ident="Parser" returns="Parser&lt;T&gt;" startLine="477" startPos="0" endLine="486" endPos="1">
+			<arg pat="rdr" type="~T" startLine="477" startPos="34" endLine="477" endPos="41">
+			</arg>
+		</function>
+		<function vis="public" ident="from_reader" returns="Result&lt;Json, Error&gt;" startLine="845" startPos="0" endLine="849" endPos="1">
+			<arg pat="rdr" type="&amp;mut io::Reader" startLine="845" startPos="19" endLine="845" endPos="39">
+			</arg>
+		</function>
+		<function vis="public" ident="from_str" returns="Result&lt;Json, Error&gt;" startLine="852" startPos="0" endLine="855" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="852" startPos="16" endLine="852" endPos="23">
+			</arg>
+		</function>
+		<structure vis="public" ident="Decoder" startLine="858" startPos="0" endLine="860" endPos="1">
+		</structure>
+		<function vis="public" ident="Decoder" returns="Decoder" startLine="863" startPos="0" endLine="867" endPos="1">
+			<arg pat="json" type="Json" startLine="863" startPos="15" endLine="863" endPos="25">
+			</arg>
+		</function>
+		<trait vis="public" ident="ToJson" startLine="1157" startPos="0" endLine="1160" endPos="1">
+			<traitMethod ident="to_json" returns="Json" startLine="1159" startPos="4" endLine="1159" endPos="29">
+			</traitMethod>
+		</trait>
+	</module>
+	<module vis="public" path="" ident="tempfile" startLine="81" startPos="0" endLine="81" endPos="17">
+		<structure vis="public" ident="TempDir" startLine="22" startPos="0" endLine="24" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="glob" startLine="82" startPos="0" endLine="82" endPos="13">
+		<structure vis="public" ident="GlobIterator" startLine="37" startPos="0" endLine="42" endPos="1">
+		</structure>
+		<function vis="public" ident="glob" returns="GlobIterator" startLine="70" startPos="0" endLine="72" endPos="1">
+			<arg pat="pattern" type="&amp;str" startLine="70" startPos="12" endLine="70" endPos="25">
+			</arg>
+		</function>
+		<function vis="public" ident="glob_with" returns="GlobIterator" startLine="85" startPos="0" endLine="115" endPos="1">
+			<arg pat="pattern" type="&amp;str" startLine="85" startPos="17" endLine="85" endPos="30">
+			</arg>
+			<arg pat="options" type="MatchOptions" startLine="85" startPos="32" endLine="85" endPos="53">
+			</arg>
+		</function>
+		<structure vis="public" ident="Pattern" startLine="165" startPos="0" endLine="167" endPos="1">
+		</structure>
+		<structure vis="public" ident="MatchOptions" startLine="483" startPos="0" endLine="505" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="term" startLine="83" startPos="0" endLine="83" endPos="13">
+		<module vis="public" path="" ident="color" startLine="26" startPos="0" endLine="46" endPos="1">
+		</module>
+		<module vis="public" path="" ident="attr" startLine="48" startPos="0" endLine="75" endPos="1">
+			<enumeration vis="public" ident="Attr" startLine="53" startPos="4" endLine="74" endPos="5">
+				<variant ident="Bold" startLine="55" startPos="8" endLine="55" endPos="12">
+				</variant>
+				<variant ident="Dim" startLine="57" startPos="8" endLine="57" endPos="11">
+				</variant>
+				<variant ident="Italic" startLine="59" startPos="8" endLine="59" endPos="20">
+				</variant>
+				<variant ident="Underline" startLine="61" startPos="8" endLine="61" endPos="23">
+				</variant>
+				<variant ident="Blink" startLine="63" startPos="8" endLine="63" endPos="13">
+				</variant>
+				<variant ident="Standout" startLine="65" startPos="8" endLine="65" endPos="22">
+				</variant>
+				<variant ident="Reverse" startLine="67" startPos="8" endLine="67" endPos="15">
+				</variant>
+				<variant ident="Secure" startLine="69" startPos="8" endLine="69" endPos="14">
+				</variant>
+				<variant ident="ForegroundColor" startLine="71" startPos="8" endLine="71" endPos="44">
+				</variant>
+				<variant ident="BackgroundColor" startLine="73" startPos="8" endLine="73" endPos="44">
+				</variant>
+			</enumeration>
+		</module>
+		<structure vis="public" ident="Terminal" startLine="97" startPos="0" endLine="101" endPos="1">
+		</structure>
+		<structure vis="public" ident="Terminal" startLine="104" startPos="0" endLine="107" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="time" startLine="84" startPos="0" endLine="84" endPos="13">
+		<module vis="public" path="" ident="rustrt" startLine="20" startPos="0" endLine="32" endPos="1">
+		</module>
+		<structure vis="public" ident="Timespec" startLine="38" startPos="0" endLine="38" endPos="43">
+		</structure>
+		<function vis="public" ident="get_time" returns="Timespec" startLine="65" startPos="0" endLine="72" endPos="1">
+		</function>
+		<function vis="public" ident="precise_time_ns" returns="u64" startLine="79" startPos="0" endLine="85" endPos="1">
+		</function>
+		<function vis="public" ident="precise_time_s" returns="f64" startLine="92" startPos="0" endLine="94" endPos="1">
+		</function>
+		<function vis="public" ident="tzset" returns="" startLine="96" startPos="0" endLine="100" endPos="1">
+		</function>
+		<structure vis="public" ident="Tm" startLine="103" startPos="0" endLine="116" endPos="1">
+		</structure>
+		<function vis="public" ident="empty_tm" returns="Tm" startLine="118" startPos="0" endLine="136" endPos="1">
+		</function>
+		<function vis="public" ident="at_utc" returns="Tm" startLine="139" startPos="0" endLine="146" endPos="1">
+			<arg pat="clock" type="Timespec" startLine="139" startPos="14" endLine="139" endPos="29">
+			</arg>
+		</function>
+		<function vis="public" ident="now_utc" returns="Tm" startLine="149" startPos="0" endLine="151" endPos="1">
+		</function>
+		<function vis="public" ident="at" returns="Tm" startLine="154" startPos="0" endLine="161" endPos="1">
+			<arg pat="clock" type="Timespec" startLine="154" startPos="10" endLine="154" endPos="25">
+			</arg>
+		</function>
+		<function vis="public" ident="now" returns="Tm" startLine="164" startPos="0" endLine="166" endPos="1">
+		</function>
+		<function vis="public" ident="strptime" returns="Result&lt;Tm, ~str&gt;" startLine="248" startPos="0" endLine="721" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="248" startPos="16" endLine="248" endPos="23">
+			</arg>
+			<arg pat="format" type="&amp;str" startLine="248" startPos="25" endLine="248" endPos="37">
+			</arg>
+		</function>
+		<function vis="public" ident="strftime" returns="~str" startLine="724" startPos="0" endLine="949" endPos="1">
+			<arg pat="format" type="&amp;str" startLine="724" startPos="16" endLine="724" endPos="28">
+			</arg>
+			<arg pat="tm" type="&amp;Tm" startLine="724" startPos="30" endLine="724" endPos="37">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="arena" startLine="85" startPos="0" endLine="85" endPos="14">
+		<structure vis="public" ident="Arena" startLine="61" startPos="0" endLine="68" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="base64" startLine="86" startPos="0" endLine="86" endPos="15">
+		<enumeration vis="public" ident="CharacterSet" startLine="15" startPos="0" endLine="20" endPos="1">
+			<variant ident="Standard" startLine="17" startPos="4" endLine="17" endPos="12">
+			</variant>
+			<variant ident="UrlSafe" startLine="19" startPos="4" endLine="19" endPos="11">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="Config" startLine="23" startPos="0" endLine="30" endPos="1">
+		</structure>
+		<trait vis="public" ident="ToBase64" startLine="53" startPos="0" endLine="57" endPos="1">
+			<traitMethod ident="to_base64" returns="~str" startLine="56" startPos="4" endLine="56" endPos="47">
+				<arg pat="config" type="Config" startLine="56" startPos="24" endLine="56" endPos="38">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="FromBase64" startLine="154" startPos="0" endLine="158" endPos="1">
+			<traitMethod ident="from_base64" returns="Result&lt;~[u8], ~str&gt;" startLine="157" startPos="4" endLine="157" endPos="48">
+			</traitMethod>
+		</trait>
+	</module>
+	<module vis="public" path="" ident="workcache" startLine="87" startPos="0" endLine="87" endPos="18">
+		<structure vis="public" ident="Database" startLine="131" startPos="0" endLine="135" endPos="1">
+		</structure>
+		<structure vis="public" ident="Logger" startLine="211" startPos="0" endLine="214" endPos="1">
+		</structure>
+		<structure vis="public" ident="Context" startLine="230" startPos="0" endLine="241" endPos="1">
+		</structure>
+		<structure vis="public" ident="Prep" startLine="243" startPos="0" endLine="247" endPos="1">
+		</structure>
+		<structure vis="public" ident="Exec" startLine="249" startPos="0" endLine="252" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="enum_set" startLine="88" startPos="0" endLine="88" endPos="17">
+		<structure vis="public" ident="EnumSet" startLine="18" startPos="0" endLine="22" endPos="1">
+		</structure>
+		<trait vis="public" ident="CLike" startLine="25" startPos="0" endLine="30" endPos="1">
+			<traitMethod ident="to_uint" returns="uint" startLine="27" startPos="4" endLine="27" endPos="29">
+			</traitMethod>
+			<traitMethod ident="from_uint" returns="Self" startLine="29" startPos="4" endLine="29" endPos="30">
+				<arg pat="(" type="uint" startLine="29" startPos="16" endLine="29" endPos="21">
+				</arg>
+			</traitMethod>
+		</trait>
+		<structure vis="public" ident="EnumSetIterator" startLine="102" startPos="0" endLine="105" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="num/bigint.rs" ident="bigint" startLine="90" startPos="0" endLine="90" endPos="15">
+		<module vis="public" path="" ident="BigDigit" startLine="50" startPos="0" endLine="79" endPos="1">
+			<function vis="public" ident="from_uint" returns="(BigDigit, BigDigit)" startLine="70" startPos="4" endLine="72" endPos="5">
+				<arg pat="n" type="uint" startLine="70" startPos="21" endLine="70" endPos="28">
+				</arg>
+			</function>
+			<function vis="public" ident="to_uint" returns="uint" startLine="76" startPos="4" endLine="78" endPos="5">
+				<arg pat="hi" type="BigDigit" startLine="76" startPos="19" endLine="76" endPos="31">
+				</arg>
+				<arg pat="lo" type="BigDigit" startLine="76" startPos="33" endLine="76" endPos="45">
+				</arg>
+			</function>
+		</module>
+		<structure vis="public" ident="BigUint" startLine="88" startPos="0" endLine="90" endPos="1">
+		</structure>
+		<trait vis="public" ident="ToBigUint" startLine="603" startPos="0" endLine="606" endPos="1">
+			<traitMethod ident="to_biguint" returns="Option&lt;BigUint&gt;" startLine="605" startPos="4" endLine="605" endPos="43">
+			</traitMethod>
+		</trait>
+		<enumeration vis="public" ident="Sign" startLine="857" startPos="0" endLine="857" endPos="35">
+			<variant ident="Minus" startLine="857" startPos="16" endLine="857" endPos="21">
+			</variant>
+			<variant ident="Zero" startLine="857" startPos="23" endLine="857" endPos="27">
+			</variant>
+			<variant ident="Plus" startLine="857" startPos="29" endLine="857" endPos="33">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="BigInt" startLine="895" startPos="0" endLine="898" endPos="1">
+		</structure>
+		<trait vis="public" ident="ToBigInt" startLine="1238" startPos="0" endLine="1241" endPos="1">
+			<traitMethod ident="to_bigint" returns="Option&lt;BigInt&gt;" startLine="1240" startPos="4" endLine="1240" endPos="41">
+			</traitMethod>
+		</trait>
+	</module>
+	<module vis="public" path="num/rational.rs" ident="rational" startLine="92" startPos="0" endLine="92" endPos="17">
+		<structure vis="public" ident="Ratio" startLine="22" startPos="0" endLine="25" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="num/complex.rs" ident="complex" startLine="94" startPos="0" endLine="94" endPos="16">
+		<structure vis="public" ident="Cmplx" startLine="26" startPos="0" endLine="31" endPos="1">
+		</structure>
+	</module>
+	<module vis="public" path="" ident="stats" startLine="95" startPos="0" endLine="95" endPos="14">
+		<trait vis="public" ident="Stats" startLine="23" startPos="0" endLine="102" endPos="1">
+			<traitMethod ident="sum" returns="f64" startLine="26" startPos="4" endLine="26" endPos="23">
+			</traitMethod>
+			<traitMethod ident="min" returns="f64" startLine="29" startPos="4" endLine="29" endPos="23">
+			</traitMethod>
+			<traitMethod ident="max" returns="f64" startLine="32" startPos="4" endLine="32" endPos="23">
+			</traitMethod>
+			<traitMethod ident="mean" returns="f64" startLine="37" startPos="4" endLine="37" endPos="24">
+			</traitMethod>
+			<traitMethod ident="median" returns="f64" startLine="43" startPos="4" endLine="43" endPos="26">
+			</traitMethod>
+			<traitMethod ident="var" returns="f64" startLine="52" startPos="4" endLine="52" endPos="23">
+			</traitMethod>
+			<traitMethod ident="std_dev" returns="f64" startLine="60" startPos="4" endLine="60" endPos="27">
+			</traitMethod>
+			<traitMethod ident="std_dev_pct" returns="f64" startLine="66" startPos="4" endLine="66" endPos="31">
+			</traitMethod>
+			<traitMethod ident="median_abs_dev" returns="f64" startLine="75" startPos="4" endLine="75" endPos="34">
+			</traitMethod>
+			<traitMethod ident="median_abs_dev_pct" returns="f64" startLine="78" startPos="4" endLine="78" endPos="38">
+			</traitMethod>
+			<traitMethod ident="percentile" returns="f64" startLine="87" startPos="4" endLine="87" endPos="40">
+				<arg pat="pct" type="f64" startLine="87" startPos="24" endLine="87" endPos="32">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="quartiles" returns="(f64,f64,f64)" startLine="95" startPos="4" endLine="95" endPos="39">
+			</traitMethod>
+			<traitMethod ident="iqr" returns="f64" startLine="101" startPos="4" endLine="101" endPos="23">
+			</traitMethod>
+		</trait>
+		<structure vis="public" ident="Summary" startLine="107" startPos="0" endLine="125" endPos="1">
+		</structure>
+		<function vis="public" ident="winsorize" returns="" startLine="261" startPos="0" endLine="273" endPos="1">
+			<arg pat="samples" type="&amp;mut [f64]" startLine="261" startPos="17" endLine="261" endPos="36">
+			</arg>
+			<arg pat="pct" type="f64" startLine="261" startPos="38" endLine="261" endPos="46">
+			</arg>
+		</function>
+		<function vis="public" ident="write_5_number_summary" returns="" startLine="276" startPos="0" endLine="284" endPos="1">
+			<arg pat="w" type="&amp;mut io::Writer" startLine="276" startPos="30" endLine="276" endPos="48">
+			</arg>
+			<arg pat="s" type="&amp;Summary" startLine="276" startPos="50" endLine="276" endPos="61">
+			</arg>
+		</function>
+		<function vis="public" ident="write_boxplot" returns="" startLine="298" startPos="0" endLine="370" endPos="1">
+			<arg pat="w" type="&amp;mut io::Writer" startLine="298" startPos="21" endLine="298" endPos="39">
+			</arg>
+			<arg pat="s" type="&amp;Summary" startLine="298" startPos="41" endLine="298" endPos="52">
+			</arg>
+			<arg pat="width_hint" type="uint" startLine="298" startPos="54" endLine="298" endPos="70">
+			</arg>
+		</function>
+		<function vis="public" ident="freq_count" returns="hashmap::HashMap&lt;U, uint&gt;" startLine="374" startPos="0" endLine="380" endPos="1">
+			<arg pat="mut iter" type="T" startLine="374" startPos="46" endLine="374" endPos="57">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="semver" startLine="96" startPos="0" endLine="96" endPos="15">
+		<enumeration vis="public" ident="Identifier" startLine="40" startPos="0" endLine="43" endPos="1">
+			<variant ident="Numeric" startLine="41" startPos="4" endLine="41" endPos="17">
+			</variant>
+			<variant ident="AlphaNumeric" startLine="42" startPos="4" endLine="42" endPos="22">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="Version" startLine="70" startPos="0" endLine="83" endPos="1">
+		</structure>
+		<function vis="public" ident="parse" returns="Option&lt;Version&gt;" startLine="235" startPos="0" endLine="249" endPos="1">
+			<arg pat="s" type="&amp;str" startLine="235" startPos="13" endLine="235" endPos="20">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="flate" startLine="97" startPos="0" endLine="97" endPos="14">
+		<module vis="public" path="" ident="rustrt" startLine="23" startPos="0" endLine="40" endPos="1">
+		</module>
+		<function vis="public" ident="deflate_bytes" returns="~[u8]" startLine="67" startPos="0" endLine="69" endPos="1">
+			<arg pat="bytes" type="&amp;[u8]" startLine="67" startPos="21" endLine="67" endPos="33">
+			</arg>
+		</function>
+		<function vis="public" ident="deflate_bytes_zlib" returns="~[u8]" startLine="71" startPos="0" endLine="73" endPos="1">
+			<arg pat="bytes" type="&amp;[u8]" startLine="71" startPos="26" endLine="71" endPos="38">
+			</arg>
+		</function>
+		<function vis="public" ident="inflate_bytes" returns="~[u8]" startLine="93" startPos="0" endLine="95" endPos="1">
+			<arg pat="bytes" type="&amp;[u8]" startLine="93" startPos="21" endLine="93" endPos="33">
+			</arg>
+		</function>
+		<function vis="public" ident="inflate_bytes_zlib" returns="~[u8]" startLine="97" startPos="0" endLine="99" endPos="1">
+			<arg pat="bytes" type="&amp;[u8]" startLine="97" startPos="26" endLine="97" endPos="38">
+			</arg>
+		</function>
+	</module>
+	<module vis="public" path="" ident="hex" startLine="98" startPos="0" endLine="98" endPos="12">
+		<trait vis="public" ident="ToHex" startLine="16" startPos="0" endLine="20" endPos="1">
+			<traitMethod ident="to_hex" returns="~str" startLine="19" startPos="4" endLine="19" endPos="28">
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="FromHex" startLine="54" startPos="0" endLine="58" endPos="1">
+			<traitMethod ident="from_hex" returns="Result&lt;~[u8], ~str&gt;" startLine="57" startPos="4" endLine="57" endPos="45">
+			</traitMethod>
+		</trait>
+	</module>
+	<module vis="public" path="" ident="uuid" startLine="99" startPos="0" endLine="99" endPos="13">
+		<enumeration vis="public" ident="UuidVersion" startLine="76" startPos="0" endLine="87" endPos="1">
+			<variant ident="Version1Mac" startLine="78" startPos="4" endLine="78" endPos="22">
+			</variant>
+			<variant ident="Version2Dce" startLine="80" startPos="4" endLine="80" endPos="22">
+			</variant>
+			<variant ident="Version3Md5" startLine="82" startPos="4" endLine="82" endPos="22">
+			</variant>
+			<variant ident="Version4Random" startLine="84" startPos="4" endLine="84" endPos="22">
+			</variant>
+			<variant ident="Version5Sha1" startLine="86" startPos="4" endLine="86" endPos="22">
+			</variant>
+		</enumeration>
+		<enumeration vis="public" ident="UuidVariant" startLine="91" startPos="0" endLine="100" endPos="1">
+			<variant ident="VariantNCS" startLine="93" startPos="4" endLine="93" endPos="14">
+			</variant>
+			<variant ident="VariantRFC4122" startLine="95" startPos="4" endLine="95" endPos="18">
+			</variant>
+			<variant ident="VariantMicrosoft" startLine="97" startPos="4" endLine="97" endPos="20">
+			</variant>
+			<variant ident="VariantFuture" startLine="99" startPos="4" endLine="99" endPos="17">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="Uuid" startLine="103" startPos="0" endLine="106" endPos="1">
+		</structure>
+		<enumeration vis="public" ident="ParseError" startLine="122" startPos="0" endLine="127" endPos="1">
+			<variant ident="ErrorInvalidLength" startLine="123" startPos="4" endLine="123" endPos="28">
+			</variant>
+			<variant ident="ErrorInvalidCharacter" startLine="124" startPos="4" endLine="124" endPos="37">
+			</variant>
+			<variant ident="ErrorInvalidGroups" startLine="125" startPos="4" endLine="125" endPos="28">
+			</variant>
+			<variant ident="ErrorInvalidGroupLength" startLine="126" startPos="4" endLine="126" endPos="45">
+			</variant>
+		</enumeration>
+	</module>
+	<module vis="public" path="" ident="terminfo" startLine="105" startPos="0" endLine="105" endPos="17">
+		<structure vis="public" ident="TermInfo" startLine="16" startPos="0" endLine="25" endPos="1">
+		</structure>
+		<module vis="public" path="" ident="searcher" startLine="27" startPos="0" endLine="27" endPos="17">
+			<function vis="public" ident="get_dbpath_for_term" returns="Option&lt;~Path&gt;" startLine="20" startPos="0" endLine="74" endPos="1">
+				<arg pat="term" type="&amp;str" startLine="20" startPos="27" endLine="20" endPos="37">
+				</arg>
+			</function>
+			<function vis="public" ident="open" returns="Result&lt;@mut io::Reader, ~str&gt;" startLine="77" startPos="0" endLine="82" endPos="1">
+				<arg pat="term" type="&amp;str" startLine="77" startPos="12" endLine="77" endPos="22">
+				</arg>
+			</function>
+		</module>
+		<module vis="public" path="" ident="parser" startLine="28" startPos="0" endLine="30" endPos="1">
+			<module vis="public" path="" ident="compiled" startLine="29" startPos="4" endLine="29" endPos="21">
+				<function vis="public" ident="parse" returns="Result&lt;~TermInfo, ~str&gt;" startLine="163" startPos="0" endLine="315" endPos="1">
+					<arg pat="file" type="&amp;mut io::Reader" startLine="163" startPos="13" endLine="163" endPos="34">
+					</arg>
+					<arg pat="longnames" type="bool" startLine="164" startPos="13" endLine="164" endPos="28">
+					</arg>
+				</function>
+			</module>
+		</module>
+		<module vis="public" path="" ident="parm" startLine="31" startPos="0" endLine="31" endPos="13">
+			<enumeration vis="public" ident="Param" startLine="43" startPos="0" endLine="46" endPos="1">
+				<variant ident="String" startLine="44" startPos="4" endLine="44" endPos="16">
+				</variant>
+				<variant ident="Number" startLine="45" startPos="4" endLine="45" endPos="15">
+				</variant>
+			</enumeration>
+			<structure vis="public" ident="Variables" startLine="49" startPos="0" endLine="54" endPos="1">
+			</structure>
+			<function vis="public" ident="expand" returns="Result&lt;~[u8], ~str&gt;" startLine="91" startPos="0" endLine="430" endPos="1">
+				<arg pat="cap" type="&amp;[u8]" startLine="91" startPos="14" endLine="91" endPos="24">
+				</arg>
+				<arg pat="params" type="&amp;[Param]" startLine="91" startPos="26" endLine="91" endPos="42">
+				</arg>
+				<arg pat="vars" type="&amp;mut Variables" startLine="91" startPos="44" endLine="91" endPos="64">
+				</arg>
+			</function>
+		</module>
+	</module>
+	<module vis="public" path="" ident="test" startLine="109" startPos="0" endLine="109" endPos="13">
+		<enumeration vis="public" ident="TestName" startLine="47" startPos="0" endLine="50" endPos="1">
+			<variant ident="StaticTestName" startLine="48" startPos="4" endLine="48" endPos="32">
+			</variant>
+			<variant ident="DynTestName" startLine="49" startPos="4" endLine="49" endPos="21">
+			</variant>
+		</enumeration>
+		<trait vis="public" ident="TDynBenchFn" startLine="78" startPos="0" endLine="80" endPos="1">
+			<traitMethod ident="run" returns="" startLine="79" startPos="4" endLine="79" endPos="45">
+				<arg pat="harness" type="&amp;mut BenchHarness" startLine="79" startPos="18" endLine="79" endPos="44">
+				</arg>
+			</traitMethod>
+		</trait>
+		<enumeration vis="public" ident="TestFn" startLine="86" startPos="0" endLine="93" endPos="1">
+			<variant ident="StaticTestFn" startLine="87" startPos="4" endLine="87" endPos="29">
+			</variant>
+			<variant ident="StaticBenchFn" startLine="88" startPos="4" endLine="88" endPos="47">
+			</variant>
+			<variant ident="StaticMetricFn" startLine="89" startPos="4" endLine="89" endPos="40">
+			</variant>
+			<variant ident="DynTestFn" startLine="90" startPos="4" endLine="90" endPos="21">
+			</variant>
+			<variant ident="DynMetricFn" startLine="91" startPos="4" endLine="91" endPos="37">
+			</variant>
+			<variant ident="DynBenchFn" startLine="92" startPos="4" endLine="92" endPos="28">
+			</variant>
+		</enumeration>
+		<structure vis="public" ident="BenchHarness" startLine="109" startPos="0" endLine="114" endPos="1">
+		</structure>
+		<structure vis="public" ident="TestDesc" startLine="119" startPos="0" endLine="123" endPos="1">
+		</structure>
+		<structure vis="public" ident="TestDescAndFn" startLine="125" startPos="0" endLine="128" endPos="1">
+		</structure>
+		<structure vis="public" ident="Metric" startLine="131" startPos="0" endLine="134" endPos="1">
+		</structure>
+		<structure vis="public" ident="MetricMap" startLine="137" startPos="0" endLine="137" endPos="43">
+		</structure>
+		<enumeration vis="public" ident="MetricChange" startLine="147" startPos="0" endLine="153" endPos="1">
+			<variant ident="LikelyNoise" startLine="148" startPos="4" endLine="148" endPos="15">
+			</variant>
+			<variant ident="MetricAdded" startLine="149" startPos="4" endLine="149" endPos="15">
+			</variant>
+			<variant ident="MetricRemoved" startLine="150" startPos="4" endLine="150" endPos="17">
+			</variant>
+			<variant ident="Improvement" startLine="151" startPos="4" endLine="151" endPos="20">
+			</variant>
+			<variant ident="Regression" startLine="152" startPos="4" endLine="152" endPos="19">
+			</variant>
+		</enumeration>
+		<function vis="public" ident="test_main" returns="" startLine="159" startPos="0" endLine="167" endPos="1">
+			<arg pat="args" type="&amp;[~str]" startLine="159" startPos="17" endLine="159" endPos="30">
+			</arg>
+			<arg pat="tests" type="~[TestDescAndFn]" startLine="159" startPos="32" endLine="159" endPos="55">
+			</arg>
+		</function>
+		<function vis="public" ident="test_main_static" returns="" startLine="176" startPos="0" endLine="191" endPos="1">
+			<arg pat="args" type="&amp;[~str]" startLine="176" startPos="24" endLine="176" endPos="37">
+			</arg>
+			<arg pat="tests" type="&amp;[TestDescAndFn]" startLine="176" startPos="39" endLine="176" endPos="62">
+			</arg>
+		</function>
+		<structure vis="public" ident="TestOpts" startLine="193" startPos="0" endLine="203" endPos="1">
+		</structure>
+		<function vis="public" ident="parse_opts" returns="Option&lt;OptRes&gt;" startLine="256" startPos="0" endLine="308" endPos="1">
+			<arg pat="args" type="&amp;[~str]" startLine="256" startPos="18" endLine="256" endPos="31">
+			</arg>
+		</function>
+		<function vis="public" ident="opt_shard" returns="Option&lt;(uint,uint)&gt;" startLine="310" startPos="0" endLine="323" endPos="1">
+			<arg pat="maybestr" type="Option&lt;~str&gt;" startLine="310" startPos="17" endLine="310" endPos="39">
+			</arg>
+		</function>
+		<structure vis="public" ident="BenchSamples" startLine="327" startPos="0" endLine="330" endPos="1">
+		</structure>
+		<enumeration vis="public" ident="TestResult" startLine="333" startPos="0" endLine="339" endPos="1">
+			<variant ident="TrOk" startLine="334" startPos="4" endLine="334" endPos="8">
+			</variant>
+			<variant ident="TrFailed" startLine="335" startPos="4" endLine="335" endPos="12">
+			</variant>
+			<variant ident="TrIgnored" startLine="336" startPos="4" endLine="336" endPos="13">
+			</variant>
+			<variant ident="TrMetrics" startLine="337" startPos="4" endLine="337" endPos="24">
+			</variant>
+			<variant ident="TrBench" startLine="338" startPos="4" endLine="338" endPos="25">
+			</variant>
+		</enumeration>
+		<function vis="public" ident="fmt_metrics" returns="~str" startLine="576" startPos="0" endLine="584" endPos="1">
+			<arg pat="mm" type="&amp;MetricMap" startLine="576" startPos="19" endLine="576" endPos="33">
+			</arg>
+		</function>
+		<function vis="public" ident="fmt_bench_samples" returns="~str" startLine="586" startPos="0" endLine="597" endPos="1">
+			<arg pat="bs" type="&amp;BenchSamples" startLine="586" startPos="25" endLine="586" endPos="42">
+			</arg>
+		</function>
+		<function vis="public" ident="run_tests_console" returns="bool" startLine="600" startPos="0" endLine="659" endPos="1">
+			<arg pat="opts" type="&amp;TestOpts" startLine="600" startPos="25" endLine="600" endPos="40">
+			</arg>
+			<arg pat="tests" type="~[TestDescAndFn]" startLine="601" startPos="25" endLine="601" endPos="48">
+			</arg>
+		</function>
+		<function vis="public" ident="filter_tests" returns="~[TestDescAndFn]" startLine="791" startPos="0" endLine="851" endPos="1">
+			<arg pat="opts" type="&amp;TestOpts" startLine="792" startPos="4" endLine="792" endPos="19">
+			</arg>
+			<arg pat="tests" type="~[TestDescAndFn]" startLine="793" startPos="4" endLine="793" endPos="27">
+			</arg>
+		</function>
+		<function vis="public" ident="run_test" returns="" startLine="853" startPos="0" endLine="910" endPos="1">
+			<arg pat="force_ignore" type="bool" startLine="853" startPos="16" endLine="853" endPos="34">
+			</arg>
+			<arg pat="test" type="TestDescAndFn" startLine="854" startPos="16" endLine="854" endPos="35">
+			</arg>
+			<arg pat="monitor_ch" type="SharedChan&lt;MonitorMsg&gt;" startLine="855" startPos="16" endLine="855" endPos="50">
+			</arg>
+		</function>
+		<module vis="public" path="" ident="bench" startLine="1160" startPos="0" endLine="1182" endPos="1">
+			<function vis="public" ident="benchmark" returns="BenchSamples" startLine="1163" startPos="4" endLine="1181" endPos="5">
+				<arg pat="f" type="|&amp;mut BenchHarness|" startLine="1163" startPos="21" endLine="1163" endPos="43">
+				</arg>
+			</function>
+		</module>
+	</module>
+	<module vis="public" path="" ident="serialize" startLine="110" startPos="0" endLine="110" endPos="18">
+		<trait vis="public" ident="Encoder" startLine="30" startPos="0" endLine="92" endPos="1">
+			<traitMethod ident="emit_nil" returns="" startLine="32" startPos="4" endLine="32" endPos="26">
+			</traitMethod>
+			<traitMethod ident="emit_uint" returns="" startLine="33" startPos="4" endLine="33" endPos="36">
+				<arg pat="v" type="uint" startLine="33" startPos="28" endLine="33" endPos="35">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_u64" returns="" startLine="34" startPos="4" endLine="34" endPos="34">
+				<arg pat="v" type="u64" startLine="34" startPos="27" endLine="34" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_u32" returns="" startLine="35" startPos="4" endLine="35" endPos="34">
+				<arg pat="v" type="u32" startLine="35" startPos="27" endLine="35" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_u16" returns="" startLine="36" startPos="4" endLine="36" endPos="34">
+				<arg pat="v" type="u16" startLine="36" startPos="27" endLine="36" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_u8" returns="" startLine="37" startPos="4" endLine="37" endPos="32">
+				<arg pat="v" type="u8" startLine="37" startPos="26" endLine="37" endPos="31">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_int" returns="" startLine="38" startPos="4" endLine="38" endPos="34">
+				<arg pat="v" type="int" startLine="38" startPos="27" endLine="38" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_i64" returns="" startLine="39" startPos="4" endLine="39" endPos="34">
+				<arg pat="v" type="i64" startLine="39" startPos="27" endLine="39" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_i32" returns="" startLine="40" startPos="4" endLine="40" endPos="34">
+				<arg pat="v" type="i32" startLine="40" startPos="27" endLine="40" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_i16" returns="" startLine="41" startPos="4" endLine="41" endPos="34">
+				<arg pat="v" type="i16" startLine="41" startPos="27" endLine="41" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_i8" returns="" startLine="42" startPos="4" endLine="42" endPos="32">
+				<arg pat="v" type="i8" startLine="42" startPos="26" endLine="42" endPos="31">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_bool" returns="" startLine="43" startPos="4" endLine="43" endPos="36">
+				<arg pat="v" type="bool" startLine="43" startPos="28" endLine="43" endPos="35">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_f64" returns="" startLine="44" startPos="4" endLine="44" endPos="34">
+				<arg pat="v" type="f64" startLine="44" startPos="27" endLine="44" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_f32" returns="" startLine="45" startPos="4" endLine="45" endPos="34">
+				<arg pat="v" type="f32" startLine="45" startPos="27" endLine="45" endPos="33">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_char" returns="" startLine="46" startPos="4" endLine="46" endPos="36">
+				<arg pat="v" type="char" startLine="46" startPos="28" endLine="46" endPos="35">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_str" returns="" startLine="47" startPos="4" endLine="47" endPos="35">
+				<arg pat="v" type="&amp;str" startLine="47" startPos="27" endLine="47" endPos="34">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_enum" returns="" startLine="50" startPos="4" endLine="50" endPos="55">
+				<arg pat="name" type="&amp;str" startLine="50" startPos="28" endLine="50" endPos="38">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="50" startPos="40" endLine="50" endPos="54">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_enum_variant" returns="" startLine="52" startPos="4" endLine="56" endPos="40">
+				<arg pat="v_name" type="&amp;str" startLine="53" startPos="25" endLine="53" endPos="37">
+				</arg>
+				<arg pat="v_id" type="uint" startLine="54" startPos="25" endLine="54" endPos="35">
+				</arg>
+				<arg pat="len" type="uint" startLine="55" startPos="25" endLine="55" endPos="34">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="56" startPos="25" endLine="56" endPos="39">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_enum_variant_arg" returns="" startLine="57" startPos="4" endLine="57" endPos="68">
+				<arg pat="a_idx" type="uint" startLine="57" startPos="40" endLine="57" endPos="51">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="57" startPos="53" endLine="57" endPos="67">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_enum_struct_variant" returns="" startLine="59" startPos="4" endLine="63" endPos="47">
+				<arg pat="v_name" type="&amp;str" startLine="60" startPos="32" endLine="60" endPos="44">
+				</arg>
+				<arg pat="v_id" type="uint" startLine="61" startPos="32" endLine="61" endPos="42">
+				</arg>
+				<arg pat="len" type="uint" startLine="62" startPos="32" endLine="62" endPos="41">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="63" startPos="32" endLine="63" endPos="46">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_enum_struct_variant_field" returns="" startLine="64" startPos="4" endLine="67" endPos="53">
+				<arg pat="f_name" type="&amp;str" startLine="65" startPos="38" endLine="65" endPos="50">
+				</arg>
+				<arg pat="f_idx" type="uint" startLine="66" startPos="38" endLine="66" endPos="49">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="67" startPos="38" endLine="67" endPos="52">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_struct" returns="" startLine="69" startPos="4" endLine="69" endPos="68">
+				<arg pat="name" type="&amp;str" startLine="69" startPos="30" endLine="69" endPos="40">
+				</arg>
+				<arg pat="len" type="uint" startLine="69" startPos="42" endLine="69" endPos="51">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="69" startPos="53" endLine="69" endPos="67">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_struct_field" returns="" startLine="70" startPos="4" endLine="73" endPos="40">
+				<arg pat="f_name" type="&amp;str" startLine="71" startPos="25" endLine="71" endPos="37">
+				</arg>
+				<arg pat="f_idx" type="uint" startLine="72" startPos="25" endLine="72" endPos="36">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="73" startPos="25" endLine="73" endPos="39">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_tuple" returns="" startLine="75" startPos="4" endLine="75" endPos="55">
+				<arg pat="len" type="uint" startLine="75" startPos="29" endLine="75" endPos="38">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="75" startPos="40" endLine="75" endPos="54">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_tuple_arg" returns="" startLine="76" startPos="4" endLine="76" endPos="59">
+				<arg pat="idx" type="uint" startLine="76" startPos="33" endLine="76" endPos="42">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="76" startPos="44" endLine="76" endPos="58">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_tuple_struct" returns="" startLine="78" startPos="4" endLine="78" endPos="74">
+				<arg pat="name" type="&amp;str" startLine="78" startPos="36" endLine="78" endPos="46">
+				</arg>
+				<arg pat="len" type="uint" startLine="78" startPos="48" endLine="78" endPos="57">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="78" startPos="59" endLine="78" endPos="73">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_tuple_struct_arg" returns="" startLine="79" startPos="4" endLine="79" endPos="68">
+				<arg pat="f_idx" type="uint" startLine="79" startPos="40" endLine="79" endPos="51">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="79" startPos="53" endLine="79" endPos="67">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_option" returns="" startLine="82" startPos="4" endLine="82" endPos="45">
+				<arg pat="f" type="|&amp;mut Self|" startLine="82" startPos="30" endLine="82" endPos="44">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_option_none" returns="" startLine="83" startPos="4" endLine="83" endPos="34">
+			</traitMethod>
+			<traitMethod ident="emit_option_some" returns="" startLine="84" startPos="4" endLine="84" endPos="50">
+				<arg pat="f" type="|&amp;mut Self|" startLine="84" startPos="35" endLine="84" endPos="49">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_seq" returns="" startLine="86" startPos="4" endLine="86" endPos="59">
+				<arg pat="len" type="uint" startLine="86" startPos="27" endLine="86" endPos="36">
+				</arg>
+				<arg pat="f" type="|this: &amp;mut Self|" startLine="86" startPos="38" endLine="86" endPos="58">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_seq_elt" returns="" startLine="87" startPos="4" endLine="87" endPos="63">
+				<arg pat="idx" type="uint" startLine="87" startPos="31" endLine="87" endPos="40">
+				</arg>
+				<arg pat="f" type="|this: &amp;mut Self|" startLine="87" startPos="42" endLine="87" endPos="62">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_map" returns="" startLine="89" startPos="4" endLine="89" endPos="53">
+				<arg pat="len" type="uint" startLine="89" startPos="27" endLine="89" endPos="36">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="89" startPos="38" endLine="89" endPos="52">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_map_elt_key" returns="" startLine="90" startPos="4" endLine="90" endPos="61">
+				<arg pat="idx" type="uint" startLine="90" startPos="35" endLine="90" endPos="44">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="90" startPos="46" endLine="90" endPos="60">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="emit_map_elt_val" returns="" startLine="91" startPos="4" endLine="91" endPos="61">
+				<arg pat="idx" type="uint" startLine="91" startPos="35" endLine="91" endPos="44">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self|" startLine="91" startPos="46" endLine="91" endPos="60">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="Decoder" startLine="94" startPos="0" endLine="164" endPos="1">
+			<traitMethod ident="read_nil" returns="()" startLine="96" startPos="4" endLine="96" endPos="32">
+			</traitMethod>
+			<traitMethod ident="read_uint" returns="uint" startLine="97" startPos="4" endLine="97" endPos="35">
+			</traitMethod>
+			<traitMethod ident="read_u64" returns="u64" startLine="98" startPos="4" endLine="98" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_u32" returns="u32" startLine="99" startPos="4" endLine="99" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_u16" returns="u16" startLine="100" startPos="4" endLine="100" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_u8" returns="u8" startLine="101" startPos="4" endLine="101" endPos="31">
+			</traitMethod>
+			<traitMethod ident="read_int" returns="int" startLine="102" startPos="4" endLine="102" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_i64" returns="i64" startLine="103" startPos="4" endLine="103" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_i32" returns="i32" startLine="104" startPos="4" endLine="104" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_i16" returns="i16" startLine="105" startPos="4" endLine="105" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_i8" returns="i8" startLine="106" startPos="4" endLine="106" endPos="31">
+			</traitMethod>
+			<traitMethod ident="read_bool" returns="bool" startLine="107" startPos="4" endLine="107" endPos="35">
+			</traitMethod>
+			<traitMethod ident="read_f64" returns="f64" startLine="108" startPos="4" endLine="108" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_f32" returns="f32" startLine="109" startPos="4" endLine="109" endPos="33">
+			</traitMethod>
+			<traitMethod ident="read_char" returns="char" startLine="110" startPos="4" endLine="110" endPos="35">
+			</traitMethod>
+			<traitMethod ident="read_str" returns="~str" startLine="111" startPos="4" endLine="111" endPos="34">
+			</traitMethod>
+			<traitMethod ident="read_enum" returns="T" startLine="114" startPos="4" endLine="114" endPos="68">
+				<arg pat="name" type="&amp;str" startLine="114" startPos="31" endLine="114" endPos="41">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="114" startPos="43" endLine="114" endPos="62">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_enum_variant" returns="T" startLine="116" startPos="4" endLine="119" endPos="32">
+				<arg pat="names" type="&amp;[&amp;str]" startLine="117" startPos="28" endLine="117" endPos="42">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="118" startPos="28" endLine="118" endPos="53">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_enum_variant_arg" returns="T" startLine="120" startPos="4" endLine="123" endPos="36">
+				<arg pat="a_idx" type="uint" startLine="121" startPos="32" endLine="121" endPos="43">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="122" startPos="32" endLine="122" endPos="51">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_enum_struct_variant" returns="T" startLine="125" startPos="4" endLine="128" endPos="39">
+				<arg pat="names" type="&amp;[&amp;str]" startLine="126" startPos="35" endLine="126" endPos="49">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="127" startPos="35" endLine="127" endPos="60">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_enum_struct_variant_field" returns="T" startLine="129" startPos="4" endLine="133" endPos="45">
+				<arg pat="&amp;f_name" type="&amp;str" startLine="130" startPos="41" endLine="130" endPos="54">
+				</arg>
+				<arg pat="f_idx" type="uint" startLine="131" startPos="41" endLine="131" endPos="52">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="132" startPos="41" endLine="132" endPos="60">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_struct" returns="T" startLine="135" startPos="4" endLine="136" endPos="26">
+				<arg pat="s_name" type="&amp;str" startLine="135" startPos="33" endLine="135" endPos="45">
+				</arg>
+				<arg pat="len" type="uint" startLine="135" startPos="47" endLine="135" endPos="56">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="135" startPos="58" endLine="135" endPos="77">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_struct_field" returns="T" startLine="137" startPos="4" endLine="141" endPos="32">
+				<arg pat="f_name" type="&amp;str" startLine="138" startPos="28" endLine="138" endPos="40">
+				</arg>
+				<arg pat="f_idx" type="uint" startLine="139" startPos="28" endLine="139" endPos="39">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="140" startPos="28" endLine="140" endPos="47">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_tuple" returns="T" startLine="143" startPos="4" endLine="143" endPos="63">
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="143" startPos="32" endLine="143" endPos="57">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_tuple_arg" returns="T" startLine="144" startPos="4" endLine="144" endPos="74">
+				<arg pat="a_idx" type="uint" startLine="144" startPos="36" endLine="144" endPos="47">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="144" startPos="49" endLine="144" endPos="68">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_tuple_struct" returns="T" startLine="146" startPos="4" endLine="149" endPos="32">
+				<arg pat="s_name" type="&amp;str" startLine="147" startPos="28" endLine="147" endPos="40">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="148" startPos="28" endLine="148" endPos="53">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_tuple_struct_arg" returns="T" startLine="150" startPos="4" endLine="153" endPos="36">
+				<arg pat="a_idx" type="uint" startLine="151" startPos="32" endLine="151" endPos="43">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="152" startPos="32" endLine="152" endPos="51">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_option" returns="T" startLine="156" startPos="4" endLine="156" endPos="64">
+				<arg pat="f" type="|&amp;mut Self, bool| -&gt; T" startLine="156" startPos="33" endLine="156" endPos="58">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_seq" returns="T" startLine="158" startPos="4" endLine="158" endPos="61">
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="158" startPos="30" endLine="158" endPos="55">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_seq_elt" returns="T" startLine="159" startPos="4" endLine="159" endPos="70">
+				<arg pat="idx" type="uint" startLine="159" startPos="34" endLine="159" endPos="43">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="159" startPos="45" endLine="159" endPos="64">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_map" returns="T" startLine="161" startPos="4" endLine="161" endPos="61">
+				<arg pat="f" type="|&amp;mut Self, uint| -&gt; T" startLine="161" startPos="30" endLine="161" endPos="55">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_map_elt_key" returns="T" startLine="162" startPos="4" endLine="162" endPos="74">
+				<arg pat="idx" type="uint" startLine="162" startPos="38" endLine="162" endPos="47">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="162" startPos="49" endLine="162" endPos="68">
+				</arg>
+			</traitMethod>
+			<traitMethod ident="read_map_elt_val" returns="T" startLine="163" startPos="4" endLine="163" endPos="74">
+				<arg pat="idx" type="uint" startLine="163" startPos="38" endLine="163" endPos="47">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="163" startPos="49" endLine="163" endPos="68">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="Encodable" startLine="166" startPos="0" endLine="168" endPos="1">
+			<traitMethod ident="encode" returns="" startLine="167" startPos="4" endLine="167" endPos="31">
+				<arg pat="s" type="&amp;mut S" startLine="167" startPos="21" endLine="167" endPos="30">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="Decodable" startLine="170" startPos="0" endLine="172" endPos="1">
+			<traitMethod ident="decode" returns="Self" startLine="171" startPos="4" endLine="171" endPos="32">
+				<arg pat="d" type="&amp;mut D" startLine="171" startPos="14" endLine="171" endPos="23">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="EncoderHelpers" startLine="891" startPos="0" endLine="893" endPos="1">
+			<traitMethod ident="emit_from_vec" returns="" startLine="892" startPos="4" endLine="892" endPos="66">
+				<arg pat="v" type="&amp;[T]" startLine="892" startPos="35" endLine="892" endPos="42">
+				</arg>
+				<arg pat="f" type="|&amp;mut Self, v: &amp;T|" startLine="892" startPos="44" endLine="892" endPos="65">
+				</arg>
+			</traitMethod>
+		</trait>
+		<trait vis="public" ident="DecoderHelpers" startLine="907" startPos="0" endLine="909" endPos="1">
+			<traitMethod ident="read_to_vec" returns="~[T]" startLine="908" startPos="4" endLine="908" endPos="61">
+				<arg pat="f" type="|&amp;mut Self| -&gt; T" startLine="908" startPos="33" endLine="908" endPos="52">
+				</arg>
+			</traitMethod>
+		</trait>
+	</module>
+	<module vis="public" path="" ident="extra" startLine="116" startPos="0" endLine="127" endPos="1">
+	</module>
+</crate>

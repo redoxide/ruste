@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2013 Hayden Smith
+  
+ Licensed under the Apache License, Version 2.0 (the "License"); 
+ you may not use this file except in compliance with the License. 
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software distributed under 
+ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+ either express or implied. See the License for the specific language governing permissions and 
+ limitations under the License.
+-->
+<crate ident="ast" startLine="1" startPos="1" endLine="44" endPos="1">
+	<module ident="module" startLine="1" startPos="1" endLine="31" endPos="1">
+		<structure ident="Structure" startLine="2" startPos="9" endLine="5" endPos="9"></structure>
+		<trait ident="Trait" startLine="7" startPos="9" endLine="11" endPos="9">
+			<traitMethod ident="voidTraitMethodNoArgs" returns="" startLine="8" startPos="9" endLine="8" endPos="39"></traitMethod>
+			<traitMethod ident="intTraitMethodFloatArg" returns="int" startLine="10" startPos="9" endLine="10" endPos="63"></traitMethod>
+		</trait>
+	</module>
+	<function ident="voidFunction" returns="" startLine="38" startPos="1" endLine="40" endPos="1"></function>
+	<function ident="intFunction" returns="int" startLine="42" startPos="1" endLine="44" endPos="1"></function>
+</crate>
