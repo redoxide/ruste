@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Hayden Smith
+ * Copyright 2013-2014 Hayden Smith
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -31,8 +31,13 @@ import java.util.regex.Pattern;
 public class NativeErrorParser {
 
     /*
-     * Group 1: File name Group 2: Start line Group 3: Start offset Group 4: End
-     * line Group 5: End offset Group 6: Message type Group 7: Message
+     * Group 1: File name 
+     * Group 2: Start line 
+     * Group 3: Start offset 
+     * Group 4: End line 
+     * Group 5: End offset 
+     * Group 6: Message type 
+     * Group 7: Message
      */
     private final static Pattern ERROR_LINE_PATTERN = Pattern
 	    .compile("(.*):(\\d+):(\\d+):\\s(?:(\\d+):(\\d+)\\s)?(\\w+):\\s(.*)");
@@ -40,7 +45,7 @@ public class NativeErrorParser {
     private InputStream inputStream;
 
     /**
-     * TODO Having three possible inputs is a bit busy.
+     * Instantiate parser using given input stream as the source
      * 
      * @param project
      * @param file
@@ -52,7 +57,9 @@ public class NativeErrorParser {
 
     /**
      * Parses the output of the rustc compiler and adds markers to the
-     * applicable document in the given project
+     * applicable document in the given project.
+     * 
+     * Note: this method does not close the input stream
      * 
      * @param project
      *            The project containing the file that the output was generated
