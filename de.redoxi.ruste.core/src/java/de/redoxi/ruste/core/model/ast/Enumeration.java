@@ -43,6 +43,11 @@ public class Enumeration extends Item implements Identifiable, Visible {
     public void setIdentifier(String identifier) {
 	this.identifier = identifier;
     }
+    
+    @Override
+    public boolean hasChildren() {
+	return !getVariants().isEmpty();
+    }
 
     @Override
     public void accept(Visitor visitor) {

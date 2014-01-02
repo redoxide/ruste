@@ -37,7 +37,7 @@ public class Module extends Item implements Identifiable, Scope {
     public void setIdentifier(String identifier) {
 	this.identifier = identifier;
     }
-
+    
     public boolean hasNoBody() {
 	return noBody;
     }
@@ -52,6 +52,11 @@ public class Module extends Item implements Identifiable, Scope {
 
     public void setSourcePath(String sourcePath) {
 	this.sourcePath = sourcePath;
+    }
+    
+    @Override
+    public boolean hasChildren() {
+	return !getItems().isEmpty();
     }
 
     @Override

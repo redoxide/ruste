@@ -80,6 +80,16 @@ abstract public class ASTNode {
     }
 
     /**
+     * @return <code>true</code> if this node has descendants that should appear as separate
+     * nodes in the content outline.
+     * 
+     * TODO This should really return true if it has ANY child nodes.
+     */
+    public boolean hasChildren() {
+	return false;
+    }
+    
+    /**
      * @return The {@link IResource} in which this construct is declared
      */
     public IResource getResource() {

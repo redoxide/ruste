@@ -386,35 +386,17 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 
 	@Override
 	public Object getParent(Object object) {
-	    if (object instanceof Item) {
-		return ((Item) object).getItem();
-	    } else if (object instanceof EnumVariant) {
-		return ((EnumVariant) object).getEnumeration();
-	    } else if (object instanceof TraitMethod) {
-		return ((TraitMethod) object).getTrait();
-	    } else if (object instanceof ImplementationMethod) {
-		return ((ImplementationMethod) object).getImplementation();
+	    if (object instanceof ASTNode) {
+		return ((ASTNode) object).getParent();
 	    }
-
-	    // TODO Create method for Implementation declarations
 
 	    return null;
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
-	    if (object instanceof Crate) {
-		return !((Crate) object).getItems().isEmpty();
-	    } else if (object instanceof Module) {
-		return !((Item) object).getItems().isEmpty();
-	    } else if (object instanceof Trait) {
-		return !((Trait) object).getMethods().isEmpty();
-	    } else if (object instanceof Implementation) {
-		return !((Implementation) object).getMethods().isEmpty();
-	    } else if (object instanceof Enumeration) {
-		return !((Enumeration) object).getVariants().isEmpty();
-	    } else if (object instanceof Implementation) {
-		return !((Implementation) object).getMethods().isEmpty();
+	    if (object instanceof ASTNode) {
+		return ((ASTNode) object).hasChildren();
 	    }
 
 	    return false;

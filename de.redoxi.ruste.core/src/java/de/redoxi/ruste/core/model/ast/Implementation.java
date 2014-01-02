@@ -53,6 +53,11 @@ public class Implementation extends Item implements Visible {
     public List<ImplementationMethod> getMethods() {
 	return methods;
     }
+    
+    @Override
+    public boolean hasChildren() {
+	return !getMethods().isEmpty();
+    }
 
     @Override
     public void accept(Visitor visitor) {

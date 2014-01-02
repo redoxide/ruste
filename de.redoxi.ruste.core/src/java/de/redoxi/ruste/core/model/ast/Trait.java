@@ -37,6 +37,11 @@ public class Trait extends Item implements Identifiable, Visible {
     public List<TraitMethod> getMethods() {
 	return methods;
     }
+    
+    @Override
+    public boolean hasChildren() {
+	return !getMethods().isEmpty();
+    }
 
     @Override
     public String getIdentifier() {
