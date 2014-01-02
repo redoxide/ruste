@@ -27,7 +27,7 @@ public class Function extends Item implements Identifiable, Scope, Visible {
 
     private String identifier;
     private List<String> genericTypeParameters = new ArrayList<String>();
-    // TODO Generic type parameter traits
+    // TODO Generic type parameter bounds
 
     private List<NamedArg> args = new ArrayList<NamedArg>();
 
