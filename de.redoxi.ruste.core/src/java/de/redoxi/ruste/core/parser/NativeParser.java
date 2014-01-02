@@ -31,6 +31,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.IDocument;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 import de.redoxi.ruste.core.api.xml.ASTBuilder;
 import de.redoxi.ruste.core.builders.IncrementalRustProjectBuilder;
@@ -93,20 +97,17 @@ public class NativeParser implements IRustParser {
 
 	    apiExecutablePath = apiExecTmpFile.getAbsolutePath();
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    getLogService().log(LogService.LOG_ERROR, "Unable to move '" + API_EXECUTABLE_NAME + "' to tmp directory", e);
 	} finally {
 	    try {
 		sourceStream.close();
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		getLogService().log(LogService.LOG_ERROR, "Error closing source stream", e);
 	    }
 	    try {
 		tmpFileStream.close();
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		getLogService().log(LogService.LOG_ERROR, "Error closing output stream", e);
 	    }
 
 	    apiInitExecutableLock.unlock();
@@ -153,6 +154,7 @@ public class NativeParser implements IRustParser {
 		return getSourceStringFromInputStream(sourceFile
 			.getContents(true));
 	    } catch (CoreException e) {
+		getLogService().log(LogService.LOG_WARNING, "Unable to retrieve contents from source file '" + sourceFile.getName() + "'", e);
 		return "";
 	    }
 	} else {
@@ -173,8 +175,7 @@ public class NativeParser implements IRustParser {
 
 	    is.close();
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    getLogService().log(LogService.LOG_ERROR, "Unable to read from input stream", e);
 	}
 
 	return inputBuilder.toString();
@@ -213,8 +214,7 @@ public class NativeParser implements IRustParser {
 				    IncrementalRustProjectBuilder.COMPILE_ERROR_MARKER_ID,
 				    true, IResource.DEPTH_INFINITE);
 		} catch (CoreException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
+		    getLogService().log(LogService.LOG_ERROR, "Unable to delete compile error markers on '" + sourceFile.getName() + "'", e);
 		}
 		try {
 		    sourceFile
@@ -222,8 +222,7 @@ public class NativeParser implements IRustParser {
 				    IncrementalRustProjectBuilder.COMPILE_WARNING_MARKER_ID,
 				    true, IResource.DEPTH_INFINITE);
 		} catch (CoreException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
+		    getLogService().log(LogService.LOG_ERROR, "Unable to delete compile warning markers on '" + sourceFile.getName() + "'", e);
 		}
 
 		FileMarker fileMarker = new FileMarker(sourceFile);
@@ -231,11 +230,19 @@ public class NativeParser implements IRustParser {
 	    }
 
 	} catch (IOException e) {
-	    // TODO Track errors
-	    e.printStackTrace();
+	    getLogService().log(LogService.LOG_ERROR, "Error parsing source to generate AST '" + name + "'", e);
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
+	    // TODO Handle interruption
 	    e.printStackTrace();
 	}
+    }
+    
+    /**
+     * @return The {@link LogService} for the 
+     */
+    private LogService getLogService() {
+	final Bundle bundle = FrameworkUtil.getBundle(getClass());
+	final ServiceTracker<LogService, LogService> tracker = new ServiceTracker<LogService, LogService>(bundle.getBundleContext(), LogService.class, null);
+	return tracker.getService();
     }
 }

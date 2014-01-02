@@ -33,14 +33,12 @@ public class RustProjectNature implements IProjectNature {
 
     @Override
     public void configure() throws CoreException {
-	// TODO Auto-generated method stub
-
+	// TODO Implement
     }
 
     @Override
     public void deconfigure() throws CoreException {
-	// TODO Auto-generated method stub
-
+	// TODO Implement
     }
 
     @Override

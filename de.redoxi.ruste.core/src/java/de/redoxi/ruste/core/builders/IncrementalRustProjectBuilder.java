@@ -32,6 +32,10 @@ import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 import de.redoxi.ruste.core.parser.ProjectMarker;
 
@@ -42,7 +46,7 @@ import de.redoxi.ruste.core.parser.ProjectMarker;
  * @since 0.0.1
  */
 public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
-
+    
     public final static String COMPILE_ERROR_MARKER_ID = "de.redoxi.ruste.core.markers.compileerrormarker";
     public final static String COMPILE_WARNING_MARKER_ID = "de.redoxi.ruste.core.markers.compilewarningmarker";
 
@@ -53,7 +57,7 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
     private final static String RUSTPKG_BUILD_CMD = "build";
     private final static String RUST_PATH_ENV_VAR = "RUST_PATH";
     private final static String RUSTC_OUT_DIR_OPTION = "--out-dir";
-
+    
     /**
      * Build the given project
      * 
@@ -104,7 +108,7 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
 		    "de.redoxi.ruste.core.markers.compileerrormarker", true,
 		    IResource.DEPTH_INFINITE);
 	} catch (CoreException e) {
-	    // TODO log error
+	    getLogService().log(LogService.LOG_ERROR, "Unable to clear markers for project '" + getProject().getName() + "'", e);
 	}
 
 	try {
@@ -121,7 +125,7 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
 		// TODO Handle interrupt
 	    }
 	} catch (IOException e) {
-	    // TODO Log error
+	    getLogService().log(LogService.LOG_ERROR, "Error launching 'ruskpkg'", e);
 	}
 
 	try {
@@ -132,7 +136,7 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
 	    getBuildPath(getProject()).refreshLocal(IResource.DEPTH_INFINITE,
 		    monitor);
 	} catch (CoreException e) {
-	    // TODO Error
+	    getLogService().log(LogService.LOG_ERROR, "Error refreshing Rust workspace directories in project '" + getProject().getName() + "'", e);
 	}
 
 	monitor.done();
@@ -192,7 +196,7 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
 		    // TODO Handle interrupt
 		}
 	    } catch (IOException e) {
-		// TODO Log error
+		getLogService().log(LogService.LOG_ERROR, "Error launching 'rustc'", e);
 	    }
 
 	    monitor.worked(1);
@@ -297,5 +301,14 @@ public class IncrementalRustProjectBuilder extends IncrementalProjectBuilder {
      */
     private IFolder getBuildPath(IProject project) {
 	return project.getFolder("build");
+    }
+    
+    /**
+     * @return The {@link LogService} for the 
+     */
+    private LogService getLogService() {
+	final Bundle bundle = FrameworkUtil.getBundle(getClass());
+	final ServiceTracker<LogService, LogService> tracker = new ServiceTracker<LogService, LogService>(bundle.getBundleContext(), LogService.class, null);
+	return tracker.getService();
     }
 }

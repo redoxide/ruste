@@ -25,6 +25,10 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 import de.redoxi.ruste.core.builders.IncrementalRustProjectBuilder;
 import de.redoxi.ruste.core.editors.RustDocumentProvider;
@@ -103,7 +107,6 @@ public class FileMarker implements IResourceMarker {
 	    int startLine, int startPos, int endLine, int endPos, String message) {
 
 	try {
-	    // TODO Add constructor that passes in an IDocument explicitly
 	    IEditorInput input = new FileEditorInput((IFile) file);
 	    RUST_DOCUMENT_PROVIDER.connect(input);
 	    IDocument document = RUST_DOCUMENT_PROVIDER.getDocument(input);
@@ -122,13 +125,21 @@ public class FileMarker implements IResourceMarker {
 	    marker.setAttribute(IMarker.SEVERITY, severity);
 	    marker.setAttribute(IMarker.PRIORITY, priority);
 	} catch (CoreException e) {
-	    // TODO Log error
+	    getLogService().log(LogService.LOG_ERROR, "Unable to add marker to file '" + file.getName() + "' at line '" + startLine + "'", e);
 	}
     }
 
     @Override
     public void addMarkers(InputStream inputStream) {
-	// TODO Auto-generated method stub
-
+	// TODO Implement
+    }
+    
+    /**
+     * @return The {@link LogService} for the 
+     */
+    private LogService getLogService() {
+	final Bundle bundle = FrameworkUtil.getBundle(getClass());
+	final ServiceTracker<LogService, LogService> tracker = new ServiceTracker<LogService, LogService>(bundle.getBundleContext(), LogService.class, null);
+	return tracker.getService();
     }
 }

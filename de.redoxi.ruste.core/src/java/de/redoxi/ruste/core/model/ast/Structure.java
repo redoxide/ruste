@@ -22,7 +22,7 @@ package de.redoxi.ruste.core.model.ast;
  */
 public class Structure extends Item implements Identifiable, Visible {
 
-    // TODO Fields
+    // TODO Track structure fields
     private String identifier;
     private Visibility visibility = Visibility.DEFAULT;
 

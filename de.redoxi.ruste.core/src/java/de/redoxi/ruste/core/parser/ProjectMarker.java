@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.core.resources.IProject;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 public class ProjectMarker implements IResourceMarker {
 
@@ -49,8 +53,7 @@ public class ProjectMarker implements IResourceMarker {
 	try {
 	    nativeErrorParser.parse();
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    getLogService().log(LogService.LOG_ERROR, "Unable to parse error output", e);
 	}
     }
 
@@ -62,5 +65,14 @@ public class ProjectMarker implements IResourceMarker {
 	}
 
 	return new FileMarker(project.getFile(fileName));
+    }
+    
+    /**
+     * @return The {@link LogService} for the 
+     */
+    private LogService getLogService() {
+	final Bundle bundle = FrameworkUtil.getBundle(getClass());
+	final ServiceTracker<LogService, LogService> tracker = new ServiceTracker<LogService, LogService>(bundle.getBundleContext(), LogService.class, null);
+	return tracker.getService();
     }
 }

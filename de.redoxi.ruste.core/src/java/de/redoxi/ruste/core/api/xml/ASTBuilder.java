@@ -15,14 +15,15 @@
 
 package de.redoxi.ruste.core.api.xml;
 
-import java.io.IOException;
 import java.io.InputStream;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.xml.sax.SAXException;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
 
 import de.redoxi.ruste.core.model.ast.ASTNode;
 
@@ -52,17 +53,20 @@ public class ASTBuilder {
 	    xmlParser.parse(input, xmlParserHandler);
 
 	    return xmlParserHandler.getRoot();
-	} catch (ParserConfigurationException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	} catch (Exception e) {
 	    // TODO Catch SAXParseException and track error location
-	} catch (SAXException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    getLogService().log(LogService.LOG_ERROR, "Error parsing XML AST source", e);
 	}
 
 	return null;
+    }
+    
+    /**
+     * @return The {@link LogService} for the 
+     */
+    private LogService getLogService() {
+	final Bundle bundle = FrameworkUtil.getBundle(getClass());
+	final ServiceTracker<LogService, LogService> tracker = new ServiceTracker<LogService, LogService>(bundle.getBundleContext(), LogService.class, null);
+	return tracker.getService();
     }
 }
