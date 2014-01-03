@@ -79,6 +79,8 @@ public class XmlParserHandler extends DefaultHandler {
 		    endLine, endPos);
 	} else if ("structure".equals(tagName)) {
 	    listener.startStructure(ident, startLine, startPos, endLine, endPos);
+	} else if ("field".equals(tagName)) {
+	    listener.startField(ident, attributes.getValue("type"), startLine, startPos, endLine, endPos);
 	} else {
 	    tagNames.pop();
 	}

@@ -19,11 +19,13 @@ import de.redoxi.ruste.core.model.ast.ASTNode;
 import de.redoxi.ruste.core.model.ast.Crate;
 import de.redoxi.ruste.core.model.ast.EnumVariant;
 import de.redoxi.ruste.core.model.ast.Enumeration;
+import de.redoxi.ruste.core.model.ast.Field;
 import de.redoxi.ruste.core.model.ast.Function;
 import de.redoxi.ruste.core.model.ast.Implementation;
 import de.redoxi.ruste.core.model.ast.ImplementationMethod;
 import de.redoxi.ruste.core.model.ast.Item;
 import de.redoxi.ruste.core.model.ast.Module;
+import de.redoxi.ruste.core.model.ast.NamedField;
 import de.redoxi.ruste.core.model.ast.Structure;
 import de.redoxi.ruste.core.model.ast.Trait;
 import de.redoxi.ruste.core.model.ast.TraitMethod;
@@ -279,6 +281,38 @@ public class ASTBuilderListener {
 	structure.setEndPos(endCharPos);
 
 	setCurrent(structure);
+    }
+    
+    /**
+     * Start a structure field
+     * 
+     * @param identifier
+     * @param type
+     * @param startLine
+     * @param startCharPos
+     * @param endLine
+     * @param endCharPos
+     */
+    public void startField(String identifier, String type, int startLine,
+	    int startCharPos, int endLine, int endCharPos) {
+	Field field = null;
+	
+	if (identifier == null || identifier.isEmpty()) {
+	    field = new Field((Structure) current);
+	} else {
+	    NamedField namedField = new NamedField((Structure) current);
+	    namedField.setIdentifier(identifier);
+	    field = namedField;
+	}
+	
+	field.setType(type);
+	
+	field.setStartLine(startLine);
+	field.setStartPos(startCharPos);
+	field.setEndLine(endLine);
+	field.setEndPos(endCharPos);
+	
+	setCurrent(field);
     }
 
     /**

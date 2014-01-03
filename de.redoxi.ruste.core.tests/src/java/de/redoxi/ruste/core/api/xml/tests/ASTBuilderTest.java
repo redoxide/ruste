@@ -25,9 +25,13 @@ import org.junit.Test;
 import de.redoxi.ruste.core.api.xml.ASTBuilder;
 import de.redoxi.ruste.core.model.ast.ASTNode;
 import de.redoxi.ruste.core.model.ast.Crate;
+import de.redoxi.ruste.core.model.ast.Enumeration;
+import de.redoxi.ruste.core.model.ast.Field;
 import de.redoxi.ruste.core.model.ast.Function;
 import de.redoxi.ruste.core.model.ast.Item;
 import de.redoxi.ruste.core.model.ast.Module;
+import de.redoxi.ruste.core.model.ast.NamedField;
+import de.redoxi.ruste.core.model.ast.Structure;
 
 public class ASTBuilderTest {
 
@@ -54,23 +58,40 @@ public class ASTBuilderTest {
 
 	final Crate crate = (Crate) node;
 
-	assertEquals(3, crate.getItems().size());
+	assertEquals(4, crate.getItems().size());
 
 	final Item item0 = crate.getItems().get(0);
 	final Item item1 = crate.getItems().get(1);
 	final Item item2 = crate.getItems().get(2);
+	final Item item3 = crate.getItems().get(3);
 
 	assertTrue(item0 instanceof Module);
-	assertTrue(item1 instanceof Function);
+	assertTrue(item1 instanceof Enumeration);
 	assertTrue(item2 instanceof Function);
+	assertTrue(item3 instanceof Function);
 
 	assertEquals("module", ((Module) item0).getIdentifier());
-	assertEquals("voidFunction", ((Function) item1).getIdentifier());
-	assertEquals("intFunction", ((Function) item2).getIdentifier());
+	assertEquals("voidFunction", ((Function) item2).getIdentifier());
+	assertEquals("intFunction", ((Function) item3).getIdentifier());
 
-	assertEquals("", ((Function) item1).getReturnType());
-	assertEquals("int", ((Function) item2).getReturnType());
+	assertEquals("", ((Function) item2).getReturnType());
+	assertEquals("int", ((Function) item3).getReturnType());
 
+	final Item item01 = item0.getItems().get(0);
+	
+	assertTrue(item01 instanceof Structure);
+	
+	final Field field0 = ((Structure) item01).getFields().get(0);
+	final Field field1 = ((Structure) item01).getFields().get(1);
+	
+	assertTrue(field0 instanceof NamedField);
+	assertTrue(field1 instanceof NamedField);
+	
+	assertEquals("x", ((NamedField) field0).getIdentifier());
+	assertEquals("y", ((NamedField) field1).getIdentifier());
+	assertEquals("int", field0.getType());
+	assertEquals("float", field1.getType());
+	
 	// TODO Check the lines and positions on the nodes
     }
 }

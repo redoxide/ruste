@@ -24,10 +24,13 @@ import de.redoxi.ruste.core.model.ast.ASTNode;
 import de.redoxi.ruste.core.model.ast.Crate;
 import de.redoxi.ruste.core.model.ast.EnumVariant;
 import de.redoxi.ruste.core.model.ast.Enumeration;
+import de.redoxi.ruste.core.model.ast.Field;
 import de.redoxi.ruste.core.model.ast.Function;
 import de.redoxi.ruste.core.model.ast.Identifiable;
 import de.redoxi.ruste.core.model.ast.Item;
 import de.redoxi.ruste.core.model.ast.Module;
+import de.redoxi.ruste.core.model.ast.NamedField;
+import de.redoxi.ruste.core.model.ast.Structure;
 import de.redoxi.ruste.core.model.ast.Trait;
 import de.redoxi.ruste.core.model.ast.TraitMethod;
 
@@ -202,6 +205,64 @@ public class ASTBuilderListenerTest {
 
 	assertExpectedNode(EnumVariant.class, ((Enumeration) astNode)
 		.getVariants().get(0), identifier, startLine, startCharPos,
+		endLine, endCharPos);
+    }
+    
+    @Test
+    public final void testStartStructure() {
+	assertNull(noRootListener.getRoot());
+
+	final String identifier = "structure";
+
+	noRootListener.startStructure(identifier, startLine, startCharPos,
+		endLine, endCharPos);
+	final ASTNode astNode = noRootListener.getRoot();
+
+	assertExpectedNode(Structure.class, astNode, identifier, startLine,
+		startCharPos, endLine, endCharPos);
+    }
+
+    @Test
+    public final void testStartNamedField() {
+	assertNull(noRootListener.getRoot());
+
+	final String identifier = "field";
+	final String type = "int";
+
+	// Need an structure to attach the field to
+	noRootListener.startStructure("structure", startLine, startCharPos,
+		endLine, endCharPos);
+
+	noRootListener.startField(identifier, type, startLine,
+		startCharPos, endLine, endCharPos);
+	final ASTNode astNode = noRootListener.getRoot();
+
+	assertTrue(astNode instanceof Structure);
+
+	assertExpectedNode(NamedField.class, ((Structure) astNode)
+		.getFields().get(0), identifier, startLine, startCharPos,
+		endLine, endCharPos);
+    }
+    
+    @Test
+    public final void testStartUnnamedField() {
+	assertNull(noRootListener.getRoot());
+
+	final String identifier = null;
+	final String type = "int";
+
+	// Need an structure to attach the field to
+	noRootListener.startStructure("structure", startLine, startCharPos,
+		endLine, endCharPos);
+
+	noRootListener.startField(identifier, type, startLine,
+		startCharPos, endLine, endCharPos);
+	final ASTNode astNode = noRootListener.getRoot();
+
+	assertTrue(astNode instanceof Structure);
+
+	assertExpectedNode(Field.class, ((Structure) astNode)
+		.getFields().get(0), startLine, startCharPos,
 		endLine, endCharPos);
     }
 

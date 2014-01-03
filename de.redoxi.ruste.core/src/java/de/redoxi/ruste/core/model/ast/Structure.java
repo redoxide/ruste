@@ -15,14 +15,19 @@
 
 package de.redoxi.ruste.core.model.ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Representation of a structure definition within a {@link Module}
+ * 
+ * TODO Create a Tuple AST class
  * 
  * @see http://static.rust-lang.org/doc/master/rust.html#structures
  */
 public class Structure extends Item implements Identifiable, Visible {
 
-    // TODO Track structure fields
+    private List<Field> fields = new ArrayList<Field>();
     private String identifier;
     private Visibility visibility = Visibility.DEFAULT;
 
@@ -46,5 +51,19 @@ public class Structure extends Item implements Identifiable, Visible {
 
     public void setVisibility(Visibility visibility) {
 	this.visibility = visibility;
+    }
+
+    public final List<Field> getFields() {
+        return fields;
+    }
+    
+    @Override
+    public boolean hasChildren() {
+	return !getFields().isEmpty();
+    }
+
+    public final void setFields(List<Field> tupleFields) {
+        this.fields.clear();
+        this.fields.addAll(tupleFields);
     }
 }

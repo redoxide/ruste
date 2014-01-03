@@ -19,11 +19,11 @@ Generates an abstract syntax tree for the publicly visible items within the give
 
 */
 
-#[link(name = "api",
-       package_id = "api",
+#[link(name = "xmlast",
+       package_id = "xmlast",
        vers = "0.0.1",
        uuid = "7d940ca0-5949-11e3-9cb8-ce3f5508acd9",
-       url = "https://github.com/hayden/ruste-native-parser")];
+       url = "https://github.com/redoxide/ruste")];
        
 #[feature(managed_boxes)];
 
@@ -95,7 +95,7 @@ mod xml {
 		pub fn start_crate(&mut self, ident: &str, startLoc: Loc, endLoc: Loc) {
 			// TODO path
 			self.write_indentation();
-			writeln!(self.writer, "<crate xmlns=\"https://github.com/hayden/ruste-native-parser\" name=\"{name}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", name = ident, startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
+			writeln!(self.writer, "<crate xmlns=\"https://github.com/redoxide/ruste\" name=\"{name}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", name = ident, startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
 			self.indentation += 1;
 		}
 		
@@ -225,6 +225,18 @@ mod xml {
 			self.write_indentation();
 			writeln!(self.writer, "</implementationMethod>");
 		}
+		
+		pub fn start_structure_field(&mut self, ident: &str, ty: &str, vis: &str, startLoc: Loc, endLoc: Loc) {
+			self.write_indentation();
+			writeln!(self.writer, "<field ident=\"{ident}\" type=\"{ty}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", ident = ident, ty = self.xml_attr(ty), startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
+			self.indentation += 1;
+		}
+		
+		pub fn end_structure_field(&mut self) {
+			self.indentation -= 1;
+			self.write_indentation();
+			writeln!(self.writer, "</field>");
+		}
 	}
 }
        
@@ -334,7 +346,10 @@ mod traverse {
 			ast::item_struct(ref s, ref generics) => {
 				xml_writer.start_structure(_ident, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
 				
-				// TODO Structure content
+				// TODO Generics
+				for f in s.fields.iter() {
+					traverse_struct_field(*f, codemap, xml_writer);
+				}
 				
 				xml_writer.end_structure();
 			},
@@ -509,6 +524,33 @@ mod traverse {
 			xml_writer.start_enumeration_variant(_ident, codemap.lookup_char_pos(variant.span.lo), codemap.lookup_char_pos(variant.span.hi));
 			xml_writer.end_enumeration_variant();
 		}
+	}
+	
+	pub fn traverse_struct_field(field: &ast::struct_field, codemap: &CodeMap, xml_writer: &mut xml::XmlWriter) {
+		let mut ident : ~str = ~"";
+		let mut vis : ~str = ~"public";
+		
+		match field.node.kind {
+			ast::named_field(ref i, ref v) => {
+				ident = interner_get(i.name).to_owned();
+				vis = match *v {
+					ast::private => ~"private",
+					ast::public => ~"public",
+					_ => ~""
+				};
+			},
+			ast::unnamed_field => ()
+		}
+		
+		let _ty = codemap.span_to_snippet(field.node.ty.span);
+		
+		let _tyStr = match _ty {
+			Some(a) => a.to_owned(),
+			None => ~""
+		};
+		
+		xml_writer.start_structure_field(ident, _tyStr, vis, codemap.lookup_char_pos(field.span.lo), codemap.lookup_char_pos(field.span.hi));
+		xml_writer.end_structure_field();
 	}
 }
 

@@ -40,6 +40,7 @@ import de.redoxi.ruste.core.model.ast.Arg;
 import de.redoxi.ruste.core.model.ast.Crate;
 import de.redoxi.ruste.core.model.ast.EnumVariant;
 import de.redoxi.ruste.core.model.ast.Enumeration;
+import de.redoxi.ruste.core.model.ast.Field;
 import de.redoxi.ruste.core.model.ast.Function;
 import de.redoxi.ruste.core.model.ast.Identifiable;
 import de.redoxi.ruste.core.model.ast.Implementation;
@@ -47,6 +48,7 @@ import de.redoxi.ruste.core.model.ast.ImplementationMethod;
 import de.redoxi.ruste.core.model.ast.Item;
 import de.redoxi.ruste.core.model.ast.Module;
 import de.redoxi.ruste.core.model.ast.NamedArg;
+import de.redoxi.ruste.core.model.ast.NamedField;
 import de.redoxi.ruste.core.model.ast.SelfArg;
 import de.redoxi.ruste.core.model.ast.Structure;
 import de.redoxi.ruste.core.model.ast.Trait;
@@ -214,6 +216,11 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 		appendMethodArgsToLabel((ImplementationMethod) item, label);
 		label.append(") ");
 		appendReturnTypeToLabel((ImplementationMethod) item, label);
+	    } else if (item instanceof Field) {
+		if (item instanceof NamedField) {
+		    label.append(" : ");
+		}
+		label.append(((Field) item).getType());
 	    }
 
 	    cell.setText(label.toString());
@@ -351,6 +358,8 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 		return ((Enumeration) object).getVariants().toArray();
 	    } else if (object instanceof Implementation) {
 		return ((Implementation) object).getMethods().toArray();
+	    } else if (object instanceof Structure) {
+		return ((Structure) object).getFields().toArray();
 	    }
 
 	    return null;
