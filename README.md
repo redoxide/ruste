@@ -21,3 +21,8 @@ and that `rustc` and `rustpkg` are installed at `/usr/local/bin/`.
 
 4. Add `eclipse.target` in `de.redoxi.ruste.core.tests` as the Target definition in the "Plug-in development" 
    preferences.
+
+Icons
+-----
+
+This feature uses icons from Mark James' Silk icon set (http://www.famfamfam.com/lab/icons/silk/).

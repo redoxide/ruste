@@ -15,11 +15,7 @@
 
 package de.redoxi.ruste.core.editors;
 
-import java.net.URL;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -37,9 +33,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
+import de.redoxi.ruste.core.Plugin;
 import de.redoxi.ruste.core.model.ast.ASTNode;
 import de.redoxi.ruste.core.model.ast.Arg;
 import de.redoxi.ruste.core.model.ast.Crate;
@@ -56,8 +51,10 @@ import de.redoxi.ruste.core.model.ast.SelfArg;
 import de.redoxi.ruste.core.model.ast.Structure;
 import de.redoxi.ruste.core.model.ast.Trait;
 import de.redoxi.ruste.core.model.ast.TraitMethod;
+import de.redoxi.ruste.core.model.ast.Visible;
 import de.redoxi.ruste.core.parser.IRustParser;
 import de.redoxi.ruste.core.parser.NativeParser;
+import de.redoxi.ruste.core.ui.ASTIcon;
 
 /**
  * Parses a Rust source file to provide an overview of the source file in the
@@ -68,25 +65,18 @@ import de.redoxi.ruste.core.parser.NativeParser;
  */
 public class RustContentOutlinePage extends ContentOutlinePage {
 
-    private static Image CRATE_ICON = getImage("rust-logo.png");
-    private static Image MODULE_ICON = getImage("module.png");
-    private static Image FUNCTION_ICON = getImage("function.png");
-    private static Image STRUCTURE_ICON = getImage("structure.png");
-    private static Image ENUM_ICON = getImage("enumeration.png");
-    private static Image ENUM_VARIANT_ICON = getImage("enumeration-variant.png");
-    // private static Image STATIC_ICON = getImage("static.png");
-    private static Image TRAIT_ICON = getImage("trait.png");
-    private static Image IMPL_ICON = getImage("implementation.png");
-
     private IDocumentProvider documentProvider;
     private ITextEditor editor;
     private IEditorInput input;
+    
+    private ImageRegistry imageRegistry;
 
     public RustContentOutlinePage(IDocumentProvider documentProvider,
 	    ITextEditor editor) {
 	super();
 	this.documentProvider = documentProvider;
 	this.editor = editor;
+	this.imageRegistry = Plugin.getInstance().getImageRegistry();
     }
 
     @Override
@@ -144,27 +134,6 @@ public class RustContentOutlinePage extends ContentOutlinePage {
     }
 
     /**
-     * TODO Move to Activator class
-     * 
-     * @param imageFileName
-     *            Name of the image with extension
-     * @return An {@link Image} object or null if the image does not exist
-     */
-    private static Image getImage(String imageFileName) {
-	Bundle bundle = FrameworkUtil.getBundle(RustContentOutlinePage.class);
-	URL imageUrl = FileLocator.find(bundle, new Path("icons/"
-		+ imageFileName), null);
-
-	if (imageUrl != null) {
-	    ImageDescriptor imageDescriptor = ImageDescriptor
-		    .createFromURL(imageUrl);
-	    return imageDescriptor.createImage();
-	}
-
-	return null;
-    }
-
-    /**
      * Updates the outline page.
      */
     public void update() {
@@ -194,6 +163,16 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 
 	    StyledString label = new StyledString();
 
+	    // Default icon based on visibility
+	    if (item instanceof Visible) {
+		switch (((Visible) item).getVisibility()) {
+		case PRIVATE:
+		    icon = imageRegistry.get(ASTIcon.PRIVATE.getId());
+		default:
+		    icon = imageRegistry.get(ASTIcon.PUBLIC.getId());
+		}
+	    }
+	    
 	    if (item instanceof Identifiable
 		    && ((Identifiable) item).getIdentifier() != null
 		    && !((Identifiable) item).getIdentifier().isEmpty()) {
@@ -201,38 +180,36 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 	    }
 
 	    if (item instanceof Crate) {
-		icon = CRATE_ICON;
+		icon = imageRegistry.get(ASTIcon.CRATE.getId());
 	    } else if (item instanceof Module) {
-		icon = MODULE_ICON;
+		icon = imageRegistry.get(ASTIcon.MODULE.getId());
 	    } else if (item instanceof Function) {
-		icon = FUNCTION_ICON;
 		label.append(" (");
 		appendArgsToLabel((Function) item, label);
 		label.append(") ");
 		appendReturnTypeToLabel((Function) item, label);
 	    } else if (item instanceof Structure) {
-		icon = STRUCTURE_ICON;
+		icon = imageRegistry.get(ASTIcon.STRUCT.getId());
 	    } else if (item instanceof Enumeration) {
-		icon = ENUM_ICON;
+		icon = imageRegistry.get(ASTIcon.ENUM.getId());
 	    } /*
 	       * else if (item instanceof Static) { icon = STATIC_ICON;
 	       * label.append(" : ", StyledString.DECORATIONS_STYLER);
 	       * label.append(((Static) item).getType(),
 	       * StyledString.DECORATIONS_STYLER); }
-	       */else if (item instanceof Trait) {
-		icon = TRAIT_ICON;
+	       */
+	    else if (item instanceof Trait) {
+		icon = imageRegistry.get(ASTIcon.TRAIT.getId());
 	    } else if (item instanceof Implementation) {
-		icon = IMPL_ICON;
+		icon = imageRegistry.get(ASTIcon.IMPL.getId());
 	    } else if (item instanceof EnumVariant) {
-		icon = ENUM_VARIANT_ICON;
+		icon = imageRegistry.get(ASTIcon.ENUM_VARIANT.getId());
 	    } else if (item instanceof TraitMethod) {
-		icon = FUNCTION_ICON;
 		label.append(" (");
 		appendMethodArgsToLabel((TraitMethod) item, label);
 		label.append(") ");
 		appendReturnTypeToLabel((TraitMethod) item, label);
 	    } else if (item instanceof ImplementationMethod) {
-		icon = FUNCTION_ICON;
 		label.append(" (");
 		appendMethodArgsToLabel((ImplementationMethod) item, label);
 		label.append(") ");
