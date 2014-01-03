@@ -18,3 +18,6 @@ and that `rustc` and `rustpkg` are installed at `/usr/local/bin/`.
    abstract syntax tree on the standard output, and any compile errors on the standard error output)
 
 3. Import the `de.redoxi.ruste` projects into the Eclipse workspace.
+
+4. Add `eclipse.target` in `de.redoxi.ruste.core.tests` as the Target definition in the "Plug-in development" 
+   preferences.
