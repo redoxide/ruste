@@ -81,6 +81,10 @@ public class XmlParserHandler extends DefaultHandler {
 	    listener.startStructure(ident, startLine, startPos, endLine, endPos);
 	} else if ("field".equals(tagName)) {
 	    listener.startField(ident, attributes.getValue("type"), startLine, startPos, endLine, endPos);
+	} else if ("genericParameter".equals(tagName)) {
+	    listener.startGenericParam(ident, startLine, startPos, endLine, endPos);
+	} else if ("paramBound".equals(tagName)) {
+	    listener.startParamBound(attributes.getValue("trait"), startLine, startPos, endLine, endPos);
 	} else {
 	    tagNames.pop();
 	}

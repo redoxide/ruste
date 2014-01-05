@@ -27,7 +27,7 @@ public class Field extends ASTNode {
 	}
     }
 
-    public String getType() {
+    public String getTrait() {
 	return type;
     }
 

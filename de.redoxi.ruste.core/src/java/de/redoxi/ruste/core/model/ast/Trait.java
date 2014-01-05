@@ -23,9 +23,9 @@ import java.util.List;
  * 
  * @see http://static.rust-lang.org/doc/master/rust.html#traits
  */
-public class Trait extends Item implements Identifiable, Visible {
+public class Trait extends Item implements Identifiable, Visible, Generic {
 
-    // TODO Generic parameters
+    private List<GenericParam> genericParameters = new ArrayList<GenericParam>();
     private String identifier;
     private List<TraitMethod> methods = new ArrayList<TraitMethod>();
     private Visibility visibility = Visibility.DEFAULT;
@@ -68,5 +68,10 @@ public class Trait extends Item implements Identifiable, Visible {
 
     public void setVisibility(Visibility visibility) {
 	this.visibility = visibility;
+    }
+
+    @Override
+    public List<GenericParam> getGenericParameters() {
+	return genericParameters;
     }
 }

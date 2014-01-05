@@ -89,8 +89,8 @@ public class ASTBuilderTest {
 	
 	assertEquals("x", ((NamedField) field0).getIdentifier());
 	assertEquals("y", ((NamedField) field1).getIdentifier());
-	assertEquals("int", field0.getType());
-	assertEquals("float", field1.getType());
+	assertEquals("int", field0.getTrait());
+	assertEquals("float", field1.getTrait());
 	
 	// TODO Check the lines and positions on the nodes
     }

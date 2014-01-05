@@ -237,6 +237,30 @@ mod xml {
 			self.write_indentation();
 			writeln!(self.writer, "</field>");
 		}
+		
+		pub fn start_generic_param(&mut self, ident: &str, startLoc: Loc, endLoc: Loc) {
+			self.write_indentation();
+			writeln!(self.writer, "<genericParameter ident=\"{ident}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", ident = ident, startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
+			self.indentation += 1;
+		}
+		
+		pub fn end_generic_param(&mut self) {
+			self.indentation -= 1;
+			self.write_indentation();
+			writeln!(self.writer, "</genericParameter>");
+		}
+		
+		pub fn start_param_bound(&mut self, t: &str, startLoc: Loc, endLoc: Loc) {
+			self.write_indentation();
+			writeln!(self.writer, "<parameterBound trait=\"{t}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", t = self.xml_attr(t), startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
+			self.indentation += 1;
+		}
+		
+		pub fn end_param_bound(&mut self) {
+			self.indentation -= 1;
+			self.write_indentation();
+			writeln!(self.writer, "</parameterBound>");
+		}
 	}
 }
        
@@ -244,6 +268,7 @@ mod traverse {
 	use syntax::ast;
 	use syntax::codemap::{CodeMap, Loc};
 	use syntax::parse::token::interner_get;
+	use syntax::opt_vec;
 	
 	use std::io;
 	
@@ -335,6 +360,8 @@ mod traverse {
 				
 				xml_writer.start_function(_ident, _tyStr, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
 				
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
+				
 				for a in f.inputs.iter() {
 					traverse_arg(a, codemap, xml_writer);
 				}		
@@ -346,7 +373,8 @@ mod traverse {
 			ast::item_struct(ref s, ref generics) => {
 				xml_writer.start_structure(_ident, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
 				
-				// TODO Generics
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
+				
 				for f in s.fields.iter() {
 					traverse_struct_field(*f, codemap, xml_writer);
 				}
@@ -355,15 +383,19 @@ mod traverse {
 			},
 			ast::item_trait(ref generics, ref trait_refs, ref trait_methods) => {
 				xml_writer.start_trait(_ident, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
 				traverse_trait(generics, trait_refs, trait_methods, codemap, xml_writer);
 				xml_writer.end_trait();
 			},
 			ast::item_enum(ref e, ref generics) => {
 				xml_writer.start_enumeration(_ident, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
 				traverse_enum(e, codemap, xml_writer);
 				xml_writer.end_enumeration();
 			},
 			ast::item_impl(ref generics, ref optional_trait_ref, ref ty, ref methods) => {
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
+				
 				// TODO Map crate to resolve trait name
 				let opt_trait = match *optional_trait_ref {
 					Some(ref t) => ~"",
@@ -551,6 +583,32 @@ mod traverse {
 		
 		xml_writer.start_structure_field(ident, _tyStr, vis, codemap.lookup_char_pos(field.span.lo), codemap.lookup_char_pos(field.span.hi));
 		xml_writer.end_structure_field();
+	}
+	
+	pub fn traverse_generics(generics: &ast::Generics, startLoc: Loc, endLoc: Loc, codemap: &CodeMap, xml_writer: &mut xml::XmlWriter) {
+		for param in generics.ty_params.iter() {
+			let ident = interner_get(param.ident.name);
+			xml_writer.start_generic_param(ident, startLoc, endLoc);
+			traverse_param_bounds(&param.bounds, codemap, xml_writer);
+			xml_writer.end_generic_param();
+		}
+	}
+	
+	pub fn traverse_param_bounds(bounds: &opt_vec::OptVec<ast::TyParamBound>, codemap: &CodeMap, xml_writer: &mut xml::XmlWriter) {
+		for bound in bounds.iter() {
+			traverse_param_bound(bound, codemap, xml_writer);
+		}
+	}
+	
+	pub fn traverse_param_bound(bound: &ast::TyParamBound, codemap: &CodeMap, xml_writer: &mut xml::XmlWriter) {
+		match *bound {
+			ast::TraitTyParamBound(ref trait_ref) => {
+				let t = codemap.span_to_snippet(trait_ref.path.span).unwrap();
+				xml_writer.start_param_bound(t, codemap.lookup_char_pos(trait_ref.path.span.lo), codemap.lookup_char_pos(trait_ref.path.span.hi));
+				xml_writer.end_param_bound();
+			},
+			ast::RegionTyParamBound => ()
+		}
 	}
 }
 

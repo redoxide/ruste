@@ -23,12 +23,11 @@ import java.util.List;
  * 
  * @see http://static.rust-lang.org/doc/master/rust.html#functions
  */
-public class Function extends Item implements Identifiable, Scope, Visible {
+public class Function extends Item implements Identifiable, Scope, Visible, Generic {
 
     private String identifier;
-    private List<String> genericTypeParameters = new ArrayList<String>();
-    // TODO Generic type parameter bounds
-
+    private List<GenericParam> genericParameters = new ArrayList<GenericParam>();
+    
     private List<NamedArg> args = new ArrayList<NamedArg>();
 
     private String returnType;
@@ -36,10 +35,6 @@ public class Function extends Item implements Identifiable, Scope, Visible {
 
     public Function(Module module) {
 	super(module);
-    }
-
-    public List<String> getGenericTypeParameters() {
-	return genericTypeParameters;
     }
 
     public String getReturnType() {
@@ -145,5 +140,10 @@ public class Function extends Item implements Identifiable, Scope, Visible {
 
     public List<NamedArg> getArgs() {
 	return args;
+    }
+
+    @Override
+    public List<GenericParam> getGenericParameters() {
+	return genericParameters;
     }
 }

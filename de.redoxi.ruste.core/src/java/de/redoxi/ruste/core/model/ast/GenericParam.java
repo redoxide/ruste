@@ -15,13 +15,16 @@
 
 package de.redoxi.ruste.core.model.ast;
 
-public class NamedField extends Field implements Identifiable {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GenericParam extends ASTNode implements Identifiable {
 
     private String identifier;
-    private String type;
+    private List<String> traits = new ArrayList<String>();
 
-    public NamedField(ASTNode parent) {
-	super(parent);
+    public GenericParam(Generic current) {
+	super((ASTNode) current);
     }
 
     public String getIdentifier() {
@@ -32,15 +35,28 @@ public class NamedField extends Field implements Identifiable {
 	this.identifier = identifier;
     }
     
-    public String getTrait() {
-	return type;
+    public List<String> getTraits() {
+	return traits;
     }
 
-    public void setType(String type) {
-	this.type = type;
+    public void setTrait(List<String> traits) {
+	this.traits.clear();
+	this.traits.addAll(traits);
     }
 
     public String toString() {
-	return identifier + " : " + getTrait();
+	StringBuilder builder = new StringBuilder(identifier);
+	
+	if (!getTraits().isEmpty()) {
+	    builder.append(" : ");
+	    builder.append(getTraits().get(0));
+	    
+	    for (int i = 1; i < getTraits().size(); ++i) {
+		builder.append(" + ");
+		builder.append(getTraits().get(i));
+	    }
+	}
+	
+	return builder.toString();
     }
 }

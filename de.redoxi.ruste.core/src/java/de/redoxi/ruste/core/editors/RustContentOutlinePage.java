@@ -220,7 +220,7 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 		if (item instanceof NamedField) {
 		    label.append(" : ");
 		}
-		label.append(((Field) item).getType());
+		label.append(((Field) item).getTrait());
 	    }
 
 	    cell.setText(label.toString());

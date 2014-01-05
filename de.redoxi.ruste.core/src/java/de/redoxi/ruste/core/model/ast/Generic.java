@@ -15,32 +15,15 @@
 
 package de.redoxi.ruste.core.model.ast;
 
-public class NamedField extends Field implements Identifiable {
+import java.util.List;
 
-    private String identifier;
-    private String type;
+/**
+ * Indicates that the model can be generic
+ * 
+ * @author Hayden Smith
+ * @since 0.0.1
+ */
+public interface Generic {
 
-    public NamedField(ASTNode parent) {
-	super(parent);
-    }
-
-    public String getIdentifier() {
-	return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-	this.identifier = identifier;
-    }
-    
-    public String getTrait() {
-	return type;
-    }
-
-    public void setType(String type) {
-	this.type = type;
-    }
-
-    public String toString() {
-	return identifier + " : " + getTrait();
-    }
+    public List<GenericParam> getGenericParameters();
 }

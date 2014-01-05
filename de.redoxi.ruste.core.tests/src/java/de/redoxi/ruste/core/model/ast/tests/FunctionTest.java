@@ -25,6 +25,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.redoxi.ruste.core.model.ast.Function;
+import de.redoxi.ruste.core.model.ast.GenericParam;
 import de.redoxi.ruste.core.model.ast.Module;
 import de.redoxi.ruste.core.model.ast.NamedArg;
 
@@ -86,23 +87,28 @@ public class FunctionTest {
 	assertNull(fnForTest.getReturnType());
 	assertNotNull(fnForTest.getArgs());
 
-	assertNotNull(fnForTest.getGenericTypeParameters());
-	// TODO Generic type traits
+	assertNotNull(fnForTest.getGenericParameters());
+	assertTrue(fnForTest.getGenericParameters().isEmpty());
 	assertTrue(fnForTest.getArgs().isEmpty());
 
-	assertTrue(fnForTest.getGenericTypeParameters().isEmpty());
+	assertTrue(fnForTest.getGenericParameters().isEmpty());
     }
 
     @Test
     public final void testGetGenericTypeParameters() {
-	assertNotNull(function.getGenericTypeParameters());
-	assertTrue(function.getGenericTypeParameters().isEmpty());
+	assertNotNull(function.getGenericParameters());
+	assertTrue(function.getGenericParameters().isEmpty());
 
-	function.getGenericTypeParameters().add("Structure");
+	GenericParam param = new GenericParam(function);
+	param.setIdentifier("S");
+	param.getTraits().add("Structure");
+	
+	function.getGenericParameters().add(param);
 
-	assertNotNull(function.getGenericTypeParameters());
-	assertFalse(function.getGenericTypeParameters().isEmpty());
-	assertEquals("Structure", function.getGenericTypeParameters().get(0));
+	assertNotNull(function.getGenericParameters());
+	assertFalse(function.getGenericParameters().isEmpty());
+	assertEquals("S", function.getGenericParameters().get(0).getIdentifier());
+	assertEquals("Structure", function.getGenericParameters().get(0).getTraits().get(0));
     }
 
     @Test

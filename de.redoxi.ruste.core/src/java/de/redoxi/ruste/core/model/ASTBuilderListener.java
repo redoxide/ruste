@@ -21,6 +21,8 @@ import de.redoxi.ruste.core.model.ast.EnumVariant;
 import de.redoxi.ruste.core.model.ast.Enumeration;
 import de.redoxi.ruste.core.model.ast.Field;
 import de.redoxi.ruste.core.model.ast.Function;
+import de.redoxi.ruste.core.model.ast.Generic;
+import de.redoxi.ruste.core.model.ast.GenericParam;
 import de.redoxi.ruste.core.model.ast.Implementation;
 import de.redoxi.ruste.core.model.ast.ImplementationMethod;
 import de.redoxi.ruste.core.model.ast.Item;
@@ -315,6 +317,52 @@ public class ASTBuilderListener {
 	setCurrent(field);
     }
 
+    /**
+     * Start a generic parameter
+     * 
+     * @param identifier
+     * @param type
+     * @param startLine
+     * @param startCharPos
+     * @param endLine
+     * @param endCharPos
+     */
+    public void startGenericParam(String identifier, int startLine,
+	    int startCharPos, int endLine, int endCharPos) {
+	GenericParam param = new GenericParam((Generic) current);
+	
+	param.setStartLine(startLine);
+	param.setStartPos(startCharPos);
+	param.setEndLine(endLine);
+	param.setEndPos(endCharPos);
+	
+	setCurrent(param);
+    }
+    
+    /**
+     * Start a generic parameter bound
+     * 
+     * @param identifier
+     * @param type
+     * @param startLine
+     * @param startCharPos
+     * @param endLine
+     * @param endCharPos
+     */
+    public void startParamBound(String trait, int startLine,
+	    int startCharPos, int endLine, int endCharPos) {
+	GenericParam param = (GenericParam) current;
+	
+	param.getTraits().add(trait);
+	
+	/*param.setStartLine(startLine);
+	param.setStartPos(startCharPos);
+	param.setEndLine(endLine);
+	param.setEndPos(endCharPos);*/
+	
+	setCurrent(param);
+    }
+    
     /**
      * Indicate the end of the current ASTNode
      */
