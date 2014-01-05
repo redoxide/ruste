@@ -27,6 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.redoxi.ruste.core.model.ast.Arg;
+import de.redoxi.ruste.core.model.ast.GenericParam;
 import de.redoxi.ruste.core.model.ast.Module;
 import de.redoxi.ruste.core.model.ast.NamedArg;
 import de.redoxi.ruste.core.model.ast.Trait;
@@ -52,12 +53,12 @@ public class TraitMethodTest {
 
 	assertNull(methodForTest.getIdentifier());
 
-	assertNotNull(methodForTest.getGenericTypeParameters());
+	assertNotNull(methodForTest.getGenericParameters());
 	assertNotNull(methodForTest.getArgs());
 
 	assertNull(methodForTest.getReturnType());
 
-	assertTrue(methodForTest.getGenericTypeParameters().isEmpty());
+	assertTrue(methodForTest.getGenericParameters().isEmpty());
 	assertTrue(methodForTest.getArgs().isEmpty());
 
 	assertFalse(trait.getMethods().isEmpty());
@@ -66,11 +67,11 @@ public class TraitMethodTest {
 
     @Test
     public final void testGetGenericTypeParameters() {
-	List<String> genericTypeParams = traitMethod.getGenericTypeParameters();
+	List<GenericParam> genericTypeParams = traitMethod.getGenericParameters();
 
 	assertNotNull(genericTypeParams);
 	assertTrue(genericTypeParams.isEmpty());
-	assertSame(genericTypeParams, traitMethod.getGenericTypeParameters());
+	assertSame(genericTypeParams, traitMethod.getGenericParameters());
     }
 
     @Test

@@ -24,11 +24,10 @@ import java.util.List;
  * @see http://static.rust-lang.org/doc/master/rust.html#traits
  */
 public class TraitMethod extends ASTNode/* TODO implements Scope */implements
-	Identifiable, Visible {
+	Identifiable, Visible, Generic {
 
     private String identifier;
-    private List<String> genericTypeParameters = new ArrayList<String>();
-    // TODO Generic type parameter traits
+    private List<GenericParam> genericParameters = new ArrayList<GenericParam>();
     private List<Arg> args = new ArrayList<Arg>();
 
     private String returnType;
@@ -39,8 +38,8 @@ public class TraitMethod extends ASTNode/* TODO implements Scope */implements
 	trait.getMethods().add(this);
     }
 
-    public List<String> getGenericTypeParameters() {
-	return genericTypeParameters;
+    public List<GenericParam> getGenericParameters() {
+	return genericParameters;
     }
 
     public String getReturnType() {
