@@ -261,6 +261,18 @@ mod xml {
 			self.write_indentation();
 			writeln!(self.writer, "</parameterBound>");
 		}
+		
+		pub fn start_type_def(&mut self, ident: &str, ty: &str, vis: &str, startLoc: Loc, endLoc: Loc) {
+			self.write_indentation();
+			writeln!(self.writer, "<type vis=\"{vis}\" ident=\"{ident}\" type=\"{ty}\" startLine=\"{startLine}\" startPos=\"{startPos}\" endLine=\"{endLine}\" endPos=\"{endPos}\">", ident = ident, ty = ty, startLine = startLoc.line, startPos = char_pos_to_col(startLoc.col), endLine = endLoc.line, endPos = char_pos_to_col(endLoc.col));
+			self.indentation += 1;
+		}
+		
+		pub fn end_type_def(&mut self) {
+			self.indentation -= 1;
+			self.write_indentation();
+			writeln!(self.writer, "</type>");
+		}
 	}
 }
        
@@ -417,6 +429,20 @@ mod traverse {
 				
 				xml_writer.end_implementation();
 			},
+			ast::item_ty(ref ty, ref generics) => {
+				let _ty = codemap.span_to_snippet(ty.span);
+				
+				let _tyStr = match _ty {
+					Some(s) => s.to_owned(),
+					None => ~""
+				};
+				
+				xml_writer.start_type_def(_ident, _tyStr, vis, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi));
+				
+				traverse_generics(generics, codemap.lookup_char_pos(item.span.lo), codemap.lookup_char_pos(item.span.hi), codemap, xml_writer);
+				
+				xml_writer.end_type_def();
+			}
 			_ => ()
 		}
 	}

@@ -31,6 +31,7 @@ import de.redoxi.ruste.core.model.ast.NamedField;
 import de.redoxi.ruste.core.model.ast.Structure;
 import de.redoxi.ruste.core.model.ast.Trait;
 import de.redoxi.ruste.core.model.ast.TraitMethod;
+import de.redoxi.ruste.core.model.ast.Type;
 
 /**
  * Constructs an abstract syntax tree model of a complete or partial Rust crate
@@ -361,6 +362,21 @@ public class ASTBuilderListener {
 	param.setEndPos(endCharPos);*/
 	
 	setCurrent(param);
+    }
+    
+    public void startType(String identifier, String definition, int startLine,
+	    int startCharPos, int endLine, int endCharPos) {
+	Type type = new Type((Module) current);
+	
+	type.setIdentifier(identifier);
+	type.setType(definition);
+	
+	type.setStartLine(startLine);
+	type.setStartPos(startCharPos);
+	type.setEndLine(endLine);
+	type.setEndPos(endCharPos);
+	
+	setCurrent(type);
     }
     
     /**

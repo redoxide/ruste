@@ -57,3 +57,5 @@ pub fn voidFunction() {
 pub fn intFunction() -> int {
 	2
 }
+
+pub type typeDef = int;
