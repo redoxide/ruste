@@ -27,8 +27,9 @@ public class ImplementationMethod extends ASTNode implements Identifiable,
 	Visible/* TODO ,Scope */{
 
     private String identifier;
-    private List<String> genericTypeParameters = new ArrayList<String>();
-    // TODO Generic type parameter traits
+    private List<GenericParam> genericParameters = new ArrayList<GenericParam>();
+    
+    // TODO Replace with list of {@link NamedArg}
     private List<String> argumentNames = new ArrayList<String>();
     private List<String> argumentTypes = new ArrayList<String>();
     private String returnType;
@@ -39,8 +40,8 @@ public class ImplementationMethod extends ASTNode implements Identifiable,
 	implementation.getMethods().add(this);
     }
 
-    public List<String> getGenericTypeParameters() {
-	return genericTypeParameters;
+    public List<GenericParam> getGenericParameters() {
+	return genericParameters;
     }
 
     public List<String> getArgumentNames() {

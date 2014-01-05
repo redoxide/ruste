@@ -25,6 +25,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.redoxi.ruste.core.model.ast.GenericParam;
 import de.redoxi.ruste.core.model.ast.Implementation;
 import de.redoxi.ruste.core.model.ast.ImplementationMethod;
 import de.redoxi.ruste.core.model.ast.Module;
@@ -51,22 +52,22 @@ public class ImplementationMethodTest {
 	assertNull(methodForTest.getIdentifier());
 	assertNotNull(methodForTest.getArgumentNames());
 	assertNotNull(methodForTest.getArgumentTypes());
-	assertNotNull(methodForTest.getGenericTypeParameters());
+	assertNotNull(methodForTest.getGenericParameters());
 	assertNull(methodForTest.getReturnType());
 	assertTrue(methodForTest.getArgumentNames().isEmpty());
 	assertTrue(methodForTest.getArgumentTypes().isEmpty());
-	assertTrue(methodForTest.getGenericTypeParameters().isEmpty());
+	assertTrue(methodForTest.getGenericParameters().isEmpty());
     }
 
     @Test
     public final void testGetGenericTypeParameters() {
-	List<String> genericTypeParams = implementationMethod
-		.getGenericTypeParameters();
+	List<GenericParam> genericTypeParams = implementationMethod
+		.getGenericParameters();
 
 	assertNotNull(genericTypeParams);
 	assertTrue(genericTypeParams.isEmpty());
 	assertSame(genericTypeParams,
-		implementationMethod.getGenericTypeParameters());
+		implementationMethod.getGenericParameters());
     }
 
     @Test
