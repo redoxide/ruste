@@ -33,7 +33,7 @@ public interface IDefaultRustColourConstants {
     Color COMMENT = new Color(Display.getCurrent(), new RGB(63, 127, 95));
     Color KEYWORD = new Color(Display.getCurrent(), new RGB(127, 0, 85));
     Color IDENTIFIER = new Color(Display.getCurrent(), new RGB(0, 0, 192));
-    Color STRING = new Color(Display.getCurrent(), new RGB(0xAA, 11, 11));
-    Color CHARACTER = new Color(Display.getCurrent(), new RGB(0xAA, 11, 11));
-    Color NUMBER = new Color(Display.getCurrent(), new RGB(11, 66, 44));
+    Color STRING = new Color(Display.getCurrent(), new RGB(0x86, 0x65, 0x44));
+    Color CHARACTER = new Color(Display.getCurrent(), new RGB(0x86, 0x65, 0x44));
+    Color NUMBER = new Color(Display.getCurrent(), new RGB(0x2A, 0xA1, 0x98));
 }
