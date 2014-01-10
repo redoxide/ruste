@@ -101,7 +101,8 @@ public class RustNumberLiteralRule implements IRule {
 	addTransition(16, "0123456789_", 18);
 
 	addTransition(17, "Ee", 19);
-
+	addTransition(17, "f", 12);
+	
 	addTransition(18, "f", 12);
 
 	addTransition(19, "+-", 20);
