@@ -36,8 +36,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.redoxi.ruste.core.project.NewProjectWizard;
 import de.redoxi.ruste.core.tests.AbstractUITest;
+import de.redoxi.ruste.core.wizards.project.NewProjectWizard;
 
 public class NewProjectWizardTest extends AbstractUITest {
 

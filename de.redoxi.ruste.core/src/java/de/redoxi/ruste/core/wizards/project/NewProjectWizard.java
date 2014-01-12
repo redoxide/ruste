@@ -12,11 +12,14 @@
  * either express or implied. See the License for the specific language governing permissions and 
  * limitations under the License.
  */
-package de.redoxi.ruste.core.project;
+package de.redoxi.ruste.core.wizards.project;
 
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
 import org.eclipse.core.resources.ICommand;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -32,6 +35,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 import de.redoxi.ruste.core.builders.IncrementalRustProjectBuilder;
+import de.redoxi.ruste.core.model.ast.Crate;
 import de.redoxi.ruste.core.natures.RustProjectNature;
 
 /**
@@ -43,11 +47,26 @@ import de.redoxi.ruste.core.natures.RustProjectNature;
 public class NewProjectWizard extends Wizard implements INewWizard {
 
     private WizardNewProjectCreationPage newProjectCreationPage;
+    private InitialiseRustpkgWorkspacePage initialiseRustpkgWorkspacePage;
 
     private static final String BIN_DIR = "bin";
     private static final String LIB_DIR = "lib";
     private static final String SRC_DIR = "src";
     private static final String BUILD_DIR = "build";
+    
+    private static final String MAIN_SOURCE_FILENAME = "main.rs";
+    private static final String LIB_SOURCE_FILENAME = "lib.rs";
+    private static final String TEST_SOURCE_FILENAME = "test.rs";
+    private static final String BENCHMARK_SOURCE_FILENAME = "bench.rs";
+    private static final String PKG_SOURCE_FILENAME = "pkg.rs";
+    
+    private static final String CRATE_ID_ATTR = "crate_id";
+    private static final String CRATE_TYPE_ATTR = "crate_type";
+    private static final String LICENCE_ATTR = "license";
+    private static final String COMMENT_ATTR = "comment";
+    
+    private static final String EXEC_CRATE_TYPE = "bin";
+    private static final String LIB_CRATE_TYPE = "lib";
 
     public NewProjectWizard() {
 	super();
@@ -61,6 +80,12 @@ public class NewProjectWizard extends Wizard implements INewWizard {
     public void addPages() {
 	super.addPages();
 
+	addProjectCreationPage();
+	addInitialiseRustpkgWorkspacePage();
+	// TODO Documentation creation page
+    }
+
+    private void addProjectCreationPage() {
 	newProjectCreationPage = new WizardNewProjectCreationPage(
 		"New Rust Project");
 	newProjectCreationPage.setTitle("Create a new Rust project");
@@ -68,6 +93,14 @@ public class NewProjectWizard extends Wizard implements INewWizard {
 		.setDescription("Create a new Rust project compatible with rustpkg tool");
 
 	addPage(newProjectCreationPage);
+    }
+    
+    private void addInitialiseRustpkgWorkspacePage() {
+	initialiseRustpkgWorkspacePage = new InitialiseRustpkgWorkspacePage("Configure crate");
+	initialiseRustpkgWorkspacePage.setTitle("Configure crate attributes");
+	initialiseRustpkgWorkspacePage.setDescription("Set crate type and crate-level attributes for the package");
+	
+	addPage(initialiseRustpkgWorkspacePage);
     }
 
     /**
@@ -153,6 +186,8 @@ public class NewProjectWizard extends Wizard implements INewWizard {
 	createFolder(newProject.getFolder(SRC_DIR));
 	createFolder(newProject.getFolder(SRC_DIR + "/" + projectName));
 
+	initPackageFiles(newProject);
+	
 	return newProject;
     }
 
@@ -206,5 +241,77 @@ public class NewProjectWizard extends Wizard implements INewWizard {
     @Override
     public void init(IWorkbench workbench, IStructuredSelection selection) {
 
+    }
+    
+    private void initPackageFiles(IProject project) {
+	if (initialiseRustpkgWorkspacePage.getCrateType() != Crate.Type.EXECUTABLE && initialiseRustpkgWorkspacePage.getCrateType() != Crate.Type.LIBRARY) {
+	    return;
+	}
+	
+	if (initialiseRustpkgWorkspacePage.shouldGenerateTestFile()) {
+	    createSourceFile(project, TEST_SOURCE_FILENAME);
+	}
+	
+	if (initialiseRustpkgWorkspacePage.shouldGeneratedBenchFile()) {
+	    createSourceFile(project, BENCHMARK_SOURCE_FILENAME);
+	}
+	
+	if (initialiseRustpkgWorkspacePage.shouldGeneratePkgFile()) {
+	    createSourceFile(project, PKG_SOURCE_FILENAME);
+	}
+	
+	String sourceFileName = MAIN_SOURCE_FILENAME;
+	String crateType = EXEC_CRATE_TYPE;
+	String initialSource = "fn main() {\n\t// TODO Your code goes here\n}\n";
+	
+	if (initialiseRustpkgWorkspacePage.getCrateType() == Crate.Type.LIBRARY) {
+	    sourceFileName = LIB_SOURCE_FILENAME;
+	    crateType = LIB_CRATE_TYPE;
+	    initialSource = "\n";
+	}
+	
+	StringBuilder sourceBuilder = new StringBuilder();
+	
+	if (!initialiseRustpkgWorkspacePage.getCrateId().isEmpty()) {
+	    sourceBuilder.append(newStringAttribute(CRATE_ID_ATTR, initialiseRustpkgWorkspacePage.getCrateId()));
+	}
+	
+	if (!initialiseRustpkgWorkspacePage.getCrateComment().isEmpty()) {
+	    sourceBuilder.append(newStringAttribute(COMMENT_ATTR, initialiseRustpkgWorkspacePage.getCrateComment()));
+	}
+	
+	sourceBuilder.append(newStringAttribute(CRATE_TYPE_ATTR, crateType));
+	
+	if (!initialiseRustpkgWorkspacePage.getLicence().isEmpty()) {
+	    sourceBuilder.append(newStringAttribute(LICENCE_ATTR, initialiseRustpkgWorkspacePage.getCrateId()));
+	}
+	
+	sourceBuilder.append(initialSource);
+	
+	IFile sourceFile = createSourceFile(project, sourceFileName);
+	try {
+	    sourceFile.appendContents(new ByteArrayInputStream(sourceBuilder.toString().getBytes("UTF-8")), true, false, null);
+	} catch (UnsupportedEncodingException e) {
+	    // TODO Log error
+	} catch (CoreException e) {
+	    // TODO Log error
+	}
+    }
+    
+    private IFile createSourceFile(IProject project, String fileName) {
+	IFile file = project.getFile(SRC_DIR + "/" + project.getName() + "/" + fileName);
+	if (!file.exists()) {
+	    try {
+		file.create(new ByteArrayInputStream(new byte[0]), false, null);
+	    } catch (CoreException e) {
+		// TODO Log exception
+	    }
+	}
+	
+	return file;
+    }
+    
+    private String newStringAttribute(String name, String value) {
+	return "#[" + name + " = \"" + value.replace("\"", "\\\"") + "\"];\n";
     }
 }

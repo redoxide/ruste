@@ -23,5 +23,5 @@ Export-Package: de.redoxi.ruste.core.api.xml,
  de.redoxi.ruste.core.model.ast,
  de.redoxi.ruste.core.natures,
  de.redoxi.ruste.core.parser,
- de.redoxi.ruste.core.project
+ de.redoxi.ruste.core.wizards.project
 Bundle-Activator: de.redoxi.ruste.core.Plugin

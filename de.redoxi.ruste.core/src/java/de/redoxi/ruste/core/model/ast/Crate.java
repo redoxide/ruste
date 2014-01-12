@@ -52,4 +52,8 @@ public class Crate extends Module {
     public void setSourceFile(IFile sourceFile) {
 	this.sourceFile = sourceFile;
     }
+    
+    public enum Type {
+	EXECUTABLE, LIBRARY;
+    }
 }

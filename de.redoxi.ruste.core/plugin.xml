@@ -29,16 +29,25 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            id="de.redoxi.ruste.category.wizards"
+            id="de.redoxi.ruste.core.category.wizards"
             name="Rust">
       </category>
       <wizard
             canFinishEarly="false"
-            category="de.redoxi.ruste.category.wizards"
-            class="de.redoxi.ruste.core.project.NewProjectWizard"
+            category="de.redoxi.ruste.core.category.wizards"
+            class="de.redoxi.ruste.core.wizards.project.NewProjectWizard"
+            hasPages="true"
             icon="icons/rust-logo.png"
-            id="de.redoxi.ruste.wizard.new.rust"
-            name="Rust project">
+            id="de.redoxi.ruste.core.wizard.new.rustproject"
+            name="Rust project"
+            project="true">
+      </wizard>
+      <wizard
+            category="de.redoxi.ruste.core.category.wizards"
+            class="de.redoxi.ruste.core.wizards.source.NewSourceFile"
+            icon="icons/rust-logo.png"
+            id="de.redoxi.ruste.core.wizard.new.rustcrate"
+            name="Rust source file">
       </wizard>
    </extension>
    <extension
