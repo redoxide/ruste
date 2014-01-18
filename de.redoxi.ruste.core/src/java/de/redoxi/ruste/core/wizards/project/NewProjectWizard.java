@@ -262,7 +262,7 @@ public class NewProjectWizard extends Wizard implements INewWizard {
 	
 	String sourceFileName = MAIN_SOURCE_FILENAME;
 	String crateType = EXEC_CRATE_TYPE;
-	String initialSource = "fn main() {\n\t// TODO Your code goes here\n}\n";
+	String initialSource = "fn main() {\n\t// TODO Your code goes here\n}\n"; // TODO Use a code template here
 	
 	if (initialiseRustpkgWorkspacePage.getCrateType() == Crate.Type.LIBRARY) {
 	    sourceFileName = LIB_SOURCE_FILENAME;

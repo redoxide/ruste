@@ -67,7 +67,7 @@ public class NewProjectWizardTest extends AbstractUITest {
 	newProjectWizard.addPages();
 
 	assertNotNull(newProjectWizard.getPages());
-	assertEquals(1, newProjectWizard.getPages().length);
+	assertEquals(2, newProjectWizard.getPages().length);
     }
 
     @Test

@@ -14,10 +14,17 @@
  */
 package de.redoxi.ruste.core.wizards.source;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 /**
  * Wizard presented to the user to create a new Rust source file,
@@ -28,11 +35,16 @@ import org.eclipse.ui.IWorkbench;
  */
 public class NewSourceFile extends Wizard implements INewWizard {
 
+    private static final String RUST_FILE_EXTENSION = "rs";
+    
+    private WizardNewFileCreationPage newFileCreationPage;
+    
     /**
      * 
      */
     public NewSourceFile() {
-	// TODO Auto-generated constructor stub
+	super();
+	setWindowTitle("New Rust source file");
     }
 
     /* (non-Javadoc)
@@ -43,14 +55,55 @@ public class NewSourceFile extends Wizard implements INewWizard {
 	// TODO Auto-generated method stub
 
     }
+    
+    /**
+     * Add pages to the new project wizard
+     */
+    @Override
+    public void addPages() {
+	super.addPages();
+
+	addFileCreationPage();
+    }
+
+    /**
+     * Add a page to create the new file
+     */
+    private void addFileCreationPage() {
+	IWorkbench wb = PlatformUI.getWorkbench();
+	IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+	IWorkbenchPage page = win.getActivePage();
+	
+	IStructuredSelection selection = null;
+	
+	if (page.getSelection() instanceof IStructuredSelection) {
+	    selection = (IStructuredSelection) page.getSelection();
+	}
+	
+	IProject project = null;
+	
+	newFileCreationPage = new WizardNewFileCreationPage("Create new Rust source file", selection);
+	newFileCreationPage.setFileExtension(RUST_FILE_EXTENSION);
+	
+	newFileCreationPage.setTitle("Create a new Rust source file");
+	
+	if (selection.getFirstElement() instanceof IProject) {
+	    project = (IProject) selection.getFirstElement();
+	    IPath sourcePath = project.getFullPath();
+	    
+	    newFileCreationPage.setContainerFullPath(sourcePath.append("src/" + project.getName()));
+	}
+	
+	addPage(newFileCreationPage);
+    }
 
     /* (non-Javadoc)
      * @see org.eclipse.jface.wizard.Wizard#performFinish()
      */
     @Override
     public boolean performFinish() {
-	// TODO Auto-generated method stub
-	return false;
+	IFile newSourceFile = newFileCreationPage.createNewFile();
+	return newSourceFile.exists();
     }
 
 }
