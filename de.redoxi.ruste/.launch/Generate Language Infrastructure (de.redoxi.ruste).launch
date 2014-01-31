@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType">
+<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${working_set:&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;resources&gt;&#10;&lt;item path=&quot;/de.redoxi.ruste&quot; type=&quot;4&quot;/&gt;&#10;&lt;item path=&quot;/de.redoxi.ruste.generator&quot; type=&quot;4&quot;/&gt;&#10;&lt;item path=&quot;/de.redoxi.ruste.tests&quot; type=&quot;4&quot;/&gt;&#10;&lt;item path=&quot;/de.redoxi.ruste.ui&quot; type=&quot;4&quot;/&gt;&#10;&lt;/resources&gt;}"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/de.redoxi.ruste"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="src/de/redoxi/ruste/GenerateRust.mwe2"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.redoxi.ruste"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2048m"/>
+</launchConfiguration>

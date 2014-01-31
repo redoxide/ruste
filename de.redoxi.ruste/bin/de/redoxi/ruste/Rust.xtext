@@ -1,0 +1,51 @@
+grammar de.redoxi.ruste.Rust 
+	with org.eclipse.xtext.common.Terminals
+
+generate rust "http://www.redoxi.de/ruste/grammar/Rust"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+// Top level crate and its implicit module
+Crate:
+	(items += ItemAndAttrs)*
+;
+
+// Attribute for an item
+ItemAttr:
+	'#[' attrs += Attr (',' attrs += Attr)* ']'
+;
+
+// Individual attribute within an item
+Attr:
+	LiteralAttr |
+	AttrWithList
+;
+
+// Attribute with a list of other attributes
+AttrWithList:
+	ident = IDENT '(' attrs += Attr (',' attrs += Attr)* ')'
+;
+
+// An attribute with a literal value
+LiteralAttr:
+	ident = IDENT '=' '1' // TODO Literal (value = Literal)
+;
+
+// An item and any associated attributes
+ItemAndAttrs:
+	{ItemAndAttrs} (attrs += ItemAttr)* item = Item
+;
+
+// Items within a module or crate
+Item:
+	ModItem // | FnItem | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+;
+
+// A module declaration item
+ModItem:
+	"mod" ident = IDENT (';' | '{' /* body = Mod */ '}')
+;
+
+terminal fragment XID_START: 'a'..'z'; // TODO Expand
+terminal fragment XID_CONTINUE: 'a'..'z' | '_'; // TODO Expand
+terminal IDENT: XID_START XID_CONTINUE*;
