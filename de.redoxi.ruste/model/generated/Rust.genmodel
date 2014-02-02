@@ -7,6 +7,16 @@
     editorPluginID="de.redoxi.ruste.editor" runtimeVersion="2.9">
   <genPackages prefix="Rust" basePackage="de.redoxi.ruste" disposableProviderFactory="true"
       fileExtensions="rs" ecorePackage="Rust.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//FloatSize">
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//FloatSize/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//FloatSize/DOUBLE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//IntSize">
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/LONG"/>
+    </genEnums>
     <genClasses ecoreClass="Rust.ecore#//Crate">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
     </genClasses>
@@ -37,6 +47,18 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//EscapedChar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EscapedChar/char"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
+    <genClasses ecoreClass="Rust.ecore#//FloatLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/digits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/negativeExp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/size"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//IntLit"/>
+    <genClasses ecoreClass="Rust.ecore#//DecIntLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/digits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/size"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnicodeChar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UnicodeChar/digits"/>

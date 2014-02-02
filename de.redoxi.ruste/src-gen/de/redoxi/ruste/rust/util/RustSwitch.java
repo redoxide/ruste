@@ -153,6 +153,42 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.NUMBER_LIT:
+      {
+        NumberLit numberLit = (NumberLit)theEObject;
+        T result = caseNumberLit(numberLit);
+        if (result == null) result = caseLiteral(numberLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.FLOAT_LIT:
+      {
+        FloatLit floatLit = (FloatLit)theEObject;
+        T result = caseFloatLit(floatLit);
+        if (result == null) result = caseNumberLit(floatLit);
+        if (result == null) result = caseLiteral(floatLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.INT_LIT:
+      {
+        IntLit intLit = (IntLit)theEObject;
+        T result = caseIntLit(intLit);
+        if (result == null) result = caseNumberLit(intLit);
+        if (result == null) result = caseLiteral(intLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.DEC_INT_LIT:
+      {
+        DecIntLit decIntLit = (DecIntLit)theEObject;
+        T result = caseDecIntLit(decIntLit);
+        if (result == null) result = caseIntLit(decIntLit);
+        if (result == null) result = caseNumberLit(decIntLit);
+        if (result == null) result = caseLiteral(decIntLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.UNICODE_CHAR:
       {
         UnicodeChar unicodeChar = (UnicodeChar)theEObject;
@@ -337,6 +373,70 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEscapedChar(EscapedChar object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Number Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Number Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumberLit(NumberLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Float Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Float Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFloatLit(FloatLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntLit(IntLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dec Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dec Int Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDecIntLit(DecIntLit object)
   {
     return null;
   }

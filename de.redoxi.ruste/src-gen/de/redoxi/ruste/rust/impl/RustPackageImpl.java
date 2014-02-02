@@ -6,19 +6,26 @@ import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.DecIntLit;
 import de.redoxi.ruste.rust.EscapedChar;
+import de.redoxi.ruste.rust.FloatLit;
+import de.redoxi.ruste.rust.FloatSize;
+import de.redoxi.ruste.rust.IntLit;
+import de.redoxi.ruste.rust.IntSize;
 import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.Literal;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.ModItem;
+import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.UnicodeChar;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -114,7 +121,49 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass numberLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass floatLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass decIntLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass unicodeCharEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum floatSizeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum intSizeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -404,6 +453,106 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getNumberLit()
+  {
+    return numberLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFloatLit()
+  {
+    return floatLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatLit_Digits()
+  {
+    return (EAttribute)floatLitEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatLit_NegativeExp()
+  {
+    return (EAttribute)floatLitEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatLit_Size()
+  {
+    return (EAttribute)floatLitEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIntLit()
+  {
+    return intLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDecIntLit()
+  {
+    return decIntLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDecIntLit_Digits()
+  {
+    return (EAttribute)decIntLitEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDecIntLit_Unsigned()
+  {
+    return (EAttribute)decIntLitEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDecIntLit_Size()
+  {
+    return (EAttribute)decIntLitEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getUnicodeChar()
   {
     return unicodeCharEClass;
@@ -417,6 +566,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EAttribute getUnicodeChar_Digits()
   {
     return (EAttribute)unicodeCharEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getFloatSize()
+  {
+    return floatSizeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getIntSize()
+  {
+    return intSizeEEnum;
   }
 
   /**
@@ -482,8 +651,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     escapedCharEClass = createEClass(ESCAPED_CHAR);
     createEAttribute(escapedCharEClass, ESCAPED_CHAR__CHAR);
 
+    numberLitEClass = createEClass(NUMBER_LIT);
+
+    floatLitEClass = createEClass(FLOAT_LIT);
+    createEAttribute(floatLitEClass, FLOAT_LIT__DIGITS);
+    createEAttribute(floatLitEClass, FLOAT_LIT__NEGATIVE_EXP);
+    createEAttribute(floatLitEClass, FLOAT_LIT__SIZE);
+
+    intLitEClass = createEClass(INT_LIT);
+
+    decIntLitEClass = createEClass(DEC_INT_LIT);
+    createEAttribute(decIntLitEClass, DEC_INT_LIT__DIGITS);
+    createEAttribute(decIntLitEClass, DEC_INT_LIT__UNSIGNED);
+    createEAttribute(decIntLitEClass, DEC_INT_LIT__SIZE);
+
     unicodeCharEClass = createEClass(UNICODE_CHAR);
     createEAttribute(unicodeCharEClass, UNICODE_CHAR__DIGITS);
+
+    // Create enums
+    floatSizeEEnum = createEEnum(FLOAT_SIZE);
+    intSizeEEnum = createEEnum(INT_SIZE);
   }
 
   /**
@@ -519,6 +706,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     literalAttrEClass.getESuperTypes().add(this.getAttr());
     modItemEClass.getESuperTypes().add(this.getItem());
     charLitEClass.getESuperTypes().add(this.getLiteral());
+    numberLitEClass.getESuperTypes().add(this.getLiteral());
+    floatLitEClass.getESuperTypes().add(this.getNumberLit());
+    intLitEClass.getESuperTypes().add(this.getNumberLit());
+    decIntLitEClass.getESuperTypes().add(this.getIntLit());
     unicodeCharEClass.getESuperTypes().add(this.getEscapedChar());
 
     // Initialize classes and features; add operations and parameters
@@ -555,8 +746,33 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(escapedCharEClass, EscapedChar.class, "EscapedChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEscapedChar_Char(), ecorePackage.getEString(), "char", null, 0, 1, EscapedChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(numberLitEClass, NumberLit.class, "NumberLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(floatLitEClass, FloatLit.class, "FloatLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFloatLit_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, FloatLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFloatLit_NegativeExp(), ecorePackage.getEBoolean(), "negativeExp", null, 0, 1, FloatLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFloatLit_Size(), this.getFloatSize(), "size", null, 0, 1, FloatLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intLitEClass, IntLit.class, "IntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(decIntLitEClass, DecIntLit.class, "DecIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDecIntLit_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, DecIntLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDecIntLit_Unsigned(), ecorePackage.getEBoolean(), "unsigned", null, 0, 1, DecIntLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDecIntLit_Size(), this.getIntSize(), "size", null, 0, 1, DecIntLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(unicodeCharEClass, UnicodeChar.class, "UnicodeChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnicodeChar_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, UnicodeChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(floatSizeEEnum, FloatSize.class, "FloatSize");
+    addEEnumLiteral(floatSizeEEnum, FloatSize.FLOAT);
+    addEEnumLiteral(floatSizeEEnum, FloatSize.DOUBLE);
+
+    initEEnum(intSizeEEnum, IntSize.class, "IntSize");
+    addEEnumLiteral(intSizeEEnum, IntSize.BYTE);
+    addEEnumLiteral(intSizeEEnum, IntSize.SHORT);
+    addEEnumLiteral(intSizeEEnum, IntSize.INT);
+    addEEnumLiteral(intSizeEEnum, IntSize.LONG);
 
     // Create resource
     createResource(eNS_URI);

@@ -47,7 +47,7 @@ ModItem:
 
 // Literal value
 Literal:
-	CharLit // TODO | StringLit | NumberLit
+	CharLit | NumberLit // TODO | StringLit | NumberLit
 ;
 
 // Single character literal
@@ -57,11 +57,47 @@ CharLit:
 
 EscapedChar:
 	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
-	{UnicodeChar} 'x' (digits += HEX_DIGIT) (digits += HEX_DIGIT) |
-	{UnicodeChar} 'u' (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) |
-	{UnicodeChar} 'U' (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT)
+	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
+	{UnicodeChar} 'u' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
+	{UnicodeChar} 'U' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT)
 ;
 
+// Numeric literal
+// TODO Represent negatives here?
+NumberLit:
+	FloatLit | IntLit
+;
+
+// Floating point literal
+FloatLit:
+	digits+=DEC_DIGIT (digits+=DEC_DIGIT | '_')* ('.' (digits+=DEC_DIGIT | '_')+) (('E' | 'e') ('+' | negativeExp?='-')? (digits+=DEC_DIGIT | '_')+)? ('f' size=FloatSize)?
+;
+
+// Valid sizes for floats
+enum FloatSize: FLOAT="32" | DOUBLE="64";
+
+// Integer literal
+IntLit:
+	DecIntLit // | BinIntLit | OctIntLit | HexIntLit
+;
+
+DecIntLit:
+	digits+=DEC_DIGIT (digits+=DEC_DIGIT | '_')* (('i' | unsigned?='u') size=IntSize)?
+;
+
+enum IntSize: BYTE="8" | SHORT="16" | INT="32" | LONG="64";
+
+/*NumberLit:
+	digits += NON_ZERO_DEC (digits += DEC_DIGIT | '_')* suffix = NumSuffix? |
+	digits += '0' ( (digits += DEC_DIGIT | '_')* suffix = NumSuffix? |
+				radix = 'b' (digits += '0' | digits += '1' | '_')+ suffix = IntSuffix? |
+				radix = 'o' (digits += OCT_DIGIT | '_')+ suffix = IntSuffix? |
+				radix = 'x' (digits+=HEX_DIGIT | '_')+ suffix = IntSuffix?
+			)
+;*/
+
+
+terminal DEC_DIGIT: '0'..'9';
 terminal HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 
 terminal fragment XID_START: 'a'..'z'; // TODO Expand

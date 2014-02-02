@@ -122,6 +122,42 @@ public interface RustFactory extends EFactory
   EscapedChar createEscapedChar();
 
   /**
+   * Returns a new object of class '<em>Number Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Number Lit</em>'.
+   * @generated
+   */
+  NumberLit createNumberLit();
+
+  /**
+   * Returns a new object of class '<em>Float Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Float Lit</em>'.
+   * @generated
+   */
+  FloatLit createFloatLit();
+
+  /**
+   * Returns a new object of class '<em>Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Lit</em>'.
+   * @generated
+   */
+  IntLit createIntLit();
+
+  /**
+   * Returns a new object of class '<em>Dec Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dec Int Lit</em>'.
+   * @generated
+   */
+  DecIntLit createDecIntLit();
+
+  /**
    * Returns a new object of class '<em>Unicode Char</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -5,7 +5,9 @@ import com.google.inject.Provider;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.DecIntLit;
 import de.redoxi.ruste.rust.EscapedChar;
+import de.redoxi.ruste.rust.FloatLit;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.LiteralAttr;
@@ -53,9 +55,26 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.DEC_INT_LIT:
+				if(context == grammarAccess.getDecIntLitRule() ||
+				   context == grammarAccess.getIntLitRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getNumberLitRule()) {
+					sequence_DecIntLit(context, (DecIntLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.ESCAPED_CHAR:
 				if(context == grammarAccess.getEscapedCharRule()) {
 					sequence_EscapedChar(context, (EscapedChar) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.FLOAT_LIT:
+				if(context == grammarAccess.getFloatLitRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getNumberLitRule()) {
+					sequence_FloatLit(context, (FloatLit) semanticObject); 
 					return; 
 				}
 				else break;
@@ -124,6 +143,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (digits+=DEC_DIGIT digits+=DEC_DIGIT* (unsigned?='u'? size=IntSize)?)
+	 */
+	protected void sequence_DecIntLit(EObject context, DecIntLit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (char='\' | char='n' | char='r' | char='t' | char='0')
 	 */
 	protected void sequence_EscapedChar(EObject context, EscapedChar semanticObject) {
@@ -149,6 +177,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_EscapedChar(EObject context, UnicodeChar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (digits+=DEC_DIGIT digits+=DEC_DIGIT* digits+=DEC_DIGIT* (negativeExp?='-'? digits+=DEC_DIGIT*)? size=FloatSize?)
+	 */
+	protected void sequence_FloatLit(EObject context, FloatLit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

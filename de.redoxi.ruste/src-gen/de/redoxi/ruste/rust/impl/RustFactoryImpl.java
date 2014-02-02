@@ -5,6 +5,7 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -75,9 +76,51 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.CHAR_LIT: return createCharLit();
       case RustPackage.ESCAPED_CHAR: return createEscapedChar();
+      case RustPackage.NUMBER_LIT: return createNumberLit();
+      case RustPackage.FLOAT_LIT: return createFloatLit();
+      case RustPackage.INT_LIT: return createIntLit();
+      case RustPackage.DEC_INT_LIT: return createDecIntLit();
       case RustPackage.UNICODE_CHAR: return createUnicodeChar();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case RustPackage.FLOAT_SIZE:
+        return createFloatSizeFromString(eDataType, initialValue);
+      case RustPackage.INT_SIZE:
+        return createIntSizeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case RustPackage.FLOAT_SIZE:
+        return convertFloatSizeToString(eDataType, instanceValue);
+      case RustPackage.INT_SIZE:
+        return convertIntSizeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -207,10 +250,98 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public NumberLit createNumberLit()
+  {
+    NumberLitImpl numberLit = new NumberLitImpl();
+    return numberLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FloatLit createFloatLit()
+  {
+    FloatLitImpl floatLit = new FloatLitImpl();
+    return floatLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IntLit createIntLit()
+  {
+    IntLitImpl intLit = new IntLitImpl();
+    return intLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DecIntLit createDecIntLit()
+  {
+    DecIntLitImpl decIntLit = new DecIntLitImpl();
+    return decIntLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public UnicodeChar createUnicodeChar()
   {
     UnicodeCharImpl unicodeChar = new UnicodeCharImpl();
     return unicodeChar;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FloatSize createFloatSizeFromString(EDataType eDataType, String initialValue)
+  {
+    FloatSize result = FloatSize.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFloatSizeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IntSize createIntSizeFromString(EDataType eDataType, String initialValue)
+  {
+    IntSize result = IntSize.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertIntSizeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**
