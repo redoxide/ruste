@@ -131,7 +131,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     'E' | 'e'
+	 *     'e' | 'E'
 	 */
 	protected void emit_FloatLit_EKeyword_3_0_0_or_EKeyword_3_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -187,7 +187,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     (('E' | 'e') '+'? '_'+)?
+	 *     (('e' | 'E') '+'? '_'+)?
 	 */
 	protected void emit_FloatLit_____EKeyword_3_0_0_or_EKeyword_3_0_1___PlusSignKeyword_3_1_0_q__Keyword_3_2_1_p__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

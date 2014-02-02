@@ -24,6 +24,8 @@ import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.OctIntLit;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StringChar;
+import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.UnicodeChar;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -167,6 +169,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass hexIntLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass stringLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass stringCharEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -597,6 +613,56 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStringLit()
+  {
+    return stringLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStringLit_Chars()
+  {
+    return (EReference)stringLitEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStringChar()
+  {
+    return stringCharEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStringChar_Char()
+  {
+    return (EAttribute)stringCharEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStringChar_EscapedChar()
+  {
+    return (EReference)stringCharEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getUnicodeChar()
   {
     return unicodeCharEClass;
@@ -714,6 +780,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     hexIntLitEClass = createEClass(HEX_INT_LIT);
 
+    stringLitEClass = createEClass(STRING_LIT);
+    createEReference(stringLitEClass, STRING_LIT__CHARS);
+
+    stringCharEClass = createEClass(STRING_CHAR);
+    createEAttribute(stringCharEClass, STRING_CHAR__CHAR);
+    createEReference(stringCharEClass, STRING_CHAR__ESCAPED_CHAR);
+
     unicodeCharEClass = createEClass(UNICODE_CHAR);
     createEAttribute(unicodeCharEClass, UNICODE_CHAR__DIGITS);
 
@@ -762,6 +835,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     binIntLitEClass.getESuperTypes().add(this.getIntLit());
     octIntLitEClass.getESuperTypes().add(this.getIntLit());
     hexIntLitEClass.getESuperTypes().add(this.getIntLit());
+    stringLitEClass.getESuperTypes().add(this.getLiteral());
     unicodeCharEClass.getESuperTypes().add(this.getEscapedChar());
 
     // Initialize classes and features; add operations and parameters
@@ -816,6 +890,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(octIntLitEClass, OctIntLit.class, "OctIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(hexIntLitEClass, HexIntLit.class, "HexIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(stringLitEClass, StringLit.class, "StringLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStringLit_Chars(), this.getStringChar(), null, "chars", null, 0, -1, StringLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stringCharEClass, StringChar.class, "StringChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStringChar_Char(), ecorePackage.getEString(), "char", null, 0, 1, StringChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStringChar_EscapedChar(), this.getEscapedChar(), null, "escapedChar", null, 0, 1, StringChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unicodeCharEClass, UnicodeChar.class, "UnicodeChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnicodeChar_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, UnicodeChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

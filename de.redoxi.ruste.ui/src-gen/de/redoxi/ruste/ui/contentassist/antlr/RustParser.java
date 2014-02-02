@@ -41,7 +41,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModItemAccess().getAlternatives_2(), "rule__ModItem__Alternatives_2");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getCharLitAccess().getAlternatives_1(), "rule__CharLit__Alternatives_1");
-					put(grammarAccess.getCharLitAccess().getAlternatives_1_1_1(), "rule__CharLit__Alternatives_1_1_1");
+					put(grammarAccess.getCharLitAccess().getAlternatives_1_2_1(), "rule__CharLit__Alternatives_1_2_1");
 					put(grammarAccess.getEscapedCharAccess().getAlternatives(), "rule__EscapedChar__Alternatives");
 					put(grammarAccess.getEscapedCharAccess().getCharAlternatives_0_1_0(), "rule__EscapedChar__CharAlternatives_0_1_0");
 					put(grammarAccess.getNumberLitAccess().getAlternatives(), "rule__NumberLit__Alternatives");
@@ -59,6 +59,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOctIntLitAccess().getAlternatives_3_0(), "rule__OctIntLit__Alternatives_3_0");
 					put(grammarAccess.getHexIntLitAccess().getAlternatives_2(), "rule__HexIntLit__Alternatives_2");
 					put(grammarAccess.getHexIntLitAccess().getAlternatives_3_0(), "rule__HexIntLit__Alternatives_3_0");
+					put(grammarAccess.getStringCharAccess().getAlternatives(), "rule__StringChar__Alternatives");
 					put(grammarAccess.getFloatSizeAccess().getAlternatives(), "rule__FloatSize__Alternatives");
 					put(grammarAccess.getIntSizeAccess().getAlternatives(), "rule__IntSize__Alternatives");
 					put(grammarAccess.getItemAttrAccess().getGroup(), "rule__ItemAttr__Group__0");
@@ -70,7 +71,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModItemAccess().getGroup(), "rule__ModItem__Group__0");
 					put(grammarAccess.getModItemAccess().getGroup_2_1(), "rule__ModItem__Group_2_1__0");
 					put(grammarAccess.getCharLitAccess().getGroup(), "rule__CharLit__Group__0");
-					put(grammarAccess.getCharLitAccess().getGroup_1_1(), "rule__CharLit__Group_1_1__0");
+					put(grammarAccess.getCharLitAccess().getGroup_1_2(), "rule__CharLit__Group_1_2__0");
 					put(grammarAccess.getEscapedCharAccess().getGroup_0(), "rule__EscapedChar__Group_0__0");
 					put(grammarAccess.getEscapedCharAccess().getGroup_1(), "rule__EscapedChar__Group_1__0");
 					put(grammarAccess.getEscapedCharAccess().getGroup_2(), "rule__EscapedChar__Group_2__0");
@@ -87,6 +88,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOctIntLitAccess().getGroup_3(), "rule__OctIntLit__Group_3__0");
 					put(grammarAccess.getHexIntLitAccess().getGroup(), "rule__HexIntLit__Group__0");
 					put(grammarAccess.getHexIntLitAccess().getGroup_3(), "rule__HexIntLit__Group_3__0");
+					put(grammarAccess.getStringLitAccess().getGroup(), "rule__StringLit__Group__0");
+					put(grammarAccess.getStringCharAccess().getGroup_2(), "rule__StringChar__Group_2__0");
+					put(grammarAccess.getStringCharAccess().getGroup_3(), "rule__StringChar__Group_3__0");
 					put(grammarAccess.getCrateAccess().getItemsAssignment(), "rule__Crate__ItemsAssignment");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_1(), "rule__ItemAttr__AttrsAssignment_1");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_2_1(), "rule__ItemAttr__AttrsAssignment_2_1");
@@ -99,8 +103,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getItemAndAttrsAccess().getItemAssignment_1(), "rule__ItemAndAttrs__ItemAssignment_1");
 					put(grammarAccess.getModItemAccess().getIdentAssignment_1(), "rule__ModItem__IdentAssignment_1");
 					put(grammarAccess.getCharLitAccess().getCharAssignment_1_0(), "rule__CharLit__CharAssignment_1_0");
-					put(grammarAccess.getCharLitAccess().getCharAssignment_1_1_1_0(), "rule__CharLit__CharAssignment_1_1_1_0");
-					put(grammarAccess.getCharLitAccess().getEscapedCharAssignment_1_1_1_1(), "rule__CharLit__EscapedCharAssignment_1_1_1_1");
+					put(grammarAccess.getCharLitAccess().getCharAssignment_1_1(), "rule__CharLit__CharAssignment_1_1");
+					put(grammarAccess.getCharLitAccess().getCharAssignment_1_2_1_0(), "rule__CharLit__CharAssignment_1_2_1_0");
+					put(grammarAccess.getCharLitAccess().getEscapedCharAssignment_1_2_1_1(), "rule__CharLit__EscapedCharAssignment_1_2_1_1");
 					put(grammarAccess.getEscapedCharAccess().getCharAssignment_0_1(), "rule__EscapedChar__CharAssignment_0_1");
 					put(grammarAccess.getEscapedCharAccess().getDigitsAssignment_1_2(), "rule__EscapedChar__DigitsAssignment_1_2");
 					put(grammarAccess.getEscapedCharAccess().getDigitsAssignment_1_3(), "rule__EscapedChar__DigitsAssignment_1_3");
@@ -136,6 +141,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getHexIntLitAccess().getDigitsAssignment_2_0(), "rule__HexIntLit__DigitsAssignment_2_0");
 					put(grammarAccess.getHexIntLitAccess().getUnsignedAssignment_3_0_1(), "rule__HexIntLit__UnsignedAssignment_3_0_1");
 					put(grammarAccess.getHexIntLitAccess().getSizeAssignment_3_1(), "rule__HexIntLit__SizeAssignment_3_1");
+					put(grammarAccess.getStringLitAccess().getCharsAssignment_2(), "rule__StringLit__CharsAssignment_2");
+					put(grammarAccess.getStringCharAccess().getCharAssignment_0(), "rule__StringChar__CharAssignment_0");
+					put(grammarAccess.getStringCharAccess().getCharAssignment_1(), "rule__StringChar__CharAssignment_1");
+					put(grammarAccess.getStringCharAccess().getCharAssignment_2_1(), "rule__StringChar__CharAssignment_2_1");
+					put(grammarAccess.getStringCharAccess().getEscapedCharAssignment_3_1(), "rule__StringChar__EscapedCharAssignment_3_1");
 				}
 			};
 		}

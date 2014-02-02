@@ -63,6 +63,13 @@
     <genClasses ecoreClass="Rust.ecore#//BinIntLit"/>
     <genClasses ecoreClass="Rust.ecore#//OctIntLit"/>
     <genClasses ecoreClass="Rust.ecore#//HexIntLit"/>
+    <genClasses ecoreClass="Rust.ecore#//StringLit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StringLit/chars"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//StringChar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StringChar/char"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StringChar/escapedChar"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnicodeChar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UnicodeChar/digits"/>
     </genClasses>

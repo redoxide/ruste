@@ -64,6 +64,15 @@
     <eLiterals name="INT" value="2" literal="32"/>
     <eLiterals name="LONG" value="3" literal="64"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLit" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chars" upperBound="-1"
+        eType="#//StringChar" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringChar">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="char" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="escapedChar" eType="#//EscapedChar"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnicodeChar" eSuperTypes="#//EscapedChar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="digits" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

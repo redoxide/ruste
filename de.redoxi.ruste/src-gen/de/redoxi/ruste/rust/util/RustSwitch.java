@@ -219,6 +219,21 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.STRING_LIT:
+      {
+        StringLit stringLit = (StringLit)theEObject;
+        T result = caseStringLit(stringLit);
+        if (result == null) result = caseLiteral(stringLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.STRING_CHAR:
+      {
+        StringChar stringChar = (StringChar)theEObject;
+        T result = caseStringChar(stringChar);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.UNICODE_CHAR:
       {
         UnicodeChar unicodeChar = (UnicodeChar)theEObject;
@@ -515,6 +530,38 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseHexIntLit(HexIntLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringLit(StringLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Char</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Char</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringChar(StringChar object)
   {
     return null;
   }

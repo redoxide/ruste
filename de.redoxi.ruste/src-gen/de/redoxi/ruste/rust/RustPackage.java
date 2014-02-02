@@ -688,6 +688,71 @@ public interface RustPackage extends EPackage
   int HEX_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StringLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
+   * @generated
+   */
+  int STRING_LIT = 18;
+
+  /**
+   * The feature id for the '<em><b>Chars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_LIT__CHARS = LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>String Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StringCharImpl <em>String Char</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StringCharImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringChar()
+   * @generated
+   */
+  int STRING_CHAR = 19;
+
+  /**
+   * The feature id for the '<em><b>Char</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_CHAR__CHAR = 0;
+
+  /**
+   * The feature id for the '<em><b>Escaped Char</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_CHAR__ESCAPED_CHAR = 1;
+
+  /**
+   * The number of structural features of the '<em>String Char</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_CHAR_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -695,7 +760,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnicodeChar()
    * @generated
    */
-  int UNICODE_CHAR = 18;
+  int UNICODE_CHAR = 20;
 
   /**
    * The feature id for the '<em><b>Char</b></em>' attribute.
@@ -732,7 +797,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatSize()
    * @generated
    */
-  int FLOAT_SIZE = 19;
+  int FLOAT_SIZE = 21;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.IntSize <em>Int Size</em>}' enum.
@@ -742,7 +807,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntSize()
    * @generated
    */
-  int INT_SIZE = 20;
+  int INT_SIZE = 22;
 
 
   /**
@@ -1100,6 +1165,59 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getHexIntLit();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Lit</em>'.
+   * @see de.redoxi.ruste.rust.StringLit
+   * @generated
+   */
+  EClass getStringLit();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StringLit#getChars <em>Chars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Chars</em>'.
+   * @see de.redoxi.ruste.rust.StringLit#getChars()
+   * @see #getStringLit()
+   * @generated
+   */
+  EReference getStringLit_Chars();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringChar <em>String Char</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Char</em>'.
+   * @see de.redoxi.ruste.rust.StringChar
+   * @generated
+   */
+  EClass getStringChar();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StringChar#getChar <em>Char</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Char</em>'.
+   * @see de.redoxi.ruste.rust.StringChar#getChar()
+   * @see #getStringChar()
+   * @generated
+   */
+  EAttribute getStringChar_Char();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.StringChar#getEscapedChar <em>Escaped Char</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Escaped Char</em>'.
+   * @see de.redoxi.ruste.rust.StringChar#getEscapedChar()
+   * @see #getStringChar()
+   * @generated
+   */
+  EReference getStringChar_EscapedChar();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.UnicodeChar <em>Unicode Char</em>}'.
@@ -1472,6 +1590,50 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass HEX_INT_LIT = eINSTANCE.getHexIntLit();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StringLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
+     * @generated
+     */
+    EClass STRING_LIT = eINSTANCE.getStringLit();
+
+    /**
+     * The meta object literal for the '<em><b>Chars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRING_LIT__CHARS = eINSTANCE.getStringLit_Chars();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringCharImpl <em>String Char</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StringCharImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringChar()
+     * @generated
+     */
+    EClass STRING_CHAR = eINSTANCE.getStringChar();
+
+    /**
+     * The meta object literal for the '<em><b>Char</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_CHAR__CHAR = eINSTANCE.getStringChar_Char();
+
+    /**
+     * The meta object literal for the '<em><b>Escaped Char</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRING_CHAR__ESCAPED_CHAR = eINSTANCE.getStringChar_EscapedChar();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.

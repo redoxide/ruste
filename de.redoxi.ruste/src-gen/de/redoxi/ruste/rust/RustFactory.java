@@ -185,6 +185,24 @@ public interface RustFactory extends EFactory
   HexIntLit createHexIntLit();
 
   /**
+   * Returns a new object of class '<em>String Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Lit</em>'.
+   * @generated
+   */
+  StringLit createStringLit();
+
+  /**
+   * Returns a new object of class '<em>String Char</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Char</em>'.
+   * @generated
+   */
+  StringChar createStringChar();
+
+  /**
    * Returns a new object of class '<em>Unicode Char</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

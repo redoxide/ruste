@@ -83,6 +83,8 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.BIN_INT_LIT: return createBinIntLit();
       case RustPackage.OCT_INT_LIT: return createOctIntLit();
       case RustPackage.HEX_INT_LIT: return createHexIntLit();
+      case RustPackage.STRING_LIT: return createStringLit();
+      case RustPackage.STRING_CHAR: return createStringChar();
       case RustPackage.UNICODE_CHAR: return createUnicodeChar();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -323,6 +325,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     HexIntLitImpl hexIntLit = new HexIntLitImpl();
     return hexIntLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StringLit createStringLit()
+  {
+    StringLitImpl stringLit = new StringLitImpl();
+    return stringLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StringChar createStringChar()
+  {
+    StringCharImpl stringChar = new StringCharImpl();
+    return stringChar;
   }
 
   /**

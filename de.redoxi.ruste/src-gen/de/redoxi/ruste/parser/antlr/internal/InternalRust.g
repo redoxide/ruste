@@ -536,6 +536,16 @@ ruleLiteral returns [EObject current=null]
         $current = $this_NumberLit_1.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getLiteralAccess().getStringLitParserRuleCall_2()); 
+    }
+    this_StringLit_2=ruleStringLit
+    { 
+        $current = $this_StringLit_2.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -563,9 +573,9 @@ ruleCharLit returns [EObject current=null]
     }
 ((
 (
-		lv_char_1_0=RULE_NON_SINGLE_QUOTE
+		lv_char_1_0=RULE_NON_SPECIAL_CHAR
 		{
-			newLeafNode(lv_char_1_0, grammarAccess.getCharLitAccess().getCharNON_SINGLE_QUOTETerminalRuleCall_1_0_0()); 
+			newLeafNode(lv_char_1_0, grammarAccess.getCharLitAccess().getCharNON_SPECIAL_CHARTerminalRuleCall_1_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -575,27 +585,43 @@ ruleCharLit returns [EObject current=null]
        			$current, 
        			"char",
         		lv_char_1_0, 
-        		"NON_SINGLE_QUOTE");
+        		"NON_SPECIAL_CHAR");
 	    }
 
 )
 )
-    |(	otherlv_2='\\' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getCharLitAccess().getReverseSolidusKeyword_1_1_0());
-    }
-((
+    |(
 (
-		lv_char_3_0=	'\'' 
+		lv_char_2_0=	'"' 
     {
-        newLeafNode(lv_char_3_0, grammarAccess.getCharLitAccess().getCharApostropheKeyword_1_1_1_0_0());
+        newLeafNode(lv_char_2_0, grammarAccess.getCharLitAccess().getCharQuotationMarkKeyword_1_1_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getCharLitRule());
 	        }
-       		setWithLastConsumed($current, "char", lv_char_3_0, "\'");
+       		setWithLastConsumed($current, "char", lv_char_2_0, "\"");
+	    }
+
+)
+)
+    |(	otherlv_3='\\' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getCharLitAccess().getReverseSolidusKeyword_1_2_0());
+    }
+((
+(
+		lv_char_4_0=	'\'' 
+    {
+        newLeafNode(lv_char_4_0, grammarAccess.getCharLitAccess().getCharApostropheKeyword_1_2_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCharLitRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_4_0, "\'");
 	    }
 
 )
@@ -603,24 +629,24 @@ ruleCharLit returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCharLitAccess().getEscapedCharEscapedCharParserRuleCall_1_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getCharLitAccess().getEscapedCharEscapedCharParserRuleCall_1_2_1_1_0()); 
 	    }
-		lv_escapedChar_4_0=ruleEscapedChar		{
+		lv_escapedChar_5_0=ruleEscapedChar		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCharLitRule());
 	        }
        		set(
        			$current, 
        			"escapedChar",
-        		lv_escapedChar_4_0, 
+        		lv_escapedChar_5_0, 
         		"EscapedChar");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))))	otherlv_5='\'' 
+))))	otherlv_6='\'' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getCharLitAccess().getApostropheKeyword_2());
+    	newLeafNode(otherlv_6, grammarAccess.getCharLitAccess().getApostropheKeyword_2());
     }
 )
 ;
@@ -1659,6 +1685,157 @@ ruleHexIntLit returns [EObject current=null]
 
 
 
+// Entry rule entryRuleStringLit
+entryRuleStringLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStringLitRule()); }
+	 iv_ruleStringLit=ruleStringLit 
+	 { $current=$iv_ruleStringLit.current; } 
+	 EOF 
+;
+
+// Rule StringLit
+ruleStringLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getStringLitAccess().getStringLitAction_0(),
+            $current);
+    }
+)	otherlv_1='"' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getStringLitAccess().getQuotationMarkKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStringLitAccess().getCharsStringCharParserRuleCall_2_0()); 
+	    }
+		lv_chars_2_0=ruleStringChar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStringLitRule());
+	        }
+       		add(
+       			$current, 
+       			"chars",
+        		lv_chars_2_0, 
+        		"StringChar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_3='"' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getStringLitAccess().getQuotationMarkKeyword_3());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleStringChar
+entryRuleStringChar returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStringCharRule()); }
+	 iv_ruleStringChar=ruleStringChar 
+	 { $current=$iv_ruleStringChar.current; } 
+	 EOF 
+;
+
+// Rule StringChar
+ruleStringChar returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_char_0_0=RULE_NON_SPECIAL_CHAR
+		{
+			newLeafNode(lv_char_0_0, grammarAccess.getStringCharAccess().getCharNON_SPECIAL_CHARTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStringCharRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"char",
+        		lv_char_0_0, 
+        		"NON_SPECIAL_CHAR");
+	    }
+
+)
+)
+    |(
+(
+		lv_char_1_0=	'\'' 
+    {
+        newLeafNode(lv_char_1_0, grammarAccess.getStringCharAccess().getCharApostropheKeyword_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStringCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_0, "\'");
+	    }
+
+)
+)
+    |(	otherlv_2='\\' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getStringCharAccess().getReverseSolidusKeyword_2_0());
+    }
+(
+(
+		lv_char_3_0=	'"' 
+    {
+        newLeafNode(lv_char_3_0, grammarAccess.getStringCharAccess().getCharQuotationMarkKeyword_2_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStringCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_3_0, "\"");
+	    }
+
+)
+))
+    |(	otherlv_4='\\' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getStringCharAccess().getReverseSolidusKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStringCharAccess().getEscapedCharEscapedCharParserRuleCall_3_1_0()); 
+	    }
+		lv_escapedChar_5_0=ruleEscapedChar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStringCharRule());
+	        }
+       		set(
+       			$current, 
+       			"escapedChar",
+        		lv_escapedChar_5_0, 
+        		"EscapedChar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
+;
+
+
+
+
+
 // Rule FloatSize
 ruleFloatSize returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -1715,12 +1892,12 @@ RULE_DEC_DIGIT : '0'..'9';
 
 RULE_HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F');
 
+RULE_NON_SPECIAL_CHAR : ~(('"'|'\''|'\\'|'n'|'r'|'t'|'0'));
+
 fragment RULE_XID_START : 'a'..'z';
 
 fragment RULE_XID_CONTINUE : ('a'..'z'|'_');
 
 RULE_IDENT : RULE_XID_START RULE_XID_CONTINUE*;
-
-RULE_NON_SINGLE_QUOTE : ~('\'');
 
 

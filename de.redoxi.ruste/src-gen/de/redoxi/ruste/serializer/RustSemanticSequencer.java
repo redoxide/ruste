@@ -16,6 +16,8 @@ import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.OctIntLit;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StringChar;
+import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.UnicodeChar;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -134,6 +136,19 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.STRING_CHAR:
+				if(context == grammarAccess.getStringCharRule()) {
+					sequence_StringChar(context, (StringChar) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.STRING_LIT:
+				if(context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getStringLitRule()) {
+					sequence_StringLit(context, (StringLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.UNICODE_CHAR:
 				if(context == grammarAccess.getEscapedCharRule()) {
 					sequence_EscapedChar(context, (UnicodeChar) semanticObject); 
@@ -164,7 +179,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (char=NON_SINGLE_QUOTE | char=''' | escapedChar=EscapedChar)
+	 *     (char=NON_SPECIAL_CHAR | char='"' | char=''' | escapedChar=EscapedChar)
 	 */
 	protected void sequence_CharLit(EObject context, CharLit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -296,6 +311,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (digits+=OCT_DIGIT* (unsigned?='u'? size=IntSize)?)
 	 */
 	protected void sequence_OctIntLit(EObject context, OctIntLit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (char=NON_SPECIAL_CHAR | char=''' | char='"' | escapedChar=EscapedChar)
+	 */
+	protected void sequence_StringChar(EObject context, StringChar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (chars+=StringChar*)
+	 */
+	protected void sequence_StringLit(EObject context, StringLit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

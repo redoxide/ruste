@@ -47,12 +47,12 @@ ModItem:
 
 // Literal value
 Literal:
-	CharLit | NumberLit // TODO | StringLit | NumberLit
+	CharLit | NumberLit | StringLit
 ;
 
 // Single character literal
 CharLit:
-	'\'' (char = NON_SINGLE_QUOTE | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
+	'\'' (char = NON_SPECIAL_CHAR | char = '"' | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
 ;
 
 // Escaped character
@@ -105,12 +105,26 @@ HexIntLit:
 // Valid integer sizes in bits
 enum IntSize: BYTE="8" | SHORT="16" | INT="32" | LONG="64";
 
+StringLit: 
+	{StringLit} '"' (chars += StringChar)* '"'
+	// | {RawStringLit} 'r' '#' body = RawString? '#'
+;
+
+StringChar:
+	char = NON_SPECIAL_CHAR |
+	char = '\'' | 
+	'\\' char = '"' | 
+	'\\' escapedChar = EscapedChar
+;
+
 terminal OCT_DIGIT: '0'..'7';
 terminal DEC_DIGIT: '0'..'9';
 terminal HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
+
+terminal NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
 
 terminal fragment XID_START: 'a'..'z'; // TODO Expand
 terminal fragment XID_CONTINUE: 'a'..'z' | '_'; // TODO Expand
 terminal IDENT: XID_START XID_CONTINUE*;
 
-terminal NON_SINGLE_QUOTE: !'\'';
+

@@ -165,6 +165,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createHexIntLitAdapter();
       }
       @Override
+      public Adapter caseStringLit(StringLit object)
+      {
+        return createStringLitAdapter();
+      }
+      @Override
+      public Adapter caseStringChar(StringChar object)
+      {
+        return createStringCharAdapter();
+      }
+      @Override
       public Adapter caseUnicodeChar(UnicodeChar object)
       {
         return createUnicodeCharAdapter();
@@ -457,6 +467,36 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createHexIntLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StringLit
+   * @generated
+   */
+  public Adapter createStringLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StringChar <em>String Char</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StringChar
+   * @generated
+   */
+  public Adapter createStringCharAdapter()
   {
     return null;
   }
