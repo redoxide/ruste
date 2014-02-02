@@ -713,16 +713,31 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class IntLitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntLit");
-		private final RuleCall cDecIntLitParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cDecIntLitParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cBinIntLitParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cOctIntLitParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cHexIntLitParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//// Integer literal
-		//IntLit: // | BinIntLit | OctIntLit | HexIntLit
-		//	DecIntLit;
+		//IntLit:
+		//	DecIntLit | BinIntLit | OctIntLit | HexIntLit;
 		public ParserRule getRule() { return rule; }
 
-		//// | BinIntLit | OctIntLit | HexIntLit
+		//DecIntLit | BinIntLit | OctIntLit | HexIntLit
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//DecIntLit
-		public RuleCall getDecIntLitParserRuleCall() { return cDecIntLitParserRuleCall; }
+		public RuleCall getDecIntLitParserRuleCall_0() { return cDecIntLitParserRuleCall_0; }
+
+		//BinIntLit
+		public RuleCall getBinIntLitParserRuleCall_1() { return cBinIntLitParserRuleCall_1; }
+
+		//OctIntLit
+		public RuleCall getOctIntLitParserRuleCall_2() { return cOctIntLitParserRuleCall_2; }
+
+		//HexIntLit
+		public RuleCall getHexIntLitParserRuleCall_3() { return cHexIntLitParserRuleCall_3; }
 	}
 
 	public class DecIntLitElements extends AbstractParserRuleElementFinder {
@@ -787,6 +802,206 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IntSize
 		public RuleCall getSizeIntSizeEnumRuleCall_2_1_0() { return cSizeIntSizeEnumRuleCall_2_1_0; }
+	}
+
+	public class BinIntLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BinIntLit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBinIntLitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDigitsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final Keyword cDigits0Keyword_2_0_0 = (Keyword)cDigitsAssignment_2_0.eContents().get(0);
+		private final Assignment cDigitsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cDigits1Keyword_2_1_0 = (Keyword)cDigitsAssignment_2_1.eContents().get(0);
+		private final Keyword c_Keyword_2_2 = (Keyword)cAlternatives_2.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_3_0 = (Alternatives)cGroup_3.eContents().get(0);
+		private final Keyword cIKeyword_3_0_0 = (Keyword)cAlternatives_3_0.eContents().get(0);
+		private final Assignment cUnsignedAssignment_3_0_1 = (Assignment)cAlternatives_3_0.eContents().get(1);
+		private final Keyword cUnsignedUKeyword_3_0_1_0 = (Keyword)cUnsignedAssignment_3_0_1.eContents().get(0);
+		private final Assignment cSizeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSizeIntSizeEnumRuleCall_3_1_0 = (RuleCall)cSizeAssignment_3_1.eContents().get(0);
+		
+		//BinIntLit:
+		//	{BinIntLit} "0b" (digits+="0" | digits+="1" | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+		public ParserRule getRule() { return rule; }
+
+		//{BinIntLit} "0b" (digits+="0" | digits+="1" | "_")+ (("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup() { return cGroup; }
+
+		//{BinIntLit}
+		public Action getBinIntLitAction_0() { return cBinIntLitAction_0; }
+
+		//"0b"
+		public Keyword getBKeyword_1() { return cBKeyword_1; }
+
+		//(digits+="0" | digits+="1" | "_")+
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//digits+="0"
+		public Assignment getDigitsAssignment_2_0() { return cDigitsAssignment_2_0; }
+
+		//"0"
+		public Keyword getDigits0Keyword_2_0_0() { return cDigits0Keyword_2_0_0; }
+
+		//digits+="1"
+		public Assignment getDigitsAssignment_2_1() { return cDigitsAssignment_2_1; }
+
+		//"1"
+		public Keyword getDigits1Keyword_2_1_0() { return cDigits1Keyword_2_1_0; }
+
+		//"_"
+		public Keyword get_Keyword_2_2() { return c_Keyword_2_2; }
+
+		//(("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"i" | unsigned?="u"
+		public Alternatives getAlternatives_3_0() { return cAlternatives_3_0; }
+
+		//"i"
+		public Keyword getIKeyword_3_0_0() { return cIKeyword_3_0_0; }
+
+		//unsigned?="u"
+		public Assignment getUnsignedAssignment_3_0_1() { return cUnsignedAssignment_3_0_1; }
+
+		//"u"
+		public Keyword getUnsignedUKeyword_3_0_1_0() { return cUnsignedUKeyword_3_0_1_0; }
+
+		//size=IntSize
+		public Assignment getSizeAssignment_3_1() { return cSizeAssignment_3_1; }
+
+		//IntSize
+		public RuleCall getSizeIntSizeEnumRuleCall_3_1_0() { return cSizeIntSizeEnumRuleCall_3_1_0; }
+	}
+
+	public class OctIntLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OctIntLit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cOctIntLitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cOKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDigitsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cDigitsOCT_DIGITTerminalRuleCall_2_0_0 = (RuleCall)cDigitsAssignment_2_0.eContents().get(0);
+		private final Keyword c_Keyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_3_0 = (Alternatives)cGroup_3.eContents().get(0);
+		private final Keyword cIKeyword_3_0_0 = (Keyword)cAlternatives_3_0.eContents().get(0);
+		private final Assignment cUnsignedAssignment_3_0_1 = (Assignment)cAlternatives_3_0.eContents().get(1);
+		private final Keyword cUnsignedUKeyword_3_0_1_0 = (Keyword)cUnsignedAssignment_3_0_1.eContents().get(0);
+		private final Assignment cSizeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSizeIntSizeEnumRuleCall_3_1_0 = (RuleCall)cSizeAssignment_3_1.eContents().get(0);
+		
+		//OctIntLit:
+		//	{OctIntLit} "0o" (digits+=OCT_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+		public ParserRule getRule() { return rule; }
+
+		//{OctIntLit} "0o" (digits+=OCT_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup() { return cGroup; }
+
+		//{OctIntLit}
+		public Action getOctIntLitAction_0() { return cOctIntLitAction_0; }
+
+		//"0o"
+		public Keyword getOKeyword_1() { return cOKeyword_1; }
+
+		//(digits+=OCT_DIGIT | "_")+
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//digits+=OCT_DIGIT
+		public Assignment getDigitsAssignment_2_0() { return cDigitsAssignment_2_0; }
+
+		//OCT_DIGIT
+		public RuleCall getDigitsOCT_DIGITTerminalRuleCall_2_0_0() { return cDigitsOCT_DIGITTerminalRuleCall_2_0_0; }
+
+		//"_"
+		public Keyword get_Keyword_2_1() { return c_Keyword_2_1; }
+
+		//(("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"i" | unsigned?="u"
+		public Alternatives getAlternatives_3_0() { return cAlternatives_3_0; }
+
+		//"i"
+		public Keyword getIKeyword_3_0_0() { return cIKeyword_3_0_0; }
+
+		//unsigned?="u"
+		public Assignment getUnsignedAssignment_3_0_1() { return cUnsignedAssignment_3_0_1; }
+
+		//"u"
+		public Keyword getUnsignedUKeyword_3_0_1_0() { return cUnsignedUKeyword_3_0_1_0; }
+
+		//size=IntSize
+		public Assignment getSizeAssignment_3_1() { return cSizeAssignment_3_1; }
+
+		//IntSize
+		public RuleCall getSizeIntSizeEnumRuleCall_3_1_0() { return cSizeIntSizeEnumRuleCall_3_1_0; }
+	}
+
+	public class HexIntLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "HexIntLit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cHexIntLitAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cXKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDigitsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_2_0_0 = (RuleCall)cDigitsAssignment_2_0.eContents().get(0);
+		private final Keyword c_Keyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_3_0 = (Alternatives)cGroup_3.eContents().get(0);
+		private final Keyword cIKeyword_3_0_0 = (Keyword)cAlternatives_3_0.eContents().get(0);
+		private final Assignment cUnsignedAssignment_3_0_1 = (Assignment)cAlternatives_3_0.eContents().get(1);
+		private final Keyword cUnsignedUKeyword_3_0_1_0 = (Keyword)cUnsignedAssignment_3_0_1.eContents().get(0);
+		private final Assignment cSizeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSizeIntSizeEnumRuleCall_3_1_0 = (RuleCall)cSizeAssignment_3_1.eContents().get(0);
+		
+		//HexIntLit:
+		//	{HexIntLit} "0x" (digits+=HEX_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+		public ParserRule getRule() { return rule; }
+
+		//{HexIntLit} "0x" (digits+=HEX_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup() { return cGroup; }
+
+		//{HexIntLit}
+		public Action getHexIntLitAction_0() { return cHexIntLitAction_0; }
+
+		//"0x"
+		public Keyword getXKeyword_1() { return cXKeyword_1; }
+
+		//(digits+=HEX_DIGIT | "_")+
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_2_0() { return cDigitsAssignment_2_0; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_2_0_0() { return cDigitsHEX_DIGITTerminalRuleCall_2_0_0; }
+
+		//"_"
+		public Keyword get_Keyword_2_1() { return c_Keyword_2_1; }
+
+		//(("i" | unsigned?="u") size=IntSize)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"i" | unsigned?="u"
+		public Alternatives getAlternatives_3_0() { return cAlternatives_3_0; }
+
+		//"i"
+		public Keyword getIKeyword_3_0_0() { return cIKeyword_3_0_0; }
+
+		//unsigned?="u"
+		public Assignment getUnsignedAssignment_3_0_1() { return cUnsignedAssignment_3_0_1; }
+
+		//"u"
+		public Keyword getUnsignedUKeyword_3_0_1_0() { return cUnsignedUKeyword_3_0_1_0; }
+
+		//size=IntSize
+		public Assignment getSizeAssignment_3_1() { return cSizeAssignment_3_1; }
+
+		//IntSize
+		public RuleCall getSizeIntSizeEnumRuleCall_3_1_0() { return cSizeIntSizeEnumRuleCall_3_1_0; }
 	}
 	
 	
@@ -879,7 +1094,11 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private FloatSizeElements unknownRuleFloatSize;
 	private IntLitElements pIntLit;
 	private DecIntLitElements pDecIntLit;
+	private BinIntLitElements pBinIntLit;
+	private OctIntLitElements pOctIntLit;
+	private HexIntLitElements pHexIntLit;
 	private IntSizeElements unknownRuleIntSize;
+	private TerminalRule tOCT_DIGIT;
 	private TerminalRule tDEC_DIGIT;
 	private TerminalRule tHEX_DIGIT;
 	private TerminalRule tXID_START;
@@ -1077,8 +1296,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Integer literal
-	//IntLit: // | BinIntLit | OctIntLit | HexIntLit
-	//	DecIntLit;
+	//IntLit:
+	//	DecIntLit | BinIntLit | OctIntLit | HexIntLit;
 	public IntLitElements getIntLitAccess() {
 		return (pIntLit != null) ? pIntLit : (pIntLit = new IntLitElements());
 	}
@@ -1095,6 +1314,36 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getDecIntLitRule() {
 		return getDecIntLitAccess().getRule();
+	}
+
+	//BinIntLit:
+	//	{BinIntLit} "0b" (digits+="0" | digits+="1" | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+	public BinIntLitElements getBinIntLitAccess() {
+		return (pBinIntLit != null) ? pBinIntLit : (pBinIntLit = new BinIntLitElements());
+	}
+	
+	public ParserRule getBinIntLitRule() {
+		return getBinIntLitAccess().getRule();
+	}
+
+	//OctIntLit:
+	//	{OctIntLit} "0o" (digits+=OCT_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+	public OctIntLitElements getOctIntLitAccess() {
+		return (pOctIntLit != null) ? pOctIntLit : (pOctIntLit = new OctIntLitElements());
+	}
+	
+	public ParserRule getOctIntLitRule() {
+		return getOctIntLitAccess().getRule();
+	}
+
+	//HexIntLit:
+	//	{HexIntLit} "0x" (digits+=HEX_DIGIT | "_")+ (("i" | unsigned?="u") size=IntSize)?;
+	public HexIntLitElements getHexIntLitAccess() {
+		return (pHexIntLit != null) ? pHexIntLit : (pHexIntLit = new HexIntLitElements());
+	}
+	
+	public ParserRule getHexIntLitRule() {
+		return getHexIntLitAccess().getRule();
 	}
 
 	//enum IntSize:
@@ -1114,7 +1363,13 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//				radix = 'o' (digits += OCT_DIGIT | '_')+ suffix = IntSuffix? |
 	//				radix = 'x' (digits+=HEX_DIGIT | '_')+ suffix = IntSuffix?
 	//			)
-	//;* / terminal DEC_DIGIT:
+	//;* / terminal OCT_DIGIT:
+	//	"0".."7";
+	public TerminalRule getOCT_DIGITRule() {
+		return (tOCT_DIGIT != null) ? tOCT_DIGIT : (tOCT_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCT_DIGIT"));
+	} 
+
+	//terminal DEC_DIGIT:
 	//	"0".."9";
 	public TerminalRule getDEC_DIGITRule() {
 		return (tDEC_DIGIT != null) ? tDEC_DIGIT : (tDEC_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DEC_DIGIT"));

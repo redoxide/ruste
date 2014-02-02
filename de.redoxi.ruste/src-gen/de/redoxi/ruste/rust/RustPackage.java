@@ -394,13 +394,22 @@ public interface RustPackage extends EPackage
   int NUMBER_LIT = 11;
 
   /**
+   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUMBER_LIT__DIGITS = LITERAL_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Number Lit</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUMBER_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
+  int NUMBER_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FloatLitImpl <em>Float Lit</em>}' class.
@@ -419,7 +428,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__DIGITS = NUMBER_LIT_FEATURE_COUNT + 0;
+  int FLOAT_LIT__DIGITS = NUMBER_LIT__DIGITS;
 
   /**
    * The feature id for the '<em><b>Negative Exp</b></em>' attribute.
@@ -428,7 +437,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__NEGATIVE_EXP = NUMBER_LIT_FEATURE_COUNT + 1;
+  int FLOAT_LIT__NEGATIVE_EXP = NUMBER_LIT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -437,7 +446,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__SIZE = NUMBER_LIT_FEATURE_COUNT + 2;
+  int FLOAT_LIT__SIZE = NUMBER_LIT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Float Lit</em>' class.
@@ -446,7 +455,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FLOAT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 3;
+  int FLOAT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.IntLitImpl <em>Int Lit</em>}' class.
@@ -459,13 +468,40 @@ public interface RustPackage extends EPackage
   int INT_LIT = 13;
 
   /**
+   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LIT__DIGITS = NUMBER_LIT__DIGITS;
+
+  /**
+   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LIT__UNSIGNED = NUMBER_LIT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LIT__SIZE = NUMBER_LIT_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Int Lit</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 0;
+  int INT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.DecIntLitImpl <em>Dec Int Lit</em>}' class.
@@ -484,7 +520,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEC_INT_LIT__DIGITS = INT_LIT_FEATURE_COUNT + 0;
+  int DEC_INT_LIT__DIGITS = INT_LIT__DIGITS;
 
   /**
    * The feature id for the '<em><b>Unsigned</b></em>' attribute.
@@ -493,7 +529,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEC_INT_LIT__UNSIGNED = INT_LIT_FEATURE_COUNT + 1;
+  int DEC_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
 
   /**
    * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -502,7 +538,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEC_INT_LIT__SIZE = INT_LIT_FEATURE_COUNT + 2;
+  int DEC_INT_LIT__SIZE = INT_LIT__SIZE;
 
   /**
    * The number of structural features of the '<em>Dec Int Lit</em>' class.
@@ -511,7 +547,145 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEC_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 3;
+  int DEC_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BinIntLitImpl <em>Bin Int Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BinIntLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBinIntLit()
+   * @generated
+   */
+  int BIN_INT_LIT = 15;
+
+  /**
+   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIN_INT_LIT__DIGITS = INT_LIT__DIGITS;
+
+  /**
+   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIN_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIN_INT_LIT__SIZE = INT_LIT__SIZE;
+
+  /**
+   * The number of structural features of the '<em>Bin Int Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIN_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.OctIntLitImpl <em>Oct Int Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.OctIntLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOctIntLit()
+   * @generated
+   */
+  int OCT_INT_LIT = 16;
+
+  /**
+   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OCT_INT_LIT__DIGITS = INT_LIT__DIGITS;
+
+  /**
+   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OCT_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OCT_INT_LIT__SIZE = INT_LIT__SIZE;
+
+  /**
+   * The number of structural features of the '<em>Oct Int Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OCT_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.HexIntLitImpl <em>Hex Int Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.HexIntLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getHexIntLit()
+   * @generated
+   */
+  int HEX_INT_LIT = 17;
+
+  /**
+   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEX_INT_LIT__DIGITS = INT_LIT__DIGITS;
+
+  /**
+   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEX_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
+
+  /**
+   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEX_INT_LIT__SIZE = INT_LIT__SIZE;
+
+  /**
+   * The number of structural features of the '<em>Hex Int Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEX_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.
@@ -521,7 +695,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnicodeChar()
    * @generated
    */
-  int UNICODE_CHAR = 15;
+  int UNICODE_CHAR = 18;
 
   /**
    * The feature id for the '<em><b>Char</b></em>' attribute.
@@ -558,7 +732,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatSize()
    * @generated
    */
-  int FLOAT_SIZE = 16;
+  int FLOAT_SIZE = 19;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.IntSize <em>Int Size</em>}' enum.
@@ -568,7 +742,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntSize()
    * @generated
    */
-  int INT_SIZE = 17;
+  int INT_SIZE = 20;
 
 
   /**
@@ -813,6 +987,17 @@ public interface RustPackage extends EPackage
   EClass getNumberLit();
 
   /**
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.NumberLit#getDigits <em>Digits</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Digits</em>'.
+   * @see de.redoxi.ruste.rust.NumberLit#getDigits()
+   * @see #getNumberLit()
+   * @generated
+   */
+  EAttribute getNumberLit_Digits();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.FloatLit <em>Float Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -821,17 +1006,6 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getFloatLit();
-
-  /**
-   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.FloatLit#getDigits <em>Digits</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Digits</em>'.
-   * @see de.redoxi.ruste.rust.FloatLit#getDigits()
-   * @see #getFloatLit()
-   * @generated
-   */
-  EAttribute getFloatLit_Digits();
 
   /**
    * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FloatLit#isNegativeExp <em>Negative Exp</em>}'.
@@ -866,6 +1040,28 @@ public interface RustPackage extends EPackage
   EClass getIntLit();
 
   /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.IntLit#isUnsigned <em>Unsigned</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Unsigned</em>'.
+   * @see de.redoxi.ruste.rust.IntLit#isUnsigned()
+   * @see #getIntLit()
+   * @generated
+   */
+  EAttribute getIntLit_Unsigned();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.IntLit#getSize <em>Size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Size</em>'.
+   * @see de.redoxi.ruste.rust.IntLit#getSize()
+   * @see #getIntLit()
+   * @generated
+   */
+  EAttribute getIntLit_Size();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.DecIntLit <em>Dec Int Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -876,37 +1072,34 @@ public interface RustPackage extends EPackage
   EClass getDecIntLit();
 
   /**
-   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.DecIntLit#getDigits <em>Digits</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.BinIntLit <em>Bin Int Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Digits</em>'.
-   * @see de.redoxi.ruste.rust.DecIntLit#getDigits()
-   * @see #getDecIntLit()
+   * @return the meta object for class '<em>Bin Int Lit</em>'.
+   * @see de.redoxi.ruste.rust.BinIntLit
    * @generated
    */
-  EAttribute getDecIntLit_Digits();
+  EClass getBinIntLit();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.DecIntLit#isUnsigned <em>Unsigned</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.OctIntLit <em>Oct Int Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Unsigned</em>'.
-   * @see de.redoxi.ruste.rust.DecIntLit#isUnsigned()
-   * @see #getDecIntLit()
+   * @return the meta object for class '<em>Oct Int Lit</em>'.
+   * @see de.redoxi.ruste.rust.OctIntLit
    * @generated
    */
-  EAttribute getDecIntLit_Unsigned();
+  EClass getOctIntLit();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.DecIntLit#getSize <em>Size</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.HexIntLit <em>Hex Int Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Size</em>'.
-   * @see de.redoxi.ruste.rust.DecIntLit#getSize()
-   * @see #getDecIntLit()
+   * @return the meta object for class '<em>Hex Int Lit</em>'.
+   * @see de.redoxi.ruste.rust.HexIntLit
    * @generated
    */
-  EAttribute getDecIntLit_Size();
+  EClass getHexIntLit();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.UnicodeChar <em>Unicode Char</em>}'.
@@ -1181,6 +1374,14 @@ public interface RustPackage extends EPackage
     EClass NUMBER_LIT = eINSTANCE.getNumberLit();
 
     /**
+     * The meta object literal for the '<em><b>Digits</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NUMBER_LIT__DIGITS = eINSTANCE.getNumberLit_Digits();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.FloatLitImpl <em>Float Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1189,14 +1390,6 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass FLOAT_LIT = eINSTANCE.getFloatLit();
-
-    /**
-     * The meta object literal for the '<em><b>Digits</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FLOAT_LIT__DIGITS = eINSTANCE.getFloatLit_Digits();
 
     /**
      * The meta object literal for the '<em><b>Negative Exp</b></em>' attribute feature.
@@ -1225,6 +1418,22 @@ public interface RustPackage extends EPackage
     EClass INT_LIT = eINSTANCE.getIntLit();
 
     /**
+     * The meta object literal for the '<em><b>Unsigned</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_LIT__UNSIGNED = eINSTANCE.getIntLit_Unsigned();
+
+    /**
+     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_LIT__SIZE = eINSTANCE.getIntLit_Size();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.DecIntLitImpl <em>Dec Int Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1235,28 +1444,34 @@ public interface RustPackage extends EPackage
     EClass DEC_INT_LIT = eINSTANCE.getDecIntLit();
 
     /**
-     * The meta object literal for the '<em><b>Digits</b></em>' attribute list feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BinIntLitImpl <em>Bin Int Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.BinIntLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBinIntLit()
      * @generated
      */
-    EAttribute DEC_INT_LIT__DIGITS = eINSTANCE.getDecIntLit_Digits();
+    EClass BIN_INT_LIT = eINSTANCE.getBinIntLit();
 
     /**
-     * The meta object literal for the '<em><b>Unsigned</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.OctIntLitImpl <em>Oct Int Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.OctIntLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOctIntLit()
      * @generated
      */
-    EAttribute DEC_INT_LIT__UNSIGNED = eINSTANCE.getDecIntLit_Unsigned();
+    EClass OCT_INT_LIT = eINSTANCE.getOctIntLit();
 
     /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.HexIntLitImpl <em>Hex Int Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.HexIntLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getHexIntLit()
      * @generated
      */
-    EAttribute DEC_INT_LIT__SIZE = eINSTANCE.getDecIntLit_Size();
+    EClass HEX_INT_LIT = eINSTANCE.getHexIntLit();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.

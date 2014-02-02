@@ -150,6 +150,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createDecIntLitAdapter();
       }
       @Override
+      public Adapter caseBinIntLit(BinIntLit object)
+      {
+        return createBinIntLitAdapter();
+      }
+      @Override
+      public Adapter caseOctIntLit(OctIntLit object)
+      {
+        return createOctIntLitAdapter();
+      }
+      @Override
+      public Adapter caseHexIntLit(HexIntLit object)
+      {
+        return createHexIntLitAdapter();
+      }
+      @Override
       public Adapter caseUnicodeChar(UnicodeChar object)
       {
         return createUnicodeCharAdapter();
@@ -397,6 +412,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDecIntLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BinIntLit <em>Bin Int Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.BinIntLit
+   * @generated
+   */
+  public Adapter createBinIntLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OctIntLit <em>Oct Int Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.OctIntLit
+   * @generated
+   */
+  public Adapter createOctIntLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.HexIntLit <em>Hex Int Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.HexIntLit
+   * @generated
+   */
+  public Adapter createHexIntLitAdapter()
   {
     return null;
   }

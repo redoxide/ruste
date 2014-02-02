@@ -6,17 +6,11 @@ import de.redoxi.ruste.rust.FloatLit;
 import de.redoxi.ruste.rust.FloatSize;
 import de.redoxi.ruste.rust.RustPackage;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +19,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.FloatLitImpl#getDigits <em>Digits</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FloatLitImpl#isNegativeExp <em>Negative Exp</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FloatLitImpl#getSize <em>Size</em>}</li>
  * </ul>
@@ -35,16 +28,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  */
 public class FloatLitImpl extends NumberLitImpl implements FloatLit
 {
-  /**
-   * The cached value of the '{@link #getDigits() <em>Digits</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDigits()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> digits;
-
   /**
    * The default value of the '{@link #isNegativeExp() <em>Negative Exp</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -111,20 +94,6 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getDigits()
-  {
-    if (digits == null)
-    {
-      digits = new EDataTypeEList<String>(String.class, this, RustPackage.FLOAT_LIT__DIGITS);
-    }
-    return digits;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public boolean isNegativeExp()
   {
     return negativeExp;
@@ -176,8 +145,6 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
   {
     switch (featureID)
     {
-      case RustPackage.FLOAT_LIT__DIGITS:
-        return getDigits();
       case RustPackage.FLOAT_LIT__NEGATIVE_EXP:
         return isNegativeExp();
       case RustPackage.FLOAT_LIT__SIZE:
@@ -191,16 +158,11 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case RustPackage.FLOAT_LIT__DIGITS:
-        getDigits().clear();
-        getDigits().addAll((Collection<? extends String>)newValue);
-        return;
       case RustPackage.FLOAT_LIT__NEGATIVE_EXP:
         setNegativeExp((Boolean)newValue);
         return;
@@ -221,9 +183,6 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
   {
     switch (featureID)
     {
-      case RustPackage.FLOAT_LIT__DIGITS:
-        getDigits().clear();
-        return;
       case RustPackage.FLOAT_LIT__NEGATIVE_EXP:
         setNegativeExp(NEGATIVE_EXP_EDEFAULT);
         return;
@@ -244,8 +203,6 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
   {
     switch (featureID)
     {
-      case RustPackage.FLOAT_LIT__DIGITS:
-        return digits != null && !digits.isEmpty();
       case RustPackage.FLOAT_LIT__NEGATIVE_EXP:
         return negativeExp != NEGATIVE_EXP_EDEFAULT;
       case RustPackage.FLOAT_LIT__SIZE:
@@ -265,9 +222,7 @@ public class FloatLitImpl extends NumberLitImpl implements FloatLit
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (digits: ");
-    result.append(digits);
-    result.append(", negativeExp: ");
+    result.append(" (negativeExp: ");
     result.append(negativeExp);
     result.append(", size: ");
     result.append(size);

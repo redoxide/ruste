@@ -50,8 +50,15 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFloatLitAccess().getAlternatives_3_0(), "rule__FloatLit__Alternatives_3_0");
 					put(grammarAccess.getFloatLitAccess().getAlternatives_3_1(), "rule__FloatLit__Alternatives_3_1");
 					put(grammarAccess.getFloatLitAccess().getAlternatives_3_2(), "rule__FloatLit__Alternatives_3_2");
+					put(grammarAccess.getIntLitAccess().getAlternatives(), "rule__IntLit__Alternatives");
 					put(grammarAccess.getDecIntLitAccess().getAlternatives_1(), "rule__DecIntLit__Alternatives_1");
 					put(grammarAccess.getDecIntLitAccess().getAlternatives_2_0(), "rule__DecIntLit__Alternatives_2_0");
+					put(grammarAccess.getBinIntLitAccess().getAlternatives_2(), "rule__BinIntLit__Alternatives_2");
+					put(grammarAccess.getBinIntLitAccess().getAlternatives_3_0(), "rule__BinIntLit__Alternatives_3_0");
+					put(grammarAccess.getOctIntLitAccess().getAlternatives_2(), "rule__OctIntLit__Alternatives_2");
+					put(grammarAccess.getOctIntLitAccess().getAlternatives_3_0(), "rule__OctIntLit__Alternatives_3_0");
+					put(grammarAccess.getHexIntLitAccess().getAlternatives_2(), "rule__HexIntLit__Alternatives_2");
+					put(grammarAccess.getHexIntLitAccess().getAlternatives_3_0(), "rule__HexIntLit__Alternatives_3_0");
 					put(grammarAccess.getFloatSizeAccess().getAlternatives(), "rule__FloatSize__Alternatives");
 					put(grammarAccess.getIntSizeAccess().getAlternatives(), "rule__IntSize__Alternatives");
 					put(grammarAccess.getItemAttrAccess().getGroup(), "rule__ItemAttr__Group__0");
@@ -74,6 +81,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFloatLitAccess().getGroup_4(), "rule__FloatLit__Group_4__0");
 					put(grammarAccess.getDecIntLitAccess().getGroup(), "rule__DecIntLit__Group__0");
 					put(grammarAccess.getDecIntLitAccess().getGroup_2(), "rule__DecIntLit__Group_2__0");
+					put(grammarAccess.getBinIntLitAccess().getGroup(), "rule__BinIntLit__Group__0");
+					put(grammarAccess.getBinIntLitAccess().getGroup_3(), "rule__BinIntLit__Group_3__0");
+					put(grammarAccess.getOctIntLitAccess().getGroup(), "rule__OctIntLit__Group__0");
+					put(grammarAccess.getOctIntLitAccess().getGroup_3(), "rule__OctIntLit__Group_3__0");
+					put(grammarAccess.getHexIntLitAccess().getGroup(), "rule__HexIntLit__Group__0");
+					put(grammarAccess.getHexIntLitAccess().getGroup_3(), "rule__HexIntLit__Group_3__0");
 					put(grammarAccess.getCrateAccess().getItemsAssignment(), "rule__Crate__ItemsAssignment");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_1(), "rule__ItemAttr__AttrsAssignment_1");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_2_1(), "rule__ItemAttr__AttrsAssignment_2_1");
@@ -113,6 +126,16 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDecIntLitAccess().getDigitsAssignment_1_0(), "rule__DecIntLit__DigitsAssignment_1_0");
 					put(grammarAccess.getDecIntLitAccess().getUnsignedAssignment_2_0_1(), "rule__DecIntLit__UnsignedAssignment_2_0_1");
 					put(grammarAccess.getDecIntLitAccess().getSizeAssignment_2_1(), "rule__DecIntLit__SizeAssignment_2_1");
+					put(grammarAccess.getBinIntLitAccess().getDigitsAssignment_2_0(), "rule__BinIntLit__DigitsAssignment_2_0");
+					put(grammarAccess.getBinIntLitAccess().getDigitsAssignment_2_1(), "rule__BinIntLit__DigitsAssignment_2_1");
+					put(grammarAccess.getBinIntLitAccess().getUnsignedAssignment_3_0_1(), "rule__BinIntLit__UnsignedAssignment_3_0_1");
+					put(grammarAccess.getBinIntLitAccess().getSizeAssignment_3_1(), "rule__BinIntLit__SizeAssignment_3_1");
+					put(grammarAccess.getOctIntLitAccess().getDigitsAssignment_2_0(), "rule__OctIntLit__DigitsAssignment_2_0");
+					put(grammarAccess.getOctIntLitAccess().getUnsignedAssignment_3_0_1(), "rule__OctIntLit__UnsignedAssignment_3_0_1");
+					put(grammarAccess.getOctIntLitAccess().getSizeAssignment_3_1(), "rule__OctIntLit__SizeAssignment_3_1");
+					put(grammarAccess.getHexIntLitAccess().getDigitsAssignment_2_0(), "rule__HexIntLit__DigitsAssignment_2_0");
+					put(grammarAccess.getHexIntLitAccess().getUnsignedAssignment_3_0_1(), "rule__HexIntLit__UnsignedAssignment_3_0_1");
+					put(grammarAccess.getHexIntLitAccess().getSizeAssignment_3_1(), "rule__HexIntLit__SizeAssignment_3_1");
 				}
 			};
 		}

@@ -55,6 +55,7 @@ CharLit:
 	'\'' (char = NON_SINGLE_QUOTE | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
 ;
 
+// Escaped character
 EscapedChar:
 	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
 	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
@@ -78,25 +79,33 @@ enum FloatSize: FLOAT="32" | DOUBLE="64";
 
 // Integer literal
 IntLit:
-	DecIntLit // | BinIntLit | OctIntLit | HexIntLit
+	DecIntLit | BinIntLit | OctIntLit | HexIntLit
 ;
 
+// Decimal (base 10) integer
 DecIntLit:
 	digits+=DEC_DIGIT (digits+=DEC_DIGIT | '_')* (('i' | unsigned?='u') size=IntSize)?
 ;
 
+// Binary (base 2) integer
+BinIntLit:
+	{BinIntLit} "0b" (digits+='0' | digits+='1' | '_')+ (('i' | unsigned?='u') size=IntSize)?
+;
+
+// Octal (base 8) integer
+OctIntLit:
+	{OctIntLit} "0o" (digits+=OCT_DIGIT | '_')+ (('i' | unsigned?='u') size=IntSize)?
+;
+
+// Hex (base 16) integer
+HexIntLit:
+	{HexIntLit} "0x" (digits+=HEX_DIGIT | '_')+ (('i' | unsigned?='u') size=IntSize)?
+;
+
+// Valid integer sizes in bits
 enum IntSize: BYTE="8" | SHORT="16" | INT="32" | LONG="64";
 
-/*NumberLit:
-	digits += NON_ZERO_DEC (digits += DEC_DIGIT | '_')* suffix = NumSuffix? |
-	digits += '0' ( (digits += DEC_DIGIT | '_')* suffix = NumSuffix? |
-				radix = 'b' (digits += '0' | digits += '1' | '_')+ suffix = IntSuffix? |
-				radix = 'o' (digits += OCT_DIGIT | '_')+ suffix = IntSuffix? |
-				radix = 'x' (digits+=HEX_DIGIT | '_')+ suffix = IntSuffix?
-			)
-;*/
-
-
+terminal OCT_DIGIT: '0'..'7';
 terminal DEC_DIGIT: '0'..'9';
 terminal HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 

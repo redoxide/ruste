@@ -3,15 +3,18 @@ package de.redoxi.ruste.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import de.redoxi.ruste.rust.AttrWithList;
+import de.redoxi.ruste.rust.BinIntLit;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.DecIntLit;
 import de.redoxi.ruste.rust.EscapedChar;
 import de.redoxi.ruste.rust.FloatLit;
+import de.redoxi.ruste.rust.HexIntLit;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.ModItem;
+import de.redoxi.ruste.rust.OctIntLit;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.UnicodeChar;
 import de.redoxi.ruste.services.RustGrammarAccess;
@@ -39,6 +42,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getAttrRule() ||
 				   context == grammarAccess.getAttrWithListRule()) {
 					sequence_AttrWithList(context, (AttrWithList) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.BIN_INT_LIT:
+				if(context == grammarAccess.getBinIntLitRule() ||
+				   context == grammarAccess.getIntLitRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getNumberLitRule()) {
+					sequence_BinIntLit(context, (BinIntLit) semanticObject); 
 					return; 
 				}
 				else break;
@@ -78,6 +90,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.HEX_INT_LIT:
+				if(context == grammarAccess.getHexIntLitRule() ||
+				   context == grammarAccess.getIntLitRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getNumberLitRule()) {
+					sequence_HexIntLit(context, (HexIntLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.ITEM_AND_ATTRS:
 				if(context == grammarAccess.getItemAndAttrsRule()) {
 					sequence_ItemAndAttrs(context, (ItemAndAttrs) semanticObject); 
@@ -104,6 +125,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.OCT_INT_LIT:
+				if(context == grammarAccess.getIntLitRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getNumberLitRule() ||
+				   context == grammarAccess.getOctIntLitRule()) {
+					sequence_OctIntLit(context, (OctIntLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.UNICODE_CHAR:
 				if(context == grammarAccess.getEscapedCharRule()) {
 					sequence_EscapedChar(context, (UnicodeChar) semanticObject); 
@@ -119,6 +149,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT attrs+=Attr attrs+=Attr*)
 	 */
 	protected void sequence_AttrWithList(EObject context, AttrWithList semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((digits+='0' | digits+='1')* (unsigned?='u'? size=IntSize)?)
+	 */
+	protected void sequence_BinIntLit(EObject context, BinIntLit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -192,6 +231,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (digits+=HEX_DIGIT* (unsigned?='u'? size=IntSize)?)
+	 */
+	protected void sequence_HexIntLit(EObject context, HexIntLit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (attrs+=ItemAttr* item=Item)
 	 */
 	protected void sequence_ItemAndAttrs(EObject context, ItemAndAttrs semanticObject) {
@@ -240,5 +288,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getModItemAccess().getIdentIDENTTerminalRuleCall_1_0(), semanticObject.getIdent());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (digits+=OCT_DIGIT* (unsigned?='u'? size=IntSize)?)
+	 */
+	protected void sequence_OctIntLit(EObject context, OctIntLit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

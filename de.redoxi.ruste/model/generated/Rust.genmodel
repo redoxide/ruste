@@ -48,18 +48,21 @@
     <genClasses ecoreClass="Rust.ecore#//EscapedChar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EscapedChar/char"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
+    <genClasses ecoreClass="Rust.ecore#//NumberLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/digits"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//FloatLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/digits"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/negativeExp"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/size"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//IntLit"/>
-    <genClasses ecoreClass="Rust.ecore#//DecIntLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/digits"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/unsigned"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//DecIntLit/size"/>
+    <genClasses ecoreClass="Rust.ecore#//IntLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//IntLit/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//IntLit/size"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//DecIntLit"/>
+    <genClasses ecoreClass="Rust.ecore#//BinIntLit"/>
+    <genClasses ecoreClass="Rust.ecore#//OctIntLit"/>
+    <genClasses ecoreClass="Rust.ecore#//HexIntLit"/>
     <genClasses ecoreClass="Rust.ecore#//UnicodeChar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UnicodeChar/digits"/>
     </genClasses>

@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.FloatLit#getDigits <em>Digits</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.FloatLit#isNegativeExp <em>Negative Exp</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.FloatLit#getSize <em>Size</em>}</li>
  * </ul>
@@ -24,22 +22,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface FloatLit extends NumberLit
 {
-  /**
-   * Returns the value of the '<em><b>Digits</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Digits</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Digits</em>' attribute list.
-   * @see de.redoxi.ruste.rust.RustPackage#getFloatLit_Digits()
-   * @model unique="false"
-   * @generated
-   */
-  EList<String> getDigits();
-
   /**
    * Returns the value of the '<em><b>Negative Exp</b></em>' attribute.
    * <!-- begin-user-doc -->

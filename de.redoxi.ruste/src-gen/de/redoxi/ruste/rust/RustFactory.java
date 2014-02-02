@@ -158,6 +158,33 @@ public interface RustFactory extends EFactory
   DecIntLit createDecIntLit();
 
   /**
+   * Returns a new object of class '<em>Bin Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bin Int Lit</em>'.
+   * @generated
+   */
+  BinIntLit createBinIntLit();
+
+  /**
+   * Returns a new object of class '<em>Oct Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Oct Int Lit</em>'.
+   * @generated
+   */
+  OctIntLit createOctIntLit();
+
+  /**
+   * Returns a new object of class '<em>Hex Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Hex Int Lit</em>'.
+   * @generated
+   */
+  HexIntLit createHexIntLit();
+
+  /**
    * Returns a new object of class '<em>Unicode Char</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

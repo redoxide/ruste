@@ -1224,9 +1224,9 @@ ruleIntLit returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getIntLitAccess().getDecIntLitParserRuleCall()); 
+        newCompositeNode(grammarAccess.getIntLitAccess().getDecIntLitParserRuleCall_0()); 
     }
     this_DecIntLit_0=ruleDecIntLit
     { 
@@ -1234,6 +1234,36 @@ ruleIntLit returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getIntLitAccess().getBinIntLitParserRuleCall_1()); 
+    }
+    this_BinIntLit_1=ruleBinIntLit
+    { 
+        $current = $this_BinIntLit_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIntLitAccess().getOctIntLitParserRuleCall_2()); 
+    }
+    this_OctIntLit_2=ruleOctIntLit
+    { 
+        $current = $this_OctIntLit_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIntLitAccess().getHexIntLitParserRuleCall_3()); 
+    }
+    this_HexIntLit_3=ruleHexIntLit
+    { 
+        $current = $this_HexIntLit_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -1340,6 +1370,295 @@ ruleDecIntLit returns [EObject current=null]
 
 
 
+// Entry rule entryRuleBinIntLit
+entryRuleBinIntLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBinIntLitRule()); }
+	 iv_ruleBinIntLit=ruleBinIntLit 
+	 { $current=$iv_ruleBinIntLit.current; } 
+	 EOF 
+;
+
+// Rule BinIntLit
+ruleBinIntLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getBinIntLitAccess().getBinIntLitAction_0(),
+            $current);
+    }
+)	otherlv_1='0b' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getBinIntLitAccess().getBKeyword_1());
+    }
+((
+(
+		lv_digits_2_0=	'0' 
+    {
+        newLeafNode(lv_digits_2_0, grammarAccess.getBinIntLitAccess().getDigits0Keyword_2_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBinIntLitRule());
+	        }
+       		addWithLastConsumed($current, "digits", lv_digits_2_0, "0");
+	    }
+
+)
+)
+    |(
+(
+		lv_digits_3_0=	'1' 
+    {
+        newLeafNode(lv_digits_3_0, grammarAccess.getBinIntLitAccess().getDigits1Keyword_2_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBinIntLitRule());
+	        }
+       		addWithLastConsumed($current, "digits", lv_digits_3_0, "1");
+	    }
+
+)
+)
+    |	otherlv_4='_' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getBinIntLitAccess().get_Keyword_2_2());
+    }
+)+((	otherlv_5='i' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getBinIntLitAccess().getIKeyword_3_0_0());
+    }
+
+    |(
+(
+		lv_unsigned_6_0=	'u' 
+    {
+        newLeafNode(lv_unsigned_6_0, grammarAccess.getBinIntLitAccess().getUnsignedUKeyword_3_0_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBinIntLitRule());
+	        }
+       		setWithLastConsumed($current, "unsigned", true, "u");
+	    }
+
+)
+))(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBinIntLitAccess().getSizeIntSizeEnumRuleCall_3_1_0()); 
+	    }
+		lv_size_7_0=ruleIntSize		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBinIntLitRule());
+	        }
+       		set(
+       			$current, 
+       			"size",
+        		lv_size_7_0, 
+        		"IntSize");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
+// Entry rule entryRuleOctIntLit
+entryRuleOctIntLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOctIntLitRule()); }
+	 iv_ruleOctIntLit=ruleOctIntLit 
+	 { $current=$iv_ruleOctIntLit.current; } 
+	 EOF 
+;
+
+// Rule OctIntLit
+ruleOctIntLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getOctIntLitAccess().getOctIntLitAction_0(),
+            $current);
+    }
+)	otherlv_1='0o' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getOctIntLitAccess().getOKeyword_1());
+    }
+((
+(
+		lv_digits_2_0=RULE_OCT_DIGIT
+		{
+			newLeafNode(lv_digits_2_0, grammarAccess.getOctIntLitAccess().getDigitsOCT_DIGITTerminalRuleCall_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getOctIntLitRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_2_0, 
+        		"OCT_DIGIT");
+	    }
+
+)
+)
+    |	otherlv_3='_' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getOctIntLitAccess().get_Keyword_2_1());
+    }
+)+((	otherlv_4='i' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getOctIntLitAccess().getIKeyword_3_0_0());
+    }
+
+    |(
+(
+		lv_unsigned_5_0=	'u' 
+    {
+        newLeafNode(lv_unsigned_5_0, grammarAccess.getOctIntLitAccess().getUnsignedUKeyword_3_0_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getOctIntLitRule());
+	        }
+       		setWithLastConsumed($current, "unsigned", true, "u");
+	    }
+
+)
+))(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOctIntLitAccess().getSizeIntSizeEnumRuleCall_3_1_0()); 
+	    }
+		lv_size_6_0=ruleIntSize		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOctIntLitRule());
+	        }
+       		set(
+       			$current, 
+       			"size",
+        		lv_size_6_0, 
+        		"IntSize");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
+// Entry rule entryRuleHexIntLit
+entryRuleHexIntLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getHexIntLitRule()); }
+	 iv_ruleHexIntLit=ruleHexIntLit 
+	 { $current=$iv_ruleHexIntLit.current; } 
+	 EOF 
+;
+
+// Rule HexIntLit
+ruleHexIntLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getHexIntLitAccess().getHexIntLitAction_0(),
+            $current);
+    }
+)	otherlv_1='0x' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getHexIntLitAccess().getXKeyword_1());
+    }
+((
+(
+		lv_digits_2_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_2_0, grammarAccess.getHexIntLitAccess().getDigitsHEX_DIGITTerminalRuleCall_2_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getHexIntLitRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_2_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)
+    |	otherlv_3='_' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getHexIntLitAccess().get_Keyword_2_1());
+    }
+)+((	otherlv_4='i' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getHexIntLitAccess().getIKeyword_3_0_0());
+    }
+
+    |(
+(
+		lv_unsigned_5_0=	'u' 
+    {
+        newLeafNode(lv_unsigned_5_0, grammarAccess.getHexIntLitAccess().getUnsignedUKeyword_3_0_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getHexIntLitRule());
+	        }
+       		setWithLastConsumed($current, "unsigned", true, "u");
+	    }
+
+)
+))(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getHexIntLitAccess().getSizeIntSizeEnumRuleCall_3_1_0()); 
+	    }
+		lv_size_6_0=ruleIntSize		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getHexIntLitRule());
+	        }
+       		set(
+       			$current, 
+       			"size",
+        		lv_size_6_0, 
+        		"IntSize");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+;
+
+
+
+
+
 // Rule FloatSize
 ruleFloatSize returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -1389,6 +1708,8 @@ ruleIntSize returns [Enumerator current=null]
 ));
 
 
+
+RULE_OCT_DIGIT : '0'..'7';
 
 RULE_DEC_DIGIT : '0'..'9';
 

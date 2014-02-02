@@ -189,6 +189,36 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.BIN_INT_LIT:
+      {
+        BinIntLit binIntLit = (BinIntLit)theEObject;
+        T result = caseBinIntLit(binIntLit);
+        if (result == null) result = caseIntLit(binIntLit);
+        if (result == null) result = caseNumberLit(binIntLit);
+        if (result == null) result = caseLiteral(binIntLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.OCT_INT_LIT:
+      {
+        OctIntLit octIntLit = (OctIntLit)theEObject;
+        T result = caseOctIntLit(octIntLit);
+        if (result == null) result = caseIntLit(octIntLit);
+        if (result == null) result = caseNumberLit(octIntLit);
+        if (result == null) result = caseLiteral(octIntLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.HEX_INT_LIT:
+      {
+        HexIntLit hexIntLit = (HexIntLit)theEObject;
+        T result = caseHexIntLit(hexIntLit);
+        if (result == null) result = caseIntLit(hexIntLit);
+        if (result == null) result = caseNumberLit(hexIntLit);
+        if (result == null) result = caseLiteral(hexIntLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.UNICODE_CHAR:
       {
         UnicodeChar unicodeChar = (UnicodeChar)theEObject;
@@ -437,6 +467,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDecIntLit(DecIntLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bin Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bin Int Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBinIntLit(BinIntLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Oct Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Oct Int Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOctIntLit(OctIntLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Hex Int Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Hex Int Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHexIntLit(HexIntLit object)
   {
     return null;
   }

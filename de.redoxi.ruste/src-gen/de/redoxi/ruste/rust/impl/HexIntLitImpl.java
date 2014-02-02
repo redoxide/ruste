@@ -2,28 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.DecIntLit;
+import de.redoxi.ruste.rust.HexIntLit;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Dec Int Lit</b></em>'.
+ * An implementation of the model object '<em><b>Hex Int Lit</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class DecIntLitImpl extends IntLitImpl implements DecIntLit
+public class HexIntLitImpl extends IntLitImpl implements HexIntLit
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DecIntLitImpl()
+  protected HexIntLitImpl()
   {
     super();
   }
@@ -36,7 +36,7 @@ public class DecIntLitImpl extends IntLitImpl implements DecIntLit
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.DEC_INT_LIT;
+    return RustPackage.Literals.HEX_INT_LIT;
   }
 
-} //DecIntLitImpl
+} //HexIntLitImpl

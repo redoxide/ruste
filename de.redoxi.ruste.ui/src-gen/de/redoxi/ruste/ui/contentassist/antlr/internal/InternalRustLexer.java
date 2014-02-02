@@ -12,44 +12,49 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalRustLexer extends Lexer {
-    public static final int T__40=40;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int RULE_DEC_DIGIT=7;
     public static final int T__24=24;
     public static final int T__23=23;
     public static final int T__22=22;
     public static final int T__21=21;
     public static final int T__20=20;
-    public static final int RULE_HEX_DIGIT=6;
     public static final int EOF=-1;
-    public static final int T__30=30;
     public static final int T__19=19;
-    public static final int T__31=31;
-    public static final int RULE_XID_START=8;
-    public static final int T__32=32;
     public static final int T__16=16;
-    public static final int T__33=33;
     public static final int T__15=15;
-    public static final int T__34=34;
     public static final int T__18=18;
-    public static final int T__35=35;
     public static final int T__17=17;
-    public static final int T__36=36;
     public static final int T__12=12;
-    public static final int T__37=37;
     public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int RULE_XID_CONTINUE=10;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int RULE_DEC_DIGIT=7;
+    public static final int RULE_OCT_DIGIT=8;
+    public static final int RULE_HEX_DIGIT=6;
+    public static final int T__30=30;
+    public static final int RULE_XID_START=9;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
     public static final int T__38=38;
     public static final int RULE_IDENT=4;
-    public static final int T__14=14;
     public static final int T__39=39;
-    public static final int T__13=13;
     public static final int RULE_NON_SINGLE_QUOTE=5;
-    public static final int T__10=10;
-    public static final int RULE_XID_CONTINUE=9;
 
     // delegates
     // delegators
@@ -64,35 +69,15 @@ public class InternalRustLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g"; }
 
-    // $ANTLR start "T__10"
-    public final void mT__10() throws RecognitionException {
-        try {
-            int _type = T__10;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:11:7: ( ';' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:11:9: ';'
-            {
-            match(';'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__10"
-
     // $ANTLR start "T__11"
     public final void mT__11() throws RecognitionException {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:12:7: ( '\\\\' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:12:9: '\\\\'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:11:7: ( ';' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:11:9: ';'
             {
-            match('\\'); 
+            match(';'); 
 
             }
 
@@ -109,10 +94,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:13:7: ( 'n' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:13:9: 'n'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:12:7: ( '\\\\' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:12:9: '\\\\'
             {
-            match('n'); 
+            match('\\'); 
 
             }
 
@@ -129,10 +114,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:14:7: ( 'r' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:14:9: 'r'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:13:7: ( 'n' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:13:9: 'n'
             {
-            match('r'); 
+            match('n'); 
 
             }
 
@@ -149,10 +134,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:15:7: ( 't' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:15:9: 't'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:14:7: ( 'r' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:14:9: 'r'
             {
-            match('t'); 
+            match('r'); 
 
             }
 
@@ -169,10 +154,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:16:7: ( '0' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:16:9: '0'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:15:7: ( 't' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:15:9: 't'
             {
-            match('0'); 
+            match('t'); 
 
             }
 
@@ -189,10 +174,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:17:7: ( '_' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:17:9: '_'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:16:7: ( '0' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:16:9: '0'
             {
-            match('_'); 
+            match('0'); 
 
             }
 
@@ -209,10 +194,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:18:7: ( 'E' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:18:9: 'E'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:17:7: ( '_' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:17:9: '_'
             {
-            match('E'); 
+            match('_'); 
 
             }
 
@@ -229,10 +214,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:19:7: ( 'e' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:19:9: 'e'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:18:7: ( 'E' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:18:9: 'E'
             {
-            match('e'); 
+            match('E'); 
 
             }
 
@@ -249,10 +234,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:20:7: ( '+' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:20:9: '+'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:19:7: ( 'e' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:19:9: 'e'
             {
-            match('+'); 
+            match('e'); 
 
             }
 
@@ -269,10 +254,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:21:7: ( 'i' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:21:9: 'i'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:20:7: ( '+' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:20:9: '+'
             {
-            match('i'); 
+            match('+'); 
 
             }
 
@@ -289,11 +274,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:22:7: ( '32' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:22:9: '32'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:21:7: ( 'i' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:21:9: 'i'
             {
-            match("32"); 
-
+            match('i'); 
 
             }
 
@@ -310,10 +294,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:23:7: ( '64' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:23:9: '64'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:22:7: ( '32' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:22:9: '32'
             {
-            match("64"); 
+            match("32"); 
 
 
             }
@@ -331,10 +315,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:24:7: ( '8' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:24:9: '8'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:23:7: ( '64' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:23:9: '64'
             {
-            match('8'); 
+            match("64"); 
+
 
             }
 
@@ -351,11 +336,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:25:7: ( '16' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:25:9: '16'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:24:7: ( '8' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:24:9: '8'
             {
-            match("16"); 
-
+            match('8'); 
 
             }
 
@@ -372,10 +356,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:26:7: ( '#[' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:26:9: '#['
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:25:7: ( '16' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:25:9: '16'
             {
-            match("#["); 
+            match("16"); 
 
 
             }
@@ -393,10 +377,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:27:7: ( ']' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:27:9: ']'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:26:7: ( '#[' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:26:9: '#['
             {
-            match(']'); 
+            match("#["); 
+
 
             }
 
@@ -413,10 +398,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:28:7: ( ',' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:28:9: ','
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:27:7: ( ']' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:27:9: ']'
             {
-            match(','); 
+            match(']'); 
 
             }
 
@@ -433,10 +418,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:29:7: ( '(' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:29:9: '('
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:28:7: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:28:9: ','
             {
-            match('('); 
+            match(','); 
 
             }
 
@@ -453,10 +438,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:30:7: ( ')' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:30:9: ')'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:29:7: ( '(' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:29:9: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -473,10 +458,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:31:7: ( '=' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:31:9: '='
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:30:7: ( ')' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:30:9: ')'
             {
-            match('='); 
+            match(')'); 
 
             }
 
@@ -493,11 +478,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:32:7: ( 'mod' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:32:9: 'mod'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:31:7: ( '=' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:31:9: '='
             {
-            match("mod"); 
-
+            match('='); 
 
             }
 
@@ -514,10 +498,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:33:7: ( '{' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:33:9: '{'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:32:7: ( 'mod' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:32:9: 'mod'
             {
-            match('{'); 
+            match("mod"); 
+
 
             }
 
@@ -534,10 +519,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:34:7: ( '}' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:34:9: '}'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:33:7: ( '{' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:33:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -554,10 +539,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:35:7: ( '\\'' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:35:9: '\\''
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:34:7: ( '}' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:34:9: '}'
             {
-            match('\''); 
+            match('}'); 
 
             }
 
@@ -574,10 +559,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:36:7: ( 'x' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:36:9: 'x'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:35:7: ( '\\'' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:35:9: '\\''
             {
-            match('x'); 
+            match('\''); 
 
             }
 
@@ -594,10 +579,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:37:7: ( 'u' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:37:9: 'u'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:36:7: ( 'x' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:36:9: 'x'
             {
-            match('u'); 
+            match('x'); 
 
             }
 
@@ -614,10 +599,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:38:7: ( 'U' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:38:9: 'U'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:37:7: ( 'u' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:37:9: 'u'
             {
-            match('U'); 
+            match('u'); 
 
             }
 
@@ -634,10 +619,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:39:7: ( '.' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:39:9: '.'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:38:7: ( 'U' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:38:9: 'U'
             {
-            match('.'); 
+            match('U'); 
 
             }
 
@@ -654,10 +639,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:40:7: ( 'f' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:40:9: 'f'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:39:7: ( '.' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:39:9: '.'
             {
-            match('f'); 
+            match('.'); 
 
             }
 
@@ -674,10 +659,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:41:7: ( '-' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:41:9: '-'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:40:7: ( 'f' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:40:9: 'f'
             {
-            match('-'); 
+            match('f'); 
 
             }
 
@@ -689,13 +674,136 @@ public class InternalRustLexer extends Lexer {
     }
     // $ANTLR end "T__40"
 
+    // $ANTLR start "T__41"
+    public final void mT__41() throws RecognitionException {
+        try {
+            int _type = T__41;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:41:7: ( '0b' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:41:9: '0b'
+            {
+            match("0b"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__41"
+
+    // $ANTLR start "T__42"
+    public final void mT__42() throws RecognitionException {
+        try {
+            int _type = T__42;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:42:7: ( '0o' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:42:9: '0o'
+            {
+            match("0o"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__42"
+
+    // $ANTLR start "T__43"
+    public final void mT__43() throws RecognitionException {
+        try {
+            int _type = T__43;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:43:7: ( '0x' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:43:9: '0x'
+            {
+            match("0x"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__43"
+
+    // $ANTLR start "T__44"
+    public final void mT__44() throws RecognitionException {
+        try {
+            int _type = T__44;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:44:7: ( '-' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:44:9: '-'
+            {
+            match('-'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__44"
+
+    // $ANTLR start "T__45"
+    public final void mT__45() throws RecognitionException {
+        try {
+            int _type = T__45;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:45:7: ( '1' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:45:9: '1'
+            {
+            match('1'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__45"
+
+    // $ANTLR start "RULE_OCT_DIGIT"
+    public final void mRULE_OCT_DIGIT() throws RecognitionException {
+        try {
+            int _type = RULE_OCT_DIGIT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4740:16: ( '0' .. '7' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4740:18: '0' .. '7'
+            {
+            matchRange('0','7'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_OCT_DIGIT"
+
     // $ANTLR start "RULE_DEC_DIGIT"
     public final void mRULE_DEC_DIGIT() throws RecognitionException {
         try {
             int _type = RULE_DEC_DIGIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3697:16: ( '0' .. '9' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3697:18: '0' .. '9'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4742:16: ( '0' .. '9' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4742:18: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -714,8 +822,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_HEX_DIGIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3699:16: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3699:18: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4744:16: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4744:18: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -740,8 +848,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_XID_START"
     public final void mRULE_XID_START() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3701:25: ( 'a' .. 'z' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3701:27: 'a' .. 'z'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4746:25: ( 'a' .. 'z' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4746:27: 'a' .. 'z'
             {
             matchRange('a','z'); 
 
@@ -756,8 +864,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_XID_CONTINUE"
     public final void mRULE_XID_CONTINUE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3703:28: ( ( 'a' .. 'z' | '_' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3703:30: ( 'a' .. 'z' | '_' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4748:28: ( ( 'a' .. 'z' | '_' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4748:30: ( 'a' .. 'z' | '_' )
             {
             if ( input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -782,11 +890,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3705:12: ( RULE_XID_START ( RULE_XID_CONTINUE )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3705:14: RULE_XID_START ( RULE_XID_CONTINUE )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4750:12: ( RULE_XID_START ( RULE_XID_CONTINUE )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4750:14: RULE_XID_START ( RULE_XID_CONTINUE )*
             {
             mRULE_XID_START(); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3705:29: ( RULE_XID_CONTINUE )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4750:29: ( RULE_XID_CONTINUE )*
             loop1:
             do {
                 int alt1=2;
@@ -799,7 +907,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3705:29: RULE_XID_CONTINUE
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4750:29: RULE_XID_CONTINUE
             	    {
             	    mRULE_XID_CONTINUE(); 
 
@@ -827,8 +935,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_NON_SINGLE_QUOTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3707:23: (~ ( '\\'' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3707:25: ~ ( '\\'' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4752:23: (~ ( '\\'' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:4752:25: ~ ( '\\'' )
             {
             if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFF') ) {
                 input.consume();
@@ -851,250 +959,285 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR end "RULE_NON_SINGLE_QUOTE"
 
     public void mTokens() throws RecognitionException {
-        // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:8: ( T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_DEC_DIGIT | RULE_HEX_DIGIT | RULE_IDENT | RULE_NON_SINGLE_QUOTE )
-        int alt2=35;
+        // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | RULE_OCT_DIGIT | RULE_DEC_DIGIT | RULE_HEX_DIGIT | RULE_IDENT | RULE_NON_SINGLE_QUOTE )
+        int alt2=40;
         alt2 = dfa2.predict(input);
         switch (alt2) {
             case 1 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:10: T__10
-                {
-                mT__10(); 
-
-                }
-                break;
-            case 2 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:16: T__11
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:10: T__11
                 {
                 mT__11(); 
 
                 }
                 break;
-            case 3 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:22: T__12
+            case 2 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:16: T__12
                 {
                 mT__12(); 
 
                 }
                 break;
-            case 4 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:28: T__13
+            case 3 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:22: T__13
                 {
                 mT__13(); 
 
                 }
                 break;
-            case 5 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:34: T__14
+            case 4 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:28: T__14
                 {
                 mT__14(); 
 
                 }
                 break;
-            case 6 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:40: T__15
+            case 5 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:34: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
-            case 7 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:46: T__16
+            case 6 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:40: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
-            case 8 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:52: T__17
+            case 7 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:46: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
-            case 9 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:58: T__18
+            case 8 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:52: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
-            case 10 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:64: T__19
+            case 9 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:58: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 11 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:70: T__20
+            case 10 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:64: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 12 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:76: T__21
+            case 11 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:70: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 13 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:82: T__22
+            case 12 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:76: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 14 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:88: T__23
+            case 13 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:82: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 15 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:94: T__24
+            case 14 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:88: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 16 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:100: T__25
+            case 15 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:94: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 17 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:106: T__26
+            case 16 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:100: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 18 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:112: T__27
+            case 17 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:106: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 19 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:118: T__28
+            case 18 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:112: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 20 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:124: T__29
+            case 19 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:118: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
-            case 21 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:130: T__30
+            case 20 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:124: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 22 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:136: T__31
+            case 21 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:130: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 23 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:142: T__32
+            case 22 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:136: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 24 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:148: T__33
+            case 23 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:142: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 25 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:154: T__34
+            case 24 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:148: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 26 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:160: T__35
+            case 25 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:154: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 27 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:166: T__36
+            case 26 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:160: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 28 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:172: T__37
+            case 27 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:166: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
-            case 29 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:178: T__38
+            case 28 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:172: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
-            case 30 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:184: T__39
+            case 29 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:178: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
-            case 31 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:190: T__40
+            case 30 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:184: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
+            case 31 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:190: T__41
+                {
+                mT__41(); 
+
+                }
+                break;
             case 32 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:196: RULE_DEC_DIGIT
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:196: T__42
+                {
+                mT__42(); 
+
+                }
+                break;
+            case 33 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:202: T__43
+                {
+                mT__43(); 
+
+                }
+                break;
+            case 34 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:208: T__44
+                {
+                mT__44(); 
+
+                }
+                break;
+            case 35 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:214: T__45
+                {
+                mT__45(); 
+
+                }
+                break;
+            case 36 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:220: RULE_OCT_DIGIT
+                {
+                mRULE_OCT_DIGIT(); 
+
+                }
+                break;
+            case 37 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:235: RULE_DEC_DIGIT
                 {
                 mRULE_DEC_DIGIT(); 
 
                 }
                 break;
-            case 33 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:211: RULE_HEX_DIGIT
+            case 38 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:250: RULE_HEX_DIGIT
                 {
                 mRULE_HEX_DIGIT(); 
 
                 }
                 break;
-            case 34 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:226: RULE_IDENT
+            case 39 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:265: RULE_IDENT
                 {
                 mRULE_IDENT(); 
 
                 }
                 break;
-            case 35 :
-                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:237: RULE_NON_SINGLE_QUOTE
+            case 40 :
+                // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1:276: RULE_NON_SINGLE_QUOTE
                 {
                 mRULE_NON_SINGLE_QUOTE(); 
 
@@ -1108,77 +1251,68 @@ public class InternalRustLexer extends Lexer {
 
     protected DFA2 dfa2 = new DFA2(this);
     static final String DFA2_eotS =
-        "\3\uffff\1\47\1\51\1\52\3\uffff\1\56\1\uffff\1\60\2\62\1\uffff\1"+
-        "\62\1\44\5\uffff\1\50\3\uffff\1\77\1\100\2\uffff\1\103\2\uffff\1"+
-        "\105\32\uffff\1\50\11\uffff\1\107\1\uffff";
+        "\3\uffff\1\50\1\52\1\53\1\57\2\uffff\1\62\1\uffff\1\64\2\66\1\uffff"+
+        "\1\72\1\45\5\uffff\1\51\3\uffff\1\104\1\105\2\uffff\1\110\3\uffff"+
+        "\1\113\36\uffff\1\51\12\uffff\1\115\1\uffff";
     static final String DFA2_eofS =
-        "\110\uffff";
+        "\116\uffff";
     static final String DFA2_minS =
-        "\1\0\2\uffff\3\137\3\uffff\1\137\1\uffff\1\137\1\62\1\64\1\uffff"+
-        "\1\66\1\133\5\uffff\1\157\3\uffff\2\137\2\uffff\1\137\2\uffff\1"+
-        "\137\32\uffff\1\144\11\uffff\1\137\1\uffff";
+        "\1\0\2\uffff\3\137\1\142\2\uffff\1\137\1\uffff\1\137\1\62\1\64\1"+
+        "\uffff\1\66\1\133\5\uffff\1\157\3\uffff\2\137\2\uffff\1\137\3\uffff"+
+        "\1\137\36\uffff\1\144\12\uffff\1\137\1\uffff";
     static final String DFA2_maxS =
-        "\1\uffff\2\uffff\3\172\3\uffff\1\172\1\uffff\1\172\1\62\1\64\1\uffff"+
-        "\1\66\1\133\5\uffff\1\157\3\uffff\2\172\2\uffff\1\172\2\uffff\1"+
-        "\172\32\uffff\1\144\11\uffff\1\172\1\uffff";
+        "\1\uffff\2\uffff\3\172\1\170\2\uffff\1\172\1\uffff\1\172\1\62\1"+
+        "\64\1\uffff\1\66\1\133\5\uffff\1\157\3\uffff\2\172\2\uffff\1\172"+
+        "\3\uffff\1\172\36\uffff\1\144\12\uffff\1\172\1\uffff";
     static final String DFA2_acceptS =
-        "\1\uffff\1\1\1\2\3\uffff\1\6\1\7\1\10\1\uffff\1\12\3\uffff\1\16"+
-        "\2\uffff\1\21\1\22\1\23\1\24\1\25\1\uffff\1\27\1\30\1\31\2\uffff"+
-        "\1\34\1\35\1\uffff\1\37\1\40\1\uffff\1\41\1\42\1\43\1\1\1\2\1\3"+
-        "\1\42\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\40\1\15\1\16\1"+
-        "\17\1\20\1\21\1\22\1\23\1\24\1\25\1\uffff\1\27\1\30\1\32\1\33\1"+
-        "\34\1\35\1\36\1\37\1\41\1\uffff\1\26";
+        "\1\uffff\1\1\1\2\4\uffff\1\7\1\10\1\uffff\1\12\3\uffff\1\16\2\uffff"+
+        "\1\21\1\22\1\23\1\24\1\25\1\uffff\1\27\1\30\1\31\2\uffff\1\34\1"+
+        "\35\1\uffff\1\42\1\44\1\45\1\uffff\1\46\1\47\1\50\1\1\1\2\1\3\1"+
+        "\47\1\4\1\5\1\37\1\40\1\41\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\44"+
+        "\1\15\1\16\1\17\1\43\1\20\1\21\1\22\1\23\1\24\1\25\1\uffff\1\27"+
+        "\1\30\1\32\1\33\1\34\1\35\1\36\1\42\1\45\1\46\1\uffff\1\26";
     static final String DFA2_specialS =
-        "\1\0\107\uffff}>";
+        "\1\0\115\uffff}>";
     static final String[] DFA2_transitionS = {
-            "\43\44\1\20\3\44\1\31\1\23\1\24\1\44\1\12\1\22\1\37\1\35\1\44"+
-            "\1\6\1\17\1\40\1\14\2\40\1\15\1\40\1\16\1\40\1\44\1\1\1\44\1"+
-            "\25\3\44\4\42\1\10\1\42\16\44\1\34\6\44\1\2\1\21\1\44\1\7\1"+
-            "\44\4\41\1\11\1\36\2\43\1\13\3\43\1\26\1\3\3\43\1\4\1\43\1\5"+
-            "\1\33\2\43\1\32\2\43\1\27\1\44\1\30\uff82\44",
+            "\43\45\1\20\3\45\1\31\1\23\1\24\1\45\1\12\1\22\1\37\1\35\1\45"+
+            "\1\6\1\17\1\40\1\14\2\40\1\15\1\40\1\16\1\41\1\45\1\1\1\45\1"+
+            "\25\3\45\4\43\1\10\1\43\16\45\1\34\6\45\1\2\1\21\1\45\1\7\1"+
+            "\45\4\42\1\11\1\36\2\44\1\13\3\44\1\26\1\3\3\44\1\4\1\44\1\5"+
+            "\1\33\2\44\1\32\2\44\1\27\1\45\1\30\uff82\45",
             "",
             "",
-            "\1\50\1\uffff\32\50",
-            "\1\50\1\uffff\32\50",
-            "\1\50\1\uffff\32\50",
+            "\1\51\1\uffff\32\51",
+            "\1\51\1\uffff\32\51",
+            "\1\51\1\uffff\32\51",
+            "\1\54\14\uffff\1\55\10\uffff\1\56",
             "",
             "",
+            "\1\51\1\uffff\32\51",
             "",
-            "\1\50\1\uffff\32\50",
-            "",
-            "\1\50\1\uffff\32\50",
-            "\1\61",
-            "\1\63",
-            "",
+            "\1\51\1\uffff\32\51",
             "\1\65",
-            "\1\66",
+            "\1\67",
+            "",
+            "\1\71",
+            "\1\73",
             "",
             "",
             "",
             "",
             "",
-            "\1\74",
+            "\1\101",
             "",
             "",
             "",
-            "\1\50\1\uffff\32\50",
-            "\1\50\1\uffff\32\50",
+            "\1\51\1\uffff\32\51",
+            "\1\51\1\uffff\32\51",
             "",
             "",
-            "\1\50\1\uffff\32\50",
-            "",
-            "",
-            "\1\50\1\uffff\32\50",
+            "\1\51\1\uffff\32\51",
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\51\1\uffff\32\51",
             "",
             "",
             "",
@@ -1195,7 +1329,6 @@ public class InternalRustLexer extends Lexer {
             "",
             "",
             "",
-            "\1\106",
             "",
             "",
             "",
@@ -1205,7 +1338,23 @@ public class InternalRustLexer extends Lexer {
             "",
             "",
             "",
-            "\1\50\1\uffff\32\50",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\114",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\51\1\uffff\32\51",
             ""
     };
 
@@ -1239,7 +1388,7 @@ public class InternalRustLexer extends Lexer {
             this.transition = DFA2_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_DEC_DIGIT | RULE_HEX_DIGIT | RULE_IDENT | RULE_NON_SINGLE_QUOTE );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | RULE_OCT_DIGIT | RULE_DEC_DIGIT | RULE_HEX_DIGIT | RULE_IDENT | RULE_NON_SINGLE_QUOTE );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
@@ -1311,15 +1460,17 @@ public class InternalRustLexer extends Lexer {
 
                         else if ( (LA2_0=='-') ) {s = 31;}
 
-                        else if ( (LA2_0=='2'||(LA2_0>='4' && LA2_0<='5')||LA2_0=='7'||LA2_0=='9') ) {s = 32;}
+                        else if ( (LA2_0=='2'||(LA2_0>='4' && LA2_0<='5')||LA2_0=='7') ) {s = 32;}
 
-                        else if ( ((LA2_0>='a' && LA2_0<='d')) ) {s = 33;}
+                        else if ( (LA2_0=='9') ) {s = 33;}
 
-                        else if ( ((LA2_0>='A' && LA2_0<='D')||LA2_0=='F') ) {s = 34;}
+                        else if ( ((LA2_0>='a' && LA2_0<='d')) ) {s = 34;}
 
-                        else if ( ((LA2_0>='g' && LA2_0<='h')||(LA2_0>='j' && LA2_0<='l')||(LA2_0>='o' && LA2_0<='q')||LA2_0=='s'||(LA2_0>='v' && LA2_0<='w')||(LA2_0>='y' && LA2_0<='z')) ) {s = 35;}
+                        else if ( ((LA2_0>='A' && LA2_0<='D')||LA2_0=='F') ) {s = 35;}
 
-                        else if ( ((LA2_0>='\u0000' && LA2_0<='\"')||(LA2_0>='$' && LA2_0<='&')||LA2_0=='*'||LA2_0=='/'||LA2_0==':'||LA2_0=='<'||(LA2_0>='>' && LA2_0<='@')||(LA2_0>='G' && LA2_0<='T')||(LA2_0>='V' && LA2_0<='[')||LA2_0=='^'||LA2_0=='`'||LA2_0=='|'||(LA2_0>='~' && LA2_0<='\uFFFF')) ) {s = 36;}
+                        else if ( ((LA2_0>='g' && LA2_0<='h')||(LA2_0>='j' && LA2_0<='l')||(LA2_0>='o' && LA2_0<='q')||LA2_0=='s'||(LA2_0>='v' && LA2_0<='w')||(LA2_0>='y' && LA2_0<='z')) ) {s = 36;}
+
+                        else if ( ((LA2_0>='\u0000' && LA2_0<='\"')||(LA2_0>='$' && LA2_0<='&')||LA2_0=='*'||LA2_0=='/'||LA2_0==':'||LA2_0=='<'||(LA2_0>='>' && LA2_0<='@')||(LA2_0>='G' && LA2_0<='T')||(LA2_0>='V' && LA2_0<='[')||LA2_0=='^'||LA2_0=='`'||LA2_0=='|'||(LA2_0>='~' && LA2_0<='\uFFFF')) ) {s = 37;}
 
                         if ( s>=0 ) return s;
                         break;

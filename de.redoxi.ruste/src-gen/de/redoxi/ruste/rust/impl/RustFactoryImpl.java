@@ -80,6 +80,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.FLOAT_LIT: return createFloatLit();
       case RustPackage.INT_LIT: return createIntLit();
       case RustPackage.DEC_INT_LIT: return createDecIntLit();
+      case RustPackage.BIN_INT_LIT: return createBinIntLit();
+      case RustPackage.OCT_INT_LIT: return createOctIntLit();
+      case RustPackage.HEX_INT_LIT: return createHexIntLit();
       case RustPackage.UNICODE_CHAR: return createUnicodeChar();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -287,6 +290,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     DecIntLitImpl decIntLit = new DecIntLitImpl();
     return decIntLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BinIntLit createBinIntLit()
+  {
+    BinIntLitImpl binIntLit = new BinIntLitImpl();
+    return binIntLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OctIntLit createOctIntLit()
+  {
+    OctIntLitImpl octIntLit = new OctIntLitImpl();
+    return octIntLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public HexIntLit createHexIntLit()
+  {
+    HexIntLitImpl hexIntLit = new HexIntLitImpl();
+    return hexIntLit;
   }
 
   /**
