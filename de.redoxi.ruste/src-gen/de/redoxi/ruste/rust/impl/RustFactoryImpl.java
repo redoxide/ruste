@@ -72,6 +72,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.ITEM_AND_ATTRS: return createItemAndAttrs();
       case RustPackage.ITEM: return createItem();
       case RustPackage.MOD_ITEM: return createModItem();
+      case RustPackage.LITERAL: return createLiteral();
+      case RustPackage.CHAR_LIT: return createCharLit();
+      case RustPackage.ESCAPED_CHAR: return createEscapedChar();
+      case RustPackage.UNICODE_CHAR: return createUnicodeChar();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -163,6 +167,50 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ModItemImpl modItem = new ModItemImpl();
     return modItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Literal createLiteral()
+  {
+    LiteralImpl literal = new LiteralImpl();
+    return literal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CharLit createCharLit()
+  {
+    CharLitImpl charLit = new CharLitImpl();
+    return charLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EscapedChar createEscapedChar()
+  {
+    EscapedCharImpl escapedChar = new EscapedCharImpl();
+    return escapedChar;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UnicodeChar createUnicodeChar()
+  {
+    UnicodeCharImpl unicodeChar = new UnicodeCharImpl();
+    return unicodeChar;
   }
 
   /**

@@ -12,7 +12,6 @@ import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
 
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 
 @Singleton
 public class RustGrammarAccess extends AbstractGrammarElementFinder {
@@ -160,16 +159,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cIdentIDENTTerminalRuleCall_0_0 = (RuleCall)cIdentAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cDigitOneKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValueLiteralParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//// An attribute with a literal value
 		//LiteralAttr:
-		//	ident=IDENT "=" // TODO Literal (value = Literal)
-		//	"1";
+		//	ident=IDENT "=" value=Literal;
 		public ParserRule getRule() { return rule; }
 
-		//ident=IDENT "=" // TODO Literal (value = Literal)
-		//"1"
+		//ident=IDENT "=" value=Literal
 		public Group getGroup() { return cGroup; }
 
 		//ident=IDENT
@@ -181,42 +179,40 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//// TODO Literal (value = Literal)
-		//"1"
-		public Keyword getDigitOneKeyword_2() { return cDigitOneKeyword_2; }
+		//value=Literal
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+
+		//Literal
+		public RuleCall getValueLiteralParserRuleCall_2_0() { return cValueLiteralParserRuleCall_2_0; }
 	}
 
 	public class ItemAndAttrsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ItemAndAttrs");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cItemAndAttrsAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cAttrsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAttrsItemAttrParserRuleCall_1_0 = (RuleCall)cAttrsAssignment_1.eContents().get(0);
-		private final Assignment cItemAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cItemItemParserRuleCall_2_0 = (RuleCall)cItemAssignment_2.eContents().get(0);
+		private final Assignment cAttrsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cAttrsItemAttrParserRuleCall_0_0 = (RuleCall)cAttrsAssignment_0.eContents().get(0);
+		private final Assignment cItemAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cItemItemParserRuleCall_1_0 = (RuleCall)cItemAssignment_1.eContents().get(0);
 		
 		//// An item and any associated attributes
 		//ItemAndAttrs:
-		//	{ItemAndAttrs} attrs+=ItemAttr* item=Item;
+		//	attrs+=ItemAttr* item=Item;
 		public ParserRule getRule() { return rule; }
 
-		//{ItemAndAttrs} attrs+=ItemAttr* item=Item
+		//attrs+=ItemAttr* item=Item
 		public Group getGroup() { return cGroup; }
 
-		//{ItemAndAttrs}
-		public Action getItemAndAttrsAction_0() { return cItemAndAttrsAction_0; }
-
 		//attrs+=ItemAttr*
-		public Assignment getAttrsAssignment_1() { return cAttrsAssignment_1; }
+		public Assignment getAttrsAssignment_0() { return cAttrsAssignment_0; }
 
 		//ItemAttr
-		public RuleCall getAttrsItemAttrParserRuleCall_1_0() { return cAttrsItemAttrParserRuleCall_1_0; }
+		public RuleCall getAttrsItemAttrParserRuleCall_0_0() { return cAttrsItemAttrParserRuleCall_0_0; }
 
 		//item=Item
-		public Assignment getItemAssignment_2() { return cItemAssignment_2; }
+		public Assignment getItemAssignment_1() { return cItemAssignment_1; }
 
 		//Item
-		public RuleCall getItemItemParserRuleCall_2_0() { return cItemItemParserRuleCall_2_0; }
+		public RuleCall getItemItemParserRuleCall_1_0() { return cItemItemParserRuleCall_1_0; }
 	}
 
 	public class ItemElements extends AbstractParserRuleElementFinder {
@@ -277,6 +273,284 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		/// * body = Mod * / "}"
 		public Keyword getRightCurlyBracketKeyword_2_1_1() { return cRightCurlyBracketKeyword_2_1_1; }
 	}
+
+	public class LiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Literal");
+		private final RuleCall cCharLitParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//// Literal value
+		//Literal: // TODO | StringLit | NumberLit
+		//	CharLit;
+		public ParserRule getRule() { return rule; }
+
+		//// TODO | StringLit | NumberLit
+		//CharLit
+		public RuleCall getCharLitParserRuleCall() { return cCharLitParserRuleCall; }
+	}
+
+	public class CharLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CharLit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cApostropheKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cCharAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cCharNON_SINGLE_QUOTETerminalRuleCall_1_0_0 = (RuleCall)cCharAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cReverseSolidusKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final Assignment cCharAssignment_1_1_1_0 = (Assignment)cAlternatives_1_1_1.eContents().get(0);
+		private final Keyword cCharApostropheKeyword_1_1_1_0_0 = (Keyword)cCharAssignment_1_1_1_0.eContents().get(0);
+		private final Assignment cEscapedCharAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
+		private final RuleCall cEscapedCharEscapedCharParserRuleCall_1_1_1_1_0 = (RuleCall)cEscapedCharAssignment_1_1_1_1.eContents().get(0);
+		private final Keyword cApostropheKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//// Single character literal
+		//CharLit:
+		//	"\'" (char=NON_SINGLE_QUOTE | "\\" (char="\'" | escapedChar=EscapedChar)) "\'";
+		public ParserRule getRule() { return rule; }
+
+		//"\'" (char=NON_SINGLE_QUOTE | "\\" (char="\'" | escapedChar=EscapedChar)) "\'"
+		public Group getGroup() { return cGroup; }
+
+		//"\'"
+		public Keyword getApostropheKeyword_0() { return cApostropheKeyword_0; }
+
+		//char=NON_SINGLE_QUOTE | "\\" (char="\'" | escapedChar=EscapedChar)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//char=NON_SINGLE_QUOTE
+		public Assignment getCharAssignment_1_0() { return cCharAssignment_1_0; }
+
+		//NON_SINGLE_QUOTE
+		public RuleCall getCharNON_SINGLE_QUOTETerminalRuleCall_1_0_0() { return cCharNON_SINGLE_QUOTETerminalRuleCall_1_0_0; }
+
+		//"\\" (char="\'" | escapedChar=EscapedChar)
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"\\"
+		public Keyword getReverseSolidusKeyword_1_1_0() { return cReverseSolidusKeyword_1_1_0; }
+
+		//char="\'" | escapedChar=EscapedChar
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+
+		//char="\'"
+		public Assignment getCharAssignment_1_1_1_0() { return cCharAssignment_1_1_1_0; }
+
+		//"\'"
+		public Keyword getCharApostropheKeyword_1_1_1_0_0() { return cCharApostropheKeyword_1_1_1_0_0; }
+
+		//escapedChar=EscapedChar
+		public Assignment getEscapedCharAssignment_1_1_1_1() { return cEscapedCharAssignment_1_1_1_1; }
+
+		//EscapedChar
+		public RuleCall getEscapedCharEscapedCharParserRuleCall_1_1_1_1_0() { return cEscapedCharEscapedCharParserRuleCall_1_1_1_1_0; }
+
+		//"\'"
+		public Keyword getApostropheKeyword_2() { return cApostropheKeyword_2; }
+	}
+
+	public class EscapedCharElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EscapedChar");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cEscapedCharAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cCharAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final Alternatives cCharAlternatives_0_1_0 = (Alternatives)cCharAssignment_0_1.eContents().get(0);
+		private final Keyword cCharReverseSolidusKeyword_0_1_0_0 = (Keyword)cCharAlternatives_0_1_0.eContents().get(0);
+		private final Keyword cCharNKeyword_0_1_0_1 = (Keyword)cCharAlternatives_0_1_0.eContents().get(1);
+		private final Keyword cCharRKeyword_0_1_0_2 = (Keyword)cCharAlternatives_0_1_0.eContents().get(2);
+		private final Keyword cCharTKeyword_0_1_0_3 = (Keyword)cCharAlternatives_0_1_0.eContents().get(3);
+		private final Keyword cChar0Keyword_0_1_0_4 = (Keyword)cCharAlternatives_0_1_0.eContents().get(4);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cUnicodeCharAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cXKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cDigitsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_1_2_0 = (RuleCall)cDigitsAssignment_1_2.eContents().get(0);
+		private final Assignment cDigitsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_1_3_0 = (RuleCall)cDigitsAssignment_1_3.eContents().get(0);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cUnicodeCharAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Keyword cUKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cDigitsAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_2_2_0 = (RuleCall)cDigitsAssignment_2_2.eContents().get(0);
+		private final Assignment cDigitsAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_2_3_0 = (RuleCall)cDigitsAssignment_2_3.eContents().get(0);
+		private final Assignment cDigitsAssignment_2_4 = (Assignment)cGroup_2.eContents().get(4);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_2_4_0 = (RuleCall)cDigitsAssignment_2_4.eContents().get(0);
+		private final Assignment cDigitsAssignment_2_5 = (Assignment)cGroup_2.eContents().get(5);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_2_5_0 = (RuleCall)cDigitsAssignment_2_5.eContents().get(0);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Action cUnicodeCharAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Keyword cUKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cDigitsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_2_0 = (RuleCall)cDigitsAssignment_3_2.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_3_0 = (RuleCall)cDigitsAssignment_3_3.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_4 = (Assignment)cGroup_3.eContents().get(4);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_4_0 = (RuleCall)cDigitsAssignment_3_4.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_5_0 = (RuleCall)cDigitsAssignment_3_5.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_6 = (Assignment)cGroup_3.eContents().get(6);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_6_0 = (RuleCall)cDigitsAssignment_3_6.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_7 = (Assignment)cGroup_3.eContents().get(7);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_7_0 = (RuleCall)cDigitsAssignment_3_7.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_8 = (Assignment)cGroup_3.eContents().get(8);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_8_0 = (RuleCall)cDigitsAssignment_3_8.eContents().get(0);
+		private final Assignment cDigitsAssignment_3_9 = (Assignment)cGroup_3.eContents().get(9);
+		private final RuleCall cDigitsHEX_DIGITTerminalRuleCall_3_9_0 = (RuleCall)cDigitsAssignment_3_9.eContents().get(0);
+		
+		//EscapedChar:
+		//	{EscapedChar} char=("\\" | "n" | "r" | "t" | "0") | {UnicodeChar} "x" digits+=HEX_DIGIT digits+=HEX_DIGIT |
+		//	{UnicodeChar} "u" digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT | {UnicodeChar} "U"
+		//	digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+		//	digits+=HEX_DIGIT digits+=HEX_DIGIT;
+		public ParserRule getRule() { return rule; }
+
+		//{EscapedChar} char=("\\" | "n" | "r" | "t" | "0") | {UnicodeChar} "x" digits+=HEX_DIGIT digits+=HEX_DIGIT |
+		//{UnicodeChar} "u" digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT | {UnicodeChar} "U"
+		//digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+		//digits+=HEX_DIGIT digits+=HEX_DIGIT
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{EscapedChar} char=("\\" | "n" | "r" | "t" | "0")
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{EscapedChar}
+		public Action getEscapedCharAction_0_0() { return cEscapedCharAction_0_0; }
+
+		//char=("\\" | "n" | "r" | "t" | "0")
+		public Assignment getCharAssignment_0_1() { return cCharAssignment_0_1; }
+
+		//"\\" | "n" | "r" | "t" | "0"
+		public Alternatives getCharAlternatives_0_1_0() { return cCharAlternatives_0_1_0; }
+
+		//"\\"
+		public Keyword getCharReverseSolidusKeyword_0_1_0_0() { return cCharReverseSolidusKeyword_0_1_0_0; }
+
+		//"n"
+		public Keyword getCharNKeyword_0_1_0_1() { return cCharNKeyword_0_1_0_1; }
+
+		//"r"
+		public Keyword getCharRKeyword_0_1_0_2() { return cCharRKeyword_0_1_0_2; }
+
+		//"t"
+		public Keyword getCharTKeyword_0_1_0_3() { return cCharTKeyword_0_1_0_3; }
+
+		//"0"
+		public Keyword getChar0Keyword_0_1_0_4() { return cChar0Keyword_0_1_0_4; }
+
+		//{UnicodeChar} "x" digits+=HEX_DIGIT digits+=HEX_DIGIT
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{UnicodeChar}
+		public Action getUnicodeCharAction_1_0() { return cUnicodeCharAction_1_0; }
+
+		//"x"
+		public Keyword getXKeyword_1_1() { return cXKeyword_1_1; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_1_2() { return cDigitsAssignment_1_2; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_1_2_0() { return cDigitsHEX_DIGITTerminalRuleCall_1_2_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_1_3() { return cDigitsAssignment_1_3; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_1_3_0() { return cDigitsHEX_DIGITTerminalRuleCall_1_3_0; }
+
+		//{UnicodeChar} "u" digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+		public Group getGroup_2() { return cGroup_2; }
+
+		//{UnicodeChar}
+		public Action getUnicodeCharAction_2_0() { return cUnicodeCharAction_2_0; }
+
+		//"u"
+		public Keyword getUKeyword_2_1() { return cUKeyword_2_1; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_2_2() { return cDigitsAssignment_2_2; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_2_2_0() { return cDigitsHEX_DIGITTerminalRuleCall_2_2_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_2_3() { return cDigitsAssignment_2_3; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_2_3_0() { return cDigitsHEX_DIGITTerminalRuleCall_2_3_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_2_4() { return cDigitsAssignment_2_4; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_2_4_0() { return cDigitsHEX_DIGITTerminalRuleCall_2_4_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_2_5() { return cDigitsAssignment_2_5; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_2_5_0() { return cDigitsHEX_DIGITTerminalRuleCall_2_5_0; }
+
+		//{UnicodeChar} "U" digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+		//digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+		public Group getGroup_3() { return cGroup_3; }
+
+		//{UnicodeChar}
+		public Action getUnicodeCharAction_3_0() { return cUnicodeCharAction_3_0; }
+
+		//"U"
+		public Keyword getUKeyword_3_1() { return cUKeyword_3_1; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_2() { return cDigitsAssignment_3_2; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_2_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_2_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_3() { return cDigitsAssignment_3_3; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_3_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_3_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_4() { return cDigitsAssignment_3_4; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_4_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_4_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_5() { return cDigitsAssignment_3_5; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_5_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_5_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_6() { return cDigitsAssignment_3_6; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_6_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_6_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_7() { return cDigitsAssignment_3_7; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_7_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_7_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_8() { return cDigitsAssignment_3_8; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_8_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_8_0; }
+
+		//digits+=HEX_DIGIT
+		public Assignment getDigitsAssignment_3_9() { return cDigitsAssignment_3_9; }
+
+		//HEX_DIGIT
+		public RuleCall getDigitsHEX_DIGITTerminalRuleCall_3_9_0() { return cDigitsHEX_DIGITTerminalRuleCall_3_9_0; }
+	}
 	
 	
 	private CrateElements pCrate;
@@ -287,19 +561,20 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ItemAndAttrsElements pItemAndAttrs;
 	private ItemElements pItem;
 	private ModItemElements pModItem;
+	private LiteralElements pLiteral;
+	private CharLitElements pCharLit;
+	private EscapedCharElements pEscapedChar;
+	private TerminalRule tHEX_DIGIT;
 	private TerminalRule tXID_START;
 	private TerminalRule tXID_CONTINUE;
 	private TerminalRule tIDENT;
+	private TerminalRule tNON_SINGLE_QUOTE;
 	
 	private final Grammar grammar;
 
-	private TerminalsGrammarAccess gaTerminals;
-
 	@Inject
-	public RustGrammarAccess(GrammarProvider grammarProvider,
-		TerminalsGrammarAccess gaTerminals) {
+	public RustGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.gaTerminals = gaTerminals;
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -323,10 +598,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return grammar;
 	}
 	
-
-	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
-		return gaTerminals;
-	}
 
 	
 	//// Top level crate and its implicit module
@@ -375,8 +646,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// An attribute with a literal value
 	//LiteralAttr:
-	//	ident=IDENT "=" // TODO Literal (value = Literal)
-	//	"1";
+	//	ident=IDENT "=" value=Literal;
 	public LiteralAttrElements getLiteralAttrAccess() {
 		return (pLiteralAttr != null) ? pLiteralAttr : (pLiteralAttr = new LiteralAttrElements());
 	}
@@ -387,7 +657,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// An item and any associated attributes
 	//ItemAndAttrs:
-	//	{ItemAndAttrs} attrs+=ItemAttr* item=Item;
+	//	attrs+=ItemAttr* item=Item;
 	public ItemAndAttrsElements getItemAndAttrsAccess() {
 		return (pItemAndAttrs != null) ? pItemAndAttrs : (pItemAndAttrs = new ItemAndAttrsElements());
 	}
@@ -418,6 +688,47 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getModItemAccess().getRule();
 	}
 
+	//// Literal value
+	//Literal: // TODO | StringLit | NumberLit
+	//	CharLit;
+	public LiteralElements getLiteralAccess() {
+		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
+	}
+	
+	public ParserRule getLiteralRule() {
+		return getLiteralAccess().getRule();
+	}
+
+	//// Single character literal
+	//CharLit:
+	//	"\'" (char=NON_SINGLE_QUOTE | "\\" (char="\'" | escapedChar=EscapedChar)) "\'";
+	public CharLitElements getCharLitAccess() {
+		return (pCharLit != null) ? pCharLit : (pCharLit = new CharLitElements());
+	}
+	
+	public ParserRule getCharLitRule() {
+		return getCharLitAccess().getRule();
+	}
+
+	//EscapedChar:
+	//	{EscapedChar} char=("\\" | "n" | "r" | "t" | "0") | {UnicodeChar} "x" digits+=HEX_DIGIT digits+=HEX_DIGIT |
+	//	{UnicodeChar} "u" digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT | {UnicodeChar} "U"
+	//	digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT
+	//	digits+=HEX_DIGIT digits+=HEX_DIGIT;
+	public EscapedCharElements getEscapedCharAccess() {
+		return (pEscapedChar != null) ? pEscapedChar : (pEscapedChar = new EscapedCharElements());
+	}
+	
+	public ParserRule getEscapedCharRule() {
+		return getEscapedCharAccess().getRule();
+	}
+
+	//terminal HEX_DIGIT:
+	//	"0".."9" | "a".."f" | "A".."F";
+	public TerminalRule getHEX_DIGITRule() {
+		return (tHEX_DIGIT != null) ? tHEX_DIGIT : (tHEX_DIGIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_DIGIT"));
+	} 
+
 	//// TODO Expand
 	//terminal fragment XID_START:
 	//	"a".."z";
@@ -438,46 +749,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return (tIDENT != null) ? tIDENT : (tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT"));
 	} 
 
-	//terminal ID:
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
-	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
-	} 
-
-	//terminal INT returns ecore::EInt:
-	//	"0".."9"+;
-	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
-	} 
-
-	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
-	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
-	} 
-
-	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
-	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
-	} 
-
-	//terminal SL_COMMENT:
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
-	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
-	} 
-
-	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
-	public TerminalRule getWSRule() {
-		return gaTerminals.getWSRule();
-	} 
-
-	//terminal ANY_OTHER:
-	//	.;
-	public TerminalRule getANY_OTHERRule() {
-		return gaTerminals.getANY_OTHERRule();
+	//terminal NON_SINGLE_QUOTE:
+	//	!"\'";
+	public TerminalRule getNON_SINGLE_QUOTERule() {
+		return (tNON_SINGLE_QUOTE != null) ? tNON_SINGLE_QUOTE : (tNON_SINGLE_QUOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NON_SINGLE_QUOTE"));
 	} 
 }

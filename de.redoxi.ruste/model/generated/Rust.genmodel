@@ -19,7 +19,9 @@
     <genClasses ecoreClass="Rust.ecore#//AttrWithList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//AttrWithList/attrs"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//LiteralAttr"/>
+    <genClasses ecoreClass="Rust.ecore#//LiteralAttr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LiteralAttr/value"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ItemAndAttrs">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/item"/>
@@ -27,6 +29,17 @@
     <genClasses ecoreClass="Rust.ecore#//Item"/>
     <genClasses ecoreClass="Rust.ecore#//ModItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/ident"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Literal"/>
+    <genClasses ecoreClass="Rust.ecore#//CharLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//CharLit/char"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//CharLit/escapedChar"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//EscapedChar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EscapedChar/char"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnicodeChar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UnicodeChar/digits"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

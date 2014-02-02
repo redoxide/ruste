@@ -95,6 +95,42 @@ public interface RustFactory extends EFactory
   ModItem createModItem();
 
   /**
+   * Returns a new object of class '<em>Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Literal</em>'.
+   * @generated
+   */
+  Literal createLiteral();
+
+  /**
+   * Returns a new object of class '<em>Char Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Char Lit</em>'.
+   * @generated
+   */
+  CharLit createCharLit();
+
+  /**
+   * Returns a new object of class '<em>Escaped Char</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Escaped Char</em>'.
+   * @generated
+   */
+  EscapedChar createEscapedChar();
+
+  /**
+   * Returns a new object of class '<em>Unicode Char</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unicode Char</em>'.
+   * @generated
+   */
+  UnicodeChar createUnicodeChar();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

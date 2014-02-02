@@ -3,12 +3,15 @@ package de.redoxi.ruste.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import de.redoxi.ruste.rust.AttrWithList;
+import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.EscapedChar;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.UnicodeChar;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -37,9 +40,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.CHAR_LIT:
+				if(context == grammarAccess.getCharLitRule() ||
+				   context == grammarAccess.getLiteralRule()) {
+					sequence_CharLit(context, (CharLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.CRATE:
 				if(context == grammarAccess.getCrateRule()) {
 					sequence_Crate(context, (Crate) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.ESCAPED_CHAR:
+				if(context == grammarAccess.getEscapedCharRule()) {
+					sequence_EscapedChar(context, (EscapedChar) semanticObject); 
 					return; 
 				}
 				else break;
@@ -69,6 +85,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.UNICODE_CHAR:
+				if(context == grammarAccess.getEscapedCharRule()) {
+					sequence_EscapedChar(context, (UnicodeChar) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
@@ -84,9 +106,49 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (char=NON_SINGLE_QUOTE | char=''' | escapedChar=EscapedChar)
+	 */
+	protected void sequence_CharLit(EObject context, CharLit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     items+=ItemAndAttrs*
 	 */
 	protected void sequence_Crate(EObject context, Crate semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (char='\' | char='n' | char='r' | char='t' | char='0')
+	 */
+	protected void sequence_EscapedChar(EObject context, EscapedChar semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (digits+=HEX_DIGIT digits+=HEX_DIGIT) | 
+	 *         (digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT digits+=HEX_DIGIT) | 
+	 *         (
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT 
+	 *             digits+=HEX_DIGIT
+	 *         )
+	 *     )
+	 */
+	protected void sequence_EscapedChar(EObject context, UnicodeChar semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -111,16 +173,19 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ident=IDENT
+	 *     (ident=IDENT value=Literal)
 	 */
 	protected void sequence_LiteralAttr(EObject context, LiteralAttr semanticObject) {
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.ATTR__IDENT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.ATTR__IDENT));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LITERAL_ATTR__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LITERAL_ATTR__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getLiteralAttrAccess().getIdentIDENTTerminalRuleCall_0_0(), semanticObject.getIdent());
+		feeder.accept(grammarAccess.getLiteralAttrAccess().getValueLiteralParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

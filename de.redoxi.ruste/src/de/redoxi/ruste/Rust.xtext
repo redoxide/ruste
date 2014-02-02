@@ -1,5 +1,4 @@
 grammar de.redoxi.ruste.Rust 
-	with org.eclipse.xtext.common.Terminals
 
 generate rust "http://www.redoxi.de/ruste/grammar/Rust"
 
@@ -7,12 +6,12 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // Top level crate and its implicit module
 Crate:
-	(items += ItemAndAttrs)*
+	items+=ItemAndAttrs*
 ;
 
 // Attribute for an item
 ItemAttr:
-	'#[' attrs += Attr (',' attrs += Attr)* ']'
+	'#[' attrs+=Attr (',' attrs+=Attr)* ']'
 ;
 
 // Individual attribute within an item
@@ -23,17 +22,17 @@ Attr:
 
 // Attribute with a list of other attributes
 AttrWithList:
-	ident = IDENT '(' attrs += Attr (',' attrs += Attr)* ')'
+	ident=IDENT '(' attrs+=Attr (',' attrs+=Attr)* ')'
 ;
 
 // An attribute with a literal value
 LiteralAttr:
-	ident = IDENT '=' '1' // TODO Literal (value = Literal)
+	ident=IDENT '=' value=Literal
 ;
 
 // An item and any associated attributes
 ItemAndAttrs:
-	{ItemAndAttrs} (attrs += ItemAttr)* item = Item
+	attrs+=ItemAttr* item=Item
 ;
 
 // Items within a module or crate
@@ -43,9 +42,30 @@ Item:
 
 // A module declaration item
 ModItem:
-	"mod" ident = IDENT (';' | '{' /* body = Mod */ '}')
+	"mod" ident=IDENT (';' | '{' /* body = Mod */ '}')
 ;
+
+// Literal value
+Literal:
+	CharLit // TODO | StringLit | NumberLit
+;
+
+// Single character literal
+CharLit:
+	'\'' (char = NON_SINGLE_QUOTE | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
+;
+
+EscapedChar:
+	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
+	{UnicodeChar} 'x' (digits += HEX_DIGIT) (digits += HEX_DIGIT) |
+	{UnicodeChar} 'u' (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) |
+	{UnicodeChar} 'U' (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT) (digits += HEX_DIGIT)
+;
+
+terminal HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 
 terminal fragment XID_START: 'a'..'z'; // TODO Expand
 terminal fragment XID_CONTINUE: 'a'..'z' | '_'; // TODO Expand
 terminal IDENT: XID_START XID_CONTINUE*;
+
+terminal NON_SINGLE_QUOTE: !'\'';

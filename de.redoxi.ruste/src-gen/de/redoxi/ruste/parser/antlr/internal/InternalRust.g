@@ -334,11 +334,25 @@ ruleLiteralAttr returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getLiteralAttrAccess().getEqualsSignKeyword_1());
     }
-	otherlv_2='1' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getLiteralAttrAccess().getDigitOneKeyword_2());
-    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLiteralAttrAccess().getValueLiteralParserRuleCall_2_0()); 
+	    }
+		lv_value_2_0=ruleLiteral		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLiteralAttrRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_2_0, 
+        		"Literal");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))
 ;
 
 
@@ -360,24 +374,18 @@ ruleItemAndAttrs returns [EObject current=null]
     }
     @after { leaveRule(); }:
 ((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getItemAndAttrsAccess().getItemAndAttrsAction_0(),
-            $current);
-    }
-)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getItemAndAttrsAccess().getAttrsItemAttrParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getItemAndAttrsAccess().getAttrsItemAttrParserRuleCall_0_0()); 
 	    }
-		lv_attrs_1_0=ruleItemAttr		{
+		lv_attrs_0_0=ruleItemAttr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getItemAndAttrsRule());
 	        }
        		add(
        			$current, 
        			"attrs",
-        		lv_attrs_1_0, 
+        		lv_attrs_0_0, 
         		"ItemAttr");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -386,16 +394,16 @@ ruleItemAndAttrs returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getItemAndAttrsAccess().getItemItemParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getItemAndAttrsAccess().getItemItemParserRuleCall_1_0()); 
 	    }
-		lv_item_2_0=ruleItem		{
+		lv_item_1_0=ruleItem		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getItemAndAttrsRule());
 	        }
        		set(
        			$current, 
        			"item",
-        		lv_item_2_0, 
+        		lv_item_1_0, 
         		"Item");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -494,24 +502,508 @@ ruleModItem returns [EObject current=null]
 
 
 
+// Entry rule entryRuleLiteral
+entryRuleLiteral returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLiteralRule()); }
+	 iv_ruleLiteral=ruleLiteral 
+	 { $current=$iv_ruleLiteral.current; } 
+	 EOF 
+;
+
+// Rule Literal
+ruleLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+
+    { 
+        newCompositeNode(grammarAccess.getLiteralAccess().getCharLitParserRuleCall()); 
+    }
+    this_CharLit_0=ruleCharLit
+    { 
+        $current = $this_CharLit_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+;
+
+
+
+
+
+// Entry rule entryRuleCharLit
+entryRuleCharLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCharLitRule()); }
+	 iv_ruleCharLit=ruleCharLit 
+	 { $current=$iv_ruleCharLit.current; } 
+	 EOF 
+;
+
+// Rule CharLit
+ruleCharLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='\'' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getCharLitAccess().getApostropheKeyword_0());
+    }
+((
+(
+		lv_char_1_0=RULE_NON_SINGLE_QUOTE
+		{
+			newLeafNode(lv_char_1_0, grammarAccess.getCharLitAccess().getCharNON_SINGLE_QUOTETerminalRuleCall_1_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCharLitRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"char",
+        		lv_char_1_0, 
+        		"NON_SINGLE_QUOTE");
+	    }
+
+)
+)
+    |(	otherlv_2='\\' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getCharLitAccess().getReverseSolidusKeyword_1_1_0());
+    }
+((
+(
+		lv_char_3_0=	'\'' 
+    {
+        newLeafNode(lv_char_3_0, grammarAccess.getCharLitAccess().getCharApostropheKeyword_1_1_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCharLitRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_3_0, "\'");
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCharLitAccess().getEscapedCharEscapedCharParserRuleCall_1_1_1_1_0()); 
+	    }
+		lv_escapedChar_4_0=ruleEscapedChar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCharLitRule());
+	        }
+       		set(
+       			$current, 
+       			"escapedChar",
+        		lv_escapedChar_4_0, 
+        		"EscapedChar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))))	otherlv_5='\'' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getCharLitAccess().getApostropheKeyword_2());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleEscapedChar
+entryRuleEscapedChar returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEscapedCharRule()); }
+	 iv_ruleEscapedChar=ruleEscapedChar 
+	 { $current=$iv_ruleEscapedChar.current; } 
+	 EOF 
+;
+
+// Rule EscapedChar
+ruleEscapedChar returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getEscapedCharAccess().getEscapedCharAction_0_0(),
+            $current);
+    }
+)(
+(
+(
+		lv_char_1_1=	'\\' 
+    {
+        newLeafNode(lv_char_1_1, grammarAccess.getEscapedCharAccess().getCharReverseSolidusKeyword_0_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_1, null);
+	    }
+
+    |		lv_char_1_2=	'n' 
+    {
+        newLeafNode(lv_char_1_2, grammarAccess.getEscapedCharAccess().getCharNKeyword_0_1_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_2, null);
+	    }
+
+    |		lv_char_1_3=	'r' 
+    {
+        newLeafNode(lv_char_1_3, grammarAccess.getEscapedCharAccess().getCharRKeyword_0_1_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_3, null);
+	    }
+
+    |		lv_char_1_4=	't' 
+    {
+        newLeafNode(lv_char_1_4, grammarAccess.getEscapedCharAccess().getCharTKeyword_0_1_0_3());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_4, null);
+	    }
+
+    |		lv_char_1_5=	'0' 
+    {
+        newLeafNode(lv_char_1_5, grammarAccess.getEscapedCharAccess().getChar0Keyword_0_1_0_4());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		setWithLastConsumed($current, "char", lv_char_1_5, null);
+	    }
+
+)
+
+)
+))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getEscapedCharAccess().getUnicodeCharAction_1_0(),
+            $current);
+    }
+)	otherlv_3='x' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getEscapedCharAccess().getXKeyword_1_1());
+    }
+(
+(
+		lv_digits_4_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_4_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_1_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_4_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_5_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_5_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_1_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_5_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getEscapedCharAccess().getUnicodeCharAction_2_0(),
+            $current);
+    }
+)	otherlv_7='u' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getEscapedCharAccess().getUKeyword_2_1());
+    }
+(
+(
+		lv_digits_8_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_8_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_2_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_8_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_9_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_9_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_2_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_9_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_10_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_10_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_2_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_10_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_11_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_11_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_2_5_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_11_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getEscapedCharAccess().getUnicodeCharAction_3_0(),
+            $current);
+    }
+)	otherlv_13='U' 
+    {
+    	newLeafNode(otherlv_13, grammarAccess.getEscapedCharAccess().getUKeyword_3_1());
+    }
+(
+(
+		lv_digits_14_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_14_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_14_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_15_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_15_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_15_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_16_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_16_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_16_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_17_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_17_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_5_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_17_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_18_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_18_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_6_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_18_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_19_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_19_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_7_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_19_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_20_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_20_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_8_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_20_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)(
+(
+		lv_digits_21_0=RULE_HEX_DIGIT
+		{
+			newLeafNode(lv_digits_21_0, grammarAccess.getEscapedCharAccess().getDigitsHEX_DIGITTerminalRuleCall_3_9_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEscapedCharRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"digits",
+        		lv_digits_21_0, 
+        		"HEX_DIGIT");
+	    }
+
+)
+)))
+;
+
+
+
+
+
+RULE_HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F');
+
 fragment RULE_XID_START : 'a'..'z';
 
 fragment RULE_XID_CONTINUE : ('a'..'z'|'_');
 
 RULE_IDENT : RULE_XID_START RULE_XID_CONTINUE*;
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-
-RULE_INT : ('0'..'9')+;
-
-RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
-
-RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
-
-RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
-
-RULE_WS : (' '|'\t'|'\r'|'\n')+;
-
-RULE_ANY_OTHER : .;
+RULE_NON_SINGLE_QUOTE : ~('\'');
 
 
