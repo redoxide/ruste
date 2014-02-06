@@ -695,8 +695,59 @@ ruleFnItem returns [EObject current=null]
 	    }
 
 )
-))?)
+))?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFnItemAccess().getBodyBlockParserRuleCall_7_0()); 
+	    }
+		lv_body_14_0=ruleBlock		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFnItemRule());
+	        }
+       		set(
+       			$current, 
+       			"body",
+        		lv_body_14_0, 
+        		"Block");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
+
+
+
+
+
+// Entry rule entryRuleBlock
+entryRuleBlock returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBlockRule()); } 
+	 iv_ruleBlock=ruleBlock 
+	 { $current=$iv_ruleBlock.current.getText(); }  
+	 EOF 
+;
+
+// Rule Block
+ruleBlock returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='{' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getBlockAccess().getLeftCurlyBracketKeyword_0()); 
+    }
+
+	kw='}' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getBlockAccess().getRightCurlyBracketKeyword_1()); 
+    }
+)
+    ;
 
 
 

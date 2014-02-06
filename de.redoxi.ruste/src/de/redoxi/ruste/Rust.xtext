@@ -47,7 +47,11 @@ ModItem:
 
 // Function item
 FnItem:
-	"fn" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '(' (args += Arg (',' args += Arg)*)? ')' ("->" returnType = Type)?
+	"fn" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '(' (args += Arg (',' args += Arg)*)? ')' ("->" returnType = Type)? body = Block
+;
+
+Block:
+	'{' /* TODO Statements, expression */ '}'
 ;
 
 // TODO Crossreference Trait?

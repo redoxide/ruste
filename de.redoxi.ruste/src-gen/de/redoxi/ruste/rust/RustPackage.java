@@ -372,13 +372,22 @@ public interface RustPackage extends EPackage
   int FN_ITEM__RETURN_TYPE = ITEM_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Body</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM__BODY = ITEM_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Fn Item</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FN_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
+  int FN_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.
@@ -962,6 +971,17 @@ public interface RustPackage extends EPackage
   EReference getFnItem_ReturnType();
 
   /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FnItem#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Body</em>'.
+   * @see de.redoxi.ruste.rust.FnItem#getBody()
+   * @see #getFnItem()
+   * @generated
+   */
+  EAttribute getFnItem_Body();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.GenericParamDecl <em>Generic Param Decl</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1383,6 +1403,14 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference FN_ITEM__RETURN_TYPE = eINSTANCE.getFnItem_ReturnType();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FN_ITEM__BODY = eINSTANCE.getFnItem_Body();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.

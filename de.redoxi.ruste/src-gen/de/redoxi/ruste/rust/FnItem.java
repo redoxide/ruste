@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link de.redoxi.ruste.rust.FnItem#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.FnItem#getArgs <em>Args</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.FnItem#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.FnItem#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,5 +82,31 @@ public interface FnItem extends Item
    * @generated
    */
   void setReturnType(Type value);
+
+  /**
+   * Returns the value of the '<em><b>Body</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Body</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Body</em>' attribute.
+   * @see #setBody(String)
+   * @see de.redoxi.ruste.rust.RustPackage#getFnItem_Body()
+   * @model
+   * @generated
+   */
+  String getBody();
+
+  /**
+   * Sets the value of the '{@link de.redoxi.ruste.rust.FnItem#getBody <em>Body</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Body</em>' attribute.
+   * @see #getBody()
+   * @generated
+   */
+  void setBody(String value);
 
 } // FnItem

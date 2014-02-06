@@ -57,6 +57,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFnItemAccess().getGroup_4(), "rule__FnItem__Group_4__0");
 					put(grammarAccess.getFnItemAccess().getGroup_4_1(), "rule__FnItem__Group_4_1__0");
 					put(grammarAccess.getFnItemAccess().getGroup_6(), "rule__FnItem__Group_6__0");
+					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1_2(), "rule__GenericParamDecl__Group_1_2__0");
@@ -85,6 +86,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFnItemAccess().getArgsAssignment_4_0(), "rule__FnItem__ArgsAssignment_4_0");
 					put(grammarAccess.getFnItemAccess().getArgsAssignment_4_1_1(), "rule__FnItem__ArgsAssignment_4_1_1");
 					put(grammarAccess.getFnItemAccess().getReturnTypeAssignment_6_1(), "rule__FnItem__ReturnTypeAssignment_6_1");
+					put(grammarAccess.getFnItemAccess().getBodyAssignment_7(), "rule__FnItem__BodyAssignment_7");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

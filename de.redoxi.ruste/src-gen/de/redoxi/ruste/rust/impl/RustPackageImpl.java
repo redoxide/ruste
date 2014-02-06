@@ -492,6 +492,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFnItem_Body()
+  {
+    return (EAttribute)fnItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getGenericParamDecl()
   {
     return genericParamDeclEClass;
@@ -747,6 +757,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(fnItemEClass, FN_ITEM__PARAMS);
     createEReference(fnItemEClass, FN_ITEM__ARGS);
     createEReference(fnItemEClass, FN_ITEM__RETURN_TYPE);
+    createEAttribute(fnItemEClass, FN_ITEM__BODY);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
     createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__IDENT);
@@ -857,6 +868,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getFnItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Args(), this.getArg(), null, "args", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_ReturnType(), this.getType(), null, "returnType", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFnItem_Body(), ecorePackage.getEString(), "body", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenericParamDecl_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
