@@ -131,25 +131,54 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.FN_ITEM:
+      {
+        FnItem fnItem = (FnItem)theEObject;
+        T result = caseFnItem(fnItem);
+        if (result == null) result = caseItem(fnItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.GENERIC_PARAM_DECL:
+      {
+        GenericParamDecl genericParamDecl = (GenericParamDecl)theEObject;
+        T result = caseGenericParamDecl(genericParamDecl);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.ARG:
+      {
+        Arg arg = (Arg)theEObject;
+        T result = caseArg(arg);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT:
+      {
+        Pat pat = (Pat)theEObject;
+        T result = casePat(pat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.TYPE:
+      {
+        Type type = (Type)theEObject;
+        T result = caseType(type);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PRIMITIVE_TYPE:
+      {
+        PrimitiveType primitiveType = (PrimitiveType)theEObject;
+        T result = casePrimitiveType(primitiveType);
+        if (result == null) result = caseType(primitiveType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.LITERAL:
       {
         Literal literal = (Literal)theEObject;
         T result = caseLiteral(literal);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.CHAR_LIT:
-      {
-        CharLit charLit = (CharLit)theEObject;
-        T result = caseCharLit(charLit);
-        if (result == null) result = caseLiteral(charLit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.ESCAPED_CHAR:
-      {
-        EscapedChar escapedChar = (EscapedChar)theEObject;
-        T result = caseEscapedChar(escapedChar);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -161,84 +190,48 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.FLOAT_LIT:
+      case RustPackage.INT_TYPE:
       {
-        FloatLit floatLit = (FloatLit)theEObject;
-        T result = caseFloatLit(floatLit);
-        if (result == null) result = caseNumberLit(floatLit);
-        if (result == null) result = caseLiteral(floatLit);
+        IntType intType = (IntType)theEObject;
+        T result = caseIntType(intType);
+        if (result == null) result = casePrimitiveType(intType);
+        if (result == null) result = caseType(intType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.INT_LIT:
+      case RustPackage.FLOAT_TYPE:
       {
-        IntLit intLit = (IntLit)theEObject;
-        T result = caseIntLit(intLit);
-        if (result == null) result = caseNumberLit(intLit);
-        if (result == null) result = caseLiteral(intLit);
+        FloatType floatType = (FloatType)theEObject;
+        T result = caseFloatType(floatType);
+        if (result == null) result = casePrimitiveType(floatType);
+        if (result == null) result = caseType(floatType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.DEC_INT_LIT:
+      case RustPackage.BOOL_TYPE:
       {
-        DecIntLit decIntLit = (DecIntLit)theEObject;
-        T result = caseDecIntLit(decIntLit);
-        if (result == null) result = caseIntLit(decIntLit);
-        if (result == null) result = caseNumberLit(decIntLit);
-        if (result == null) result = caseLiteral(decIntLit);
+        BoolType boolType = (BoolType)theEObject;
+        T result = caseBoolType(boolType);
+        if (result == null) result = casePrimitiveType(boolType);
+        if (result == null) result = caseType(boolType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.BIN_INT_LIT:
+      case RustPackage.MACHINE_TYPE:
       {
-        BinIntLit binIntLit = (BinIntLit)theEObject;
-        T result = caseBinIntLit(binIntLit);
-        if (result == null) result = caseIntLit(binIntLit);
-        if (result == null) result = caseNumberLit(binIntLit);
-        if (result == null) result = caseLiteral(binIntLit);
+        MachineType machineType = (MachineType)theEObject;
+        T result = caseMachineType(machineType);
+        if (result == null) result = casePrimitiveType(machineType);
+        if (result == null) result = caseType(machineType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.OCT_INT_LIT:
+      case RustPackage.UNIT_TYPE:
       {
-        OctIntLit octIntLit = (OctIntLit)theEObject;
-        T result = caseOctIntLit(octIntLit);
-        if (result == null) result = caseIntLit(octIntLit);
-        if (result == null) result = caseNumberLit(octIntLit);
-        if (result == null) result = caseLiteral(octIntLit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.HEX_INT_LIT:
-      {
-        HexIntLit hexIntLit = (HexIntLit)theEObject;
-        T result = caseHexIntLit(hexIntLit);
-        if (result == null) result = caseIntLit(hexIntLit);
-        if (result == null) result = caseNumberLit(hexIntLit);
-        if (result == null) result = caseLiteral(hexIntLit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.STRING_LIT:
-      {
-        StringLit stringLit = (StringLit)theEObject;
-        T result = caseStringLit(stringLit);
-        if (result == null) result = caseLiteral(stringLit);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.STRING_CHAR:
-      {
-        StringChar stringChar = (StringChar)theEObject;
-        T result = caseStringChar(stringChar);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.UNICODE_CHAR:
-      {
-        UnicodeChar unicodeChar = (UnicodeChar)theEObject;
-        T result = caseUnicodeChar(unicodeChar);
-        if (result == null) result = caseEscapedChar(unicodeChar);
+        UnitType unitType = (UnitType)theEObject;
+        T result = caseUnitType(unitType);
+        if (result == null) result = casePrimitiveType(unitType);
+        if (result == null) result = caseType(unitType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -375,6 +368,102 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Fn Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Fn Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFnItem(FnItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Generic Param Decl</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Generic Param Decl</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGenericParamDecl(GenericParamDecl object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Arg</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Arg</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseArg(Arg object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePat(Pat object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseType(Type object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrimitiveType(PrimitiveType object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -386,38 +475,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLiteral(Literal object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Char Lit</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Char Lit</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCharLit(CharLit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Escaped Char</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Escaped Char</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEscapedChar(EscapedChar object)
   {
     return null;
   }
@@ -439,145 +496,81 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Float Lit</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Int Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Float Lit</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Int Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFloatLit(FloatLit object)
+  public T caseIntType(IntType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Lit</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Float Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Lit</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Float Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntLit(IntLit object)
+  public T caseFloatType(FloatType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Dec Int Lit</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bool Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Dec Int Lit</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bool Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDecIntLit(DecIntLit object)
+  public T caseBoolType(BoolType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Bin Int Lit</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Machine Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bin Int Lit</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Machine Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBinIntLit(BinIntLit object)
+  public T caseMachineType(MachineType object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Oct Int Lit</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Unit Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Oct Int Lit</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Unit Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOctIntLit(OctIntLit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Hex Int Lit</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Hex Int Lit</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseHexIntLit(HexIntLit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>String Lit</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Lit</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStringLit(StringLit object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>String Char</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Char</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStringChar(StringChar object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Unicode Char</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Unicode Char</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseUnicodeChar(UnicodeChar object)
+  public T caseUnitType(UnitType object)
   {
     return null;
   }

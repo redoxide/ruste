@@ -115,19 +115,39 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createModItemAdapter();
       }
       @Override
+      public Adapter caseFnItem(FnItem object)
+      {
+        return createFnItemAdapter();
+      }
+      @Override
+      public Adapter caseGenericParamDecl(GenericParamDecl object)
+      {
+        return createGenericParamDeclAdapter();
+      }
+      @Override
+      public Adapter caseArg(Arg object)
+      {
+        return createArgAdapter();
+      }
+      @Override
+      public Adapter casePat(Pat object)
+      {
+        return createPatAdapter();
+      }
+      @Override
+      public Adapter caseType(Type object)
+      {
+        return createTypeAdapter();
+      }
+      @Override
+      public Adapter casePrimitiveType(PrimitiveType object)
+      {
+        return createPrimitiveTypeAdapter();
+      }
+      @Override
       public Adapter caseLiteral(Literal object)
       {
         return createLiteralAdapter();
-      }
-      @Override
-      public Adapter caseCharLit(CharLit object)
-      {
-        return createCharLitAdapter();
-      }
-      @Override
-      public Adapter caseEscapedChar(EscapedChar object)
-      {
-        return createEscapedCharAdapter();
       }
       @Override
       public Adapter caseNumberLit(NumberLit object)
@@ -135,49 +155,29 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createNumberLitAdapter();
       }
       @Override
-      public Adapter caseFloatLit(FloatLit object)
+      public Adapter caseIntType(IntType object)
       {
-        return createFloatLitAdapter();
+        return createIntTypeAdapter();
       }
       @Override
-      public Adapter caseIntLit(IntLit object)
+      public Adapter caseFloatType(FloatType object)
       {
-        return createIntLitAdapter();
+        return createFloatTypeAdapter();
       }
       @Override
-      public Adapter caseDecIntLit(DecIntLit object)
+      public Adapter caseBoolType(BoolType object)
       {
-        return createDecIntLitAdapter();
+        return createBoolTypeAdapter();
       }
       @Override
-      public Adapter caseBinIntLit(BinIntLit object)
+      public Adapter caseMachineType(MachineType object)
       {
-        return createBinIntLitAdapter();
+        return createMachineTypeAdapter();
       }
       @Override
-      public Adapter caseOctIntLit(OctIntLit object)
+      public Adapter caseUnitType(UnitType object)
       {
-        return createOctIntLitAdapter();
-      }
-      @Override
-      public Adapter caseHexIntLit(HexIntLit object)
-      {
-        return createHexIntLitAdapter();
-      }
-      @Override
-      public Adapter caseStringLit(StringLit object)
-      {
-        return createStringLitAdapter();
-      }
-      @Override
-      public Adapter caseStringChar(StringChar object)
-      {
-        return createStringCharAdapter();
-      }
-      @Override
-      public Adapter caseUnicodeChar(UnicodeChar object)
-      {
-        return createUnicodeCharAdapter();
+        return createUnitTypeAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -322,6 +322,96 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.FnItem <em>Fn Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.FnItem
+   * @generated
+   */
+  public Adapter createFnItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.GenericParamDecl <em>Generic Param Decl</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.GenericParamDecl
+   * @generated
+   */
+  public Adapter createGenericParamDeclAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Arg <em>Arg</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Arg
+   * @generated
+   */
+  public Adapter createArgAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Pat <em>Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Pat
+   * @generated
+   */
+  public Adapter createPatAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Type
+   * @generated
+   */
+  public Adapter createTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PrimitiveType <em>Primitive Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PrimitiveType
+   * @generated
+   */
+  public Adapter createPrimitiveTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Literal <em>Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -332,36 +422,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.CharLit <em>Char Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.CharLit
-   * @generated
-   */
-  public Adapter createCharLitAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.EscapedChar <em>Escaped Char</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.EscapedChar
-   * @generated
-   */
-  public Adapter createEscapedCharAdapter()
   {
     return null;
   }
@@ -382,136 +442,76 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.FloatLit <em>Float Lit</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.IntType <em>Int Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.FloatLit
+   * @see de.redoxi.ruste.rust.IntType
    * @generated
    */
-  public Adapter createFloatLitAdapter()
+  public Adapter createIntTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.IntLit <em>Int Lit</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.FloatType <em>Float Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.IntLit
+   * @see de.redoxi.ruste.rust.FloatType
    * @generated
    */
-  public Adapter createIntLitAdapter()
+  public Adapter createFloatTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.DecIntLit <em>Dec Int Lit</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BoolType <em>Bool Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.DecIntLit
+   * @see de.redoxi.ruste.rust.BoolType
    * @generated
    */
-  public Adapter createDecIntLitAdapter()
+  public Adapter createBoolTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BinIntLit <em>Bin Int Lit</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.MachineType <em>Machine Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.BinIntLit
+   * @see de.redoxi.ruste.rust.MachineType
    * @generated
    */
-  public Adapter createBinIntLitAdapter()
+  public Adapter createMachineTypeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OctIntLit <em>Oct Int Lit</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.UnitType <em>Unit Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.OctIntLit
+   * @see de.redoxi.ruste.rust.UnitType
    * @generated
    */
-  public Adapter createOctIntLitAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.HexIntLit <em>Hex Int Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.HexIntLit
-   * @generated
-   */
-  public Adapter createHexIntLitAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.StringLit
-   * @generated
-   */
-  public Adapter createStringLitAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StringChar <em>String Char</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.StringChar
-   * @generated
-   */
-  public Adapter createStringCharAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.UnicodeChar <em>Unicode Char</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.UnicodeChar
-   * @generated
-   */
-  public Adapter createUnicodeCharAdapter()
+  public Adapter createUnitTypeAdapter()
   {
     return null;
   }

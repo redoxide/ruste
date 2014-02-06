@@ -5,7 +5,6 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -73,59 +72,21 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.ITEM_AND_ATTRS: return createItemAndAttrs();
       case RustPackage.ITEM: return createItem();
       case RustPackage.MOD_ITEM: return createModItem();
+      case RustPackage.FN_ITEM: return createFnItem();
+      case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
+      case RustPackage.ARG: return createArg();
+      case RustPackage.PAT: return createPat();
+      case RustPackage.TYPE: return createType();
+      case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.LITERAL: return createLiteral();
-      case RustPackage.CHAR_LIT: return createCharLit();
-      case RustPackage.ESCAPED_CHAR: return createEscapedChar();
       case RustPackage.NUMBER_LIT: return createNumberLit();
-      case RustPackage.FLOAT_LIT: return createFloatLit();
-      case RustPackage.INT_LIT: return createIntLit();
-      case RustPackage.DEC_INT_LIT: return createDecIntLit();
-      case RustPackage.BIN_INT_LIT: return createBinIntLit();
-      case RustPackage.OCT_INT_LIT: return createOctIntLit();
-      case RustPackage.HEX_INT_LIT: return createHexIntLit();
-      case RustPackage.STRING_LIT: return createStringLit();
-      case RustPackage.STRING_CHAR: return createStringChar();
-      case RustPackage.UNICODE_CHAR: return createUnicodeChar();
+      case RustPackage.INT_TYPE: return createIntType();
+      case RustPackage.FLOAT_TYPE: return createFloatType();
+      case RustPackage.BOOL_TYPE: return createBoolType();
+      case RustPackage.MACHINE_TYPE: return createMachineType();
+      case RustPackage.UNIT_TYPE: return createUnitType();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case RustPackage.FLOAT_SIZE:
-        return createFloatSizeFromString(eDataType, initialValue);
-      case RustPackage.INT_SIZE:
-        return createIntSizeFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case RustPackage.FLOAT_SIZE:
-        return convertFloatSizeToString(eDataType, instanceValue);
-      case RustPackage.INT_SIZE:
-        return convertIntSizeToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -222,32 +183,76 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public FnItem createFnItem()
+  {
+    FnItemImpl fnItem = new FnItemImpl();
+    return fnItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GenericParamDecl createGenericParamDecl()
+  {
+    GenericParamDeclImpl genericParamDecl = new GenericParamDeclImpl();
+    return genericParamDecl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Arg createArg()
+  {
+    ArgImpl arg = new ArgImpl();
+    return arg;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Pat createPat()
+  {
+    PatImpl pat = new PatImpl();
+    return pat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type createType()
+  {
+    TypeImpl type = new TypeImpl();
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrimitiveType createPrimitiveType()
+  {
+    PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
+    return primitiveType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Literal createLiteral()
   {
     LiteralImpl literal = new LiteralImpl();
     return literal;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public CharLit createCharLit()
-  {
-    CharLitImpl charLit = new CharLitImpl();
-    return charLit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EscapedChar createEscapedChar()
-  {
-    EscapedCharImpl escapedChar = new EscapedCharImpl();
-    return escapedChar;
   }
 
   /**
@@ -266,10 +271,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public FloatLit createFloatLit()
+  public IntType createIntType()
   {
-    FloatLitImpl floatLit = new FloatLitImpl();
-    return floatLit;
+    IntTypeImpl intType = new IntTypeImpl();
+    return intType;
   }
 
   /**
@@ -277,10 +282,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public IntLit createIntLit()
+  public FloatType createFloatType()
   {
-    IntLitImpl intLit = new IntLitImpl();
-    return intLit;
+    FloatTypeImpl floatType = new FloatTypeImpl();
+    return floatType;
   }
 
   /**
@@ -288,10 +293,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DecIntLit createDecIntLit()
+  public BoolType createBoolType()
   {
-    DecIntLitImpl decIntLit = new DecIntLitImpl();
-    return decIntLit;
+    BoolTypeImpl boolType = new BoolTypeImpl();
+    return boolType;
   }
 
   /**
@@ -299,10 +304,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BinIntLit createBinIntLit()
+  public MachineType createMachineType()
   {
-    BinIntLitImpl binIntLit = new BinIntLitImpl();
-    return binIntLit;
+    MachineTypeImpl machineType = new MachineTypeImpl();
+    return machineType;
   }
 
   /**
@@ -310,98 +315,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public OctIntLit createOctIntLit()
+  public UnitType createUnitType()
   {
-    OctIntLitImpl octIntLit = new OctIntLitImpl();
-    return octIntLit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public HexIntLit createHexIntLit()
-  {
-    HexIntLitImpl hexIntLit = new HexIntLitImpl();
-    return hexIntLit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StringLit createStringLit()
-  {
-    StringLitImpl stringLit = new StringLitImpl();
-    return stringLit;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StringChar createStringChar()
-  {
-    StringCharImpl stringChar = new StringCharImpl();
-    return stringChar;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public UnicodeChar createUnicodeChar()
-  {
-    UnicodeCharImpl unicodeChar = new UnicodeCharImpl();
-    return unicodeChar;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FloatSize createFloatSizeFromString(EDataType eDataType, String initialValue)
-  {
-    FloatSize result = FloatSize.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertFloatSizeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IntSize createIntSizeFromString(EDataType eDataType, String initialValue)
-  {
-    IntSize result = IntSize.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIntSizeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
+    UnitTypeImpl unitType = new UnitTypeImpl();
+    return unitType;
   }
 
   /**

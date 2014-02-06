@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.EscapedChar;
+import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,45 +14,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Escaped Char</b></em>'.
+ * An implementation of the model object '<em><b>Pat</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.EscapedCharImpl#getChar <em>Char</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.PatImpl#getIdent <em>Ident</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EscapedCharImpl extends MinimalEObjectImpl.Container implements EscapedChar
+public class PatImpl extends MinimalEObjectImpl.Container implements Pat
 {
   /**
-   * The default value of the '{@link #getChar() <em>Char</em>}' attribute.
+   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChar()
+   * @see #getIdent()
    * @generated
    * @ordered
    */
-  protected static final String CHAR_EDEFAULT = null;
+  protected static final String IDENT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getChar() <em>Char</em>}' attribute.
+   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChar()
+   * @see #getIdent()
    * @generated
    * @ordered
    */
-  protected String char_ = CHAR_EDEFAULT;
+  protected String ident = IDENT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EscapedCharImpl()
+  protected PatImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.ESCAPED_CHAR;
+    return RustPackage.Literals.PAT;
   }
 
   /**
@@ -73,9 +73,9 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getChar()
+  public String getIdent()
   {
-    return char_;
+    return ident;
   }
 
   /**
@@ -83,12 +83,12 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setChar(String newChar)
+  public void setIdent(String newIdent)
   {
-    String oldChar = char_;
-    char_ = newChar;
+    String oldIdent = ident;
+    ident = newIdent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.ESCAPED_CHAR__CHAR, oldChar, char_));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.PAT__IDENT, oldIdent, ident));
   }
 
   /**
@@ -101,8 +101,8 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
   {
     switch (featureID)
     {
-      case RustPackage.ESCAPED_CHAR__CHAR:
-        return getChar();
+      case RustPackage.PAT__IDENT:
+        return getIdent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +117,8 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
   {
     switch (featureID)
     {
-      case RustPackage.ESCAPED_CHAR__CHAR:
-        setChar((String)newValue);
+      case RustPackage.PAT__IDENT:
+        setIdent((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
   {
     switch (featureID)
     {
-      case RustPackage.ESCAPED_CHAR__CHAR:
-        setChar(CHAR_EDEFAULT);
+      case RustPackage.PAT__IDENT:
+        setIdent(IDENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +151,8 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
   {
     switch (featureID)
     {
-      case RustPackage.ESCAPED_CHAR__CHAR:
-        return CHAR_EDEFAULT == null ? char_ != null : !CHAR_EDEFAULT.equals(char_);
+      case RustPackage.PAT__IDENT:
+        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
     }
     return super.eIsSet(featureID);
   }
@@ -168,10 +168,10 @@ public class EscapedCharImpl extends MinimalEObjectImpl.Container implements Esc
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (char: ");
-    result.append(char_);
+    result.append(" (ident: ");
+    result.append(ident);
     result.append(')');
     return result.toString();
   }
 
-} //EscapedCharImpl
+} //PatImpl

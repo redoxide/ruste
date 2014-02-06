@@ -2,28 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.DecIntLit;
+import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Dec Int Lit</b></em>'.
+ * An implementation of the model object '<em><b>Machine Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class DecIntLitImpl extends IntLitImpl implements DecIntLit
+public class MachineTypeImpl extends PrimitiveTypeImpl implements MachineType
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DecIntLitImpl()
+  protected MachineTypeImpl()
   {
     super();
   }
@@ -36,7 +36,7 @@ public class DecIntLitImpl extends IntLitImpl implements DecIntLit
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.DEC_INT_LIT;
+    return RustPackage.Literals.MACHINE_TYPE;
   }
 
-} //DecIntLitImpl
+} //MachineTypeImpl

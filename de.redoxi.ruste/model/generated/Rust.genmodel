@@ -7,16 +7,6 @@
     editorPluginID="de.redoxi.ruste.editor" runtimeVersion="2.9">
   <genPackages prefix="Rust" basePackage="de.redoxi.ruste" disposableProviderFactory="true"
       fileExtensions="rs" ecorePackage="Rust.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//FloatSize">
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//FloatSize/FLOAT"/>
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//FloatSize/DOUBLE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//IntSize">
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/BYTE"/>
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/SHORT"/>
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//IntSize/LONG"/>
-    </genEnums>
     <genClasses ecoreClass="Rust.ecore#//Crate">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
     </genClasses>
@@ -36,42 +26,39 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/item"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Item"/>
+    <genClasses ecoreClass="Rust.ecore#//Item">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Item/ident"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ModItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/externalBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ModItem/items"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//FnItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/returnType"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/bounds"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Arg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arg/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arg/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Pat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Pat/ident"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Type"/>
+    <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
     <genClasses ecoreClass="Rust.ecore#//Literal"/>
-    <genClasses ecoreClass="Rust.ecore#//CharLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//CharLit/char"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//CharLit/escapedChar"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//EscapedChar">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EscapedChar/char"/>
-    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//NumberLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/digits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/value"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//FloatLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/negativeExp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FloatLit/size"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//IntLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//IntLit/unsigned"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//IntLit/size"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//DecIntLit"/>
-    <genClasses ecoreClass="Rust.ecore#//BinIntLit"/>
-    <genClasses ecoreClass="Rust.ecore#//OctIntLit"/>
-    <genClasses ecoreClass="Rust.ecore#//HexIntLit"/>
-    <genClasses ecoreClass="Rust.ecore#//StringLit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StringLit/chars"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//StringChar">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StringChar/char"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StringChar/escapedChar"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//UnicodeChar">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UnicodeChar/digits"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//IntType"/>
+    <genClasses ecoreClass="Rust.ecore#//FloatType"/>
+    <genClasses ecoreClass="Rust.ecore#//BoolType"/>
+    <genClasses ecoreClass="Rust.ecore#//MachineType"/>
+    <genClasses ecoreClass="Rust.ecore#//UnitType"/>
   </genPackages>
 </genmodel:GenModel>

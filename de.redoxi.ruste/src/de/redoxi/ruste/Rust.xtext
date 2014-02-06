@@ -37,75 +37,68 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem // | FnItem | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+	ModItem | FnItem // | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
 ;
 
 // A module declaration item
 ModItem:
-	"mod" ident=IDENT (';' | '{' /* body = Mod */ '}')
+	"mod" ident=IDENT (externalBody?=';' | '{' items+=ItemAndAttrs* '}')
 ;
 
-// Literal value
-Literal:
-	CharLit | NumberLit | StringLit
+// Function item
+FnItem:
+	"fn" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '(' (args += Arg (',' args += Arg)*)? ')' ("->" returnType = Type)?
 ;
 
-// Single character literal
-CharLit:
-	'\'' (char = NON_SPECIAL_CHAR | char = '"' | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
+// TODO Crossreference Trait?
+GenericParamDecl:
+	ident = IDENT (':' bounds += IDENT ('+' bounds += IDENT))?
 ;
 
-// Escaped character
-EscapedChar:
-	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
-	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	{UnicodeChar} 'u' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	{UnicodeChar} 'U' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT)
+Arg:
+	pat = Pat ':' type = Type
 ;
 
-// Numeric literal
-// TODO Represent negatives here?
-NumberLit:
-	FloatLit | IntLit
+// TODO Expand
+Pat:
+	ident = IDENT
 ;
 
-// Floating point literal
-FloatLit:
-	digits+=DEC_DIGIT (digits+=DEC_DIGIT | '_')* ('.' (digits+=DEC_DIGIT | '_')+) (('E' | 'e') ('+' | negativeExp?='-')? (digits+=DEC_DIGIT | '_')+)? ('f' size=FloatSize)?
+Type:
+	PrimitiveType
 ;
 
-// Valid sizes for floats
-enum FloatSize: FLOAT="32" | DOUBLE="64";
-
-// Integer literal
-IntLit:
-	DecIntLit | BinIntLit | OctIntLit | HexIntLit
+PrimitiveType:
+	{IntType} INT_TYPE |
+	{FloatType} FLOAT_TYPE |
+	{BoolType} BOOLEAN_TYPE |
+	{MachineType} MACHINE_TYPE |
+	{UnitType} UNIT_TYPE
 ;
 
-// Decimal (base 10) integer
-DecIntLit:
-	digits+=DEC_DIGIT (digits+=DEC_DIGIT | '_')* (('i' | unsigned?='u') size=IntSize)?
-;
+terminal INT_TYPE: INT_SIZE;
+terminal fragment INT_SIZE: SIGNED_INT_TYPE | UNSIGNED_INT_TYPE;
+terminal fragment SIGNED_INT_TYPE: I8 | I16 | I32 | I64;
+terminal fragment I8: "i8";
+terminal fragment I16: "i16";
+terminal fragment I32: "i32";
+terminal fragment I64: "i64";
+terminal fragment UNSIGNED_INT_TYPE: U8 | U16 | U32 | U64;
+terminal fragment U8: "u8";
+terminal fragment U16: "u16";
+terminal fragment U32: "u32";
+terminal fragment U64: "u64";
+terminal FLOAT_TYPE: FLOAT_SIZE;
+terminal fragment FLOAT_SIZE: F32 | F64;
+terminal fragment F32: "f32";
+terminal fragment F64: "f64";
+terminal BOOLEAN_TYPE: "bool";
+terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
+terminal fragment MACHINE_INT_TYPE: "int";
+terminal fragment MACHINE_UINT_TYPE: "uint";
+terminal UNIT_TYPE: "()";
 
-// Binary (base 2) integer
-BinIntLit:
-	{BinIntLit} "0b" (digits+='0' | digits+='1' | '_')+ (('i' | unsigned?='u') size=IntSize)?
-;
-
-// Octal (base 8) integer
-OctIntLit:
-	{OctIntLit} "0o" (digits+=OCT_DIGIT | '_')+ (('i' | unsigned?='u') size=IntSize)?
-;
-
-// Hex (base 16) integer
-HexIntLit:
-	{HexIntLit} "0x" (digits+=HEX_DIGIT | '_')+ (('i' | unsigned?='u') size=IntSize)?
-;
-
-// Valid integer sizes in bits
-enum IntSize: BYTE="8" | SHORT="16" | INT="32" | LONG="64";
-
-StringLit: 
+/*StringLit: 
 	{StringLit} '"' (chars += StringChar)* '"'
 	// | {RawStringLit} 'r' '#' body = RawString? '#'
 ;
@@ -115,13 +108,53 @@ StringChar:
 	char = '\'' | 
 	'\\' char = '"' | 
 	'\\' escapedChar = EscapedChar
+;*/
+
+// Literal value
+Literal:
+	NumberLit // | CharLit | StringLit
 ;
 
-terminal OCT_DIGIT: '0'..'7';
-terminal DEC_DIGIT: '0'..'9';
-terminal HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
+NumberLit:
+	value = (FLOAT_LIT | INT_LIT)
+;
 
-terminal NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
+// Single character literal
+/*CharLit:
+	'\'' (char = NON_SPECIAL_CHAR | char = '"' | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
+;
+
+// Escaped character
+EscapedChar:
+	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
+	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
+	{UnicodeChar} 'u' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
+	{UnicodeChar} 'U' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT)
+;*/
+
+// Floating point literal
+terminal FLOAT_LIT: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;
+
+// Integer literal
+terminal INT_LIT: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT) INT_SIZE?;
+
+// Decimal (base 10) integer
+terminal fragment DEC_INT_LIT: DEC_DIGIT (DEC_DIGIT | '_')*;
+
+// Binary (base 2) integer
+terminal fragment BIN_INT_LIT: "0b" ('0' | '1' | '_')+;
+
+// Octal (base 8) integer
+terminal fragment OCT_INT_LIT: "0o" (OCT_DIGIT | '_')+;
+
+// Hex (base 16) integer
+terminal fragment HEX_INT_LIT: "0x" (HEX_DIGIT | '_')+;
+
+terminal fragment OCT_DIGIT: '0'..'7';
+terminal fragment DEC_DIGIT: '0'..'9';
+terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
+
+// terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
 
 terminal fragment XID_START: 'a'..'z'; // TODO Expand
 terminal fragment XID_CONTINUE: 'a'..'z' | '_'; // TODO Expand

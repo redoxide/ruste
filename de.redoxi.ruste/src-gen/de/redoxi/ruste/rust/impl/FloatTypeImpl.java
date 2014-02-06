@@ -2,28 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.OctIntLit;
+import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Oct Int Lit</b></em>'.
+ * An implementation of the model object '<em><b>Float Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class OctIntLitImpl extends IntLitImpl implements OctIntLit
+public class FloatTypeImpl extends PrimitiveTypeImpl implements FloatType
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OctIntLitImpl()
+  protected FloatTypeImpl()
   {
     super();
   }
@@ -36,7 +36,7 @@ public class OctIntLitImpl extends IntLitImpl implements OctIntLit
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.OCT_INT_LIT;
+    return RustPackage.Literals.FLOAT_TYPE;
   }
 
-} //OctIntLitImpl
+} //FloatTypeImpl

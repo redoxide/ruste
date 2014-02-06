@@ -5,13 +5,11 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.RustPackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +18,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.NumberLitImpl#getDigits <em>Digits</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.NumberLitImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,14 +27,24 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class NumberLitImpl extends LiteralImpl implements NumberLit
 {
   /**
-   * The cached value of the '{@link #getDigits() <em>Digits</em>}' attribute list.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDigits()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<String> digits;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -64,13 +72,22 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getDigits()
+  public String getValue()
   {
-    if (digits == null)
-    {
-      digits = new EDataTypeEList<String>(String.class, this, RustPackage.NUMBER_LIT__DIGITS);
-    }
-    return digits;
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(String newValue)
+  {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.NUMBER_LIT__VALUE, oldValue, value));
   }
 
   /**
@@ -83,8 +100,8 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
   {
     switch (featureID)
     {
-      case RustPackage.NUMBER_LIT__DIGITS:
-        return getDigits();
+      case RustPackage.NUMBER_LIT__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -94,15 +111,13 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case RustPackage.NUMBER_LIT__DIGITS:
-        getDigits().clear();
-        getDigits().addAll((Collection<? extends String>)newValue);
+      case RustPackage.NUMBER_LIT__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -118,8 +133,8 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
   {
     switch (featureID)
     {
-      case RustPackage.NUMBER_LIT__DIGITS:
-        getDigits().clear();
+      case RustPackage.NUMBER_LIT__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -135,8 +150,8 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
   {
     switch (featureID)
     {
-      case RustPackage.NUMBER_LIT__DIGITS:
-        return digits != null && !digits.isEmpty();
+      case RustPackage.NUMBER_LIT__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -152,8 +167,8 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (digits: ");
-    result.append(digits);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }

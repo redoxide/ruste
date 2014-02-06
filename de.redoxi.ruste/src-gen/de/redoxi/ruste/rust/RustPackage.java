@@ -4,7 +4,6 @@ package de.redoxi.ruste.rust;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -263,13 +262,22 @@ public interface RustPackage extends EPackage
   int ITEM = 6;
 
   /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITEM__IDENT = 0;
+
+  /**
    * The number of structural features of the '<em>Item</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ITEM_FEATURE_COUNT = 0;
+  int ITEM_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ModItemImpl <em>Mod Item</em>}' class.
@@ -288,7 +296,25 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
+  int MOD_ITEM__IDENT = ITEM__IDENT;
+
+  /**
+   * The feature id for the '<em><b>External Body</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD_ITEM__EXTERNAL_BODY = ITEM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Items</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOD_ITEM__ITEMS = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Mod Item</em>' class.
@@ -297,7 +323,202 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 1;
+  int MOD_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FnItemImpl <em>Fn Item</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.FnItemImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFnItem()
+   * @generated
+   */
+  int FN_ITEM = 8;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM__IDENT = ITEM__IDENT;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM__PARAMS = ITEM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM__ARGS = ITEM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM__RETURN_TYPE = ITEM_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Fn Item</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FN_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.GenericParamDeclImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
+   * @generated
+   */
+  int GENERIC_PARAM_DECL = 9;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GENERIC_PARAM_DECL__IDENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Bounds</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GENERIC_PARAM_DECL__BOUNDS = 1;
+
+  /**
+   * The number of structural features of the '<em>Generic Param Decl</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GENERIC_PARAM_DECL_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ArgImpl <em>Arg</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ArgImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
+   * @generated
+   */
+  int ARG = 10;
+
+  /**
+   * The feature id for the '<em><b>Pat</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARG__PAT = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARG__TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Arg</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARG_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PatImpl <em>Pat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.PatImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
+   * @generated
+   */
+  int PAT = 11;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT__IDENT = 0;
+
+  /**
+   * The number of structural features of the '<em>Pat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TypeImpl <em>Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.TypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
+   * @generated
+   */
+  int TYPE = 12;
+
+  /**
+   * The number of structural features of the '<em>Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.PrimitiveTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
+   * @generated
+   */
+  int PRIMITIVE_TYPE = 13;
+
+  /**
+   * The number of structural features of the '<em>Primitive Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMITIVE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.LiteralImpl <em>Literal</em>}' class.
@@ -307,7 +528,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 8;
+  int LITERAL = 14;
 
   /**
    * The number of structural features of the '<em>Literal</em>' class.
@@ -319,71 +540,6 @@ public interface RustPackage extends EPackage
   int LITERAL_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.CharLitImpl <em>Char Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.CharLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
-   * @generated
-   */
-  int CHAR_LIT = 9;
-
-  /**
-   * The feature id for the '<em><b>Char</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHAR_LIT__CHAR = LITERAL_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Escaped Char</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHAR_LIT__ESCAPED_CHAR = LITERAL_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Char Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHAR_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EscapedCharImpl <em>Escaped Char</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.EscapedCharImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEscapedChar()
-   * @generated
-   */
-  int ESCAPED_CHAR = 10;
-
-  /**
-   * The feature id for the '<em><b>Char</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ESCAPED_CHAR__CHAR = 0;
-
-  /**
-   * The number of structural features of the '<em>Escaped Char</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ESCAPED_CHAR_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.NumberLitImpl <em>Number Lit</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -391,16 +547,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 11;
+  int NUMBER_LIT = 15;
 
   /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUMBER_LIT__DIGITS = LITERAL_FEATURE_COUNT + 0;
+  int NUMBER_LIT__VALUE = LITERAL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Number Lit</em>' class.
@@ -412,402 +568,99 @@ public interface RustPackage extends EPackage
   int NUMBER_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FloatLitImpl <em>Float Lit</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.FloatLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatLit()
+   * @see de.redoxi.ruste.rust.impl.IntTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int FLOAT_LIT = 12;
+  int INT_TYPE = 16;
 
   /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
+   * The number of structural features of the '<em>Int Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__DIGITS = NUMBER_LIT__DIGITS;
+  int INT_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Negative Exp</b></em>' attribute.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FloatTypeImpl <em>Float Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.FloatTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
+   * @generated
+   */
+  int FLOAT_TYPE = 17;
+
+  /**
+   * The number of structural features of the '<em>Float Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__NEGATIVE_EXP = NUMBER_LIT_FEATURE_COUNT + 0;
+  int FLOAT_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BoolTypeImpl <em>Bool Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BoolTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
+   * @generated
+   */
+  int BOOL_TYPE = 18;
+
+  /**
+   * The number of structural features of the '<em>Bool Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FLOAT_LIT__SIZE = NUMBER_LIT_FEATURE_COUNT + 1;
+  int BOOL_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Float Lit</em>' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.MachineTypeImpl <em>Machine Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.MachineTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
+   * @generated
+   */
+  int MACHINE_TYPE = 19;
+
+  /**
+   * The number of structural features of the '<em>Machine Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FLOAT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 2;
+  int MACHINE_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.IntLitImpl <em>Int Lit</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.UnitTypeImpl <em>Unit Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.IntLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntLit()
+   * @see de.redoxi.ruste.rust.impl.UnitTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int INT_LIT = 13;
+  int UNIT_TYPE = 20;
 
   /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIT__DIGITS = NUMBER_LIT__DIGITS;
-
-  /**
-   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+   * The number of structural features of the '<em>Unit Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_LIT__UNSIGNED = NUMBER_LIT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIT__SIZE = NUMBER_LIT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Int Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIT_FEATURE_COUNT = NUMBER_LIT_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.DecIntLitImpl <em>Dec Int Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.DecIntLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDecIntLit()
-   * @generated
-   */
-  int DEC_INT_LIT = 14;
-
-  /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEC_INT_LIT__DIGITS = INT_LIT__DIGITS;
-
-  /**
-   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEC_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEC_INT_LIT__SIZE = INT_LIT__SIZE;
-
-  /**
-   * The number of structural features of the '<em>Dec Int Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEC_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BinIntLitImpl <em>Bin Int Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BinIntLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBinIntLit()
-   * @generated
-   */
-  int BIN_INT_LIT = 15;
-
-  /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIN_INT_LIT__DIGITS = INT_LIT__DIGITS;
-
-  /**
-   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIN_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIN_INT_LIT__SIZE = INT_LIT__SIZE;
-
-  /**
-   * The number of structural features of the '<em>Bin Int Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BIN_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.OctIntLitImpl <em>Oct Int Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.OctIntLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOctIntLit()
-   * @generated
-   */
-  int OCT_INT_LIT = 16;
-
-  /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OCT_INT_LIT__DIGITS = INT_LIT__DIGITS;
-
-  /**
-   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OCT_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OCT_INT_LIT__SIZE = INT_LIT__SIZE;
-
-  /**
-   * The number of structural features of the '<em>Oct Int Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OCT_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.HexIntLitImpl <em>Hex Int Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.HexIntLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getHexIntLit()
-   * @generated
-   */
-  int HEX_INT_LIT = 17;
-
-  /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HEX_INT_LIT__DIGITS = INT_LIT__DIGITS;
-
-  /**
-   * The feature id for the '<em><b>Unsigned</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HEX_INT_LIT__UNSIGNED = INT_LIT__UNSIGNED;
-
-  /**
-   * The feature id for the '<em><b>Size</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HEX_INT_LIT__SIZE = INT_LIT__SIZE;
-
-  /**
-   * The number of structural features of the '<em>Hex Int Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HEX_INT_LIT_FEATURE_COUNT = INT_LIT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.StringLitImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
-   * @generated
-   */
-  int STRING_LIT = 18;
-
-  /**
-   * The feature id for the '<em><b>Chars</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_LIT__CHARS = LITERAL_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>String Lit</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StringCharImpl <em>String Char</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.StringCharImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringChar()
-   * @generated
-   */
-  int STRING_CHAR = 19;
-
-  /**
-   * The feature id for the '<em><b>Char</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_CHAR__CHAR = 0;
-
-  /**
-   * The feature id for the '<em><b>Escaped Char</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_CHAR__ESCAPED_CHAR = 1;
-
-  /**
-   * The number of structural features of the '<em>String Char</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_CHAR_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.UnicodeCharImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnicodeChar()
-   * @generated
-   */
-  int UNICODE_CHAR = 20;
-
-  /**
-   * The feature id for the '<em><b>Char</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNICODE_CHAR__CHAR = ESCAPED_CHAR__CHAR;
-
-  /**
-   * The feature id for the '<em><b>Digits</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNICODE_CHAR__DIGITS = ESCAPED_CHAR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Unicode Char</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UNICODE_CHAR_FEATURE_COUNT = ESCAPED_CHAR_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.FloatSize <em>Float Size</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.FloatSize
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatSize()
-   * @generated
-   */
-  int FLOAT_SIZE = 21;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.IntSize <em>Int Size</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.IntSize
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntSize()
-   * @generated
-   */
-  int INT_SIZE = 22;
+  int UNIT_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
 
   /**
@@ -958,6 +811,17 @@ public interface RustPackage extends EPackage
   EClass getItem();
 
   /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.Item#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.Item#getIdent()
+   * @see #getItem()
+   * @generated
+   */
+  EAttribute getItem_Ident();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ModItem <em>Mod Item</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -968,15 +832,174 @@ public interface RustPackage extends EPackage
   EClass getModItem();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ModItem#getIdent <em>Ident</em>}'.
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ModItem#isExternalBody <em>External Body</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ident</em>'.
-   * @see de.redoxi.ruste.rust.ModItem#getIdent()
+   * @return the meta object for the attribute '<em>External Body</em>'.
+   * @see de.redoxi.ruste.rust.ModItem#isExternalBody()
    * @see #getModItem()
    * @generated
    */
-  EAttribute getModItem_Ident();
+  EAttribute getModItem_ExternalBody();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ModItem#getItems <em>Items</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Items</em>'.
+   * @see de.redoxi.ruste.rust.ModItem#getItems()
+   * @see #getModItem()
+   * @generated
+   */
+  EReference getModItem_Items();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.FnItem <em>Fn Item</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fn Item</em>'.
+   * @see de.redoxi.ruste.rust.FnItem
+   * @generated
+   */
+  EClass getFnItem();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.FnItem#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.FnItem#getParams()
+   * @see #getFnItem()
+   * @generated
+   */
+  EReference getFnItem_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.FnItem#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.FnItem#getArgs()
+   * @see #getFnItem()
+   * @generated
+   */
+  EReference getFnItem_Args();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.FnItem#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see de.redoxi.ruste.rust.FnItem#getReturnType()
+   * @see #getFnItem()
+   * @generated
+   */
+  EReference getFnItem_ReturnType();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.GenericParamDecl <em>Generic Param Decl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Generic Param Decl</em>'.
+   * @see de.redoxi.ruste.rust.GenericParamDecl
+   * @generated
+   */
+  EClass getGenericParamDecl();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.GenericParamDecl#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.GenericParamDecl#getIdent()
+   * @see #getGenericParamDecl()
+   * @generated
+   */
+  EAttribute getGenericParamDecl_Ident();
+
+  /**
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.GenericParamDecl#getBounds <em>Bounds</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Bounds</em>'.
+   * @see de.redoxi.ruste.rust.GenericParamDecl#getBounds()
+   * @see #getGenericParamDecl()
+   * @generated
+   */
+  EAttribute getGenericParamDecl_Bounds();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Arg <em>Arg</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Arg</em>'.
+   * @see de.redoxi.ruste.rust.Arg
+   * @generated
+   */
+  EClass getArg();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Arg#getPat <em>Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pat</em>'.
+   * @see de.redoxi.ruste.rust.Arg#getPat()
+   * @see #getArg()
+   * @generated
+   */
+  EReference getArg_Pat();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Arg#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.Arg#getType()
+   * @see #getArg()
+   * @generated
+   */
+  EReference getArg_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Pat <em>Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pat</em>'.
+   * @see de.redoxi.ruste.rust.Pat
+   * @generated
+   */
+  EClass getPat();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.Pat#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.Pat#getIdent()
+   * @see #getPat()
+   * @generated
+   */
+  EAttribute getPat_Ident();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.Type
+   * @generated
+   */
+  EClass getType();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.PrimitiveType <em>Primitive Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Primitive Type</em>'.
+   * @see de.redoxi.ruste.rust.PrimitiveType
+   * @generated
+   */
+  EClass getPrimitiveType();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Literal <em>Literal</em>}'.
@@ -989,59 +1012,6 @@ public interface RustPackage extends EPackage
   EClass getLiteral();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.CharLit <em>Char Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Char Lit</em>'.
-   * @see de.redoxi.ruste.rust.CharLit
-   * @generated
-   */
-  EClass getCharLit();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.CharLit#getChar <em>Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Char</em>'.
-   * @see de.redoxi.ruste.rust.CharLit#getChar()
-   * @see #getCharLit()
-   * @generated
-   */
-  EAttribute getCharLit_Char();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.CharLit#getEscapedChar <em>Escaped Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Escaped Char</em>'.
-   * @see de.redoxi.ruste.rust.CharLit#getEscapedChar()
-   * @see #getCharLit()
-   * @generated
-   */
-  EReference getCharLit_EscapedChar();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.EscapedChar <em>Escaped Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Escaped Char</em>'.
-   * @see de.redoxi.ruste.rust.EscapedChar
-   * @generated
-   */
-  EClass getEscapedChar();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.EscapedChar#getChar <em>Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Char</em>'.
-   * @see de.redoxi.ruste.rust.EscapedChar#getChar()
-   * @see #getEscapedChar()
-   * @generated
-   */
-  EAttribute getEscapedChar_Char();
-
-  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.NumberLit <em>Number Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1052,213 +1022,65 @@ public interface RustPackage extends EPackage
   EClass getNumberLit();
 
   /**
-   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.NumberLit#getDigits <em>Digits</em>}'.
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.NumberLit#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Digits</em>'.
-   * @see de.redoxi.ruste.rust.NumberLit#getDigits()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.redoxi.ruste.rust.NumberLit#getValue()
    * @see #getNumberLit()
    * @generated
    */
-  EAttribute getNumberLit_Digits();
+  EAttribute getNumberLit_Value();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.FloatLit <em>Float Lit</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.IntType <em>Int Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Float Lit</em>'.
-   * @see de.redoxi.ruste.rust.FloatLit
+   * @return the meta object for class '<em>Int Type</em>'.
+   * @see de.redoxi.ruste.rust.IntType
    * @generated
    */
-  EClass getFloatLit();
+  EClass getIntType();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FloatLit#isNegativeExp <em>Negative Exp</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.FloatType <em>Float Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Negative Exp</em>'.
-   * @see de.redoxi.ruste.rust.FloatLit#isNegativeExp()
-   * @see #getFloatLit()
+   * @return the meta object for class '<em>Float Type</em>'.
+   * @see de.redoxi.ruste.rust.FloatType
    * @generated
    */
-  EAttribute getFloatLit_NegativeExp();
+  EClass getFloatType();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FloatLit#getSize <em>Size</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.BoolType <em>Bool Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Size</em>'.
-   * @see de.redoxi.ruste.rust.FloatLit#getSize()
-   * @see #getFloatLit()
+   * @return the meta object for class '<em>Bool Type</em>'.
+   * @see de.redoxi.ruste.rust.BoolType
    * @generated
    */
-  EAttribute getFloatLit_Size();
+  EClass getBoolType();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.IntLit <em>Int Lit</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.MachineType <em>Machine Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int Lit</em>'.
-   * @see de.redoxi.ruste.rust.IntLit
+   * @return the meta object for class '<em>Machine Type</em>'.
+   * @see de.redoxi.ruste.rust.MachineType
    * @generated
    */
-  EClass getIntLit();
+  EClass getMachineType();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.IntLit#isUnsigned <em>Unsigned</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.UnitType <em>Unit Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Unsigned</em>'.
-   * @see de.redoxi.ruste.rust.IntLit#isUnsigned()
-   * @see #getIntLit()
+   * @return the meta object for class '<em>Unit Type</em>'.
+   * @see de.redoxi.ruste.rust.UnitType
    * @generated
    */
-  EAttribute getIntLit_Unsigned();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.IntLit#getSize <em>Size</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Size</em>'.
-   * @see de.redoxi.ruste.rust.IntLit#getSize()
-   * @see #getIntLit()
-   * @generated
-   */
-  EAttribute getIntLit_Size();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.DecIntLit <em>Dec Int Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dec Int Lit</em>'.
-   * @see de.redoxi.ruste.rust.DecIntLit
-   * @generated
-   */
-  EClass getDecIntLit();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.BinIntLit <em>Bin Int Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Bin Int Lit</em>'.
-   * @see de.redoxi.ruste.rust.BinIntLit
-   * @generated
-   */
-  EClass getBinIntLit();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.OctIntLit <em>Oct Int Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Oct Int Lit</em>'.
-   * @see de.redoxi.ruste.rust.OctIntLit
-   * @generated
-   */
-  EClass getOctIntLit();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.HexIntLit <em>Hex Int Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Hex Int Lit</em>'.
-   * @see de.redoxi.ruste.rust.HexIntLit
-   * @generated
-   */
-  EClass getHexIntLit();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>String Lit</em>'.
-   * @see de.redoxi.ruste.rust.StringLit
-   * @generated
-   */
-  EClass getStringLit();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StringLit#getChars <em>Chars</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Chars</em>'.
-   * @see de.redoxi.ruste.rust.StringLit#getChars()
-   * @see #getStringLit()
-   * @generated
-   */
-  EReference getStringLit_Chars();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringChar <em>String Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>String Char</em>'.
-   * @see de.redoxi.ruste.rust.StringChar
-   * @generated
-   */
-  EClass getStringChar();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StringChar#getChar <em>Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Char</em>'.
-   * @see de.redoxi.ruste.rust.StringChar#getChar()
-   * @see #getStringChar()
-   * @generated
-   */
-  EAttribute getStringChar_Char();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.StringChar#getEscapedChar <em>Escaped Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Escaped Char</em>'.
-   * @see de.redoxi.ruste.rust.StringChar#getEscapedChar()
-   * @see #getStringChar()
-   * @generated
-   */
-  EReference getStringChar_EscapedChar();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.UnicodeChar <em>Unicode Char</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Unicode Char</em>'.
-   * @see de.redoxi.ruste.rust.UnicodeChar
-   * @generated
-   */
-  EClass getUnicodeChar();
-
-  /**
-   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.UnicodeChar#getDigits <em>Digits</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Digits</em>'.
-   * @see de.redoxi.ruste.rust.UnicodeChar#getDigits()
-   * @see #getUnicodeChar()
-   * @generated
-   */
-  EAttribute getUnicodeChar_Digits();
-
-  /**
-   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.FloatSize <em>Float Size</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Float Size</em>'.
-   * @see de.redoxi.ruste.rust.FloatSize
-   * @generated
-   */
-  EEnum getFloatSize();
-
-  /**
-   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.IntSize <em>Int Size</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Int Size</em>'.
-   * @see de.redoxi.ruste.rust.IntSize
-   * @generated
-   */
-  EEnum getIntSize();
+  EClass getUnitType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1410,6 +1232,14 @@ public interface RustPackage extends EPackage
     EClass ITEM = eINSTANCE.getItem();
 
     /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ITEM__IDENT = eINSTANCE.getItem_Ident();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ModItemImpl <em>Mod Item</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1420,12 +1250,144 @@ public interface RustPackage extends EPackage
     EClass MOD_ITEM = eINSTANCE.getModItem();
 
     /**
+     * The meta object literal for the '<em><b>External Body</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MOD_ITEM__EXTERNAL_BODY = eINSTANCE.getModItem_ExternalBody();
+
+    /**
+     * The meta object literal for the '<em><b>Items</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOD_ITEM__ITEMS = eINSTANCE.getModItem_Items();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.FnItemImpl <em>Fn Item</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.FnItemImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFnItem()
+     * @generated
+     */
+    EClass FN_ITEM = eINSTANCE.getFnItem();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FN_ITEM__PARAMS = eINSTANCE.getFnItem_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FN_ITEM__ARGS = eINSTANCE.getFnItem_Args();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FN_ITEM__RETURN_TYPE = eINSTANCE.getFnItem_ReturnType();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.GenericParamDeclImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
+     * @generated
+     */
+    EClass GENERIC_PARAM_DECL = eINSTANCE.getGenericParamDecl();
+
+    /**
      * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MOD_ITEM__IDENT = eINSTANCE.getModItem_Ident();
+    EAttribute GENERIC_PARAM_DECL__IDENT = eINSTANCE.getGenericParamDecl_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Bounds</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute GENERIC_PARAM_DECL__BOUNDS = eINSTANCE.getGenericParamDecl_Bounds();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ArgImpl <em>Arg</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ArgImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
+     * @generated
+     */
+    EClass ARG = eINSTANCE.getArg();
+
+    /**
+     * The meta object literal for the '<em><b>Pat</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARG__PAT = eINSTANCE.getArg_Pat();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARG__TYPE = eINSTANCE.getArg_Type();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PatImpl <em>Pat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.PatImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
+     * @generated
+     */
+    EClass PAT = eINSTANCE.getPat();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PAT__IDENT = eINSTANCE.getPat_Ident();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.TypeImpl <em>Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.TypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
+     * @generated
+     */
+    EClass TYPE = eINSTANCE.getType();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.PrimitiveTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
+     * @generated
+     */
+    EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.LiteralImpl <em>Literal</em>}' class.
@@ -1438,50 +1400,6 @@ public interface RustPackage extends EPackage
     EClass LITERAL = eINSTANCE.getLiteral();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.CharLitImpl <em>Char Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.CharLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
-     * @generated
-     */
-    EClass CHAR_LIT = eINSTANCE.getCharLit();
-
-    /**
-     * The meta object literal for the '<em><b>Char</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHAR_LIT__CHAR = eINSTANCE.getCharLit_Char();
-
-    /**
-     * The meta object literal for the '<em><b>Escaped Char</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CHAR_LIT__ESCAPED_CHAR = eINSTANCE.getCharLit_EscapedChar();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.EscapedCharImpl <em>Escaped Char</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.EscapedCharImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEscapedChar()
-     * @generated
-     */
-    EClass ESCAPED_CHAR = eINSTANCE.getEscapedChar();
-
-    /**
-     * The meta object literal for the '<em><b>Char</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ESCAPED_CHAR__CHAR = eINSTANCE.getEscapedChar_Char();
-
-    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.NumberLitImpl <em>Number Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1492,186 +1410,62 @@ public interface RustPackage extends EPackage
     EClass NUMBER_LIT = eINSTANCE.getNumberLit();
 
     /**
-     * The meta object literal for the '<em><b>Digits</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NUMBER_LIT__DIGITS = eINSTANCE.getNumberLit_Digits();
+    EAttribute NUMBER_LIT__VALUE = eINSTANCE.getNumberLit_Value();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.FloatLitImpl <em>Float Lit</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.FloatLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatLit()
+     * @see de.redoxi.ruste.rust.impl.IntTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
      * @generated
      */
-    EClass FLOAT_LIT = eINSTANCE.getFloatLit();
+    EClass INT_TYPE = eINSTANCE.getIntType();
 
     /**
-     * The meta object literal for the '<em><b>Negative Exp</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.FloatTypeImpl <em>Float Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.FloatTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
      * @generated
      */
-    EAttribute FLOAT_LIT__NEGATIVE_EXP = eINSTANCE.getFloatLit_NegativeExp();
+    EClass FLOAT_TYPE = eINSTANCE.getFloatType();
 
     /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BoolTypeImpl <em>Bool Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.BoolTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
      * @generated
      */
-    EAttribute FLOAT_LIT__SIZE = eINSTANCE.getFloatLit_Size();
+    EClass BOOL_TYPE = eINSTANCE.getBoolType();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.IntLitImpl <em>Int Lit</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.MachineTypeImpl <em>Machine Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.IntLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntLit()
+     * @see de.redoxi.ruste.rust.impl.MachineTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
      * @generated
      */
-    EClass INT_LIT = eINSTANCE.getIntLit();
+    EClass MACHINE_TYPE = eINSTANCE.getMachineType();
 
     /**
-     * The meta object literal for the '<em><b>Unsigned</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.UnitTypeImpl <em>Unit Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.UnitTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
      * @generated
      */
-    EAttribute INT_LIT__UNSIGNED = eINSTANCE.getIntLit_Unsigned();
-
-    /**
-     * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INT_LIT__SIZE = eINSTANCE.getIntLit_Size();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.DecIntLitImpl <em>Dec Int Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.DecIntLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDecIntLit()
-     * @generated
-     */
-    EClass DEC_INT_LIT = eINSTANCE.getDecIntLit();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BinIntLitImpl <em>Bin Int Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.BinIntLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBinIntLit()
-     * @generated
-     */
-    EClass BIN_INT_LIT = eINSTANCE.getBinIntLit();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.OctIntLitImpl <em>Oct Int Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.OctIntLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOctIntLit()
-     * @generated
-     */
-    EClass OCT_INT_LIT = eINSTANCE.getOctIntLit();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.HexIntLitImpl <em>Hex Int Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.HexIntLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getHexIntLit()
-     * @generated
-     */
-    EClass HEX_INT_LIT = eINSTANCE.getHexIntLit();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.StringLitImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
-     * @generated
-     */
-    EClass STRING_LIT = eINSTANCE.getStringLit();
-
-    /**
-     * The meta object literal for the '<em><b>Chars</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STRING_LIT__CHARS = eINSTANCE.getStringLit_Chars();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringCharImpl <em>String Char</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.StringCharImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringChar()
-     * @generated
-     */
-    EClass STRING_CHAR = eINSTANCE.getStringChar();
-
-    /**
-     * The meta object literal for the '<em><b>Char</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STRING_CHAR__CHAR = eINSTANCE.getStringChar_Char();
-
-    /**
-     * The meta object literal for the '<em><b>Escaped Char</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STRING_CHAR__ESCAPED_CHAR = eINSTANCE.getStringChar_EscapedChar();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.UnicodeCharImpl <em>Unicode Char</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.UnicodeCharImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnicodeChar()
-     * @generated
-     */
-    EClass UNICODE_CHAR = eINSTANCE.getUnicodeChar();
-
-    /**
-     * The meta object literal for the '<em><b>Digits</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UNICODE_CHAR__DIGITS = eINSTANCE.getUnicodeChar_Digits();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.FloatSize <em>Float Size</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.FloatSize
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatSize()
-     * @generated
-     */
-    EEnum FLOAT_SIZE = eINSTANCE.getFloatSize();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.IntSize <em>Int Size</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.IntSize
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntSize()
-     * @generated
-     */
-    EEnum INT_SIZE = eINSTANCE.getIntSize();
+    EClass UNIT_TYPE = eINSTANCE.getUnitType();
 
   }
 

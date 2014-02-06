@@ -6,21 +6,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Item</b></em>'.
+ * A representation of the model object '<em><b>Pat</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.Item#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.Pat#getIdent <em>Ident</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getItem()
+ * @see de.redoxi.ruste.rust.RustPackage#getPat()
  * @model
  * @generated
  */
-public interface Item extends EObject
+public interface Pat extends EObject
 {
   /**
    * Returns the value of the '<em><b>Ident</b></em>' attribute.
@@ -32,14 +32,14 @@ public interface Item extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ident</em>' attribute.
    * @see #setIdent(String)
-   * @see de.redoxi.ruste.rust.RustPackage#getItem_Ident()
+   * @see de.redoxi.ruste.rust.RustPackage#getPat_Ident()
    * @model
    * @generated
    */
   String getIdent();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.Item#getIdent <em>Ident</em>}' attribute.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.Pat#getIdent <em>Ident</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Ident</em>' attribute.
@@ -48,4 +48,4 @@ public interface Item extends EObject
    */
   void setIdent(String value);
 
-} // Item
+} // Pat

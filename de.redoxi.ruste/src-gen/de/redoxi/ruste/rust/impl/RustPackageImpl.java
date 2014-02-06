@@ -2,35 +2,32 @@
  */
 package de.redoxi.ruste.rust.impl;
 
+import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
-import de.redoxi.ruste.rust.BinIntLit;
-import de.redoxi.ruste.rust.CharLit;
+import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.Crate;
-import de.redoxi.ruste.rust.DecIntLit;
-import de.redoxi.ruste.rust.EscapedChar;
-import de.redoxi.ruste.rust.FloatLit;
-import de.redoxi.ruste.rust.FloatSize;
-import de.redoxi.ruste.rust.HexIntLit;
-import de.redoxi.ruste.rust.IntLit;
-import de.redoxi.ruste.rust.IntSize;
+import de.redoxi.ruste.rust.FloatType;
+import de.redoxi.ruste.rust.FnItem;
+import de.redoxi.ruste.rust.GenericParamDecl;
+import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.Literal;
 import de.redoxi.ruste.rust.LiteralAttr;
+import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
-import de.redoxi.ruste.rust.OctIntLit;
+import de.redoxi.ruste.rust.Pat;
+import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
-import de.redoxi.ruste.rust.StringChar;
-import de.redoxi.ruste.rust.StringLit;
-import de.redoxi.ruste.rust.UnicodeChar;
+import de.redoxi.ruste.rust.Type;
+import de.redoxi.ruste.rust.UnitType;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -105,21 +102,49 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass fnItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass genericParamDeclEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass argEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass primitiveTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass literalEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass charLitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass escapedCharEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -133,77 +158,35 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass floatLitEClass = null;
+  private EClass intTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass intLitEClass = null;
+  private EClass floatTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass decIntLitEClass = null;
+  private EClass boolTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass binIntLitEClass = null;
+  private EClass machineTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass octIntLitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass hexIntLitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass stringLitEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass stringCharEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass unicodeCharEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum floatSizeEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum intSizeEEnum = null;
+  private EClass unitTypeEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -413,6 +396,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getItem_Ident()
+  {
+    return (EAttribute)itemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getModItem()
   {
     return modItemEClass;
@@ -423,9 +416,159 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModItem_Ident()
+  public EAttribute getModItem_ExternalBody()
   {
     return (EAttribute)modItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModItem_Items()
+  {
+    return (EReference)modItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFnItem()
+  {
+    return fnItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFnItem_Params()
+  {
+    return (EReference)fnItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFnItem_Args()
+  {
+    return (EReference)fnItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFnItem_ReturnType()
+  {
+    return (EReference)fnItemEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getGenericParamDecl()
+  {
+    return genericParamDeclEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getGenericParamDecl_Ident()
+  {
+    return (EAttribute)genericParamDeclEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getGenericParamDecl_Bounds()
+  {
+    return (EAttribute)genericParamDeclEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArg()
+  {
+    return argEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArg_Pat()
+  {
+    return (EReference)argEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArg_Type()
+  {
+    return (EReference)argEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPat()
+  {
+    return patEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPat_Ident()
+  {
+    return (EAttribute)patEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getType()
+  {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPrimitiveType()
+  {
+    return primitiveTypeEClass;
   }
 
   /**
@@ -443,56 +586,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCharLit()
-  {
-    return charLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getCharLit_Char()
-  {
-    return (EAttribute)charLitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getCharLit_EscapedChar()
-  {
-    return (EReference)charLitEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEscapedChar()
-  {
-    return escapedCharEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEscapedChar_Char()
-  {
-    return (EAttribute)escapedCharEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getNumberLit()
   {
     return numberLitEClass;
@@ -503,7 +596,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumberLit_Digits()
+  public EAttribute getNumberLit_Value()
   {
     return (EAttribute)numberLitEClass.getEStructuralFeatures().get(0);
   }
@@ -513,9 +606,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFloatLit()
+  public EClass getIntType()
   {
-    return floatLitEClass;
+    return intTypeEClass;
   }
 
   /**
@@ -523,9 +616,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFloatLit_NegativeExp()
+  public EClass getFloatType()
   {
-    return (EAttribute)floatLitEClass.getEStructuralFeatures().get(0);
+    return floatTypeEClass;
   }
 
   /**
@@ -533,9 +626,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFloatLit_Size()
+  public EClass getBoolType()
   {
-    return (EAttribute)floatLitEClass.getEStructuralFeatures().get(1);
+    return boolTypeEClass;
   }
 
   /**
@@ -543,9 +636,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getIntLit()
+  public EClass getMachineType()
   {
-    return intLitEClass;
+    return machineTypeEClass;
   }
 
   /**
@@ -553,149 +646,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getIntLit_Unsigned()
+  public EClass getUnitType()
   {
-    return (EAttribute)intLitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getIntLit_Size()
-  {
-    return (EAttribute)intLitEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getDecIntLit()
-  {
-    return decIntLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBinIntLit()
-  {
-    return binIntLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getOctIntLit()
-  {
-    return octIntLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getHexIntLit()
-  {
-    return hexIntLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStringLit()
-  {
-    return stringLitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getStringLit_Chars()
-  {
-    return (EReference)stringLitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStringChar()
-  {
-    return stringCharEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStringChar_Char()
-  {
-    return (EAttribute)stringCharEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getStringChar_EscapedChar()
-  {
-    return (EReference)stringCharEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getUnicodeChar()
-  {
-    return unicodeCharEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getUnicodeChar_Digits()
-  {
-    return (EAttribute)unicodeCharEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getFloatSize()
-  {
-    return floatSizeEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getIntSize()
-  {
-    return intSizeEEnum;
+    return unitTypeEClass;
   }
 
   /**
@@ -748,51 +701,46 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(itemAndAttrsEClass, ITEM_AND_ATTRS__ITEM);
 
     itemEClass = createEClass(ITEM);
+    createEAttribute(itemEClass, ITEM__IDENT);
 
     modItemEClass = createEClass(MOD_ITEM);
-    createEAttribute(modItemEClass, MOD_ITEM__IDENT);
+    createEAttribute(modItemEClass, MOD_ITEM__EXTERNAL_BODY);
+    createEReference(modItemEClass, MOD_ITEM__ITEMS);
+
+    fnItemEClass = createEClass(FN_ITEM);
+    createEReference(fnItemEClass, FN_ITEM__PARAMS);
+    createEReference(fnItemEClass, FN_ITEM__ARGS);
+    createEReference(fnItemEClass, FN_ITEM__RETURN_TYPE);
+
+    genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
+    createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__IDENT);
+    createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__BOUNDS);
+
+    argEClass = createEClass(ARG);
+    createEReference(argEClass, ARG__PAT);
+    createEReference(argEClass, ARG__TYPE);
+
+    patEClass = createEClass(PAT);
+    createEAttribute(patEClass, PAT__IDENT);
+
+    typeEClass = createEClass(TYPE);
+
+    primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
     literalEClass = createEClass(LITERAL);
 
-    charLitEClass = createEClass(CHAR_LIT);
-    createEAttribute(charLitEClass, CHAR_LIT__CHAR);
-    createEReference(charLitEClass, CHAR_LIT__ESCAPED_CHAR);
-
-    escapedCharEClass = createEClass(ESCAPED_CHAR);
-    createEAttribute(escapedCharEClass, ESCAPED_CHAR__CHAR);
-
     numberLitEClass = createEClass(NUMBER_LIT);
-    createEAttribute(numberLitEClass, NUMBER_LIT__DIGITS);
+    createEAttribute(numberLitEClass, NUMBER_LIT__VALUE);
 
-    floatLitEClass = createEClass(FLOAT_LIT);
-    createEAttribute(floatLitEClass, FLOAT_LIT__NEGATIVE_EXP);
-    createEAttribute(floatLitEClass, FLOAT_LIT__SIZE);
+    intTypeEClass = createEClass(INT_TYPE);
 
-    intLitEClass = createEClass(INT_LIT);
-    createEAttribute(intLitEClass, INT_LIT__UNSIGNED);
-    createEAttribute(intLitEClass, INT_LIT__SIZE);
+    floatTypeEClass = createEClass(FLOAT_TYPE);
 
-    decIntLitEClass = createEClass(DEC_INT_LIT);
+    boolTypeEClass = createEClass(BOOL_TYPE);
 
-    binIntLitEClass = createEClass(BIN_INT_LIT);
+    machineTypeEClass = createEClass(MACHINE_TYPE);
 
-    octIntLitEClass = createEClass(OCT_INT_LIT);
-
-    hexIntLitEClass = createEClass(HEX_INT_LIT);
-
-    stringLitEClass = createEClass(STRING_LIT);
-    createEReference(stringLitEClass, STRING_LIT__CHARS);
-
-    stringCharEClass = createEClass(STRING_CHAR);
-    createEAttribute(stringCharEClass, STRING_CHAR__CHAR);
-    createEReference(stringCharEClass, STRING_CHAR__ESCAPED_CHAR);
-
-    unicodeCharEClass = createEClass(UNICODE_CHAR);
-    createEAttribute(unicodeCharEClass, UNICODE_CHAR__DIGITS);
-
-    // Create enums
-    floatSizeEEnum = createEEnum(FLOAT_SIZE);
-    intSizeEEnum = createEEnum(INT_SIZE);
+    unitTypeEClass = createEClass(UNIT_TYPE);
   }
 
   /**
@@ -827,16 +775,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     attrWithListEClass.getESuperTypes().add(this.getAttr());
     literalAttrEClass.getESuperTypes().add(this.getAttr());
     modItemEClass.getESuperTypes().add(this.getItem());
-    charLitEClass.getESuperTypes().add(this.getLiteral());
+    fnItemEClass.getESuperTypes().add(this.getItem());
+    primitiveTypeEClass.getESuperTypes().add(this.getType());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
-    floatLitEClass.getESuperTypes().add(this.getNumberLit());
-    intLitEClass.getESuperTypes().add(this.getNumberLit());
-    decIntLitEClass.getESuperTypes().add(this.getIntLit());
-    binIntLitEClass.getESuperTypes().add(this.getIntLit());
-    octIntLitEClass.getESuperTypes().add(this.getIntLit());
-    hexIntLitEClass.getESuperTypes().add(this.getIntLit());
-    stringLitEClass.getESuperTypes().add(this.getLiteral());
-    unicodeCharEClass.getESuperTypes().add(this.getEscapedChar());
+    intTypeEClass.getESuperTypes().add(this.getPrimitiveType());
+    floatTypeEClass.getESuperTypes().add(this.getPrimitiveType());
+    boolTypeEClass.getESuperTypes().add(this.getPrimitiveType());
+    machineTypeEClass.getESuperTypes().add(this.getPrimitiveType());
+    unitTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(crateEClass, Crate.class, "Crate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -859,58 +805,46 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getItemAndAttrs_Item(), this.getItem(), null, "item", null, 0, 1, ItemAndAttrs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modItemEClass, ModItem.class, "ModItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModItem_ExternalBody(), ecorePackage.getEBoolean(), "externalBody", null, 0, 1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModItem_Items(), this.getItemAndAttrs(), null, "items", null, 0, -1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fnItemEClass, FnItem.class, "FnItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFnItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFnItem_Args(), this.getArg(), null, "args", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFnItem_ReturnType(), this.getType(), null, "returnType", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getGenericParamDecl_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getGenericParamDecl_Bounds(), ecorePackage.getEString(), "bounds", null, 0, -1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(argEClass, Arg.class, "Arg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArg_Pat(), this.getPat(), null, "pat", null, 0, 1, Arg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArg_Type(), this.getType(), null, "type", null, 0, 1, Arg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patEClass, Pat.class, "Pat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPat_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Pat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(charLitEClass, CharLit.class, "CharLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCharLit_Char(), ecorePackage.getEString(), "char", null, 0, 1, CharLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCharLit_EscapedChar(), this.getEscapedChar(), null, "escapedChar", null, 0, 1, CharLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(escapedCharEClass, EscapedChar.class, "EscapedChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEscapedChar_Char(), ecorePackage.getEString(), "char", null, 0, 1, EscapedChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(numberLitEClass, NumberLit.class, "NumberLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumberLit_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, NumberLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNumberLit_Value(), ecorePackage.getEString(), "value", null, 0, 1, NumberLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(floatLitEClass, FloatLit.class, "FloatLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFloatLit_NegativeExp(), ecorePackage.getEBoolean(), "negativeExp", null, 0, 1, FloatLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFloatLit_Size(), this.getFloatSize(), "size", null, 0, 1, FloatLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(intLitEClass, IntLit.class, "IntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIntLit_Unsigned(), ecorePackage.getEBoolean(), "unsigned", null, 0, 1, IntLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getIntLit_Size(), this.getIntSize(), "size", null, 0, 1, IntLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(floatTypeEClass, FloatType.class, "FloatType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(decIntLitEClass, DecIntLit.class, "DecIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(boolTypeEClass, BoolType.class, "BoolType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(binIntLitEClass, BinIntLit.class, "BinIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(machineTypeEClass, MachineType.class, "MachineType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(octIntLitEClass, OctIntLit.class, "OctIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(hexIntLitEClass, HexIntLit.class, "HexIntLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(stringLitEClass, StringLit.class, "StringLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStringLit_Chars(), this.getStringChar(), null, "chars", null, 0, -1, StringLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(stringCharEClass, StringChar.class, "StringChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStringChar_Char(), ecorePackage.getEString(), "char", null, 0, 1, StringChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getStringChar_EscapedChar(), this.getEscapedChar(), null, "escapedChar", null, 0, 1, StringChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(unicodeCharEClass, UnicodeChar.class, "UnicodeChar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getUnicodeChar_Digits(), ecorePackage.getEString(), "digits", null, 0, -1, UnicodeChar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    // Initialize enums and add enum literals
-    initEEnum(floatSizeEEnum, FloatSize.class, "FloatSize");
-    addEEnumLiteral(floatSizeEEnum, FloatSize.FLOAT);
-    addEEnumLiteral(floatSizeEEnum, FloatSize.DOUBLE);
-
-    initEEnum(intSizeEEnum, IntSize.class, "IntSize");
-    addEEnumLiteral(intSizeEEnum, IntSize.BYTE);
-    addEEnumLiteral(intSizeEEnum, IntSize.SHORT);
-    addEEnumLiteral(intSizeEEnum, IntSize.INT);
-    addEEnumLiteral(intSizeEEnum, IntSize.LONG);
+    initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

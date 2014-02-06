@@ -95,6 +95,60 @@ public interface RustFactory extends EFactory
   ModItem createModItem();
 
   /**
+   * Returns a new object of class '<em>Fn Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fn Item</em>'.
+   * @generated
+   */
+  FnItem createFnItem();
+
+  /**
+   * Returns a new object of class '<em>Generic Param Decl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Generic Param Decl</em>'.
+   * @generated
+   */
+  GenericParamDecl createGenericParamDecl();
+
+  /**
+   * Returns a new object of class '<em>Arg</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Arg</em>'.
+   * @generated
+   */
+  Arg createArg();
+
+  /**
+   * Returns a new object of class '<em>Pat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat</em>'.
+   * @generated
+   */
+  Pat createPat();
+
+  /**
+   * Returns a new object of class '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type</em>'.
+   * @generated
+   */
+  Type createType();
+
+  /**
+   * Returns a new object of class '<em>Primitive Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Primitive Type</em>'.
+   * @generated
+   */
+  PrimitiveType createPrimitiveType();
+
+  /**
    * Returns a new object of class '<em>Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -102,24 +156,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   Literal createLiteral();
-
-  /**
-   * Returns a new object of class '<em>Char Lit</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Char Lit</em>'.
-   * @generated
-   */
-  CharLit createCharLit();
-
-  /**
-   * Returns a new object of class '<em>Escaped Char</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Escaped Char</em>'.
-   * @generated
-   */
-  EscapedChar createEscapedChar();
 
   /**
    * Returns a new object of class '<em>Number Lit</em>'.
@@ -131,85 +167,49 @@ public interface RustFactory extends EFactory
   NumberLit createNumberLit();
 
   /**
-   * Returns a new object of class '<em>Float Lit</em>'.
+   * Returns a new object of class '<em>Int Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Float Lit</em>'.
+   * @return a new object of class '<em>Int Type</em>'.
    * @generated
    */
-  FloatLit createFloatLit();
+  IntType createIntType();
 
   /**
-   * Returns a new object of class '<em>Int Lit</em>'.
+   * Returns a new object of class '<em>Float Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Lit</em>'.
+   * @return a new object of class '<em>Float Type</em>'.
    * @generated
    */
-  IntLit createIntLit();
+  FloatType createFloatType();
 
   /**
-   * Returns a new object of class '<em>Dec Int Lit</em>'.
+   * Returns a new object of class '<em>Bool Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dec Int Lit</em>'.
+   * @return a new object of class '<em>Bool Type</em>'.
    * @generated
    */
-  DecIntLit createDecIntLit();
+  BoolType createBoolType();
 
   /**
-   * Returns a new object of class '<em>Bin Int Lit</em>'.
+   * Returns a new object of class '<em>Machine Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bin Int Lit</em>'.
+   * @return a new object of class '<em>Machine Type</em>'.
    * @generated
    */
-  BinIntLit createBinIntLit();
+  MachineType createMachineType();
 
   /**
-   * Returns a new object of class '<em>Oct Int Lit</em>'.
+   * Returns a new object of class '<em>Unit Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Oct Int Lit</em>'.
+   * @return a new object of class '<em>Unit Type</em>'.
    * @generated
    */
-  OctIntLit createOctIntLit();
-
-  /**
-   * Returns a new object of class '<em>Hex Int Lit</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Hex Int Lit</em>'.
-   * @generated
-   */
-  HexIntLit createHexIntLit();
-
-  /**
-   * Returns a new object of class '<em>String Lit</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Lit</em>'.
-   * @generated
-   */
-  StringLit createStringLit();
-
-  /**
-   * Returns a new object of class '<em>String Char</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Char</em>'.
-   * @generated
-   */
-  StringChar createStringChar();
-
-  /**
-   * Returns a new object of class '<em>Unicode Char</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Unicode Char</em>'.
-   * @generated
-   */
-  UnicodeChar createUnicodeChar();
+  UnitType createUnitType();
 
   /**
    * Returns the package supported by this factory.
