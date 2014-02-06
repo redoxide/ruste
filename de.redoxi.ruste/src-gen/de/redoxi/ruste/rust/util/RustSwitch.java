@@ -183,6 +183,60 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.STRUCT_TYPE:
+      {
+        StructType structType = (StructType)theEObject;
+        T result = caseStructType(structType);
+        if (result == null) result = caseType(structType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.STRUCT_FIELD:
+      {
+        StructField structField = (StructField)theEObject;
+        T result = caseStructField(structField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.ENUM_TYPE:
+      {
+        EnumType enumType = (EnumType)theEObject;
+        T result = caseEnumType(enumType);
+        if (result == null) result = caseType(enumType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.VARIANT:
+      {
+        Variant variant = (Variant)theEObject;
+        T result = caseVariant(variant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.STRUCT_VARIANT:
+      {
+        StructVariant structVariant = (StructVariant)theEObject;
+        T result = caseStructVariant(structVariant);
+        if (result == null) result = caseVariant(structVariant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.TUPLE_VARIANT:
+      {
+        TupleVariant tupleVariant = (TupleVariant)theEObject;
+        T result = caseTupleVariant(tupleVariant);
+        if (result == null) result = caseVariant(tupleVariant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.UNIT_VARIANT:
+      {
+        UnitVariant unitVariant = (UnitVariant)theEObject;
+        T result = caseUnitVariant(unitVariant);
+        if (result == null) result = caseVariant(unitVariant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.STRING_LIT:
       {
         StringLit stringLit = (StringLit)theEObject;
@@ -499,6 +553,118 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTupleType(TupleType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Struct Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStructType(StructType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Struct Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Struct Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStructField(StructField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumType(EnumType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariant(Variant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Struct Variant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Struct Variant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStructVariant(StructVariant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tuple Variant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tuple Variant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTupleVariant(TupleVariant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unit Variant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unit Variant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnitVariant(UnitVariant object)
   {
     return null;
   }

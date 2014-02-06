@@ -70,7 +70,9 @@ Pat:
 
 Type:
 	PrimitiveType |
-	TupleType
+	TupleType |
+	StructType |
+	EnumType
 ;
 
 PrimitiveType:
@@ -83,6 +85,39 @@ PrimitiveType:
 
 TupleType:
 	'(' types+=Type (',' types+=Type)* ')'
+;
+
+// TODO Move generics to own rule, but attach here
+StructType:
+	"struct" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+;
+
+StructField:
+	vis=Visibility? ident=IDENT ':' type=Type
+;
+
+EnumType:
+	"enum" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' variants+=Variant (',' variants+=Variant)* '}'
+;
+
+Variant:
+	StructVariant | TupleVariant | UnitVariant
+;
+
+StructVariant:
+	ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+;
+
+TupleVariant:
+	ident=IDENT '(' types+=Type (',' types+=Type)* ')'
+;
+
+UnitVariant:
+	ident=IDENT
+;
+
+enum Visibility:
+	PRIVATE="priv" | PUBLIC="pub"	
 ;
 
 terminal INT_TYPE: INT_SIZE;

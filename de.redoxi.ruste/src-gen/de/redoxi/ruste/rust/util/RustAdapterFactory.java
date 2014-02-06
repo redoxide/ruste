@@ -150,6 +150,41 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createTupleTypeAdapter();
       }
       @Override
+      public Adapter caseStructType(StructType object)
+      {
+        return createStructTypeAdapter();
+      }
+      @Override
+      public Adapter caseStructField(StructField object)
+      {
+        return createStructFieldAdapter();
+      }
+      @Override
+      public Adapter caseEnumType(EnumType object)
+      {
+        return createEnumTypeAdapter();
+      }
+      @Override
+      public Adapter caseVariant(Variant object)
+      {
+        return createVariantAdapter();
+      }
+      @Override
+      public Adapter caseStructVariant(StructVariant object)
+      {
+        return createStructVariantAdapter();
+      }
+      @Override
+      public Adapter caseTupleVariant(TupleVariant object)
+      {
+        return createTupleVariantAdapter();
+      }
+      @Override
+      public Adapter caseUnitVariant(UnitVariant object)
+      {
+        return createUnitVariantAdapter();
+      }
+      @Override
       public Adapter caseStringLit(StringLit object)
       {
         return createStringLitAdapter();
@@ -437,6 +472,111 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTupleTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StructType <em>Struct Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StructType
+   * @generated
+   */
+  public Adapter createStructTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StructField <em>Struct Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StructField
+   * @generated
+   */
+  public Adapter createStructFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.EnumType <em>Enum Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.EnumType
+   * @generated
+   */
+  public Adapter createEnumTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Variant <em>Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Variant
+   * @generated
+   */
+  public Adapter createVariantAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StructVariant <em>Struct Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StructVariant
+   * @generated
+   */
+  public Adapter createStructVariantAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TupleVariant <em>Tuple Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.TupleVariant
+   * @generated
+   */
+  public Adapter createTupleVariantAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.UnitVariant <em>Unit Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.UnitVariant
+   * @generated
+   */
+  public Adapter createUnitVariantAdapter()
   {
     return null;
   }

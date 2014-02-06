@@ -4,6 +4,7 @@ package de.redoxi.ruste.rust;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -558,6 +559,283 @@ public interface RustPackage extends EPackage
   int TUPLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StructTypeImpl <em>Struct Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StructTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
+   * @generated
+   */
+  int STRUCT_TYPE = 15;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_TYPE__IDENT = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_TYPE__PARAMS = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_TYPE__FIELDS = TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Struct Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StructFieldImpl <em>Struct Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StructFieldImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
+   * @generated
+   */
+  int STRUCT_FIELD = 16;
+
+  /**
+   * The feature id for the '<em><b>Vis</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_FIELD__VIS = 0;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_FIELD__IDENT = 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_FIELD__TYPE = 2;
+
+  /**
+   * The number of structural features of the '<em>Struct Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_FIELD_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EnumTypeImpl <em>Enum Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.EnumTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
+   * @generated
+   */
+  int ENUM_TYPE = 17;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_TYPE__IDENT = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_TYPE__PARAMS = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Variants</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_TYPE__VARIANTS = TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Enum Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENUM_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.VariantImpl <em>Variant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.VariantImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
+   * @generated
+   */
+  int VARIANT = 18;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIANT__IDENT = 0;
+
+  /**
+   * The number of structural features of the '<em>Variant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIANT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StructVariantImpl <em>Struct Variant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StructVariantImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
+   * @generated
+   */
+  int STRUCT_VARIANT = 19;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_VARIANT__IDENT = VARIANT__IDENT;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_VARIANT__PARAMS = VARIANT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_VARIANT__FIELDS = VARIANT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Struct Variant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCT_VARIANT_FEATURE_COUNT = VARIANT_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TupleVariantImpl <em>Tuple Variant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.TupleVariantImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
+   * @generated
+   */
+  int TUPLE_VARIANT = 20;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_VARIANT__IDENT = VARIANT__IDENT;
+
+  /**
+   * The feature id for the '<em><b>Types</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_VARIANT__TYPES = VARIANT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Tuple Variant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_VARIANT_FEATURE_COUNT = VARIANT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.UnitVariantImpl <em>Unit Variant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.UnitVariantImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
+   * @generated
+   */
+  int UNIT_VARIANT = 21;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNIT_VARIANT__IDENT = VARIANT__IDENT;
+
+  /**
+   * The number of structural features of the '<em>Unit Variant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNIT_VARIANT_FEATURE_COUNT = VARIANT_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.LiteralImpl <em>Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -565,7 +843,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 16;
+  int LITERAL = 23;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -593,7 +871,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 15;
+  int STRING_LIT = 22;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -621,7 +899,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 17;
+  int NUMBER_LIT = 24;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -649,7 +927,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 18;
+  int CHAR_LIT = 25;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -677,7 +955,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 19;
+  int INT_TYPE = 26;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -696,7 +974,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 20;
+  int FLOAT_TYPE = 27;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -715,7 +993,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 21;
+  int BOOL_TYPE = 28;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -734,7 +1012,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 22;
+  int MACHINE_TYPE = 29;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -753,7 +1031,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 23;
+  int UNIT_TYPE = 30;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -763,6 +1041,16 @@ public interface RustPackage extends EPackage
    * @ordered
    */
   int UNIT_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.Visibility
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
+   * @generated
+   */
+  int VISIBILITY = 31;
 
 
   /**
@@ -1136,6 +1424,219 @@ public interface RustPackage extends EPackage
   EReference getTupleType_Types();
 
   /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StructType <em>Struct Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Struct Type</em>'.
+   * @see de.redoxi.ruste.rust.StructType
+   * @generated
+   */
+  EClass getStructType();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StructType#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.StructType#getIdent()
+   * @see #getStructType()
+   * @generated
+   */
+  EAttribute getStructType_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StructType#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.StructType#getParams()
+   * @see #getStructType()
+   * @generated
+   */
+  EReference getStructType_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StructType#getFields <em>Fields</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fields</em>'.
+   * @see de.redoxi.ruste.rust.StructType#getFields()
+   * @see #getStructType()
+   * @generated
+   */
+  EReference getStructType_Fields();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StructField <em>Struct Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Struct Field</em>'.
+   * @see de.redoxi.ruste.rust.StructField
+   * @generated
+   */
+  EClass getStructField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StructField#getVis <em>Vis</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Vis</em>'.
+   * @see de.redoxi.ruste.rust.StructField#getVis()
+   * @see #getStructField()
+   * @generated
+   */
+  EAttribute getStructField_Vis();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StructField#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.StructField#getIdent()
+   * @see #getStructField()
+   * @generated
+   */
+  EAttribute getStructField_Ident();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.StructField#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.StructField#getType()
+   * @see #getStructField()
+   * @generated
+   */
+  EReference getStructField_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.EnumType <em>Enum Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Enum Type</em>'.
+   * @see de.redoxi.ruste.rust.EnumType
+   * @generated
+   */
+  EClass getEnumType();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.EnumType#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.EnumType#getIdent()
+   * @see #getEnumType()
+   * @generated
+   */
+  EAttribute getEnumType_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.EnumType#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.EnumType#getParams()
+   * @see #getEnumType()
+   * @generated
+   */
+  EReference getEnumType_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.EnumType#getVariants <em>Variants</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Variants</em>'.
+   * @see de.redoxi.ruste.rust.EnumType#getVariants()
+   * @see #getEnumType()
+   * @generated
+   */
+  EReference getEnumType_Variants();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Variant <em>Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variant</em>'.
+   * @see de.redoxi.ruste.rust.Variant
+   * @generated
+   */
+  EClass getVariant();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.Variant#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.Variant#getIdent()
+   * @see #getVariant()
+   * @generated
+   */
+  EAttribute getVariant_Ident();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StructVariant <em>Struct Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Struct Variant</em>'.
+   * @see de.redoxi.ruste.rust.StructVariant
+   * @generated
+   */
+  EClass getStructVariant();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StructVariant#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.StructVariant#getParams()
+   * @see #getStructVariant()
+   * @generated
+   */
+  EReference getStructVariant_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StructVariant#getFields <em>Fields</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fields</em>'.
+   * @see de.redoxi.ruste.rust.StructVariant#getFields()
+   * @see #getStructVariant()
+   * @generated
+   */
+  EReference getStructVariant_Fields();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.TupleVariant <em>Tuple Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Tuple Variant</em>'.
+   * @see de.redoxi.ruste.rust.TupleVariant
+   * @generated
+   */
+  EClass getTupleVariant();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TupleVariant#getTypes <em>Types</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Types</em>'.
+   * @see de.redoxi.ruste.rust.TupleVariant#getTypes()
+   * @see #getTupleVariant()
+   * @generated
+   */
+  EReference getTupleVariant_Types();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.UnitVariant <em>Unit Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unit Variant</em>'.
+   * @see de.redoxi.ruste.rust.UnitVariant
+   * @generated
+   */
+  EClass getUnitVariant();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1235,6 +1736,16 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getUnitType();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Visibility</em>'.
+   * @see de.redoxi.ruste.rust.Visibility
+   * @generated
+   */
+  EEnum getVisibility();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1570,6 +2081,180 @@ public interface RustPackage extends EPackage
     EReference TUPLE_TYPE__TYPES = eINSTANCE.getTupleType_Types();
 
     /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StructTypeImpl <em>Struct Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StructTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
+     * @generated
+     */
+    EClass STRUCT_TYPE = eINSTANCE.getStructType();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRUCT_TYPE__IDENT = eINSTANCE.getStructType_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRUCT_TYPE__PARAMS = eINSTANCE.getStructType_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRUCT_TYPE__FIELDS = eINSTANCE.getStructType_Fields();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StructFieldImpl <em>Struct Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StructFieldImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
+     * @generated
+     */
+    EClass STRUCT_FIELD = eINSTANCE.getStructField();
+
+    /**
+     * The meta object literal for the '<em><b>Vis</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRUCT_FIELD__VIS = eINSTANCE.getStructField_Vis();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRUCT_FIELD__IDENT = eINSTANCE.getStructField_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRUCT_FIELD__TYPE = eINSTANCE.getStructField_Type();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.EnumTypeImpl <em>Enum Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.EnumTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
+     * @generated
+     */
+    EClass ENUM_TYPE = eINSTANCE.getEnumType();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_TYPE__IDENT = eINSTANCE.getEnumType_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_TYPE__PARAMS = eINSTANCE.getEnumType_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Variants</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENUM_TYPE__VARIANTS = eINSTANCE.getEnumType_Variants();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.VariantImpl <em>Variant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.VariantImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
+     * @generated
+     */
+    EClass VARIANT = eINSTANCE.getVariant();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VARIANT__IDENT = eINSTANCE.getVariant_Ident();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StructVariantImpl <em>Struct Variant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StructVariantImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
+     * @generated
+     */
+    EClass STRUCT_VARIANT = eINSTANCE.getStructVariant();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRUCT_VARIANT__PARAMS = eINSTANCE.getStructVariant_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STRUCT_VARIANT__FIELDS = eINSTANCE.getStructVariant_Fields();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.TupleVariantImpl <em>Tuple Variant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.TupleVariantImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
+     * @generated
+     */
+    EClass TUPLE_VARIANT = eINSTANCE.getTupleVariant();
+
+    /**
+     * The meta object literal for the '<em><b>Types</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TUPLE_VARIANT__TYPES = eINSTANCE.getTupleVariant_Types();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.UnitVariantImpl <em>Unit Variant</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.UnitVariantImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
+     * @generated
+     */
+    EClass UNIT_VARIANT = eINSTANCE.getUnitVariant();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1666,6 +2351,16 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass UNIT_TYPE = eINSTANCE.getUnitType();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.Visibility
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
+     * @generated
+     */
+    EEnum VISIBILITY = eINSTANCE.getVisibility();
 
   }
 

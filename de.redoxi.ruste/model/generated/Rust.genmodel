@@ -7,6 +7,10 @@
     editorPluginID="de.redoxi.ruste.editor" runtimeVersion="2.9">
   <genPackages prefix="Rust" basePackage="de.redoxi.ruste" disposableProviderFactory="true"
       fileExtensions="rs" ecorePackage="Rust.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//Visibility">
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//Visibility/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//Visibility/PUBLIC"/>
+    </genEnums>
     <genClasses ecoreClass="Rust.ecore#//Crate">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
     </genClasses>
@@ -55,6 +59,32 @@
     <genClasses ecoreClass="Rust.ecore#//TupleType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TupleType/types"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//StructType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructType/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//StructField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/vis"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructField/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//EnumType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumType/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumType/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumType/variants"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Variant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Variant/ident"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//StructVariant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructVariant/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructVariant/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TupleVariant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TupleVariant/types"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnitVariant"/>
     <genClasses ecoreClass="Rust.ecore#//StringLit"/>
     <genClasses ecoreClass="Rust.ecore#//Literal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Literal/value"/>

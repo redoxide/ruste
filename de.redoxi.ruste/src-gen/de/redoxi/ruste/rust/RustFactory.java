@@ -158,6 +158,69 @@ public interface RustFactory extends EFactory
   TupleType createTupleType();
 
   /**
+   * Returns a new object of class '<em>Struct Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Struct Type</em>'.
+   * @generated
+   */
+  StructType createStructType();
+
+  /**
+   * Returns a new object of class '<em>Struct Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Struct Field</em>'.
+   * @generated
+   */
+  StructField createStructField();
+
+  /**
+   * Returns a new object of class '<em>Enum Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Type</em>'.
+   * @generated
+   */
+  EnumType createEnumType();
+
+  /**
+   * Returns a new object of class '<em>Variant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variant</em>'.
+   * @generated
+   */
+  Variant createVariant();
+
+  /**
+   * Returns a new object of class '<em>Struct Variant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Struct Variant</em>'.
+   * @generated
+   */
+  StructVariant createStructVariant();
+
+  /**
+   * Returns a new object of class '<em>Tuple Variant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tuple Variant</em>'.
+   * @generated
+   */
+  TupleVariant createTupleVariant();
+
+  /**
+   * Returns a new object of class '<em>Unit Variant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unit Variant</em>'.
+   * @generated
+   */
+  UnitVariant createUnitVariant();
+
+  /**
    * Returns a new object of class '<em>String Lit</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

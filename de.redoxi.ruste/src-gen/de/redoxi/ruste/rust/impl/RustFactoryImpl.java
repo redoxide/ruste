@@ -5,6 +5,7 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -79,6 +80,13 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.TUPLE_TYPE: return createTupleType();
+      case RustPackage.STRUCT_TYPE: return createStructType();
+      case RustPackage.STRUCT_FIELD: return createStructField();
+      case RustPackage.ENUM_TYPE: return createEnumType();
+      case RustPackage.VARIANT: return createVariant();
+      case RustPackage.STRUCT_VARIANT: return createStructVariant();
+      case RustPackage.TUPLE_VARIANT: return createTupleVariant();
+      case RustPackage.UNIT_VARIANT: return createUnitVariant();
       case RustPackage.STRING_LIT: return createStringLit();
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
@@ -90,6 +98,40 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.UNIT_TYPE: return createUnitType();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case RustPackage.VISIBILITY:
+        return createVisibilityFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case RustPackage.VISIBILITY:
+        return convertVisibilityToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -263,6 +305,83 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public StructType createStructType()
+  {
+    StructTypeImpl structType = new StructTypeImpl();
+    return structType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StructField createStructField()
+  {
+    StructFieldImpl structField = new StructFieldImpl();
+    return structField;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumType createEnumType()
+  {
+    EnumTypeImpl enumType = new EnumTypeImpl();
+    return enumType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Variant createVariant()
+  {
+    VariantImpl variant = new VariantImpl();
+    return variant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StructVariant createStructVariant()
+  {
+    StructVariantImpl structVariant = new StructVariantImpl();
+    return structVariant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TupleVariant createTupleVariant()
+  {
+    TupleVariantImpl tupleVariant = new TupleVariantImpl();
+    return tupleVariant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UnitVariant createUnitVariant()
+  {
+    UnitVariantImpl unitVariant = new UnitVariantImpl();
+    return unitVariant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public StringLit createStringLit()
   {
     StringLitImpl stringLit = new StringLitImpl();
@@ -355,6 +474,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     UnitTypeImpl unitType = new UnitTypeImpl();
     return unitType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Visibility createVisibilityFromString(EDataType eDataType, String initialValue)
+  {
+    Visibility result = Visibility.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertVisibilityToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

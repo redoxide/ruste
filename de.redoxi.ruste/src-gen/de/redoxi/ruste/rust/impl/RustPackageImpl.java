@@ -8,6 +8,7 @@ import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
@@ -25,12 +26,20 @@ import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
+import de.redoxi.ruste.rust.StructField;
+import de.redoxi.ruste.rust.StructType;
+import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
+import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.Type;
 import de.redoxi.ruste.rust.UnitType;
+import de.redoxi.ruste.rust.UnitVariant;
+import de.redoxi.ruste.rust.Variant;
+import de.redoxi.ruste.rust.Visibility;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -154,6 +163,55 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass structTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass structFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass variantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass structVariantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tupleVariantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unitVariantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass stringLitEClass = null;
 
   /**
@@ -211,6 +269,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass unitTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum visibilityEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -630,6 +695,206 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStructType()
+  {
+    return structTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStructType_Ident()
+  {
+    return (EAttribute)structTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructType_Params()
+  {
+    return (EReference)structTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructType_Fields()
+  {
+    return (EReference)structTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStructField()
+  {
+    return structFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStructField_Vis()
+  {
+    return (EAttribute)structFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStructField_Ident()
+  {
+    return (EAttribute)structFieldEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructField_Type()
+  {
+    return (EReference)structFieldEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumType()
+  {
+    return enumTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumType_Ident()
+  {
+    return (EAttribute)enumTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumType_Params()
+  {
+    return (EReference)enumTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumType_Variants()
+  {
+    return (EReference)enumTypeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVariant()
+  {
+    return variantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVariant_Ident()
+  {
+    return (EAttribute)variantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStructVariant()
+  {
+    return structVariantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructVariant_Params()
+  {
+    return (EReference)structVariantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructVariant_Fields()
+  {
+    return (EReference)structVariantEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTupleVariant()
+  {
+    return tupleVariantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTupleVariant_Types()
+  {
+    return (EReference)tupleVariantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnitVariant()
+  {
+    return unitVariantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getStringLit()
   {
     return stringLitEClass;
@@ -730,6 +995,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getVisibility()
+  {
+    return visibilityEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RustFactory getRustFactory()
   {
     return (RustFactory)getEFactoryInstance();
@@ -805,6 +1080,33 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     tupleTypeEClass = createEClass(TUPLE_TYPE);
     createEReference(tupleTypeEClass, TUPLE_TYPE__TYPES);
 
+    structTypeEClass = createEClass(STRUCT_TYPE);
+    createEAttribute(structTypeEClass, STRUCT_TYPE__IDENT);
+    createEReference(structTypeEClass, STRUCT_TYPE__PARAMS);
+    createEReference(structTypeEClass, STRUCT_TYPE__FIELDS);
+
+    structFieldEClass = createEClass(STRUCT_FIELD);
+    createEAttribute(structFieldEClass, STRUCT_FIELD__VIS);
+    createEAttribute(structFieldEClass, STRUCT_FIELD__IDENT);
+    createEReference(structFieldEClass, STRUCT_FIELD__TYPE);
+
+    enumTypeEClass = createEClass(ENUM_TYPE);
+    createEAttribute(enumTypeEClass, ENUM_TYPE__IDENT);
+    createEReference(enumTypeEClass, ENUM_TYPE__PARAMS);
+    createEReference(enumTypeEClass, ENUM_TYPE__VARIANTS);
+
+    variantEClass = createEClass(VARIANT);
+    createEAttribute(variantEClass, VARIANT__IDENT);
+
+    structVariantEClass = createEClass(STRUCT_VARIANT);
+    createEReference(structVariantEClass, STRUCT_VARIANT__PARAMS);
+    createEReference(structVariantEClass, STRUCT_VARIANT__FIELDS);
+
+    tupleVariantEClass = createEClass(TUPLE_VARIANT);
+    createEReference(tupleVariantEClass, TUPLE_VARIANT__TYPES);
+
+    unitVariantEClass = createEClass(UNIT_VARIANT);
+
     stringLitEClass = createEClass(STRING_LIT);
 
     literalEClass = createEClass(LITERAL);
@@ -823,6 +1125,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     machineTypeEClass = createEClass(MACHINE_TYPE);
 
     unitTypeEClass = createEClass(UNIT_TYPE);
+
+    // Create enums
+    visibilityEEnum = createEEnum(VISIBILITY);
   }
 
   /**
@@ -860,6 +1165,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     fnItemEClass.getESuperTypes().add(this.getItem());
     primitiveTypeEClass.getESuperTypes().add(this.getType());
     tupleTypeEClass.getESuperTypes().add(this.getType());
+    structTypeEClass.getESuperTypes().add(this.getType());
+    enumTypeEClass.getESuperTypes().add(this.getType());
+    structVariantEClass.getESuperTypes().add(this.getVariant());
+    tupleVariantEClass.getESuperTypes().add(this.getVariant());
+    unitVariantEClass.getESuperTypes().add(this.getVariant());
     stringLitEClass.getESuperTypes().add(this.getLiteral());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
     charLitEClass.getESuperTypes().add(this.getLiteral());
@@ -920,6 +1230,33 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTupleType_Types(), this.getType(), null, "types", null, 0, -1, TupleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(structTypeEClass, StructType.class, "StructType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStructType_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructType_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructType_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(structFieldEClass, StructField.class, "StructField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStructField_Vis(), this.getVisibility(), "vis", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStructField_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructField_Type(), this.getType(), null, "type", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumTypeEClass, EnumType.class, "EnumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnumType_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumType_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumType_Variants(), this.getVariant(), null, "variants", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variantEClass, Variant.class, "Variant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariant_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Variant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(structVariantEClass, StructVariant.class, "StructVariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStructVariant_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructVariant_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tupleVariantEClass, TupleVariant.class, "TupleVariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTupleVariant_Types(), this.getType(), null, "types", null, 0, -1, TupleVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unitVariantEClass, UnitVariant.class, "UnitVariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(stringLitEClass, StringLit.class, "StringLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -938,6 +1275,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(machineTypeEClass, MachineType.class, "MachineType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(unitTypeEClass, UnitType.class, "UnitType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    // Initialize enums and add enum literals
+    initEEnum(visibilityEEnum, Visibility.class, "Visibility");
+    addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
+    addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
 
     // Create resource
     createResource(eNS_URI);

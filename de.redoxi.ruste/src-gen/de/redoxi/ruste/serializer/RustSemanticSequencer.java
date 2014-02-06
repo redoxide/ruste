@@ -7,6 +7,7 @@ import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
@@ -20,8 +21,13 @@ import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
+import de.redoxi.ruste.rust.StructField;
+import de.redoxi.ruste.rust.StructType;
+import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
+import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.UnitType;
+import de.redoxi.ruste.rust.UnitVariant;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -73,6 +79,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.CRATE:
 				if(context == grammarAccess.getCrateRule()) {
 					sequence_Crate(context, (Crate) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.ENUM_TYPE:
+				if(context == grammarAccess.getEnumTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_EnumType(context, (EnumType) semanticObject); 
 					return; 
 				}
 				else break;
@@ -156,6 +169,26 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.STRUCT_FIELD:
+				if(context == grammarAccess.getStructFieldRule()) {
+					sequence_StructField(context, (StructField) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.STRUCT_TYPE:
+				if(context == grammarAccess.getStructTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_StructType(context, (StructType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.STRUCT_VARIANT:
+				if(context == grammarAccess.getStructVariantRule() ||
+				   context == grammarAccess.getVariantRule()) {
+					sequence_StructVariant(context, (StructVariant) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.TUPLE_TYPE:
 				if(context == grammarAccess.getTupleTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
@@ -163,10 +196,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.TUPLE_VARIANT:
+				if(context == grammarAccess.getTupleVariantRule() ||
+				   context == grammarAccess.getVariantRule()) {
+					sequence_TupleVariant(context, (TupleVariant) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.UNIT_TYPE:
 				if(context == grammarAccess.getPrimitiveTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
 					sequence_PrimitiveType(context, (UnitType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.UNIT_VARIANT:
+				if(context == grammarAccess.getUnitVariantRule() ||
+				   context == grammarAccess.getVariantRule()) {
+					sequence_UnitVariant(context, (UnitVariant) semanticObject); 
 					return; 
 				}
 				else break;
@@ -223,6 +270,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     items+=ItemAndAttrs*
 	 */
 	protected void sequence_Crate(EObject context, Crate semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? variants+=Variant variants+=Variant*)
+	 */
+	protected void sequence_EnumType(EObject context, EnumType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -379,9 +435,61 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (vis=Visibility? ident=IDENT type=Type)
+	 */
+	protected void sequence_StructField(EObject context, StructField semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
+	 */
+	protected void sequence_StructType(EObject context, StructType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
+	 */
+	protected void sequence_StructVariant(EObject context, StructVariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (types+=Type types+=Type*)
 	 */
 	protected void sequence_TupleType(EObject context, TupleType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT types+=Type types+=Type*)
+	 */
+	protected void sequence_TupleVariant(EObject context, TupleVariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ident=IDENT
+	 */
+	protected void sequence_UnitVariant(EObject context, UnitVariant semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.VARIANT__IDENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.VARIANT__IDENT));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getUnitVariantAccess().getIdentIDENTTerminalRuleCall_0(), semanticObject.getIdent());
+		feeder.finish();
 	}
 }
