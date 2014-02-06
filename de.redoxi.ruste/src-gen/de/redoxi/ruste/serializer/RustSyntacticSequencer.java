@@ -37,9 +37,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal BOOLEAN_TYPE:
-	 * 	"bool"
-	 * ;
+	 * terminal BOOLEAN_TYPE: "bool";
 	 */
 	protected String getBOOLEAN_TYPEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
@@ -48,9 +46,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal FLOAT_TYPE:
-	 * 	FLOAT_SIZE
-	 * ;
+	 * terminal FLOAT_TYPE: FLOAT_SIZE;
 	 */
 	protected String getFLOAT_TYPEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
@@ -59,9 +55,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal INT_TYPE:
-	 * 	INT_SIZE
-	 * ;
+	 * terminal INT_TYPE: INT_SIZE;
 	 */
 	protected String getINT_TYPEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
@@ -70,9 +64,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal MACHINE_TYPE:
-	 * 	MACHINE_INT_TYPE | MACHINE_UINT_TYPE
-	 * ;
+	 * terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
 	 */
 	protected String getMACHINE_TYPEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
@@ -81,9 +73,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * terminal UNIT_TYPE:
-	 * 	"()"
-	 * ;
+	 * terminal UNIT_TYPE: "()";
 	 */
 	protected String getUNIT_TYPEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)

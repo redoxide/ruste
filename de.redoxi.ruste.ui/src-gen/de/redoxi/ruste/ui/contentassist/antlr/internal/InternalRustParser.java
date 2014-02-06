@@ -22,58 +22,64 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalRustParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT_TYPE", "RULE_FLOAT_TYPE", "RULE_BOOLEAN_TYPE", "RULE_MACHINE_TYPE", "RULE_UNIT_TYPE", "RULE_IDENT", "RULE_INT_LIT", "RULE_INT_SIZE", "RULE_SIGNED_INT_TYPE", "RULE_UNSIGNED_INT_TYPE", "RULE_I8", "RULE_I16", "RULE_I32", "RULE_I64", "RULE_U8", "RULE_U16", "RULE_U32", "RULE_U64", "RULE_FLOAT_SIZE", "RULE_F32", "RULE_F64", "RULE_MACHINE_INT_TYPE", "RULE_MACHINE_UINT_TYPE", "RULE_DEC_DIGIT", "RULE_FLOAT_LIT", "RULE_DEC_INT_LIT", "RULE_BIN_INT_LIT", "RULE_OCT_INT_LIT", "RULE_HEX_INT_LIT", "RULE_OCT_DIGIT", "RULE_HEX_DIGIT", "RULE_XID_START", "RULE_XID_CONTINUE", "'#['", "']'", "','", "'('", "')'", "'='", "'mod'", "'{'", "'}'", "'fn'", "'<'", "'>'", "'->'", "':'", "'+'", "';'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_FLOAT_LIT", "RULE_INT_LIT", "RULE_INT_TYPE", "RULE_FLOAT_TYPE", "RULE_BOOLEAN_TYPE", "RULE_MACHINE_TYPE", "RULE_UNIT_TYPE", "RULE_IDENT", "RULE_STRING_LIT", "RULE_CHAR_LIT", "RULE_INT_SIZE", "RULE_SIGNED_INT_TYPE", "RULE_UNSIGNED_INT_TYPE", "RULE_I8", "RULE_I16", "RULE_I32", "RULE_I64", "RULE_U8", "RULE_U16", "RULE_U32", "RULE_U64", "RULE_FLOAT_SIZE", "RULE_F32", "RULE_F64", "RULE_MACHINE_INT_TYPE", "RULE_MACHINE_UINT_TYPE", "RULE_UNICODE_CHAR", "RULE_UTF8_CHAR", "RULE_UTF16_CHAR", "RULE_UTF32_CHAR", "RULE_HEX_DIGIT", "RULE_DEC_DIGIT", "RULE_DEC_INT_LIT", "RULE_BIN_INT_LIT", "RULE_OCT_INT_LIT", "RULE_HEX_INT_LIT", "RULE_OCT_DIGIT", "RULE_XID_START", "RULE_XID_CONTINUE", "'#['", "']'", "','", "'('", "')'", "'='", "'mod'", "'{'", "'}'", "'fn'", "'<'", "'>'", "'->'", "':'", "'+'", "';'"
     };
-    public static final int RULE_FLOAT_TYPE=5;
-    public static final int RULE_DEC_INT_LIT=29;
-    public static final int RULE_SIGNED_INT_TYPE=12;
-    public static final int RULE_I8=14;
-    public static final int RULE_MACHINE_UINT_TYPE=26;
+    public static final int RULE_FLOAT_TYPE=7;
+    public static final int RULE_DEC_INT_LIT=36;
+    public static final int RULE_SIGNED_INT_TYPE=15;
+    public static final int RULE_I8=17;
+    public static final int RULE_MACHINE_UINT_TYPE=29;
+    public static final int RULE_UTF32_CHAR=33;
+    public static final int RULE_UTF16_CHAR=32;
     public static final int EOF=-1;
-    public static final int RULE_I16=15;
+    public static final int RULE_I16=18;
+    public static final int T__55=55;
+    public static final int T__56=56;
+    public static final int T__57=57;
+    public static final int T__58=58;
     public static final int T__51=51;
-    public static final int RULE_U8=18;
+    public static final int RULE_U8=21;
     public static final int T__52=52;
-    public static final int RULE_U64=21;
-    public static final int RULE_OCT_INT_LIT=31;
-    public static final int RULE_BIN_INT_LIT=30;
-    public static final int RULE_INT_LIT=10;
-    public static final int RULE_XID_CONTINUE=36;
-    public static final int RULE_MACHINE_INT_TYPE=25;
+    public static final int T__53=53;
+    public static final int T__54=54;
+    public static final int RULE_U64=24;
+    public static final int RULE_OCT_INT_LIT=38;
+    public static final int RULE_BIN_INT_LIT=37;
+    public static final int RULE_INT_LIT=5;
+    public static final int RULE_XID_CONTINUE=42;
+    public static final int RULE_MACHINE_INT_TYPE=28;
     public static final int T__50=50;
-    public static final int RULE_U32=20;
-    public static final int RULE_HEX_INT_LIT=32;
-    public static final int T__42=42;
+    public static final int RULE_U32=23;
+    public static final int RULE_HEX_INT_LIT=39;
     public static final int T__43=43;
-    public static final int RULE_F64=24;
-    public static final int T__40=40;
-    public static final int T__41=41;
+    public static final int RULE_F64=27;
     public static final int T__46=46;
     public static final int T__47=47;
     public static final int T__44=44;
     public static final int T__45=45;
-    public static final int RULE_OCT_DIGIT=33;
-    public static final int RULE_DEC_DIGIT=27;
+    public static final int RULE_OCT_DIGIT=40;
+    public static final int RULE_DEC_DIGIT=35;
     public static final int T__48=48;
     public static final int T__49=49;
     public static final int RULE_HEX_DIGIT=34;
-    public static final int RULE_I32=16;
-    public static final int RULE_INT_SIZE=11;
-    public static final int RULE_INT_TYPE=4;
-    public static final int RULE_UNSIGNED_INT_TYPE=13;
-    public static final int RULE_I64=17;
-    public static final int RULE_XID_START=35;
-    public static final int RULE_FLOAT_LIT=28;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int RULE_IDENT=9;
-    public static final int RULE_F32=23;
-    public static final int T__39=39;
-    public static final int RULE_U16=19;
-    public static final int RULE_MACHINE_TYPE=7;
-    public static final int RULE_FLOAT_SIZE=22;
-    public static final int RULE_BOOLEAN_TYPE=6;
-    public static final int RULE_UNIT_TYPE=8;
+    public static final int RULE_UNICODE_CHAR=30;
+    public static final int RULE_UTF8_CHAR=31;
+    public static final int RULE_I32=19;
+    public static final int RULE_INT_SIZE=14;
+    public static final int RULE_INT_TYPE=6;
+    public static final int RULE_UNSIGNED_INT_TYPE=16;
+    public static final int RULE_I64=20;
+    public static final int RULE_XID_START=41;
+    public static final int RULE_FLOAT_LIT=4;
+    public static final int RULE_IDENT=11;
+    public static final int RULE_F32=26;
+    public static final int RULE_U16=22;
+    public static final int RULE_MACHINE_TYPE=9;
+    public static final int RULE_FLOAT_SIZE=25;
+    public static final int RULE_STRING_LIT=12;
+    public static final int RULE_CHAR_LIT=13;
+    public static final int RULE_BOOLEAN_TYPE=8;
+    public static final int RULE_UNIT_TYPE=10;
 
     // delegates
     // delegators
@@ -162,7 +168,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==37||LA1_0==43||LA1_0==46) ) {
+                if ( (LA1_0==43||LA1_0==49||LA1_0==52) ) {
                     alt1=1;
                 }
 
@@ -1202,21 +1208,98 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rulePrimitiveType"
 
 
+    // $ANTLR start "entryRuleStringLit"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:452:1: entryRuleStringLit : ruleStringLit EOF ;
+    public final void entryRuleStringLit() throws RecognitionException {
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:453:1: ( ruleStringLit EOF )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:454:1: ruleStringLit EOF
+            {
+             before(grammarAccess.getStringLitRule()); 
+            pushFollow(FOLLOW_ruleStringLit_in_entryRuleStringLit901);
+            ruleStringLit();
+
+            state._fsp--;
+
+             after(grammarAccess.getStringLitRule()); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLit908); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleStringLit"
+
+
+    // $ANTLR start "ruleStringLit"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:461:1: ruleStringLit : ( ( rule__StringLit__ValueAssignment ) ) ;
+    public final void ruleStringLit() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:465:2: ( ( ( rule__StringLit__ValueAssignment ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:466:1: ( ( rule__StringLit__ValueAssignment ) )
+            {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:466:1: ( ( rule__StringLit__ValueAssignment ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:467:1: ( rule__StringLit__ValueAssignment )
+            {
+             before(grammarAccess.getStringLitAccess().getValueAssignment()); 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:468:1: ( rule__StringLit__ValueAssignment )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:468:2: rule__StringLit__ValueAssignment
+            {
+            pushFollow(FOLLOW_rule__StringLit__ValueAssignment_in_ruleStringLit934);
+            rule__StringLit__ValueAssignment();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStringLitAccess().getValueAssignment()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleStringLit"
+
+
     // $ANTLR start "entryRuleLiteral"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:452:1: entryRuleLiteral : ruleLiteral EOF ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:480:1: entryRuleLiteral : ruleLiteral EOF ;
     public final void entryRuleLiteral() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:453:1: ( ruleLiteral EOF )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:454:1: ruleLiteral EOF
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:481:1: ( ruleLiteral EOF )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:482:1: ruleLiteral EOF
             {
              before(grammarAccess.getLiteralRule()); 
-            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral901);
+            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral961);
             ruleLiteral();
 
             state._fsp--;
 
              after(grammarAccess.getLiteralRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral908); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral968); 
 
             }
 
@@ -1233,25 +1316,31 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleLiteral"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:461:1: ruleLiteral : ( ruleNumberLit ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:489:1: ruleLiteral : ( ( rule__Literal__Alternatives ) ) ;
     public final void ruleLiteral() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:465:2: ( ( ruleNumberLit ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:466:1: ( ruleNumberLit )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:493:2: ( ( ( rule__Literal__Alternatives ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:494:1: ( ( rule__Literal__Alternatives ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:466:1: ( ruleNumberLit )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:467:1: ruleNumberLit
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:494:1: ( ( rule__Literal__Alternatives ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:495:1: ( rule__Literal__Alternatives )
             {
-             before(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall()); 
-            pushFollow(FOLLOW_ruleNumberLit_in_ruleLiteral934);
-            ruleNumberLit();
+             before(grammarAccess.getLiteralAccess().getAlternatives()); 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:496:1: ( rule__Literal__Alternatives )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:496:2: rule__Literal__Alternatives
+            {
+            pushFollow(FOLLOW_rule__Literal__Alternatives_in_ruleLiteral994);
+            rule__Literal__Alternatives();
 
             state._fsp--;
 
-             after(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall()); 
+
+            }
+
+             after(grammarAccess.getLiteralAccess().getAlternatives()); 
 
             }
 
@@ -1274,20 +1363,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleNumberLit"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:480:1: entryRuleNumberLit : ruleNumberLit EOF ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:508:1: entryRuleNumberLit : ruleNumberLit EOF ;
     public final void entryRuleNumberLit() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:481:1: ( ruleNumberLit EOF )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:482:1: ruleNumberLit EOF
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:509:1: ( ruleNumberLit EOF )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:510:1: ruleNumberLit EOF
             {
              before(grammarAccess.getNumberLitRule()); 
-            pushFollow(FOLLOW_ruleNumberLit_in_entryRuleNumberLit960);
+            pushFollow(FOLLOW_ruleNumberLit_in_entryRuleNumberLit1021);
             ruleNumberLit();
 
             state._fsp--;
 
              after(grammarAccess.getNumberLitRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLit967); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLit1028); 
 
             }
 
@@ -1304,23 +1393,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleNumberLit"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:489:1: ruleNumberLit : ( ( rule__NumberLit__ValueAssignment ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:517:1: ruleNumberLit : ( ( rule__NumberLit__ValueAssignment ) ) ;
     public final void ruleNumberLit() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:493:2: ( ( ( rule__NumberLit__ValueAssignment ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:494:1: ( ( rule__NumberLit__ValueAssignment ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:521:2: ( ( ( rule__NumberLit__ValueAssignment ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:522:1: ( ( rule__NumberLit__ValueAssignment ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:494:1: ( ( rule__NumberLit__ValueAssignment ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:495:1: ( rule__NumberLit__ValueAssignment )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:522:1: ( ( rule__NumberLit__ValueAssignment ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:523:1: ( rule__NumberLit__ValueAssignment )
             {
              before(grammarAccess.getNumberLitAccess().getValueAssignment()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:496:1: ( rule__NumberLit__ValueAssignment )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:496:2: rule__NumberLit__ValueAssignment
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:524:1: ( rule__NumberLit__ValueAssignment )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:524:2: rule__NumberLit__ValueAssignment
             {
-            pushFollow(FOLLOW_rule__NumberLit__ValueAssignment_in_ruleNumberLit993);
+            pushFollow(FOLLOW_rule__NumberLit__ValueAssignment_in_ruleNumberLit1054);
             rule__NumberLit__ValueAssignment();
 
             state._fsp--;
@@ -1350,25 +1439,102 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleNumberLit"
 
 
+    // $ANTLR start "entryRuleCharLit"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:536:1: entryRuleCharLit : ruleCharLit EOF ;
+    public final void entryRuleCharLit() throws RecognitionException {
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:537:1: ( ruleCharLit EOF )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:538:1: ruleCharLit EOF
+            {
+             before(grammarAccess.getCharLitRule()); 
+            pushFollow(FOLLOW_ruleCharLit_in_entryRuleCharLit1081);
+            ruleCharLit();
+
+            state._fsp--;
+
+             after(grammarAccess.getCharLitRule()); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCharLit1088); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleCharLit"
+
+
+    // $ANTLR start "ruleCharLit"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:545:1: ruleCharLit : ( ( rule__CharLit__ValueAssignment ) ) ;
+    public final void ruleCharLit() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:549:2: ( ( ( rule__CharLit__ValueAssignment ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:550:1: ( ( rule__CharLit__ValueAssignment ) )
+            {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:550:1: ( ( rule__CharLit__ValueAssignment ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:551:1: ( rule__CharLit__ValueAssignment )
+            {
+             before(grammarAccess.getCharLitAccess().getValueAssignment()); 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:552:1: ( rule__CharLit__ValueAssignment )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:552:2: rule__CharLit__ValueAssignment
+            {
+            pushFollow(FOLLOW_rule__CharLit__ValueAssignment_in_ruleCharLit1114);
+            rule__CharLit__ValueAssignment();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getCharLitAccess().getValueAssignment()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleCharLit"
+
+
     // $ANTLR start "rule__Attr__Alternatives"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:508:1: rule__Attr__Alternatives : ( ( ruleLiteralAttr ) | ( ruleAttrWithList ) );
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:564:1: rule__Attr__Alternatives : ( ( ruleLiteralAttr ) | ( ruleAttrWithList ) );
     public final void rule__Attr__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:512:1: ( ( ruleLiteralAttr ) | ( ruleAttrWithList ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:568:1: ( ( ruleLiteralAttr ) | ( ruleAttrWithList ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
             if ( (LA2_0==RULE_IDENT) ) {
                 int LA2_1 = input.LA(2);
 
-                if ( (LA2_1==40) ) {
-                    alt2=2;
-                }
-                else if ( (LA2_1==42) ) {
+                if ( (LA2_1==48) ) {
                     alt2=1;
+                }
+                else if ( (LA2_1==46) ) {
+                    alt2=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -1385,13 +1551,13 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:513:1: ( ruleLiteralAttr )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:569:1: ( ruleLiteralAttr )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:513:1: ( ruleLiteralAttr )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:514:1: ruleLiteralAttr
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:569:1: ( ruleLiteralAttr )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:570:1: ruleLiteralAttr
                     {
                      before(grammarAccess.getAttrAccess().getLiteralAttrParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleLiteralAttr_in_rule__Attr__Alternatives1029);
+                    pushFollow(FOLLOW_ruleLiteralAttr_in_rule__Attr__Alternatives1150);
                     ruleLiteralAttr();
 
                     state._fsp--;
@@ -1404,13 +1570,13 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:519:6: ( ruleAttrWithList )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:575:6: ( ruleAttrWithList )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:519:6: ( ruleAttrWithList )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:520:1: ruleAttrWithList
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:575:6: ( ruleAttrWithList )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:576:1: ruleAttrWithList
                     {
                      before(grammarAccess.getAttrAccess().getAttrWithListParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleAttrWithList_in_rule__Attr__Alternatives1046);
+                    pushFollow(FOLLOW_ruleAttrWithList_in_rule__Attr__Alternatives1167);
                     ruleAttrWithList();
 
                     state._fsp--;
@@ -1440,20 +1606,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Item__Alternatives"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:530:1: rule__Item__Alternatives : ( ( ruleModItem ) | ( ruleFnItem ) );
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:586:1: rule__Item__Alternatives : ( ( ruleModItem ) | ( ruleFnItem ) );
     public final void rule__Item__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:534:1: ( ( ruleModItem ) | ( ruleFnItem ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:590:1: ( ( ruleModItem ) | ( ruleFnItem ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==43) ) {
+            if ( (LA3_0==49) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==46) ) {
+            else if ( (LA3_0==52) ) {
                 alt3=2;
             }
             else {
@@ -1464,13 +1630,13 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:535:1: ( ruleModItem )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:591:1: ( ruleModItem )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:535:1: ( ruleModItem )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:536:1: ruleModItem
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:591:1: ( ruleModItem )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:592:1: ruleModItem
                     {
                      before(grammarAccess.getItemAccess().getModItemParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleModItem_in_rule__Item__Alternatives1078);
+                    pushFollow(FOLLOW_ruleModItem_in_rule__Item__Alternatives1199);
                     ruleModItem();
 
                     state._fsp--;
@@ -1483,13 +1649,13 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:541:6: ( ruleFnItem )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:597:6: ( ruleFnItem )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:541:6: ( ruleFnItem )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:542:1: ruleFnItem
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:597:6: ( ruleFnItem )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:598:1: ruleFnItem
                     {
                      before(grammarAccess.getItemAccess().getFnItemParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleFnItem_in_rule__Item__Alternatives1095);
+                    pushFollow(FOLLOW_ruleFnItem_in_rule__Item__Alternatives1216);
                     ruleFnItem();
 
                     state._fsp--;
@@ -1519,20 +1685,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Alternatives_2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:552:1: rule__ModItem__Alternatives_2 : ( ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) ) | ( ( rule__ModItem__Group_2_1__0 ) ) );
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:608:1: rule__ModItem__Alternatives_2 : ( ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) ) | ( ( rule__ModItem__Group_2_1__0 ) ) );
     public final void rule__ModItem__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:556:1: ( ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) ) | ( ( rule__ModItem__Group_2_1__0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:612:1: ( ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) ) | ( ( rule__ModItem__Group_2_1__0 ) ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==52) ) {
+            if ( (LA4_0==58) ) {
                 alt4=1;
             }
-            else if ( (LA4_0==44) ) {
+            else if ( (LA4_0==50) ) {
                 alt4=2;
             }
             else {
@@ -1543,16 +1709,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:557:1: ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:613:1: ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:557:1: ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:558:1: ( rule__ModItem__ExternalBodyAssignment_2_0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:613:1: ( ( rule__ModItem__ExternalBodyAssignment_2_0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:614:1: ( rule__ModItem__ExternalBodyAssignment_2_0 )
                     {
                      before(grammarAccess.getModItemAccess().getExternalBodyAssignment_2_0()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:559:1: ( rule__ModItem__ExternalBodyAssignment_2_0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:559:2: rule__ModItem__ExternalBodyAssignment_2_0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:615:1: ( rule__ModItem__ExternalBodyAssignment_2_0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:615:2: rule__ModItem__ExternalBodyAssignment_2_0
                     {
-                    pushFollow(FOLLOW_rule__ModItem__ExternalBodyAssignment_2_0_in_rule__ModItem__Alternatives_21127);
+                    pushFollow(FOLLOW_rule__ModItem__ExternalBodyAssignment_2_0_in_rule__ModItem__Alternatives_21248);
                     rule__ModItem__ExternalBodyAssignment_2_0();
 
                     state._fsp--;
@@ -1568,16 +1734,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:563:6: ( ( rule__ModItem__Group_2_1__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:619:6: ( ( rule__ModItem__Group_2_1__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:563:6: ( ( rule__ModItem__Group_2_1__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:564:1: ( rule__ModItem__Group_2_1__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:619:6: ( ( rule__ModItem__Group_2_1__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:620:1: ( rule__ModItem__Group_2_1__0 )
                     {
                      before(grammarAccess.getModItemAccess().getGroup_2_1()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:565:1: ( rule__ModItem__Group_2_1__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:565:2: rule__ModItem__Group_2_1__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:621:1: ( rule__ModItem__Group_2_1__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:621:2: rule__ModItem__Group_2_1__0
                     {
-                    pushFollow(FOLLOW_rule__ModItem__Group_2_1__0_in_rule__ModItem__Alternatives_21145);
+                    pushFollow(FOLLOW_rule__ModItem__Group_2_1__0_in_rule__ModItem__Alternatives_21266);
                     rule__ModItem__Group_2_1__0();
 
                     state._fsp--;
@@ -1610,13 +1776,13 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Alternatives"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:574:1: rule__PrimitiveType__Alternatives : ( ( ( rule__PrimitiveType__Group_0__0 ) ) | ( ( rule__PrimitiveType__Group_1__0 ) ) | ( ( rule__PrimitiveType__Group_2__0 ) ) | ( ( rule__PrimitiveType__Group_3__0 ) ) | ( ( rule__PrimitiveType__Group_4__0 ) ) );
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:630:1: rule__PrimitiveType__Alternatives : ( ( ( rule__PrimitiveType__Group_0__0 ) ) | ( ( rule__PrimitiveType__Group_1__0 ) ) | ( ( rule__PrimitiveType__Group_2__0 ) ) | ( ( rule__PrimitiveType__Group_3__0 ) ) | ( ( rule__PrimitiveType__Group_4__0 ) ) );
     public final void rule__PrimitiveType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:578:1: ( ( ( rule__PrimitiveType__Group_0__0 ) ) | ( ( rule__PrimitiveType__Group_1__0 ) ) | ( ( rule__PrimitiveType__Group_2__0 ) ) | ( ( rule__PrimitiveType__Group_3__0 ) ) | ( ( rule__PrimitiveType__Group_4__0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:634:1: ( ( ( rule__PrimitiveType__Group_0__0 ) ) | ( ( rule__PrimitiveType__Group_1__0 ) ) | ( ( rule__PrimitiveType__Group_2__0 ) ) | ( ( rule__PrimitiveType__Group_3__0 ) ) | ( ( rule__PrimitiveType__Group_4__0 ) ) )
             int alt5=5;
             switch ( input.LA(1) ) {
             case RULE_INT_TYPE:
@@ -1653,16 +1819,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
             switch (alt5) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:579:1: ( ( rule__PrimitiveType__Group_0__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:635:1: ( ( rule__PrimitiveType__Group_0__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:579:1: ( ( rule__PrimitiveType__Group_0__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:580:1: ( rule__PrimitiveType__Group_0__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:635:1: ( ( rule__PrimitiveType__Group_0__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:636:1: ( rule__PrimitiveType__Group_0__0 )
                     {
                      before(grammarAccess.getPrimitiveTypeAccess().getGroup_0()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:581:1: ( rule__PrimitiveType__Group_0__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:581:2: rule__PrimitiveType__Group_0__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:637:1: ( rule__PrimitiveType__Group_0__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:637:2: rule__PrimitiveType__Group_0__0
                     {
-                    pushFollow(FOLLOW_rule__PrimitiveType__Group_0__0_in_rule__PrimitiveType__Alternatives1178);
+                    pushFollow(FOLLOW_rule__PrimitiveType__Group_0__0_in_rule__PrimitiveType__Alternatives1299);
                     rule__PrimitiveType__Group_0__0();
 
                     state._fsp--;
@@ -1678,16 +1844,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:585:6: ( ( rule__PrimitiveType__Group_1__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:641:6: ( ( rule__PrimitiveType__Group_1__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:585:6: ( ( rule__PrimitiveType__Group_1__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:586:1: ( rule__PrimitiveType__Group_1__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:641:6: ( ( rule__PrimitiveType__Group_1__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:642:1: ( rule__PrimitiveType__Group_1__0 )
                     {
                      before(grammarAccess.getPrimitiveTypeAccess().getGroup_1()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:587:1: ( rule__PrimitiveType__Group_1__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:587:2: rule__PrimitiveType__Group_1__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:643:1: ( rule__PrimitiveType__Group_1__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:643:2: rule__PrimitiveType__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__PrimitiveType__Group_1__0_in_rule__PrimitiveType__Alternatives1196);
+                    pushFollow(FOLLOW_rule__PrimitiveType__Group_1__0_in_rule__PrimitiveType__Alternatives1317);
                     rule__PrimitiveType__Group_1__0();
 
                     state._fsp--;
@@ -1703,16 +1869,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:591:6: ( ( rule__PrimitiveType__Group_2__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:647:6: ( ( rule__PrimitiveType__Group_2__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:591:6: ( ( rule__PrimitiveType__Group_2__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:592:1: ( rule__PrimitiveType__Group_2__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:647:6: ( ( rule__PrimitiveType__Group_2__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:648:1: ( rule__PrimitiveType__Group_2__0 )
                     {
                      before(grammarAccess.getPrimitiveTypeAccess().getGroup_2()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:593:1: ( rule__PrimitiveType__Group_2__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:593:2: rule__PrimitiveType__Group_2__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:649:1: ( rule__PrimitiveType__Group_2__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:649:2: rule__PrimitiveType__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__PrimitiveType__Group_2__0_in_rule__PrimitiveType__Alternatives1214);
+                    pushFollow(FOLLOW_rule__PrimitiveType__Group_2__0_in_rule__PrimitiveType__Alternatives1335);
                     rule__PrimitiveType__Group_2__0();
 
                     state._fsp--;
@@ -1728,16 +1894,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:597:6: ( ( rule__PrimitiveType__Group_3__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:653:6: ( ( rule__PrimitiveType__Group_3__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:597:6: ( ( rule__PrimitiveType__Group_3__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:598:1: ( rule__PrimitiveType__Group_3__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:653:6: ( ( rule__PrimitiveType__Group_3__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:654:1: ( rule__PrimitiveType__Group_3__0 )
                     {
                      before(grammarAccess.getPrimitiveTypeAccess().getGroup_3()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:599:1: ( rule__PrimitiveType__Group_3__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:599:2: rule__PrimitiveType__Group_3__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:655:1: ( rule__PrimitiveType__Group_3__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:655:2: rule__PrimitiveType__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__PrimitiveType__Group_3__0_in_rule__PrimitiveType__Alternatives1232);
+                    pushFollow(FOLLOW_rule__PrimitiveType__Group_3__0_in_rule__PrimitiveType__Alternatives1353);
                     rule__PrimitiveType__Group_3__0();
 
                     state._fsp--;
@@ -1753,16 +1919,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:603:6: ( ( rule__PrimitiveType__Group_4__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:659:6: ( ( rule__PrimitiveType__Group_4__0 ) )
                     {
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:603:6: ( ( rule__PrimitiveType__Group_4__0 ) )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:604:1: ( rule__PrimitiveType__Group_4__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:659:6: ( ( rule__PrimitiveType__Group_4__0 ) )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:660:1: ( rule__PrimitiveType__Group_4__0 )
                     {
                      before(grammarAccess.getPrimitiveTypeAccess().getGroup_4()); 
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:605:1: ( rule__PrimitiveType__Group_4__0 )
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:605:2: rule__PrimitiveType__Group_4__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:661:1: ( rule__PrimitiveType__Group_4__0 )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:661:2: rule__PrimitiveType__Group_4__0
                     {
-                    pushFollow(FOLLOW_rule__PrimitiveType__Group_4__0_in_rule__PrimitiveType__Alternatives1250);
+                    pushFollow(FOLLOW_rule__PrimitiveType__Group_4__0_in_rule__PrimitiveType__Alternatives1371);
                     rule__PrimitiveType__Group_4__0();
 
                     state._fsp--;
@@ -1794,22 +1960,201 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PrimitiveType__Alternatives"
 
 
+    // $ANTLR start "rule__Literal__Alternatives"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:670:1: rule__Literal__Alternatives : ( ( ruleNumberLit ) | ( ruleCharLit ) | ( ruleStringLit ) );
+    public final void rule__Literal__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:674:1: ( ( ruleNumberLit ) | ( ruleCharLit ) | ( ruleStringLit ) )
+            int alt6=3;
+            switch ( input.LA(1) ) {
+            case RULE_FLOAT_LIT:
+            case RULE_INT_LIT:
+                {
+                alt6=1;
+                }
+                break;
+            case RULE_CHAR_LIT:
+                {
+                alt6=2;
+                }
+                break;
+            case RULE_STRING_LIT:
+                {
+                alt6=3;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 6, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt6) {
+                case 1 :
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:675:1: ( ruleNumberLit )
+                    {
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:675:1: ( ruleNumberLit )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:676:1: ruleNumberLit
+                    {
+                     before(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall_0()); 
+                    pushFollow(FOLLOW_ruleNumberLit_in_rule__Literal__Alternatives1404);
+                    ruleNumberLit();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:681:6: ( ruleCharLit )
+                    {
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:681:6: ( ruleCharLit )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:682:1: ruleCharLit
+                    {
+                     before(grammarAccess.getLiteralAccess().getCharLitParserRuleCall_1()); 
+                    pushFollow(FOLLOW_ruleCharLit_in_rule__Literal__Alternatives1421);
+                    ruleCharLit();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getLiteralAccess().getCharLitParserRuleCall_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:687:6: ( ruleStringLit )
+                    {
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:687:6: ( ruleStringLit )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:688:1: ruleStringLit
+                    {
+                     before(grammarAccess.getLiteralAccess().getStringLitParserRuleCall_2()); 
+                    pushFollow(FOLLOW_ruleStringLit_in_rule__Literal__Alternatives1438);
+                    ruleStringLit();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getLiteralAccess().getStringLitParserRuleCall_2()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Literal__Alternatives"
+
+
+    // $ANTLR start "rule__NumberLit__ValueAlternatives_0"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:698:1: rule__NumberLit__ValueAlternatives_0 : ( ( RULE_FLOAT_LIT ) | ( RULE_INT_LIT ) );
+    public final void rule__NumberLit__ValueAlternatives_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:702:1: ( ( RULE_FLOAT_LIT ) | ( RULE_INT_LIT ) )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0==RULE_FLOAT_LIT) ) {
+                alt7=1;
+            }
+            else if ( (LA7_0==RULE_INT_LIT) ) {
+                alt7=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 7, 0, input);
+
+                throw nvae;
+            }
+            switch (alt7) {
+                case 1 :
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:703:1: ( RULE_FLOAT_LIT )
+                    {
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:703:1: ( RULE_FLOAT_LIT )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:704:1: RULE_FLOAT_LIT
+                    {
+                     before(grammarAccess.getNumberLitAccess().getValueFLOAT_LITTerminalRuleCall_0_0()); 
+                    match(input,RULE_FLOAT_LIT,FOLLOW_RULE_FLOAT_LIT_in_rule__NumberLit__ValueAlternatives_01470); 
+                     after(grammarAccess.getNumberLitAccess().getValueFLOAT_LITTerminalRuleCall_0_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:709:6: ( RULE_INT_LIT )
+                    {
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:709:6: ( RULE_INT_LIT )
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:710:1: RULE_INT_LIT
+                    {
+                     before(grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0_1()); 
+                    match(input,RULE_INT_LIT,FOLLOW_RULE_INT_LIT_in_rule__NumberLit__ValueAlternatives_01487); 
+                     after(grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberLit__ValueAlternatives_0"
+
+
     // $ANTLR start "rule__ItemAttr__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:616:1: rule__ItemAttr__Group__0 : rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:722:1: rule__ItemAttr__Group__0 : rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1 ;
     public final void rule__ItemAttr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:620:1: ( rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:621:2: rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:726:1: ( rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:727:2: rule__ItemAttr__Group__0__Impl rule__ItemAttr__Group__1
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group__0__Impl_in_rule__ItemAttr__Group__01281);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__0__Impl_in_rule__ItemAttr__Group__01517);
             rule__ItemAttr__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ItemAttr__Group__1_in_rule__ItemAttr__Group__01284);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__1_in_rule__ItemAttr__Group__01520);
             rule__ItemAttr__Group__1();
 
             state._fsp--;
@@ -1833,20 +2178,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:628:1: rule__ItemAttr__Group__0__Impl : ( '#[' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:734:1: rule__ItemAttr__Group__0__Impl : ( '#[' ) ;
     public final void rule__ItemAttr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:632:1: ( ( '#[' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:633:1: ( '#[' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:738:1: ( ( '#[' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:739:1: ( '#[' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:633:1: ( '#[' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:634:1: '#['
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:739:1: ( '#[' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:740:1: '#['
             {
              before(grammarAccess.getItemAttrAccess().getNumberSignLeftSquareBracketKeyword_0()); 
-            match(input,37,FOLLOW_37_in_rule__ItemAttr__Group__0__Impl1312); 
+            match(input,43,FOLLOW_43_in_rule__ItemAttr__Group__0__Impl1548); 
              after(grammarAccess.getItemAttrAccess().getNumberSignLeftSquareBracketKeyword_0()); 
 
             }
@@ -1870,21 +2215,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:647:1: rule__ItemAttr__Group__1 : rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:753:1: rule__ItemAttr__Group__1 : rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2 ;
     public final void rule__ItemAttr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:651:1: ( rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:652:2: rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:757:1: ( rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:758:2: rule__ItemAttr__Group__1__Impl rule__ItemAttr__Group__2
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group__1__Impl_in_rule__ItemAttr__Group__11343);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__1__Impl_in_rule__ItemAttr__Group__11579);
             rule__ItemAttr__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ItemAttr__Group__2_in_rule__ItemAttr__Group__11346);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__2_in_rule__ItemAttr__Group__11582);
             rule__ItemAttr__Group__2();
 
             state._fsp--;
@@ -1908,23 +2253,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:659:1: rule__ItemAttr__Group__1__Impl : ( ( rule__ItemAttr__AttrsAssignment_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:765:1: rule__ItemAttr__Group__1__Impl : ( ( rule__ItemAttr__AttrsAssignment_1 ) ) ;
     public final void rule__ItemAttr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:663:1: ( ( ( rule__ItemAttr__AttrsAssignment_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:664:1: ( ( rule__ItemAttr__AttrsAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:769:1: ( ( ( rule__ItemAttr__AttrsAssignment_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:770:1: ( ( rule__ItemAttr__AttrsAssignment_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:664:1: ( ( rule__ItemAttr__AttrsAssignment_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:665:1: ( rule__ItemAttr__AttrsAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:770:1: ( ( rule__ItemAttr__AttrsAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:771:1: ( rule__ItemAttr__AttrsAssignment_1 )
             {
              before(grammarAccess.getItemAttrAccess().getAttrsAssignment_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:666:1: ( rule__ItemAttr__AttrsAssignment_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:666:2: rule__ItemAttr__AttrsAssignment_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:772:1: ( rule__ItemAttr__AttrsAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:772:2: rule__ItemAttr__AttrsAssignment_1
             {
-            pushFollow(FOLLOW_rule__ItemAttr__AttrsAssignment_1_in_rule__ItemAttr__Group__1__Impl1373);
+            pushFollow(FOLLOW_rule__ItemAttr__AttrsAssignment_1_in_rule__ItemAttr__Group__1__Impl1609);
             rule__ItemAttr__AttrsAssignment_1();
 
             state._fsp--;
@@ -1955,21 +2300,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:676:1: rule__ItemAttr__Group__2 : rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:782:1: rule__ItemAttr__Group__2 : rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3 ;
     public final void rule__ItemAttr__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:680:1: ( rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:681:2: rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:786:1: ( rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:787:2: rule__ItemAttr__Group__2__Impl rule__ItemAttr__Group__3
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group__2__Impl_in_rule__ItemAttr__Group__21403);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__2__Impl_in_rule__ItemAttr__Group__21639);
             rule__ItemAttr__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ItemAttr__Group__3_in_rule__ItemAttr__Group__21406);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__3_in_rule__ItemAttr__Group__21642);
             rule__ItemAttr__Group__3();
 
             state._fsp--;
@@ -1993,35 +2338,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:688:1: rule__ItemAttr__Group__2__Impl : ( ( rule__ItemAttr__Group_2__0 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:794:1: rule__ItemAttr__Group__2__Impl : ( ( rule__ItemAttr__Group_2__0 )* ) ;
     public final void rule__ItemAttr__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:692:1: ( ( ( rule__ItemAttr__Group_2__0 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:693:1: ( ( rule__ItemAttr__Group_2__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:798:1: ( ( ( rule__ItemAttr__Group_2__0 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:799:1: ( ( rule__ItemAttr__Group_2__0 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:693:1: ( ( rule__ItemAttr__Group_2__0 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:694:1: ( rule__ItemAttr__Group_2__0 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:799:1: ( ( rule__ItemAttr__Group_2__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:800:1: ( rule__ItemAttr__Group_2__0 )*
             {
              before(grammarAccess.getItemAttrAccess().getGroup_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:695:1: ( rule__ItemAttr__Group_2__0 )*
-            loop6:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:801:1: ( rule__ItemAttr__Group_2__0 )*
+            loop8:
             do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA6_0==39) ) {
-                    alt6=1;
+                if ( (LA8_0==45) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt6) {
+                switch (alt8) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:695:2: rule__ItemAttr__Group_2__0
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:801:2: rule__ItemAttr__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__ItemAttr__Group_2__0_in_rule__ItemAttr__Group__2__Impl1433);
+            	    pushFollow(FOLLOW_rule__ItemAttr__Group_2__0_in_rule__ItemAttr__Group__2__Impl1669);
             	    rule__ItemAttr__Group_2__0();
 
             	    state._fsp--;
@@ -2031,7 +2376,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop6;
+            	    break loop8;
                 }
             } while (true);
 
@@ -2058,16 +2403,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__3"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:705:1: rule__ItemAttr__Group__3 : rule__ItemAttr__Group__3__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:811:1: rule__ItemAttr__Group__3 : rule__ItemAttr__Group__3__Impl ;
     public final void rule__ItemAttr__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:709:1: ( rule__ItemAttr__Group__3__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:710:2: rule__ItemAttr__Group__3__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:815:1: ( rule__ItemAttr__Group__3__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:816:2: rule__ItemAttr__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group__3__Impl_in_rule__ItemAttr__Group__31464);
+            pushFollow(FOLLOW_rule__ItemAttr__Group__3__Impl_in_rule__ItemAttr__Group__31700);
             rule__ItemAttr__Group__3__Impl();
 
             state._fsp--;
@@ -2091,20 +2436,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group__3__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:716:1: rule__ItemAttr__Group__3__Impl : ( ']' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:822:1: rule__ItemAttr__Group__3__Impl : ( ']' ) ;
     public final void rule__ItemAttr__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:720:1: ( ( ']' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:721:1: ( ']' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:826:1: ( ( ']' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:827:1: ( ']' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:721:1: ( ']' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:722:1: ']'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:827:1: ( ']' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:828:1: ']'
             {
              before(grammarAccess.getItemAttrAccess().getRightSquareBracketKeyword_3()); 
-            match(input,38,FOLLOW_38_in_rule__ItemAttr__Group__3__Impl1492); 
+            match(input,44,FOLLOW_44_in_rule__ItemAttr__Group__3__Impl1728); 
              after(grammarAccess.getItemAttrAccess().getRightSquareBracketKeyword_3()); 
 
             }
@@ -2128,21 +2473,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group_2__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:743:1: rule__ItemAttr__Group_2__0 : rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:849:1: rule__ItemAttr__Group_2__0 : rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1 ;
     public final void rule__ItemAttr__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:747:1: ( rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:748:2: rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:853:1: ( rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:854:2: rule__ItemAttr__Group_2__0__Impl rule__ItemAttr__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group_2__0__Impl_in_rule__ItemAttr__Group_2__01531);
+            pushFollow(FOLLOW_rule__ItemAttr__Group_2__0__Impl_in_rule__ItemAttr__Group_2__01767);
             rule__ItemAttr__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ItemAttr__Group_2__1_in_rule__ItemAttr__Group_2__01534);
+            pushFollow(FOLLOW_rule__ItemAttr__Group_2__1_in_rule__ItemAttr__Group_2__01770);
             rule__ItemAttr__Group_2__1();
 
             state._fsp--;
@@ -2166,20 +2511,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group_2__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:755:1: rule__ItemAttr__Group_2__0__Impl : ( ',' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:861:1: rule__ItemAttr__Group_2__0__Impl : ( ',' ) ;
     public final void rule__ItemAttr__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:759:1: ( ( ',' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:760:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:865:1: ( ( ',' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:866:1: ( ',' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:760:1: ( ',' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:761:1: ','
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:866:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:867:1: ','
             {
              before(grammarAccess.getItemAttrAccess().getCommaKeyword_2_0()); 
-            match(input,39,FOLLOW_39_in_rule__ItemAttr__Group_2__0__Impl1562); 
+            match(input,45,FOLLOW_45_in_rule__ItemAttr__Group_2__0__Impl1798); 
              after(grammarAccess.getItemAttrAccess().getCommaKeyword_2_0()); 
 
             }
@@ -2203,16 +2548,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group_2__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:774:1: rule__ItemAttr__Group_2__1 : rule__ItemAttr__Group_2__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:880:1: rule__ItemAttr__Group_2__1 : rule__ItemAttr__Group_2__1__Impl ;
     public final void rule__ItemAttr__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:778:1: ( rule__ItemAttr__Group_2__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:779:2: rule__ItemAttr__Group_2__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:884:1: ( rule__ItemAttr__Group_2__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:885:2: rule__ItemAttr__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ItemAttr__Group_2__1__Impl_in_rule__ItemAttr__Group_2__11593);
+            pushFollow(FOLLOW_rule__ItemAttr__Group_2__1__Impl_in_rule__ItemAttr__Group_2__11829);
             rule__ItemAttr__Group_2__1__Impl();
 
             state._fsp--;
@@ -2236,23 +2581,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__Group_2__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:785:1: rule__ItemAttr__Group_2__1__Impl : ( ( rule__ItemAttr__AttrsAssignment_2_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:891:1: rule__ItemAttr__Group_2__1__Impl : ( ( rule__ItemAttr__AttrsAssignment_2_1 ) ) ;
     public final void rule__ItemAttr__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:789:1: ( ( ( rule__ItemAttr__AttrsAssignment_2_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:790:1: ( ( rule__ItemAttr__AttrsAssignment_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:895:1: ( ( ( rule__ItemAttr__AttrsAssignment_2_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:896:1: ( ( rule__ItemAttr__AttrsAssignment_2_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:790:1: ( ( rule__ItemAttr__AttrsAssignment_2_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:791:1: ( rule__ItemAttr__AttrsAssignment_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:896:1: ( ( rule__ItemAttr__AttrsAssignment_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:897:1: ( rule__ItemAttr__AttrsAssignment_2_1 )
             {
              before(grammarAccess.getItemAttrAccess().getAttrsAssignment_2_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:792:1: ( rule__ItemAttr__AttrsAssignment_2_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:792:2: rule__ItemAttr__AttrsAssignment_2_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:898:1: ( rule__ItemAttr__AttrsAssignment_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:898:2: rule__ItemAttr__AttrsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__ItemAttr__AttrsAssignment_2_1_in_rule__ItemAttr__Group_2__1__Impl1620);
+            pushFollow(FOLLOW_rule__ItemAttr__AttrsAssignment_2_1_in_rule__ItemAttr__Group_2__1__Impl1856);
             rule__ItemAttr__AttrsAssignment_2_1();
 
             state._fsp--;
@@ -2283,21 +2628,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:806:1: rule__AttrWithList__Group__0 : rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:912:1: rule__AttrWithList__Group__0 : rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1 ;
     public final void rule__AttrWithList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:810:1: ( rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:811:2: rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:916:1: ( rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:917:2: rule__AttrWithList__Group__0__Impl rule__AttrWithList__Group__1
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group__0__Impl_in_rule__AttrWithList__Group__01654);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__0__Impl_in_rule__AttrWithList__Group__01890);
             rule__AttrWithList__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttrWithList__Group__1_in_rule__AttrWithList__Group__01657);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__1_in_rule__AttrWithList__Group__01893);
             rule__AttrWithList__Group__1();
 
             state._fsp--;
@@ -2321,23 +2666,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:818:1: rule__AttrWithList__Group__0__Impl : ( ( rule__AttrWithList__IdentAssignment_0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:924:1: rule__AttrWithList__Group__0__Impl : ( ( rule__AttrWithList__IdentAssignment_0 ) ) ;
     public final void rule__AttrWithList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:822:1: ( ( ( rule__AttrWithList__IdentAssignment_0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:823:1: ( ( rule__AttrWithList__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:928:1: ( ( ( rule__AttrWithList__IdentAssignment_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:929:1: ( ( rule__AttrWithList__IdentAssignment_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:823:1: ( ( rule__AttrWithList__IdentAssignment_0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:824:1: ( rule__AttrWithList__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:929:1: ( ( rule__AttrWithList__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:930:1: ( rule__AttrWithList__IdentAssignment_0 )
             {
              before(grammarAccess.getAttrWithListAccess().getIdentAssignment_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:825:1: ( rule__AttrWithList__IdentAssignment_0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:825:2: rule__AttrWithList__IdentAssignment_0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:931:1: ( rule__AttrWithList__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:931:2: rule__AttrWithList__IdentAssignment_0
             {
-            pushFollow(FOLLOW_rule__AttrWithList__IdentAssignment_0_in_rule__AttrWithList__Group__0__Impl1684);
+            pushFollow(FOLLOW_rule__AttrWithList__IdentAssignment_0_in_rule__AttrWithList__Group__0__Impl1920);
             rule__AttrWithList__IdentAssignment_0();
 
             state._fsp--;
@@ -2368,21 +2713,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:835:1: rule__AttrWithList__Group__1 : rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:941:1: rule__AttrWithList__Group__1 : rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2 ;
     public final void rule__AttrWithList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:839:1: ( rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:840:2: rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:945:1: ( rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:946:2: rule__AttrWithList__Group__1__Impl rule__AttrWithList__Group__2
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group__1__Impl_in_rule__AttrWithList__Group__11714);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__1__Impl_in_rule__AttrWithList__Group__11950);
             rule__AttrWithList__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttrWithList__Group__2_in_rule__AttrWithList__Group__11717);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__2_in_rule__AttrWithList__Group__11953);
             rule__AttrWithList__Group__2();
 
             state._fsp--;
@@ -2406,20 +2751,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:847:1: rule__AttrWithList__Group__1__Impl : ( '(' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:953:1: rule__AttrWithList__Group__1__Impl : ( '(' ) ;
     public final void rule__AttrWithList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:851:1: ( ( '(' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:852:1: ( '(' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:957:1: ( ( '(' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:958:1: ( '(' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:852:1: ( '(' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:853:1: '('
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:958:1: ( '(' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:959:1: '('
             {
              before(grammarAccess.getAttrWithListAccess().getLeftParenthesisKeyword_1()); 
-            match(input,40,FOLLOW_40_in_rule__AttrWithList__Group__1__Impl1745); 
+            match(input,46,FOLLOW_46_in_rule__AttrWithList__Group__1__Impl1981); 
              after(grammarAccess.getAttrWithListAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -2443,21 +2788,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:866:1: rule__AttrWithList__Group__2 : rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:972:1: rule__AttrWithList__Group__2 : rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3 ;
     public final void rule__AttrWithList__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:870:1: ( rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:871:2: rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:976:1: ( rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:977:2: rule__AttrWithList__Group__2__Impl rule__AttrWithList__Group__3
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group__2__Impl_in_rule__AttrWithList__Group__21776);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__2__Impl_in_rule__AttrWithList__Group__22012);
             rule__AttrWithList__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttrWithList__Group__3_in_rule__AttrWithList__Group__21779);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__3_in_rule__AttrWithList__Group__22015);
             rule__AttrWithList__Group__3();
 
             state._fsp--;
@@ -2481,23 +2826,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:878:1: rule__AttrWithList__Group__2__Impl : ( ( rule__AttrWithList__AttrsAssignment_2 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:984:1: rule__AttrWithList__Group__2__Impl : ( ( rule__AttrWithList__AttrsAssignment_2 ) ) ;
     public final void rule__AttrWithList__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:882:1: ( ( ( rule__AttrWithList__AttrsAssignment_2 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:883:1: ( ( rule__AttrWithList__AttrsAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:988:1: ( ( ( rule__AttrWithList__AttrsAssignment_2 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:989:1: ( ( rule__AttrWithList__AttrsAssignment_2 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:883:1: ( ( rule__AttrWithList__AttrsAssignment_2 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:884:1: ( rule__AttrWithList__AttrsAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:989:1: ( ( rule__AttrWithList__AttrsAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:990:1: ( rule__AttrWithList__AttrsAssignment_2 )
             {
              before(grammarAccess.getAttrWithListAccess().getAttrsAssignment_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:885:1: ( rule__AttrWithList__AttrsAssignment_2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:885:2: rule__AttrWithList__AttrsAssignment_2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:991:1: ( rule__AttrWithList__AttrsAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:991:2: rule__AttrWithList__AttrsAssignment_2
             {
-            pushFollow(FOLLOW_rule__AttrWithList__AttrsAssignment_2_in_rule__AttrWithList__Group__2__Impl1806);
+            pushFollow(FOLLOW_rule__AttrWithList__AttrsAssignment_2_in_rule__AttrWithList__Group__2__Impl2042);
             rule__AttrWithList__AttrsAssignment_2();
 
             state._fsp--;
@@ -2528,21 +2873,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__3"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:895:1: rule__AttrWithList__Group__3 : rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1001:1: rule__AttrWithList__Group__3 : rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4 ;
     public final void rule__AttrWithList__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:899:1: ( rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:900:2: rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1005:1: ( rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1006:2: rule__AttrWithList__Group__3__Impl rule__AttrWithList__Group__4
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group__3__Impl_in_rule__AttrWithList__Group__31836);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__3__Impl_in_rule__AttrWithList__Group__32072);
             rule__AttrWithList__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttrWithList__Group__4_in_rule__AttrWithList__Group__31839);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__4_in_rule__AttrWithList__Group__32075);
             rule__AttrWithList__Group__4();
 
             state._fsp--;
@@ -2566,35 +2911,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__3__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:907:1: rule__AttrWithList__Group__3__Impl : ( ( rule__AttrWithList__Group_3__0 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1013:1: rule__AttrWithList__Group__3__Impl : ( ( rule__AttrWithList__Group_3__0 )* ) ;
     public final void rule__AttrWithList__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:911:1: ( ( ( rule__AttrWithList__Group_3__0 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:912:1: ( ( rule__AttrWithList__Group_3__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1017:1: ( ( ( rule__AttrWithList__Group_3__0 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1018:1: ( ( rule__AttrWithList__Group_3__0 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:912:1: ( ( rule__AttrWithList__Group_3__0 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:913:1: ( rule__AttrWithList__Group_3__0 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1018:1: ( ( rule__AttrWithList__Group_3__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1019:1: ( rule__AttrWithList__Group_3__0 )*
             {
              before(grammarAccess.getAttrWithListAccess().getGroup_3()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:914:1: ( rule__AttrWithList__Group_3__0 )*
-            loop7:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1020:1: ( rule__AttrWithList__Group_3__0 )*
+            loop9:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( (LA7_0==39) ) {
-                    alt7=1;
+                if ( (LA9_0==45) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt9) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:914:2: rule__AttrWithList__Group_3__0
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1020:2: rule__AttrWithList__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_rule__AttrWithList__Group_3__0_in_rule__AttrWithList__Group__3__Impl1866);
+            	    pushFollow(FOLLOW_rule__AttrWithList__Group_3__0_in_rule__AttrWithList__Group__3__Impl2102);
             	    rule__AttrWithList__Group_3__0();
 
             	    state._fsp--;
@@ -2604,7 +2949,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop9;
                 }
             } while (true);
 
@@ -2631,16 +2976,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__4"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:924:1: rule__AttrWithList__Group__4 : rule__AttrWithList__Group__4__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1030:1: rule__AttrWithList__Group__4 : rule__AttrWithList__Group__4__Impl ;
     public final void rule__AttrWithList__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:928:1: ( rule__AttrWithList__Group__4__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:929:2: rule__AttrWithList__Group__4__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1034:1: ( rule__AttrWithList__Group__4__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1035:2: rule__AttrWithList__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group__4__Impl_in_rule__AttrWithList__Group__41897);
+            pushFollow(FOLLOW_rule__AttrWithList__Group__4__Impl_in_rule__AttrWithList__Group__42133);
             rule__AttrWithList__Group__4__Impl();
 
             state._fsp--;
@@ -2664,20 +3009,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group__4__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:935:1: rule__AttrWithList__Group__4__Impl : ( ')' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1041:1: rule__AttrWithList__Group__4__Impl : ( ')' ) ;
     public final void rule__AttrWithList__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:939:1: ( ( ')' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:940:1: ( ')' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1045:1: ( ( ')' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1046:1: ( ')' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:940:1: ( ')' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:941:1: ')'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1046:1: ( ')' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1047:1: ')'
             {
              before(grammarAccess.getAttrWithListAccess().getRightParenthesisKeyword_4()); 
-            match(input,41,FOLLOW_41_in_rule__AttrWithList__Group__4__Impl1925); 
+            match(input,47,FOLLOW_47_in_rule__AttrWithList__Group__4__Impl2161); 
              after(grammarAccess.getAttrWithListAccess().getRightParenthesisKeyword_4()); 
 
             }
@@ -2701,21 +3046,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group_3__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:964:1: rule__AttrWithList__Group_3__0 : rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1070:1: rule__AttrWithList__Group_3__0 : rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1 ;
     public final void rule__AttrWithList__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:968:1: ( rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:969:2: rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1074:1: ( rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1075:2: rule__AttrWithList__Group_3__0__Impl rule__AttrWithList__Group_3__1
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group_3__0__Impl_in_rule__AttrWithList__Group_3__01966);
+            pushFollow(FOLLOW_rule__AttrWithList__Group_3__0__Impl_in_rule__AttrWithList__Group_3__02202);
             rule__AttrWithList__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttrWithList__Group_3__1_in_rule__AttrWithList__Group_3__01969);
+            pushFollow(FOLLOW_rule__AttrWithList__Group_3__1_in_rule__AttrWithList__Group_3__02205);
             rule__AttrWithList__Group_3__1();
 
             state._fsp--;
@@ -2739,20 +3084,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group_3__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:976:1: rule__AttrWithList__Group_3__0__Impl : ( ',' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1082:1: rule__AttrWithList__Group_3__0__Impl : ( ',' ) ;
     public final void rule__AttrWithList__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:980:1: ( ( ',' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:981:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1086:1: ( ( ',' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1087:1: ( ',' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:981:1: ( ',' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:982:1: ','
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1087:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1088:1: ','
             {
              before(grammarAccess.getAttrWithListAccess().getCommaKeyword_3_0()); 
-            match(input,39,FOLLOW_39_in_rule__AttrWithList__Group_3__0__Impl1997); 
+            match(input,45,FOLLOW_45_in_rule__AttrWithList__Group_3__0__Impl2233); 
              after(grammarAccess.getAttrWithListAccess().getCommaKeyword_3_0()); 
 
             }
@@ -2776,16 +3121,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group_3__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:995:1: rule__AttrWithList__Group_3__1 : rule__AttrWithList__Group_3__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1101:1: rule__AttrWithList__Group_3__1 : rule__AttrWithList__Group_3__1__Impl ;
     public final void rule__AttrWithList__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:999:1: ( rule__AttrWithList__Group_3__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1000:2: rule__AttrWithList__Group_3__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1105:1: ( rule__AttrWithList__Group_3__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1106:2: rule__AttrWithList__Group_3__1__Impl
             {
-            pushFollow(FOLLOW_rule__AttrWithList__Group_3__1__Impl_in_rule__AttrWithList__Group_3__12028);
+            pushFollow(FOLLOW_rule__AttrWithList__Group_3__1__Impl_in_rule__AttrWithList__Group_3__12264);
             rule__AttrWithList__Group_3__1__Impl();
 
             state._fsp--;
@@ -2809,23 +3154,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__Group_3__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1006:1: rule__AttrWithList__Group_3__1__Impl : ( ( rule__AttrWithList__AttrsAssignment_3_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1112:1: rule__AttrWithList__Group_3__1__Impl : ( ( rule__AttrWithList__AttrsAssignment_3_1 ) ) ;
     public final void rule__AttrWithList__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1010:1: ( ( ( rule__AttrWithList__AttrsAssignment_3_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1011:1: ( ( rule__AttrWithList__AttrsAssignment_3_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1116:1: ( ( ( rule__AttrWithList__AttrsAssignment_3_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1117:1: ( ( rule__AttrWithList__AttrsAssignment_3_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1011:1: ( ( rule__AttrWithList__AttrsAssignment_3_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1012:1: ( rule__AttrWithList__AttrsAssignment_3_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1117:1: ( ( rule__AttrWithList__AttrsAssignment_3_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1118:1: ( rule__AttrWithList__AttrsAssignment_3_1 )
             {
              before(grammarAccess.getAttrWithListAccess().getAttrsAssignment_3_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1013:1: ( rule__AttrWithList__AttrsAssignment_3_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1013:2: rule__AttrWithList__AttrsAssignment_3_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1119:1: ( rule__AttrWithList__AttrsAssignment_3_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1119:2: rule__AttrWithList__AttrsAssignment_3_1
             {
-            pushFollow(FOLLOW_rule__AttrWithList__AttrsAssignment_3_1_in_rule__AttrWithList__Group_3__1__Impl2055);
+            pushFollow(FOLLOW_rule__AttrWithList__AttrsAssignment_3_1_in_rule__AttrWithList__Group_3__1__Impl2291);
             rule__AttrWithList__AttrsAssignment_3_1();
 
             state._fsp--;
@@ -2856,21 +3201,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1027:1: rule__LiteralAttr__Group__0 : rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1133:1: rule__LiteralAttr__Group__0 : rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1 ;
     public final void rule__LiteralAttr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1031:1: ( rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1032:2: rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1137:1: ( rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1138:2: rule__LiteralAttr__Group__0__Impl rule__LiteralAttr__Group__1
             {
-            pushFollow(FOLLOW_rule__LiteralAttr__Group__0__Impl_in_rule__LiteralAttr__Group__02089);
+            pushFollow(FOLLOW_rule__LiteralAttr__Group__0__Impl_in_rule__LiteralAttr__Group__02325);
             rule__LiteralAttr__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__LiteralAttr__Group__1_in_rule__LiteralAttr__Group__02092);
+            pushFollow(FOLLOW_rule__LiteralAttr__Group__1_in_rule__LiteralAttr__Group__02328);
             rule__LiteralAttr__Group__1();
 
             state._fsp--;
@@ -2894,23 +3239,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1039:1: rule__LiteralAttr__Group__0__Impl : ( ( rule__LiteralAttr__IdentAssignment_0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1145:1: rule__LiteralAttr__Group__0__Impl : ( ( rule__LiteralAttr__IdentAssignment_0 ) ) ;
     public final void rule__LiteralAttr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1043:1: ( ( ( rule__LiteralAttr__IdentAssignment_0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1044:1: ( ( rule__LiteralAttr__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1149:1: ( ( ( rule__LiteralAttr__IdentAssignment_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1150:1: ( ( rule__LiteralAttr__IdentAssignment_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1044:1: ( ( rule__LiteralAttr__IdentAssignment_0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1045:1: ( rule__LiteralAttr__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1150:1: ( ( rule__LiteralAttr__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1151:1: ( rule__LiteralAttr__IdentAssignment_0 )
             {
              before(grammarAccess.getLiteralAttrAccess().getIdentAssignment_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1046:1: ( rule__LiteralAttr__IdentAssignment_0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1046:2: rule__LiteralAttr__IdentAssignment_0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1152:1: ( rule__LiteralAttr__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1152:2: rule__LiteralAttr__IdentAssignment_0
             {
-            pushFollow(FOLLOW_rule__LiteralAttr__IdentAssignment_0_in_rule__LiteralAttr__Group__0__Impl2119);
+            pushFollow(FOLLOW_rule__LiteralAttr__IdentAssignment_0_in_rule__LiteralAttr__Group__0__Impl2355);
             rule__LiteralAttr__IdentAssignment_0();
 
             state._fsp--;
@@ -2941,21 +3286,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1056:1: rule__LiteralAttr__Group__1 : rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1162:1: rule__LiteralAttr__Group__1 : rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2 ;
     public final void rule__LiteralAttr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1060:1: ( rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1061:2: rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1166:1: ( rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1167:2: rule__LiteralAttr__Group__1__Impl rule__LiteralAttr__Group__2
             {
-            pushFollow(FOLLOW_rule__LiteralAttr__Group__1__Impl_in_rule__LiteralAttr__Group__12149);
+            pushFollow(FOLLOW_rule__LiteralAttr__Group__1__Impl_in_rule__LiteralAttr__Group__12385);
             rule__LiteralAttr__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__LiteralAttr__Group__2_in_rule__LiteralAttr__Group__12152);
+            pushFollow(FOLLOW_rule__LiteralAttr__Group__2_in_rule__LiteralAttr__Group__12388);
             rule__LiteralAttr__Group__2();
 
             state._fsp--;
@@ -2979,20 +3324,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1068:1: rule__LiteralAttr__Group__1__Impl : ( '=' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1174:1: rule__LiteralAttr__Group__1__Impl : ( '=' ) ;
     public final void rule__LiteralAttr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1072:1: ( ( '=' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1073:1: ( '=' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1178:1: ( ( '=' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1179:1: ( '=' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1073:1: ( '=' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1074:1: '='
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1179:1: ( '=' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1180:1: '='
             {
              before(grammarAccess.getLiteralAttrAccess().getEqualsSignKeyword_1()); 
-            match(input,42,FOLLOW_42_in_rule__LiteralAttr__Group__1__Impl2180); 
+            match(input,48,FOLLOW_48_in_rule__LiteralAttr__Group__1__Impl2416); 
              after(grammarAccess.getLiteralAttrAccess().getEqualsSignKeyword_1()); 
 
             }
@@ -3016,16 +3361,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1087:1: rule__LiteralAttr__Group__2 : rule__LiteralAttr__Group__2__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1193:1: rule__LiteralAttr__Group__2 : rule__LiteralAttr__Group__2__Impl ;
     public final void rule__LiteralAttr__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1091:1: ( rule__LiteralAttr__Group__2__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1092:2: rule__LiteralAttr__Group__2__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1197:1: ( rule__LiteralAttr__Group__2__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1198:2: rule__LiteralAttr__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__LiteralAttr__Group__2__Impl_in_rule__LiteralAttr__Group__22211);
+            pushFollow(FOLLOW_rule__LiteralAttr__Group__2__Impl_in_rule__LiteralAttr__Group__22447);
             rule__LiteralAttr__Group__2__Impl();
 
             state._fsp--;
@@ -3049,23 +3394,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1098:1: rule__LiteralAttr__Group__2__Impl : ( ( rule__LiteralAttr__ValueAssignment_2 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1204:1: rule__LiteralAttr__Group__2__Impl : ( ( rule__LiteralAttr__ValueAssignment_2 ) ) ;
     public final void rule__LiteralAttr__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1102:1: ( ( ( rule__LiteralAttr__ValueAssignment_2 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1103:1: ( ( rule__LiteralAttr__ValueAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1208:1: ( ( ( rule__LiteralAttr__ValueAssignment_2 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1209:1: ( ( rule__LiteralAttr__ValueAssignment_2 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1103:1: ( ( rule__LiteralAttr__ValueAssignment_2 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1104:1: ( rule__LiteralAttr__ValueAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1209:1: ( ( rule__LiteralAttr__ValueAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1210:1: ( rule__LiteralAttr__ValueAssignment_2 )
             {
              before(grammarAccess.getLiteralAttrAccess().getValueAssignment_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1105:1: ( rule__LiteralAttr__ValueAssignment_2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1105:2: rule__LiteralAttr__ValueAssignment_2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1211:1: ( rule__LiteralAttr__ValueAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1211:2: rule__LiteralAttr__ValueAssignment_2
             {
-            pushFollow(FOLLOW_rule__LiteralAttr__ValueAssignment_2_in_rule__LiteralAttr__Group__2__Impl2238);
+            pushFollow(FOLLOW_rule__LiteralAttr__ValueAssignment_2_in_rule__LiteralAttr__Group__2__Impl2474);
             rule__LiteralAttr__ValueAssignment_2();
 
             state._fsp--;
@@ -3096,21 +3441,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1121:1: rule__ItemAndAttrs__Group__0 : rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1227:1: rule__ItemAndAttrs__Group__0 : rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1 ;
     public final void rule__ItemAndAttrs__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1125:1: ( rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1126:2: rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1231:1: ( rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1232:2: rule__ItemAndAttrs__Group__0__Impl rule__ItemAndAttrs__Group__1
             {
-            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__0__Impl_in_rule__ItemAndAttrs__Group__02274);
+            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__0__Impl_in_rule__ItemAndAttrs__Group__02510);
             rule__ItemAndAttrs__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__1_in_rule__ItemAndAttrs__Group__02277);
+            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__1_in_rule__ItemAndAttrs__Group__02513);
             rule__ItemAndAttrs__Group__1();
 
             state._fsp--;
@@ -3134,35 +3479,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1133:1: rule__ItemAndAttrs__Group__0__Impl : ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1239:1: rule__ItemAndAttrs__Group__0__Impl : ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* ) ;
     public final void rule__ItemAndAttrs__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1137:1: ( ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1138:1: ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1243:1: ( ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1244:1: ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1138:1: ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1139:1: ( rule__ItemAndAttrs__AttrsAssignment_0 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1244:1: ( ( rule__ItemAndAttrs__AttrsAssignment_0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1245:1: ( rule__ItemAndAttrs__AttrsAssignment_0 )*
             {
              before(grammarAccess.getItemAndAttrsAccess().getAttrsAssignment_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1140:1: ( rule__ItemAndAttrs__AttrsAssignment_0 )*
-            loop8:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1246:1: ( rule__ItemAndAttrs__AttrsAssignment_0 )*
+            loop10:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( (LA8_0==37) ) {
-                    alt8=1;
+                if ( (LA10_0==43) ) {
+                    alt10=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt10) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1140:2: rule__ItemAndAttrs__AttrsAssignment_0
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1246:2: rule__ItemAndAttrs__AttrsAssignment_0
             	    {
-            	    pushFollow(FOLLOW_rule__ItemAndAttrs__AttrsAssignment_0_in_rule__ItemAndAttrs__Group__0__Impl2304);
+            	    pushFollow(FOLLOW_rule__ItemAndAttrs__AttrsAssignment_0_in_rule__ItemAndAttrs__Group__0__Impl2540);
             	    rule__ItemAndAttrs__AttrsAssignment_0();
 
             	    state._fsp--;
@@ -3172,7 +3517,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop10;
                 }
             } while (true);
 
@@ -3199,16 +3544,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1150:1: rule__ItemAndAttrs__Group__1 : rule__ItemAndAttrs__Group__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1256:1: rule__ItemAndAttrs__Group__1 : rule__ItemAndAttrs__Group__1__Impl ;
     public final void rule__ItemAndAttrs__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1154:1: ( rule__ItemAndAttrs__Group__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1155:2: rule__ItemAndAttrs__Group__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1260:1: ( rule__ItemAndAttrs__Group__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1261:2: rule__ItemAndAttrs__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__1__Impl_in_rule__ItemAndAttrs__Group__12335);
+            pushFollow(FOLLOW_rule__ItemAndAttrs__Group__1__Impl_in_rule__ItemAndAttrs__Group__12571);
             rule__ItemAndAttrs__Group__1__Impl();
 
             state._fsp--;
@@ -3232,23 +3577,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1161:1: rule__ItemAndAttrs__Group__1__Impl : ( ( rule__ItemAndAttrs__ItemAssignment_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1267:1: rule__ItemAndAttrs__Group__1__Impl : ( ( rule__ItemAndAttrs__ItemAssignment_1 ) ) ;
     public final void rule__ItemAndAttrs__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1165:1: ( ( ( rule__ItemAndAttrs__ItemAssignment_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1166:1: ( ( rule__ItemAndAttrs__ItemAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1271:1: ( ( ( rule__ItemAndAttrs__ItemAssignment_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1272:1: ( ( rule__ItemAndAttrs__ItemAssignment_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1166:1: ( ( rule__ItemAndAttrs__ItemAssignment_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1167:1: ( rule__ItemAndAttrs__ItemAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1272:1: ( ( rule__ItemAndAttrs__ItemAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1273:1: ( rule__ItemAndAttrs__ItemAssignment_1 )
             {
              before(grammarAccess.getItemAndAttrsAccess().getItemAssignment_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1168:1: ( rule__ItemAndAttrs__ItemAssignment_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1168:2: rule__ItemAndAttrs__ItemAssignment_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1274:1: ( rule__ItemAndAttrs__ItemAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1274:2: rule__ItemAndAttrs__ItemAssignment_1
             {
-            pushFollow(FOLLOW_rule__ItemAndAttrs__ItemAssignment_1_in_rule__ItemAndAttrs__Group__1__Impl2362);
+            pushFollow(FOLLOW_rule__ItemAndAttrs__ItemAssignment_1_in_rule__ItemAndAttrs__Group__1__Impl2598);
             rule__ItemAndAttrs__ItemAssignment_1();
 
             state._fsp--;
@@ -3279,21 +3624,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1182:1: rule__ModItem__Group__0 : rule__ModItem__Group__0__Impl rule__ModItem__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1288:1: rule__ModItem__Group__0 : rule__ModItem__Group__0__Impl rule__ModItem__Group__1 ;
     public final void rule__ModItem__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1186:1: ( rule__ModItem__Group__0__Impl rule__ModItem__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1187:2: rule__ModItem__Group__0__Impl rule__ModItem__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1292:1: ( rule__ModItem__Group__0__Impl rule__ModItem__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1293:2: rule__ModItem__Group__0__Impl rule__ModItem__Group__1
             {
-            pushFollow(FOLLOW_rule__ModItem__Group__0__Impl_in_rule__ModItem__Group__02396);
+            pushFollow(FOLLOW_rule__ModItem__Group__0__Impl_in_rule__ModItem__Group__02632);
             rule__ModItem__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModItem__Group__1_in_rule__ModItem__Group__02399);
+            pushFollow(FOLLOW_rule__ModItem__Group__1_in_rule__ModItem__Group__02635);
             rule__ModItem__Group__1();
 
             state._fsp--;
@@ -3317,20 +3662,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1194:1: rule__ModItem__Group__0__Impl : ( 'mod' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1300:1: rule__ModItem__Group__0__Impl : ( 'mod' ) ;
     public final void rule__ModItem__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1198:1: ( ( 'mod' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1199:1: ( 'mod' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1304:1: ( ( 'mod' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1305:1: ( 'mod' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1199:1: ( 'mod' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1200:1: 'mod'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1305:1: ( 'mod' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1306:1: 'mod'
             {
              before(grammarAccess.getModItemAccess().getModKeyword_0()); 
-            match(input,43,FOLLOW_43_in_rule__ModItem__Group__0__Impl2427); 
+            match(input,49,FOLLOW_49_in_rule__ModItem__Group__0__Impl2663); 
              after(grammarAccess.getModItemAccess().getModKeyword_0()); 
 
             }
@@ -3354,21 +3699,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1213:1: rule__ModItem__Group__1 : rule__ModItem__Group__1__Impl rule__ModItem__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1319:1: rule__ModItem__Group__1 : rule__ModItem__Group__1__Impl rule__ModItem__Group__2 ;
     public final void rule__ModItem__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1217:1: ( rule__ModItem__Group__1__Impl rule__ModItem__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1218:2: rule__ModItem__Group__1__Impl rule__ModItem__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1323:1: ( rule__ModItem__Group__1__Impl rule__ModItem__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1324:2: rule__ModItem__Group__1__Impl rule__ModItem__Group__2
             {
-            pushFollow(FOLLOW_rule__ModItem__Group__1__Impl_in_rule__ModItem__Group__12458);
+            pushFollow(FOLLOW_rule__ModItem__Group__1__Impl_in_rule__ModItem__Group__12694);
             rule__ModItem__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModItem__Group__2_in_rule__ModItem__Group__12461);
+            pushFollow(FOLLOW_rule__ModItem__Group__2_in_rule__ModItem__Group__12697);
             rule__ModItem__Group__2();
 
             state._fsp--;
@@ -3392,23 +3737,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1225:1: rule__ModItem__Group__1__Impl : ( ( rule__ModItem__IdentAssignment_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1331:1: rule__ModItem__Group__1__Impl : ( ( rule__ModItem__IdentAssignment_1 ) ) ;
     public final void rule__ModItem__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1229:1: ( ( ( rule__ModItem__IdentAssignment_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1230:1: ( ( rule__ModItem__IdentAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1335:1: ( ( ( rule__ModItem__IdentAssignment_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1336:1: ( ( rule__ModItem__IdentAssignment_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1230:1: ( ( rule__ModItem__IdentAssignment_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1231:1: ( rule__ModItem__IdentAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1336:1: ( ( rule__ModItem__IdentAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1337:1: ( rule__ModItem__IdentAssignment_1 )
             {
              before(grammarAccess.getModItemAccess().getIdentAssignment_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1232:1: ( rule__ModItem__IdentAssignment_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1232:2: rule__ModItem__IdentAssignment_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1338:1: ( rule__ModItem__IdentAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1338:2: rule__ModItem__IdentAssignment_1
             {
-            pushFollow(FOLLOW_rule__ModItem__IdentAssignment_1_in_rule__ModItem__Group__1__Impl2488);
+            pushFollow(FOLLOW_rule__ModItem__IdentAssignment_1_in_rule__ModItem__Group__1__Impl2724);
             rule__ModItem__IdentAssignment_1();
 
             state._fsp--;
@@ -3439,16 +3784,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1242:1: rule__ModItem__Group__2 : rule__ModItem__Group__2__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1348:1: rule__ModItem__Group__2 : rule__ModItem__Group__2__Impl ;
     public final void rule__ModItem__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1246:1: ( rule__ModItem__Group__2__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1247:2: rule__ModItem__Group__2__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1352:1: ( rule__ModItem__Group__2__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1353:2: rule__ModItem__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__ModItem__Group__2__Impl_in_rule__ModItem__Group__22518);
+            pushFollow(FOLLOW_rule__ModItem__Group__2__Impl_in_rule__ModItem__Group__22754);
             rule__ModItem__Group__2__Impl();
 
             state._fsp--;
@@ -3472,23 +3817,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1253:1: rule__ModItem__Group__2__Impl : ( ( rule__ModItem__Alternatives_2 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1359:1: rule__ModItem__Group__2__Impl : ( ( rule__ModItem__Alternatives_2 ) ) ;
     public final void rule__ModItem__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1257:1: ( ( ( rule__ModItem__Alternatives_2 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1258:1: ( ( rule__ModItem__Alternatives_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1363:1: ( ( ( rule__ModItem__Alternatives_2 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1364:1: ( ( rule__ModItem__Alternatives_2 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1258:1: ( ( rule__ModItem__Alternatives_2 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1259:1: ( rule__ModItem__Alternatives_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1364:1: ( ( rule__ModItem__Alternatives_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1365:1: ( rule__ModItem__Alternatives_2 )
             {
              before(grammarAccess.getModItemAccess().getAlternatives_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1260:1: ( rule__ModItem__Alternatives_2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1260:2: rule__ModItem__Alternatives_2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1366:1: ( rule__ModItem__Alternatives_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1366:2: rule__ModItem__Alternatives_2
             {
-            pushFollow(FOLLOW_rule__ModItem__Alternatives_2_in_rule__ModItem__Group__2__Impl2545);
+            pushFollow(FOLLOW_rule__ModItem__Alternatives_2_in_rule__ModItem__Group__2__Impl2781);
             rule__ModItem__Alternatives_2();
 
             state._fsp--;
@@ -3519,21 +3864,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1276:1: rule__ModItem__Group_2_1__0 : rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1382:1: rule__ModItem__Group_2_1__0 : rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1 ;
     public final void rule__ModItem__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1280:1: ( rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1281:2: rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1386:1: ( rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1387:2: rule__ModItem__Group_2_1__0__Impl rule__ModItem__Group_2_1__1
             {
-            pushFollow(FOLLOW_rule__ModItem__Group_2_1__0__Impl_in_rule__ModItem__Group_2_1__02581);
+            pushFollow(FOLLOW_rule__ModItem__Group_2_1__0__Impl_in_rule__ModItem__Group_2_1__02817);
             rule__ModItem__Group_2_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModItem__Group_2_1__1_in_rule__ModItem__Group_2_1__02584);
+            pushFollow(FOLLOW_rule__ModItem__Group_2_1__1_in_rule__ModItem__Group_2_1__02820);
             rule__ModItem__Group_2_1__1();
 
             state._fsp--;
@@ -3557,20 +3902,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1288:1: rule__ModItem__Group_2_1__0__Impl : ( '{' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1394:1: rule__ModItem__Group_2_1__0__Impl : ( '{' ) ;
     public final void rule__ModItem__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1292:1: ( ( '{' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1293:1: ( '{' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1398:1: ( ( '{' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1399:1: ( '{' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1293:1: ( '{' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1294:1: '{'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1399:1: ( '{' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1400:1: '{'
             {
              before(grammarAccess.getModItemAccess().getLeftCurlyBracketKeyword_2_1_0()); 
-            match(input,44,FOLLOW_44_in_rule__ModItem__Group_2_1__0__Impl2612); 
+            match(input,50,FOLLOW_50_in_rule__ModItem__Group_2_1__0__Impl2848); 
              after(grammarAccess.getModItemAccess().getLeftCurlyBracketKeyword_2_1_0()); 
 
             }
@@ -3594,21 +3939,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1307:1: rule__ModItem__Group_2_1__1 : rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1413:1: rule__ModItem__Group_2_1__1 : rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2 ;
     public final void rule__ModItem__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1311:1: ( rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1312:2: rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1417:1: ( rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1418:2: rule__ModItem__Group_2_1__1__Impl rule__ModItem__Group_2_1__2
             {
-            pushFollow(FOLLOW_rule__ModItem__Group_2_1__1__Impl_in_rule__ModItem__Group_2_1__12643);
+            pushFollow(FOLLOW_rule__ModItem__Group_2_1__1__Impl_in_rule__ModItem__Group_2_1__12879);
             rule__ModItem__Group_2_1__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModItem__Group_2_1__2_in_rule__ModItem__Group_2_1__12646);
+            pushFollow(FOLLOW_rule__ModItem__Group_2_1__2_in_rule__ModItem__Group_2_1__12882);
             rule__ModItem__Group_2_1__2();
 
             state._fsp--;
@@ -3632,35 +3977,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1319:1: rule__ModItem__Group_2_1__1__Impl : ( ( rule__ModItem__ItemsAssignment_2_1_1 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1425:1: rule__ModItem__Group_2_1__1__Impl : ( ( rule__ModItem__ItemsAssignment_2_1_1 )* ) ;
     public final void rule__ModItem__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1323:1: ( ( ( rule__ModItem__ItemsAssignment_2_1_1 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1324:1: ( ( rule__ModItem__ItemsAssignment_2_1_1 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1429:1: ( ( ( rule__ModItem__ItemsAssignment_2_1_1 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1430:1: ( ( rule__ModItem__ItemsAssignment_2_1_1 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1324:1: ( ( rule__ModItem__ItemsAssignment_2_1_1 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1325:1: ( rule__ModItem__ItemsAssignment_2_1_1 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1430:1: ( ( rule__ModItem__ItemsAssignment_2_1_1 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1431:1: ( rule__ModItem__ItemsAssignment_2_1_1 )*
             {
              before(grammarAccess.getModItemAccess().getItemsAssignment_2_1_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1326:1: ( rule__ModItem__ItemsAssignment_2_1_1 )*
-            loop9:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1432:1: ( rule__ModItem__ItemsAssignment_2_1_1 )*
+            loop11:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA9_0==37||LA9_0==43||LA9_0==46) ) {
-                    alt9=1;
+                if ( (LA11_0==43||LA11_0==49||LA11_0==52) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt11) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1326:2: rule__ModItem__ItemsAssignment_2_1_1
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1432:2: rule__ModItem__ItemsAssignment_2_1_1
             	    {
-            	    pushFollow(FOLLOW_rule__ModItem__ItemsAssignment_2_1_1_in_rule__ModItem__Group_2_1__1__Impl2673);
+            	    pushFollow(FOLLOW_rule__ModItem__ItemsAssignment_2_1_1_in_rule__ModItem__Group_2_1__1__Impl2909);
             	    rule__ModItem__ItemsAssignment_2_1_1();
 
             	    state._fsp--;
@@ -3670,7 +4015,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop11;
                 }
             } while (true);
 
@@ -3697,16 +4042,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1336:1: rule__ModItem__Group_2_1__2 : rule__ModItem__Group_2_1__2__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1442:1: rule__ModItem__Group_2_1__2 : rule__ModItem__Group_2_1__2__Impl ;
     public final void rule__ModItem__Group_2_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1340:1: ( rule__ModItem__Group_2_1__2__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1341:2: rule__ModItem__Group_2_1__2__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1446:1: ( rule__ModItem__Group_2_1__2__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1447:2: rule__ModItem__Group_2_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__ModItem__Group_2_1__2__Impl_in_rule__ModItem__Group_2_1__22704);
+            pushFollow(FOLLOW_rule__ModItem__Group_2_1__2__Impl_in_rule__ModItem__Group_2_1__22940);
             rule__ModItem__Group_2_1__2__Impl();
 
             state._fsp--;
@@ -3730,20 +4075,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__Group_2_1__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1347:1: rule__ModItem__Group_2_1__2__Impl : ( '}' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1453:1: rule__ModItem__Group_2_1__2__Impl : ( '}' ) ;
     public final void rule__ModItem__Group_2_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1351:1: ( ( '}' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1352:1: ( '}' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1457:1: ( ( '}' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1458:1: ( '}' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1352:1: ( '}' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1353:1: '}'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1458:1: ( '}' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1459:1: '}'
             {
              before(grammarAccess.getModItemAccess().getRightCurlyBracketKeyword_2_1_2()); 
-            match(input,45,FOLLOW_45_in_rule__ModItem__Group_2_1__2__Impl2732); 
+            match(input,51,FOLLOW_51_in_rule__ModItem__Group_2_1__2__Impl2968); 
              after(grammarAccess.getModItemAccess().getRightCurlyBracketKeyword_2_1_2()); 
 
             }
@@ -3767,21 +4112,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1372:1: rule__FnItem__Group__0 : rule__FnItem__Group__0__Impl rule__FnItem__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1478:1: rule__FnItem__Group__0 : rule__FnItem__Group__0__Impl rule__FnItem__Group__1 ;
     public final void rule__FnItem__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1376:1: ( rule__FnItem__Group__0__Impl rule__FnItem__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1377:2: rule__FnItem__Group__0__Impl rule__FnItem__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1482:1: ( rule__FnItem__Group__0__Impl rule__FnItem__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1483:2: rule__FnItem__Group__0__Impl rule__FnItem__Group__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__0__Impl_in_rule__FnItem__Group__02769);
+            pushFollow(FOLLOW_rule__FnItem__Group__0__Impl_in_rule__FnItem__Group__03005);
             rule__FnItem__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__1_in_rule__FnItem__Group__02772);
+            pushFollow(FOLLOW_rule__FnItem__Group__1_in_rule__FnItem__Group__03008);
             rule__FnItem__Group__1();
 
             state._fsp--;
@@ -3805,20 +4150,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1384:1: rule__FnItem__Group__0__Impl : ( 'fn' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1490:1: rule__FnItem__Group__0__Impl : ( 'fn' ) ;
     public final void rule__FnItem__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1388:1: ( ( 'fn' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1389:1: ( 'fn' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1494:1: ( ( 'fn' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1495:1: ( 'fn' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1389:1: ( 'fn' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1390:1: 'fn'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1495:1: ( 'fn' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1496:1: 'fn'
             {
              before(grammarAccess.getFnItemAccess().getFnKeyword_0()); 
-            match(input,46,FOLLOW_46_in_rule__FnItem__Group__0__Impl2800); 
+            match(input,52,FOLLOW_52_in_rule__FnItem__Group__0__Impl3036); 
              after(grammarAccess.getFnItemAccess().getFnKeyword_0()); 
 
             }
@@ -3842,21 +4187,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1403:1: rule__FnItem__Group__1 : rule__FnItem__Group__1__Impl rule__FnItem__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1509:1: rule__FnItem__Group__1 : rule__FnItem__Group__1__Impl rule__FnItem__Group__2 ;
     public final void rule__FnItem__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1407:1: ( rule__FnItem__Group__1__Impl rule__FnItem__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1408:2: rule__FnItem__Group__1__Impl rule__FnItem__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1513:1: ( rule__FnItem__Group__1__Impl rule__FnItem__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1514:2: rule__FnItem__Group__1__Impl rule__FnItem__Group__2
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__1__Impl_in_rule__FnItem__Group__12831);
+            pushFollow(FOLLOW_rule__FnItem__Group__1__Impl_in_rule__FnItem__Group__13067);
             rule__FnItem__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__2_in_rule__FnItem__Group__12834);
+            pushFollow(FOLLOW_rule__FnItem__Group__2_in_rule__FnItem__Group__13070);
             rule__FnItem__Group__2();
 
             state._fsp--;
@@ -3880,23 +4225,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1415:1: rule__FnItem__Group__1__Impl : ( ( rule__FnItem__IdentAssignment_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1521:1: rule__FnItem__Group__1__Impl : ( ( rule__FnItem__IdentAssignment_1 ) ) ;
     public final void rule__FnItem__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1419:1: ( ( ( rule__FnItem__IdentAssignment_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1420:1: ( ( rule__FnItem__IdentAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1525:1: ( ( ( rule__FnItem__IdentAssignment_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1526:1: ( ( rule__FnItem__IdentAssignment_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1420:1: ( ( rule__FnItem__IdentAssignment_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1421:1: ( rule__FnItem__IdentAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1526:1: ( ( rule__FnItem__IdentAssignment_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1527:1: ( rule__FnItem__IdentAssignment_1 )
             {
              before(grammarAccess.getFnItemAccess().getIdentAssignment_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1422:1: ( rule__FnItem__IdentAssignment_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1422:2: rule__FnItem__IdentAssignment_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1528:1: ( rule__FnItem__IdentAssignment_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1528:2: rule__FnItem__IdentAssignment_1
             {
-            pushFollow(FOLLOW_rule__FnItem__IdentAssignment_1_in_rule__FnItem__Group__1__Impl2861);
+            pushFollow(FOLLOW_rule__FnItem__IdentAssignment_1_in_rule__FnItem__Group__1__Impl3097);
             rule__FnItem__IdentAssignment_1();
 
             state._fsp--;
@@ -3927,21 +4272,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1432:1: rule__FnItem__Group__2 : rule__FnItem__Group__2__Impl rule__FnItem__Group__3 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1538:1: rule__FnItem__Group__2 : rule__FnItem__Group__2__Impl rule__FnItem__Group__3 ;
     public final void rule__FnItem__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1436:1: ( rule__FnItem__Group__2__Impl rule__FnItem__Group__3 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1437:2: rule__FnItem__Group__2__Impl rule__FnItem__Group__3
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1542:1: ( rule__FnItem__Group__2__Impl rule__FnItem__Group__3 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1543:2: rule__FnItem__Group__2__Impl rule__FnItem__Group__3
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__2__Impl_in_rule__FnItem__Group__22891);
+            pushFollow(FOLLOW_rule__FnItem__Group__2__Impl_in_rule__FnItem__Group__23127);
             rule__FnItem__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__3_in_rule__FnItem__Group__22894);
+            pushFollow(FOLLOW_rule__FnItem__Group__3_in_rule__FnItem__Group__23130);
             rule__FnItem__Group__3();
 
             state._fsp--;
@@ -3965,31 +4310,31 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1444:1: rule__FnItem__Group__2__Impl : ( ( rule__FnItem__Group_2__0 )? ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1550:1: rule__FnItem__Group__2__Impl : ( ( rule__FnItem__Group_2__0 )? ) ;
     public final void rule__FnItem__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1448:1: ( ( ( rule__FnItem__Group_2__0 )? ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1449:1: ( ( rule__FnItem__Group_2__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1554:1: ( ( ( rule__FnItem__Group_2__0 )? ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1555:1: ( ( rule__FnItem__Group_2__0 )? )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1449:1: ( ( rule__FnItem__Group_2__0 )? )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1450:1: ( rule__FnItem__Group_2__0 )?
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1555:1: ( ( rule__FnItem__Group_2__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1556:1: ( rule__FnItem__Group_2__0 )?
             {
              before(grammarAccess.getFnItemAccess().getGroup_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1451:1: ( rule__FnItem__Group_2__0 )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1557:1: ( rule__FnItem__Group_2__0 )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA10_0==47) ) {
-                alt10=1;
+            if ( (LA12_0==53) ) {
+                alt12=1;
             }
-            switch (alt10) {
+            switch (alt12) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1451:2: rule__FnItem__Group_2__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1557:2: rule__FnItem__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__FnItem__Group_2__0_in_rule__FnItem__Group__2__Impl2921);
+                    pushFollow(FOLLOW_rule__FnItem__Group_2__0_in_rule__FnItem__Group__2__Impl3157);
                     rule__FnItem__Group_2__0();
 
                     state._fsp--;
@@ -4023,21 +4368,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__3"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1461:1: rule__FnItem__Group__3 : rule__FnItem__Group__3__Impl rule__FnItem__Group__4 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1567:1: rule__FnItem__Group__3 : rule__FnItem__Group__3__Impl rule__FnItem__Group__4 ;
     public final void rule__FnItem__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1465:1: ( rule__FnItem__Group__3__Impl rule__FnItem__Group__4 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1466:2: rule__FnItem__Group__3__Impl rule__FnItem__Group__4
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1571:1: ( rule__FnItem__Group__3__Impl rule__FnItem__Group__4 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1572:2: rule__FnItem__Group__3__Impl rule__FnItem__Group__4
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__3__Impl_in_rule__FnItem__Group__32952);
+            pushFollow(FOLLOW_rule__FnItem__Group__3__Impl_in_rule__FnItem__Group__33188);
             rule__FnItem__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__4_in_rule__FnItem__Group__32955);
+            pushFollow(FOLLOW_rule__FnItem__Group__4_in_rule__FnItem__Group__33191);
             rule__FnItem__Group__4();
 
             state._fsp--;
@@ -4061,20 +4406,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__3__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1473:1: rule__FnItem__Group__3__Impl : ( '(' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1579:1: rule__FnItem__Group__3__Impl : ( '(' ) ;
     public final void rule__FnItem__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1477:1: ( ( '(' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1478:1: ( '(' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1583:1: ( ( '(' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1584:1: ( '(' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1478:1: ( '(' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1479:1: '('
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1584:1: ( '(' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1585:1: '('
             {
              before(grammarAccess.getFnItemAccess().getLeftParenthesisKeyword_3()); 
-            match(input,40,FOLLOW_40_in_rule__FnItem__Group__3__Impl2983); 
+            match(input,46,FOLLOW_46_in_rule__FnItem__Group__3__Impl3219); 
              after(grammarAccess.getFnItemAccess().getLeftParenthesisKeyword_3()); 
 
             }
@@ -4098,21 +4443,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__4"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1492:1: rule__FnItem__Group__4 : rule__FnItem__Group__4__Impl rule__FnItem__Group__5 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1598:1: rule__FnItem__Group__4 : rule__FnItem__Group__4__Impl rule__FnItem__Group__5 ;
     public final void rule__FnItem__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1496:1: ( rule__FnItem__Group__4__Impl rule__FnItem__Group__5 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1497:2: rule__FnItem__Group__4__Impl rule__FnItem__Group__5
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1602:1: ( rule__FnItem__Group__4__Impl rule__FnItem__Group__5 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1603:2: rule__FnItem__Group__4__Impl rule__FnItem__Group__5
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__4__Impl_in_rule__FnItem__Group__43014);
+            pushFollow(FOLLOW_rule__FnItem__Group__4__Impl_in_rule__FnItem__Group__43250);
             rule__FnItem__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__5_in_rule__FnItem__Group__43017);
+            pushFollow(FOLLOW_rule__FnItem__Group__5_in_rule__FnItem__Group__43253);
             rule__FnItem__Group__5();
 
             state._fsp--;
@@ -4136,31 +4481,31 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__4__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1504:1: rule__FnItem__Group__4__Impl : ( ( rule__FnItem__Group_4__0 )? ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1610:1: rule__FnItem__Group__4__Impl : ( ( rule__FnItem__Group_4__0 )? ) ;
     public final void rule__FnItem__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1508:1: ( ( ( rule__FnItem__Group_4__0 )? ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1509:1: ( ( rule__FnItem__Group_4__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1614:1: ( ( ( rule__FnItem__Group_4__0 )? ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1615:1: ( ( rule__FnItem__Group_4__0 )? )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1509:1: ( ( rule__FnItem__Group_4__0 )? )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1510:1: ( rule__FnItem__Group_4__0 )?
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1615:1: ( ( rule__FnItem__Group_4__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1616:1: ( rule__FnItem__Group_4__0 )?
             {
              before(grammarAccess.getFnItemAccess().getGroup_4()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1511:1: ( rule__FnItem__Group_4__0 )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1617:1: ( rule__FnItem__Group_4__0 )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA11_0==RULE_IDENT) ) {
-                alt11=1;
+            if ( (LA13_0==RULE_IDENT) ) {
+                alt13=1;
             }
-            switch (alt11) {
+            switch (alt13) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1511:2: rule__FnItem__Group_4__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1617:2: rule__FnItem__Group_4__0
                     {
-                    pushFollow(FOLLOW_rule__FnItem__Group_4__0_in_rule__FnItem__Group__4__Impl3044);
+                    pushFollow(FOLLOW_rule__FnItem__Group_4__0_in_rule__FnItem__Group__4__Impl3280);
                     rule__FnItem__Group_4__0();
 
                     state._fsp--;
@@ -4194,21 +4539,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__5"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1521:1: rule__FnItem__Group__5 : rule__FnItem__Group__5__Impl rule__FnItem__Group__6 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1627:1: rule__FnItem__Group__5 : rule__FnItem__Group__5__Impl rule__FnItem__Group__6 ;
     public final void rule__FnItem__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1525:1: ( rule__FnItem__Group__5__Impl rule__FnItem__Group__6 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1526:2: rule__FnItem__Group__5__Impl rule__FnItem__Group__6
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1631:1: ( rule__FnItem__Group__5__Impl rule__FnItem__Group__6 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1632:2: rule__FnItem__Group__5__Impl rule__FnItem__Group__6
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__5__Impl_in_rule__FnItem__Group__53075);
+            pushFollow(FOLLOW_rule__FnItem__Group__5__Impl_in_rule__FnItem__Group__53311);
             rule__FnItem__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group__6_in_rule__FnItem__Group__53078);
+            pushFollow(FOLLOW_rule__FnItem__Group__6_in_rule__FnItem__Group__53314);
             rule__FnItem__Group__6();
 
             state._fsp--;
@@ -4232,20 +4577,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__5__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1533:1: rule__FnItem__Group__5__Impl : ( ')' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1639:1: rule__FnItem__Group__5__Impl : ( ')' ) ;
     public final void rule__FnItem__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1537:1: ( ( ')' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1538:1: ( ')' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1643:1: ( ( ')' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1644:1: ( ')' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1538:1: ( ')' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1539:1: ')'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1644:1: ( ')' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1645:1: ')'
             {
              before(grammarAccess.getFnItemAccess().getRightParenthesisKeyword_5()); 
-            match(input,41,FOLLOW_41_in_rule__FnItem__Group__5__Impl3106); 
+            match(input,47,FOLLOW_47_in_rule__FnItem__Group__5__Impl3342); 
              after(grammarAccess.getFnItemAccess().getRightParenthesisKeyword_5()); 
 
             }
@@ -4269,16 +4614,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__6"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1552:1: rule__FnItem__Group__6 : rule__FnItem__Group__6__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1658:1: rule__FnItem__Group__6 : rule__FnItem__Group__6__Impl ;
     public final void rule__FnItem__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1556:1: ( rule__FnItem__Group__6__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1557:2: rule__FnItem__Group__6__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1662:1: ( rule__FnItem__Group__6__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1663:2: rule__FnItem__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group__6__Impl_in_rule__FnItem__Group__63137);
+            pushFollow(FOLLOW_rule__FnItem__Group__6__Impl_in_rule__FnItem__Group__63373);
             rule__FnItem__Group__6__Impl();
 
             state._fsp--;
@@ -4302,31 +4647,31 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group__6__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1563:1: rule__FnItem__Group__6__Impl : ( ( rule__FnItem__Group_6__0 )? ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1669:1: rule__FnItem__Group__6__Impl : ( ( rule__FnItem__Group_6__0 )? ) ;
     public final void rule__FnItem__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1567:1: ( ( ( rule__FnItem__Group_6__0 )? ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1568:1: ( ( rule__FnItem__Group_6__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1673:1: ( ( ( rule__FnItem__Group_6__0 )? ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1674:1: ( ( rule__FnItem__Group_6__0 )? )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1568:1: ( ( rule__FnItem__Group_6__0 )? )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1569:1: ( rule__FnItem__Group_6__0 )?
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1674:1: ( ( rule__FnItem__Group_6__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1675:1: ( rule__FnItem__Group_6__0 )?
             {
              before(grammarAccess.getFnItemAccess().getGroup_6()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1570:1: ( rule__FnItem__Group_6__0 )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1676:1: ( rule__FnItem__Group_6__0 )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA12_0==49) ) {
-                alt12=1;
+            if ( (LA14_0==55) ) {
+                alt14=1;
             }
-            switch (alt12) {
+            switch (alt14) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1570:2: rule__FnItem__Group_6__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1676:2: rule__FnItem__Group_6__0
                     {
-                    pushFollow(FOLLOW_rule__FnItem__Group_6__0_in_rule__FnItem__Group__6__Impl3164);
+                    pushFollow(FOLLOW_rule__FnItem__Group_6__0_in_rule__FnItem__Group__6__Impl3400);
                     rule__FnItem__Group_6__0();
 
                     state._fsp--;
@@ -4360,21 +4705,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1594:1: rule__FnItem__Group_2__0 : rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1700:1: rule__FnItem__Group_2__0 : rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1 ;
     public final void rule__FnItem__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1598:1: ( rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1599:2: rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1704:1: ( rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1705:2: rule__FnItem__Group_2__0__Impl rule__FnItem__Group_2__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2__0__Impl_in_rule__FnItem__Group_2__03209);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__0__Impl_in_rule__FnItem__Group_2__03445);
             rule__FnItem__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_2__1_in_rule__FnItem__Group_2__03212);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__1_in_rule__FnItem__Group_2__03448);
             rule__FnItem__Group_2__1();
 
             state._fsp--;
@@ -4398,20 +4743,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1606:1: rule__FnItem__Group_2__0__Impl : ( '<' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1712:1: rule__FnItem__Group_2__0__Impl : ( '<' ) ;
     public final void rule__FnItem__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1610:1: ( ( '<' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1611:1: ( '<' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1716:1: ( ( '<' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1717:1: ( '<' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1611:1: ( '<' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1612:1: '<'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1717:1: ( '<' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1718:1: '<'
             {
              before(grammarAccess.getFnItemAccess().getLessThanSignKeyword_2_0()); 
-            match(input,47,FOLLOW_47_in_rule__FnItem__Group_2__0__Impl3240); 
+            match(input,53,FOLLOW_53_in_rule__FnItem__Group_2__0__Impl3476); 
              after(grammarAccess.getFnItemAccess().getLessThanSignKeyword_2_0()); 
 
             }
@@ -4435,21 +4780,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1625:1: rule__FnItem__Group_2__1 : rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1731:1: rule__FnItem__Group_2__1 : rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2 ;
     public final void rule__FnItem__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1629:1: ( rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1630:2: rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1735:1: ( rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1736:2: rule__FnItem__Group_2__1__Impl rule__FnItem__Group_2__2
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2__1__Impl_in_rule__FnItem__Group_2__13271);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__1__Impl_in_rule__FnItem__Group_2__13507);
             rule__FnItem__Group_2__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_2__2_in_rule__FnItem__Group_2__13274);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__2_in_rule__FnItem__Group_2__13510);
             rule__FnItem__Group_2__2();
 
             state._fsp--;
@@ -4473,23 +4818,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1637:1: rule__FnItem__Group_2__1__Impl : ( ( rule__FnItem__ParamsAssignment_2_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1743:1: rule__FnItem__Group_2__1__Impl : ( ( rule__FnItem__ParamsAssignment_2_1 ) ) ;
     public final void rule__FnItem__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1641:1: ( ( ( rule__FnItem__ParamsAssignment_2_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1642:1: ( ( rule__FnItem__ParamsAssignment_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1747:1: ( ( ( rule__FnItem__ParamsAssignment_2_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1748:1: ( ( rule__FnItem__ParamsAssignment_2_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1642:1: ( ( rule__FnItem__ParamsAssignment_2_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1643:1: ( rule__FnItem__ParamsAssignment_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1748:1: ( ( rule__FnItem__ParamsAssignment_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1749:1: ( rule__FnItem__ParamsAssignment_2_1 )
             {
              before(grammarAccess.getFnItemAccess().getParamsAssignment_2_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1644:1: ( rule__FnItem__ParamsAssignment_2_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1644:2: rule__FnItem__ParamsAssignment_2_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1750:1: ( rule__FnItem__ParamsAssignment_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1750:2: rule__FnItem__ParamsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__FnItem__ParamsAssignment_2_1_in_rule__FnItem__Group_2__1__Impl3301);
+            pushFollow(FOLLOW_rule__FnItem__ParamsAssignment_2_1_in_rule__FnItem__Group_2__1__Impl3537);
             rule__FnItem__ParamsAssignment_2_1();
 
             state._fsp--;
@@ -4520,21 +4865,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1654:1: rule__FnItem__Group_2__2 : rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1760:1: rule__FnItem__Group_2__2 : rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3 ;
     public final void rule__FnItem__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1658:1: ( rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1659:2: rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1764:1: ( rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1765:2: rule__FnItem__Group_2__2__Impl rule__FnItem__Group_2__3
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2__2__Impl_in_rule__FnItem__Group_2__23331);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__2__Impl_in_rule__FnItem__Group_2__23567);
             rule__FnItem__Group_2__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_2__3_in_rule__FnItem__Group_2__23334);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__3_in_rule__FnItem__Group_2__23570);
             rule__FnItem__Group_2__3();
 
             state._fsp--;
@@ -4558,35 +4903,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1666:1: rule__FnItem__Group_2__2__Impl : ( ( rule__FnItem__Group_2_2__0 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1772:1: rule__FnItem__Group_2__2__Impl : ( ( rule__FnItem__Group_2_2__0 )* ) ;
     public final void rule__FnItem__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1670:1: ( ( ( rule__FnItem__Group_2_2__0 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1671:1: ( ( rule__FnItem__Group_2_2__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1776:1: ( ( ( rule__FnItem__Group_2_2__0 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1777:1: ( ( rule__FnItem__Group_2_2__0 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1671:1: ( ( rule__FnItem__Group_2_2__0 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1672:1: ( rule__FnItem__Group_2_2__0 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1777:1: ( ( rule__FnItem__Group_2_2__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1778:1: ( rule__FnItem__Group_2_2__0 )*
             {
              before(grammarAccess.getFnItemAccess().getGroup_2_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1673:1: ( rule__FnItem__Group_2_2__0 )*
-            loop13:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1779:1: ( rule__FnItem__Group_2_2__0 )*
+            loop15:
             do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA13_0==39) ) {
-                    alt13=1;
+                if ( (LA15_0==45) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt13) {
+                switch (alt15) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1673:2: rule__FnItem__Group_2_2__0
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1779:2: rule__FnItem__Group_2_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__FnItem__Group_2_2__0_in_rule__FnItem__Group_2__2__Impl3361);
+            	    pushFollow(FOLLOW_rule__FnItem__Group_2_2__0_in_rule__FnItem__Group_2__2__Impl3597);
             	    rule__FnItem__Group_2_2__0();
 
             	    state._fsp--;
@@ -4596,7 +4941,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop13;
+            	    break loop15;
                 }
             } while (true);
 
@@ -4623,16 +4968,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__3"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1683:1: rule__FnItem__Group_2__3 : rule__FnItem__Group_2__3__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1789:1: rule__FnItem__Group_2__3 : rule__FnItem__Group_2__3__Impl ;
     public final void rule__FnItem__Group_2__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1687:1: ( rule__FnItem__Group_2__3__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1688:2: rule__FnItem__Group_2__3__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1793:1: ( rule__FnItem__Group_2__3__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1794:2: rule__FnItem__Group_2__3__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2__3__Impl_in_rule__FnItem__Group_2__33392);
+            pushFollow(FOLLOW_rule__FnItem__Group_2__3__Impl_in_rule__FnItem__Group_2__33628);
             rule__FnItem__Group_2__3__Impl();
 
             state._fsp--;
@@ -4656,20 +5001,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2__3__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1694:1: rule__FnItem__Group_2__3__Impl : ( '>' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1800:1: rule__FnItem__Group_2__3__Impl : ( '>' ) ;
     public final void rule__FnItem__Group_2__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1698:1: ( ( '>' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1699:1: ( '>' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1804:1: ( ( '>' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1805:1: ( '>' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1699:1: ( '>' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1700:1: '>'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1805:1: ( '>' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1806:1: '>'
             {
              before(grammarAccess.getFnItemAccess().getGreaterThanSignKeyword_2_3()); 
-            match(input,48,FOLLOW_48_in_rule__FnItem__Group_2__3__Impl3420); 
+            match(input,54,FOLLOW_54_in_rule__FnItem__Group_2__3__Impl3656); 
              after(grammarAccess.getFnItemAccess().getGreaterThanSignKeyword_2_3()); 
 
             }
@@ -4693,21 +5038,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2_2__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1721:1: rule__FnItem__Group_2_2__0 : rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1827:1: rule__FnItem__Group_2_2__0 : rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1 ;
     public final void rule__FnItem__Group_2_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1725:1: ( rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1726:2: rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1831:1: ( rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1832:2: rule__FnItem__Group_2_2__0__Impl rule__FnItem__Group_2_2__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2_2__0__Impl_in_rule__FnItem__Group_2_2__03459);
+            pushFollow(FOLLOW_rule__FnItem__Group_2_2__0__Impl_in_rule__FnItem__Group_2_2__03695);
             rule__FnItem__Group_2_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_2_2__1_in_rule__FnItem__Group_2_2__03462);
+            pushFollow(FOLLOW_rule__FnItem__Group_2_2__1_in_rule__FnItem__Group_2_2__03698);
             rule__FnItem__Group_2_2__1();
 
             state._fsp--;
@@ -4731,20 +5076,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2_2__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1733:1: rule__FnItem__Group_2_2__0__Impl : ( ',' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1839:1: rule__FnItem__Group_2_2__0__Impl : ( ',' ) ;
     public final void rule__FnItem__Group_2_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1737:1: ( ( ',' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1738:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1843:1: ( ( ',' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1844:1: ( ',' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1738:1: ( ',' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1739:1: ','
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1844:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1845:1: ','
             {
              before(grammarAccess.getFnItemAccess().getCommaKeyword_2_2_0()); 
-            match(input,39,FOLLOW_39_in_rule__FnItem__Group_2_2__0__Impl3490); 
+            match(input,45,FOLLOW_45_in_rule__FnItem__Group_2_2__0__Impl3726); 
              after(grammarAccess.getFnItemAccess().getCommaKeyword_2_2_0()); 
 
             }
@@ -4768,16 +5113,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2_2__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1752:1: rule__FnItem__Group_2_2__1 : rule__FnItem__Group_2_2__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1858:1: rule__FnItem__Group_2_2__1 : rule__FnItem__Group_2_2__1__Impl ;
     public final void rule__FnItem__Group_2_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1756:1: ( rule__FnItem__Group_2_2__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1757:2: rule__FnItem__Group_2_2__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1862:1: ( rule__FnItem__Group_2_2__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1863:2: rule__FnItem__Group_2_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_2_2__1__Impl_in_rule__FnItem__Group_2_2__13521);
+            pushFollow(FOLLOW_rule__FnItem__Group_2_2__1__Impl_in_rule__FnItem__Group_2_2__13757);
             rule__FnItem__Group_2_2__1__Impl();
 
             state._fsp--;
@@ -4801,23 +5146,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_2_2__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1763:1: rule__FnItem__Group_2_2__1__Impl : ( ( rule__FnItem__ParamsAssignment_2_2_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1869:1: rule__FnItem__Group_2_2__1__Impl : ( ( rule__FnItem__ParamsAssignment_2_2_1 ) ) ;
     public final void rule__FnItem__Group_2_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1767:1: ( ( ( rule__FnItem__ParamsAssignment_2_2_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1768:1: ( ( rule__FnItem__ParamsAssignment_2_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1873:1: ( ( ( rule__FnItem__ParamsAssignment_2_2_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1874:1: ( ( rule__FnItem__ParamsAssignment_2_2_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1768:1: ( ( rule__FnItem__ParamsAssignment_2_2_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1769:1: ( rule__FnItem__ParamsAssignment_2_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1874:1: ( ( rule__FnItem__ParamsAssignment_2_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1875:1: ( rule__FnItem__ParamsAssignment_2_2_1 )
             {
              before(grammarAccess.getFnItemAccess().getParamsAssignment_2_2_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1770:1: ( rule__FnItem__ParamsAssignment_2_2_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1770:2: rule__FnItem__ParamsAssignment_2_2_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1876:1: ( rule__FnItem__ParamsAssignment_2_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1876:2: rule__FnItem__ParamsAssignment_2_2_1
             {
-            pushFollow(FOLLOW_rule__FnItem__ParamsAssignment_2_2_1_in_rule__FnItem__Group_2_2__1__Impl3548);
+            pushFollow(FOLLOW_rule__FnItem__ParamsAssignment_2_2_1_in_rule__FnItem__Group_2_2__1__Impl3784);
             rule__FnItem__ParamsAssignment_2_2_1();
 
             state._fsp--;
@@ -4848,21 +5193,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1784:1: rule__FnItem__Group_4__0 : rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1890:1: rule__FnItem__Group_4__0 : rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1 ;
     public final void rule__FnItem__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1788:1: ( rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1789:2: rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1894:1: ( rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1895:2: rule__FnItem__Group_4__0__Impl rule__FnItem__Group_4__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_4__0__Impl_in_rule__FnItem__Group_4__03582);
+            pushFollow(FOLLOW_rule__FnItem__Group_4__0__Impl_in_rule__FnItem__Group_4__03818);
             rule__FnItem__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_4__1_in_rule__FnItem__Group_4__03585);
+            pushFollow(FOLLOW_rule__FnItem__Group_4__1_in_rule__FnItem__Group_4__03821);
             rule__FnItem__Group_4__1();
 
             state._fsp--;
@@ -4886,23 +5231,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1796:1: rule__FnItem__Group_4__0__Impl : ( ( rule__FnItem__ArgsAssignment_4_0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1902:1: rule__FnItem__Group_4__0__Impl : ( ( rule__FnItem__ArgsAssignment_4_0 ) ) ;
     public final void rule__FnItem__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1800:1: ( ( ( rule__FnItem__ArgsAssignment_4_0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1801:1: ( ( rule__FnItem__ArgsAssignment_4_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1906:1: ( ( ( rule__FnItem__ArgsAssignment_4_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1907:1: ( ( rule__FnItem__ArgsAssignment_4_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1801:1: ( ( rule__FnItem__ArgsAssignment_4_0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1802:1: ( rule__FnItem__ArgsAssignment_4_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1907:1: ( ( rule__FnItem__ArgsAssignment_4_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1908:1: ( rule__FnItem__ArgsAssignment_4_0 )
             {
              before(grammarAccess.getFnItemAccess().getArgsAssignment_4_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1803:1: ( rule__FnItem__ArgsAssignment_4_0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1803:2: rule__FnItem__ArgsAssignment_4_0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1909:1: ( rule__FnItem__ArgsAssignment_4_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1909:2: rule__FnItem__ArgsAssignment_4_0
             {
-            pushFollow(FOLLOW_rule__FnItem__ArgsAssignment_4_0_in_rule__FnItem__Group_4__0__Impl3612);
+            pushFollow(FOLLOW_rule__FnItem__ArgsAssignment_4_0_in_rule__FnItem__Group_4__0__Impl3848);
             rule__FnItem__ArgsAssignment_4_0();
 
             state._fsp--;
@@ -4933,16 +5278,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1813:1: rule__FnItem__Group_4__1 : rule__FnItem__Group_4__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1919:1: rule__FnItem__Group_4__1 : rule__FnItem__Group_4__1__Impl ;
     public final void rule__FnItem__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1817:1: ( rule__FnItem__Group_4__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1818:2: rule__FnItem__Group_4__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1923:1: ( rule__FnItem__Group_4__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1924:2: rule__FnItem__Group_4__1__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_4__1__Impl_in_rule__FnItem__Group_4__13642);
+            pushFollow(FOLLOW_rule__FnItem__Group_4__1__Impl_in_rule__FnItem__Group_4__13878);
             rule__FnItem__Group_4__1__Impl();
 
             state._fsp--;
@@ -4966,35 +5311,35 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1824:1: rule__FnItem__Group_4__1__Impl : ( ( rule__FnItem__Group_4_1__0 )* ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1930:1: rule__FnItem__Group_4__1__Impl : ( ( rule__FnItem__Group_4_1__0 )* ) ;
     public final void rule__FnItem__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1828:1: ( ( ( rule__FnItem__Group_4_1__0 )* ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1829:1: ( ( rule__FnItem__Group_4_1__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1934:1: ( ( ( rule__FnItem__Group_4_1__0 )* ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1935:1: ( ( rule__FnItem__Group_4_1__0 )* )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1829:1: ( ( rule__FnItem__Group_4_1__0 )* )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1830:1: ( rule__FnItem__Group_4_1__0 )*
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1935:1: ( ( rule__FnItem__Group_4_1__0 )* )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1936:1: ( rule__FnItem__Group_4_1__0 )*
             {
              before(grammarAccess.getFnItemAccess().getGroup_4_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1831:1: ( rule__FnItem__Group_4_1__0 )*
-            loop14:
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1937:1: ( rule__FnItem__Group_4_1__0 )*
+            loop16:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA14_0==39) ) {
-                    alt14=1;
+                if ( (LA16_0==45) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt16) {
             	case 1 :
-            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1831:2: rule__FnItem__Group_4_1__0
+            	    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1937:2: rule__FnItem__Group_4_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__FnItem__Group_4_1__0_in_rule__FnItem__Group_4__1__Impl3669);
+            	    pushFollow(FOLLOW_rule__FnItem__Group_4_1__0_in_rule__FnItem__Group_4__1__Impl3905);
             	    rule__FnItem__Group_4_1__0();
 
             	    state._fsp--;
@@ -5004,7 +5349,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop16;
                 }
             } while (true);
 
@@ -5031,21 +5376,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4_1__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1845:1: rule__FnItem__Group_4_1__0 : rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1951:1: rule__FnItem__Group_4_1__0 : rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1 ;
     public final void rule__FnItem__Group_4_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1849:1: ( rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1850:2: rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1955:1: ( rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1956:2: rule__FnItem__Group_4_1__0__Impl rule__FnItem__Group_4_1__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_4_1__0__Impl_in_rule__FnItem__Group_4_1__03704);
+            pushFollow(FOLLOW_rule__FnItem__Group_4_1__0__Impl_in_rule__FnItem__Group_4_1__03940);
             rule__FnItem__Group_4_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_4_1__1_in_rule__FnItem__Group_4_1__03707);
+            pushFollow(FOLLOW_rule__FnItem__Group_4_1__1_in_rule__FnItem__Group_4_1__03943);
             rule__FnItem__Group_4_1__1();
 
             state._fsp--;
@@ -5069,20 +5414,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4_1__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1857:1: rule__FnItem__Group_4_1__0__Impl : ( ',' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1963:1: rule__FnItem__Group_4_1__0__Impl : ( ',' ) ;
     public final void rule__FnItem__Group_4_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1861:1: ( ( ',' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1862:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1967:1: ( ( ',' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1968:1: ( ',' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1862:1: ( ',' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1863:1: ','
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1968:1: ( ',' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1969:1: ','
             {
              before(grammarAccess.getFnItemAccess().getCommaKeyword_4_1_0()); 
-            match(input,39,FOLLOW_39_in_rule__FnItem__Group_4_1__0__Impl3735); 
+            match(input,45,FOLLOW_45_in_rule__FnItem__Group_4_1__0__Impl3971); 
              after(grammarAccess.getFnItemAccess().getCommaKeyword_4_1_0()); 
 
             }
@@ -5106,16 +5451,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4_1__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1876:1: rule__FnItem__Group_4_1__1 : rule__FnItem__Group_4_1__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1982:1: rule__FnItem__Group_4_1__1 : rule__FnItem__Group_4_1__1__Impl ;
     public final void rule__FnItem__Group_4_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1880:1: ( rule__FnItem__Group_4_1__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1881:2: rule__FnItem__Group_4_1__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1986:1: ( rule__FnItem__Group_4_1__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1987:2: rule__FnItem__Group_4_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_4_1__1__Impl_in_rule__FnItem__Group_4_1__13766);
+            pushFollow(FOLLOW_rule__FnItem__Group_4_1__1__Impl_in_rule__FnItem__Group_4_1__14002);
             rule__FnItem__Group_4_1__1__Impl();
 
             state._fsp--;
@@ -5139,23 +5484,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_4_1__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1887:1: rule__FnItem__Group_4_1__1__Impl : ( ( rule__FnItem__ArgsAssignment_4_1_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1993:1: rule__FnItem__Group_4_1__1__Impl : ( ( rule__FnItem__ArgsAssignment_4_1_1 ) ) ;
     public final void rule__FnItem__Group_4_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1891:1: ( ( ( rule__FnItem__ArgsAssignment_4_1_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1892:1: ( ( rule__FnItem__ArgsAssignment_4_1_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1997:1: ( ( ( rule__FnItem__ArgsAssignment_4_1_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1998:1: ( ( rule__FnItem__ArgsAssignment_4_1_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1892:1: ( ( rule__FnItem__ArgsAssignment_4_1_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1893:1: ( rule__FnItem__ArgsAssignment_4_1_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1998:1: ( ( rule__FnItem__ArgsAssignment_4_1_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1999:1: ( rule__FnItem__ArgsAssignment_4_1_1 )
             {
              before(grammarAccess.getFnItemAccess().getArgsAssignment_4_1_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1894:1: ( rule__FnItem__ArgsAssignment_4_1_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1894:2: rule__FnItem__ArgsAssignment_4_1_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2000:1: ( rule__FnItem__ArgsAssignment_4_1_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2000:2: rule__FnItem__ArgsAssignment_4_1_1
             {
-            pushFollow(FOLLOW_rule__FnItem__ArgsAssignment_4_1_1_in_rule__FnItem__Group_4_1__1__Impl3793);
+            pushFollow(FOLLOW_rule__FnItem__ArgsAssignment_4_1_1_in_rule__FnItem__Group_4_1__1__Impl4029);
             rule__FnItem__ArgsAssignment_4_1_1();
 
             state._fsp--;
@@ -5186,21 +5531,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_6__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1908:1: rule__FnItem__Group_6__0 : rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2014:1: rule__FnItem__Group_6__0 : rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1 ;
     public final void rule__FnItem__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1912:1: ( rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1913:2: rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2018:1: ( rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2019:2: rule__FnItem__Group_6__0__Impl rule__FnItem__Group_6__1
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_6__0__Impl_in_rule__FnItem__Group_6__03827);
+            pushFollow(FOLLOW_rule__FnItem__Group_6__0__Impl_in_rule__FnItem__Group_6__04063);
             rule__FnItem__Group_6__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FnItem__Group_6__1_in_rule__FnItem__Group_6__03830);
+            pushFollow(FOLLOW_rule__FnItem__Group_6__1_in_rule__FnItem__Group_6__04066);
             rule__FnItem__Group_6__1();
 
             state._fsp--;
@@ -5224,20 +5569,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_6__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1920:1: rule__FnItem__Group_6__0__Impl : ( '->' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2026:1: rule__FnItem__Group_6__0__Impl : ( '->' ) ;
     public final void rule__FnItem__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1924:1: ( ( '->' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1925:1: ( '->' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2030:1: ( ( '->' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2031:1: ( '->' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1925:1: ( '->' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1926:1: '->'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2031:1: ( '->' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2032:1: '->'
             {
              before(grammarAccess.getFnItemAccess().getHyphenMinusGreaterThanSignKeyword_6_0()); 
-            match(input,49,FOLLOW_49_in_rule__FnItem__Group_6__0__Impl3858); 
+            match(input,55,FOLLOW_55_in_rule__FnItem__Group_6__0__Impl4094); 
              after(grammarAccess.getFnItemAccess().getHyphenMinusGreaterThanSignKeyword_6_0()); 
 
             }
@@ -5261,16 +5606,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_6__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1939:1: rule__FnItem__Group_6__1 : rule__FnItem__Group_6__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2045:1: rule__FnItem__Group_6__1 : rule__FnItem__Group_6__1__Impl ;
     public final void rule__FnItem__Group_6__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1943:1: ( rule__FnItem__Group_6__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1944:2: rule__FnItem__Group_6__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2049:1: ( rule__FnItem__Group_6__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2050:2: rule__FnItem__Group_6__1__Impl
             {
-            pushFollow(FOLLOW_rule__FnItem__Group_6__1__Impl_in_rule__FnItem__Group_6__13889);
+            pushFollow(FOLLOW_rule__FnItem__Group_6__1__Impl_in_rule__FnItem__Group_6__14125);
             rule__FnItem__Group_6__1__Impl();
 
             state._fsp--;
@@ -5294,23 +5639,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__Group_6__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1950:1: rule__FnItem__Group_6__1__Impl : ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2056:1: rule__FnItem__Group_6__1__Impl : ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) ) ;
     public final void rule__FnItem__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1954:1: ( ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1955:1: ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2060:1: ( ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2061:1: ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1955:1: ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1956:1: ( rule__FnItem__ReturnTypeAssignment_6_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2061:1: ( ( rule__FnItem__ReturnTypeAssignment_6_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2062:1: ( rule__FnItem__ReturnTypeAssignment_6_1 )
             {
              before(grammarAccess.getFnItemAccess().getReturnTypeAssignment_6_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1957:1: ( rule__FnItem__ReturnTypeAssignment_6_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1957:2: rule__FnItem__ReturnTypeAssignment_6_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2063:1: ( rule__FnItem__ReturnTypeAssignment_6_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2063:2: rule__FnItem__ReturnTypeAssignment_6_1
             {
-            pushFollow(FOLLOW_rule__FnItem__ReturnTypeAssignment_6_1_in_rule__FnItem__Group_6__1__Impl3916);
+            pushFollow(FOLLOW_rule__FnItem__ReturnTypeAssignment_6_1_in_rule__FnItem__Group_6__1__Impl4152);
             rule__FnItem__ReturnTypeAssignment_6_1();
 
             state._fsp--;
@@ -5341,21 +5686,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1971:1: rule__GenericParamDecl__Group__0 : rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2077:1: rule__GenericParamDecl__Group__0 : rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1 ;
     public final void rule__GenericParamDecl__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1975:1: ( rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1976:2: rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2081:1: ( rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2082:2: rule__GenericParamDecl__Group__0__Impl rule__GenericParamDecl__Group__1
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group__0__Impl_in_rule__GenericParamDecl__Group__03950);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group__0__Impl_in_rule__GenericParamDecl__Group__04186);
             rule__GenericParamDecl__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group__1_in_rule__GenericParamDecl__Group__03953);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group__1_in_rule__GenericParamDecl__Group__04189);
             rule__GenericParamDecl__Group__1();
 
             state._fsp--;
@@ -5379,23 +5724,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1983:1: rule__GenericParamDecl__Group__0__Impl : ( ( rule__GenericParamDecl__IdentAssignment_0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2089:1: rule__GenericParamDecl__Group__0__Impl : ( ( rule__GenericParamDecl__IdentAssignment_0 ) ) ;
     public final void rule__GenericParamDecl__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1987:1: ( ( ( rule__GenericParamDecl__IdentAssignment_0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1988:1: ( ( rule__GenericParamDecl__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2093:1: ( ( ( rule__GenericParamDecl__IdentAssignment_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2094:1: ( ( rule__GenericParamDecl__IdentAssignment_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1988:1: ( ( rule__GenericParamDecl__IdentAssignment_0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1989:1: ( rule__GenericParamDecl__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2094:1: ( ( rule__GenericParamDecl__IdentAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2095:1: ( rule__GenericParamDecl__IdentAssignment_0 )
             {
              before(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1990:1: ( rule__GenericParamDecl__IdentAssignment_0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:1990:2: rule__GenericParamDecl__IdentAssignment_0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2096:1: ( rule__GenericParamDecl__IdentAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2096:2: rule__GenericParamDecl__IdentAssignment_0
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__IdentAssignment_0_in_rule__GenericParamDecl__Group__0__Impl3980);
+            pushFollow(FOLLOW_rule__GenericParamDecl__IdentAssignment_0_in_rule__GenericParamDecl__Group__0__Impl4216);
             rule__GenericParamDecl__IdentAssignment_0();
 
             state._fsp--;
@@ -5426,16 +5771,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2000:1: rule__GenericParamDecl__Group__1 : rule__GenericParamDecl__Group__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2106:1: rule__GenericParamDecl__Group__1 : rule__GenericParamDecl__Group__1__Impl ;
     public final void rule__GenericParamDecl__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2004:1: ( rule__GenericParamDecl__Group__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2005:2: rule__GenericParamDecl__Group__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2110:1: ( rule__GenericParamDecl__Group__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2111:2: rule__GenericParamDecl__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group__1__Impl_in_rule__GenericParamDecl__Group__14010);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group__1__Impl_in_rule__GenericParamDecl__Group__14246);
             rule__GenericParamDecl__Group__1__Impl();
 
             state._fsp--;
@@ -5459,31 +5804,31 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2011:1: rule__GenericParamDecl__Group__1__Impl : ( ( rule__GenericParamDecl__Group_1__0 )? ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2117:1: rule__GenericParamDecl__Group__1__Impl : ( ( rule__GenericParamDecl__Group_1__0 )? ) ;
     public final void rule__GenericParamDecl__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2015:1: ( ( ( rule__GenericParamDecl__Group_1__0 )? ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2016:1: ( ( rule__GenericParamDecl__Group_1__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2121:1: ( ( ( rule__GenericParamDecl__Group_1__0 )? ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2122:1: ( ( rule__GenericParamDecl__Group_1__0 )? )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2016:1: ( ( rule__GenericParamDecl__Group_1__0 )? )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2017:1: ( rule__GenericParamDecl__Group_1__0 )?
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2122:1: ( ( rule__GenericParamDecl__Group_1__0 )? )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2123:1: ( rule__GenericParamDecl__Group_1__0 )?
             {
              before(grammarAccess.getGenericParamDeclAccess().getGroup_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2018:1: ( rule__GenericParamDecl__Group_1__0 )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2124:1: ( rule__GenericParamDecl__Group_1__0 )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA15_0==50) ) {
-                alt15=1;
+            if ( (LA17_0==56) ) {
+                alt17=1;
             }
-            switch (alt15) {
+            switch (alt17) {
                 case 1 :
-                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2018:2: rule__GenericParamDecl__Group_1__0
+                    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2124:2: rule__GenericParamDecl__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__0_in_rule__GenericParamDecl__Group__1__Impl4037);
+                    pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__0_in_rule__GenericParamDecl__Group__1__Impl4273);
                     rule__GenericParamDecl__Group_1__0();
 
                     state._fsp--;
@@ -5517,21 +5862,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2032:1: rule__GenericParamDecl__Group_1__0 : rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2138:1: rule__GenericParamDecl__Group_1__0 : rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1 ;
     public final void rule__GenericParamDecl__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2036:1: ( rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2037:2: rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2142:1: ( rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2143:2: rule__GenericParamDecl__Group_1__0__Impl rule__GenericParamDecl__Group_1__1
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__0__Impl_in_rule__GenericParamDecl__Group_1__04072);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__0__Impl_in_rule__GenericParamDecl__Group_1__04308);
             rule__GenericParamDecl__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__1_in_rule__GenericParamDecl__Group_1__04075);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__1_in_rule__GenericParamDecl__Group_1__04311);
             rule__GenericParamDecl__Group_1__1();
 
             state._fsp--;
@@ -5555,20 +5900,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2044:1: rule__GenericParamDecl__Group_1__0__Impl : ( ':' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2150:1: rule__GenericParamDecl__Group_1__0__Impl : ( ':' ) ;
     public final void rule__GenericParamDecl__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2048:1: ( ( ':' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2049:1: ( ':' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2154:1: ( ( ':' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2155:1: ( ':' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2049:1: ( ':' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2050:1: ':'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2155:1: ( ':' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2156:1: ':'
             {
              before(grammarAccess.getGenericParamDeclAccess().getColonKeyword_1_0()); 
-            match(input,50,FOLLOW_50_in_rule__GenericParamDecl__Group_1__0__Impl4103); 
+            match(input,56,FOLLOW_56_in_rule__GenericParamDecl__Group_1__0__Impl4339); 
              after(grammarAccess.getGenericParamDeclAccess().getColonKeyword_1_0()); 
 
             }
@@ -5592,21 +5937,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2063:1: rule__GenericParamDecl__Group_1__1 : rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2169:1: rule__GenericParamDecl__Group_1__1 : rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2 ;
     public final void rule__GenericParamDecl__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2067:1: ( rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2068:2: rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2173:1: ( rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2174:2: rule__GenericParamDecl__Group_1__1__Impl rule__GenericParamDecl__Group_1__2
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__1__Impl_in_rule__GenericParamDecl__Group_1__14134);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__1__Impl_in_rule__GenericParamDecl__Group_1__14370);
             rule__GenericParamDecl__Group_1__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__2_in_rule__GenericParamDecl__Group_1__14137);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__2_in_rule__GenericParamDecl__Group_1__14373);
             rule__GenericParamDecl__Group_1__2();
 
             state._fsp--;
@@ -5630,23 +5975,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2075:1: rule__GenericParamDecl__Group_1__1__Impl : ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2181:1: rule__GenericParamDecl__Group_1__1__Impl : ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) ) ;
     public final void rule__GenericParamDecl__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2079:1: ( ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2080:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2185:1: ( ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2186:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2080:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2081:1: ( rule__GenericParamDecl__BoundsAssignment_1_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2186:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2187:1: ( rule__GenericParamDecl__BoundsAssignment_1_1 )
             {
              before(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2082:1: ( rule__GenericParamDecl__BoundsAssignment_1_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2082:2: rule__GenericParamDecl__BoundsAssignment_1_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2188:1: ( rule__GenericParamDecl__BoundsAssignment_1_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2188:2: rule__GenericParamDecl__BoundsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_1_in_rule__GenericParamDecl__Group_1__1__Impl4164);
+            pushFollow(FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_1_in_rule__GenericParamDecl__Group_1__1__Impl4400);
             rule__GenericParamDecl__BoundsAssignment_1_1();
 
             state._fsp--;
@@ -5677,16 +6022,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2092:1: rule__GenericParamDecl__Group_1__2 : rule__GenericParamDecl__Group_1__2__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2198:1: rule__GenericParamDecl__Group_1__2 : rule__GenericParamDecl__Group_1__2__Impl ;
     public final void rule__GenericParamDecl__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2096:1: ( rule__GenericParamDecl__Group_1__2__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2097:2: rule__GenericParamDecl__Group_1__2__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2202:1: ( rule__GenericParamDecl__Group_1__2__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2203:2: rule__GenericParamDecl__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__2__Impl_in_rule__GenericParamDecl__Group_1__24194);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1__2__Impl_in_rule__GenericParamDecl__Group_1__24430);
             rule__GenericParamDecl__Group_1__2__Impl();
 
             state._fsp--;
@@ -5710,23 +6055,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2103:1: rule__GenericParamDecl__Group_1__2__Impl : ( ( rule__GenericParamDecl__Group_1_2__0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2209:1: rule__GenericParamDecl__Group_1__2__Impl : ( ( rule__GenericParamDecl__Group_1_2__0 ) ) ;
     public final void rule__GenericParamDecl__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2107:1: ( ( ( rule__GenericParamDecl__Group_1_2__0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2108:1: ( ( rule__GenericParamDecl__Group_1_2__0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2213:1: ( ( ( rule__GenericParamDecl__Group_1_2__0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2214:1: ( ( rule__GenericParamDecl__Group_1_2__0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2108:1: ( ( rule__GenericParamDecl__Group_1_2__0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2109:1: ( rule__GenericParamDecl__Group_1_2__0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2214:1: ( ( rule__GenericParamDecl__Group_1_2__0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2215:1: ( rule__GenericParamDecl__Group_1_2__0 )
             {
              before(grammarAccess.getGenericParamDeclAccess().getGroup_1_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2110:1: ( rule__GenericParamDecl__Group_1_2__0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2110:2: rule__GenericParamDecl__Group_1_2__0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2216:1: ( rule__GenericParamDecl__Group_1_2__0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2216:2: rule__GenericParamDecl__Group_1_2__0
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__0_in_rule__GenericParamDecl__Group_1__2__Impl4221);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__0_in_rule__GenericParamDecl__Group_1__2__Impl4457);
             rule__GenericParamDecl__Group_1_2__0();
 
             state._fsp--;
@@ -5757,21 +6102,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1_2__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2126:1: rule__GenericParamDecl__Group_1_2__0 : rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2232:1: rule__GenericParamDecl__Group_1_2__0 : rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1 ;
     public final void rule__GenericParamDecl__Group_1_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2130:1: ( rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2131:2: rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2236:1: ( rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2237:2: rule__GenericParamDecl__Group_1_2__0__Impl rule__GenericParamDecl__Group_1_2__1
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__0__Impl_in_rule__GenericParamDecl__Group_1_2__04257);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__0__Impl_in_rule__GenericParamDecl__Group_1_2__04493);
             rule__GenericParamDecl__Group_1_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__1_in_rule__GenericParamDecl__Group_1_2__04260);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__1_in_rule__GenericParamDecl__Group_1_2__04496);
             rule__GenericParamDecl__Group_1_2__1();
 
             state._fsp--;
@@ -5795,20 +6140,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1_2__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2138:1: rule__GenericParamDecl__Group_1_2__0__Impl : ( '+' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2244:1: rule__GenericParamDecl__Group_1_2__0__Impl : ( '+' ) ;
     public final void rule__GenericParamDecl__Group_1_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2142:1: ( ( '+' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2143:1: ( '+' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2248:1: ( ( '+' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2249:1: ( '+' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2143:1: ( '+' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2144:1: '+'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2249:1: ( '+' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2250:1: '+'
             {
              before(grammarAccess.getGenericParamDeclAccess().getPlusSignKeyword_1_2_0()); 
-            match(input,51,FOLLOW_51_in_rule__GenericParamDecl__Group_1_2__0__Impl4288); 
+            match(input,57,FOLLOW_57_in_rule__GenericParamDecl__Group_1_2__0__Impl4524); 
              after(grammarAccess.getGenericParamDeclAccess().getPlusSignKeyword_1_2_0()); 
 
             }
@@ -5832,16 +6177,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1_2__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2157:1: rule__GenericParamDecl__Group_1_2__1 : rule__GenericParamDecl__Group_1_2__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2263:1: rule__GenericParamDecl__Group_1_2__1 : rule__GenericParamDecl__Group_1_2__1__Impl ;
     public final void rule__GenericParamDecl__Group_1_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2161:1: ( rule__GenericParamDecl__Group_1_2__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2162:2: rule__GenericParamDecl__Group_1_2__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2267:1: ( rule__GenericParamDecl__Group_1_2__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2268:2: rule__GenericParamDecl__Group_1_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__1__Impl_in_rule__GenericParamDecl__Group_1_2__14319);
+            pushFollow(FOLLOW_rule__GenericParamDecl__Group_1_2__1__Impl_in_rule__GenericParamDecl__Group_1_2__14555);
             rule__GenericParamDecl__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -5865,23 +6210,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__Group_1_2__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2168:1: rule__GenericParamDecl__Group_1_2__1__Impl : ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2274:1: rule__GenericParamDecl__Group_1_2__1__Impl : ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) ) ;
     public final void rule__GenericParamDecl__Group_1_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2172:1: ( ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2173:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2278:1: ( ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2279:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2173:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2174:1: ( rule__GenericParamDecl__BoundsAssignment_1_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2279:1: ( ( rule__GenericParamDecl__BoundsAssignment_1_2_1 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2280:1: ( rule__GenericParamDecl__BoundsAssignment_1_2_1 )
             {
              before(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2175:1: ( rule__GenericParamDecl__BoundsAssignment_1_2_1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2175:2: rule__GenericParamDecl__BoundsAssignment_1_2_1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2281:1: ( rule__GenericParamDecl__BoundsAssignment_1_2_1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2281:2: rule__GenericParamDecl__BoundsAssignment_1_2_1
             {
-            pushFollow(FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_2_1_in_rule__GenericParamDecl__Group_1_2__1__Impl4346);
+            pushFollow(FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_2_1_in_rule__GenericParamDecl__Group_1_2__1__Impl4582);
             rule__GenericParamDecl__BoundsAssignment_1_2_1();
 
             state._fsp--;
@@ -5912,21 +6257,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2189:1: rule__Arg__Group__0 : rule__Arg__Group__0__Impl rule__Arg__Group__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2295:1: rule__Arg__Group__0 : rule__Arg__Group__0__Impl rule__Arg__Group__1 ;
     public final void rule__Arg__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2193:1: ( rule__Arg__Group__0__Impl rule__Arg__Group__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2194:2: rule__Arg__Group__0__Impl rule__Arg__Group__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2299:1: ( rule__Arg__Group__0__Impl rule__Arg__Group__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2300:2: rule__Arg__Group__0__Impl rule__Arg__Group__1
             {
-            pushFollow(FOLLOW_rule__Arg__Group__0__Impl_in_rule__Arg__Group__04380);
+            pushFollow(FOLLOW_rule__Arg__Group__0__Impl_in_rule__Arg__Group__04616);
             rule__Arg__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arg__Group__1_in_rule__Arg__Group__04383);
+            pushFollow(FOLLOW_rule__Arg__Group__1_in_rule__Arg__Group__04619);
             rule__Arg__Group__1();
 
             state._fsp--;
@@ -5950,23 +6295,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2201:1: rule__Arg__Group__0__Impl : ( ( rule__Arg__PatAssignment_0 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2307:1: rule__Arg__Group__0__Impl : ( ( rule__Arg__PatAssignment_0 ) ) ;
     public final void rule__Arg__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2205:1: ( ( ( rule__Arg__PatAssignment_0 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2206:1: ( ( rule__Arg__PatAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2311:1: ( ( ( rule__Arg__PatAssignment_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2312:1: ( ( rule__Arg__PatAssignment_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2206:1: ( ( rule__Arg__PatAssignment_0 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2207:1: ( rule__Arg__PatAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2312:1: ( ( rule__Arg__PatAssignment_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2313:1: ( rule__Arg__PatAssignment_0 )
             {
              before(grammarAccess.getArgAccess().getPatAssignment_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2208:1: ( rule__Arg__PatAssignment_0 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2208:2: rule__Arg__PatAssignment_0
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2314:1: ( rule__Arg__PatAssignment_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2314:2: rule__Arg__PatAssignment_0
             {
-            pushFollow(FOLLOW_rule__Arg__PatAssignment_0_in_rule__Arg__Group__0__Impl4410);
+            pushFollow(FOLLOW_rule__Arg__PatAssignment_0_in_rule__Arg__Group__0__Impl4646);
             rule__Arg__PatAssignment_0();
 
             state._fsp--;
@@ -5997,21 +6342,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2218:1: rule__Arg__Group__1 : rule__Arg__Group__1__Impl rule__Arg__Group__2 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2324:1: rule__Arg__Group__1 : rule__Arg__Group__1__Impl rule__Arg__Group__2 ;
     public final void rule__Arg__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2222:1: ( rule__Arg__Group__1__Impl rule__Arg__Group__2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2223:2: rule__Arg__Group__1__Impl rule__Arg__Group__2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2328:1: ( rule__Arg__Group__1__Impl rule__Arg__Group__2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2329:2: rule__Arg__Group__1__Impl rule__Arg__Group__2
             {
-            pushFollow(FOLLOW_rule__Arg__Group__1__Impl_in_rule__Arg__Group__14440);
+            pushFollow(FOLLOW_rule__Arg__Group__1__Impl_in_rule__Arg__Group__14676);
             rule__Arg__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arg__Group__2_in_rule__Arg__Group__14443);
+            pushFollow(FOLLOW_rule__Arg__Group__2_in_rule__Arg__Group__14679);
             rule__Arg__Group__2();
 
             state._fsp--;
@@ -6035,20 +6380,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2230:1: rule__Arg__Group__1__Impl : ( ':' ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2336:1: rule__Arg__Group__1__Impl : ( ':' ) ;
     public final void rule__Arg__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2234:1: ( ( ':' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2235:1: ( ':' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2340:1: ( ( ':' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2341:1: ( ':' )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2235:1: ( ':' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2236:1: ':'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2341:1: ( ':' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2342:1: ':'
             {
              before(grammarAccess.getArgAccess().getColonKeyword_1()); 
-            match(input,50,FOLLOW_50_in_rule__Arg__Group__1__Impl4471); 
+            match(input,56,FOLLOW_56_in_rule__Arg__Group__1__Impl4707); 
              after(grammarAccess.getArgAccess().getColonKeyword_1()); 
 
             }
@@ -6072,16 +6417,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2249:1: rule__Arg__Group__2 : rule__Arg__Group__2__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2355:1: rule__Arg__Group__2 : rule__Arg__Group__2__Impl ;
     public final void rule__Arg__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2253:1: ( rule__Arg__Group__2__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2254:2: rule__Arg__Group__2__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2359:1: ( rule__Arg__Group__2__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2360:2: rule__Arg__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Arg__Group__2__Impl_in_rule__Arg__Group__24502);
+            pushFollow(FOLLOW_rule__Arg__Group__2__Impl_in_rule__Arg__Group__24738);
             rule__Arg__Group__2__Impl();
 
             state._fsp--;
@@ -6105,23 +6450,23 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__Group__2__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2260:1: rule__Arg__Group__2__Impl : ( ( rule__Arg__TypeAssignment_2 ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2366:1: rule__Arg__Group__2__Impl : ( ( rule__Arg__TypeAssignment_2 ) ) ;
     public final void rule__Arg__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2264:1: ( ( ( rule__Arg__TypeAssignment_2 ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2265:1: ( ( rule__Arg__TypeAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2370:1: ( ( ( rule__Arg__TypeAssignment_2 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2371:1: ( ( rule__Arg__TypeAssignment_2 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2265:1: ( ( rule__Arg__TypeAssignment_2 ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2266:1: ( rule__Arg__TypeAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2371:1: ( ( rule__Arg__TypeAssignment_2 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2372:1: ( rule__Arg__TypeAssignment_2 )
             {
              before(grammarAccess.getArgAccess().getTypeAssignment_2()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2267:1: ( rule__Arg__TypeAssignment_2 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2267:2: rule__Arg__TypeAssignment_2
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2373:1: ( rule__Arg__TypeAssignment_2 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2373:2: rule__Arg__TypeAssignment_2
             {
-            pushFollow(FOLLOW_rule__Arg__TypeAssignment_2_in_rule__Arg__Group__2__Impl4529);
+            pushFollow(FOLLOW_rule__Arg__TypeAssignment_2_in_rule__Arg__Group__2__Impl4765);
             rule__Arg__TypeAssignment_2();
 
             state._fsp--;
@@ -6152,21 +6497,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_0__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2283:1: rule__PrimitiveType__Group_0__0 : rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2389:1: rule__PrimitiveType__Group_0__0 : rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1 ;
     public final void rule__PrimitiveType__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2287:1: ( rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2288:2: rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2393:1: ( rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2394:2: rule__PrimitiveType__Group_0__0__Impl rule__PrimitiveType__Group_0__1
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__0__Impl_in_rule__PrimitiveType__Group_0__04565);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__0__Impl_in_rule__PrimitiveType__Group_0__04801);
             rule__PrimitiveType__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__1_in_rule__PrimitiveType__Group_0__04568);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__1_in_rule__PrimitiveType__Group_0__04804);
             rule__PrimitiveType__Group_0__1();
 
             state._fsp--;
@@ -6190,21 +6535,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_0__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2295:1: rule__PrimitiveType__Group_0__0__Impl : ( () ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2401:1: rule__PrimitiveType__Group_0__0__Impl : ( () ) ;
     public final void rule__PrimitiveType__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2299:1: ( ( () ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2300:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2405:1: ( ( () ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2406:1: ( () )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2300:1: ( () )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2301:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2406:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2407:1: ()
             {
              before(grammarAccess.getPrimitiveTypeAccess().getIntTypeAction_0_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2302:1: ()
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2304:1: 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2408:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2410:1: 
             {
             }
 
@@ -6227,16 +6572,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_0__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2314:1: rule__PrimitiveType__Group_0__1 : rule__PrimitiveType__Group_0__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2420:1: rule__PrimitiveType__Group_0__1 : rule__PrimitiveType__Group_0__1__Impl ;
     public final void rule__PrimitiveType__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2318:1: ( rule__PrimitiveType__Group_0__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2319:2: rule__PrimitiveType__Group_0__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2424:1: ( rule__PrimitiveType__Group_0__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2425:2: rule__PrimitiveType__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__1__Impl_in_rule__PrimitiveType__Group_0__14626);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_0__1__Impl_in_rule__PrimitiveType__Group_0__14862);
             rule__PrimitiveType__Group_0__1__Impl();
 
             state._fsp--;
@@ -6260,20 +6605,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_0__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2325:1: rule__PrimitiveType__Group_0__1__Impl : ( RULE_INT_TYPE ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2431:1: rule__PrimitiveType__Group_0__1__Impl : ( RULE_INT_TYPE ) ;
     public final void rule__PrimitiveType__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2329:1: ( ( RULE_INT_TYPE ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2330:1: ( RULE_INT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2435:1: ( ( RULE_INT_TYPE ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2436:1: ( RULE_INT_TYPE )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2330:1: ( RULE_INT_TYPE )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2331:1: RULE_INT_TYPE
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2436:1: ( RULE_INT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2437:1: RULE_INT_TYPE
             {
              before(grammarAccess.getPrimitiveTypeAccess().getINT_TYPETerminalRuleCall_0_1()); 
-            match(input,RULE_INT_TYPE,FOLLOW_RULE_INT_TYPE_in_rule__PrimitiveType__Group_0__1__Impl4653); 
+            match(input,RULE_INT_TYPE,FOLLOW_RULE_INT_TYPE_in_rule__PrimitiveType__Group_0__1__Impl4889); 
              after(grammarAccess.getPrimitiveTypeAccess().getINT_TYPETerminalRuleCall_0_1()); 
 
             }
@@ -6297,21 +6642,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_1__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2346:1: rule__PrimitiveType__Group_1__0 : rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2452:1: rule__PrimitiveType__Group_1__0 : rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1 ;
     public final void rule__PrimitiveType__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2350:1: ( rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2351:2: rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2456:1: ( rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2457:2: rule__PrimitiveType__Group_1__0__Impl rule__PrimitiveType__Group_1__1
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__0__Impl_in_rule__PrimitiveType__Group_1__04686);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__0__Impl_in_rule__PrimitiveType__Group_1__04922);
             rule__PrimitiveType__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__1_in_rule__PrimitiveType__Group_1__04689);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__1_in_rule__PrimitiveType__Group_1__04925);
             rule__PrimitiveType__Group_1__1();
 
             state._fsp--;
@@ -6335,21 +6680,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_1__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2358:1: rule__PrimitiveType__Group_1__0__Impl : ( () ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2464:1: rule__PrimitiveType__Group_1__0__Impl : ( () ) ;
     public final void rule__PrimitiveType__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2362:1: ( ( () ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2363:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2468:1: ( ( () ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2469:1: ( () )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2363:1: ( () )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2364:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2469:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2470:1: ()
             {
              before(grammarAccess.getPrimitiveTypeAccess().getFloatTypeAction_1_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2365:1: ()
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2367:1: 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2471:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2473:1: 
             {
             }
 
@@ -6372,16 +6717,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_1__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2377:1: rule__PrimitiveType__Group_1__1 : rule__PrimitiveType__Group_1__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2483:1: rule__PrimitiveType__Group_1__1 : rule__PrimitiveType__Group_1__1__Impl ;
     public final void rule__PrimitiveType__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2381:1: ( rule__PrimitiveType__Group_1__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2382:2: rule__PrimitiveType__Group_1__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2487:1: ( rule__PrimitiveType__Group_1__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2488:2: rule__PrimitiveType__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__1__Impl_in_rule__PrimitiveType__Group_1__14747);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_1__1__Impl_in_rule__PrimitiveType__Group_1__14983);
             rule__PrimitiveType__Group_1__1__Impl();
 
             state._fsp--;
@@ -6405,20 +6750,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_1__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2388:1: rule__PrimitiveType__Group_1__1__Impl : ( RULE_FLOAT_TYPE ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2494:1: rule__PrimitiveType__Group_1__1__Impl : ( RULE_FLOAT_TYPE ) ;
     public final void rule__PrimitiveType__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2392:1: ( ( RULE_FLOAT_TYPE ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2393:1: ( RULE_FLOAT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2498:1: ( ( RULE_FLOAT_TYPE ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2499:1: ( RULE_FLOAT_TYPE )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2393:1: ( RULE_FLOAT_TYPE )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2394:1: RULE_FLOAT_TYPE
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2499:1: ( RULE_FLOAT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2500:1: RULE_FLOAT_TYPE
             {
              before(grammarAccess.getPrimitiveTypeAccess().getFLOAT_TYPETerminalRuleCall_1_1()); 
-            match(input,RULE_FLOAT_TYPE,FOLLOW_RULE_FLOAT_TYPE_in_rule__PrimitiveType__Group_1__1__Impl4774); 
+            match(input,RULE_FLOAT_TYPE,FOLLOW_RULE_FLOAT_TYPE_in_rule__PrimitiveType__Group_1__1__Impl5010); 
              after(grammarAccess.getPrimitiveTypeAccess().getFLOAT_TYPETerminalRuleCall_1_1()); 
 
             }
@@ -6442,21 +6787,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_2__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2409:1: rule__PrimitiveType__Group_2__0 : rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2515:1: rule__PrimitiveType__Group_2__0 : rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1 ;
     public final void rule__PrimitiveType__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2413:1: ( rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2414:2: rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2519:1: ( rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2520:2: rule__PrimitiveType__Group_2__0__Impl rule__PrimitiveType__Group_2__1
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__0__Impl_in_rule__PrimitiveType__Group_2__04807);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__0__Impl_in_rule__PrimitiveType__Group_2__05043);
             rule__PrimitiveType__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__1_in_rule__PrimitiveType__Group_2__04810);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__1_in_rule__PrimitiveType__Group_2__05046);
             rule__PrimitiveType__Group_2__1();
 
             state._fsp--;
@@ -6480,21 +6825,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_2__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2421:1: rule__PrimitiveType__Group_2__0__Impl : ( () ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2527:1: rule__PrimitiveType__Group_2__0__Impl : ( () ) ;
     public final void rule__PrimitiveType__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2425:1: ( ( () ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2426:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2531:1: ( ( () ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2532:1: ( () )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2426:1: ( () )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2427:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2532:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2533:1: ()
             {
              before(grammarAccess.getPrimitiveTypeAccess().getBoolTypeAction_2_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2428:1: ()
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2430:1: 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2534:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2536:1: 
             {
             }
 
@@ -6517,16 +6862,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_2__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2440:1: rule__PrimitiveType__Group_2__1 : rule__PrimitiveType__Group_2__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2546:1: rule__PrimitiveType__Group_2__1 : rule__PrimitiveType__Group_2__1__Impl ;
     public final void rule__PrimitiveType__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2444:1: ( rule__PrimitiveType__Group_2__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2445:2: rule__PrimitiveType__Group_2__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2550:1: ( rule__PrimitiveType__Group_2__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2551:2: rule__PrimitiveType__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__1__Impl_in_rule__PrimitiveType__Group_2__14868);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_2__1__Impl_in_rule__PrimitiveType__Group_2__15104);
             rule__PrimitiveType__Group_2__1__Impl();
 
             state._fsp--;
@@ -6550,20 +6895,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_2__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2451:1: rule__PrimitiveType__Group_2__1__Impl : ( RULE_BOOLEAN_TYPE ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2557:1: rule__PrimitiveType__Group_2__1__Impl : ( RULE_BOOLEAN_TYPE ) ;
     public final void rule__PrimitiveType__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2455:1: ( ( RULE_BOOLEAN_TYPE ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2456:1: ( RULE_BOOLEAN_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2561:1: ( ( RULE_BOOLEAN_TYPE ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2562:1: ( RULE_BOOLEAN_TYPE )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2456:1: ( RULE_BOOLEAN_TYPE )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2457:1: RULE_BOOLEAN_TYPE
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2562:1: ( RULE_BOOLEAN_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2563:1: RULE_BOOLEAN_TYPE
             {
              before(grammarAccess.getPrimitiveTypeAccess().getBOOLEAN_TYPETerminalRuleCall_2_1()); 
-            match(input,RULE_BOOLEAN_TYPE,FOLLOW_RULE_BOOLEAN_TYPE_in_rule__PrimitiveType__Group_2__1__Impl4895); 
+            match(input,RULE_BOOLEAN_TYPE,FOLLOW_RULE_BOOLEAN_TYPE_in_rule__PrimitiveType__Group_2__1__Impl5131); 
              after(grammarAccess.getPrimitiveTypeAccess().getBOOLEAN_TYPETerminalRuleCall_2_1()); 
 
             }
@@ -6587,21 +6932,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_3__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2472:1: rule__PrimitiveType__Group_3__0 : rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2578:1: rule__PrimitiveType__Group_3__0 : rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1 ;
     public final void rule__PrimitiveType__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2476:1: ( rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2477:2: rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2582:1: ( rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2583:2: rule__PrimitiveType__Group_3__0__Impl rule__PrimitiveType__Group_3__1
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__0__Impl_in_rule__PrimitiveType__Group_3__04928);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__0__Impl_in_rule__PrimitiveType__Group_3__05164);
             rule__PrimitiveType__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__1_in_rule__PrimitiveType__Group_3__04931);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__1_in_rule__PrimitiveType__Group_3__05167);
             rule__PrimitiveType__Group_3__1();
 
             state._fsp--;
@@ -6625,21 +6970,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_3__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2484:1: rule__PrimitiveType__Group_3__0__Impl : ( () ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2590:1: rule__PrimitiveType__Group_3__0__Impl : ( () ) ;
     public final void rule__PrimitiveType__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2488:1: ( ( () ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2489:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2594:1: ( ( () ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2595:1: ( () )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2489:1: ( () )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2490:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2595:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2596:1: ()
             {
              before(grammarAccess.getPrimitiveTypeAccess().getMachineTypeAction_3_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2491:1: ()
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2493:1: 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2597:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2599:1: 
             {
             }
 
@@ -6662,16 +7007,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_3__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2503:1: rule__PrimitiveType__Group_3__1 : rule__PrimitiveType__Group_3__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2609:1: rule__PrimitiveType__Group_3__1 : rule__PrimitiveType__Group_3__1__Impl ;
     public final void rule__PrimitiveType__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2507:1: ( rule__PrimitiveType__Group_3__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2508:2: rule__PrimitiveType__Group_3__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2613:1: ( rule__PrimitiveType__Group_3__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2614:2: rule__PrimitiveType__Group_3__1__Impl
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__1__Impl_in_rule__PrimitiveType__Group_3__14989);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_3__1__Impl_in_rule__PrimitiveType__Group_3__15225);
             rule__PrimitiveType__Group_3__1__Impl();
 
             state._fsp--;
@@ -6695,20 +7040,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_3__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2514:1: rule__PrimitiveType__Group_3__1__Impl : ( RULE_MACHINE_TYPE ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2620:1: rule__PrimitiveType__Group_3__1__Impl : ( RULE_MACHINE_TYPE ) ;
     public final void rule__PrimitiveType__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2518:1: ( ( RULE_MACHINE_TYPE ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2519:1: ( RULE_MACHINE_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2624:1: ( ( RULE_MACHINE_TYPE ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2625:1: ( RULE_MACHINE_TYPE )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2519:1: ( RULE_MACHINE_TYPE )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2520:1: RULE_MACHINE_TYPE
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2625:1: ( RULE_MACHINE_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2626:1: RULE_MACHINE_TYPE
             {
              before(grammarAccess.getPrimitiveTypeAccess().getMACHINE_TYPETerminalRuleCall_3_1()); 
-            match(input,RULE_MACHINE_TYPE,FOLLOW_RULE_MACHINE_TYPE_in_rule__PrimitiveType__Group_3__1__Impl5016); 
+            match(input,RULE_MACHINE_TYPE,FOLLOW_RULE_MACHINE_TYPE_in_rule__PrimitiveType__Group_3__1__Impl5252); 
              after(grammarAccess.getPrimitiveTypeAccess().getMACHINE_TYPETerminalRuleCall_3_1()); 
 
             }
@@ -6732,21 +7077,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_4__0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2535:1: rule__PrimitiveType__Group_4__0 : rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1 ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2641:1: rule__PrimitiveType__Group_4__0 : rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1 ;
     public final void rule__PrimitiveType__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2539:1: ( rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1 )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2540:2: rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2645:1: ( rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2646:2: rule__PrimitiveType__Group_4__0__Impl rule__PrimitiveType__Group_4__1
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__0__Impl_in_rule__PrimitiveType__Group_4__05049);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__0__Impl_in_rule__PrimitiveType__Group_4__05285);
             rule__PrimitiveType__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__1_in_rule__PrimitiveType__Group_4__05052);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__1_in_rule__PrimitiveType__Group_4__05288);
             rule__PrimitiveType__Group_4__1();
 
             state._fsp--;
@@ -6770,21 +7115,21 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_4__0__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2547:1: rule__PrimitiveType__Group_4__0__Impl : ( () ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2653:1: rule__PrimitiveType__Group_4__0__Impl : ( () ) ;
     public final void rule__PrimitiveType__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2551:1: ( ( () ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2552:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2657:1: ( ( () ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2658:1: ( () )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2552:1: ( () )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2553:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2658:1: ( () )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2659:1: ()
             {
              before(grammarAccess.getPrimitiveTypeAccess().getUnitTypeAction_4_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2554:1: ()
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2556:1: 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2660:1: ()
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2662:1: 
             {
             }
 
@@ -6807,16 +7152,16 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_4__1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2566:1: rule__PrimitiveType__Group_4__1 : rule__PrimitiveType__Group_4__1__Impl ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2672:1: rule__PrimitiveType__Group_4__1 : rule__PrimitiveType__Group_4__1__Impl ;
     public final void rule__PrimitiveType__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2570:1: ( rule__PrimitiveType__Group_4__1__Impl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2571:2: rule__PrimitiveType__Group_4__1__Impl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2676:1: ( rule__PrimitiveType__Group_4__1__Impl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2677:2: rule__PrimitiveType__Group_4__1__Impl
             {
-            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__1__Impl_in_rule__PrimitiveType__Group_4__15110);
+            pushFollow(FOLLOW_rule__PrimitiveType__Group_4__1__Impl_in_rule__PrimitiveType__Group_4__15346);
             rule__PrimitiveType__Group_4__1__Impl();
 
             state._fsp--;
@@ -6840,20 +7185,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrimitiveType__Group_4__1__Impl"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2577:1: rule__PrimitiveType__Group_4__1__Impl : ( RULE_UNIT_TYPE ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2683:1: rule__PrimitiveType__Group_4__1__Impl : ( RULE_UNIT_TYPE ) ;
     public final void rule__PrimitiveType__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2581:1: ( ( RULE_UNIT_TYPE ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2582:1: ( RULE_UNIT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2687:1: ( ( RULE_UNIT_TYPE ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2688:1: ( RULE_UNIT_TYPE )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2582:1: ( RULE_UNIT_TYPE )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2583:1: RULE_UNIT_TYPE
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2688:1: ( RULE_UNIT_TYPE )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2689:1: RULE_UNIT_TYPE
             {
              before(grammarAccess.getPrimitiveTypeAccess().getUNIT_TYPETerminalRuleCall_4_1()); 
-            match(input,RULE_UNIT_TYPE,FOLLOW_RULE_UNIT_TYPE_in_rule__PrimitiveType__Group_4__1__Impl5137); 
+            match(input,RULE_UNIT_TYPE,FOLLOW_RULE_UNIT_TYPE_in_rule__PrimitiveType__Group_4__1__Impl5373); 
              after(grammarAccess.getPrimitiveTypeAccess().getUNIT_TYPETerminalRuleCall_4_1()); 
 
             }
@@ -6877,20 +7222,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Crate__ItemsAssignment"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2599:1: rule__Crate__ItemsAssignment : ( ruleItemAndAttrs ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2705:1: rule__Crate__ItemsAssignment : ( ruleItemAndAttrs ) ;
     public final void rule__Crate__ItemsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2603:1: ( ( ruleItemAndAttrs ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2604:1: ( ruleItemAndAttrs )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2709:1: ( ( ruleItemAndAttrs ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2710:1: ( ruleItemAndAttrs )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2604:1: ( ruleItemAndAttrs )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2605:1: ruleItemAndAttrs
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2710:1: ( ruleItemAndAttrs )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2711:1: ruleItemAndAttrs
             {
              before(grammarAccess.getCrateAccess().getItemsItemAndAttrsParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleItemAndAttrs_in_rule__Crate__ItemsAssignment5175);
+            pushFollow(FOLLOW_ruleItemAndAttrs_in_rule__Crate__ItemsAssignment5411);
             ruleItemAndAttrs();
 
             state._fsp--;
@@ -6918,20 +7263,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__AttrsAssignment_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2614:1: rule__ItemAttr__AttrsAssignment_1 : ( ruleAttr ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2720:1: rule__ItemAttr__AttrsAssignment_1 : ( ruleAttr ) ;
     public final void rule__ItemAttr__AttrsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2618:1: ( ( ruleAttr ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2619:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2724:1: ( ( ruleAttr ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2725:1: ( ruleAttr )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2619:1: ( ruleAttr )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2620:1: ruleAttr
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2725:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2726:1: ruleAttr
             {
              before(grammarAccess.getItemAttrAccess().getAttrsAttrParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_15206);
+            pushFollow(FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_15442);
             ruleAttr();
 
             state._fsp--;
@@ -6959,20 +7304,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAttr__AttrsAssignment_2_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2629:1: rule__ItemAttr__AttrsAssignment_2_1 : ( ruleAttr ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2735:1: rule__ItemAttr__AttrsAssignment_2_1 : ( ruleAttr ) ;
     public final void rule__ItemAttr__AttrsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2633:1: ( ( ruleAttr ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2634:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2739:1: ( ( ruleAttr ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2740:1: ( ruleAttr )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2634:1: ( ruleAttr )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2635:1: ruleAttr
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2740:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2741:1: ruleAttr
             {
              before(grammarAccess.getItemAttrAccess().getAttrsAttrParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_2_15237);
+            pushFollow(FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_2_15473);
             ruleAttr();
 
             state._fsp--;
@@ -7000,20 +7345,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__IdentAssignment_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2644:1: rule__AttrWithList__IdentAssignment_0 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2750:1: rule__AttrWithList__IdentAssignment_0 : ( RULE_IDENT ) ;
     public final void rule__AttrWithList__IdentAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2648:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2649:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2754:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2755:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2649:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2650:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2755:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2756:1: RULE_IDENT
             {
              before(grammarAccess.getAttrWithListAccess().getIdentIDENTTerminalRuleCall_0_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__AttrWithList__IdentAssignment_05268); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__AttrWithList__IdentAssignment_05504); 
              after(grammarAccess.getAttrWithListAccess().getIdentIDENTTerminalRuleCall_0_0()); 
 
             }
@@ -7037,20 +7382,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__AttrsAssignment_2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2659:1: rule__AttrWithList__AttrsAssignment_2 : ( ruleAttr ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2765:1: rule__AttrWithList__AttrsAssignment_2 : ( ruleAttr ) ;
     public final void rule__AttrWithList__AttrsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2663:1: ( ( ruleAttr ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2664:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2769:1: ( ( ruleAttr ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2770:1: ( ruleAttr )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2664:1: ( ruleAttr )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2665:1: ruleAttr
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2770:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2771:1: ruleAttr
             {
              before(grammarAccess.getAttrWithListAccess().getAttrsAttrParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_25299);
+            pushFollow(FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_25535);
             ruleAttr();
 
             state._fsp--;
@@ -7078,20 +7423,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttrWithList__AttrsAssignment_3_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2674:1: rule__AttrWithList__AttrsAssignment_3_1 : ( ruleAttr ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2780:1: rule__AttrWithList__AttrsAssignment_3_1 : ( ruleAttr ) ;
     public final void rule__AttrWithList__AttrsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2678:1: ( ( ruleAttr ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2679:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2784:1: ( ( ruleAttr ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2785:1: ( ruleAttr )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2679:1: ( ruleAttr )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2680:1: ruleAttr
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2785:1: ( ruleAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2786:1: ruleAttr
             {
              before(grammarAccess.getAttrWithListAccess().getAttrsAttrParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_3_15330);
+            pushFollow(FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_3_15566);
             ruleAttr();
 
             state._fsp--;
@@ -7119,20 +7464,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__IdentAssignment_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2689:1: rule__LiteralAttr__IdentAssignment_0 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2795:1: rule__LiteralAttr__IdentAssignment_0 : ( RULE_IDENT ) ;
     public final void rule__LiteralAttr__IdentAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2693:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2694:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2799:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2800:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2694:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2695:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2800:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2801:1: RULE_IDENT
             {
              before(grammarAccess.getLiteralAttrAccess().getIdentIDENTTerminalRuleCall_0_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__LiteralAttr__IdentAssignment_05361); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__LiteralAttr__IdentAssignment_05597); 
              after(grammarAccess.getLiteralAttrAccess().getIdentIDENTTerminalRuleCall_0_0()); 
 
             }
@@ -7156,20 +7501,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LiteralAttr__ValueAssignment_2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2704:1: rule__LiteralAttr__ValueAssignment_2 : ( ruleLiteral ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2810:1: rule__LiteralAttr__ValueAssignment_2 : ( ruleLiteral ) ;
     public final void rule__LiteralAttr__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2708:1: ( ( ruleLiteral ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2709:1: ( ruleLiteral )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2814:1: ( ( ruleLiteral ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2815:1: ( ruleLiteral )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2709:1: ( ruleLiteral )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2710:1: ruleLiteral
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2815:1: ( ruleLiteral )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2816:1: ruleLiteral
             {
              before(grammarAccess.getLiteralAttrAccess().getValueLiteralParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleLiteral_in_rule__LiteralAttr__ValueAssignment_25392);
+            pushFollow(FOLLOW_ruleLiteral_in_rule__LiteralAttr__ValueAssignment_25628);
             ruleLiteral();
 
             state._fsp--;
@@ -7197,20 +7542,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__AttrsAssignment_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2719:1: rule__ItemAndAttrs__AttrsAssignment_0 : ( ruleItemAttr ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2825:1: rule__ItemAndAttrs__AttrsAssignment_0 : ( ruleItemAttr ) ;
     public final void rule__ItemAndAttrs__AttrsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2723:1: ( ( ruleItemAttr ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2724:1: ( ruleItemAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2829:1: ( ( ruleItemAttr ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2830:1: ( ruleItemAttr )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2724:1: ( ruleItemAttr )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2725:1: ruleItemAttr
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2830:1: ( ruleItemAttr )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2831:1: ruleItemAttr
             {
              before(grammarAccess.getItemAndAttrsAccess().getAttrsItemAttrParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleItemAttr_in_rule__ItemAndAttrs__AttrsAssignment_05423);
+            pushFollow(FOLLOW_ruleItemAttr_in_rule__ItemAndAttrs__AttrsAssignment_05659);
             ruleItemAttr();
 
             state._fsp--;
@@ -7238,20 +7583,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemAndAttrs__ItemAssignment_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2734:1: rule__ItemAndAttrs__ItemAssignment_1 : ( ruleItem ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2840:1: rule__ItemAndAttrs__ItemAssignment_1 : ( ruleItem ) ;
     public final void rule__ItemAndAttrs__ItemAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2738:1: ( ( ruleItem ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2739:1: ( ruleItem )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2844:1: ( ( ruleItem ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2845:1: ( ruleItem )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2739:1: ( ruleItem )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2740:1: ruleItem
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2845:1: ( ruleItem )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2846:1: ruleItem
             {
              before(grammarAccess.getItemAndAttrsAccess().getItemItemParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleItem_in_rule__ItemAndAttrs__ItemAssignment_15454);
+            pushFollow(FOLLOW_ruleItem_in_rule__ItemAndAttrs__ItemAssignment_15690);
             ruleItem();
 
             state._fsp--;
@@ -7279,20 +7624,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__IdentAssignment_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2749:1: rule__ModItem__IdentAssignment_1 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2855:1: rule__ModItem__IdentAssignment_1 : ( RULE_IDENT ) ;
     public final void rule__ModItem__IdentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2753:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2754:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2859:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2860:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2754:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2755:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2860:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2861:1: RULE_IDENT
             {
              before(grammarAccess.getModItemAccess().getIdentIDENTTerminalRuleCall_1_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__ModItem__IdentAssignment_15485); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__ModItem__IdentAssignment_15721); 
              after(grammarAccess.getModItemAccess().getIdentIDENTTerminalRuleCall_1_0()); 
 
             }
@@ -7316,24 +7661,24 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__ExternalBodyAssignment_2_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2764:1: rule__ModItem__ExternalBodyAssignment_2_0 : ( ( ';' ) ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2870:1: rule__ModItem__ExternalBodyAssignment_2_0 : ( ( ';' ) ) ;
     public final void rule__ModItem__ExternalBodyAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2768:1: ( ( ( ';' ) ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2769:1: ( ( ';' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2874:1: ( ( ( ';' ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2875:1: ( ( ';' ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2769:1: ( ( ';' ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2770:1: ( ';' )
-            {
-             before(grammarAccess.getModItemAccess().getExternalBodySemicolonKeyword_2_0_0()); 
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2771:1: ( ';' )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2772:1: ';'
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2875:1: ( ( ';' ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2876:1: ( ';' )
             {
              before(grammarAccess.getModItemAccess().getExternalBodySemicolonKeyword_2_0_0()); 
-            match(input,52,FOLLOW_52_in_rule__ModItem__ExternalBodyAssignment_2_05521); 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2877:1: ( ';' )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2878:1: ';'
+            {
+             before(grammarAccess.getModItemAccess().getExternalBodySemicolonKeyword_2_0_0()); 
+            match(input,58,FOLLOW_58_in_rule__ModItem__ExternalBodyAssignment_2_05757); 
              after(grammarAccess.getModItemAccess().getExternalBodySemicolonKeyword_2_0_0()); 
 
             }
@@ -7361,20 +7706,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModItem__ItemsAssignment_2_1_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2787:1: rule__ModItem__ItemsAssignment_2_1_1 : ( ruleItemAndAttrs ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2893:1: rule__ModItem__ItemsAssignment_2_1_1 : ( ruleItemAndAttrs ) ;
     public final void rule__ModItem__ItemsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2791:1: ( ( ruleItemAndAttrs ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2792:1: ( ruleItemAndAttrs )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2897:1: ( ( ruleItemAndAttrs ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2898:1: ( ruleItemAndAttrs )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2792:1: ( ruleItemAndAttrs )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2793:1: ruleItemAndAttrs
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2898:1: ( ruleItemAndAttrs )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2899:1: ruleItemAndAttrs
             {
              before(grammarAccess.getModItemAccess().getItemsItemAndAttrsParserRuleCall_2_1_1_0()); 
-            pushFollow(FOLLOW_ruleItemAndAttrs_in_rule__ModItem__ItemsAssignment_2_1_15560);
+            pushFollow(FOLLOW_ruleItemAndAttrs_in_rule__ModItem__ItemsAssignment_2_1_15796);
             ruleItemAndAttrs();
 
             state._fsp--;
@@ -7402,20 +7747,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__IdentAssignment_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2802:1: rule__FnItem__IdentAssignment_1 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2908:1: rule__FnItem__IdentAssignment_1 : ( RULE_IDENT ) ;
     public final void rule__FnItem__IdentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2806:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2807:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2912:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2913:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2807:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2808:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2913:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2914:1: RULE_IDENT
             {
              before(grammarAccess.getFnItemAccess().getIdentIDENTTerminalRuleCall_1_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__FnItem__IdentAssignment_15591); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__FnItem__IdentAssignment_15827); 
              after(grammarAccess.getFnItemAccess().getIdentIDENTTerminalRuleCall_1_0()); 
 
             }
@@ -7439,20 +7784,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__ParamsAssignment_2_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2817:1: rule__FnItem__ParamsAssignment_2_1 : ( ruleGenericParamDecl ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2923:1: rule__FnItem__ParamsAssignment_2_1 : ( ruleGenericParamDecl ) ;
     public final void rule__FnItem__ParamsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2821:1: ( ( ruleGenericParamDecl ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2822:1: ( ruleGenericParamDecl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2927:1: ( ( ruleGenericParamDecl ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2928:1: ( ruleGenericParamDecl )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2822:1: ( ruleGenericParamDecl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2823:1: ruleGenericParamDecl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2928:1: ( ruleGenericParamDecl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2929:1: ruleGenericParamDecl
             {
              before(grammarAccess.getFnItemAccess().getParamsGenericParamDeclParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_15622);
+            pushFollow(FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_15858);
             ruleGenericParamDecl();
 
             state._fsp--;
@@ -7480,20 +7825,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__ParamsAssignment_2_2_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2832:1: rule__FnItem__ParamsAssignment_2_2_1 : ( ruleGenericParamDecl ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2938:1: rule__FnItem__ParamsAssignment_2_2_1 : ( ruleGenericParamDecl ) ;
     public final void rule__FnItem__ParamsAssignment_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2836:1: ( ( ruleGenericParamDecl ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2837:1: ( ruleGenericParamDecl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2942:1: ( ( ruleGenericParamDecl ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2943:1: ( ruleGenericParamDecl )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2837:1: ( ruleGenericParamDecl )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2838:1: ruleGenericParamDecl
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2943:1: ( ruleGenericParamDecl )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2944:1: ruleGenericParamDecl
             {
              before(grammarAccess.getFnItemAccess().getParamsGenericParamDeclParserRuleCall_2_2_1_0()); 
-            pushFollow(FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_2_15653);
+            pushFollow(FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_2_15889);
             ruleGenericParamDecl();
 
             state._fsp--;
@@ -7521,20 +7866,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__ArgsAssignment_4_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2847:1: rule__FnItem__ArgsAssignment_4_0 : ( ruleArg ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2953:1: rule__FnItem__ArgsAssignment_4_0 : ( ruleArg ) ;
     public final void rule__FnItem__ArgsAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2851:1: ( ( ruleArg ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2852:1: ( ruleArg )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2957:1: ( ( ruleArg ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2958:1: ( ruleArg )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2852:1: ( ruleArg )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2853:1: ruleArg
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2958:1: ( ruleArg )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2959:1: ruleArg
             {
              before(grammarAccess.getFnItemAccess().getArgsArgParserRuleCall_4_0_0()); 
-            pushFollow(FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_05684);
+            pushFollow(FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_05920);
             ruleArg();
 
             state._fsp--;
@@ -7562,20 +7907,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__ArgsAssignment_4_1_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2862:1: rule__FnItem__ArgsAssignment_4_1_1 : ( ruleArg ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2968:1: rule__FnItem__ArgsAssignment_4_1_1 : ( ruleArg ) ;
     public final void rule__FnItem__ArgsAssignment_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2866:1: ( ( ruleArg ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2867:1: ( ruleArg )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2972:1: ( ( ruleArg ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2973:1: ( ruleArg )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2867:1: ( ruleArg )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2868:1: ruleArg
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2973:1: ( ruleArg )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2974:1: ruleArg
             {
              before(grammarAccess.getFnItemAccess().getArgsArgParserRuleCall_4_1_1_0()); 
-            pushFollow(FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_1_15715);
+            pushFollow(FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_1_15951);
             ruleArg();
 
             state._fsp--;
@@ -7603,20 +7948,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FnItem__ReturnTypeAssignment_6_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2877:1: rule__FnItem__ReturnTypeAssignment_6_1 : ( ruleType ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2983:1: rule__FnItem__ReturnTypeAssignment_6_1 : ( ruleType ) ;
     public final void rule__FnItem__ReturnTypeAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2881:1: ( ( ruleType ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2882:1: ( ruleType )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2987:1: ( ( ruleType ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2988:1: ( ruleType )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2882:1: ( ruleType )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2883:1: ruleType
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2988:1: ( ruleType )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2989:1: ruleType
             {
              before(grammarAccess.getFnItemAccess().getReturnTypeTypeParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleType_in_rule__FnItem__ReturnTypeAssignment_6_15746);
+            pushFollow(FOLLOW_ruleType_in_rule__FnItem__ReturnTypeAssignment_6_15982);
             ruleType();
 
             state._fsp--;
@@ -7644,20 +7989,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__IdentAssignment_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2892:1: rule__GenericParamDecl__IdentAssignment_0 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2998:1: rule__GenericParamDecl__IdentAssignment_0 : ( RULE_IDENT ) ;
     public final void rule__GenericParamDecl__IdentAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2896:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2897:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3002:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3003:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2897:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2898:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3003:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3004:1: RULE_IDENT
             {
              before(grammarAccess.getGenericParamDeclAccess().getIdentIDENTTerminalRuleCall_0_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__IdentAssignment_05777); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__IdentAssignment_06013); 
              after(grammarAccess.getGenericParamDeclAccess().getIdentIDENTTerminalRuleCall_0_0()); 
 
             }
@@ -7681,20 +8026,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__BoundsAssignment_1_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2907:1: rule__GenericParamDecl__BoundsAssignment_1_1 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3013:1: rule__GenericParamDecl__BoundsAssignment_1_1 : ( RULE_IDENT ) ;
     public final void rule__GenericParamDecl__BoundsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2911:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2912:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3017:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3018:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2912:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2913:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3018:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3019:1: RULE_IDENT
             {
              before(grammarAccess.getGenericParamDeclAccess().getBoundsIDENTTerminalRuleCall_1_1_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_15808); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_16044); 
              after(grammarAccess.getGenericParamDeclAccess().getBoundsIDENTTerminalRuleCall_1_1_0()); 
 
             }
@@ -7718,20 +8063,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GenericParamDecl__BoundsAssignment_1_2_1"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2922:1: rule__GenericParamDecl__BoundsAssignment_1_2_1 : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3028:1: rule__GenericParamDecl__BoundsAssignment_1_2_1 : ( RULE_IDENT ) ;
     public final void rule__GenericParamDecl__BoundsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2926:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2927:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3032:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3033:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2927:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2928:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3033:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3034:1: RULE_IDENT
             {
              before(grammarAccess.getGenericParamDeclAccess().getBoundsIDENTTerminalRuleCall_1_2_1_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_2_15839); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_2_16075); 
              after(grammarAccess.getGenericParamDeclAccess().getBoundsIDENTTerminalRuleCall_1_2_1_0()); 
 
             }
@@ -7755,20 +8100,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__PatAssignment_0"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2937:1: rule__Arg__PatAssignment_0 : ( rulePat ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3043:1: rule__Arg__PatAssignment_0 : ( rulePat ) ;
     public final void rule__Arg__PatAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2941:1: ( ( rulePat ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2942:1: ( rulePat )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3047:1: ( ( rulePat ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3048:1: ( rulePat )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2942:1: ( rulePat )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2943:1: rulePat
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3048:1: ( rulePat )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3049:1: rulePat
             {
              before(grammarAccess.getArgAccess().getPatPatParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_rulePat_in_rule__Arg__PatAssignment_05870);
+            pushFollow(FOLLOW_rulePat_in_rule__Arg__PatAssignment_06106);
             rulePat();
 
             state._fsp--;
@@ -7796,20 +8141,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arg__TypeAssignment_2"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2952:1: rule__Arg__TypeAssignment_2 : ( ruleType ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3058:1: rule__Arg__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Arg__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2956:1: ( ( ruleType ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2957:1: ( ruleType )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3062:1: ( ( ruleType ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3063:1: ( ruleType )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2957:1: ( ruleType )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2958:1: ruleType
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3063:1: ( ruleType )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3064:1: ruleType
             {
              before(grammarAccess.getArgAccess().getTypeTypeParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleType_in_rule__Arg__TypeAssignment_25901);
+            pushFollow(FOLLOW_ruleType_in_rule__Arg__TypeAssignment_26137);
             ruleType();
 
             state._fsp--;
@@ -7837,20 +8182,20 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pat__IdentAssignment"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2967:1: rule__Pat__IdentAssignment : ( RULE_IDENT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3073:1: rule__Pat__IdentAssignment : ( RULE_IDENT ) ;
     public final void rule__Pat__IdentAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2971:1: ( ( RULE_IDENT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2972:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3077:1: ( ( RULE_IDENT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3078:1: ( RULE_IDENT )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2972:1: ( RULE_IDENT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2973:1: RULE_IDENT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3078:1: ( RULE_IDENT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3079:1: RULE_IDENT
             {
              before(grammarAccess.getPatAccess().getIdentIDENTTerminalRuleCall_0()); 
-            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__Pat__IdentAssignment5932); 
+            match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rule__Pat__IdentAssignment6168); 
              after(grammarAccess.getPatAccess().getIdentIDENTTerminalRuleCall_0()); 
 
             }
@@ -7873,22 +8218,69 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Pat__IdentAssignment"
 
 
+    // $ANTLR start "rule__StringLit__ValueAssignment"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3088:1: rule__StringLit__ValueAssignment : ( RULE_STRING_LIT ) ;
+    public final void rule__StringLit__ValueAssignment() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3092:1: ( ( RULE_STRING_LIT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3093:1: ( RULE_STRING_LIT )
+            {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3093:1: ( RULE_STRING_LIT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3094:1: RULE_STRING_LIT
+            {
+             before(grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0()); 
+            match(input,RULE_STRING_LIT,FOLLOW_RULE_STRING_LIT_in_rule__StringLit__ValueAssignment6199); 
+             after(grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StringLit__ValueAssignment"
+
+
     // $ANTLR start "rule__NumberLit__ValueAssignment"
-    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2982:1: rule__NumberLit__ValueAssignment : ( RULE_INT_LIT ) ;
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3103:1: rule__NumberLit__ValueAssignment : ( ( rule__NumberLit__ValueAlternatives_0 ) ) ;
     public final void rule__NumberLit__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2986:1: ( ( RULE_INT_LIT ) )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2987:1: ( RULE_INT_LIT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3107:1: ( ( ( rule__NumberLit__ValueAlternatives_0 ) ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3108:1: ( ( rule__NumberLit__ValueAlternatives_0 ) )
             {
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2987:1: ( RULE_INT_LIT )
-            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:2988:1: RULE_INT_LIT
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3108:1: ( ( rule__NumberLit__ValueAlternatives_0 ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3109:1: ( rule__NumberLit__ValueAlternatives_0 )
             {
-             before(grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0()); 
-            match(input,RULE_INT_LIT,FOLLOW_RULE_INT_LIT_in_rule__NumberLit__ValueAssignment5963); 
-             after(grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0()); 
+             before(grammarAccess.getNumberLitAccess().getValueAlternatives_0()); 
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3110:1: ( rule__NumberLit__ValueAlternatives_0 )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3110:2: rule__NumberLit__ValueAlternatives_0
+            {
+            pushFollow(FOLLOW_rule__NumberLit__ValueAlternatives_0_in_rule__NumberLit__ValueAssignment6230);
+            rule__NumberLit__ValueAlternatives_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNumberLitAccess().getValueAlternatives_0()); 
 
             }
 
@@ -7909,6 +8301,43 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__NumberLit__ValueAssignment"
 
+
+    // $ANTLR start "rule__CharLit__ValueAssignment"
+    // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3119:1: rule__CharLit__ValueAssignment : ( RULE_CHAR_LIT ) ;
+    public final void rule__CharLit__ValueAssignment() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3123:1: ( ( RULE_CHAR_LIT ) )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3124:1: ( RULE_CHAR_LIT )
+            {
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3124:1: ( RULE_CHAR_LIT )
+            // ../de.redoxi.ruste.ui/src-gen/de/redoxi/ruste/ui/contentassist/antlr/internal/InternalRust.g:3125:1: RULE_CHAR_LIT
+            {
+             before(grammarAccess.getCharLitAccess().getValueCHAR_LITTerminalRuleCall_0()); 
+            match(input,RULE_CHAR_LIT,FOLLOW_RULE_CHAR_LIT_in_rule__CharLit__ValueAssignment6263); 
+             after(grammarAccess.getCharLitAccess().getValueCHAR_LITTerminalRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__CharLit__ValueAssignment"
+
     // Delegated rules
 
 
@@ -7916,7 +8345,7 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
 
     public static final BitSet FOLLOW_ruleCrate_in_entryRuleCrate61 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCrate68 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Crate__ItemsAssignment_in_ruleCrate94 = new BitSet(new long[]{0x0000482000000002L});
+    public static final BitSet FOLLOW_rule__Crate__ItemsAssignment_in_ruleCrate94 = new BitSet(new long[]{0x0012080000000002L});
     public static final BitSet FOLLOW_ruleItemAttr_in_entryRuleItemAttr122 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleItemAttr129 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ItemAttr__Group__0_in_ruleItemAttr155 = new BitSet(new long[]{0x0000000000000002L});
@@ -7956,209 +8385,222 @@ public class InternalRustParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rulePrimitiveType_in_entryRulePrimitiveType841 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePrimitiveType848 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PrimitiveType__Alternatives_in_rulePrimitiveType874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral901 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLit_in_ruleLiteral934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLit_in_entryRuleNumberLit960 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLit967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NumberLit__ValueAssignment_in_ruleNumberLit993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteralAttr_in_rule__Attr__Alternatives1029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttrWithList_in_rule__Attr__Alternatives1046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModItem_in_rule__Item__Alternatives1078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFnItem_in_rule__Item__Alternatives1095 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__ExternalBodyAssignment_2_0_in_rule__ModItem__Alternatives_21127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__0_in_rule__ModItem__Alternatives_21145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__0_in_rule__PrimitiveType__Alternatives1178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__0_in_rule__PrimitiveType__Alternatives1196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__0_in_rule__PrimitiveType__Alternatives1214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__0_in_rule__PrimitiveType__Alternatives1232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__0_in_rule__PrimitiveType__Alternatives1250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__0__Impl_in_rule__ItemAttr__Group__01281 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__1_in_rule__ItemAttr__Group__01284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__ItemAttr__Group__0__Impl1312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__1__Impl_in_rule__ItemAttr__Group__11343 = new BitSet(new long[]{0x000000C000000000L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__2_in_rule__ItemAttr__Group__11346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__AttrsAssignment_1_in_rule__ItemAttr__Group__1__Impl1373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__2__Impl_in_rule__ItemAttr__Group__21403 = new BitSet(new long[]{0x000000C000000000L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__3_in_rule__ItemAttr__Group__21406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__0_in_rule__ItemAttr__Group__2__Impl1433 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group__3__Impl_in_rule__ItemAttr__Group__31464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__ItemAttr__Group__3__Impl1492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__0__Impl_in_rule__ItemAttr__Group_2__01531 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__1_in_rule__ItemAttr__Group_2__01534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__ItemAttr__Group_2__0__Impl1562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__1__Impl_in_rule__ItemAttr__Group_2__11593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAttr__AttrsAssignment_2_1_in_rule__ItemAttr__Group_2__1__Impl1620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__0__Impl_in_rule__AttrWithList__Group__01654 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__1_in_rule__AttrWithList__Group__01657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__IdentAssignment_0_in_rule__AttrWithList__Group__0__Impl1684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__1__Impl_in_rule__AttrWithList__Group__11714 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__2_in_rule__AttrWithList__Group__11717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__AttrWithList__Group__1__Impl1745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__2__Impl_in_rule__AttrWithList__Group__21776 = new BitSet(new long[]{0x0000028000000000L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__3_in_rule__AttrWithList__Group__21779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__AttrsAssignment_2_in_rule__AttrWithList__Group__2__Impl1806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__3__Impl_in_rule__AttrWithList__Group__31836 = new BitSet(new long[]{0x0000028000000000L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__4_in_rule__AttrWithList__Group__31839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__0_in_rule__AttrWithList__Group__3__Impl1866 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group__4__Impl_in_rule__AttrWithList__Group__41897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rule__AttrWithList__Group__4__Impl1925 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__0__Impl_in_rule__AttrWithList__Group_3__01966 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__1_in_rule__AttrWithList__Group_3__01969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__AttrWithList__Group_3__0__Impl1997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__1__Impl_in_rule__AttrWithList__Group_3__12028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttrWithList__AttrsAssignment_3_1_in_rule__AttrWithList__Group_3__1__Impl2055 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__Group__0__Impl_in_rule__LiteralAttr__Group__02089 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__Group__1_in_rule__LiteralAttr__Group__02092 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__IdentAssignment_0_in_rule__LiteralAttr__Group__0__Impl2119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__Group__1__Impl_in_rule__LiteralAttr__Group__12149 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__Group__2_in_rule__LiteralAttr__Group__12152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__LiteralAttr__Group__1__Impl2180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__Group__2__Impl_in_rule__LiteralAttr__Group__22211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LiteralAttr__ValueAssignment_2_in_rule__LiteralAttr__Group__2__Impl2238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__0__Impl_in_rule__ItemAndAttrs__Group__02274 = new BitSet(new long[]{0x0000482000000000L});
-    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__1_in_rule__ItemAndAttrs__Group__02277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAndAttrs__AttrsAssignment_0_in_rule__ItemAndAttrs__Group__0__Impl2304 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__1__Impl_in_rule__ItemAndAttrs__Group__12335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ItemAndAttrs__ItemAssignment_1_in_rule__ItemAndAttrs__Group__1__Impl2362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group__0__Impl_in_rule__ModItem__Group__02396 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__ModItem__Group__1_in_rule__ModItem__Group__02399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rule__ModItem__Group__0__Impl2427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group__1__Impl_in_rule__ModItem__Group__12458 = new BitSet(new long[]{0x0010100000000000L});
-    public static final BitSet FOLLOW_rule__ModItem__Group__2_in_rule__ModItem__Group__12461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__IdentAssignment_1_in_rule__ModItem__Group__1__Impl2488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group__2__Impl_in_rule__ModItem__Group__22518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Alternatives_2_in_rule__ModItem__Group__2__Impl2545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__0__Impl_in_rule__ModItem__Group_2_1__02581 = new BitSet(new long[]{0x0000682000000000L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__1_in_rule__ModItem__Group_2_1__02584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__ModItem__Group_2_1__0__Impl2612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__1__Impl_in_rule__ModItem__Group_2_1__12643 = new BitSet(new long[]{0x0000682000000000L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__2_in_rule__ModItem__Group_2_1__12646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__ItemsAssignment_2_1_1_in_rule__ModItem__Group_2_1__1__Impl2673 = new BitSet(new long[]{0x0000482000000002L});
-    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__2__Impl_in_rule__ModItem__Group_2_1__22704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__ModItem__Group_2_1__2__Impl2732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__0__Impl_in_rule__FnItem__Group__02769 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__1_in_rule__FnItem__Group__02772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__FnItem__Group__0__Impl2800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__1__Impl_in_rule__FnItem__Group__12831 = new BitSet(new long[]{0x0000810000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__2_in_rule__FnItem__Group__12834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__IdentAssignment_1_in_rule__FnItem__Group__1__Impl2861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__2__Impl_in_rule__FnItem__Group__22891 = new BitSet(new long[]{0x0000810000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__3_in_rule__FnItem__Group__22894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__0_in_rule__FnItem__Group__2__Impl2921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__3__Impl_in_rule__FnItem__Group__32952 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__4_in_rule__FnItem__Group__32955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__FnItem__Group__3__Impl2983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__4__Impl_in_rule__FnItem__Group__43014 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__5_in_rule__FnItem__Group__43017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4__0_in_rule__FnItem__Group__4__Impl3044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__5__Impl_in_rule__FnItem__Group__53075 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__6_in_rule__FnItem__Group__53078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rule__FnItem__Group__5__Impl3106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group__6__Impl_in_rule__FnItem__Group__63137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_6__0_in_rule__FnItem__Group__6__Impl3164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__0__Impl_in_rule__FnItem__Group_2__03209 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__1_in_rule__FnItem__Group_2__03212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__FnItem__Group_2__0__Impl3240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__1__Impl_in_rule__FnItem__Group_2__13271 = new BitSet(new long[]{0x0001008000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__2_in_rule__FnItem__Group_2__13274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__ParamsAssignment_2_1_in_rule__FnItem__Group_2__1__Impl3301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__2__Impl_in_rule__FnItem__Group_2__23331 = new BitSet(new long[]{0x0001008000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__3_in_rule__FnItem__Group_2__23334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__0_in_rule__FnItem__Group_2__2__Impl3361 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2__3__Impl_in_rule__FnItem__Group_2__33392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__FnItem__Group_2__3__Impl3420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__0__Impl_in_rule__FnItem__Group_2_2__03459 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__1_in_rule__FnItem__Group_2_2__03462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__FnItem__Group_2_2__0__Impl3490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__1__Impl_in_rule__FnItem__Group_2_2__13521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__ParamsAssignment_2_2_1_in_rule__FnItem__Group_2_2__1__Impl3548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4__0__Impl_in_rule__FnItem__Group_4__03582 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4__1_in_rule__FnItem__Group_4__03585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__ArgsAssignment_4_0_in_rule__FnItem__Group_4__0__Impl3612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4__1__Impl_in_rule__FnItem__Group_4__13642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__0_in_rule__FnItem__Group_4__1__Impl3669 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__0__Impl_in_rule__FnItem__Group_4_1__03704 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__1_in_rule__FnItem__Group_4_1__03707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__FnItem__Group_4_1__0__Impl3735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__1__Impl_in_rule__FnItem__Group_4_1__13766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__ArgsAssignment_4_1_1_in_rule__FnItem__Group_4_1__1__Impl3793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_6__0__Impl_in_rule__FnItem__Group_6__03827 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_6__1_in_rule__FnItem__Group_6__03830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rule__FnItem__Group_6__0__Impl3858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__Group_6__1__Impl_in_rule__FnItem__Group_6__13889 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FnItem__ReturnTypeAssignment_6_1_in_rule__FnItem__Group_6__1__Impl3916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__0__Impl_in_rule__GenericParamDecl__Group__03950 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__1_in_rule__GenericParamDecl__Group__03953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__IdentAssignment_0_in_rule__GenericParamDecl__Group__0__Impl3980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__1__Impl_in_rule__GenericParamDecl__Group__14010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__0_in_rule__GenericParamDecl__Group__1__Impl4037 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__0__Impl_in_rule__GenericParamDecl__Group_1__04072 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__1_in_rule__GenericParamDecl__Group_1__04075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__GenericParamDecl__Group_1__0__Impl4103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__1__Impl_in_rule__GenericParamDecl__Group_1__14134 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__2_in_rule__GenericParamDecl__Group_1__14137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_1_in_rule__GenericParamDecl__Group_1__1__Impl4164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__2__Impl_in_rule__GenericParamDecl__Group_1__24194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__0_in_rule__GenericParamDecl__Group_1__2__Impl4221 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__0__Impl_in_rule__GenericParamDecl__Group_1_2__04257 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__1_in_rule__GenericParamDecl__Group_1_2__04260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__GenericParamDecl__Group_1_2__0__Impl4288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__1__Impl_in_rule__GenericParamDecl__Group_1_2__14319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_2_1_in_rule__GenericParamDecl__Group_1_2__1__Impl4346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arg__Group__0__Impl_in_rule__Arg__Group__04380 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__Arg__Group__1_in_rule__Arg__Group__04383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arg__PatAssignment_0_in_rule__Arg__Group__0__Impl4410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arg__Group__1__Impl_in_rule__Arg__Group__14440 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__Arg__Group__2_in_rule__Arg__Group__14443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Arg__Group__1__Impl4471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arg__Group__2__Impl_in_rule__Arg__Group__24502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arg__TypeAssignment_2_in_rule__Arg__Group__2__Impl4529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__0__Impl_in_rule__PrimitiveType__Group_0__04565 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__1_in_rule__PrimitiveType__Group_0__04568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__1__Impl_in_rule__PrimitiveType__Group_0__14626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_TYPE_in_rule__PrimitiveType__Group_0__1__Impl4653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__0__Impl_in_rule__PrimitiveType__Group_1__04686 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__1_in_rule__PrimitiveType__Group_1__04689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__1__Impl_in_rule__PrimitiveType__Group_1__14747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_FLOAT_TYPE_in_rule__PrimitiveType__Group_1__1__Impl4774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__0__Impl_in_rule__PrimitiveType__Group_2__04807 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__1_in_rule__PrimitiveType__Group_2__04810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__1__Impl_in_rule__PrimitiveType__Group_2__14868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BOOLEAN_TYPE_in_rule__PrimitiveType__Group_2__1__Impl4895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__0__Impl_in_rule__PrimitiveType__Group_3__04928 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__1_in_rule__PrimitiveType__Group_3__04931 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__1__Impl_in_rule__PrimitiveType__Group_3__14989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MACHINE_TYPE_in_rule__PrimitiveType__Group_3__1__Impl5016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__0__Impl_in_rule__PrimitiveType__Group_4__05049 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__1_in_rule__PrimitiveType__Group_4__05052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__1__Impl_in_rule__PrimitiveType__Group_4__15110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_UNIT_TYPE_in_rule__PrimitiveType__Group_4__1__Impl5137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItemAndAttrs_in_rule__Crate__ItemsAssignment5175 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_15206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_2_15237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__AttrWithList__IdentAssignment_05268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_25299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_3_15330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__LiteralAttr__IdentAssignment_05361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_rule__LiteralAttr__ValueAssignment_25392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItemAttr_in_rule__ItemAndAttrs__AttrsAssignment_05423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItem_in_rule__ItemAndAttrs__ItemAssignment_15454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__ModItem__IdentAssignment_15485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__ModItem__ExternalBodyAssignment_2_05521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItemAndAttrs_in_rule__ModItem__ItemsAssignment_2_1_15560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__FnItem__IdentAssignment_15591 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_15622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_2_15653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_05684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_1_15715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_rule__FnItem__ReturnTypeAssignment_6_15746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__IdentAssignment_05777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_15808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_2_15839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePat_in_rule__Arg__PatAssignment_05870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_rule__Arg__TypeAssignment_25901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rule__Pat__IdentAssignment5932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_LIT_in_rule__NumberLit__ValueAssignment5963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLit_in_entryRuleStringLit901 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLit908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLit__ValueAssignment_in_ruleStringLit934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral961 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Literal__Alternatives_in_ruleLiteral994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLit_in_entryRuleNumberLit1021 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLit1028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NumberLit__ValueAssignment_in_ruleNumberLit1054 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCharLit_in_entryRuleCharLit1081 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCharLit1088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CharLit__ValueAssignment_in_ruleCharLit1114 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteralAttr_in_rule__Attr__Alternatives1150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttrWithList_in_rule__Attr__Alternatives1167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModItem_in_rule__Item__Alternatives1199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFnItem_in_rule__Item__Alternatives1216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__ExternalBodyAssignment_2_0_in_rule__ModItem__Alternatives_21248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__0_in_rule__ModItem__Alternatives_21266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__0_in_rule__PrimitiveType__Alternatives1299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__0_in_rule__PrimitiveType__Alternatives1317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__0_in_rule__PrimitiveType__Alternatives1335 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__0_in_rule__PrimitiveType__Alternatives1353 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__0_in_rule__PrimitiveType__Alternatives1371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLit_in_rule__Literal__Alternatives1404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCharLit_in_rule__Literal__Alternatives1421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLit_in_rule__Literal__Alternatives1438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_FLOAT_LIT_in_rule__NumberLit__ValueAlternatives_01470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_LIT_in_rule__NumberLit__ValueAlternatives_01487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__0__Impl_in_rule__ItemAttr__Group__01517 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__1_in_rule__ItemAttr__Group__01520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_rule__ItemAttr__Group__0__Impl1548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__1__Impl_in_rule__ItemAttr__Group__11579 = new BitSet(new long[]{0x0000300000000000L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__2_in_rule__ItemAttr__Group__11582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__AttrsAssignment_1_in_rule__ItemAttr__Group__1__Impl1609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__2__Impl_in_rule__ItemAttr__Group__21639 = new BitSet(new long[]{0x0000300000000000L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__3_in_rule__ItemAttr__Group__21642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__0_in_rule__ItemAttr__Group__2__Impl1669 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group__3__Impl_in_rule__ItemAttr__Group__31700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__ItemAttr__Group__3__Impl1728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__0__Impl_in_rule__ItemAttr__Group_2__01767 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__1_in_rule__ItemAttr__Group_2__01770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__ItemAttr__Group_2__0__Impl1798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__Group_2__1__Impl_in_rule__ItemAttr__Group_2__11829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAttr__AttrsAssignment_2_1_in_rule__ItemAttr__Group_2__1__Impl1856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__0__Impl_in_rule__AttrWithList__Group__01890 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__1_in_rule__AttrWithList__Group__01893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__IdentAssignment_0_in_rule__AttrWithList__Group__0__Impl1920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__1__Impl_in_rule__AttrWithList__Group__11950 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__2_in_rule__AttrWithList__Group__11953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__AttrWithList__Group__1__Impl1981 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__2__Impl_in_rule__AttrWithList__Group__22012 = new BitSet(new long[]{0x0000A00000000000L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__3_in_rule__AttrWithList__Group__22015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__AttrsAssignment_2_in_rule__AttrWithList__Group__2__Impl2042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__3__Impl_in_rule__AttrWithList__Group__32072 = new BitSet(new long[]{0x0000A00000000000L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__4_in_rule__AttrWithList__Group__32075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__0_in_rule__AttrWithList__Group__3__Impl2102 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group__4__Impl_in_rule__AttrWithList__Group__42133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__AttrWithList__Group__4__Impl2161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__0__Impl_in_rule__AttrWithList__Group_3__02202 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__1_in_rule__AttrWithList__Group_3__02205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__AttrWithList__Group_3__0__Impl2233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__Group_3__1__Impl_in_rule__AttrWithList__Group_3__12264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttrWithList__AttrsAssignment_3_1_in_rule__AttrWithList__Group_3__1__Impl2291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__Group__0__Impl_in_rule__LiteralAttr__Group__02325 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__Group__1_in_rule__LiteralAttr__Group__02328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__IdentAssignment_0_in_rule__LiteralAttr__Group__0__Impl2355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__Group__1__Impl_in_rule__LiteralAttr__Group__12385 = new BitSet(new long[]{0x0000000000003030L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__Group__2_in_rule__LiteralAttr__Group__12388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__LiteralAttr__Group__1__Impl2416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__Group__2__Impl_in_rule__LiteralAttr__Group__22447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LiteralAttr__ValueAssignment_2_in_rule__LiteralAttr__Group__2__Impl2474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__0__Impl_in_rule__ItemAndAttrs__Group__02510 = new BitSet(new long[]{0x0012080000000000L});
+    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__1_in_rule__ItemAndAttrs__Group__02513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAndAttrs__AttrsAssignment_0_in_rule__ItemAndAttrs__Group__0__Impl2540 = new BitSet(new long[]{0x0000080000000002L});
+    public static final BitSet FOLLOW_rule__ItemAndAttrs__Group__1__Impl_in_rule__ItemAndAttrs__Group__12571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ItemAndAttrs__ItemAssignment_1_in_rule__ItemAndAttrs__Group__1__Impl2598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group__0__Impl_in_rule__ModItem__Group__02632 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__ModItem__Group__1_in_rule__ModItem__Group__02635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__ModItem__Group__0__Impl2663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group__1__Impl_in_rule__ModItem__Group__12694 = new BitSet(new long[]{0x0404000000000000L});
+    public static final BitSet FOLLOW_rule__ModItem__Group__2_in_rule__ModItem__Group__12697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__IdentAssignment_1_in_rule__ModItem__Group__1__Impl2724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group__2__Impl_in_rule__ModItem__Group__22754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Alternatives_2_in_rule__ModItem__Group__2__Impl2781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__0__Impl_in_rule__ModItem__Group_2_1__02817 = new BitSet(new long[]{0x001A080000000000L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__1_in_rule__ModItem__Group_2_1__02820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__ModItem__Group_2_1__0__Impl2848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__1__Impl_in_rule__ModItem__Group_2_1__12879 = new BitSet(new long[]{0x001A080000000000L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__2_in_rule__ModItem__Group_2_1__12882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__ItemsAssignment_2_1_1_in_rule__ModItem__Group_2_1__1__Impl2909 = new BitSet(new long[]{0x0012080000000002L});
+    public static final BitSet FOLLOW_rule__ModItem__Group_2_1__2__Impl_in_rule__ModItem__Group_2_1__22940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__ModItem__Group_2_1__2__Impl2968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__0__Impl_in_rule__FnItem__Group__03005 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__1_in_rule__FnItem__Group__03008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__FnItem__Group__0__Impl3036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__1__Impl_in_rule__FnItem__Group__13067 = new BitSet(new long[]{0x0020400000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__2_in_rule__FnItem__Group__13070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__IdentAssignment_1_in_rule__FnItem__Group__1__Impl3097 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__2__Impl_in_rule__FnItem__Group__23127 = new BitSet(new long[]{0x0020400000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__3_in_rule__FnItem__Group__23130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__0_in_rule__FnItem__Group__2__Impl3157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__3__Impl_in_rule__FnItem__Group__33188 = new BitSet(new long[]{0x0000800000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__4_in_rule__FnItem__Group__33191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__FnItem__Group__3__Impl3219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__4__Impl_in_rule__FnItem__Group__43250 = new BitSet(new long[]{0x0000800000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__5_in_rule__FnItem__Group__43253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4__0_in_rule__FnItem__Group__4__Impl3280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__5__Impl_in_rule__FnItem__Group__53311 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__6_in_rule__FnItem__Group__53314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__FnItem__Group__5__Impl3342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group__6__Impl_in_rule__FnItem__Group__63373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_6__0_in_rule__FnItem__Group__6__Impl3400 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__0__Impl_in_rule__FnItem__Group_2__03445 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__1_in_rule__FnItem__Group_2__03448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rule__FnItem__Group_2__0__Impl3476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__1__Impl_in_rule__FnItem__Group_2__13507 = new BitSet(new long[]{0x0040200000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__2_in_rule__FnItem__Group_2__13510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__ParamsAssignment_2_1_in_rule__FnItem__Group_2__1__Impl3537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__2__Impl_in_rule__FnItem__Group_2__23567 = new BitSet(new long[]{0x0040200000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__3_in_rule__FnItem__Group_2__23570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__0_in_rule__FnItem__Group_2__2__Impl3597 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2__3__Impl_in_rule__FnItem__Group_2__33628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__FnItem__Group_2__3__Impl3656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__0__Impl_in_rule__FnItem__Group_2_2__03695 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__1_in_rule__FnItem__Group_2_2__03698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__FnItem__Group_2_2__0__Impl3726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_2_2__1__Impl_in_rule__FnItem__Group_2_2__13757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__ParamsAssignment_2_2_1_in_rule__FnItem__Group_2_2__1__Impl3784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4__0__Impl_in_rule__FnItem__Group_4__03818 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4__1_in_rule__FnItem__Group_4__03821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__ArgsAssignment_4_0_in_rule__FnItem__Group_4__0__Impl3848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4__1__Impl_in_rule__FnItem__Group_4__13878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__0_in_rule__FnItem__Group_4__1__Impl3905 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__0__Impl_in_rule__FnItem__Group_4_1__03940 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__1_in_rule__FnItem__Group_4_1__03943 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__FnItem__Group_4_1__0__Impl3971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_4_1__1__Impl_in_rule__FnItem__Group_4_1__14002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__ArgsAssignment_4_1_1_in_rule__FnItem__Group_4_1__1__Impl4029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_6__0__Impl_in_rule__FnItem__Group_6__04063 = new BitSet(new long[]{0x00000000000007C0L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_6__1_in_rule__FnItem__Group_6__04066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__FnItem__Group_6__0__Impl4094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__Group_6__1__Impl_in_rule__FnItem__Group_6__14125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FnItem__ReturnTypeAssignment_6_1_in_rule__FnItem__Group_6__1__Impl4152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__0__Impl_in_rule__GenericParamDecl__Group__04186 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__1_in_rule__GenericParamDecl__Group__04189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__IdentAssignment_0_in_rule__GenericParamDecl__Group__0__Impl4216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group__1__Impl_in_rule__GenericParamDecl__Group__14246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__0_in_rule__GenericParamDecl__Group__1__Impl4273 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__0__Impl_in_rule__GenericParamDecl__Group_1__04308 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__1_in_rule__GenericParamDecl__Group_1__04311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__GenericParamDecl__Group_1__0__Impl4339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__1__Impl_in_rule__GenericParamDecl__Group_1__14370 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__2_in_rule__GenericParamDecl__Group_1__14373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_1_in_rule__GenericParamDecl__Group_1__1__Impl4400 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1__2__Impl_in_rule__GenericParamDecl__Group_1__24430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__0_in_rule__GenericParamDecl__Group_1__2__Impl4457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__0__Impl_in_rule__GenericParamDecl__Group_1_2__04493 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__1_in_rule__GenericParamDecl__Group_1_2__04496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_rule__GenericParamDecl__Group_1_2__0__Impl4524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__Group_1_2__1__Impl_in_rule__GenericParamDecl__Group_1_2__14555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GenericParamDecl__BoundsAssignment_1_2_1_in_rule__GenericParamDecl__Group_1_2__1__Impl4582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arg__Group__0__Impl_in_rule__Arg__Group__04616 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__Arg__Group__1_in_rule__Arg__Group__04619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arg__PatAssignment_0_in_rule__Arg__Group__0__Impl4646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arg__Group__1__Impl_in_rule__Arg__Group__14676 = new BitSet(new long[]{0x00000000000007C0L});
+    public static final BitSet FOLLOW_rule__Arg__Group__2_in_rule__Arg__Group__14679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__Arg__Group__1__Impl4707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arg__Group__2__Impl_in_rule__Arg__Group__24738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arg__TypeAssignment_2_in_rule__Arg__Group__2__Impl4765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__0__Impl_in_rule__PrimitiveType__Group_0__04801 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__1_in_rule__PrimitiveType__Group_0__04804 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_0__1__Impl_in_rule__PrimitiveType__Group_0__14862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_TYPE_in_rule__PrimitiveType__Group_0__1__Impl4889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__0__Impl_in_rule__PrimitiveType__Group_1__04922 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__1_in_rule__PrimitiveType__Group_1__04925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_1__1__Impl_in_rule__PrimitiveType__Group_1__14983 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_FLOAT_TYPE_in_rule__PrimitiveType__Group_1__1__Impl5010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__0__Impl_in_rule__PrimitiveType__Group_2__05043 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__1_in_rule__PrimitiveType__Group_2__05046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_2__1__Impl_in_rule__PrimitiveType__Group_2__15104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BOOLEAN_TYPE_in_rule__PrimitiveType__Group_2__1__Impl5131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__0__Impl_in_rule__PrimitiveType__Group_3__05164 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__1_in_rule__PrimitiveType__Group_3__05167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_3__1__Impl_in_rule__PrimitiveType__Group_3__15225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MACHINE_TYPE_in_rule__PrimitiveType__Group_3__1__Impl5252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__0__Impl_in_rule__PrimitiveType__Group_4__05285 = new BitSet(new long[]{0x00000000000007C0L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__1_in_rule__PrimitiveType__Group_4__05288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PrimitiveType__Group_4__1__Impl_in_rule__PrimitiveType__Group_4__15346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_UNIT_TYPE_in_rule__PrimitiveType__Group_4__1__Impl5373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItemAndAttrs_in_rule__Crate__ItemsAssignment5411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_15442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttr_in_rule__ItemAttr__AttrsAssignment_2_15473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__AttrWithList__IdentAssignment_05504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_25535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttr_in_rule__AttrWithList__AttrsAssignment_3_15566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__LiteralAttr__IdentAssignment_05597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_rule__LiteralAttr__ValueAssignment_25628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItemAttr_in_rule__ItemAndAttrs__AttrsAssignment_05659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItem_in_rule__ItemAndAttrs__ItemAssignment_15690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__ModItem__IdentAssignment_15721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_rule__ModItem__ExternalBodyAssignment_2_05757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItemAndAttrs_in_rule__ModItem__ItemsAssignment_2_1_15796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__FnItem__IdentAssignment_15827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_15858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_rule__FnItem__ParamsAssignment_2_2_15889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_05920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArg_in_rule__FnItem__ArgsAssignment_4_1_15951 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_rule__FnItem__ReturnTypeAssignment_6_15982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__IdentAssignment_06013 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_16044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__GenericParamDecl__BoundsAssignment_1_2_16075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePat_in_rule__Arg__PatAssignment_06106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_rule__Arg__TypeAssignment_26137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rule__Pat__IdentAssignment6168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_LIT_in_rule__StringLit__ValueAssignment6199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__NumberLit__ValueAlternatives_0_in_rule__NumberLit__ValueAssignment6230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_CHAR_LIT_in_rule__CharLit__ValueAssignment6263 = new BitSet(new long[]{0x0000000000000002L});
 
 }

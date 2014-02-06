@@ -5,6 +5,7 @@ import com.google.inject.Provider;
 import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.BoolType;
+import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
@@ -18,6 +19,7 @@ import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -57,6 +59,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getPrimitiveTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
 					sequence_PrimitiveType(context, (BoolType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.CHAR_LIT:
+				if(context == grammarAccess.getCharLitRule() ||
+				   context == grammarAccess.getLiteralRule()) {
+					sequence_CharLit(context, (CharLit) semanticObject); 
 					return; 
 				}
 				else break;
@@ -139,6 +148,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.STRING_LIT:
+				if(context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getStringLitRule()) {
+					sequence_StringLit(context, (StringLit) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.UNIT_TYPE:
 				if(context == grammarAccess.getPrimitiveTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
@@ -175,6 +191,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_AttrWithList(EObject context, AttrWithList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     value=CHAR_LIT
+	 */
+	protected void sequence_CharLit(EObject context, CharLit semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LITERAL__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getCharLitAccess().getValueCHAR_LITTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -253,17 +285,10 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     value=INT_LIT
+	 *     (value=FLOAT_LIT | value=INT_LIT)
 	 */
 	protected void sequence_NumberLit(EObject context, NumberLit semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.NUMBER_LIT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.NUMBER_LIT__VALUE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -325,5 +350,21 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_PrimitiveType(EObject context, UnitType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     value=STRING_LIT
+	 */
+	protected void sequence_StringLit(EObject context, StringLit semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LITERAL__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 }

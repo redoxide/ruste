@@ -145,6 +145,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createPrimitiveTypeAdapter();
       }
       @Override
+      public Adapter caseStringLit(StringLit object)
+      {
+        return createStringLitAdapter();
+      }
+      @Override
       public Adapter caseLiteral(Literal object)
       {
         return createLiteralAdapter();
@@ -153,6 +158,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseNumberLit(NumberLit object)
       {
         return createNumberLitAdapter();
+      }
+      @Override
+      public Adapter caseCharLit(CharLit object)
+      {
+        return createCharLitAdapter();
       }
       @Override
       public Adapter caseIntType(IntType object)
@@ -412,6 +422,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.StringLit
+   * @generated
+   */
+  public Adapter createStringLitAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Literal <em>Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -437,6 +462,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNumberLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.CharLit <em>Char Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.CharLit
+   * @generated
+   */
+  public Adapter createCharLitAdapter()
   {
     return null;
   }

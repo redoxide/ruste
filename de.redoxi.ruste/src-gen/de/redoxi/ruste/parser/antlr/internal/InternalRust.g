@@ -990,6 +990,45 @@ rulePrimitiveType returns [EObject current=null]
 
 
 
+// Entry rule entryRuleStringLit
+entryRuleStringLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStringLitRule()); }
+	 iv_ruleStringLit=ruleStringLit 
+	 { $current=$iv_ruleStringLit.current; } 
+	 EOF 
+;
+
+// Rule StringLit
+ruleStringLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_value_0_0=RULE_STRING_LIT
+		{
+			newLeafNode(lv_value_0_0, grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStringLitRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"STRING_LIT");
+	    }
+
+)
+)
+;
+
+
+
+
+
 // Entry rule entryRuleLiteral
 entryRuleLiteral returns [EObject current=null] 
 	:
@@ -1004,9 +1043,9 @@ ruleLiteral returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall_0()); 
     }
     this_NumberLit_0=ruleNumberLit
     { 
@@ -1014,6 +1053,26 @@ ruleLiteral returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getLiteralAccess().getCharLitParserRuleCall_1()); 
+    }
+    this_CharLit_1=ruleCharLit
+    { 
+        $current = $this_CharLit_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getLiteralAccess().getStringLitParserRuleCall_2()); 
+    }
+    this_StringLit_2=ruleStringLit
+    { 
+        $current = $this_StringLit_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -1036,9 +1095,10 @@ ruleNumberLit returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		lv_value_0_0=RULE_INT_LIT
+(
+		lv_value_0_1=RULE_FLOAT_LIT
 		{
-			newLeafNode(lv_value_0_0, grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0()); 
+			newLeafNode(lv_value_0_1, grammarAccess.getNumberLitAccess().getValueFLOAT_LITTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1047,8 +1107,64 @@ ruleNumberLit returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"value",
-        		lv_value_0_0, 
+        		lv_value_0_1, 
+        		"FLOAT_LIT");
+	    }
+
+    |		lv_value_0_2=RULE_INT_LIT
+		{
+			newLeafNode(lv_value_0_2, grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNumberLitRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_2, 
         		"INT_LIT");
+	    }
+
+)
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleCharLit
+entryRuleCharLit returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCharLitRule()); }
+	 iv_ruleCharLit=ruleCharLit 
+	 { $current=$iv_ruleCharLit.current; } 
+	 EOF 
+;
+
+// Rule CharLit
+ruleCharLit returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_value_0_0=RULE_CHAR_LIT
+		{
+			newLeafNode(lv_value_0_0, grammarAccess.getCharLitAccess().getValueCHAR_LITTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCharLitRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"CHAR_LIT");
 	    }
 
 )
@@ -1100,6 +1216,18 @@ fragment RULE_MACHINE_INT_TYPE : 'int';
 fragment RULE_MACHINE_UINT_TYPE : 'uint';
 
 RULE_UNIT_TYPE : '()';
+
+RULE_CHAR_LIT : '\'' ('\\' ('\\'|'n'|'r'|'t'|'0')|RULE_UNICODE_CHAR|~(('\\'|'\'')))* '\'';
+
+RULE_STRING_LIT : '"' ('\\' ('\\'|'n'|'r'|'t'|'0')|RULE_UNICODE_CHAR|~(('\\'|'"')))* '"';
+
+fragment RULE_UNICODE_CHAR : (RULE_UTF8_CHAR|RULE_UTF16_CHAR|RULE_UTF32_CHAR);
+
+fragment RULE_UTF8_CHAR : '\\x' RULE_HEX_DIGIT RULE_HEX_DIGIT;
+
+fragment RULE_UTF16_CHAR : '\\u' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT;
+
+fragment RULE_UTF32_CHAR : '\\U' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT;
 
 RULE_FLOAT_LIT : RULE_DEC_DIGIT (RULE_DEC_DIGIT|'_')* '.' (RULE_DEC_DIGIT|'_')+ (('E'|'e') ('+'|'-')? (RULE_DEC_DIGIT|'_')+)? RULE_FLOAT_SIZE?;
 

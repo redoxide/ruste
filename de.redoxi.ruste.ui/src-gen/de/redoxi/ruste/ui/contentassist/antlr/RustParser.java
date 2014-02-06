@@ -41,6 +41,8 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getItemAccess().getAlternatives(), "rule__Item__Alternatives");
 					put(grammarAccess.getModItemAccess().getAlternatives_2(), "rule__ModItem__Alternatives_2");
 					put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
+					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
+					put(grammarAccess.getNumberLitAccess().getValueAlternatives_0(), "rule__NumberLit__ValueAlternatives_0");
 					put(grammarAccess.getItemAttrAccess().getGroup(), "rule__ItemAttr__Group__0");
 					put(grammarAccess.getItemAttrAccess().getGroup_2(), "rule__ItemAttr__Group_2__0");
 					put(grammarAccess.getAttrWithListAccess().getGroup(), "rule__AttrWithList__Group__0");
@@ -89,7 +91,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArgAccess().getPatAssignment_0(), "rule__Arg__PatAssignment_0");
 					put(grammarAccess.getArgAccess().getTypeAssignment_2(), "rule__Arg__TypeAssignment_2");
 					put(grammarAccess.getPatAccess().getIdentAssignment(), "rule__Pat__IdentAssignment");
+					put(grammarAccess.getStringLitAccess().getValueAssignment(), "rule__StringLit__ValueAssignment");
 					put(grammarAccess.getNumberLitAccess().getValueAssignment(), "rule__NumberLit__ValueAssignment");
+					put(grammarAccess.getCharLitAccess().getValueAssignment(), "rule__CharLit__ValueAssignment");
 				}
 			};
 		}

@@ -2,28 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StringLit;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Number Lit</b></em>'.
+ * An implementation of the model object '<em><b>String Lit</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class NumberLitImpl extends LiteralImpl implements NumberLit
+public class StringLitImpl extends LiteralImpl implements StringLit
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NumberLitImpl()
+  protected StringLitImpl()
   {
     super();
   }
@@ -36,7 +36,7 @@ public class NumberLitImpl extends LiteralImpl implements NumberLit
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.NUMBER_LIT;
+    return RustPackage.Literals.STRING_LIT;
   }
 
-} //NumberLitImpl
+} //StringLitImpl

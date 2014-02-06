@@ -78,8 +78,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT: return createPat();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
+      case RustPackage.STRING_LIT: return createStringLit();
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
+      case RustPackage.CHAR_LIT: return createCharLit();
       case RustPackage.INT_TYPE: return createIntType();
       case RustPackage.FLOAT_TYPE: return createFloatType();
       case RustPackage.BOOL_TYPE: return createBoolType();
@@ -249,6 +251,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public StringLit createStringLit()
+  {
+    StringLitImpl stringLit = new StringLitImpl();
+    return stringLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Literal createLiteral()
   {
     LiteralImpl literal = new LiteralImpl();
@@ -264,6 +277,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     NumberLitImpl numberLit = new NumberLitImpl();
     return numberLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CharLit createCharLit()
+  {
+    CharLitImpl charLit = new CharLitImpl();
+    return charLit;
   }
 
   /**

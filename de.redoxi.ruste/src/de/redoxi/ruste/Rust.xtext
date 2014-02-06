@@ -98,21 +98,14 @@ terminal fragment MACHINE_INT_TYPE: "int";
 terminal fragment MACHINE_UINT_TYPE: "uint";
 terminal UNIT_TYPE: "()";
 
-/*StringLit: 
-	{StringLit} '"' (chars += StringChar)* '"'
+StringLit: 
+	value = STRING_LIT
 	// | {RawStringLit} 'r' '#' body = RawString? '#'
 ;
 
-StringChar:
-	char = NON_SPECIAL_CHAR |
-	char = '\'' | 
-	'\\' char = '"' | 
-	'\\' escapedChar = EscapedChar
-;*/
-
 // Literal value
 Literal:
-	NumberLit // | CharLit | StringLit
+	NumberLit | CharLit | StringLit
 ;
 
 NumberLit:
@@ -120,17 +113,17 @@ NumberLit:
 ;
 
 // Single character literal
-/*CharLit:
-	'\'' (char = NON_SPECIAL_CHAR | char = '"' | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
+CharLit:
+	value = CHAR_LIT
 ;
 
-// Escaped character
-EscapedChar:
-	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
-	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	{UnicodeChar} 'u' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	{UnicodeChar} 'U' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT)
-;*/
+terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | "'"))* "'";
+terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+
+terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
+terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
+terminal fragment UTF16_CHAR: '\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+terminal fragment UTF32_CHAR: '\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 
 // Floating point literal
 terminal FLOAT_LIT: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;

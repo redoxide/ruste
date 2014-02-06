@@ -175,6 +175,14 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.STRING_LIT:
+      {
+        StringLit stringLit = (StringLit)theEObject;
+        T result = caseStringLit(stringLit);
+        if (result == null) result = caseLiteral(stringLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.LITERAL:
       {
         Literal literal = (Literal)theEObject;
@@ -187,6 +195,14 @@ public class RustSwitch<T> extends Switch<T>
         NumberLit numberLit = (NumberLit)theEObject;
         T result = caseNumberLit(numberLit);
         if (result == null) result = caseLiteral(numberLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.CHAR_LIT:
+      {
+        CharLit charLit = (CharLit)theEObject;
+        T result = caseCharLit(charLit);
+        if (result == null) result = caseLiteral(charLit);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -464,6 +480,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>String Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringLit(StringLit object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -491,6 +523,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNumberLit(NumberLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Char Lit</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Char Lit</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCharLit(CharLit object)
   {
     return null;
   }

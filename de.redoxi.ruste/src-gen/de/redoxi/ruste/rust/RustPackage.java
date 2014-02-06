@@ -528,7 +528,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 14;
+  int LITERAL = 15;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LITERAL__VALUE = 0;
 
   /**
    * The number of structural features of the '<em>Literal</em>' class.
@@ -537,7 +546,35 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LITERAL_FEATURE_COUNT = 0;
+  int LITERAL_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.StringLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
+   * @generated
+   */
+  int STRING_LIT = 14;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_LIT__VALUE = LITERAL__VALUE;
+
+  /**
+   * The number of structural features of the '<em>String Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.NumberLitImpl <em>Number Lit</em>}' class.
@@ -547,7 +584,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 15;
+  int NUMBER_LIT = 16;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -556,7 +593,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMBER_LIT__VALUE = LITERAL_FEATURE_COUNT + 0;
+  int NUMBER_LIT__VALUE = LITERAL__VALUE;
 
   /**
    * The number of structural features of the '<em>Number Lit</em>' class.
@@ -565,7 +602,35 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMBER_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+  int NUMBER_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.CharLitImpl <em>Char Lit</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.CharLitImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
+   * @generated
+   */
+  int CHAR_LIT = 17;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHAR_LIT__VALUE = LITERAL__VALUE;
+
+  /**
+   * The number of structural features of the '<em>Char Lit</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHAR_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.
@@ -575,7 +640,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 16;
+  int INT_TYPE = 18;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -594,7 +659,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 17;
+  int FLOAT_TYPE = 19;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -613,7 +678,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 18;
+  int BOOL_TYPE = 20;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -632,7 +697,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 19;
+  int MACHINE_TYPE = 21;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -651,7 +716,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 20;
+  int UNIT_TYPE = 22;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1002,6 +1067,16 @@ public interface RustPackage extends EPackage
   EClass getPrimitiveType();
 
   /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Lit</em>'.
+   * @see de.redoxi.ruste.rust.StringLit
+   * @generated
+   */
+  EClass getStringLit();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Literal <em>Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1010,6 +1085,17 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getLiteral();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.Literal#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.redoxi.ruste.rust.Literal#getValue()
+   * @see #getLiteral()
+   * @generated
+   */
+  EAttribute getLiteral_Value();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.NumberLit <em>Number Lit</em>}'.
@@ -1022,15 +1108,14 @@ public interface RustPackage extends EPackage
   EClass getNumberLit();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.NumberLit#getValue <em>Value</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.CharLit <em>Char Lit</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see de.redoxi.ruste.rust.NumberLit#getValue()
-   * @see #getNumberLit()
+   * @return the meta object for class '<em>Char Lit</em>'.
+   * @see de.redoxi.ruste.rust.CharLit
    * @generated
    */
-  EAttribute getNumberLit_Value();
+  EClass getCharLit();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.IntType <em>Int Type</em>}'.
@@ -1390,6 +1475,16 @@ public interface RustPackage extends EPackage
     EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
 
     /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.StringLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
+     * @generated
+     */
+    EClass STRING_LIT = eINSTANCE.getStringLit();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.LiteralImpl <em>Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1398,6 +1493,14 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass LITERAL = eINSTANCE.getLiteral();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LITERAL__VALUE = eINSTANCE.getLiteral_Value();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.NumberLitImpl <em>Number Lit</em>}' class.
@@ -1410,12 +1513,14 @@ public interface RustPackage extends EPackage
     EClass NUMBER_LIT = eINSTANCE.getNumberLit();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.CharLitImpl <em>Char Lit</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.CharLitImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
      * @generated
      */
-    EAttribute NUMBER_LIT__VALUE = eINSTANCE.getNumberLit_Value();
+    EClass CHAR_LIT = eINSTANCE.getCharLit();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.

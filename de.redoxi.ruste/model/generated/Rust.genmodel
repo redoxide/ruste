@@ -51,10 +51,12 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Type"/>
     <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
-    <genClasses ecoreClass="Rust.ecore#//Literal"/>
-    <genClasses ecoreClass="Rust.ecore#//NumberLit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/value"/>
+    <genClasses ecoreClass="Rust.ecore#//StringLit"/>
+    <genClasses ecoreClass="Rust.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Literal/value"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
+    <genClasses ecoreClass="Rust.ecore#//CharLit"/>
     <genClasses ecoreClass="Rust.ecore#//IntType"/>
     <genClasses ecoreClass="Rust.ecore#//FloatType"/>
     <genClasses ecoreClass="Rust.ecore#//BoolType"/>

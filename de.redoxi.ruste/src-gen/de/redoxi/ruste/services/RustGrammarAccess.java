@@ -599,44 +599,87 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getUNIT_TYPETerminalRuleCall_4_1() { return cUNIT_TYPETerminalRuleCall_4_1; }
 	}
 
-	public class LiteralElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Literal");
-		private final RuleCall cNumberLitParserRuleCall = (RuleCall)rule.eContents().get(1);
+	public class StringLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLit");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRING_LITTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		/// *StringLit: 
-		//	{StringLit} '"' (chars += StringChar)* '"'
-		//	// | {RawStringLit} 'r' '#' body = RawString? '#'
-		//;
-		//
-		//StringChar:
-		//	char = NON_SPECIAL_CHAR |
-		//	char = '\'' | 
-		//	'\\' char = '"' | 
-		//	'\\' escapedChar = EscapedChar
-		//;* / // Literal value
-		//Literal: // | CharLit | StringLit
-		//	NumberLit;
+		//// | {RawStringLit} 'r' '#' body = RawString? '#'
+		//StringLit:
+		//	value=STRING_LIT;
 		public ParserRule getRule() { return rule; }
 
-		//// | CharLit | StringLit
+		//value=STRING_LIT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//STRING_LIT
+		public RuleCall getValueSTRING_LITTerminalRuleCall_0() { return cValueSTRING_LITTerminalRuleCall_0; }
+	}
+
+	public class LiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Literal");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNumberLitParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCharLitParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cStringLitParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//// Literal value
+		//Literal:
+		//	NumberLit | CharLit | StringLit;
+		public ParserRule getRule() { return rule; }
+
+		//NumberLit | CharLit | StringLit
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//NumberLit
-		public RuleCall getNumberLitParserRuleCall() { return cNumberLitParserRuleCall; }
+		public RuleCall getNumberLitParserRuleCall_0() { return cNumberLitParserRuleCall_0; }
+
+		//CharLit
+		public RuleCall getCharLitParserRuleCall_1() { return cCharLitParserRuleCall_1; }
+
+		//StringLit
+		public RuleCall getStringLitParserRuleCall_2() { return cStringLitParserRuleCall_2; }
 	}
 
 	public class NumberLitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumberLit");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINT_LITTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final Alternatives cValueAlternatives_0 = (Alternatives)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueFLOAT_LITTerminalRuleCall_0_0 = (RuleCall)cValueAlternatives_0.eContents().get(0);
+		private final RuleCall cValueINT_LITTerminalRuleCall_0_1 = (RuleCall)cValueAlternatives_0.eContents().get(1);
 		
 		//NumberLit:
-		//	value=INT_LIT;
+		//	value=(FLOAT_LIT | INT_LIT);
 		public ParserRule getRule() { return rule; }
 
-		//value=INT_LIT
+		//value=(FLOAT_LIT | INT_LIT)
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
+		//FLOAT_LIT | INT_LIT
+		public Alternatives getValueAlternatives_0() { return cValueAlternatives_0; }
+
+		//FLOAT_LIT
+		public RuleCall getValueFLOAT_LITTerminalRuleCall_0_0() { return cValueFLOAT_LITTerminalRuleCall_0_0; }
+
 		//INT_LIT
-		public RuleCall getValueINT_LITTerminalRuleCall_0() { return cValueINT_LITTerminalRuleCall_0; }
+		public RuleCall getValueINT_LITTerminalRuleCall_0_1() { return cValueINT_LITTerminalRuleCall_0_1; }
+	}
+
+	public class CharLitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CharLit");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueCHAR_LITTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//// Single character literal
+		//CharLit:
+		//	value=CHAR_LIT;
+		public ParserRule getRule() { return rule; }
+
+		//value=CHAR_LIT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//CHAR_LIT
+		public RuleCall getValueCHAR_LITTerminalRuleCall_0() { return cValueCHAR_LITTerminalRuleCall_0; }
 	}
 	
 	
@@ -675,8 +718,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tMACHINE_INT_TYPE;
 	private TerminalRule tMACHINE_UINT_TYPE;
 	private TerminalRule tUNIT_TYPE;
+	private StringLitElements pStringLit;
 	private LiteralElements pLiteral;
 	private NumberLitElements pNumberLit;
+	private CharLitElements pCharLit;
+	private TerminalRule tCHAR_LIT;
+	private TerminalRule tSTRING_LIT;
+	private TerminalRule tUNICODE_CHAR;
+	private TerminalRule tUTF8_CHAR;
+	private TerminalRule tUTF16_CHAR;
+	private TerminalRule tUTF32_CHAR;
 	private TerminalRule tFLOAT_LIT;
 	private TerminalRule tINT_LIT;
 	private TerminalRule tDEC_INT_LIT;
@@ -1000,19 +1051,20 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return (tUNIT_TYPE != null) ? tUNIT_TYPE : (tUNIT_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNIT_TYPE"));
 	} 
 
-	/// *StringLit: 
-	//	{StringLit} '"' (chars += StringChar)* '"'
-	//	// | {RawStringLit} 'r' '#' body = RawString? '#'
-	//;
-	//
-	//StringChar:
-	//	char = NON_SPECIAL_CHAR |
-	//	char = '\'' | 
-	//	'\\' char = '"' | 
-	//	'\\' escapedChar = EscapedChar
-	//;* / // Literal value
-	//Literal: // | CharLit | StringLit
-	//	NumberLit;
+	//// | {RawStringLit} 'r' '#' body = RawString? '#'
+	//StringLit:
+	//	value=STRING_LIT;
+	public StringLitElements getStringLitAccess() {
+		return (pStringLit != null) ? pStringLit : (pStringLit = new StringLitElements());
+	}
+	
+	public ParserRule getStringLitRule() {
+		return getStringLitAccess().getRule();
+	}
+
+	//// Literal value
+	//Literal:
+	//	NumberLit | CharLit | StringLit;
 	public LiteralElements getLiteralAccess() {
 		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
 	}
@@ -1022,7 +1074,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberLit:
-	//	value=INT_LIT;
+	//	value=(FLOAT_LIT | INT_LIT);
 	public NumberLitElements getNumberLitAccess() {
 		return (pNumberLit != null) ? pNumberLit : (pNumberLit = new NumberLitElements());
 	}
@@ -1032,17 +1084,53 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Single character literal
-	/// *CharLit:
-	//	'\'' (char = NON_SPECIAL_CHAR | char = '"' | '\\' (char = '\'' | escapedChar = EscapedChar)) '\''
-	//;
-	//
-	//// Escaped character
-	//EscapedChar:
-	//	{EscapedChar} char = ('\\' | 'n' | 'r' | 't' | '0') |
-	//	{UnicodeChar} 'x' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	//	{UnicodeChar} 'u' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) |
-	//	{UnicodeChar} 'U' (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT) (digits+=HEX_DIGIT)
-	//;* / // Floating point literal
+	//CharLit:
+	//	value=CHAR_LIT;
+	public CharLitElements getCharLitAccess() {
+		return (pCharLit != null) ? pCharLit : (pCharLit = new CharLitElements());
+	}
+	
+	public ParserRule getCharLitRule() {
+		return getCharLitAccess().getRule();
+	}
+
+	//terminal CHAR_LIT:
+	//	"\'" ("\\" ("\\" | "n" | "r" | "t" | "0") | UNICODE_CHAR | !("\\" | "\'"))* "\'";
+	public TerminalRule getCHAR_LITRule() {
+		return (tCHAR_LIT != null) ? tCHAR_LIT : (tCHAR_LIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CHAR_LIT"));
+	} 
+
+	//terminal STRING_LIT:
+	//	"\"" ("\\" ("\\" | "n" | "r" | "t" | "0") | UNICODE_CHAR | !("\\" | "\""))* "\"";
+	public TerminalRule getSTRING_LITRule() {
+		return (tSTRING_LIT != null) ? tSTRING_LIT : (tSTRING_LIT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_LIT"));
+	} 
+
+	//terminal fragment UNICODE_CHAR:
+	//	UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
+	public TerminalRule getUNICODE_CHARRule() {
+		return (tUNICODE_CHAR != null) ? tUNICODE_CHAR : (tUNICODE_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNICODE_CHAR"));
+	} 
+
+	//terminal fragment UTF8_CHAR:
+	//	"\\x" HEX_DIGIT HEX_DIGIT;
+	public TerminalRule getUTF8_CHARRule() {
+		return (tUTF8_CHAR != null) ? tUTF8_CHAR : (tUTF8_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UTF8_CHAR"));
+	} 
+
+	//terminal fragment UTF16_CHAR:
+	//	"\\u" HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+	public TerminalRule getUTF16_CHARRule() {
+		return (tUTF16_CHAR != null) ? tUTF16_CHAR : (tUTF16_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UTF16_CHAR"));
+	} 
+
+	//terminal fragment UTF32_CHAR:
+	//	"\\U" HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+	public TerminalRule getUTF32_CHARRule() {
+		return (tUTF32_CHAR != null) ? tUTF32_CHAR : (tUTF32_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UTF32_CHAR"));
+	} 
+
+	//// Floating point literal
 	//terminal FLOAT_LIT:
 	//	DEC_DIGIT (DEC_DIGIT | "_")* ("." (DEC_DIGIT | "_")+) (("E" | "e") ("+" | "-")? (DEC_DIGIT | "_")+)? FLOAT_SIZE?;
 	public TerminalRule getFLOAT_LITRule() {

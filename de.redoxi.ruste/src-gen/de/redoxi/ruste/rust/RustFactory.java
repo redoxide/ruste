@@ -149,6 +149,15 @@ public interface RustFactory extends EFactory
   PrimitiveType createPrimitiveType();
 
   /**
+   * Returns a new object of class '<em>String Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Lit</em>'.
+   * @generated
+   */
+  StringLit createStringLit();
+
+  /**
    * Returns a new object of class '<em>Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -165,6 +174,15 @@ public interface RustFactory extends EFactory
    * @generated
    */
   NumberLit createNumberLit();
+
+  /**
+   * Returns a new object of class '<em>Char Lit</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Char Lit</em>'.
+   * @generated
+   */
+  CharLit createCharLit();
 
   /**
    * Returns a new object of class '<em>Int Type</em>'.

@@ -6,6 +6,7 @@ import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.BoolType;
+import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
@@ -23,6 +24,7 @@ import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.Type;
 import de.redoxi.ruste.rust.UnitType;
 
@@ -144,6 +146,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass stringLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass literalEClass = null;
 
   /**
@@ -152,6 +161,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass numberLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass charLitEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -576,9 +592,29 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStringLit()
+  {
+    return stringLitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLiteral()
   {
     return literalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLiteral_Value()
+  {
+    return (EAttribute)literalEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -596,9 +632,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumberLit_Value()
+  public EClass getCharLit()
   {
-    return (EAttribute)numberLitEClass.getEStructuralFeatures().get(0);
+    return charLitEClass;
   }
 
   /**
@@ -727,10 +763,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
+    stringLitEClass = createEClass(STRING_LIT);
+
     literalEClass = createEClass(LITERAL);
+    createEAttribute(literalEClass, LITERAL__VALUE);
 
     numberLitEClass = createEClass(NUMBER_LIT);
-    createEAttribute(numberLitEClass, NUMBER_LIT__VALUE);
+
+    charLitEClass = createEClass(CHAR_LIT);
 
     intTypeEClass = createEClass(INT_TYPE);
 
@@ -777,7 +817,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     modItemEClass.getESuperTypes().add(this.getItem());
     fnItemEClass.getESuperTypes().add(this.getItem());
     primitiveTypeEClass.getESuperTypes().add(this.getType());
+    stringLitEClass.getESuperTypes().add(this.getLiteral());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
+    charLitEClass.getESuperTypes().add(this.getLiteral());
     intTypeEClass.getESuperTypes().add(this.getPrimitiveType());
     floatTypeEClass.getESuperTypes().add(this.getPrimitiveType());
     boolTypeEClass.getESuperTypes().add(this.getPrimitiveType());
@@ -831,10 +873,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(stringLitEClass, StringLit.class, "StringLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(numberLitEClass, NumberLit.class, "NumberLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumberLit_Value(), ecorePackage.getEString(), "value", null, 0, 1, NumberLit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(charLitEClass, CharLit.class, "CharLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
