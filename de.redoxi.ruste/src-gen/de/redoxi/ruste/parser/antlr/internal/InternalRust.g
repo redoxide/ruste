@@ -990,6 +990,36 @@ ruleType returns [EObject current=null]
         $current = $this_EnumType_3.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTypeAccess().getBoxedTypeParserRuleCall_4()); 
+    }
+    this_BoxedType_4=ruleBoxedType
+    { 
+        $current = $this_BoxedType_4.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTypeAccess().getOwnedTypeParserRuleCall_5()); 
+    }
+    this_OwnedType_5=ruleOwnedType
+    { 
+        $current = $this_OwnedType_5.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTypeAccess().getBorrowedTypeParserRuleCall_6()); 
+    }
+    this_BorrowedType_6=ruleBorrowedType
+    { 
+        $current = $this_BorrowedType_6.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1274,6 +1304,135 @@ ruleStructType returns [EObject current=null]
     	newLeafNode(otherlv_11, grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_6());
     }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleBoxedType
+entryRuleBoxedType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBoxedTypeRule()); }
+	 iv_ruleBoxedType=ruleBoxedType 
+	 { $current=$iv_ruleBoxedType.current; } 
+	 EOF 
+;
+
+// Rule BoxedType
+ruleBoxedType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='@' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getBoxedTypeAccess().getCommercialAtKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBoxedTypeAccess().getTypeTypeParserRuleCall_1_0()); 
+	    }
+		lv_type_1_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBoxedTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_1_0, 
+        		"Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleOwnedType
+entryRuleOwnedType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOwnedTypeRule()); }
+	 iv_ruleOwnedType=ruleOwnedType 
+	 { $current=$iv_ruleOwnedType.current; } 
+	 EOF 
+;
+
+// Rule OwnedType
+ruleOwnedType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='~' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getOwnedTypeAccess().getTildeKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOwnedTypeAccess().getTypeTypeParserRuleCall_1_0()); 
+	    }
+		lv_type_1_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOwnedTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_1_0, 
+        		"Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleBorrowedType
+entryRuleBorrowedType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBorrowedTypeRule()); }
+	 iv_ruleBorrowedType=ruleBorrowedType 
+	 { $current=$iv_ruleBorrowedType.current; } 
+	 EOF 
+;
+
+// Rule BorrowedType
+ruleBorrowedType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='&' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getBorrowedTypeAccess().getAmpersandKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBorrowedTypeAccess().getTypeTypeParserRuleCall_1_0()); 
+	    }
+		lv_type_1_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBorrowedTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_1_0, 
+        		"Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 

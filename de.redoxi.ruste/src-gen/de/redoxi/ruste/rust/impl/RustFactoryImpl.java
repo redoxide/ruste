@@ -81,6 +81,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.TUPLE_TYPE: return createTupleType();
       case RustPackage.STRUCT_TYPE: return createStructType();
+      case RustPackage.BOXED_TYPE: return createBoxedType();
+      case RustPackage.OWNED_TYPE: return createOwnedType();
+      case RustPackage.BORROWED_TYPE: return createBorrowedType();
       case RustPackage.STRUCT_FIELD: return createStructField();
       case RustPackage.ENUM_TYPE: return createEnumType();
       case RustPackage.VARIANT: return createVariant();
@@ -309,6 +312,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     StructTypeImpl structType = new StructTypeImpl();
     return structType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoxedType createBoxedType()
+  {
+    BoxedTypeImpl boxedType = new BoxedTypeImpl();
+    return boxedType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OwnedType createOwnedType()
+  {
+    OwnedTypeImpl ownedType = new OwnedTypeImpl();
+    return ownedType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BorrowedType createBorrowedType()
+  {
+    BorrowedTypeImpl borrowedType = new BorrowedTypeImpl();
+    return borrowedType;
   }
 
   /**

@@ -72,7 +72,10 @@ Type:
 	PrimitiveType |
 	TupleType |
 	StructType |
-	EnumType
+	EnumType |
+	BoxedType |
+	OwnedType |
+	BorrowedType
 ;
 
 PrimitiveType:
@@ -90,6 +93,18 @@ TupleType:
 // TODO Move generics to own rule, but attach here
 StructType:
 	"struct" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+;
+
+BoxedType:
+	"@" type=Type
+;
+
+OwnedType:
+	"~" type=Type
+;
+
+BorrowedType:
+	"&" type=Type
 ;
 
 StructField:

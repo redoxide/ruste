@@ -64,6 +64,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/fields"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//BoxedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BoxedType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//OwnedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OwnedType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//BorrowedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BorrowedType/type"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/vis"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/ident"/>

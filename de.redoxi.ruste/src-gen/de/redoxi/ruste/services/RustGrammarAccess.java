@@ -548,12 +548,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cStructTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cEnumTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cBoxedTypeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cOwnedTypeParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cBorrowedTypeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Type:
-		//	PrimitiveType | TupleType | StructType | EnumType;
+		//	PrimitiveType | TupleType | StructType | EnumType | BoxedType | OwnedType | BorrowedType;
 		public ParserRule getRule() { return rule; }
 
-		//PrimitiveType | TupleType | StructType | EnumType
+		//PrimitiveType | TupleType | StructType | EnumType | BoxedType | OwnedType | BorrowedType
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PrimitiveType
@@ -567,6 +570,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//EnumType
 		public RuleCall getEnumTypeParserRuleCall_3() { return cEnumTypeParserRuleCall_3; }
+
+		//BoxedType
+		public RuleCall getBoxedTypeParserRuleCall_4() { return cBoxedTypeParserRuleCall_4; }
+
+		//OwnedType
+		public RuleCall getOwnedTypeParserRuleCall_5() { return cOwnedTypeParserRuleCall_5; }
+
+		//BorrowedType
+		public RuleCall getBorrowedTypeParserRuleCall_6() { return cBorrowedTypeParserRuleCall_6; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
@@ -780,6 +792,78 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+	}
+
+	public class BoxedTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BoxedType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		
+		//BoxedType:
+		//	"@" type=Type;
+		public ParserRule getRule() { return rule; }
+
+		//"@" type=Type
+		public Group getGroup() { return cGroup; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
+
+		//type=Type
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_1_0() { return cTypeTypeParserRuleCall_1_0; }
+	}
+
+	public class OwnedTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OwnedType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTildeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		
+		//OwnedType:
+		//	"~" type=Type;
+		public ParserRule getRule() { return rule; }
+
+		//"~" type=Type
+		public Group getGroup() { return cGroup; }
+
+		//"~"
+		public Keyword getTildeKeyword_0() { return cTildeKeyword_0; }
+
+		//type=Type
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_1_0() { return cTypeTypeParserRuleCall_1_0; }
+	}
+
+	public class BorrowedTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BorrowedType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAmpersandKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeTypeParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		
+		//BorrowedType:
+		//	"&" type=Type;
+		public ParserRule getRule() { return rule; }
+
+		//"&" type=Type
+		public Group getGroup() { return cGroup; }
+
+		//"&"
+		public Keyword getAmpersandKeyword_0() { return cAmpersandKeyword_0; }
+
+		//type=Type
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_1_0() { return cTypeTypeParserRuleCall_1_0; }
 	}
 
 	public class StructFieldElements extends AbstractParserRuleElementFinder {
@@ -1227,6 +1311,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private PrimitiveTypeElements pPrimitiveType;
 	private TupleTypeElements pTupleType;
 	private StructTypeElements pStructType;
+	private BoxedTypeElements pBoxedType;
+	private OwnedTypeElements pOwnedType;
+	private BorrowedTypeElements pBorrowedType;
 	private StructFieldElements pStructField;
 	private EnumTypeElements pEnumType;
 	private VariantElements pVariant;
@@ -1452,7 +1539,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Type:
-	//	PrimitiveType | TupleType | StructType | EnumType;
+	//	PrimitiveType | TupleType | StructType | EnumType | BoxedType | OwnedType | BorrowedType;
 	public TypeElements getTypeAccess() {
 		return (pType != null) ? pType : (pType = new TypeElements());
 	}
@@ -1492,6 +1579,36 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStructTypeRule() {
 		return getStructTypeAccess().getRule();
+	}
+
+	//BoxedType:
+	//	"@" type=Type;
+	public BoxedTypeElements getBoxedTypeAccess() {
+		return (pBoxedType != null) ? pBoxedType : (pBoxedType = new BoxedTypeElements());
+	}
+	
+	public ParserRule getBoxedTypeRule() {
+		return getBoxedTypeAccess().getRule();
+	}
+
+	//OwnedType:
+	//	"~" type=Type;
+	public OwnedTypeElements getOwnedTypeAccess() {
+		return (pOwnedType != null) ? pOwnedType : (pOwnedType = new OwnedTypeElements());
+	}
+	
+	public ParserRule getOwnedTypeRule() {
+		return getOwnedTypeAccess().getRule();
+	}
+
+	//BorrowedType:
+	//	"&" type=Type;
+	public BorrowedTypeElements getBorrowedTypeAccess() {
+		return (pBorrowedType != null) ? pBorrowedType : (pBorrowedType = new BorrowedTypeElements());
+	}
+	
+	public ParserRule getBorrowedTypeRule() {
+		return getBorrowedTypeAccess().getRule();
 	}
 
 	//StructField:

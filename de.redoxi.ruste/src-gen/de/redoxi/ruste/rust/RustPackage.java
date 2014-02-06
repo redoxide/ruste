@@ -605,6 +605,90 @@ public interface RustPackage extends EPackage
   int STRUCT_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BoxedTypeImpl <em>Boxed Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BoxedTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedType()
+   * @generated
+   */
+  int BOXED_TYPE = 16;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOXED_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Boxed Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOXED_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.OwnedTypeImpl <em>Owned Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.OwnedTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedType()
+   * @generated
+   */
+  int OWNED_TYPE = 17;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OWNED_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Owned Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OWNED_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BorrowedTypeImpl <em>Borrowed Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BorrowedTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedType()
+   * @generated
+   */
+  int BORROWED_TYPE = 18;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BORROWED_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Borrowed Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BORROWED_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StructFieldImpl <em>Struct Field</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -612,7 +696,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 16;
+  int STRUCT_FIELD = 19;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -658,7 +742,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
    * @generated
    */
-  int ENUM_TYPE = 17;
+  int ENUM_TYPE = 20;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -704,7 +788,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 18;
+  int VARIANT = 21;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -732,7 +816,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 19;
+  int STRUCT_VARIANT = 22;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -778,7 +862,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 20;
+  int TUPLE_VARIANT = 23;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -815,7 +899,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 21;
+  int UNIT_VARIANT = 24;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -843,7 +927,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 23;
+  int LITERAL = 26;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -871,7 +955,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 22;
+  int STRING_LIT = 25;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -899,7 +983,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 24;
+  int NUMBER_LIT = 27;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -927,7 +1011,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 25;
+  int CHAR_LIT = 28;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -955,7 +1039,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 26;
+  int INT_TYPE = 29;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -974,7 +1058,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 27;
+  int FLOAT_TYPE = 30;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -993,7 +1077,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 28;
+  int BOOL_TYPE = 31;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -1012,7 +1096,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 29;
+  int MACHINE_TYPE = 32;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -1031,7 +1115,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 30;
+  int UNIT_TYPE = 33;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1050,7 +1134,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 31;
+  int VISIBILITY = 34;
 
 
   /**
@@ -1465,6 +1549,69 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getStructType_Fields();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.BoxedType <em>Boxed Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Boxed Type</em>'.
+   * @see de.redoxi.ruste.rust.BoxedType
+   * @generated
+   */
+  EClass getBoxedType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.BoxedType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.BoxedType#getType()
+   * @see #getBoxedType()
+   * @generated
+   */
+  EReference getBoxedType_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.OwnedType <em>Owned Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Owned Type</em>'.
+   * @see de.redoxi.ruste.rust.OwnedType
+   * @generated
+   */
+  EClass getOwnedType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.OwnedType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.OwnedType#getType()
+   * @see #getOwnedType()
+   * @generated
+   */
+  EReference getOwnedType_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.BorrowedType <em>Borrowed Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Borrowed Type</em>'.
+   * @see de.redoxi.ruste.rust.BorrowedType
+   * @generated
+   */
+  EClass getBorrowedType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.BorrowedType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.BorrowedType#getType()
+   * @see #getBorrowedType()
+   * @generated
+   */
+  EReference getBorrowedType_Type();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.StructField <em>Struct Field</em>}'.
@@ -2113,6 +2260,60 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference STRUCT_TYPE__FIELDS = eINSTANCE.getStructType_Fields();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BoxedTypeImpl <em>Boxed Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.BoxedTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedType()
+     * @generated
+     */
+    EClass BOXED_TYPE = eINSTANCE.getBoxedType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOXED_TYPE__TYPE = eINSTANCE.getBoxedType_Type();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.OwnedTypeImpl <em>Owned Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.OwnedTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedType()
+     * @generated
+     */
+    EClass OWNED_TYPE = eINSTANCE.getOwnedType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OWNED_TYPE__TYPE = eINSTANCE.getOwnedType_Type();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BorrowedTypeImpl <em>Borrowed Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.BorrowedTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedType()
+     * @generated
+     */
+    EClass BORROWED_TYPE = eINSTANCE.getBorrowedType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BORROWED_TYPE__TYPE = eINSTANCE.getBorrowedType_Type();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StructFieldImpl <em>Struct Field</em>}' class.

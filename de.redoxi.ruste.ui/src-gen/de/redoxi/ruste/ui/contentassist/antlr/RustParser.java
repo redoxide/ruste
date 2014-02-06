@@ -76,6 +76,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructTypeAccess().getGroup_2(), "rule__StructType__Group_2__0");
 					put(grammarAccess.getStructTypeAccess().getGroup_2_2(), "rule__StructType__Group_2_2__0");
 					put(grammarAccess.getStructTypeAccess().getGroup_5(), "rule__StructType__Group_5__0");
+					put(grammarAccess.getBoxedTypeAccess().getGroup(), "rule__BoxedType__Group__0");
+					put(grammarAccess.getOwnedTypeAccess().getGroup(), "rule__OwnedType__Group__0");
+					put(grammarAccess.getBorrowedTypeAccess().getGroup(), "rule__BorrowedType__Group__0");
 					put(grammarAccess.getStructFieldAccess().getGroup(), "rule__StructField__Group__0");
 					put(grammarAccess.getEnumTypeAccess().getGroup(), "rule__EnumType__Group__0");
 					put(grammarAccess.getEnumTypeAccess().getGroup_2(), "rule__EnumType__Group_2__0");
@@ -120,6 +123,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructTypeAccess().getParamsAssignment_2_2_1(), "rule__StructType__ParamsAssignment_2_2_1");
 					put(grammarAccess.getStructTypeAccess().getFieldsAssignment_4(), "rule__StructType__FieldsAssignment_4");
 					put(grammarAccess.getStructTypeAccess().getFieldsAssignment_5_1(), "rule__StructType__FieldsAssignment_5_1");
+					put(grammarAccess.getBoxedTypeAccess().getTypeAssignment_1(), "rule__BoxedType__TypeAssignment_1");
+					put(grammarAccess.getOwnedTypeAccess().getTypeAssignment_1(), "rule__OwnedType__TypeAssignment_1");
+					put(grammarAccess.getBorrowedTypeAccess().getTypeAssignment_1(), "rule__BorrowedType__TypeAssignment_1");
 					put(grammarAccess.getStructFieldAccess().getVisAssignment_0(), "rule__StructField__VisAssignment_0");
 					put(grammarAccess.getStructFieldAccess().getIdentAssignment_1(), "rule__StructField__IdentAssignment_1");
 					put(grammarAccess.getStructFieldAccess().getTypeAssignment_3(), "rule__StructField__TypeAssignment_3");

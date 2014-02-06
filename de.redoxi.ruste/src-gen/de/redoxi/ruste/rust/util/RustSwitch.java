@@ -191,6 +191,30 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.BOXED_TYPE:
+      {
+        BoxedType boxedType = (BoxedType)theEObject;
+        T result = caseBoxedType(boxedType);
+        if (result == null) result = caseType(boxedType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.OWNED_TYPE:
+      {
+        OwnedType ownedType = (OwnedType)theEObject;
+        T result = caseOwnedType(ownedType);
+        if (result == null) result = caseType(ownedType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.BORROWED_TYPE:
+      {
+        BorrowedType borrowedType = (BorrowedType)theEObject;
+        T result = caseBorrowedType(borrowedType);
+        if (result == null) result = caseType(borrowedType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.STRUCT_FIELD:
       {
         StructField structField = (StructField)theEObject;
@@ -569,6 +593,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStructType(StructType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Boxed Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Boxed Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBoxedType(BoxedType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Owned Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Owned Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOwnedType(OwnedType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Borrowed Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Borrowed Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBorrowedType(BorrowedType object)
   {
     return null;
   }

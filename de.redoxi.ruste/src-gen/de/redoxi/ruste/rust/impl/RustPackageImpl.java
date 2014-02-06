@@ -6,6 +6,8 @@ import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.BoolType;
+import de.redoxi.ruste.rust.BorrowedType;
+import de.redoxi.ruste.rust.BoxedType;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumType;
@@ -21,6 +23,7 @@ import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
+import de.redoxi.ruste.rust.OwnedType;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
@@ -164,6 +167,27 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass structTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boxedTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ownedTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass borrowedTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -735,6 +759,66 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBoxedType()
+  {
+    return boxedTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBoxedType_Type()
+  {
+    return (EReference)boxedTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOwnedType()
+  {
+    return ownedTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOwnedType_Type()
+  {
+    return (EReference)ownedTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBorrowedType()
+  {
+    return borrowedTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBorrowedType_Type()
+  {
+    return (EReference)borrowedTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getStructField()
   {
     return structFieldEClass;
@@ -1085,6 +1169,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(structTypeEClass, STRUCT_TYPE__PARAMS);
     createEReference(structTypeEClass, STRUCT_TYPE__FIELDS);
 
+    boxedTypeEClass = createEClass(BOXED_TYPE);
+    createEReference(boxedTypeEClass, BOXED_TYPE__TYPE);
+
+    ownedTypeEClass = createEClass(OWNED_TYPE);
+    createEReference(ownedTypeEClass, OWNED_TYPE__TYPE);
+
+    borrowedTypeEClass = createEClass(BORROWED_TYPE);
+    createEReference(borrowedTypeEClass, BORROWED_TYPE__TYPE);
+
     structFieldEClass = createEClass(STRUCT_FIELD);
     createEAttribute(structFieldEClass, STRUCT_FIELD__VIS);
     createEAttribute(structFieldEClass, STRUCT_FIELD__IDENT);
@@ -1166,6 +1259,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     primitiveTypeEClass.getESuperTypes().add(this.getType());
     tupleTypeEClass.getESuperTypes().add(this.getType());
     structTypeEClass.getESuperTypes().add(this.getType());
+    boxedTypeEClass.getESuperTypes().add(this.getType());
+    ownedTypeEClass.getESuperTypes().add(this.getType());
+    borrowedTypeEClass.getESuperTypes().add(this.getType());
     enumTypeEClass.getESuperTypes().add(this.getType());
     structVariantEClass.getESuperTypes().add(this.getVariant());
     tupleVariantEClass.getESuperTypes().add(this.getVariant());
@@ -1234,6 +1330,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getStructType_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructType_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructType_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(boxedTypeEClass, BoxedType.class, "BoxedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBoxedType_Type(), this.getType(), null, "type", null, 0, 1, BoxedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ownedTypeEClass, OwnedType.class, "OwnedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOwnedType_Type(), this.getType(), null, "type", null, 0, 1, OwnedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(borrowedTypeEClass, BorrowedType.class, "BorrowedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBorrowedType_Type(), this.getType(), null, "type", null, 0, 1, BorrowedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(structFieldEClass, StructField.class, "StructField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStructField_Vis(), this.getVisibility(), "vis", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

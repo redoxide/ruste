@@ -167,6 +167,33 @@ public interface RustFactory extends EFactory
   StructType createStructType();
 
   /**
+   * Returns a new object of class '<em>Boxed Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Boxed Type</em>'.
+   * @generated
+   */
+  BoxedType createBoxedType();
+
+  /**
+   * Returns a new object of class '<em>Owned Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Owned Type</em>'.
+   * @generated
+   */
+  OwnedType createOwnedType();
+
+  /**
+   * Returns a new object of class '<em>Borrowed Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Borrowed Type</em>'.
+   * @generated
+   */
+  BorrowedType createBorrowedType();
+
+  /**
    * Returns a new object of class '<em>Struct Field</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

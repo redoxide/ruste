@@ -155,6 +155,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createStructTypeAdapter();
       }
       @Override
+      public Adapter caseBoxedType(BoxedType object)
+      {
+        return createBoxedTypeAdapter();
+      }
+      @Override
+      public Adapter caseOwnedType(OwnedType object)
+      {
+        return createOwnedTypeAdapter();
+      }
+      @Override
+      public Adapter caseBorrowedType(BorrowedType object)
+      {
+        return createBorrowedTypeAdapter();
+      }
+      @Override
       public Adapter caseStructField(StructField object)
       {
         return createStructFieldAdapter();
@@ -487,6 +502,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStructTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BoxedType <em>Boxed Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.BoxedType
+   * @generated
+   */
+  public Adapter createBoxedTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OwnedType <em>Owned Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.OwnedType
+   * @generated
+   */
+  public Adapter createOwnedTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BorrowedType <em>Borrowed Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.BorrowedType
+   * @generated
+   */
+  public Adapter createBorrowedTypeAdapter()
   {
     return null;
   }
