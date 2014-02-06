@@ -175,6 +175,14 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.TUPLE_TYPE:
+      {
+        TupleType tupleType = (TupleType)theEObject;
+        T result = caseTupleType(tupleType);
+        if (result == null) result = caseType(tupleType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.STRING_LIT:
       {
         StringLit stringLit = (StringLit)theEObject;
@@ -475,6 +483,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrimitiveType(PrimitiveType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTupleType(TupleType object)
   {
     return null;
   }

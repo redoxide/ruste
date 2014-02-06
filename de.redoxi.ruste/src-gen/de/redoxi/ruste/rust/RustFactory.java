@@ -149,6 +149,15 @@ public interface RustFactory extends EFactory
   PrimitiveType createPrimitiveType();
 
   /**
+   * Returns a new object of class '<em>Tuple Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tuple Type</em>'.
+   * @generated
+   */
+  TupleType createTupleType();
+
+  /**
    * Returns a new object of class '<em>String Lit</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

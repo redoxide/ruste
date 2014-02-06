@@ -78,6 +78,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT: return createPat();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
+      case RustPackage.TUPLE_TYPE: return createTupleType();
       case RustPackage.STRING_LIT: return createStringLit();
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
@@ -244,6 +245,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
     return primitiveType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TupleType createTupleType()
+  {
+    TupleTypeImpl tupleType = new TupleTypeImpl();
+    return tupleType;
   }
 
   /**

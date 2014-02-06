@@ -543,14 +543,22 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Type");
-		private final RuleCall cPrimitiveTypeParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPrimitiveTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTupleTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Type:
-		//	PrimitiveType;
+		//	PrimitiveType | TupleType;
 		public ParserRule getRule() { return rule; }
 
+		//PrimitiveType | TupleType
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//PrimitiveType
-		public RuleCall getPrimitiveTypeParserRuleCall() { return cPrimitiveTypeParserRuleCall; }
+		public RuleCall getPrimitiveTypeParserRuleCall_0() { return cPrimitiveTypeParserRuleCall_0; }
+
+		//TupleType
+		public RuleCall getTupleTypeParserRuleCall_1() { return cTupleTypeParserRuleCall_1; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
@@ -625,6 +633,50 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//UNIT_TYPE
 		public RuleCall getUNIT_TYPETerminalRuleCall_4_1() { return cUNIT_TYPETerminalRuleCall_4_1; }
+	}
+
+	public class TupleTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TupleType");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypesTypeParserRuleCall_1_0 = (RuleCall)cTypesAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cTypesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cTypesTypeParserRuleCall_2_1_0 = (RuleCall)cTypesAssignment_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//TupleType:
+		//	"(" types+=Type ("," types+=Type)* ")";
+		public ParserRule getRule() { return rule; }
+
+		//"(" types+=Type ("," types+=Type)* ")"
+		public Group getGroup() { return cGroup; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+
+		//types+=Type
+		public Assignment getTypesAssignment_1() { return cTypesAssignment_1; }
+
+		//Type
+		public RuleCall getTypesTypeParserRuleCall_1_0() { return cTypesTypeParserRuleCall_1_0; }
+
+		//("," types+=Type)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//types+=Type
+		public Assignment getTypesAssignment_2_1() { return cTypesAssignment_2_1; }
+
+		//Type
+		public RuleCall getTypesTypeParserRuleCall_2_1_0() { return cTypesTypeParserRuleCall_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
 	public class StringLitElements extends AbstractParserRuleElementFinder {
@@ -726,6 +778,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private PatElements pPat;
 	private TypeElements pType;
 	private PrimitiveTypeElements pPrimitiveType;
+	private TupleTypeElements pTupleType;
 	private TerminalRule tINT_TYPE;
 	private TerminalRule tINT_SIZE;
 	private TerminalRule tSIGNED_INT_TYPE;
@@ -944,7 +997,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Type:
-	//	PrimitiveType;
+	//	PrimitiveType | TupleType;
 	public TypeElements getTypeAccess() {
 		return (pType != null) ? pType : (pType = new TypeElements());
 	}
@@ -962,6 +1015,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimitiveTypeRule() {
 		return getPrimitiveTypeAccess().getRule();
+	}
+
+	//TupleType:
+	//	"(" types+=Type ("," types+=Type)* ")";
+	public TupleTypeElements getTupleTypeAccess() {
+		return (pTupleType != null) ? pTupleType : (pTupleType = new TupleTypeElements());
+	}
+	
+	public ParserRule getTupleTypeRule() {
+		return getTupleTypeAccess().getRule();
 	}
 
 	//terminal INT_TYPE:

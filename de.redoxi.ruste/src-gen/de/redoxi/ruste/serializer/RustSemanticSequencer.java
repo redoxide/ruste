@@ -20,6 +20,7 @@ import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
+import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -152,6 +153,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getLiteralRule() ||
 				   context == grammarAccess.getStringLitRule()) {
 					sequence_StringLit(context, (StringLit) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.TUPLE_TYPE:
+				if(context == grammarAccess.getTupleTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_TupleType(context, (TupleType) semanticObject); 
 					return; 
 				}
 				else break;
@@ -366,5 +374,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (types+=Type types+=Type*)
+	 */
+	protected void sequence_TupleType(EObject context, TupleType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

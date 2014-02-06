@@ -950,9 +950,9 @@ ruleType returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getTypeAccess().getPrimitiveTypeParserRuleCall()); 
+        newCompositeNode(grammarAccess.getTypeAccess().getPrimitiveTypeParserRuleCall_0()); 
     }
     this_PrimitiveType_0=rulePrimitiveType
     { 
@@ -960,6 +960,16 @@ ruleType returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getTypeAccess().getTupleTypeParserRuleCall_1()); 
+    }
+    this_TupleType_1=ruleTupleType
+    { 
+        $current = $this_TupleType_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -1035,6 +1045,75 @@ rulePrimitiveType returns [EObject current=null]
     newLeafNode(this_UNIT_TYPE_9, grammarAccess.getPrimitiveTypeAccess().getUNIT_TYPETerminalRuleCall_4_1()); 
     }
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleTupleType
+entryRuleTupleType returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTupleTypeRule()); }
+	 iv_ruleTupleType=ruleTupleType 
+	 { $current=$iv_ruleTupleType.current; } 
+	 EOF 
+;
+
+// Rule TupleType
+ruleTupleType returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='(' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getTupleTypeAccess().getLeftParenthesisKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTupleTypeAccess().getTypesTypeParserRuleCall_1_0()); 
+	    }
+		lv_types_1_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTupleTypeRule());
+	        }
+       		add(
+       			$current, 
+       			"types",
+        		lv_types_1_0, 
+        		"Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_2=',' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getTupleTypeAccess().getCommaKeyword_2_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTupleTypeAccess().getTypesTypeParserRuleCall_2_1_0()); 
+	    }
+		lv_types_3_0=ruleType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTupleTypeRule());
+	        }
+       		add(
+       			$current, 
+       			"types",
+        		lv_types_3_0, 
+        		"Type");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_4=')' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getTupleTypeAccess().getRightParenthesisKeyword_3());
+    }
+)
 ;
 
 

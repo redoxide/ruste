@@ -40,6 +40,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAttrAccess().getAlternatives(), "rule__Attr__Alternatives");
 					put(grammarAccess.getItemAccess().getAlternatives(), "rule__Item__Alternatives");
 					put(grammarAccess.getModItemAccess().getAlternatives_2(), "rule__ModItem__Alternatives_2");
+					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 					put(grammarAccess.getPrimitiveTypeAccess().getAlternatives(), "rule__PrimitiveType__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getNumberLitAccess().getValueAlternatives_0(), "rule__NumberLit__ValueAlternatives_0");
@@ -67,6 +68,8 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimitiveTypeAccess().getGroup_2(), "rule__PrimitiveType__Group_2__0");
 					put(grammarAccess.getPrimitiveTypeAccess().getGroup_3(), "rule__PrimitiveType__Group_3__0");
 					put(grammarAccess.getPrimitiveTypeAccess().getGroup_4(), "rule__PrimitiveType__Group_4__0");
+					put(grammarAccess.getTupleTypeAccess().getGroup(), "rule__TupleType__Group__0");
+					put(grammarAccess.getTupleTypeAccess().getGroup_2(), "rule__TupleType__Group_2__0");
 					put(grammarAccess.getCrateAccess().getItemsAssignment(), "rule__Crate__ItemsAssignment");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_1(), "rule__ItemAttr__AttrsAssignment_1");
 					put(grammarAccess.getItemAttrAccess().getAttrsAssignment_2_1(), "rule__ItemAttr__AttrsAssignment_2_1");
@@ -93,6 +96,8 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArgAccess().getPatAssignment_0(), "rule__Arg__PatAssignment_0");
 					put(grammarAccess.getArgAccess().getTypeAssignment_2(), "rule__Arg__TypeAssignment_2");
 					put(grammarAccess.getPatAccess().getIdentAssignment(), "rule__Pat__IdentAssignment");
+					put(grammarAccess.getTupleTypeAccess().getTypesAssignment_1(), "rule__TupleType__TypesAssignment_1");
+					put(grammarAccess.getTupleTypeAccess().getTypesAssignment_2_1(), "rule__TupleType__TypesAssignment_2_1");
 					put(grammarAccess.getStringLitAccess().getValueAssignment(), "rule__StringLit__ValueAssignment");
 					put(grammarAccess.getNumberLitAccess().getValueAssignment(), "rule__NumberLit__ValueAssignment");
 					put(grammarAccess.getCharLitAccess().getValueAssignment(), "rule__CharLit__ValueAssignment");

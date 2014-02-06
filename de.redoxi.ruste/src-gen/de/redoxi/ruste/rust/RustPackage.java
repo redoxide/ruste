@@ -530,6 +530,34 @@ public interface RustPackage extends EPackage
   int PRIMITIVE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.TupleTypeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
+   * @generated
+   */
+  int TUPLE_TYPE = 14;
+
+  /**
+   * The feature id for the '<em><b>Types</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_TYPE__TYPES = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Tuple Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TUPLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.LiteralImpl <em>Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -537,7 +565,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 15;
+  int LITERAL = 16;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -565,7 +593,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 14;
+  int STRING_LIT = 15;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -593,7 +621,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 16;
+  int NUMBER_LIT = 17;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -621,7 +649,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 17;
+  int CHAR_LIT = 18;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -649,7 +677,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 18;
+  int INT_TYPE = 19;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -668,7 +696,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 19;
+  int FLOAT_TYPE = 20;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -687,7 +715,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 20;
+  int BOOL_TYPE = 21;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -706,7 +734,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 21;
+  int MACHINE_TYPE = 22;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -725,7 +753,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 22;
+  int UNIT_TYPE = 23;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1085,6 +1113,27 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getPrimitiveType();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.TupleType <em>Tuple Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Tuple Type</em>'.
+   * @see de.redoxi.ruste.rust.TupleType
+   * @generated
+   */
+  EClass getTupleType();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TupleType#getTypes <em>Types</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Types</em>'.
+   * @see de.redoxi.ruste.rust.TupleType#getTypes()
+   * @see #getTupleType()
+   * @generated
+   */
+  EReference getTupleType_Types();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.StringLit <em>String Lit</em>}'.
@@ -1501,6 +1550,24 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.TupleTypeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
+     * @generated
+     */
+    EClass TUPLE_TYPE = eINSTANCE.getTupleType();
+
+    /**
+     * The meta object literal for the '<em><b>Types</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TUPLE_TYPE__TYPES = eINSTANCE.getTupleType_Types();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.StringLitImpl <em>String Lit</em>}' class.

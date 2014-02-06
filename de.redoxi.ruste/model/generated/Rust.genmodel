@@ -52,6 +52,9 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Type"/>
     <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
+    <genClasses ecoreClass="Rust.ecore#//TupleType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TupleType/types"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StringLit"/>
     <genClasses ecoreClass="Rust.ecore#//Literal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Literal/value"/>

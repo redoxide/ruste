@@ -69,7 +69,8 @@ Pat:
 ;
 
 Type:
-	PrimitiveType
+	PrimitiveType |
+	TupleType
 ;
 
 PrimitiveType:
@@ -78,6 +79,10 @@ PrimitiveType:
 	{BoolType} BOOLEAN_TYPE |
 	{MachineType} MACHINE_TYPE |
 	{UnitType} UNIT_TYPE
+;
+
+TupleType:
+	'(' types+=Type (',' types+=Type)* ')'
 ;
 
 terminal INT_TYPE: INT_SIZE;

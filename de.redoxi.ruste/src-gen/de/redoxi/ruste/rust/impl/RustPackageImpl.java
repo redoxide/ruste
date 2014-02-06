@@ -25,6 +25,7 @@ import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
+import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.Type;
 import de.redoxi.ruste.rust.UnitType;
 
@@ -140,6 +141,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass primitiveTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tupleTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -602,6 +610,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTupleType()
+  {
+    return tupleTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTupleType_Types()
+  {
+    return (EReference)tupleTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getStringLit()
   {
     return stringLitEClass;
@@ -774,6 +802,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
+    tupleTypeEClass = createEClass(TUPLE_TYPE);
+    createEReference(tupleTypeEClass, TUPLE_TYPE__TYPES);
+
     stringLitEClass = createEClass(STRING_LIT);
 
     literalEClass = createEClass(LITERAL);
@@ -828,6 +859,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     modItemEClass.getESuperTypes().add(this.getItem());
     fnItemEClass.getESuperTypes().add(this.getItem());
     primitiveTypeEClass.getESuperTypes().add(this.getType());
+    tupleTypeEClass.getESuperTypes().add(this.getType());
     stringLitEClass.getESuperTypes().add(this.getLiteral());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
     charLitEClass.getESuperTypes().add(this.getLiteral());
@@ -884,6 +916,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTupleType_Types(), this.getType(), null, "types", null, 0, -1, TupleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stringLitEClass, StringLit.class, "StringLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -145,6 +145,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createPrimitiveTypeAdapter();
       }
       @Override
+      public Adapter caseTupleType(TupleType object)
+      {
+        return createTupleTypeAdapter();
+      }
+      @Override
       public Adapter caseStringLit(StringLit object)
       {
         return createStringLitAdapter();
@@ -417,6 +422,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrimitiveTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TupleType <em>Tuple Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.TupleType
+   * @generated
+   */
+  public Adapter createTupleTypeAdapter()
   {
     return null;
   }
