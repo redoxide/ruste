@@ -64,8 +64,52 @@ Arg:
 ;
 
 // TODO Expand
+// See line 2869 of libsyntax/parse/parser.rs
 Pat:
-	ident = IDENT
+	PatWildcard |									
+	PatWildcardMulti |						
+	PatIdent |
+	PatTuple |
+	PatVector |
+	PatLiteral |
+	PatRange
+;
+
+PatWildcard:
+	{PatWildcard} '_'
+;
+
+PatWildcardMulti:
+	{PatWildcardMulti} '..'
+;
+
+PatIdent:
+	mutable?=MUT_KEYWORD ident=IDENT
+;
+
+PatTuple:
+	'(' patterns+=Pat (',' patterns+=Pat)* ')'
+;
+
+PatVector:
+	'[' patterns+=Pat (',' patterns+=Pat)* ']'
+;
+
+PatLiteral:
+	literal=Literal
+;
+
+PatRange:
+	PatCharRange |
+	PatNumberRange
+;
+
+PatCharRange:
+	start=CharLit '..' end=CharLit
+;
+
+PatNumberRange:
+	start=NumberLit '..' end=NumberLit
 ;
 
 Type:
@@ -73,9 +117,9 @@ Type:
 	TupleType |
 	StructType |
 	EnumType |
-	BoxedType |
-	OwnedType |
-	BorrowedType
+	BoxedPointer |
+	OwnedPointer |
+	BorrowedPointer
 ;
 
 PrimitiveType:
@@ -95,15 +139,15 @@ StructType:
 	"struct" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
 ;
 
-BoxedType:
+BoxedPointer:
 	"@" type=Type
 ;
 
-OwnedType:
+OwnedPointer:
 	"~" type=Type
 ;
 
-BorrowedType:
+BorrowedPointer:
 	"&" type=Type
 ;
 
@@ -156,6 +200,8 @@ terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
 terminal fragment MACHINE_INT_TYPE: "int";
 terminal fragment MACHINE_UINT_TYPE: "uint";
 terminal UNIT_TYPE: "()";
+
+terminal MUT_KEYWORD: 'mut';
 
 StringLit: 
 	value = STRING_LIT

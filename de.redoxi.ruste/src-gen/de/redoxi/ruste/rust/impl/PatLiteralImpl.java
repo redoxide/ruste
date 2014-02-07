@@ -2,9 +2,9 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.BoxedType;
+import de.redoxi.ruste.rust.Literal;
+import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.RustPackage;
-import de.redoxi.ruste.rust.Type;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,35 +16,35 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Boxed Type</b></em>'.
+ * An implementation of the model object '<em><b>Pat Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.BoxedTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.PatLiteralImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BoxedTypeImpl extends TypeImpl implements BoxedType
+public class PatLiteralImpl extends PatImpl implements PatLiteral
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getLiteral()
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected Literal literal;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected BoxedTypeImpl()
+  protected PatLiteralImpl()
   {
     super();
   }
@@ -57,7 +57,7 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.BOXED_TYPE;
+    return RustPackage.Literals.PAT_LITERAL;
   }
 
   /**
@@ -65,9 +65,9 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getType()
+  public Literal getLiteral()
   {
-    return type;
+    return literal;
   }
 
   /**
@@ -75,13 +75,13 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
+  public NotificationChain basicSetLiteral(Literal newLiteral, NotificationChain msgs)
   {
-    Type oldType = type;
-    type = newType;
+    Literal oldLiteral = literal;
+    literal = newLiteral;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.BOXED_TYPE__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.PAT_LITERAL__LITERAL, oldLiteral, newLiteral);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -92,20 +92,20 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type newType)
+  public void setLiteral(Literal newLiteral)
   {
-    if (newType != type)
+    if (newLiteral != literal)
     {
       NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.BOXED_TYPE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.BOXED_TYPE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
+      if (literal != null)
+        msgs = ((InternalEObject)literal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.PAT_LITERAL__LITERAL, null, msgs);
+      if (newLiteral != null)
+        msgs = ((InternalEObject)newLiteral).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.PAT_LITERAL__LITERAL, null, msgs);
+      msgs = basicSetLiteral(newLiteral, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.BOXED_TYPE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.PAT_LITERAL__LITERAL, newLiteral, newLiteral));
   }
 
   /**
@@ -118,8 +118,8 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   {
     switch (featureID)
     {
-      case RustPackage.BOXED_TYPE__TYPE:
-        return basicSetType(null, msgs);
+      case RustPackage.PAT_LITERAL__LITERAL:
+        return basicSetLiteral(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -134,8 +134,8 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   {
     switch (featureID)
     {
-      case RustPackage.BOXED_TYPE__TYPE:
-        return getType();
+      case RustPackage.PAT_LITERAL__LITERAL:
+        return getLiteral();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -150,8 +150,8 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   {
     switch (featureID)
     {
-      case RustPackage.BOXED_TYPE__TYPE:
-        setType((Type)newValue);
+      case RustPackage.PAT_LITERAL__LITERAL:
+        setLiteral((Literal)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -167,8 +167,8 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   {
     switch (featureID)
     {
-      case RustPackage.BOXED_TYPE__TYPE:
-        setType((Type)null);
+      case RustPackage.PAT_LITERAL__LITERAL:
+        setLiteral((Literal)null);
         return;
     }
     super.eUnset(featureID);
@@ -184,10 +184,10 @@ public class BoxedTypeImpl extends TypeImpl implements BoxedType
   {
     switch (featureID)
     {
-      case RustPackage.BOXED_TYPE__TYPE:
-        return type != null;
+      case RustPackage.PAT_LITERAL__LITERAL:
+        return literal != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //BoxedTypeImpl
+} //PatLiteralImpl

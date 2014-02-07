@@ -135,6 +135,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createPatAdapter();
       }
       @Override
+      public Adapter casePatWildcard(PatWildcard object)
+      {
+        return createPatWildcardAdapter();
+      }
+      @Override
+      public Adapter casePatWildcardMulti(PatWildcardMulti object)
+      {
+        return createPatWildcardMultiAdapter();
+      }
+      @Override
+      public Adapter casePatIdent(PatIdent object)
+      {
+        return createPatIdentAdapter();
+      }
+      @Override
+      public Adapter casePatTuple(PatTuple object)
+      {
+        return createPatTupleAdapter();
+      }
+      @Override
+      public Adapter casePatVector(PatVector object)
+      {
+        return createPatVectorAdapter();
+      }
+      @Override
+      public Adapter casePatLiteral(PatLiteral object)
+      {
+        return createPatLiteralAdapter();
+      }
+      @Override
+      public Adapter casePatRange(PatRange object)
+      {
+        return createPatRangeAdapter();
+      }
+      @Override
+      public Adapter casePatCharRange(PatCharRange object)
+      {
+        return createPatCharRangeAdapter();
+      }
+      @Override
+      public Adapter casePatNumberRange(PatNumberRange object)
+      {
+        return createPatNumberRangeAdapter();
+      }
+      @Override
       public Adapter caseType(Type object)
       {
         return createTypeAdapter();
@@ -155,19 +200,19 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createStructTypeAdapter();
       }
       @Override
-      public Adapter caseBoxedType(BoxedType object)
+      public Adapter caseBoxedPointer(BoxedPointer object)
       {
-        return createBoxedTypeAdapter();
+        return createBoxedPointerAdapter();
       }
       @Override
-      public Adapter caseOwnedType(OwnedType object)
+      public Adapter caseOwnedPointer(OwnedPointer object)
       {
-        return createOwnedTypeAdapter();
+        return createOwnedPointerAdapter();
       }
       @Override
-      public Adapter caseBorrowedType(BorrowedType object)
+      public Adapter caseBorrowedPointer(BorrowedPointer object)
       {
-        return createBorrowedTypeAdapter();
+        return createBorrowedPointerAdapter();
       }
       @Override
       public Adapter caseStructField(StructField object)
@@ -447,6 +492,141 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatWildcard <em>Pat Wildcard</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatWildcard
+   * @generated
+   */
+  public Adapter createPatWildcardAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatWildcardMulti <em>Pat Wildcard Multi</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatWildcardMulti
+   * @generated
+   */
+  public Adapter createPatWildcardMultiAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatIdent <em>Pat Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatIdent
+   * @generated
+   */
+  public Adapter createPatIdentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatTuple <em>Pat Tuple</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatTuple
+   * @generated
+   */
+  public Adapter createPatTupleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatVector <em>Pat Vector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatVector
+   * @generated
+   */
+  public Adapter createPatVectorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatLiteral <em>Pat Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatLiteral
+   * @generated
+   */
+  public Adapter createPatLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatRange <em>Pat Range</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatRange
+   * @generated
+   */
+  public Adapter createPatRangeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatCharRange <em>Pat Char Range</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatCharRange
+   * @generated
+   */
+  public Adapter createPatCharRangeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatNumberRange <em>Pat Number Range</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatNumberRange
+   * @generated
+   */
+  public Adapter createPatNumberRangeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -507,46 +687,46 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BoxedType <em>Boxed Type</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BoxedPointer <em>Boxed Pointer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.BoxedType
+   * @see de.redoxi.ruste.rust.BoxedPointer
    * @generated
    */
-  public Adapter createBoxedTypeAdapter()
+  public Adapter createBoxedPointerAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OwnedType <em>Owned Type</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OwnedPointer <em>Owned Pointer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.OwnedType
+   * @see de.redoxi.ruste.rust.OwnedPointer
    * @generated
    */
-  public Adapter createOwnedTypeAdapter()
+  public Adapter createOwnedPointerAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BorrowedType <em>Borrowed Type</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.BorrowedPointer <em>Borrowed Pointer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.BorrowedType
+   * @see de.redoxi.ruste.rust.BorrowedPointer
    * @generated
    */
-  public Adapter createBorrowedTypeAdapter()
+  public Adapter createBorrowedPointerAdapter()
   {
     return null;
   }

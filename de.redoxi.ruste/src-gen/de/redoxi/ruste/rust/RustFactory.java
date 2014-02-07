@@ -131,6 +131,87 @@ public interface RustFactory extends EFactory
   Pat createPat();
 
   /**
+   * Returns a new object of class '<em>Pat Wildcard</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Wildcard</em>'.
+   * @generated
+   */
+  PatWildcard createPatWildcard();
+
+  /**
+   * Returns a new object of class '<em>Pat Wildcard Multi</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Wildcard Multi</em>'.
+   * @generated
+   */
+  PatWildcardMulti createPatWildcardMulti();
+
+  /**
+   * Returns a new object of class '<em>Pat Ident</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Ident</em>'.
+   * @generated
+   */
+  PatIdent createPatIdent();
+
+  /**
+   * Returns a new object of class '<em>Pat Tuple</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Tuple</em>'.
+   * @generated
+   */
+  PatTuple createPatTuple();
+
+  /**
+   * Returns a new object of class '<em>Pat Vector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Vector</em>'.
+   * @generated
+   */
+  PatVector createPatVector();
+
+  /**
+   * Returns a new object of class '<em>Pat Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Literal</em>'.
+   * @generated
+   */
+  PatLiteral createPatLiteral();
+
+  /**
+   * Returns a new object of class '<em>Pat Range</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Range</em>'.
+   * @generated
+   */
+  PatRange createPatRange();
+
+  /**
+   * Returns a new object of class '<em>Pat Char Range</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Char Range</em>'.
+   * @generated
+   */
+  PatCharRange createPatCharRange();
+
+  /**
+   * Returns a new object of class '<em>Pat Number Range</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Number Range</em>'.
+   * @generated
+   */
+  PatNumberRange createPatNumberRange();
+
+  /**
    * Returns a new object of class '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -167,31 +248,31 @@ public interface RustFactory extends EFactory
   StructType createStructType();
 
   /**
-   * Returns a new object of class '<em>Boxed Type</em>'.
+   * Returns a new object of class '<em>Boxed Pointer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Boxed Type</em>'.
+   * @return a new object of class '<em>Boxed Pointer</em>'.
    * @generated
    */
-  BoxedType createBoxedType();
+  BoxedPointer createBoxedPointer();
 
   /**
-   * Returns a new object of class '<em>Owned Type</em>'.
+   * Returns a new object of class '<em>Owned Pointer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Owned Type</em>'.
+   * @return a new object of class '<em>Owned Pointer</em>'.
    * @generated
    */
-  OwnedType createOwnedType();
+  OwnedPointer createOwnedPointer();
 
   /**
-   * Returns a new object of class '<em>Borrowed Type</em>'.
+   * Returns a new object of class '<em>Borrowed Pointer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Borrowed Type</em>'.
+   * @return a new object of class '<em>Borrowed Pointer</em>'.
    * @generated
    */
-  BorrowedType createBorrowedType();
+  BorrowedPointer createBorrowedPointer();
 
   /**
    * Returns a new object of class '<em>Struct Field</em>'.

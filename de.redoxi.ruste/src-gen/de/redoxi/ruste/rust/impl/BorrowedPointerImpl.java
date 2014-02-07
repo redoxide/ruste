@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.OwnedType;
+import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.Type;
 
@@ -16,18 +16,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Owned Type</b></em>'.
+ * An implementation of the model object '<em><b>Borrowed Pointer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.OwnedTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.BorrowedPointerImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class OwnedTypeImpl extends TypeImpl implements OwnedType
+public class BorrowedPointerImpl extends TypeImpl implements BorrowedPointer
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -44,7 +44,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OwnedTypeImpl()
+  protected BorrowedPointerImpl()
   {
     super();
   }
@@ -57,7 +57,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.OWNED_TYPE;
+    return RustPackage.Literals.BORROWED_POINTER;
   }
 
   /**
@@ -81,7 +81,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.OWNED_TYPE__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.BORROWED_POINTER__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -98,14 +98,14 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.OWNED_TYPE__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.BORROWED_POINTER__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.OWNED_TYPE__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.BORROWED_POINTER__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.OWNED_TYPE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.BORROWED_POINTER__TYPE, newType, newType));
   }
 
   /**
@@ -118,7 +118,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   {
     switch (featureID)
     {
-      case RustPackage.OWNED_TYPE__TYPE:
+      case RustPackage.BORROWED_POINTER__TYPE:
         return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   {
     switch (featureID)
     {
-      case RustPackage.OWNED_TYPE__TYPE:
+      case RustPackage.BORROWED_POINTER__TYPE:
         return getType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -150,7 +150,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   {
     switch (featureID)
     {
-      case RustPackage.OWNED_TYPE__TYPE:
+      case RustPackage.BORROWED_POINTER__TYPE:
         setType((Type)newValue);
         return;
     }
@@ -167,7 +167,7 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   {
     switch (featureID)
     {
-      case RustPackage.OWNED_TYPE__TYPE:
+      case RustPackage.BORROWED_POINTER__TYPE:
         setType((Type)null);
         return;
     }
@@ -184,10 +184,10 @@ public class OwnedTypeImpl extends TypeImpl implements OwnedType
   {
     switch (featureID)
     {
-      case RustPackage.OWNED_TYPE__TYPE:
+      case RustPackage.BORROWED_POINTER__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //OwnedTypeImpl
+} //BorrowedPointerImpl

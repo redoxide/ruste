@@ -5,21 +5,21 @@ package de.redoxi.ruste.rust;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Owned Type</b></em>'.
+ * A representation of the model object '<em><b>Boxed Pointer</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.OwnedType#getType <em>Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.BoxedPointer#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getOwnedType()
+ * @see de.redoxi.ruste.rust.RustPackage#getBoxedPointer()
  * @model
  * @generated
  */
-public interface OwnedType extends Type
+public interface BoxedPointer extends Type
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -31,14 +31,14 @@ public interface OwnedType extends Type
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
-   * @see de.redoxi.ruste.rust.RustPackage#getOwnedType_Type()
+   * @see de.redoxi.ruste.rust.RustPackage#getBoxedPointer_Type()
    * @model containment="true"
    * @generated
    */
   Type getType();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.OwnedType#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.BoxedPointer#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
@@ -47,4 +47,4 @@ public interface OwnedType extends Type
    */
   void setType(Type value);
 
-} // OwnedType
+} // BoxedPointer

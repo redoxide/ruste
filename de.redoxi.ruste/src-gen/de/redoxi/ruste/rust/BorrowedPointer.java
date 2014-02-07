@@ -5,21 +5,21 @@ package de.redoxi.ruste.rust;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Boxed Type</b></em>'.
+ * A representation of the model object '<em><b>Borrowed Pointer</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.BoxedType#getType <em>Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.BorrowedPointer#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getBoxedType()
+ * @see de.redoxi.ruste.rust.RustPackage#getBorrowedPointer()
  * @model
  * @generated
  */
-public interface BoxedType extends Type
+public interface BorrowedPointer extends Type
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -31,14 +31,14 @@ public interface BoxedType extends Type
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
-   * @see de.redoxi.ruste.rust.RustPackage#getBoxedType_Type()
+   * @see de.redoxi.ruste.rust.RustPackage#getBorrowedPointer_Type()
    * @model containment="true"
    * @generated
    */
   Type getType();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.BoxedType#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.BorrowedPointer#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
@@ -47,4 +47,4 @@ public interface BoxedType extends Type
    */
   void setType(Type value);
 
-} // BoxedType
+} // BorrowedPointer

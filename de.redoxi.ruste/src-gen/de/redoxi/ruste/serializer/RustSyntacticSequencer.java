@@ -31,6 +31,8 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getINT_TYPEToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getMACHINE_TYPERule())
 			return getMACHINE_TYPEToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getMUT_KEYWORDRule())
+			return getMUT_KEYWORDToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getUNIT_TYPERule())
 			return getUNIT_TYPEToken(semanticObject, ruleCall, node);
 		return "";
@@ -70,6 +72,15 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "int";
+	}
+	
+	/**
+	 * terminal MUT_KEYWORD: 'mut';
+	 */
+	protected String getMUT_KEYWORDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "mut";
 	}
 	
 	/**

@@ -160,6 +160,80 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.PAT_WILDCARD:
+      {
+        PatWildcard patWildcard = (PatWildcard)theEObject;
+        T result = casePatWildcard(patWildcard);
+        if (result == null) result = casePat(patWildcard);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_WILDCARD_MULTI:
+      {
+        PatWildcardMulti patWildcardMulti = (PatWildcardMulti)theEObject;
+        T result = casePatWildcardMulti(patWildcardMulti);
+        if (result == null) result = casePat(patWildcardMulti);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_IDENT:
+      {
+        PatIdent patIdent = (PatIdent)theEObject;
+        T result = casePatIdent(patIdent);
+        if (result == null) result = casePat(patIdent);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_TUPLE:
+      {
+        PatTuple patTuple = (PatTuple)theEObject;
+        T result = casePatTuple(patTuple);
+        if (result == null) result = casePat(patTuple);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_VECTOR:
+      {
+        PatVector patVector = (PatVector)theEObject;
+        T result = casePatVector(patVector);
+        if (result == null) result = casePat(patVector);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_LITERAL:
+      {
+        PatLiteral patLiteral = (PatLiteral)theEObject;
+        T result = casePatLiteral(patLiteral);
+        if (result == null) result = casePat(patLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_RANGE:
+      {
+        PatRange patRange = (PatRange)theEObject;
+        T result = casePatRange(patRange);
+        if (result == null) result = casePat(patRange);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_CHAR_RANGE:
+      {
+        PatCharRange patCharRange = (PatCharRange)theEObject;
+        T result = casePatCharRange(patCharRange);
+        if (result == null) result = casePatRange(patCharRange);
+        if (result == null) result = casePat(patCharRange);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_NUMBER_RANGE:
+      {
+        PatNumberRange patNumberRange = (PatNumberRange)theEObject;
+        T result = casePatNumberRange(patNumberRange);
+        if (result == null) result = casePatRange(patNumberRange);
+        if (result == null) result = casePat(patNumberRange);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.TYPE:
       {
         Type type = (Type)theEObject;
@@ -191,27 +265,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.BOXED_TYPE:
+      case RustPackage.BOXED_POINTER:
       {
-        BoxedType boxedType = (BoxedType)theEObject;
-        T result = caseBoxedType(boxedType);
-        if (result == null) result = caseType(boxedType);
+        BoxedPointer boxedPointer = (BoxedPointer)theEObject;
+        T result = caseBoxedPointer(boxedPointer);
+        if (result == null) result = caseType(boxedPointer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.OWNED_TYPE:
+      case RustPackage.OWNED_POINTER:
       {
-        OwnedType ownedType = (OwnedType)theEObject;
-        T result = caseOwnedType(ownedType);
-        if (result == null) result = caseType(ownedType);
+        OwnedPointer ownedPointer = (OwnedPointer)theEObject;
+        T result = caseOwnedPointer(ownedPointer);
+        if (result == null) result = caseType(ownedPointer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.BORROWED_TYPE:
+      case RustPackage.BORROWED_POINTER:
       {
-        BorrowedType borrowedType = (BorrowedType)theEObject;
-        T result = caseBorrowedType(borrowedType);
-        if (result == null) result = caseType(borrowedType);
+        BorrowedPointer borrowedPointer = (BorrowedPointer)theEObject;
+        T result = caseBorrowedPointer(borrowedPointer);
+        if (result == null) result = caseType(borrowedPointer);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -534,6 +608,150 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Wildcard</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Wildcard</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatWildcard(PatWildcard object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Wildcard Multi</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Wildcard Multi</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatWildcardMulti(PatWildcardMulti object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Ident</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Ident</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatIdent(PatIdent object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Tuple</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Tuple</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatTuple(PatTuple object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Vector</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Vector</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatVector(PatVector object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatLiteral(PatLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Range</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Range</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatRange(PatRange object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Char Range</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Char Range</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatCharRange(PatCharRange object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Number Range</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Number Range</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatNumberRange(PatNumberRange object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -598,49 +816,49 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Boxed Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Boxed Pointer</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Boxed Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Boxed Pointer</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBoxedType(BoxedType object)
+  public T caseBoxedPointer(BoxedPointer object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Owned Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Owned Pointer</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Owned Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Owned Pointer</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOwnedType(OwnedType object)
+  public T caseOwnedPointer(OwnedPointer object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Borrowed Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Borrowed Pointer</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Borrowed Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Borrowed Pointer</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBorrowedType(BorrowedType object)
+  public T caseBorrowedPointer(BorrowedPointer object)
   {
     return null;
   }

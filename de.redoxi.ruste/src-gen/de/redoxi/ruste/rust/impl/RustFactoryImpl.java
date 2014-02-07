@@ -77,13 +77,22 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
       case RustPackage.PAT: return createPat();
+      case RustPackage.PAT_WILDCARD: return createPatWildcard();
+      case RustPackage.PAT_WILDCARD_MULTI: return createPatWildcardMulti();
+      case RustPackage.PAT_IDENT: return createPatIdent();
+      case RustPackage.PAT_TUPLE: return createPatTuple();
+      case RustPackage.PAT_VECTOR: return createPatVector();
+      case RustPackage.PAT_LITERAL: return createPatLiteral();
+      case RustPackage.PAT_RANGE: return createPatRange();
+      case RustPackage.PAT_CHAR_RANGE: return createPatCharRange();
+      case RustPackage.PAT_NUMBER_RANGE: return createPatNumberRange();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.TUPLE_TYPE: return createTupleType();
       case RustPackage.STRUCT_TYPE: return createStructType();
-      case RustPackage.BOXED_TYPE: return createBoxedType();
-      case RustPackage.OWNED_TYPE: return createOwnedType();
-      case RustPackage.BORROWED_TYPE: return createBorrowedType();
+      case RustPackage.BOXED_POINTER: return createBoxedPointer();
+      case RustPackage.OWNED_POINTER: return createOwnedPointer();
+      case RustPackage.BORROWED_POINTER: return createBorrowedPointer();
       case RustPackage.STRUCT_FIELD: return createStructField();
       case RustPackage.ENUM_TYPE: return createEnumType();
       case RustPackage.VARIANT: return createVariant();
@@ -275,6 +284,105 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PatWildcard createPatWildcard()
+  {
+    PatWildcardImpl patWildcard = new PatWildcardImpl();
+    return patWildcard;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatWildcardMulti createPatWildcardMulti()
+  {
+    PatWildcardMultiImpl patWildcardMulti = new PatWildcardMultiImpl();
+    return patWildcardMulti;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatIdent createPatIdent()
+  {
+    PatIdentImpl patIdent = new PatIdentImpl();
+    return patIdent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatTuple createPatTuple()
+  {
+    PatTupleImpl patTuple = new PatTupleImpl();
+    return patTuple;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatVector createPatVector()
+  {
+    PatVectorImpl patVector = new PatVectorImpl();
+    return patVector;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatLiteral createPatLiteral()
+  {
+    PatLiteralImpl patLiteral = new PatLiteralImpl();
+    return patLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatRange createPatRange()
+  {
+    PatRangeImpl patRange = new PatRangeImpl();
+    return patRange;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatCharRange createPatCharRange()
+  {
+    PatCharRangeImpl patCharRange = new PatCharRangeImpl();
+    return patCharRange;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatNumberRange createPatNumberRange()
+  {
+    PatNumberRangeImpl patNumberRange = new PatNumberRangeImpl();
+    return patNumberRange;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Type createType()
   {
     TypeImpl type = new TypeImpl();
@@ -319,10 +427,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BoxedType createBoxedType()
+  public BoxedPointer createBoxedPointer()
   {
-    BoxedTypeImpl boxedType = new BoxedTypeImpl();
-    return boxedType;
+    BoxedPointerImpl boxedPointer = new BoxedPointerImpl();
+    return boxedPointer;
   }
 
   /**
@@ -330,10 +438,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public OwnedType createOwnedType()
+  public OwnedPointer createOwnedPointer()
   {
-    OwnedTypeImpl ownedType = new OwnedTypeImpl();
-    return ownedType;
+    OwnedPointerImpl ownedPointer = new OwnedPointerImpl();
+    return ownedPointer;
   }
 
   /**
@@ -341,10 +449,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BorrowedType createBorrowedType()
+  public BorrowedPointer createBorrowedPointer()
   {
-    BorrowedTypeImpl borrowedType = new BorrowedTypeImpl();
-    return borrowedType;
+    BorrowedPointerImpl borrowedPointer = new BorrowedPointerImpl();
+    return borrowedPointer;
   }
 
   /**

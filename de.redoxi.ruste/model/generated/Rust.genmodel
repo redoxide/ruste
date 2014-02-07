@@ -51,8 +51,30 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arg/pat"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arg/type"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Pat">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Pat/ident"/>
+    <genClasses ecoreClass="Rust.ecore#//Pat"/>
+    <genClasses ecoreClass="Rust.ecore#//PatWildcard"/>
+    <genClasses ecoreClass="Rust.ecore#//PatWildcardMulti"/>
+    <genClasses ecoreClass="Rust.ecore#//PatIdent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/mutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/ident"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatTuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatTuple/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatVector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVector/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatLiteral">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatLiteral/literal"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatRange"/>
+    <genClasses ecoreClass="Rust.ecore#//PatCharRange">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatCharRange/start"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatCharRange/end"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatNumberRange">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/start"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/end"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Type"/>
     <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
@@ -64,14 +86,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructType/fields"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//BoxedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BoxedType/type"/>
+    <genClasses ecoreClass="Rust.ecore#//BoxedPointer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BoxedPointer/type"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//OwnedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OwnedType/type"/>
+    <genClasses ecoreClass="Rust.ecore#//OwnedPointer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OwnedPointer/type"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//BorrowedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BorrowedType/type"/>
+    <genClasses ecoreClass="Rust.ecore#//BorrowedPointer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//BorrowedPointer/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/vis"/>
