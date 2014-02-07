@@ -140,15 +140,6 @@ public interface RustFactory extends EFactory
   PatWildcard createPatWildcard();
 
   /**
-   * Returns a new object of class '<em>Pat Wildcard Multi</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pat Wildcard Multi</em>'.
-   * @generated
-   */
-  PatWildcardMulti createPatWildcardMulti();
-
-  /**
    * Returns a new object of class '<em>Pat Ident</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -156,6 +147,33 @@ public interface RustFactory extends EFactory
    * @generated
    */
   PatIdent createPatIdent();
+
+  /**
+   * Returns a new object of class '<em>Pat Boxed</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Boxed</em>'.
+   * @generated
+   */
+  PatBoxed createPatBoxed();
+
+  /**
+   * Returns a new object of class '<em>Pat Owned</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Owned</em>'.
+   * @generated
+   */
+  PatOwned createPatOwned();
+
+  /**
+   * Returns a new object of class '<em>Pat Borrowed</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Borrowed</em>'.
+   * @generated
+   */
+  PatBorrowed createPatBorrowed();
 
   /**
    * Returns a new object of class '<em>Pat Tuple</em>'.

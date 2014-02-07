@@ -53,10 +53,21 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pat"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatWildcard" eSuperTypes="#//Pat"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatWildcardMulti" eSuperTypes="#//Pat"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatIdent" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatBoxed" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatOwned" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatBorrowed" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatTuple" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"

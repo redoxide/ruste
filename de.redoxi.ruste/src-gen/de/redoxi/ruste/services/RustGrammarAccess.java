@@ -528,42 +528,50 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Pat");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPatWildcardParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPatWildcardMultiParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPatIdentParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cPatTupleParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cPatVectorParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cPatLiteralParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPatRangeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cPatIdentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPatBoxedParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPatOwnedParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cPatBorrowedParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cPatTupleParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cPatVectorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cPatLiteralParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cPatRangeParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//// TODO Expand
 		//// See line 2869 of libsyntax/parse/parser.rs
 		//Pat:
-		//	PatWildcard | PatWildcardMulti | PatIdent | PatTuple | PatVector | PatLiteral | PatRange;
+		//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange;
 		public ParserRule getRule() { return rule; }
 
-		//PatWildcard | PatWildcardMulti | PatIdent | PatTuple | PatVector | PatLiteral | PatRange
+		//PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PatWildcard
 		public RuleCall getPatWildcardParserRuleCall_0() { return cPatWildcardParserRuleCall_0; }
 
-		//PatWildcardMulti
-		public RuleCall getPatWildcardMultiParserRuleCall_1() { return cPatWildcardMultiParserRuleCall_1; }
-
 		//PatIdent
-		public RuleCall getPatIdentParserRuleCall_2() { return cPatIdentParserRuleCall_2; }
+		public RuleCall getPatIdentParserRuleCall_1() { return cPatIdentParserRuleCall_1; }
+
+		//PatBoxed
+		public RuleCall getPatBoxedParserRuleCall_2() { return cPatBoxedParserRuleCall_2; }
+
+		//PatOwned
+		public RuleCall getPatOwnedParserRuleCall_3() { return cPatOwnedParserRuleCall_3; }
+
+		//PatBorrowed
+		public RuleCall getPatBorrowedParserRuleCall_4() { return cPatBorrowedParserRuleCall_4; }
 
 		//PatTuple
-		public RuleCall getPatTupleParserRuleCall_3() { return cPatTupleParserRuleCall_3; }
+		public RuleCall getPatTupleParserRuleCall_5() { return cPatTupleParserRuleCall_5; }
 
 		//PatVector
-		public RuleCall getPatVectorParserRuleCall_4() { return cPatVectorParserRuleCall_4; }
+		public RuleCall getPatVectorParserRuleCall_6() { return cPatVectorParserRuleCall_6; }
 
 		//PatLiteral
-		public RuleCall getPatLiteralParserRuleCall_5() { return cPatLiteralParserRuleCall_5; }
+		public RuleCall getPatLiteralParserRuleCall_7() { return cPatLiteralParserRuleCall_7; }
 
 		//PatRange
-		public RuleCall getPatRangeParserRuleCall_6() { return cPatRangeParserRuleCall_6; }
+		public RuleCall getPatRangeParserRuleCall_8() { return cPatRangeParserRuleCall_8; }
 	}
 
 	public class PatWildcardElements extends AbstractParserRuleElementFinder {
@@ -584,26 +592,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"_"
 		public Keyword get_Keyword_1() { return c_Keyword_1; }
-	}
-
-	public class PatWildcardMultiElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatWildcardMulti");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPatWildcardMultiAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		
-		//PatWildcardMulti:
-		//	{PatWildcardMulti} "..";
-		public ParserRule getRule() { return rule; }
-
-		//{PatWildcardMulti} ".."
-		public Group getGroup() { return cGroup; }
-
-		//{PatWildcardMulti}
-		public Action getPatWildcardMultiAction_0() { return cPatWildcardMultiAction_0; }
-
-		//".."
-		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
 	}
 
 	public class PatIdentElements extends AbstractParserRuleElementFinder {
@@ -632,6 +620,78 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDENT
 		public RuleCall getIdentIDENTTerminalRuleCall_1_0() { return cIdentIDENTTerminalRuleCall_1_0; }
+	}
+
+	public class PatBoxedElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatBoxed");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPatternPatParserRuleCall_1_0 = (RuleCall)cPatternAssignment_1.eContents().get(0);
+		
+		//PatBoxed:
+		//	"@" pattern=Pat;
+		public ParserRule getRule() { return rule; }
+
+		//"@" pattern=Pat
+		public Group getGroup() { return cGroup; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
+
+		//pattern=Pat
+		public Assignment getPatternAssignment_1() { return cPatternAssignment_1; }
+
+		//Pat
+		public RuleCall getPatternPatParserRuleCall_1_0() { return cPatternPatParserRuleCall_1_0; }
+	}
+
+	public class PatOwnedElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatOwned");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTildeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPatternPatParserRuleCall_1_0 = (RuleCall)cPatternAssignment_1.eContents().get(0);
+		
+		//PatOwned:
+		//	"~" pattern=Pat;
+		public ParserRule getRule() { return rule; }
+
+		//"~" pattern=Pat
+		public Group getGroup() { return cGroup; }
+
+		//"~"
+		public Keyword getTildeKeyword_0() { return cTildeKeyword_0; }
+
+		//pattern=Pat
+		public Assignment getPatternAssignment_1() { return cPatternAssignment_1; }
+
+		//Pat
+		public RuleCall getPatternPatParserRuleCall_1_0() { return cPatternPatParserRuleCall_1_0; }
+	}
+
+	public class PatBorrowedElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatBorrowed");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAmpersandKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPatternPatParserRuleCall_1_0 = (RuleCall)cPatternAssignment_1.eContents().get(0);
+		
+		//PatBorrowed:
+		//	"&" pattern=Pat;
+		public ParserRule getRule() { return rule; }
+
+		//"&" pattern=Pat
+		public Group getGroup() { return cGroup; }
+
+		//"&"
+		public Keyword getAmpersandKeyword_0() { return cAmpersandKeyword_0; }
+
+		//pattern=Pat
+		public Assignment getPatternAssignment_1() { return cPatternAssignment_1; }
+
+		//Pat
+		public RuleCall getPatternPatParserRuleCall_1_0() { return cPatternPatParserRuleCall_1_0; }
 	}
 
 	public class PatTupleElements extends AbstractParserRuleElementFinder {
@@ -1589,8 +1649,10 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ArgElements pArg;
 	private PatElements pPat;
 	private PatWildcardElements pPatWildcard;
-	private PatWildcardMultiElements pPatWildcardMulti;
 	private PatIdentElements pPatIdent;
+	private PatBoxedElements pPatBoxed;
+	private PatOwnedElements pPatOwned;
+	private PatBorrowedElements pPatBorrowed;
 	private PatTupleElements pPatTuple;
 	private PatVectorElements pPatVector;
 	private PatLiteralElements pPatLiteral;
@@ -1821,7 +1883,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// TODO Expand
 	//// See line 2869 of libsyntax/parse/parser.rs
 	//Pat:
-	//	PatWildcard | PatWildcardMulti | PatIdent | PatTuple | PatVector | PatLiteral | PatRange;
+	//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange;
 	public PatElements getPatAccess() {
 		return (pPat != null) ? pPat : (pPat = new PatElements());
 	}
@@ -1840,16 +1902,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getPatWildcardAccess().getRule();
 	}
 
-	//PatWildcardMulti:
-	//	{PatWildcardMulti} "..";
-	public PatWildcardMultiElements getPatWildcardMultiAccess() {
-		return (pPatWildcardMulti != null) ? pPatWildcardMulti : (pPatWildcardMulti = new PatWildcardMultiElements());
-	}
-	
-	public ParserRule getPatWildcardMultiRule() {
-		return getPatWildcardMultiAccess().getRule();
-	}
-
 	//PatIdent:
 	//	mutable?=MUT_KEYWORD ident=IDENT;
 	public PatIdentElements getPatIdentAccess() {
@@ -1858,6 +1910,36 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPatIdentRule() {
 		return getPatIdentAccess().getRule();
+	}
+
+	//PatBoxed:
+	//	"@" pattern=Pat;
+	public PatBoxedElements getPatBoxedAccess() {
+		return (pPatBoxed != null) ? pPatBoxed : (pPatBoxed = new PatBoxedElements());
+	}
+	
+	public ParserRule getPatBoxedRule() {
+		return getPatBoxedAccess().getRule();
+	}
+
+	//PatOwned:
+	//	"~" pattern=Pat;
+	public PatOwnedElements getPatOwnedAccess() {
+		return (pPatOwned != null) ? pPatOwned : (pPatOwned = new PatOwnedElements());
+	}
+	
+	public ParserRule getPatOwnedRule() {
+		return getPatOwnedAccess().getRule();
+	}
+
+	//PatBorrowed:
+	//	"&" pattern=Pat;
+	public PatBorrowedElements getPatBorrowedAccess() {
+		return (pPatBorrowed != null) ? pPatBorrowed : (pPatBorrowed = new PatBorrowedElements());
+	}
+	
+	public ParserRule getPatBorrowedRule() {
+		return getPatBorrowedAccess().getRule();
 	}
 
 	//PatTuple:

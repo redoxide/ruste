@@ -53,10 +53,18 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Pat"/>
     <genClasses ecoreClass="Rust.ecore#//PatWildcard"/>
-    <genClasses ecoreClass="Rust.ecore#//PatWildcardMulti"/>
     <genClasses ecoreClass="Rust.ecore#//PatIdent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/mutable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/ident"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatBoxed">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatBoxed/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatOwned">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatOwned/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatBorrowed">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatBorrowed/pattern"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatTuple">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatTuple/patterns"/>

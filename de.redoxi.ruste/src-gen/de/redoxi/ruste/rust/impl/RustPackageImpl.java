@@ -25,15 +25,17 @@ import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.OwnedPointer;
 import de.redoxi.ruste.rust.Pat;
+import de.redoxi.ruste.rust.PatBorrowed;
+import de.redoxi.ruste.rust.PatBoxed;
 import de.redoxi.ruste.rust.PatCharRange;
 import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
+import de.redoxi.ruste.rust.PatOwned;
 import de.redoxi.ruste.rust.PatRange;
 import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
-import de.redoxi.ruste.rust.PatWildcardMulti;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
@@ -161,14 +163,28 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass patWildcardMultiEClass = null;
+  private EClass patIdentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass patIdentEClass = null;
+  private EClass patBoxedEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patOwnedEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patBorrowedEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -751,16 +767,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPatWildcardMulti()
-  {
-    return patWildcardMultiEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPatIdent()
   {
     return patIdentEClass;
@@ -784,6 +790,66 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EAttribute getPatIdent_Ident()
   {
     return (EAttribute)patIdentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatBoxed()
+  {
+    return patBoxedEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatBoxed_Pattern()
+  {
+    return (EReference)patBoxedEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatOwned()
+  {
+    return patOwnedEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatOwned_Pattern()
+  {
+    return (EReference)patOwnedEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatBorrowed()
+  {
+    return patBorrowedEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatBorrowed_Pattern()
+  {
+    return (EReference)patBorrowedEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1400,11 +1466,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     patWildcardEClass = createEClass(PAT_WILDCARD);
 
-    patWildcardMultiEClass = createEClass(PAT_WILDCARD_MULTI);
-
     patIdentEClass = createEClass(PAT_IDENT);
     createEAttribute(patIdentEClass, PAT_IDENT__MUTABLE);
     createEAttribute(patIdentEClass, PAT_IDENT__IDENT);
+
+    patBoxedEClass = createEClass(PAT_BOXED);
+    createEReference(patBoxedEClass, PAT_BOXED__PATTERN);
+
+    patOwnedEClass = createEClass(PAT_OWNED);
+    createEReference(patOwnedEClass, PAT_OWNED__PATTERN);
+
+    patBorrowedEClass = createEClass(PAT_BORROWED);
+    createEReference(patBorrowedEClass, PAT_BORROWED__PATTERN);
 
     patTupleEClass = createEClass(PAT_TUPLE);
     createEReference(patTupleEClass, PAT_TUPLE__PATTERNS);
@@ -1525,8 +1598,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     modItemEClass.getESuperTypes().add(this.getItem());
     fnItemEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
-    patWildcardMultiEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
+    patBoxedEClass.getESuperTypes().add(this.getPat());
+    patOwnedEClass.getESuperTypes().add(this.getPat());
+    patBorrowedEClass.getESuperTypes().add(this.getPat());
     patTupleEClass.getESuperTypes().add(this.getPat());
     patVectorEClass.getESuperTypes().add(this.getPat());
     patLiteralEClass.getESuperTypes().add(this.getPat());
@@ -1597,11 +1672,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(patWildcardEClass, PatWildcard.class, "PatWildcard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(patWildcardMultiEClass, PatWildcardMulti.class, "PatWildcardMulti", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
     initEClass(patIdentEClass, PatIdent.class, "PatIdent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPatIdent_Mutable(), ecorePackage.getEBoolean(), "mutable", null, 0, 1, PatIdent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPatIdent_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, PatIdent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patBoxedEClass, PatBoxed.class, "PatBoxed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatBoxed_Pattern(), this.getPat(), null, "pattern", null, 0, 1, PatBoxed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patOwnedEClass, PatOwned.class, "PatOwned", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatOwned_Pattern(), this.getPat(), null, "pattern", null, 0, 1, PatOwned.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patBorrowedEClass, PatBorrowed.class, "PatBorrowed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatBorrowed_Pattern(), this.getPat(), null, "pattern", null, 0, 1, PatBorrowed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patTupleEClass, PatTuple.class, "PatTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPatTuple_Patterns(), this.getPat(), null, "patterns", null, 0, -1, PatTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

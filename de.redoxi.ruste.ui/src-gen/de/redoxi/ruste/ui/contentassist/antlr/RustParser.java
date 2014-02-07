@@ -68,8 +68,10 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1_2(), "rule__GenericParamDecl__Group_1_2__0");
 					put(grammarAccess.getArgAccess().getGroup(), "rule__Arg__Group__0");
 					put(grammarAccess.getPatWildcardAccess().getGroup(), "rule__PatWildcard__Group__0");
-					put(grammarAccess.getPatWildcardMultiAccess().getGroup(), "rule__PatWildcardMulti__Group__0");
 					put(grammarAccess.getPatIdentAccess().getGroup(), "rule__PatIdent__Group__0");
+					put(grammarAccess.getPatBoxedAccess().getGroup(), "rule__PatBoxed__Group__0");
+					put(grammarAccess.getPatOwnedAccess().getGroup(), "rule__PatOwned__Group__0");
+					put(grammarAccess.getPatBorrowedAccess().getGroup(), "rule__PatBorrowed__Group__0");
 					put(grammarAccess.getPatTupleAccess().getGroup(), "rule__PatTuple__Group__0");
 					put(grammarAccess.getPatTupleAccess().getGroup_2(), "rule__PatTuple__Group_2__0");
 					put(grammarAccess.getPatVectorAccess().getGroup(), "rule__PatVector__Group__0");
@@ -128,6 +130,9 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArgAccess().getTypeAssignment_2(), "rule__Arg__TypeAssignment_2");
 					put(grammarAccess.getPatIdentAccess().getMutableAssignment_0(), "rule__PatIdent__MutableAssignment_0");
 					put(grammarAccess.getPatIdentAccess().getIdentAssignment_1(), "rule__PatIdent__IdentAssignment_1");
+					put(grammarAccess.getPatBoxedAccess().getPatternAssignment_1(), "rule__PatBoxed__PatternAssignment_1");
+					put(grammarAccess.getPatOwnedAccess().getPatternAssignment_1(), "rule__PatOwned__PatternAssignment_1");
+					put(grammarAccess.getPatBorrowedAccess().getPatternAssignment_1(), "rule__PatBorrowed__PatternAssignment_1");
 					put(grammarAccess.getPatTupleAccess().getPatternsAssignment_1(), "rule__PatTuple__PatternsAssignment_1");
 					put(grammarAccess.getPatTupleAccess().getPatternsAssignment_2_1(), "rule__PatTuple__PatternsAssignment_2_1");
 					put(grammarAccess.getPatVectorAccess().getPatternsAssignment_1(), "rule__PatVector__PatternsAssignment_1");

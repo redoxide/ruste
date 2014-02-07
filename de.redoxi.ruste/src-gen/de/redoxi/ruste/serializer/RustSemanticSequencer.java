@@ -21,14 +21,16 @@ import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.OwnedPointer;
+import de.redoxi.ruste.rust.PatBorrowed;
+import de.redoxi.ruste.rust.PatBoxed;
 import de.redoxi.ruste.rust.PatCharRange;
 import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
+import de.redoxi.ruste.rust.PatOwned;
 import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
-import de.redoxi.ruste.rust.PatWildcardMulti;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
@@ -187,6 +189,20 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.PAT_BORROWED:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatBorrowedRule()) {
+					sequence_PatBorrowed(context, (PatBorrowed) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.PAT_BOXED:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatBoxedRule()) {
+					sequence_PatBoxed(context, (PatBoxed) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.PAT_CHAR_RANGE:
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatCharRangeRule() ||
@@ -217,6 +233,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.PAT_OWNED:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatOwnedRule()) {
+					sequence_PatOwned(context, (PatOwned) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.PAT_TUPLE:
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatTupleRule()) {
@@ -235,13 +258,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatWildcardRule()) {
 					sequence_PatWildcard(context, (PatWildcard) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.PAT_WILDCARD_MULTI:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatWildcardMultiRule()) {
-					sequence_PatWildcardMulti(context, (PatWildcardMulti) semanticObject); 
 					return; 
 				}
 				else break;
@@ -489,6 +505,38 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     pattern=Pat
+	 */
+	protected void sequence_PatBorrowed(EObject context, PatBorrowed semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_BORROWED__PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_BORROWED__PATTERN));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPatBorrowedAccess().getPatternPatParserRuleCall_1_0(), semanticObject.getPattern());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     pattern=Pat
+	 */
+	protected void sequence_PatBoxed(EObject context, PatBoxed semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_BOXED__PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_BOXED__PATTERN));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPatBoxedAccess().getPatternPatParserRuleCall_1_0(), semanticObject.getPattern());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (start=CharLit end=CharLit)
 	 */
 	protected void sequence_PatCharRange(EObject context, PatCharRange semanticObject) {
@@ -562,6 +610,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     pattern=Pat
+	 */
+	protected void sequence_PatOwned(EObject context, PatOwned semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_OWNED__PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_OWNED__PATTERN));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPatOwnedAccess().getPatternPatParserRuleCall_1_0(), semanticObject.getPattern());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (patterns+=Pat patterns+=Pat*)
 	 */
 	protected void sequence_PatTuple(EObject context, PatTuple semanticObject) {
@@ -574,15 +638,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (patterns+=Pat patterns+=Pat*)
 	 */
 	protected void sequence_PatVector(EObject context, PatVector semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     {PatWildcardMulti}
-	 */
-	protected void sequence_PatWildcardMulti(EObject context, PatWildcardMulti semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

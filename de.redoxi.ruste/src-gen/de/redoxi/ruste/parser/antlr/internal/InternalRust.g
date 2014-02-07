@@ -924,61 +924,81 @@ rulePat returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatWildcardMultiParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatIdentParserRuleCall_1()); 
     }
-    this_PatWildcardMulti_1=rulePatWildcardMulti
+    this_PatIdent_1=rulePatIdent
     { 
-        $current = $this_PatWildcardMulti_1.current; 
+        $current = $this_PatIdent_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatIdentParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatBoxedParserRuleCall_2()); 
     }
-    this_PatIdent_2=rulePatIdent
+    this_PatBoxed_2=rulePatBoxed
     { 
-        $current = $this_PatIdent_2.current; 
+        $current = $this_PatBoxed_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatTupleParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatOwnedParserRuleCall_3()); 
     }
-    this_PatTuple_3=rulePatTuple
+    this_PatOwned_3=rulePatOwned
     { 
-        $current = $this_PatTuple_3.current; 
+        $current = $this_PatOwned_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatVectorParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatBorrowedParserRuleCall_4()); 
     }
-    this_PatVector_4=rulePatVector
+    this_PatBorrowed_4=rulePatBorrowed
     { 
-        $current = $this_PatVector_4.current; 
+        $current = $this_PatBorrowed_4.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatLiteralParserRuleCall_5()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatTupleParserRuleCall_5()); 
     }
-    this_PatLiteral_5=rulePatLiteral
+    this_PatTuple_5=rulePatTuple
     { 
-        $current = $this_PatLiteral_5.current; 
+        $current = $this_PatTuple_5.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getPatAccess().getPatRangeParserRuleCall_6()); 
+        newCompositeNode(grammarAccess.getPatAccess().getPatVectorParserRuleCall_6()); 
     }
-    this_PatRange_6=rulePatRange
+    this_PatVector_6=rulePatVector
     { 
-        $current = $this_PatRange_6.current; 
+        $current = $this_PatVector_6.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getPatAccess().getPatLiteralParserRuleCall_7()); 
+    }
+    this_PatLiteral_7=rulePatLiteral
+    { 
+        $current = $this_PatLiteral_7.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getPatAccess().getPatRangeParserRuleCall_8()); 
+    }
+    this_PatRange_8=rulePatRange
+    { 
+        $current = $this_PatRange_8.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -1011,37 +1031,6 @@ rulePatWildcard returns [EObject current=null]
 )	otherlv_1='_' 
     {
     	newLeafNode(otherlv_1, grammarAccess.getPatWildcardAccess().get_Keyword_1());
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRulePatWildcardMulti
-entryRulePatWildcardMulti returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPatWildcardMultiRule()); }
-	 iv_rulePatWildcardMulti=rulePatWildcardMulti 
-	 { $current=$iv_rulePatWildcardMulti.current; } 
-	 EOF 
-;
-
-// Rule PatWildcardMulti
-rulePatWildcardMulti returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getPatWildcardMultiAccess().getPatWildcardMultiAction_0(),
-            $current);
-    }
-)	otherlv_1='..' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getPatWildcardMultiAccess().getFullStopFullStopKeyword_1());
     }
 )
 ;
@@ -1097,6 +1086,135 @@ rulePatIdent returns [EObject current=null]
        			"ident",
         		lv_ident_1_0, 
         		"IDENT");
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRulePatBoxed
+entryRulePatBoxed returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPatBoxedRule()); }
+	 iv_rulePatBoxed=rulePatBoxed 
+	 { $current=$iv_rulePatBoxed.current; } 
+	 EOF 
+;
+
+// Rule PatBoxed
+rulePatBoxed returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='@' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getPatBoxedAccess().getCommercialAtKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPatBoxedAccess().getPatternPatParserRuleCall_1_0()); 
+	    }
+		lv_pattern_1_0=rulePat		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPatBoxedRule());
+	        }
+       		set(
+       			$current, 
+       			"pattern",
+        		lv_pattern_1_0, 
+        		"Pat");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRulePatOwned
+entryRulePatOwned returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPatOwnedRule()); }
+	 iv_rulePatOwned=rulePatOwned 
+	 { $current=$iv_rulePatOwned.current; } 
+	 EOF 
+;
+
+// Rule PatOwned
+rulePatOwned returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='~' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getPatOwnedAccess().getTildeKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPatOwnedAccess().getPatternPatParserRuleCall_1_0()); 
+	    }
+		lv_pattern_1_0=rulePat		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPatOwnedRule());
+	        }
+       		set(
+       			$current, 
+       			"pattern",
+        		lv_pattern_1_0, 
+        		"Pat");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRulePatBorrowed
+entryRulePatBorrowed returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPatBorrowedRule()); }
+	 iv_rulePatBorrowed=rulePatBorrowed 
+	 { $current=$iv_rulePatBorrowed.current; } 
+	 EOF 
+;
+
+// Rule PatBorrowed
+rulePatBorrowed returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='&' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getPatBorrowedAccess().getAmpersandKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPatBorrowedAccess().getPatternPatParserRuleCall_1_0()); 
+	    }
+		lv_pattern_1_0=rulePat		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPatBorrowedRule());
+	        }
+       		set(
+       			$current, 
+       			"pattern",
+        		lv_pattern_1_0, 
+        		"Pat");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )

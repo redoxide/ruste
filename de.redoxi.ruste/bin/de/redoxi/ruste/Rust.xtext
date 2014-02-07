@@ -66,9 +66,11 @@ Arg:
 // TODO Expand
 // See line 2869 of libsyntax/parse/parser.rs
 Pat:
-	PatWildcard |									
-	PatWildcardMulti |						
+	PatWildcard |														
 	PatIdent |
+	PatBoxed |
+	PatOwned |
+	PatBorrowed |
 	PatTuple |
 	PatVector |
 	PatLiteral |
@@ -79,12 +81,20 @@ PatWildcard:
 	{PatWildcard} '_'
 ;
 
-PatWildcardMulti:
-	{PatWildcardMulti} '..'
-;
-
 PatIdent:
 	mutable?=MUT_KEYWORD ident=IDENT
+;
+
+PatBoxed:
+	"@" pattern=Pat
+;
+
+PatOwned:
+	"~" pattern=Pat
+;
+
+PatBorrowed:
+	"&" pattern=Pat
 ;
 
 PatTuple:

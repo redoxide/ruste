@@ -78,8 +78,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.ARG: return createArg();
       case RustPackage.PAT: return createPat();
       case RustPackage.PAT_WILDCARD: return createPatWildcard();
-      case RustPackage.PAT_WILDCARD_MULTI: return createPatWildcardMulti();
       case RustPackage.PAT_IDENT: return createPatIdent();
+      case RustPackage.PAT_BOXED: return createPatBoxed();
+      case RustPackage.PAT_OWNED: return createPatOwned();
+      case RustPackage.PAT_BORROWED: return createPatBorrowed();
       case RustPackage.PAT_TUPLE: return createPatTuple();
       case RustPackage.PAT_VECTOR: return createPatVector();
       case RustPackage.PAT_LITERAL: return createPatLiteral();
@@ -295,10 +297,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PatWildcardMulti createPatWildcardMulti()
+  public PatIdent createPatIdent()
   {
-    PatWildcardMultiImpl patWildcardMulti = new PatWildcardMultiImpl();
-    return patWildcardMulti;
+    PatIdentImpl patIdent = new PatIdentImpl();
+    return patIdent;
   }
 
   /**
@@ -306,10 +308,32 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PatIdent createPatIdent()
+  public PatBoxed createPatBoxed()
   {
-    PatIdentImpl patIdent = new PatIdentImpl();
-    return patIdent;
+    PatBoxedImpl patBoxed = new PatBoxedImpl();
+    return patBoxed;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatOwned createPatOwned()
+  {
+    PatOwnedImpl patOwned = new PatOwnedImpl();
+    return patOwned;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatBorrowed createPatBorrowed()
+  {
+    PatBorrowedImpl patBorrowed = new PatBorrowedImpl();
+    return patBorrowed;
   }
 
   /**
