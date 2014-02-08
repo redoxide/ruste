@@ -3965,30 +3965,37 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePatEnum"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1589:1: rulePatEnum returns [EObject current=null] : ( ( (lv_path_0_0= rulePath ) ) otherlv_1= '(' (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) ) otherlv_7= ')' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1589:1: rulePatEnum returns [EObject current=null] : ( ( (lv_path_0_0= rulePath ) ) ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) ) ) ;
     public final EObject rulePatEnum() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
-        Token otherlv_5=null;
-        Token otherlv_7=null;
+        Token otherlv_4=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token otherlv_10=null;
+        Token otherlv_12=null;
+        Token otherlv_14=null;
         EObject lv_path_0_0 = null;
 
-        EObject lv_patterns_4_0 = null;
+        EObject lv_patterns_5_0 = null;
 
-        EObject lv_patterns_6_0 = null;
+        EObject lv_patterns_7_0 = null;
+
+        EObject lv_fieldPatterns_11_0 = null;
+
+        EObject lv_fieldPatterns_13_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1592:28: ( ( ( (lv_path_0_0= rulePath ) ) otherlv_1= '(' (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) ) otherlv_7= ')' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:1: ( ( (lv_path_0_0= rulePath ) ) otherlv_1= '(' (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) ) otherlv_7= ')' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1592:28: ( ( ( (lv_path_0_0= rulePath ) ) ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:1: ( ( (lv_path_0_0= rulePath ) ) ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:1: ( ( (lv_path_0_0= rulePath ) ) otherlv_1= '(' (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) ) otherlv_7= ')' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:2: ( (lv_path_0_0= rulePath ) ) otherlv_1= '(' (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) ) otherlv_7= ')'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:1: ( ( (lv_path_0_0= rulePath ) ) ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:2: ( (lv_path_0_0= rulePath ) ) ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) )
             {
             // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1593:2: ( (lv_path_0_0= rulePath ) )
             // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1594:1: (lv_path_0_0= rulePath )
@@ -4021,84 +4028,248 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,47,FOLLOW_47_in_rulePatEnum3572); 
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1611:2: ( ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' ) | ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' ) )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-                	newLeafNode(otherlv_1, grammarAccess.getPatEnumAccess().getLeftParenthesisKeyword_1());
-                
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1615:1: (otherlv_2= '*' | otherlv_3= '..' | ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* ) )
-            int alt20=3;
-            switch ( input.LA(1) ) {
-            case 66:
-                {
-                alt20=1;
-                }
-                break;
-            case 65:
-                {
-                alt20=2;
-                }
-                break;
-            case RULE_IDENT:
-            case RULE_MUT_KEYWORD:
-            case RULE_STRING_LIT:
-            case RULE_FLOAT_LIT:
-            case RULE_INT_LIT:
-            case RULE_CHAR_LIT:
-            case 47:
-            case 60:
-            case 61:
-            case 62:
-            case 63:
-            case 64:
-                {
-                alt20=3;
-                }
-                break;
-            default:
+            if ( (LA22_0==47) ) {
+                alt22=1;
+            }
+            else if ( (LA22_0==52) ) {
+                alt22=2;
+            }
+            else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-
-            switch (alt20) {
+            switch (alt22) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1615:3: otherlv_2= '*'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1611:3: ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' )
                     {
-                    otherlv_2=(Token)match(input,66,FOLLOW_66_in_rulePatEnum3585); 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1611:3: ( () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1611:4: () otherlv_2= '(' (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) ) otherlv_8= ')'
+                    {
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1611:4: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1612:5: 
+                    {
 
-                        	newLeafNode(otherlv_2, grammarAccess.getPatEnumAccess().getAsteriskKeyword_2_0());
+                            current = forceCreateModelElementAndSet(
+                                grammarAccess.getPatEnumAccess().getPatTupleEnumPathAction_1_0_0(),
+                                current);
                         
+
+                    }
+
+                    otherlv_2=(Token)match(input,47,FOLLOW_47_in_rulePatEnum3583); 
+
+                        	newLeafNode(otherlv_2, grammarAccess.getPatEnumAccess().getLeftParenthesisKeyword_1_0_1());
+                        
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1621:1: (otherlv_3= '*' | otherlv_4= '..' | ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* ) )
+                    int alt20=3;
+                    switch ( input.LA(1) ) {
+                    case 66:
+                        {
+                        alt20=1;
+                        }
+                        break;
+                    case 65:
+                        {
+                        alt20=2;
+                        }
+                        break;
+                    case RULE_IDENT:
+                    case RULE_MUT_KEYWORD:
+                    case RULE_STRING_LIT:
+                    case RULE_FLOAT_LIT:
+                    case RULE_INT_LIT:
+                    case RULE_CHAR_LIT:
+                    case 47:
+                    case 60:
+                    case 61:
+                    case 62:
+                    case 63:
+                    case 64:
+                        {
+                        alt20=3;
+                        }
+                        break;
+                    default:
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 20, 0, input);
+
+                        throw nvae;
+                    }
+
+                    switch (alt20) {
+                        case 1 :
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1621:3: otherlv_3= '*'
+                            {
+                            otherlv_3=(Token)match(input,66,FOLLOW_66_in_rulePatEnum3596); 
+
+                                	newLeafNode(otherlv_3, grammarAccess.getPatEnumAccess().getAsteriskKeyword_1_0_2_0());
+                                
+
+                            }
+                            break;
+                        case 2 :
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1626:7: otherlv_4= '..'
+                            {
+                            otherlv_4=(Token)match(input,65,FOLLOW_65_in_rulePatEnum3614); 
+
+                                	newLeafNode(otherlv_4, grammarAccess.getPatEnumAccess().getFullStopFullStopKeyword_1_0_2_1());
+                                
+
+                            }
+                            break;
+                        case 3 :
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1631:6: ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* )
+                            {
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1631:6: ( ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )* )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1631:7: ( (lv_patterns_5_0= rulePat ) ) (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )*
+                            {
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1631:7: ( (lv_patterns_5_0= rulePat ) )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1632:1: (lv_patterns_5_0= rulePat )
+                            {
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1632:1: (lv_patterns_5_0= rulePat )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1633:3: lv_patterns_5_0= rulePat
+                            {
+                             
+                            	        newCompositeNode(grammarAccess.getPatEnumAccess().getPatternsPatParserRuleCall_1_0_2_2_0_0()); 
+                            	    
+                            pushFollow(FOLLOW_rulePat_in_rulePatEnum3642);
+                            lv_patterns_5_0=rulePat();
+
+                            state._fsp--;
+
+
+                            	        if (current==null) {
+                            	            current = createModelElementForParent(grammarAccess.getPatEnumRule());
+                            	        }
+                                   		add(
+                                   			current, 
+                                   			"patterns",
+                                    		lv_patterns_5_0, 
+                                    		"Pat");
+                            	        afterParserOrEnumRuleCall();
+                            	    
+
+                            }
+
+
+                            }
+
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1649:2: (otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) ) )*
+                            loop19:
+                            do {
+                                int alt19=2;
+                                int LA19_0 = input.LA(1);
+
+                                if ( (LA19_0==45) ) {
+                                    alt19=1;
+                                }
+
+
+                                switch (alt19) {
+                            	case 1 :
+                            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1649:4: otherlv_6= ',' ( (lv_patterns_7_0= rulePat ) )
+                            	    {
+                            	    otherlv_6=(Token)match(input,45,FOLLOW_45_in_rulePatEnum3655); 
+
+                            	        	newLeafNode(otherlv_6, grammarAccess.getPatEnumAccess().getCommaKeyword_1_0_2_2_1_0());
+                            	        
+                            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1653:1: ( (lv_patterns_7_0= rulePat ) )
+                            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1654:1: (lv_patterns_7_0= rulePat )
+                            	    {
+                            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1654:1: (lv_patterns_7_0= rulePat )
+                            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1655:3: lv_patterns_7_0= rulePat
+                            	    {
+                            	     
+                            	    	        newCompositeNode(grammarAccess.getPatEnumAccess().getPatternsPatParserRuleCall_1_0_2_2_1_1_0()); 
+                            	    	    
+                            	    pushFollow(FOLLOW_rulePat_in_rulePatEnum3676);
+                            	    lv_patterns_7_0=rulePat();
+
+                            	    state._fsp--;
+
+
+                            	    	        if (current==null) {
+                            	    	            current = createModelElementForParent(grammarAccess.getPatEnumRule());
+                            	    	        }
+                            	           		add(
+                            	           			current, 
+                            	           			"patterns",
+                            	            		lv_patterns_7_0, 
+                            	            		"Pat");
+                            	    	        afterParserOrEnumRuleCall();
+                            	    	    
+
+                            	    }
+
+
+                            	    }
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop19;
+                                }
+                            } while (true);
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    otherlv_8=(Token)match(input,48,FOLLOW_48_in_rulePatEnum3692); 
+
+                        	newLeafNode(otherlv_8, grammarAccess.getPatEnumAccess().getRightParenthesisKeyword_1_0_3());
+                        
+
+                    }
+
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1620:7: otherlv_3= '..'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1676:6: ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' )
                     {
-                    otherlv_3=(Token)match(input,65,FOLLOW_65_in_rulePatEnum3603); 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1676:6: ( () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1676:7: () otherlv_10= '{' ( (lv_fieldPatterns_11_0= ruleFieldPat ) ) (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )* otherlv_14= '}'
+                    {
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1676:7: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1677:5: 
+                    {
 
-                        	newLeafNode(otherlv_3, grammarAccess.getPatEnumAccess().getFullStopFullStopKeyword_2_1());
+                            current = forceCreateModelElementAndSet(
+                                grammarAccess.getPatEnumAccess().getPatStructEnumPathAction_1_1_0(),
+                                current);
                         
 
                     }
-                    break;
-                case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1625:6: ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* )
+
+                    otherlv_10=(Token)match(input,52,FOLLOW_52_in_rulePatEnum3721); 
+
+                        	newLeafNode(otherlv_10, grammarAccess.getPatEnumAccess().getLeftCurlyBracketKeyword_1_1_1());
+                        
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1686:1: ( (lv_fieldPatterns_11_0= ruleFieldPat ) )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1687:1: (lv_fieldPatterns_11_0= ruleFieldPat )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1625:6: ( ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )* )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1625:7: ( (lv_patterns_4_0= rulePat ) ) (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )*
-                    {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1625:7: ( (lv_patterns_4_0= rulePat ) )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1626:1: (lv_patterns_4_0= rulePat )
-                    {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1626:1: (lv_patterns_4_0= rulePat )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1627:3: lv_patterns_4_0= rulePat
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1687:1: (lv_fieldPatterns_11_0= ruleFieldPat )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1688:3: lv_fieldPatterns_11_0= ruleFieldPat
                     {
                      
-                    	        newCompositeNode(grammarAccess.getPatEnumAccess().getPatternsPatParserRuleCall_2_2_0_0()); 
+                    	        newCompositeNode(grammarAccess.getPatEnumAccess().getFieldPatternsFieldPatParserRuleCall_1_1_2_0()); 
                     	    
-                    pushFollow(FOLLOW_rulePat_in_rulePatEnum3631);
-                    lv_patterns_4_0=rulePat();
+                    pushFollow(FOLLOW_ruleFieldPat_in_rulePatEnum3742);
+                    lv_fieldPatterns_11_0=ruleFieldPat();
 
                     state._fsp--;
 
@@ -4108,9 +4279,9 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	        }
                            		add(
                            			current, 
-                           			"patterns",
-                            		lv_patterns_4_0, 
-                            		"Pat");
+                           			"fieldPatterns",
+                            		lv_fieldPatterns_11_0, 
+                            		"FieldPat");
                     	        afterParserOrEnumRuleCall();
                     	    
 
@@ -4119,36 +4290,36 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1643:2: (otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) ) )*
-                    loop19:
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1704:2: (otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) ) )*
+                    loop21:
                     do {
-                        int alt19=2;
-                        int LA19_0 = input.LA(1);
+                        int alt21=2;
+                        int LA21_0 = input.LA(1);
 
-                        if ( (LA19_0==45) ) {
-                            alt19=1;
+                        if ( (LA21_0==45) ) {
+                            alt21=1;
                         }
 
 
-                        switch (alt19) {
+                        switch (alt21) {
                     	case 1 :
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1643:4: otherlv_5= ',' ( (lv_patterns_6_0= rulePat ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1704:4: otherlv_12= ',' ( (lv_fieldPatterns_13_0= ruleFieldPat ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,45,FOLLOW_45_in_rulePatEnum3644); 
+                    	    otherlv_12=(Token)match(input,45,FOLLOW_45_in_rulePatEnum3755); 
 
-                    	        	newLeafNode(otherlv_5, grammarAccess.getPatEnumAccess().getCommaKeyword_2_2_1_0());
+                    	        	newLeafNode(otherlv_12, grammarAccess.getPatEnumAccess().getCommaKeyword_1_1_3_0());
                     	        
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1647:1: ( (lv_patterns_6_0= rulePat ) )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1648:1: (lv_patterns_6_0= rulePat )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1708:1: ( (lv_fieldPatterns_13_0= ruleFieldPat ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1709:1: (lv_fieldPatterns_13_0= ruleFieldPat )
                     	    {
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1648:1: (lv_patterns_6_0= rulePat )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1649:3: lv_patterns_6_0= rulePat
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1709:1: (lv_fieldPatterns_13_0= ruleFieldPat )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1710:3: lv_fieldPatterns_13_0= ruleFieldPat
                     	    {
                     	     
-                    	    	        newCompositeNode(grammarAccess.getPatEnumAccess().getPatternsPatParserRuleCall_2_2_1_1_0()); 
+                    	    	        newCompositeNode(grammarAccess.getPatEnumAccess().getFieldPatternsFieldPatParserRuleCall_1_1_3_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_rulePat_in_rulePatEnum3665);
-                    	    lv_patterns_6_0=rulePat();
+                    	    pushFollow(FOLLOW_ruleFieldPat_in_rulePatEnum3776);
+                    	    lv_fieldPatterns_13_0=ruleFieldPat();
 
                     	    state._fsp--;
 
@@ -4158,9 +4329,9 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    	        }
                     	           		add(
                     	           			current, 
-                    	           			"patterns",
-                    	            		lv_patterns_6_0, 
-                    	            		"Pat");
+                    	           			"fieldPatterns",
+                    	            		lv_fieldPatterns_13_0, 
+                    	            		"FieldPat");
                     	    	        afterParserOrEnumRuleCall();
                     	    	    
 
@@ -4174,10 +4345,14 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop19;
+                    	    break loop21;
                         }
                     } while (true);
 
+                    otherlv_14=(Token)match(input,53,FOLLOW_53_in_rulePatEnum3790); 
+
+                        	newLeafNode(otherlv_14, grammarAccess.getPatEnumAccess().getRightCurlyBracketKeyword_1_1_4());
+                        
 
                     }
 
@@ -4187,10 +4362,6 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,48,FOLLOW_48_in_rulePatEnum3681); 
-
-                	newLeafNode(otherlv_7, grammarAccess.getPatEnumAccess().getRightParenthesisKeyword_3());
-                
 
             }
 
@@ -4211,8 +4382,161 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePatEnum"
 
 
+    // $ANTLR start "entryRuleFieldPat"
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1738:1: entryRuleFieldPat returns [EObject current=null] : iv_ruleFieldPat= ruleFieldPat EOF ;
+    public final EObject entryRuleFieldPat() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleFieldPat = null;
+
+
+        try {
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1739:2: (iv_ruleFieldPat= ruleFieldPat EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1740:2: iv_ruleFieldPat= ruleFieldPat EOF
+            {
+             newCompositeNode(grammarAccess.getFieldPatRule()); 
+            pushFollow(FOLLOW_ruleFieldPat_in_entryRuleFieldPat3828);
+            iv_ruleFieldPat=ruleFieldPat();
+
+            state._fsp--;
+
+             current =iv_ruleFieldPat; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFieldPat3838); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleFieldPat"
+
+
+    // $ANTLR start "ruleFieldPat"
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1747:1: ruleFieldPat returns [EObject current=null] : ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )? ) ;
+    public final EObject ruleFieldPat() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_ident_0_0=null;
+        Token otherlv_1=null;
+        EObject lv_pattern_2_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1750:28: ( ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )? ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1751:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )? )
+            {
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1751:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1751:2: ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )?
+            {
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1751:2: ( (lv_ident_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1752:1: (lv_ident_0_0= RULE_IDENT )
+            {
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1752:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1753:3: lv_ident_0_0= RULE_IDENT
+            {
+            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleFieldPat3880); 
+
+            			newLeafNode(lv_ident_0_0, grammarAccess.getFieldPatAccess().getIdentIDENTTerminalRuleCall_0_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getFieldPatRule());
+            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"ident",
+                    		lv_ident_0_0, 
+                    		"IDENT");
+            	    
+
+            }
+
+
+            }
+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1769:2: (otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) ) )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( (LA23_0==58) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1769:4: otherlv_1= ':' ( (lv_pattern_2_0= rulePat ) )
+                    {
+                    otherlv_1=(Token)match(input,58,FOLLOW_58_in_ruleFieldPat3898); 
+
+                        	newLeafNode(otherlv_1, grammarAccess.getFieldPatAccess().getColonKeyword_1_0());
+                        
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1773:1: ( (lv_pattern_2_0= rulePat ) )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1774:1: (lv_pattern_2_0= rulePat )
+                    {
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1774:1: (lv_pattern_2_0= rulePat )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1775:3: lv_pattern_2_0= rulePat
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getFieldPatAccess().getPatternPatParserRuleCall_1_1_0()); 
+                    	    
+                    pushFollow(FOLLOW_rulePat_in_ruleFieldPat3919);
+                    lv_pattern_2_0=rulePat();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getFieldPatRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"pattern",
+                            		lv_pattern_2_0, 
+                            		"Pat");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleFieldPat"
+
+
     // $ANTLR start "entryRulePath"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1677:1: entryRulePath returns [EObject current=null] : iv_rulePath= rulePath EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1799:1: entryRulePath returns [EObject current=null] : iv_rulePath= rulePath EOF ;
     public final EObject entryRulePath() throws RecognitionException {
         EObject current = null;
 
@@ -4220,17 +4544,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1678:2: (iv_rulePath= rulePath EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1679:2: iv_rulePath= rulePath EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1800:2: (iv_rulePath= rulePath EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1801:2: iv_rulePath= rulePath EOF
             {
              newCompositeNode(grammarAccess.getPathRule()); 
-            pushFollow(FOLLOW_rulePath_in_entryRulePath3717);
+            pushFollow(FOLLOW_rulePath_in_entryRulePath3957);
             iv_rulePath=rulePath();
 
             state._fsp--;
 
              current =iv_rulePath; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePath3727); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePath3967); 
 
             }
 
@@ -4248,7 +4572,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePath"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1686:1: rulePath returns [EObject current=null] : ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1808:1: rulePath returns [EObject current=null] : ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? ) ;
     public final EObject rulePath() throws RecognitionException {
         EObject current = null;
 
@@ -4271,19 +4595,19 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1689:28: ( ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1690:1: ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1811:28: ( ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1812:1: ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1690:1: ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1690:2: ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1812:1: ( ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1812:2: ( (lv_segments_0_0= RULE_IDENT ) ) (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )* (otherlv_3= '::' )? (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )?
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1690:2: ( (lv_segments_0_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1691:1: (lv_segments_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1812:2: ( (lv_segments_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1813:1: (lv_segments_0_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1691:1: (lv_segments_0_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1692:3: lv_segments_0_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1813:1: (lv_segments_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1814:3: lv_segments_0_0= RULE_IDENT
             {
-            lv_segments_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rulePath3769); 
+            lv_segments_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rulePath4009); 
 
             			newLeafNode(lv_segments_0_0, grammarAccess.getPathAccess().getSegmentsIDENTTerminalRuleCall_0_0()); 
             		
@@ -4303,38 +4627,38 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1708:2: (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )*
-            loop21:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1830:2: (otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) ) )*
+            loop24:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt24=2;
+                int LA24_0 = input.LA(1);
 
-                if ( (LA21_0==67) ) {
-                    int LA21_1 = input.LA(2);
+                if ( (LA24_0==67) ) {
+                    int LA24_1 = input.LA(2);
 
-                    if ( (LA21_1==RULE_IDENT) ) {
-                        alt21=1;
+                    if ( (LA24_1==RULE_IDENT) ) {
+                        alt24=1;
                     }
 
 
                 }
 
 
-                switch (alt21) {
+                switch (alt24) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1708:4: otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1830:4: otherlv_1= '::' ( (lv_segments_2_0= RULE_IDENT ) )
             	    {
-            	    otherlv_1=(Token)match(input,67,FOLLOW_67_in_rulePath3787); 
+            	    otherlv_1=(Token)match(input,67,FOLLOW_67_in_rulePath4027); 
 
             	        	newLeafNode(otherlv_1, grammarAccess.getPathAccess().getColonColonKeyword_1_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1712:1: ( (lv_segments_2_0= RULE_IDENT ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1713:1: (lv_segments_2_0= RULE_IDENT )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1834:1: ( (lv_segments_2_0= RULE_IDENT ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1835:1: (lv_segments_2_0= RULE_IDENT )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1713:1: (lv_segments_2_0= RULE_IDENT )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1714:3: lv_segments_2_0= RULE_IDENT
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1835:1: (lv_segments_2_0= RULE_IDENT )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1836:3: lv_segments_2_0= RULE_IDENT
             	    {
-            	    lv_segments_2_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rulePath3804); 
+            	    lv_segments_2_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_rulePath4044); 
 
             	    			newLeafNode(lv_segments_2_0, grammarAccess.getPathAccess().getSegmentsIDENTTerminalRuleCall_1_1_0()); 
             	    		
@@ -4359,22 +4683,22 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop24;
                 }
             } while (true);
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1730:4: (otherlv_3= '::' )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1852:4: (otherlv_3= '::' )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA22_0==67) ) {
-                alt22=1;
+            if ( (LA25_0==67) ) {
+                alt25=1;
             }
-            switch (alt22) {
+            switch (alt25) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1730:6: otherlv_3= '::'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1852:6: otherlv_3= '::'
                     {
-                    otherlv_3=(Token)match(input,67,FOLLOW_67_in_rulePath3824); 
+                    otherlv_3=(Token)match(input,67,FOLLOW_67_in_rulePath4064); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getPathAccess().getColonColonKeyword_2());
                         
@@ -4384,51 +4708,51 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1734:3: (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1856:3: (otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>' )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA26_0==55) ) {
-                alt26=1;
+            if ( (LA29_0==55) ) {
+                alt29=1;
             }
-            switch (alt26) {
+            switch (alt29) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1734:5: otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1856:5: otherlv_4= '<' ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) ) (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )* otherlv_10= '>'
                     {
-                    otherlv_4=(Token)match(input,55,FOLLOW_55_in_rulePath3839); 
+                    otherlv_4=(Token)match(input,55,FOLLOW_55_in_rulePath4079); 
 
                         	newLeafNode(otherlv_4, grammarAccess.getPathAccess().getLessThanSignKeyword_3_0());
                         
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1738:1: ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) )
-                    int alt23=2;
-                    int LA23_0 = input.LA(1);
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1860:1: ( ( (lv_lifetimes_5_0= ruleLifetime ) ) | ( (lv_genericTypes_6_0= ruleType ) ) )
+                    int alt26=2;
+                    int LA26_0 = input.LA(1);
 
-                    if ( (LA23_0==68) ) {
-                        alt23=1;
+                    if ( (LA26_0==68) ) {
+                        alt26=1;
                     }
-                    else if ( ((LA23_0>=RULE_INT_TYPE && LA23_0<=RULE_UNIT_TYPE)||LA23_0==47||(LA23_0>=61 && LA23_0<=63)||(LA23_0>=69 && LA23_0<=70)) ) {
-                        alt23=2;
+                    else if ( ((LA26_0>=RULE_INT_TYPE && LA26_0<=RULE_UNIT_TYPE)||LA26_0==47||(LA26_0>=61 && LA26_0<=63)||(LA26_0>=69 && LA26_0<=70)) ) {
+                        alt26=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 23, 0, input);
+                            new NoViableAltException("", 26, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt23) {
+                    switch (alt26) {
                         case 1 :
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1738:2: ( (lv_lifetimes_5_0= ruleLifetime ) )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1860:2: ( (lv_lifetimes_5_0= ruleLifetime ) )
                             {
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1738:2: ( (lv_lifetimes_5_0= ruleLifetime ) )
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1739:1: (lv_lifetimes_5_0= ruleLifetime )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1860:2: ( (lv_lifetimes_5_0= ruleLifetime ) )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1861:1: (lv_lifetimes_5_0= ruleLifetime )
                             {
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1739:1: (lv_lifetimes_5_0= ruleLifetime )
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1740:3: lv_lifetimes_5_0= ruleLifetime
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1861:1: (lv_lifetimes_5_0= ruleLifetime )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1862:3: lv_lifetimes_5_0= ruleLifetime
                             {
                              
                             	        newCompositeNode(grammarAccess.getPathAccess().getLifetimesLifetimeParserRuleCall_3_1_0_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleLifetime_in_rulePath3861);
+                            pushFollow(FOLLOW_ruleLifetime_in_rulePath4101);
                             lv_lifetimes_5_0=ruleLifetime();
 
                             state._fsp--;
@@ -4454,18 +4778,18 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1757:6: ( (lv_genericTypes_6_0= ruleType ) )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1879:6: ( (lv_genericTypes_6_0= ruleType ) )
                             {
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1757:6: ( (lv_genericTypes_6_0= ruleType ) )
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1758:1: (lv_genericTypes_6_0= ruleType )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1879:6: ( (lv_genericTypes_6_0= ruleType ) )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1880:1: (lv_genericTypes_6_0= ruleType )
                             {
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1758:1: (lv_genericTypes_6_0= ruleType )
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1759:3: lv_genericTypes_6_0= ruleType
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1880:1: (lv_genericTypes_6_0= ruleType )
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1881:3: lv_genericTypes_6_0= ruleType
                             {
                              
                             	        newCompositeNode(grammarAccess.getPathAccess().getGenericTypesTypeParserRuleCall_3_1_1_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleType_in_rulePath3888);
+                            pushFollow(FOLLOW_ruleType_in_rulePath4128);
                             lv_genericTypes_6_0=ruleType();
 
                             state._fsp--;
@@ -4493,55 +4817,55 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1775:3: (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )*
-                    loop25:
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1897:3: (otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) ) )*
+                    loop28:
                     do {
-                        int alt25=2;
-                        int LA25_0 = input.LA(1);
+                        int alt28=2;
+                        int LA28_0 = input.LA(1);
 
-                        if ( (LA25_0==45) ) {
-                            alt25=1;
+                        if ( (LA28_0==45) ) {
+                            alt28=1;
                         }
 
 
-                        switch (alt25) {
+                        switch (alt28) {
                     	case 1 :
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1775:5: otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1897:5: otherlv_7= ',' ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) )
                     	    {
-                    	    otherlv_7=(Token)match(input,45,FOLLOW_45_in_rulePath3902); 
+                    	    otherlv_7=(Token)match(input,45,FOLLOW_45_in_rulePath4142); 
 
                     	        	newLeafNode(otherlv_7, grammarAccess.getPathAccess().getCommaKeyword_3_2_0());
                     	        
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1779:1: ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) )
-                    	    int alt24=2;
-                    	    int LA24_0 = input.LA(1);
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1901:1: ( ( (lv_lifetimes_8_0= ruleLifetime ) ) | ( (lv_genericTypes_9_0= ruleType ) ) )
+                    	    int alt27=2;
+                    	    int LA27_0 = input.LA(1);
 
-                    	    if ( (LA24_0==68) ) {
-                    	        alt24=1;
+                    	    if ( (LA27_0==68) ) {
+                    	        alt27=1;
                     	    }
-                    	    else if ( ((LA24_0>=RULE_INT_TYPE && LA24_0<=RULE_UNIT_TYPE)||LA24_0==47||(LA24_0>=61 && LA24_0<=63)||(LA24_0>=69 && LA24_0<=70)) ) {
-                    	        alt24=2;
+                    	    else if ( ((LA27_0>=RULE_INT_TYPE && LA27_0<=RULE_UNIT_TYPE)||LA27_0==47||(LA27_0>=61 && LA27_0<=63)||(LA27_0>=69 && LA27_0<=70)) ) {
+                    	        alt27=2;
                     	    }
                     	    else {
                     	        NoViableAltException nvae =
-                    	            new NoViableAltException("", 24, 0, input);
+                    	            new NoViableAltException("", 27, 0, input);
 
                     	        throw nvae;
                     	    }
-                    	    switch (alt24) {
+                    	    switch (alt27) {
                     	        case 1 :
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1779:2: ( (lv_lifetimes_8_0= ruleLifetime ) )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1901:2: ( (lv_lifetimes_8_0= ruleLifetime ) )
                     	            {
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1779:2: ( (lv_lifetimes_8_0= ruleLifetime ) )
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1780:1: (lv_lifetimes_8_0= ruleLifetime )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1901:2: ( (lv_lifetimes_8_0= ruleLifetime ) )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1902:1: (lv_lifetimes_8_0= ruleLifetime )
                     	            {
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1780:1: (lv_lifetimes_8_0= ruleLifetime )
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1781:3: lv_lifetimes_8_0= ruleLifetime
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1902:1: (lv_lifetimes_8_0= ruleLifetime )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1903:3: lv_lifetimes_8_0= ruleLifetime
                     	            {
                     	             
                     	            	        newCompositeNode(grammarAccess.getPathAccess().getLifetimesLifetimeParserRuleCall_3_2_1_0_0()); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleLifetime_in_rulePath3924);
+                    	            pushFollow(FOLLOW_ruleLifetime_in_rulePath4164);
                     	            lv_lifetimes_8_0=ruleLifetime();
 
                     	            state._fsp--;
@@ -4567,18 +4891,18 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1798:6: ( (lv_genericTypes_9_0= ruleType ) )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1920:6: ( (lv_genericTypes_9_0= ruleType ) )
                     	            {
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1798:6: ( (lv_genericTypes_9_0= ruleType ) )
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1799:1: (lv_genericTypes_9_0= ruleType )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1920:6: ( (lv_genericTypes_9_0= ruleType ) )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1921:1: (lv_genericTypes_9_0= ruleType )
                     	            {
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1799:1: (lv_genericTypes_9_0= ruleType )
-                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1800:3: lv_genericTypes_9_0= ruleType
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1921:1: (lv_genericTypes_9_0= ruleType )
+                    	            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1922:3: lv_genericTypes_9_0= ruleType
                     	            {
                     	             
                     	            	        newCompositeNode(grammarAccess.getPathAccess().getGenericTypesTypeParserRuleCall_3_2_1_1_0()); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleType_in_rulePath3951);
+                    	            pushFollow(FOLLOW_ruleType_in_rulePath4191);
                     	            lv_genericTypes_9_0=ruleType();
 
                     	            state._fsp--;
@@ -4611,11 +4935,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop25;
+                    	    break loop28;
                         }
                     } while (true);
 
-                    otherlv_10=(Token)match(input,56,FOLLOW_56_in_rulePath3966); 
+                    otherlv_10=(Token)match(input,56,FOLLOW_56_in_rulePath4206); 
 
                         	newLeafNode(otherlv_10, grammarAccess.getPathAccess().getGreaterThanSignKeyword_3_3());
                         
@@ -4646,7 +4970,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLifetime"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1828:1: entryRuleLifetime returns [EObject current=null] : iv_ruleLifetime= ruleLifetime EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1950:1: entryRuleLifetime returns [EObject current=null] : iv_ruleLifetime= ruleLifetime EOF ;
     public final EObject entryRuleLifetime() throws RecognitionException {
         EObject current = null;
 
@@ -4654,17 +4978,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1829:2: (iv_ruleLifetime= ruleLifetime EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1830:2: iv_ruleLifetime= ruleLifetime EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1951:2: (iv_ruleLifetime= ruleLifetime EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1952:2: iv_ruleLifetime= ruleLifetime EOF
             {
              newCompositeNode(grammarAccess.getLifetimeRule()); 
-            pushFollow(FOLLOW_ruleLifetime_in_entryRuleLifetime4004);
+            pushFollow(FOLLOW_ruleLifetime_in_entryRuleLifetime4244);
             iv_ruleLifetime=ruleLifetime();
 
             state._fsp--;
 
              current =iv_ruleLifetime; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLifetime4014); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLifetime4254); 
 
             }
 
@@ -4682,7 +5006,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLifetime"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1837:1: ruleLifetime returns [EObject current=null] : (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1959:1: ruleLifetime returns [EObject current=null] : (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) ) ;
     public final EObject ruleLifetime() throws RecognitionException {
         EObject current = null;
 
@@ -4692,23 +5016,23 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1840:28: ( (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1841:1: (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1962:28: ( (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1963:1: (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1841:1: (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1841:3: otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1963:1: (otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1963:3: otherlv_0= '\\'' ( (lv_ident_1_0= RULE_IDENT ) )
             {
-            otherlv_0=(Token)match(input,68,FOLLOW_68_in_ruleLifetime4051); 
+            otherlv_0=(Token)match(input,68,FOLLOW_68_in_ruleLifetime4291); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getLifetimeAccess().getApostropheKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1845:1: ( (lv_ident_1_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1846:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1967:1: ( (lv_ident_1_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1968:1: (lv_ident_1_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1846:1: (lv_ident_1_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1847:3: lv_ident_1_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1968:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1969:3: lv_ident_1_0= RULE_IDENT
             {
-            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleLifetime4068); 
+            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleLifetime4308); 
 
             			newLeafNode(lv_ident_1_0, grammarAccess.getLifetimeAccess().getIdentIDENTTerminalRuleCall_1_0()); 
             		
@@ -4749,7 +5073,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1871:1: entryRuleType returns [EObject current=null] : iv_ruleType= ruleType EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1993:1: entryRuleType returns [EObject current=null] : iv_ruleType= ruleType EOF ;
     public final EObject entryRuleType() throws RecognitionException {
         EObject current = null;
 
@@ -4757,17 +5081,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1872:2: (iv_ruleType= ruleType EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1873:2: iv_ruleType= ruleType EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1994:2: (iv_ruleType= ruleType EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1995:2: iv_ruleType= ruleType EOF
             {
              newCompositeNode(grammarAccess.getTypeRule()); 
-            pushFollow(FOLLOW_ruleType_in_entryRuleType4109);
+            pushFollow(FOLLOW_ruleType_in_entryRuleType4349);
             iv_ruleType=ruleType();
 
             state._fsp--;
 
              current =iv_ruleType; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleType4119); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleType4359); 
 
             }
 
@@ -4785,7 +5109,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1880:1: ruleType returns [EObject current=null] : (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2002:1: ruleType returns [EObject current=null] : (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer ) ;
     public final EObject ruleType() throws RecognitionException {
         EObject current = null;
 
@@ -4807,11 +5131,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1883:28: ( (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1884:1: (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2005:28: ( (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2006:1: (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1884:1: (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer )
-            int alt27=7;
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2006:1: (this_PrimitiveType_0= rulePrimitiveType | this_TupleType_1= ruleTupleType | this_StructType_2= ruleStructType | this_EnumType_3= ruleEnumType | this_BoxedPointer_4= ruleBoxedPointer | this_OwnedPointer_5= ruleOwnedPointer | this_BorrowedPointer_6= ruleBorrowedPointer )
+            int alt30=7;
             switch ( input.LA(1) ) {
             case RULE_INT_TYPE:
             case RULE_FLOAT_TYPE:
@@ -4819,54 +5143,54 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             case RULE_MACHINE_TYPE:
             case RULE_UNIT_TYPE:
                 {
-                alt27=1;
+                alt30=1;
                 }
                 break;
             case 47:
                 {
-                alt27=2;
+                alt30=2;
                 }
                 break;
             case 69:
                 {
-                alt27=3;
+                alt30=3;
                 }
                 break;
             case 70:
                 {
-                alt27=4;
+                alt30=4;
                 }
                 break;
             case 61:
                 {
-                alt27=5;
+                alt30=5;
                 }
                 break;
             case 62:
                 {
-                alt27=6;
+                alt30=6;
                 }
                 break;
             case 63:
                 {
-                alt27=7;
+                alt30=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt27) {
+            switch (alt30) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1885:5: this_PrimitiveType_0= rulePrimitiveType
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2007:5: this_PrimitiveType_0= rulePrimitiveType
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getPrimitiveTypeParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePrimitiveType_in_ruleType4166);
+                    pushFollow(FOLLOW_rulePrimitiveType_in_ruleType4406);
                     this_PrimitiveType_0=rulePrimitiveType();
 
                     state._fsp--;
@@ -4879,12 +5203,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1895:5: this_TupleType_1= ruleTupleType
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2017:5: this_TupleType_1= ruleTupleType
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getTupleTypeParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleTupleType_in_ruleType4193);
+                    pushFollow(FOLLOW_ruleTupleType_in_ruleType4433);
                     this_TupleType_1=ruleTupleType();
 
                     state._fsp--;
@@ -4897,12 +5221,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1905:5: this_StructType_2= ruleStructType
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2027:5: this_StructType_2= ruleStructType
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getStructTypeParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleStructType_in_ruleType4220);
+                    pushFollow(FOLLOW_ruleStructType_in_ruleType4460);
                     this_StructType_2=ruleStructType();
 
                     state._fsp--;
@@ -4915,12 +5239,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1915:5: this_EnumType_3= ruleEnumType
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2037:5: this_EnumType_3= ruleEnumType
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getEnumTypeParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleEnumType_in_ruleType4247);
+                    pushFollow(FOLLOW_ruleEnumType_in_ruleType4487);
                     this_EnumType_3=ruleEnumType();
 
                     state._fsp--;
@@ -4933,12 +5257,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1925:5: this_BoxedPointer_4= ruleBoxedPointer
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2047:5: this_BoxedPointer_4= ruleBoxedPointer
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getBoxedPointerParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleBoxedPointer_in_ruleType4274);
+                    pushFollow(FOLLOW_ruleBoxedPointer_in_ruleType4514);
                     this_BoxedPointer_4=ruleBoxedPointer();
 
                     state._fsp--;
@@ -4951,12 +5275,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1935:5: this_OwnedPointer_5= ruleOwnedPointer
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2057:5: this_OwnedPointer_5= ruleOwnedPointer
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getOwnedPointerParserRuleCall_5()); 
                         
-                    pushFollow(FOLLOW_ruleOwnedPointer_in_ruleType4301);
+                    pushFollow(FOLLOW_ruleOwnedPointer_in_ruleType4541);
                     this_OwnedPointer_5=ruleOwnedPointer();
 
                     state._fsp--;
@@ -4969,12 +5293,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1945:5: this_BorrowedPointer_6= ruleBorrowedPointer
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2067:5: this_BorrowedPointer_6= ruleBorrowedPointer
                     {
                      
                             newCompositeNode(grammarAccess.getTypeAccess().getBorrowedPointerParserRuleCall_6()); 
                         
-                    pushFollow(FOLLOW_ruleBorrowedPointer_in_ruleType4328);
+                    pushFollow(FOLLOW_ruleBorrowedPointer_in_ruleType4568);
                     this_BorrowedPointer_6=ruleBorrowedPointer();
 
                     state._fsp--;
@@ -5007,7 +5331,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1961:1: entryRulePrimitiveType returns [EObject current=null] : iv_rulePrimitiveType= rulePrimitiveType EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2083:1: entryRulePrimitiveType returns [EObject current=null] : iv_rulePrimitiveType= rulePrimitiveType EOF ;
     public final EObject entryRulePrimitiveType() throws RecognitionException {
         EObject current = null;
 
@@ -5015,17 +5339,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1962:2: (iv_rulePrimitiveType= rulePrimitiveType EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1963:2: iv_rulePrimitiveType= rulePrimitiveType EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2084:2: (iv_rulePrimitiveType= rulePrimitiveType EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2085:2: iv_rulePrimitiveType= rulePrimitiveType EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveTypeRule()); 
-            pushFollow(FOLLOW_rulePrimitiveType_in_entryRulePrimitiveType4363);
+            pushFollow(FOLLOW_rulePrimitiveType_in_entryRulePrimitiveType4603);
             iv_rulePrimitiveType=rulePrimitiveType();
 
             state._fsp--;
 
              current =iv_rulePrimitiveType; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrimitiveType4373); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrimitiveType4613); 
 
             }
 
@@ -5043,7 +5367,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1970:1: rulePrimitiveType returns [EObject current=null] : ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2092:1: rulePrimitiveType returns [EObject current=null] : ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) ) ;
     public final EObject rulePrimitiveType() throws RecognitionException {
         EObject current = null;
 
@@ -5056,53 +5380,53 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1973:28: ( ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:1: ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2095:28: ( ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:1: ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:1: ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) )
-            int alt28=5;
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:1: ( ( () this_INT_TYPE_1= RULE_INT_TYPE ) | ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE ) | ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE ) | ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE ) | ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE ) )
+            int alt31=5;
             switch ( input.LA(1) ) {
             case RULE_INT_TYPE:
                 {
-                alt28=1;
+                alt31=1;
                 }
                 break;
             case RULE_FLOAT_TYPE:
                 {
-                alt28=2;
+                alt31=2;
                 }
                 break;
             case RULE_BOOLEAN_TYPE:
                 {
-                alt28=3;
+                alt31=3;
                 }
                 break;
             case RULE_MACHINE_TYPE:
                 {
-                alt28=4;
+                alt31=4;
                 }
                 break;
             case RULE_UNIT_TYPE:
                 {
-                alt28=5;
+                alt31=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt31) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:2: ( () this_INT_TYPE_1= RULE_INT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:2: ( () this_INT_TYPE_1= RULE_INT_TYPE )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:2: ( () this_INT_TYPE_1= RULE_INT_TYPE )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:3: () this_INT_TYPE_1= RULE_INT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:2: ( () this_INT_TYPE_1= RULE_INT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:3: () this_INT_TYPE_1= RULE_INT_TYPE
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1974:3: ()
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1975:5: 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2096:3: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2097:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -5112,7 +5436,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_INT_TYPE_1=(Token)match(input,RULE_INT_TYPE,FOLLOW_RULE_INT_TYPE_in_rulePrimitiveType4419); 
+                    this_INT_TYPE_1=(Token)match(input,RULE_INT_TYPE,FOLLOW_RULE_INT_TYPE_in_rulePrimitiveType4659); 
                      
                         newLeafNode(this_INT_TYPE_1, grammarAccess.getPrimitiveTypeAccess().getINT_TYPETerminalRuleCall_0_1()); 
                         
@@ -5123,13 +5447,13 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1985:6: ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2107:6: ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1985:6: ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1985:7: () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2107:6: ( () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2107:7: () this_FLOAT_TYPE_3= RULE_FLOAT_TYPE
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1985:7: ()
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1986:5: 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2107:7: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2108:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -5139,7 +5463,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_FLOAT_TYPE_3=(Token)match(input,RULE_FLOAT_TYPE,FOLLOW_RULE_FLOAT_TYPE_in_rulePrimitiveType4446); 
+                    this_FLOAT_TYPE_3=(Token)match(input,RULE_FLOAT_TYPE,FOLLOW_RULE_FLOAT_TYPE_in_rulePrimitiveType4686); 
                      
                         newLeafNode(this_FLOAT_TYPE_3, grammarAccess.getPrimitiveTypeAccess().getFLOAT_TYPETerminalRuleCall_1_1()); 
                         
@@ -5150,13 +5474,13 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1996:6: ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:6: ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1996:6: ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1996:7: () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:6: ( () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:7: () this_BOOLEAN_TYPE_5= RULE_BOOLEAN_TYPE
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1996:7: ()
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:1997:5: 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:7: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2119:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -5166,7 +5490,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_BOOLEAN_TYPE_5=(Token)match(input,RULE_BOOLEAN_TYPE,FOLLOW_RULE_BOOLEAN_TYPE_in_rulePrimitiveType4473); 
+                    this_BOOLEAN_TYPE_5=(Token)match(input,RULE_BOOLEAN_TYPE,FOLLOW_RULE_BOOLEAN_TYPE_in_rulePrimitiveType4713); 
                      
                         newLeafNode(this_BOOLEAN_TYPE_5, grammarAccess.getPrimitiveTypeAccess().getBOOLEAN_TYPETerminalRuleCall_2_1()); 
                         
@@ -5177,13 +5501,13 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2007:6: ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2129:6: ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2007:6: ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2007:7: () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2129:6: ( () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2129:7: () this_MACHINE_TYPE_7= RULE_MACHINE_TYPE
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2007:7: ()
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2008:5: 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2129:7: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2130:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -5193,7 +5517,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_MACHINE_TYPE_7=(Token)match(input,RULE_MACHINE_TYPE,FOLLOW_RULE_MACHINE_TYPE_in_rulePrimitiveType4500); 
+                    this_MACHINE_TYPE_7=(Token)match(input,RULE_MACHINE_TYPE,FOLLOW_RULE_MACHINE_TYPE_in_rulePrimitiveType4740); 
                      
                         newLeafNode(this_MACHINE_TYPE_7, grammarAccess.getPrimitiveTypeAccess().getMACHINE_TYPETerminalRuleCall_3_1()); 
                         
@@ -5204,13 +5528,13 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2018:6: ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:6: ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2018:6: ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2018:7: () this_UNIT_TYPE_9= RULE_UNIT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:6: ( () this_UNIT_TYPE_9= RULE_UNIT_TYPE )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:7: () this_UNIT_TYPE_9= RULE_UNIT_TYPE
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2018:7: ()
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2019:5: 
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:7: ()
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2141:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -5220,7 +5544,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_UNIT_TYPE_9=(Token)match(input,RULE_UNIT_TYPE,FOLLOW_RULE_UNIT_TYPE_in_rulePrimitiveType4527); 
+                    this_UNIT_TYPE_9=(Token)match(input,RULE_UNIT_TYPE,FOLLOW_RULE_UNIT_TYPE_in_rulePrimitiveType4767); 
                      
                         newLeafNode(this_UNIT_TYPE_9, grammarAccess.getPrimitiveTypeAccess().getUNIT_TYPETerminalRuleCall_4_1()); 
                         
@@ -5251,7 +5575,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTupleType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2036:1: entryRuleTupleType returns [EObject current=null] : iv_ruleTupleType= ruleTupleType EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2158:1: entryRuleTupleType returns [EObject current=null] : iv_ruleTupleType= ruleTupleType EOF ;
     public final EObject entryRuleTupleType() throws RecognitionException {
         EObject current = null;
 
@@ -5259,17 +5583,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2037:2: (iv_ruleTupleType= ruleTupleType EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2038:2: iv_ruleTupleType= ruleTupleType EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2159:2: (iv_ruleTupleType= ruleTupleType EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2160:2: iv_ruleTupleType= ruleTupleType EOF
             {
              newCompositeNode(grammarAccess.getTupleTypeRule()); 
-            pushFollow(FOLLOW_ruleTupleType_in_entryRuleTupleType4563);
+            pushFollow(FOLLOW_ruleTupleType_in_entryRuleTupleType4803);
             iv_ruleTupleType=ruleTupleType();
 
             state._fsp--;
 
              current =iv_ruleTupleType; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTupleType4573); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTupleType4813); 
 
             }
 
@@ -5287,7 +5611,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTupleType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2045:1: ruleTupleType returns [EObject current=null] : (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2167:1: ruleTupleType returns [EObject current=null] : (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' ) ;
     public final EObject ruleTupleType() throws RecognitionException {
         EObject current = null;
 
@@ -5302,26 +5626,26 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2048:28: ( (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2049:1: (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2170:28: ( (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2171:1: (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2049:1: (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2049:3: otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2171:1: (otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2171:3: otherlv_0= '(' ( (lv_types_1_0= ruleType ) ) (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )* otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,47,FOLLOW_47_in_ruleTupleType4610); 
+            otherlv_0=(Token)match(input,47,FOLLOW_47_in_ruleTupleType4850); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTupleTypeAccess().getLeftParenthesisKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2053:1: ( (lv_types_1_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2054:1: (lv_types_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2175:1: ( (lv_types_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2176:1: (lv_types_1_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2054:1: (lv_types_1_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2055:3: lv_types_1_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2176:1: (lv_types_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2177:3: lv_types_1_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getTupleTypeAccess().getTypesTypeParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleTupleType4631);
+            pushFollow(FOLLOW_ruleType_in_ruleTupleType4871);
             lv_types_1_0=ruleType();
 
             state._fsp--;
@@ -5343,35 +5667,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2071:2: (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )*
-            loop29:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2193:2: (otherlv_2= ',' ( (lv_types_3_0= ruleType ) ) )*
+            loop32:
             do {
-                int alt29=2;
-                int LA29_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA29_0==45) ) {
-                    alt29=1;
+                if ( (LA32_0==45) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt29) {
+                switch (alt32) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2071:4: otherlv_2= ',' ( (lv_types_3_0= ruleType ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2193:4: otherlv_2= ',' ( (lv_types_3_0= ruleType ) )
             	    {
-            	    otherlv_2=(Token)match(input,45,FOLLOW_45_in_ruleTupleType4644); 
+            	    otherlv_2=(Token)match(input,45,FOLLOW_45_in_ruleTupleType4884); 
 
             	        	newLeafNode(otherlv_2, grammarAccess.getTupleTypeAccess().getCommaKeyword_2_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2075:1: ( (lv_types_3_0= ruleType ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2076:1: (lv_types_3_0= ruleType )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2197:1: ( (lv_types_3_0= ruleType ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2198:1: (lv_types_3_0= ruleType )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2076:1: (lv_types_3_0= ruleType )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2077:3: lv_types_3_0= ruleType
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2198:1: (lv_types_3_0= ruleType )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2199:3: lv_types_3_0= ruleType
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getTupleTypeAccess().getTypesTypeParserRuleCall_2_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleType_in_ruleTupleType4665);
+            	    pushFollow(FOLLOW_ruleType_in_ruleTupleType4905);
             	    lv_types_3_0=ruleType();
 
             	    state._fsp--;
@@ -5398,11 +5722,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop29;
+            	    break loop32;
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,48,FOLLOW_48_in_ruleTupleType4679); 
+            otherlv_4=(Token)match(input,48,FOLLOW_48_in_ruleTupleType4919); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getTupleTypeAccess().getRightParenthesisKeyword_3());
                 
@@ -5427,7 +5751,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStructType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2105:1: entryRuleStructType returns [EObject current=null] : iv_ruleStructType= ruleStructType EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2227:1: entryRuleStructType returns [EObject current=null] : iv_ruleStructType= ruleStructType EOF ;
     public final EObject entryRuleStructType() throws RecognitionException {
         EObject current = null;
 
@@ -5435,17 +5759,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2106:2: (iv_ruleStructType= ruleStructType EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2107:2: iv_ruleStructType= ruleStructType EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2228:2: (iv_ruleStructType= ruleStructType EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2229:2: iv_ruleStructType= ruleStructType EOF
             {
              newCompositeNode(grammarAccess.getStructTypeRule()); 
-            pushFollow(FOLLOW_ruleStructType_in_entryRuleStructType4715);
+            pushFollow(FOLLOW_ruleStructType_in_entryRuleStructType4955);
             iv_ruleStructType=ruleStructType();
 
             state._fsp--;
 
              current =iv_ruleStructType; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructType4725); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructType4965); 
 
             }
 
@@ -5463,7 +5787,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStructType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2114:1: ruleStructType returns [EObject current=null] : (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2236:1: ruleStructType returns [EObject current=null] : (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' ) ;
     public final EObject ruleStructType() throws RecognitionException {
         EObject current = null;
 
@@ -5487,23 +5811,23 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2117:28: ( (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:1: (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2239:28: ( (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2240:1: (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:1: (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2118:3: otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2240:1: (otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2240:3: otherlv_0= 'struct' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_fields_8_0= ruleStructField ) ) (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )* otherlv_11= '}'
             {
-            otherlv_0=(Token)match(input,69,FOLLOW_69_in_ruleStructType4762); 
+            otherlv_0=(Token)match(input,69,FOLLOW_69_in_ruleStructType5002); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getStructTypeAccess().getStructKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2122:1: ( (lv_ident_1_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2123:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2244:1: ( (lv_ident_1_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2245:1: (lv_ident_1_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2123:1: (lv_ident_1_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2124:3: lv_ident_1_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2245:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2246:3: lv_ident_1_0= RULE_IDENT
             {
-            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructType4779); 
+            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructType5019); 
 
             			newLeafNode(lv_ident_1_0, grammarAccess.getStructTypeAccess().getIdentIDENTTerminalRuleCall_1_0()); 
             		
@@ -5523,31 +5847,31 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:2: (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2262:2: (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA31_0==55) ) {
-                alt31=1;
+            if ( (LA34_0==55) ) {
+                alt34=1;
             }
-            switch (alt31) {
+            switch (alt34) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2140:4: otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2262:4: otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>'
                     {
-                    otherlv_2=(Token)match(input,55,FOLLOW_55_in_ruleStructType4797); 
+                    otherlv_2=(Token)match(input,55,FOLLOW_55_in_ruleStructType5037); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getStructTypeAccess().getLessThanSignKeyword_2_0());
                         
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2144:1: ( (lv_params_3_0= ruleGenericParamDecl ) )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2145:1: (lv_params_3_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2266:1: ( (lv_params_3_0= ruleGenericParamDecl ) )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2267:1: (lv_params_3_0= ruleGenericParamDecl )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2145:1: (lv_params_3_0= ruleGenericParamDecl )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2146:3: lv_params_3_0= ruleGenericParamDecl
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2267:1: (lv_params_3_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2268:3: lv_params_3_0= ruleGenericParamDecl
                     {
                      
                     	        newCompositeNode(grammarAccess.getStructTypeAccess().getParamsGenericParamDeclParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructType4818);
+                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructType5058);
                     lv_params_3_0=ruleGenericParamDecl();
 
                     state._fsp--;
@@ -5569,35 +5893,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2162:2: (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )*
-                    loop30:
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2284:2: (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )*
+                    loop33:
                     do {
-                        int alt30=2;
-                        int LA30_0 = input.LA(1);
+                        int alt33=2;
+                        int LA33_0 = input.LA(1);
 
-                        if ( (LA30_0==45) ) {
-                            alt30=1;
+                        if ( (LA33_0==45) ) {
+                            alt33=1;
                         }
 
 
-                        switch (alt30) {
+                        switch (alt33) {
                     	case 1 :
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2162:4: otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2284:4: otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,45,FOLLOW_45_in_ruleStructType4831); 
+                    	    otherlv_4=(Token)match(input,45,FOLLOW_45_in_ruleStructType5071); 
 
                     	        	newLeafNode(otherlv_4, grammarAccess.getStructTypeAccess().getCommaKeyword_2_2_0());
                     	        
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2166:1: ( (lv_params_5_0= ruleGenericParamDecl ) )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2167:1: (lv_params_5_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2288:1: ( (lv_params_5_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2289:1: (lv_params_5_0= ruleGenericParamDecl )
                     	    {
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2167:1: (lv_params_5_0= ruleGenericParamDecl )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2168:3: lv_params_5_0= ruleGenericParamDecl
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2289:1: (lv_params_5_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2290:3: lv_params_5_0= ruleGenericParamDecl
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getStructTypeAccess().getParamsGenericParamDeclParserRuleCall_2_2_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructType4852);
+                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructType5092);
                     	    lv_params_5_0=ruleGenericParamDecl();
 
                     	    state._fsp--;
@@ -5624,11 +5948,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop30;
+                    	    break loop33;
                         }
                     } while (true);
 
-                    otherlv_6=(Token)match(input,56,FOLLOW_56_in_ruleStructType4866); 
+                    otherlv_6=(Token)match(input,56,FOLLOW_56_in_ruleStructType5106); 
 
                         	newLeafNode(otherlv_6, grammarAccess.getStructTypeAccess().getGreaterThanSignKeyword_2_3());
                         
@@ -5638,20 +5962,20 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,52,FOLLOW_52_in_ruleStructType4880); 
+            otherlv_7=(Token)match(input,52,FOLLOW_52_in_ruleStructType5120); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getStructTypeAccess().getLeftCurlyBracketKeyword_3());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2192:1: ( (lv_fields_8_0= ruleStructField ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2193:1: (lv_fields_8_0= ruleStructField )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2314:1: ( (lv_fields_8_0= ruleStructField ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2315:1: (lv_fields_8_0= ruleStructField )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2193:1: (lv_fields_8_0= ruleStructField )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2194:3: lv_fields_8_0= ruleStructField
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2315:1: (lv_fields_8_0= ruleStructField )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2316:3: lv_fields_8_0= ruleStructField
             {
              
             	        newCompositeNode(grammarAccess.getStructTypeAccess().getFieldsStructFieldParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_ruleStructField_in_ruleStructType4901);
+            pushFollow(FOLLOW_ruleStructField_in_ruleStructType5141);
             lv_fields_8_0=ruleStructField();
 
             state._fsp--;
@@ -5673,35 +5997,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2210:2: (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )*
-            loop32:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2332:2: (otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) ) )*
+            loop35:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( (LA32_0==45) ) {
-                    alt32=1;
+                if ( (LA35_0==45) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt35) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2210:4: otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2332:4: otherlv_9= ',' ( (lv_fields_10_0= ruleStructField ) )
             	    {
-            	    otherlv_9=(Token)match(input,45,FOLLOW_45_in_ruleStructType4914); 
+            	    otherlv_9=(Token)match(input,45,FOLLOW_45_in_ruleStructType5154); 
 
             	        	newLeafNode(otherlv_9, grammarAccess.getStructTypeAccess().getCommaKeyword_5_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2214:1: ( (lv_fields_10_0= ruleStructField ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2215:1: (lv_fields_10_0= ruleStructField )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2336:1: ( (lv_fields_10_0= ruleStructField ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2337:1: (lv_fields_10_0= ruleStructField )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2215:1: (lv_fields_10_0= ruleStructField )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2216:3: lv_fields_10_0= ruleStructField
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2337:1: (lv_fields_10_0= ruleStructField )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2338:3: lv_fields_10_0= ruleStructField
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getStructTypeAccess().getFieldsStructFieldParserRuleCall_5_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleStructField_in_ruleStructType4935);
+            	    pushFollow(FOLLOW_ruleStructField_in_ruleStructType5175);
             	    lv_fields_10_0=ruleStructField();
 
             	    state._fsp--;
@@ -5728,11 +6052,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop35;
                 }
             } while (true);
 
-            otherlv_11=(Token)match(input,53,FOLLOW_53_in_ruleStructType4949); 
+            otherlv_11=(Token)match(input,53,FOLLOW_53_in_ruleStructType5189); 
 
                 	newLeafNode(otherlv_11, grammarAccess.getStructTypeAccess().getRightCurlyBracketKeyword_6());
                 
@@ -5757,7 +6081,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBoxedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2244:1: entryRuleBoxedPointer returns [EObject current=null] : iv_ruleBoxedPointer= ruleBoxedPointer EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2366:1: entryRuleBoxedPointer returns [EObject current=null] : iv_ruleBoxedPointer= ruleBoxedPointer EOF ;
     public final EObject entryRuleBoxedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -5765,17 +6089,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2245:2: (iv_ruleBoxedPointer= ruleBoxedPointer EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2246:2: iv_ruleBoxedPointer= ruleBoxedPointer EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2367:2: (iv_ruleBoxedPointer= ruleBoxedPointer EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2368:2: iv_ruleBoxedPointer= ruleBoxedPointer EOF
             {
              newCompositeNode(grammarAccess.getBoxedPointerRule()); 
-            pushFollow(FOLLOW_ruleBoxedPointer_in_entryRuleBoxedPointer4985);
+            pushFollow(FOLLOW_ruleBoxedPointer_in_entryRuleBoxedPointer5225);
             iv_ruleBoxedPointer=ruleBoxedPointer();
 
             state._fsp--;
 
              current =iv_ruleBoxedPointer; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBoxedPointer4995); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBoxedPointer5235); 
 
             }
 
@@ -5793,7 +6117,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBoxedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2253:1: ruleBoxedPointer returns [EObject current=null] : (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2375:1: ruleBoxedPointer returns [EObject current=null] : (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) ) ;
     public final EObject ruleBoxedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -5804,26 +6128,26 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2256:28: ( (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2257:1: (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2378:28: ( (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2379:1: (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2257:1: (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2257:3: otherlv_0= '@' ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2379:1: (otherlv_0= '@' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2379:3: otherlv_0= '@' ( (lv_type_1_0= ruleType ) )
             {
-            otherlv_0=(Token)match(input,61,FOLLOW_61_in_ruleBoxedPointer5032); 
+            otherlv_0=(Token)match(input,61,FOLLOW_61_in_ruleBoxedPointer5272); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getBoxedPointerAccess().getCommercialAtKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2261:1: ( (lv_type_1_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2262:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2383:1: ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2384:1: (lv_type_1_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2262:1: (lv_type_1_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2263:3: lv_type_1_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2384:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2385:3: lv_type_1_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getBoxedPointerAccess().getTypeTypeParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleBoxedPointer5053);
+            pushFollow(FOLLOW_ruleType_in_ruleBoxedPointer5293);
             lv_type_1_0=ruleType();
 
             state._fsp--;
@@ -5866,7 +6190,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOwnedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2287:1: entryRuleOwnedPointer returns [EObject current=null] : iv_ruleOwnedPointer= ruleOwnedPointer EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2409:1: entryRuleOwnedPointer returns [EObject current=null] : iv_ruleOwnedPointer= ruleOwnedPointer EOF ;
     public final EObject entryRuleOwnedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -5874,17 +6198,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2288:2: (iv_ruleOwnedPointer= ruleOwnedPointer EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2289:2: iv_ruleOwnedPointer= ruleOwnedPointer EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2410:2: (iv_ruleOwnedPointer= ruleOwnedPointer EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2411:2: iv_ruleOwnedPointer= ruleOwnedPointer EOF
             {
              newCompositeNode(grammarAccess.getOwnedPointerRule()); 
-            pushFollow(FOLLOW_ruleOwnedPointer_in_entryRuleOwnedPointer5089);
+            pushFollow(FOLLOW_ruleOwnedPointer_in_entryRuleOwnedPointer5329);
             iv_ruleOwnedPointer=ruleOwnedPointer();
 
             state._fsp--;
 
              current =iv_ruleOwnedPointer; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOwnedPointer5099); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOwnedPointer5339); 
 
             }
 
@@ -5902,7 +6226,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOwnedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2296:1: ruleOwnedPointer returns [EObject current=null] : (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2418:1: ruleOwnedPointer returns [EObject current=null] : (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) ) ;
     public final EObject ruleOwnedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -5913,26 +6237,26 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2299:28: ( (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2300:1: (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2421:28: ( (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2422:1: (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2300:1: (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2300:3: otherlv_0= '~' ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2422:1: (otherlv_0= '~' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2422:3: otherlv_0= '~' ( (lv_type_1_0= ruleType ) )
             {
-            otherlv_0=(Token)match(input,62,FOLLOW_62_in_ruleOwnedPointer5136); 
+            otherlv_0=(Token)match(input,62,FOLLOW_62_in_ruleOwnedPointer5376); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getOwnedPointerAccess().getTildeKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2304:1: ( (lv_type_1_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2305:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2426:1: ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2427:1: (lv_type_1_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2305:1: (lv_type_1_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2306:3: lv_type_1_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2427:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2428:3: lv_type_1_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getOwnedPointerAccess().getTypeTypeParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleOwnedPointer5157);
+            pushFollow(FOLLOW_ruleType_in_ruleOwnedPointer5397);
             lv_type_1_0=ruleType();
 
             state._fsp--;
@@ -5975,7 +6299,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBorrowedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2330:1: entryRuleBorrowedPointer returns [EObject current=null] : iv_ruleBorrowedPointer= ruleBorrowedPointer EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2452:1: entryRuleBorrowedPointer returns [EObject current=null] : iv_ruleBorrowedPointer= ruleBorrowedPointer EOF ;
     public final EObject entryRuleBorrowedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -5983,17 +6307,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2331:2: (iv_ruleBorrowedPointer= ruleBorrowedPointer EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2332:2: iv_ruleBorrowedPointer= ruleBorrowedPointer EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2453:2: (iv_ruleBorrowedPointer= ruleBorrowedPointer EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2454:2: iv_ruleBorrowedPointer= ruleBorrowedPointer EOF
             {
              newCompositeNode(grammarAccess.getBorrowedPointerRule()); 
-            pushFollow(FOLLOW_ruleBorrowedPointer_in_entryRuleBorrowedPointer5193);
+            pushFollow(FOLLOW_ruleBorrowedPointer_in_entryRuleBorrowedPointer5433);
             iv_ruleBorrowedPointer=ruleBorrowedPointer();
 
             state._fsp--;
 
              current =iv_ruleBorrowedPointer; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBorrowedPointer5203); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBorrowedPointer5443); 
 
             }
 
@@ -6011,7 +6335,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBorrowedPointer"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2339:1: ruleBorrowedPointer returns [EObject current=null] : (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2461:1: ruleBorrowedPointer returns [EObject current=null] : (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) ) ;
     public final EObject ruleBorrowedPointer() throws RecognitionException {
         EObject current = null;
 
@@ -6022,26 +6346,26 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2342:28: ( (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2343:1: (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2464:28: ( (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:1: (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2343:1: (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2343:3: otherlv_0= '&' ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:1: (otherlv_0= '&' ( (lv_type_1_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:3: otherlv_0= '&' ( (lv_type_1_0= ruleType ) )
             {
-            otherlv_0=(Token)match(input,63,FOLLOW_63_in_ruleBorrowedPointer5240); 
+            otherlv_0=(Token)match(input,63,FOLLOW_63_in_ruleBorrowedPointer5480); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getBorrowedPointerAccess().getAmpersandKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2347:1: ( (lv_type_1_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2348:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2469:1: ( (lv_type_1_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2470:1: (lv_type_1_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2348:1: (lv_type_1_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2349:3: lv_type_1_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2470:1: (lv_type_1_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2471:3: lv_type_1_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getBorrowedPointerAccess().getTypeTypeParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleBorrowedPointer5261);
+            pushFollow(FOLLOW_ruleType_in_ruleBorrowedPointer5501);
             lv_type_1_0=ruleType();
 
             state._fsp--;
@@ -6084,7 +6408,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStructField"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2373:1: entryRuleStructField returns [EObject current=null] : iv_ruleStructField= ruleStructField EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2495:1: entryRuleStructField returns [EObject current=null] : iv_ruleStructField= ruleStructField EOF ;
     public final EObject entryRuleStructField() throws RecognitionException {
         EObject current = null;
 
@@ -6092,17 +6416,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2374:2: (iv_ruleStructField= ruleStructField EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2375:2: iv_ruleStructField= ruleStructField EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2496:2: (iv_ruleStructField= ruleStructField EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2497:2: iv_ruleStructField= ruleStructField EOF
             {
              newCompositeNode(grammarAccess.getStructFieldRule()); 
-            pushFollow(FOLLOW_ruleStructField_in_entryRuleStructField5297);
+            pushFollow(FOLLOW_ruleStructField_in_entryRuleStructField5537);
             iv_ruleStructField=ruleStructField();
 
             state._fsp--;
 
              current =iv_ruleStructField; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructField5307); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructField5547); 
 
             }
 
@@ -6120,7 +6444,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStructField"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2382:1: ruleStructField returns [EObject current=null] : ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2504:1: ruleStructField returns [EObject current=null] : ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) ) ;
     public final EObject ruleStructField() throws RecognitionException {
         EObject current = null;
 
@@ -6134,30 +6458,30 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2385:28: ( ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2386:1: ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2507:28: ( ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2508:1: ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2386:1: ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2386:2: ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2508:1: ( ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2508:2: ( (lv_vis_0_0= ruleVisibility ) )? ( (lv_ident_1_0= RULE_IDENT ) ) otherlv_2= ':' ( (lv_type_3_0= ruleType ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2386:2: ( (lv_vis_0_0= ruleVisibility ) )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2508:2: ( (lv_vis_0_0= ruleVisibility ) )?
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( ((LA33_0>=71 && LA33_0<=72)) ) {
-                alt33=1;
+            if ( ((LA36_0>=71 && LA36_0<=72)) ) {
+                alt36=1;
             }
-            switch (alt33) {
+            switch (alt36) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2387:1: (lv_vis_0_0= ruleVisibility )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2509:1: (lv_vis_0_0= ruleVisibility )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2387:1: (lv_vis_0_0= ruleVisibility )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2388:3: lv_vis_0_0= ruleVisibility
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2509:1: (lv_vis_0_0= ruleVisibility )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2510:3: lv_vis_0_0= ruleVisibility
                     {
                      
                     	        newCompositeNode(grammarAccess.getStructFieldAccess().getVisVisibilityEnumRuleCall_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleVisibility_in_ruleStructField5353);
+                    pushFollow(FOLLOW_ruleVisibility_in_ruleStructField5593);
                     lv_vis_0_0=ruleVisibility();
 
                     state._fsp--;
@@ -6182,13 +6506,13 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2404:3: ( (lv_ident_1_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2405:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2526:3: ( (lv_ident_1_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2527:1: (lv_ident_1_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2405:1: (lv_ident_1_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2406:3: lv_ident_1_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2527:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2528:3: lv_ident_1_0= RULE_IDENT
             {
-            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructField5371); 
+            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructField5611); 
 
             			newLeafNode(lv_ident_1_0, grammarAccess.getStructFieldAccess().getIdentIDENTTerminalRuleCall_1_0()); 
             		
@@ -6208,20 +6532,20 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,58,FOLLOW_58_in_ruleStructField5388); 
+            otherlv_2=(Token)match(input,58,FOLLOW_58_in_ruleStructField5628); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getStructFieldAccess().getColonKeyword_2());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2426:1: ( (lv_type_3_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2427:1: (lv_type_3_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2548:1: ( (lv_type_3_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2549:1: (lv_type_3_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2427:1: (lv_type_3_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2428:3: lv_type_3_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2549:1: (lv_type_3_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2550:3: lv_type_3_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getStructFieldAccess().getTypeTypeParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleStructField5409);
+            pushFollow(FOLLOW_ruleType_in_ruleStructField5649);
             lv_type_3_0=ruleType();
 
             state._fsp--;
@@ -6264,7 +6588,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEnumType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2452:1: entryRuleEnumType returns [EObject current=null] : iv_ruleEnumType= ruleEnumType EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2574:1: entryRuleEnumType returns [EObject current=null] : iv_ruleEnumType= ruleEnumType EOF ;
     public final EObject entryRuleEnumType() throws RecognitionException {
         EObject current = null;
 
@@ -6272,17 +6596,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2453:2: (iv_ruleEnumType= ruleEnumType EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2454:2: iv_ruleEnumType= ruleEnumType EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2575:2: (iv_ruleEnumType= ruleEnumType EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2576:2: iv_ruleEnumType= ruleEnumType EOF
             {
              newCompositeNode(grammarAccess.getEnumTypeRule()); 
-            pushFollow(FOLLOW_ruleEnumType_in_entryRuleEnumType5445);
+            pushFollow(FOLLOW_ruleEnumType_in_entryRuleEnumType5685);
             iv_ruleEnumType=ruleEnumType();
 
             state._fsp--;
 
              current =iv_ruleEnumType; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumType5455); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumType5695); 
 
             }
 
@@ -6300,7 +6624,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEnumType"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2461:1: ruleEnumType returns [EObject current=null] : (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2583:1: ruleEnumType returns [EObject current=null] : (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' ) ;
     public final EObject ruleEnumType() throws RecognitionException {
         EObject current = null;
 
@@ -6324,23 +6648,23 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2464:28: ( (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:1: (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2586:28: ( (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2587:1: (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:1: (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2465:3: otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2587:1: (otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2587:3: otherlv_0= 'enum' ( (lv_ident_1_0= RULE_IDENT ) ) (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )? otherlv_7= '{' ( (lv_variants_8_0= ruleVariant ) ) (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )* otherlv_11= '}'
             {
-            otherlv_0=(Token)match(input,70,FOLLOW_70_in_ruleEnumType5492); 
+            otherlv_0=(Token)match(input,70,FOLLOW_70_in_ruleEnumType5732); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getEnumTypeAccess().getEnumKeyword_0());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2469:1: ( (lv_ident_1_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2470:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2591:1: ( (lv_ident_1_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2592:1: (lv_ident_1_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2470:1: (lv_ident_1_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2471:3: lv_ident_1_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2592:1: (lv_ident_1_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2593:3: lv_ident_1_0= RULE_IDENT
             {
-            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleEnumType5509); 
+            lv_ident_1_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleEnumType5749); 
 
             			newLeafNode(lv_ident_1_0, grammarAccess.getEnumTypeAccess().getIdentIDENTTerminalRuleCall_1_0()); 
             		
@@ -6360,31 +6684,31 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2487:2: (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )?
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2609:2: (otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>' )?
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA35_0==55) ) {
-                alt35=1;
+            if ( (LA38_0==55) ) {
+                alt38=1;
             }
-            switch (alt35) {
+            switch (alt38) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2487:4: otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2609:4: otherlv_2= '<' ( (lv_params_3_0= ruleGenericParamDecl ) ) (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )* otherlv_6= '>'
                     {
-                    otherlv_2=(Token)match(input,55,FOLLOW_55_in_ruleEnumType5527); 
+                    otherlv_2=(Token)match(input,55,FOLLOW_55_in_ruleEnumType5767); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getEnumTypeAccess().getLessThanSignKeyword_2_0());
                         
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2491:1: ( (lv_params_3_0= ruleGenericParamDecl ) )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2492:1: (lv_params_3_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2613:1: ( (lv_params_3_0= ruleGenericParamDecl ) )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2614:1: (lv_params_3_0= ruleGenericParamDecl )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2492:1: (lv_params_3_0= ruleGenericParamDecl )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2493:3: lv_params_3_0= ruleGenericParamDecl
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2614:1: (lv_params_3_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2615:3: lv_params_3_0= ruleGenericParamDecl
                     {
                      
                     	        newCompositeNode(grammarAccess.getEnumTypeAccess().getParamsGenericParamDeclParserRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleEnumType5548);
+                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleEnumType5788);
                     lv_params_3_0=ruleGenericParamDecl();
 
                     state._fsp--;
@@ -6406,35 +6730,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2509:2: (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )*
-                    loop34:
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2631:2: (otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) ) )*
+                    loop37:
                     do {
-                        int alt34=2;
-                        int LA34_0 = input.LA(1);
+                        int alt37=2;
+                        int LA37_0 = input.LA(1);
 
-                        if ( (LA34_0==45) ) {
-                            alt34=1;
+                        if ( (LA37_0==45) ) {
+                            alt37=1;
                         }
 
 
-                        switch (alt34) {
+                        switch (alt37) {
                     	case 1 :
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2509:4: otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2631:4: otherlv_4= ',' ( (lv_params_5_0= ruleGenericParamDecl ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,45,FOLLOW_45_in_ruleEnumType5561); 
+                    	    otherlv_4=(Token)match(input,45,FOLLOW_45_in_ruleEnumType5801); 
 
                     	        	newLeafNode(otherlv_4, grammarAccess.getEnumTypeAccess().getCommaKeyword_2_2_0());
                     	        
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2513:1: ( (lv_params_5_0= ruleGenericParamDecl ) )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2514:1: (lv_params_5_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2635:1: ( (lv_params_5_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2636:1: (lv_params_5_0= ruleGenericParamDecl )
                     	    {
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2514:1: (lv_params_5_0= ruleGenericParamDecl )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2515:3: lv_params_5_0= ruleGenericParamDecl
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2636:1: (lv_params_5_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2637:3: lv_params_5_0= ruleGenericParamDecl
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getEnumTypeAccess().getParamsGenericParamDeclParserRuleCall_2_2_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleEnumType5582);
+                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleEnumType5822);
                     	    lv_params_5_0=ruleGenericParamDecl();
 
                     	    state._fsp--;
@@ -6461,11 +6785,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop34;
+                    	    break loop37;
                         }
                     } while (true);
 
-                    otherlv_6=(Token)match(input,56,FOLLOW_56_in_ruleEnumType5596); 
+                    otherlv_6=(Token)match(input,56,FOLLOW_56_in_ruleEnumType5836); 
 
                         	newLeafNode(otherlv_6, grammarAccess.getEnumTypeAccess().getGreaterThanSignKeyword_2_3());
                         
@@ -6475,20 +6799,20 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,52,FOLLOW_52_in_ruleEnumType5610); 
+            otherlv_7=(Token)match(input,52,FOLLOW_52_in_ruleEnumType5850); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getEnumTypeAccess().getLeftCurlyBracketKeyword_3());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2539:1: ( (lv_variants_8_0= ruleVariant ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2540:1: (lv_variants_8_0= ruleVariant )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2661:1: ( (lv_variants_8_0= ruleVariant ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2662:1: (lv_variants_8_0= ruleVariant )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2540:1: (lv_variants_8_0= ruleVariant )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2541:3: lv_variants_8_0= ruleVariant
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2662:1: (lv_variants_8_0= ruleVariant )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2663:3: lv_variants_8_0= ruleVariant
             {
              
             	        newCompositeNode(grammarAccess.getEnumTypeAccess().getVariantsVariantParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_ruleVariant_in_ruleEnumType5631);
+            pushFollow(FOLLOW_ruleVariant_in_ruleEnumType5871);
             lv_variants_8_0=ruleVariant();
 
             state._fsp--;
@@ -6510,35 +6834,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2557:2: (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )*
-            loop36:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2679:2: (otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) ) )*
+            loop39:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt39=2;
+                int LA39_0 = input.LA(1);
 
-                if ( (LA36_0==45) ) {
-                    alt36=1;
+                if ( (LA39_0==45) ) {
+                    alt39=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt39) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2557:4: otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2679:4: otherlv_9= ',' ( (lv_variants_10_0= ruleVariant ) )
             	    {
-            	    otherlv_9=(Token)match(input,45,FOLLOW_45_in_ruleEnumType5644); 
+            	    otherlv_9=(Token)match(input,45,FOLLOW_45_in_ruleEnumType5884); 
 
             	        	newLeafNode(otherlv_9, grammarAccess.getEnumTypeAccess().getCommaKeyword_5_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2561:1: ( (lv_variants_10_0= ruleVariant ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2562:1: (lv_variants_10_0= ruleVariant )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2683:1: ( (lv_variants_10_0= ruleVariant ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2684:1: (lv_variants_10_0= ruleVariant )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2562:1: (lv_variants_10_0= ruleVariant )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2563:3: lv_variants_10_0= ruleVariant
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2684:1: (lv_variants_10_0= ruleVariant )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2685:3: lv_variants_10_0= ruleVariant
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getEnumTypeAccess().getVariantsVariantParserRuleCall_5_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleVariant_in_ruleEnumType5665);
+            	    pushFollow(FOLLOW_ruleVariant_in_ruleEnumType5905);
             	    lv_variants_10_0=ruleVariant();
 
             	    state._fsp--;
@@ -6565,11 +6889,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop39;
                 }
             } while (true);
 
-            otherlv_11=(Token)match(input,53,FOLLOW_53_in_ruleEnumType5679); 
+            otherlv_11=(Token)match(input,53,FOLLOW_53_in_ruleEnumType5919); 
 
                 	newLeafNode(otherlv_11, grammarAccess.getEnumTypeAccess().getRightCurlyBracketKeyword_6());
                 
@@ -6594,7 +6918,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2591:1: entryRuleVariant returns [EObject current=null] : iv_ruleVariant= ruleVariant EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2713:1: entryRuleVariant returns [EObject current=null] : iv_ruleVariant= ruleVariant EOF ;
     public final EObject entryRuleVariant() throws RecognitionException {
         EObject current = null;
 
@@ -6602,17 +6926,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2592:2: (iv_ruleVariant= ruleVariant EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2593:2: iv_ruleVariant= ruleVariant EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2714:2: (iv_ruleVariant= ruleVariant EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2715:2: iv_ruleVariant= ruleVariant EOF
             {
              newCompositeNode(grammarAccess.getVariantRule()); 
-            pushFollow(FOLLOW_ruleVariant_in_entryRuleVariant5715);
+            pushFollow(FOLLOW_ruleVariant_in_entryRuleVariant5955);
             iv_ruleVariant=ruleVariant();
 
             state._fsp--;
 
              current =iv_ruleVariant; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariant5725); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariant5965); 
 
             }
 
@@ -6630,7 +6954,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2600:1: ruleVariant returns [EObject current=null] : (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2722:1: ruleVariant returns [EObject current=null] : (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant ) ;
     public final EObject ruleVariant() throws RecognitionException {
         EObject current = null;
 
@@ -6644,36 +6968,36 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2603:28: ( (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2604:1: (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2725:28: ( (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2726:1: (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2604:1: (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant )
-            int alt37=3;
-            int LA37_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2726:1: (this_StructVariant_0= ruleStructVariant | this_TupleVariant_1= ruleTupleVariant | this_UnitVariant_2= ruleUnitVariant )
+            int alt40=3;
+            int LA40_0 = input.LA(1);
 
-            if ( (LA37_0==RULE_IDENT) ) {
+            if ( (LA40_0==RULE_IDENT) ) {
                 switch ( input.LA(2) ) {
                 case 47:
                     {
-                    alt37=2;
+                    alt40=2;
                     }
                     break;
                 case EOF:
                 case 45:
                 case 53:
                     {
-                    alt37=3;
+                    alt40=3;
                     }
                     break;
                 case 52:
                 case 55:
                     {
-                    alt37=1;
+                    alt40=1;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 37, 1, input);
+                        new NoViableAltException("", 40, 1, input);
 
                     throw nvae;
                 }
@@ -6681,18 +7005,18 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 37, 0, input);
+                    new NoViableAltException("", 40, 0, input);
 
                 throw nvae;
             }
-            switch (alt37) {
+            switch (alt40) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2605:5: this_StructVariant_0= ruleStructVariant
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2727:5: this_StructVariant_0= ruleStructVariant
                     {
                      
                             newCompositeNode(grammarAccess.getVariantAccess().getStructVariantParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleStructVariant_in_ruleVariant5772);
+                    pushFollow(FOLLOW_ruleStructVariant_in_ruleVariant6012);
                     this_StructVariant_0=ruleStructVariant();
 
                     state._fsp--;
@@ -6705,12 +7029,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2615:5: this_TupleVariant_1= ruleTupleVariant
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2737:5: this_TupleVariant_1= ruleTupleVariant
                     {
                      
                             newCompositeNode(grammarAccess.getVariantAccess().getTupleVariantParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleTupleVariant_in_ruleVariant5799);
+                    pushFollow(FOLLOW_ruleTupleVariant_in_ruleVariant6039);
                     this_TupleVariant_1=ruleTupleVariant();
 
                     state._fsp--;
@@ -6723,12 +7047,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2625:5: this_UnitVariant_2= ruleUnitVariant
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2747:5: this_UnitVariant_2= ruleUnitVariant
                     {
                      
                             newCompositeNode(grammarAccess.getVariantAccess().getUnitVariantParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleUnitVariant_in_ruleVariant5826);
+                    pushFollow(FOLLOW_ruleUnitVariant_in_ruleVariant6066);
                     this_UnitVariant_2=ruleUnitVariant();
 
                     state._fsp--;
@@ -6761,7 +7085,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStructVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2641:1: entryRuleStructVariant returns [EObject current=null] : iv_ruleStructVariant= ruleStructVariant EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2763:1: entryRuleStructVariant returns [EObject current=null] : iv_ruleStructVariant= ruleStructVariant EOF ;
     public final EObject entryRuleStructVariant() throws RecognitionException {
         EObject current = null;
 
@@ -6769,17 +7093,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2642:2: (iv_ruleStructVariant= ruleStructVariant EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2643:2: iv_ruleStructVariant= ruleStructVariant EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2764:2: (iv_ruleStructVariant= ruleStructVariant EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2765:2: iv_ruleStructVariant= ruleStructVariant EOF
             {
              newCompositeNode(grammarAccess.getStructVariantRule()); 
-            pushFollow(FOLLOW_ruleStructVariant_in_entryRuleStructVariant5861);
+            pushFollow(FOLLOW_ruleStructVariant_in_entryRuleStructVariant6101);
             iv_ruleStructVariant=ruleStructVariant();
 
             state._fsp--;
 
              current =iv_ruleStructVariant; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructVariant5871); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructVariant6111); 
 
             }
 
@@ -6797,7 +7121,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStructVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2650:1: ruleStructVariant returns [EObject current=null] : ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2772:1: ruleStructVariant returns [EObject current=null] : ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' ) ;
     public final EObject ruleStructVariant() throws RecognitionException {
         EObject current = null;
 
@@ -6820,19 +7144,19 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2653:28: ( ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2654:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2775:28: ( ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2776:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2654:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2654:2: ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2776:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2776:2: ( (lv_ident_0_0= RULE_IDENT ) ) (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )? otherlv_6= '{' ( (lv_fields_7_0= ruleStructField ) ) (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )* otherlv_10= '}'
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2654:2: ( (lv_ident_0_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2655:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2776:2: ( (lv_ident_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2777:1: (lv_ident_0_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2655:1: (lv_ident_0_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2656:3: lv_ident_0_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2777:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2778:3: lv_ident_0_0= RULE_IDENT
             {
-            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructVariant5913); 
+            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleStructVariant6153); 
 
             			newLeafNode(lv_ident_0_0, grammarAccess.getStructVariantAccess().getIdentIDENTTerminalRuleCall_0_0()); 
             		
@@ -6852,31 +7176,31 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2672:2: (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2794:2: (otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>' )?
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA39_0==55) ) {
-                alt39=1;
+            if ( (LA42_0==55) ) {
+                alt42=1;
             }
-            switch (alt39) {
+            switch (alt42) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2672:4: otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2794:4: otherlv_1= '<' ( (lv_params_2_0= ruleGenericParamDecl ) ) (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )* otherlv_5= '>'
                     {
-                    otherlv_1=(Token)match(input,55,FOLLOW_55_in_ruleStructVariant5931); 
+                    otherlv_1=(Token)match(input,55,FOLLOW_55_in_ruleStructVariant6171); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getStructVariantAccess().getLessThanSignKeyword_1_0());
                         
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2676:1: ( (lv_params_2_0= ruleGenericParamDecl ) )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2677:1: (lv_params_2_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2798:1: ( (lv_params_2_0= ruleGenericParamDecl ) )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2799:1: (lv_params_2_0= ruleGenericParamDecl )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2677:1: (lv_params_2_0= ruleGenericParamDecl )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2678:3: lv_params_2_0= ruleGenericParamDecl
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2799:1: (lv_params_2_0= ruleGenericParamDecl )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2800:3: lv_params_2_0= ruleGenericParamDecl
                     {
                      
                     	        newCompositeNode(grammarAccess.getStructVariantAccess().getParamsGenericParamDeclParserRuleCall_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructVariant5952);
+                    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructVariant6192);
                     lv_params_2_0=ruleGenericParamDecl();
 
                     state._fsp--;
@@ -6898,35 +7222,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2694:2: (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )*
-                    loop38:
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2816:2: (otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) ) )*
+                    loop41:
                     do {
-                        int alt38=2;
-                        int LA38_0 = input.LA(1);
+                        int alt41=2;
+                        int LA41_0 = input.LA(1);
 
-                        if ( (LA38_0==45) ) {
-                            alt38=1;
+                        if ( (LA41_0==45) ) {
+                            alt41=1;
                         }
 
 
-                        switch (alt38) {
+                        switch (alt41) {
                     	case 1 :
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2694:4: otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2816:4: otherlv_3= ',' ( (lv_params_4_0= ruleGenericParamDecl ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,45,FOLLOW_45_in_ruleStructVariant5965); 
+                    	    otherlv_3=(Token)match(input,45,FOLLOW_45_in_ruleStructVariant6205); 
 
                     	        	newLeafNode(otherlv_3, grammarAccess.getStructVariantAccess().getCommaKeyword_1_2_0());
                     	        
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2698:1: ( (lv_params_4_0= ruleGenericParamDecl ) )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2699:1: (lv_params_4_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2820:1: ( (lv_params_4_0= ruleGenericParamDecl ) )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2821:1: (lv_params_4_0= ruleGenericParamDecl )
                     	    {
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2699:1: (lv_params_4_0= ruleGenericParamDecl )
-                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2700:3: lv_params_4_0= ruleGenericParamDecl
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2821:1: (lv_params_4_0= ruleGenericParamDecl )
+                    	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2822:3: lv_params_4_0= ruleGenericParamDecl
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getStructVariantAccess().getParamsGenericParamDeclParserRuleCall_1_2_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructVariant5986);
+                    	    pushFollow(FOLLOW_ruleGenericParamDecl_in_ruleStructVariant6226);
                     	    lv_params_4_0=ruleGenericParamDecl();
 
                     	    state._fsp--;
@@ -6953,11 +7277,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop38;
+                    	    break loop41;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,56,FOLLOW_56_in_ruleStructVariant6000); 
+                    otherlv_5=(Token)match(input,56,FOLLOW_56_in_ruleStructVariant6240); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getStructVariantAccess().getGreaterThanSignKeyword_1_3());
                         
@@ -6967,20 +7291,20 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,52,FOLLOW_52_in_ruleStructVariant6014); 
+            otherlv_6=(Token)match(input,52,FOLLOW_52_in_ruleStructVariant6254); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getStructVariantAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2724:1: ( (lv_fields_7_0= ruleStructField ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2725:1: (lv_fields_7_0= ruleStructField )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2846:1: ( (lv_fields_7_0= ruleStructField ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2847:1: (lv_fields_7_0= ruleStructField )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2725:1: (lv_fields_7_0= ruleStructField )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2726:3: lv_fields_7_0= ruleStructField
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2847:1: (lv_fields_7_0= ruleStructField )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2848:3: lv_fields_7_0= ruleStructField
             {
              
             	        newCompositeNode(grammarAccess.getStructVariantAccess().getFieldsStructFieldParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleStructField_in_ruleStructVariant6035);
+            pushFollow(FOLLOW_ruleStructField_in_ruleStructVariant6275);
             lv_fields_7_0=ruleStructField();
 
             state._fsp--;
@@ -7002,35 +7326,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2742:2: (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )*
-            loop40:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2864:2: (otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) ) )*
+            loop43:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt43=2;
+                int LA43_0 = input.LA(1);
 
-                if ( (LA40_0==45) ) {
-                    alt40=1;
+                if ( (LA43_0==45) ) {
+                    alt43=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt43) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2742:4: otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2864:4: otherlv_8= ',' ( (lv_fields_9_0= ruleStructField ) )
             	    {
-            	    otherlv_8=(Token)match(input,45,FOLLOW_45_in_ruleStructVariant6048); 
+            	    otherlv_8=(Token)match(input,45,FOLLOW_45_in_ruleStructVariant6288); 
 
             	        	newLeafNode(otherlv_8, grammarAccess.getStructVariantAccess().getCommaKeyword_4_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2746:1: ( (lv_fields_9_0= ruleStructField ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2747:1: (lv_fields_9_0= ruleStructField )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2868:1: ( (lv_fields_9_0= ruleStructField ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2869:1: (lv_fields_9_0= ruleStructField )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2747:1: (lv_fields_9_0= ruleStructField )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2748:3: lv_fields_9_0= ruleStructField
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2869:1: (lv_fields_9_0= ruleStructField )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2870:3: lv_fields_9_0= ruleStructField
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getStructVariantAccess().getFieldsStructFieldParserRuleCall_4_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleStructField_in_ruleStructVariant6069);
+            	    pushFollow(FOLLOW_ruleStructField_in_ruleStructVariant6309);
             	    lv_fields_9_0=ruleStructField();
 
             	    state._fsp--;
@@ -7057,11 +7381,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop43;
                 }
             } while (true);
 
-            otherlv_10=(Token)match(input,53,FOLLOW_53_in_ruleStructVariant6083); 
+            otherlv_10=(Token)match(input,53,FOLLOW_53_in_ruleStructVariant6323); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getStructVariantAccess().getRightCurlyBracketKeyword_5());
                 
@@ -7086,7 +7410,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTupleVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2776:1: entryRuleTupleVariant returns [EObject current=null] : iv_ruleTupleVariant= ruleTupleVariant EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2898:1: entryRuleTupleVariant returns [EObject current=null] : iv_ruleTupleVariant= ruleTupleVariant EOF ;
     public final EObject entryRuleTupleVariant() throws RecognitionException {
         EObject current = null;
 
@@ -7094,17 +7418,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2777:2: (iv_ruleTupleVariant= ruleTupleVariant EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2778:2: iv_ruleTupleVariant= ruleTupleVariant EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2899:2: (iv_ruleTupleVariant= ruleTupleVariant EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2900:2: iv_ruleTupleVariant= ruleTupleVariant EOF
             {
              newCompositeNode(grammarAccess.getTupleVariantRule()); 
-            pushFollow(FOLLOW_ruleTupleVariant_in_entryRuleTupleVariant6119);
+            pushFollow(FOLLOW_ruleTupleVariant_in_entryRuleTupleVariant6359);
             iv_ruleTupleVariant=ruleTupleVariant();
 
             state._fsp--;
 
              current =iv_ruleTupleVariant; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTupleVariant6129); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTupleVariant6369); 
 
             }
 
@@ -7122,7 +7446,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTupleVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2785:1: ruleTupleVariant returns [EObject current=null] : ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2907:1: ruleTupleVariant returns [EObject current=null] : ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' ) ;
     public final EObject ruleTupleVariant() throws RecognitionException {
         EObject current = null;
 
@@ -7138,19 +7462,19 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2788:28: ( ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2789:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2910:28: ( ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2911:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2789:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2789:2: ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2911:1: ( ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2911:2: ( (lv_ident_0_0= RULE_IDENT ) ) otherlv_1= '(' ( (lv_types_2_0= ruleType ) ) (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )* otherlv_5= ')'
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2789:2: ( (lv_ident_0_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2790:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2911:2: ( (lv_ident_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2912:1: (lv_ident_0_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2790:1: (lv_ident_0_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2791:3: lv_ident_0_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2912:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2913:3: lv_ident_0_0= RULE_IDENT
             {
-            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleTupleVariant6171); 
+            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleTupleVariant6411); 
 
             			newLeafNode(lv_ident_0_0, grammarAccess.getTupleVariantAccess().getIdentIDENTTerminalRuleCall_0_0()); 
             		
@@ -7170,20 +7494,20 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleTupleVariant6188); 
+            otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleTupleVariant6428); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getTupleVariantAccess().getLeftParenthesisKeyword_1());
                 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2811:1: ( (lv_types_2_0= ruleType ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2812:1: (lv_types_2_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2933:1: ( (lv_types_2_0= ruleType ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2934:1: (lv_types_2_0= ruleType )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2812:1: (lv_types_2_0= ruleType )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2813:3: lv_types_2_0= ruleType
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2934:1: (lv_types_2_0= ruleType )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2935:3: lv_types_2_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getTupleVariantAccess().getTypesTypeParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleTupleVariant6209);
+            pushFollow(FOLLOW_ruleType_in_ruleTupleVariant6449);
             lv_types_2_0=ruleType();
 
             state._fsp--;
@@ -7205,35 +7529,35 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2829:2: (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )*
-            loop41:
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2951:2: (otherlv_3= ',' ( (lv_types_4_0= ruleType ) ) )*
+            loop44:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA41_0==45) ) {
-                    alt41=1;
+                if ( (LA44_0==45) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt44) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2829:4: otherlv_3= ',' ( (lv_types_4_0= ruleType ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2951:4: otherlv_3= ',' ( (lv_types_4_0= ruleType ) )
             	    {
-            	    otherlv_3=(Token)match(input,45,FOLLOW_45_in_ruleTupleVariant6222); 
+            	    otherlv_3=(Token)match(input,45,FOLLOW_45_in_ruleTupleVariant6462); 
 
             	        	newLeafNode(otherlv_3, grammarAccess.getTupleVariantAccess().getCommaKeyword_3_0());
             	        
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2833:1: ( (lv_types_4_0= ruleType ) )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2834:1: (lv_types_4_0= ruleType )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2955:1: ( (lv_types_4_0= ruleType ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2956:1: (lv_types_4_0= ruleType )
             	    {
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2834:1: (lv_types_4_0= ruleType )
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2835:3: lv_types_4_0= ruleType
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2956:1: (lv_types_4_0= ruleType )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2957:3: lv_types_4_0= ruleType
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getTupleVariantAccess().getTypesTypeParserRuleCall_3_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleType_in_ruleTupleVariant6243);
+            	    pushFollow(FOLLOW_ruleType_in_ruleTupleVariant6483);
             	    lv_types_4_0=ruleType();
 
             	    state._fsp--;
@@ -7260,11 +7584,11 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop44;
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleTupleVariant6257); 
+            otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleTupleVariant6497); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getTupleVariantAccess().getRightParenthesisKeyword_4());
                 
@@ -7289,7 +7613,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2863:1: entryRuleUnitVariant returns [EObject current=null] : iv_ruleUnitVariant= ruleUnitVariant EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2985:1: entryRuleUnitVariant returns [EObject current=null] : iv_ruleUnitVariant= ruleUnitVariant EOF ;
     public final EObject entryRuleUnitVariant() throws RecognitionException {
         EObject current = null;
 
@@ -7297,17 +7621,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2864:2: (iv_ruleUnitVariant= ruleUnitVariant EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2865:2: iv_ruleUnitVariant= ruleUnitVariant EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2986:2: (iv_ruleUnitVariant= ruleUnitVariant EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2987:2: iv_ruleUnitVariant= ruleUnitVariant EOF
             {
              newCompositeNode(grammarAccess.getUnitVariantRule()); 
-            pushFollow(FOLLOW_ruleUnitVariant_in_entryRuleUnitVariant6293);
+            pushFollow(FOLLOW_ruleUnitVariant_in_entryRuleUnitVariant6533);
             iv_ruleUnitVariant=ruleUnitVariant();
 
             state._fsp--;
 
              current =iv_ruleUnitVariant; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitVariant6303); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitVariant6543); 
 
             }
 
@@ -7325,7 +7649,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitVariant"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2872:1: ruleUnitVariant returns [EObject current=null] : ( (lv_ident_0_0= RULE_IDENT ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2994:1: ruleUnitVariant returns [EObject current=null] : ( (lv_ident_0_0= RULE_IDENT ) ) ;
     public final EObject ruleUnitVariant() throws RecognitionException {
         EObject current = null;
 
@@ -7334,16 +7658,16 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2875:28: ( ( (lv_ident_0_0= RULE_IDENT ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2876:1: ( (lv_ident_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2997:28: ( ( (lv_ident_0_0= RULE_IDENT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2998:1: ( (lv_ident_0_0= RULE_IDENT ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2876:1: ( (lv_ident_0_0= RULE_IDENT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2877:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2998:1: ( (lv_ident_0_0= RULE_IDENT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2999:1: (lv_ident_0_0= RULE_IDENT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2877:1: (lv_ident_0_0= RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2878:3: lv_ident_0_0= RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2999:1: (lv_ident_0_0= RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3000:3: lv_ident_0_0= RULE_IDENT
             {
-            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleUnitVariant6344); 
+            lv_ident_0_0=(Token)match(input,RULE_IDENT,FOLLOW_RULE_IDENT_in_ruleUnitVariant6584); 
 
             			newLeafNode(lv_ident_0_0, grammarAccess.getUnitVariantAccess().getIdentIDENTTerminalRuleCall_0()); 
             		
@@ -7381,7 +7705,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStringLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2902:1: entryRuleStringLit returns [EObject current=null] : iv_ruleStringLit= ruleStringLit EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3024:1: entryRuleStringLit returns [EObject current=null] : iv_ruleStringLit= ruleStringLit EOF ;
     public final EObject entryRuleStringLit() throws RecognitionException {
         EObject current = null;
 
@@ -7389,17 +7713,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2903:2: (iv_ruleStringLit= ruleStringLit EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2904:2: iv_ruleStringLit= ruleStringLit EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3025:2: (iv_ruleStringLit= ruleStringLit EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3026:2: iv_ruleStringLit= ruleStringLit EOF
             {
              newCompositeNode(grammarAccess.getStringLitRule()); 
-            pushFollow(FOLLOW_ruleStringLit_in_entryRuleStringLit6384);
+            pushFollow(FOLLOW_ruleStringLit_in_entryRuleStringLit6624);
             iv_ruleStringLit=ruleStringLit();
 
             state._fsp--;
 
              current =iv_ruleStringLit; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLit6394); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLit6634); 
 
             }
 
@@ -7417,7 +7741,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStringLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2911:1: ruleStringLit returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING_LIT ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3033:1: ruleStringLit returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING_LIT ) ) ;
     public final EObject ruleStringLit() throws RecognitionException {
         EObject current = null;
 
@@ -7426,16 +7750,16 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2914:28: ( ( (lv_value_0_0= RULE_STRING_LIT ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2915:1: ( (lv_value_0_0= RULE_STRING_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3036:28: ( ( (lv_value_0_0= RULE_STRING_LIT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3037:1: ( (lv_value_0_0= RULE_STRING_LIT ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2915:1: ( (lv_value_0_0= RULE_STRING_LIT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2916:1: (lv_value_0_0= RULE_STRING_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3037:1: ( (lv_value_0_0= RULE_STRING_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3038:1: (lv_value_0_0= RULE_STRING_LIT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2916:1: (lv_value_0_0= RULE_STRING_LIT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2917:3: lv_value_0_0= RULE_STRING_LIT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3038:1: (lv_value_0_0= RULE_STRING_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3039:3: lv_value_0_0= RULE_STRING_LIT
             {
-            lv_value_0_0=(Token)match(input,RULE_STRING_LIT,FOLLOW_RULE_STRING_LIT_in_ruleStringLit6435); 
+            lv_value_0_0=(Token)match(input,RULE_STRING_LIT,FOLLOW_RULE_STRING_LIT_in_ruleStringLit6675); 
 
             			newLeafNode(lv_value_0_0, grammarAccess.getStringLitAccess().getValueSTRING_LITTerminalRuleCall_0()); 
             		
@@ -7473,7 +7797,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteral"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2941:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3063:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
     public final EObject entryRuleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -7481,17 +7805,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2942:2: (iv_ruleLiteral= ruleLiteral EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2943:2: iv_ruleLiteral= ruleLiteral EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3064:2: (iv_ruleLiteral= ruleLiteral EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3065:2: iv_ruleLiteral= ruleLiteral EOF
             {
              newCompositeNode(grammarAccess.getLiteralRule()); 
-            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral6475);
+            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral6715);
             iv_ruleLiteral=ruleLiteral();
 
             state._fsp--;
 
              current =iv_ruleLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral6485); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral6725); 
 
             }
 
@@ -7509,7 +7833,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteral"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2950:1: ruleLiteral returns [EObject current=null] : (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3072:1: ruleLiteral returns [EObject current=null] : (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit ) ;
     public final EObject ruleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -7523,43 +7847,43 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2953:28: ( (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2954:1: (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3075:28: ( (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3076:1: (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2954:1: (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit )
-            int alt42=3;
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3076:1: (this_NumberLit_0= ruleNumberLit | this_CharLit_1= ruleCharLit | this_StringLit_2= ruleStringLit )
+            int alt45=3;
             switch ( input.LA(1) ) {
             case RULE_FLOAT_LIT:
             case RULE_INT_LIT:
                 {
-                alt42=1;
+                alt45=1;
                 }
                 break;
             case RULE_CHAR_LIT:
                 {
-                alt42=2;
+                alt45=2;
                 }
                 break;
             case RULE_STRING_LIT:
                 {
-                alt42=3;
+                alt45=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 42, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt42) {
+            switch (alt45) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2955:5: this_NumberLit_0= ruleNumberLit
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3077:5: this_NumberLit_0= ruleNumberLit
                     {
                      
                             newCompositeNode(grammarAccess.getLiteralAccess().getNumberLitParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleNumberLit_in_ruleLiteral6532);
+                    pushFollow(FOLLOW_ruleNumberLit_in_ruleLiteral6772);
                     this_NumberLit_0=ruleNumberLit();
 
                     state._fsp--;
@@ -7572,12 +7896,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2965:5: this_CharLit_1= ruleCharLit
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3087:5: this_CharLit_1= ruleCharLit
                     {
                      
                             newCompositeNode(grammarAccess.getLiteralAccess().getCharLitParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleCharLit_in_ruleLiteral6559);
+                    pushFollow(FOLLOW_ruleCharLit_in_ruleLiteral6799);
                     this_CharLit_1=ruleCharLit();
 
                     state._fsp--;
@@ -7590,12 +7914,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2975:5: this_StringLit_2= ruleStringLit
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3097:5: this_StringLit_2= ruleStringLit
                     {
                      
                             newCompositeNode(grammarAccess.getLiteralAccess().getStringLitParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleStringLit_in_ruleLiteral6586);
+                    pushFollow(FOLLOW_ruleStringLit_in_ruleLiteral6826);
                     this_StringLit_2=ruleStringLit();
 
                     state._fsp--;
@@ -7628,7 +7952,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNumberLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2991:1: entryRuleNumberLit returns [EObject current=null] : iv_ruleNumberLit= ruleNumberLit EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3113:1: entryRuleNumberLit returns [EObject current=null] : iv_ruleNumberLit= ruleNumberLit EOF ;
     public final EObject entryRuleNumberLit() throws RecognitionException {
         EObject current = null;
 
@@ -7636,17 +7960,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2992:2: (iv_ruleNumberLit= ruleNumberLit EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:2993:2: iv_ruleNumberLit= ruleNumberLit EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3114:2: (iv_ruleNumberLit= ruleNumberLit EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3115:2: iv_ruleNumberLit= ruleNumberLit EOF
             {
              newCompositeNode(grammarAccess.getNumberLitRule()); 
-            pushFollow(FOLLOW_ruleNumberLit_in_entryRuleNumberLit6621);
+            pushFollow(FOLLOW_ruleNumberLit_in_entryRuleNumberLit6861);
             iv_ruleNumberLit=ruleNumberLit();
 
             state._fsp--;
 
              current =iv_ruleNumberLit; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLit6631); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNumberLit6871); 
 
             }
 
@@ -7664,7 +7988,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumberLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3000:1: ruleNumberLit returns [EObject current=null] : ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3122:1: ruleNumberLit returns [EObject current=null] : ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) ) ;
     public final EObject ruleNumberLit() throws RecognitionException {
         EObject current = null;
 
@@ -7674,36 +7998,36 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3003:28: ( ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3004:1: ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3125:28: ( ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3126:1: ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3004:1: ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3005:1: ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3126:1: ( ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3127:1: ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3005:1: ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3006:1: (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3127:1: ( (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3128:1: (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3006:1: (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT )
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3128:1: (lv_value_0_1= RULE_FLOAT_LIT | lv_value_0_2= RULE_INT_LIT )
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA43_0==RULE_FLOAT_LIT) ) {
-                alt43=1;
+            if ( (LA46_0==RULE_FLOAT_LIT) ) {
+                alt46=1;
             }
-            else if ( (LA43_0==RULE_INT_LIT) ) {
-                alt43=2;
+            else if ( (LA46_0==RULE_INT_LIT) ) {
+                alt46=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 43, 0, input);
+                    new NoViableAltException("", 46, 0, input);
 
                 throw nvae;
             }
-            switch (alt43) {
+            switch (alt46) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3007:3: lv_value_0_1= RULE_FLOAT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3129:3: lv_value_0_1= RULE_FLOAT_LIT
                     {
-                    lv_value_0_1=(Token)match(input,RULE_FLOAT_LIT,FOLLOW_RULE_FLOAT_LIT_in_ruleNumberLit6674); 
+                    lv_value_0_1=(Token)match(input,RULE_FLOAT_LIT,FOLLOW_RULE_FLOAT_LIT_in_ruleNumberLit6914); 
 
                     			newLeafNode(lv_value_0_1, grammarAccess.getNumberLitAccess().getValueFLOAT_LITTerminalRuleCall_0_0()); 
                     		
@@ -7721,9 +8045,9 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3022:8: lv_value_0_2= RULE_INT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3144:8: lv_value_0_2= RULE_INT_LIT
                     {
-                    lv_value_0_2=(Token)match(input,RULE_INT_LIT,FOLLOW_RULE_INT_LIT_in_ruleNumberLit6694); 
+                    lv_value_0_2=(Token)match(input,RULE_INT_LIT,FOLLOW_RULE_INT_LIT_in_ruleNumberLit6934); 
 
                     			newLeafNode(lv_value_0_2, grammarAccess.getNumberLitAccess().getValueINT_LITTerminalRuleCall_0_1()); 
                     		
@@ -7767,7 +8091,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCharLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3048:1: entryRuleCharLit returns [EObject current=null] : iv_ruleCharLit= ruleCharLit EOF ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3170:1: entryRuleCharLit returns [EObject current=null] : iv_ruleCharLit= ruleCharLit EOF ;
     public final EObject entryRuleCharLit() throws RecognitionException {
         EObject current = null;
 
@@ -7775,17 +8099,17 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3049:2: (iv_ruleCharLit= ruleCharLit EOF )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3050:2: iv_ruleCharLit= ruleCharLit EOF
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3171:2: (iv_ruleCharLit= ruleCharLit EOF )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3172:2: iv_ruleCharLit= ruleCharLit EOF
             {
              newCompositeNode(grammarAccess.getCharLitRule()); 
-            pushFollow(FOLLOW_ruleCharLit_in_entryRuleCharLit6737);
+            pushFollow(FOLLOW_ruleCharLit_in_entryRuleCharLit6977);
             iv_ruleCharLit=ruleCharLit();
 
             state._fsp--;
 
              current =iv_ruleCharLit; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCharLit6747); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCharLit6987); 
 
             }
 
@@ -7803,7 +8127,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCharLit"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3057:1: ruleCharLit returns [EObject current=null] : ( (lv_value_0_0= RULE_CHAR_LIT ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3179:1: ruleCharLit returns [EObject current=null] : ( (lv_value_0_0= RULE_CHAR_LIT ) ) ;
     public final EObject ruleCharLit() throws RecognitionException {
         EObject current = null;
 
@@ -7812,16 +8136,16 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3060:28: ( ( (lv_value_0_0= RULE_CHAR_LIT ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3061:1: ( (lv_value_0_0= RULE_CHAR_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3182:28: ( ( (lv_value_0_0= RULE_CHAR_LIT ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3183:1: ( (lv_value_0_0= RULE_CHAR_LIT ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3061:1: ( (lv_value_0_0= RULE_CHAR_LIT ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3062:1: (lv_value_0_0= RULE_CHAR_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3183:1: ( (lv_value_0_0= RULE_CHAR_LIT ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3184:1: (lv_value_0_0= RULE_CHAR_LIT )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3062:1: (lv_value_0_0= RULE_CHAR_LIT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3063:3: lv_value_0_0= RULE_CHAR_LIT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3184:1: (lv_value_0_0= RULE_CHAR_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3185:3: lv_value_0_0= RULE_CHAR_LIT
             {
-            lv_value_0_0=(Token)match(input,RULE_CHAR_LIT,FOLLOW_RULE_CHAR_LIT_in_ruleCharLit6788); 
+            lv_value_0_0=(Token)match(input,RULE_CHAR_LIT,FOLLOW_RULE_CHAR_LIT_in_ruleCharLit7028); 
 
             			newLeafNode(lv_value_0_0, grammarAccess.getCharLitAccess().getValueCHAR_LITTerminalRuleCall_0()); 
             		
@@ -7859,7 +8183,7 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVisibility"
-    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3087:1: ruleVisibility returns [Enumerator current=null] : ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) ) ;
+    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3209:1: ruleVisibility returns [Enumerator current=null] : ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) ) ;
     public final Enumerator ruleVisibility() throws RecognitionException {
         Enumerator current = null;
 
@@ -7868,33 +8192,33 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3089:28: ( ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3090:1: ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3211:28: ( ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3212:1: ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3090:1: ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) )
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3212:1: ( (enumLiteral_0= 'priv' ) | (enumLiteral_1= 'pub' ) )
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA44_0==71) ) {
-                alt44=1;
+            if ( (LA47_0==71) ) {
+                alt47=1;
             }
-            else if ( (LA44_0==72) ) {
-                alt44=2;
+            else if ( (LA47_0==72) ) {
+                alt47=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 44, 0, input);
+                    new NoViableAltException("", 47, 0, input);
 
                 throw nvae;
             }
-            switch (alt44) {
+            switch (alt47) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3090:2: (enumLiteral_0= 'priv' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3212:2: (enumLiteral_0= 'priv' )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3090:2: (enumLiteral_0= 'priv' )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3090:4: enumLiteral_0= 'priv'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3212:2: (enumLiteral_0= 'priv' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3212:4: enumLiteral_0= 'priv'
                     {
-                    enumLiteral_0=(Token)match(input,71,FOLLOW_71_in_ruleVisibility6842); 
+                    enumLiteral_0=(Token)match(input,71,FOLLOW_71_in_ruleVisibility7082); 
 
                             current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_0()); 
@@ -7906,12 +8230,12 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3096:6: (enumLiteral_1= 'pub' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3218:6: (enumLiteral_1= 'pub' )
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3096:6: (enumLiteral_1= 'pub' )
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3096:8: enumLiteral_1= 'pub'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3218:6: (enumLiteral_1= 'pub' )
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:3218:8: enumLiteral_1= 'pub'
                     {
-                    enumLiteral_1=(Token)match(input,72,FOLLOW_72_in_ruleVisibility6859); 
+                    enumLiteral_1=(Token)match(input,72,FOLLOW_72_in_ruleVisibility7099); 
 
                             current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
@@ -7967,9 +8291,9 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
             "",
             "",
             "",
-            "\2\13\1\uffff\1\13\11\uffff\1\13\6\uffff\1\15",
-            "\2\13\1\uffff\1\13\11\uffff\1\13\6\uffff\1\15",
-            "\2\13\1\uffff\1\13\11\uffff\1\13\6\uffff\1\15",
+            "\2\13\1\uffff\1\13\4\uffff\1\13\4\uffff\1\13\6\uffff\1\15",
+            "\2\13\1\uffff\1\13\4\uffff\1\13\4\uffff\1\13\6\uffff\1\15",
+            "\2\13\1\uffff\1\13\4\uffff\1\13\4\uffff\1\13\6\uffff\1\15",
             "",
             "",
             ""
@@ -8150,145 +8474,155 @@ public class InternalRustParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleNumberLit_in_rulePatNumberRange3468 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePatEnum_in_entryRulePatEnum3504 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePatEnum3514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePath_in_rulePatEnum3560 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_rulePatEnum3572 = new BitSet(new long[]{0xF000800000007830L,0x0000000000000007L});
-    public static final BitSet FOLLOW_66_in_rulePatEnum3585 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_65_in_rulePatEnum3603 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rulePat_in_rulePatEnum3631 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_45_in_rulePatEnum3644 = new BitSet(new long[]{0xF000800000007830L,0x0000000000000001L});
-    public static final BitSet FOLLOW_rulePat_in_rulePatEnum3665 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_48_in_rulePatEnum3681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePath_in_entryRulePath3717 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePath3727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rulePath3769 = new BitSet(new long[]{0x0080000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_rulePath3787 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_rulePath3804 = new BitSet(new long[]{0x0080000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_rulePath3824 = new BitSet(new long[]{0x0080000000000002L});
-    public static final BitSet FOLLOW_55_in_rulePath3839 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000070L});
-    public static final BitSet FOLLOW_ruleLifetime_in_rulePath3861 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_ruleType_in_rulePath3888 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_45_in_rulePath3902 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000070L});
-    public static final BitSet FOLLOW_ruleLifetime_in_rulePath3924 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_ruleType_in_rulePath3951 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_56_in_rulePath3966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLifetime_in_entryRuleLifetime4004 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLifetime4014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_ruleLifetime4051 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleLifetime4068 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_entryRuleType4109 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleType4119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_ruleType4166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTupleType_in_ruleType4193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_ruleType4220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumType_in_ruleType4247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBoxedPointer_in_ruleType4274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOwnedPointer_in_ruleType4301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBorrowedPointer_in_ruleType4328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveType_in_entryRulePrimitiveType4363 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrimitiveType4373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_TYPE_in_rulePrimitiveType4419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_FLOAT_TYPE_in_rulePrimitiveType4446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BOOLEAN_TYPE_in_rulePrimitiveType4473 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MACHINE_TYPE_in_rulePrimitiveType4500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_UNIT_TYPE_in_rulePrimitiveType4527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTupleType_in_entryRuleTupleType4563 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTupleType4573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleTupleType4610 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleTupleType4631 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleTupleType4644 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleTupleType4665 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_48_in_ruleTupleType4679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructType_in_entryRuleStructType4715 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructType4725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_ruleStructType4762 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructType4779 = new BitSet(new long[]{0x0090000000000000L});
-    public static final BitSet FOLLOW_55_in_ruleStructType4797 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructType4818 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleStructType4831 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructType4852 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_56_in_ruleStructType4866 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_ruleStructType4880 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
-    public static final BitSet FOLLOW_ruleStructField_in_ruleStructType4901 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleStructType4914 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
-    public static final BitSet FOLLOW_ruleStructField_in_ruleStructType4935 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_53_in_ruleStructType4949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBoxedPointer_in_entryRuleBoxedPointer4985 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBoxedPointer4995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_ruleBoxedPointer5032 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleBoxedPointer5053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOwnedPointer_in_entryRuleOwnedPointer5089 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOwnedPointer5099 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_ruleOwnedPointer5136 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleOwnedPointer5157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBorrowedPointer_in_entryRuleBorrowedPointer5193 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBorrowedPointer5203 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_ruleBorrowedPointer5240 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleBorrowedPointer5261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructField_in_entryRuleStructField5297 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructField5307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVisibility_in_ruleStructField5353 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructField5371 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_ruleStructField5388 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleStructField5409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumType_in_entryRuleEnumType5445 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEnumType5455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_ruleEnumType5492 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleEnumType5509 = new BitSet(new long[]{0x0090000000000000L});
-    public static final BitSet FOLLOW_55_in_ruleEnumType5527 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleEnumType5548 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleEnumType5561 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleEnumType5582 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_56_in_ruleEnumType5596 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_ruleEnumType5610 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleVariant_in_ruleEnumType5631 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleEnumType5644 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleVariant_in_ruleEnumType5665 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_53_in_ruleEnumType5679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariant_in_entryRuleVariant5715 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariant5725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructVariant_in_ruleVariant5772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTupleVariant_in_ruleVariant5799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitVariant_in_ruleVariant5826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructVariant_in_entryRuleStructVariant5861 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructVariant5871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructVariant5913 = new BitSet(new long[]{0x0090000000000000L});
-    public static final BitSet FOLLOW_55_in_ruleStructVariant5931 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructVariant5952 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleStructVariant5965 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructVariant5986 = new BitSet(new long[]{0x0100200000000000L});
-    public static final BitSet FOLLOW_56_in_ruleStructVariant6000 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_ruleStructVariant6014 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
-    public static final BitSet FOLLOW_ruleStructField_in_ruleStructVariant6035 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleStructVariant6048 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
-    public static final BitSet FOLLOW_ruleStructField_in_ruleStructVariant6069 = new BitSet(new long[]{0x0020200000000000L});
-    public static final BitSet FOLLOW_53_in_ruleStructVariant6083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTupleVariant_in_entryRuleTupleVariant6119 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTupleVariant6129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleTupleVariant6171 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_ruleTupleVariant6188 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleTupleVariant6209 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_45_in_ruleTupleVariant6222 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleType_in_ruleTupleVariant6243 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_48_in_ruleTupleVariant6257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitVariant_in_entryRuleUnitVariant6293 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnitVariant6303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENT_in_ruleUnitVariant6344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLit_in_entryRuleStringLit6384 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringLit6394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_LIT_in_ruleStringLit6435 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral6475 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral6485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLit_in_ruleLiteral6532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCharLit_in_ruleLiteral6559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLit_in_ruleLiteral6586 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumberLit_in_entryRuleNumberLit6621 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLit6631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_FLOAT_LIT_in_ruleNumberLit6674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_LIT_in_ruleNumberLit6694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCharLit_in_entryRuleCharLit6737 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCharLit6747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_CHAR_LIT_in_ruleCharLit6788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_ruleVisibility6842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_ruleVisibility6859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePath_in_rulePatEnum3560 = new BitSet(new long[]{0x0010800000000000L});
+    public static final BitSet FOLLOW_47_in_rulePatEnum3583 = new BitSet(new long[]{0xF000800000007830L,0x0000000000000007L});
+    public static final BitSet FOLLOW_66_in_rulePatEnum3596 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_65_in_rulePatEnum3614 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rulePat_in_rulePatEnum3642 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_45_in_rulePatEnum3655 = new BitSet(new long[]{0xF000800000007830L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rulePat_in_rulePatEnum3676 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_48_in_rulePatEnum3692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rulePatEnum3721 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleFieldPat_in_rulePatEnum3742 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_45_in_rulePatEnum3755 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleFieldPat_in_rulePatEnum3776 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_53_in_rulePatEnum3790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFieldPat_in_entryRuleFieldPat3828 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFieldPat3838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleFieldPat3880 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_58_in_ruleFieldPat3898 = new BitSet(new long[]{0xF000800000007830L,0x0000000000000001L});
+    public static final BitSet FOLLOW_rulePat_in_ruleFieldPat3919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePath_in_entryRulePath3957 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePath3967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rulePath4009 = new BitSet(new long[]{0x0080000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_rulePath4027 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_rulePath4044 = new BitSet(new long[]{0x0080000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_67_in_rulePath4064 = new BitSet(new long[]{0x0080000000000002L});
+    public static final BitSet FOLLOW_55_in_rulePath4079 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000070L});
+    public static final BitSet FOLLOW_ruleLifetime_in_rulePath4101 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_ruleType_in_rulePath4128 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_45_in_rulePath4142 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000070L});
+    public static final BitSet FOLLOW_ruleLifetime_in_rulePath4164 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_ruleType_in_rulePath4191 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_56_in_rulePath4206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLifetime_in_entryRuleLifetime4244 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLifetime4254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_ruleLifetime4291 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleLifetime4308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_entryRuleType4349 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleType4359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_ruleType4406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTupleType_in_ruleType4433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructType_in_ruleType4460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumType_in_ruleType4487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBoxedPointer_in_ruleType4514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOwnedPointer_in_ruleType4541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBorrowedPointer_in_ruleType4568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_entryRulePrimitiveType4603 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrimitiveType4613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_TYPE_in_rulePrimitiveType4659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_FLOAT_TYPE_in_rulePrimitiveType4686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BOOLEAN_TYPE_in_rulePrimitiveType4713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MACHINE_TYPE_in_rulePrimitiveType4740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_UNIT_TYPE_in_rulePrimitiveType4767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTupleType_in_entryRuleTupleType4803 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTupleType4813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleTupleType4850 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleTupleType4871 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleTupleType4884 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleTupleType4905 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_48_in_ruleTupleType4919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructType_in_entryRuleStructType4955 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructType4965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_ruleStructType5002 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructType5019 = new BitSet(new long[]{0x0090000000000000L});
+    public static final BitSet FOLLOW_55_in_ruleStructType5037 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructType5058 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleStructType5071 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructType5092 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_56_in_ruleStructType5106 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_ruleStructType5120 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
+    public static final BitSet FOLLOW_ruleStructField_in_ruleStructType5141 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleStructType5154 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
+    public static final BitSet FOLLOW_ruleStructField_in_ruleStructType5175 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_53_in_ruleStructType5189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBoxedPointer_in_entryRuleBoxedPointer5225 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBoxedPointer5235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_ruleBoxedPointer5272 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleBoxedPointer5293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOwnedPointer_in_entryRuleOwnedPointer5329 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOwnedPointer5339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_ruleOwnedPointer5376 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleOwnedPointer5397 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBorrowedPointer_in_entryRuleBorrowedPointer5433 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBorrowedPointer5443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_ruleBorrowedPointer5480 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleBorrowedPointer5501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructField_in_entryRuleStructField5537 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructField5547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVisibility_in_ruleStructField5593 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructField5611 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_ruleStructField5628 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleStructField5649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumType_in_entryRuleEnumType5685 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEnumType5695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_ruleEnumType5732 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleEnumType5749 = new BitSet(new long[]{0x0090000000000000L});
+    public static final BitSet FOLLOW_55_in_ruleEnumType5767 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleEnumType5788 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleEnumType5801 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleEnumType5822 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_56_in_ruleEnumType5836 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_ruleEnumType5850 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleVariant_in_ruleEnumType5871 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleEnumType5884 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleVariant_in_ruleEnumType5905 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_53_in_ruleEnumType5919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariant_in_entryRuleVariant5955 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariant5965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructVariant_in_ruleVariant6012 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTupleVariant_in_ruleVariant6039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitVariant_in_ruleVariant6066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructVariant_in_entryRuleStructVariant6101 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructVariant6111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleStructVariant6153 = new BitSet(new long[]{0x0090000000000000L});
+    public static final BitSet FOLLOW_55_in_ruleStructVariant6171 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructVariant6192 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleStructVariant6205 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleGenericParamDecl_in_ruleStructVariant6226 = new BitSet(new long[]{0x0100200000000000L});
+    public static final BitSet FOLLOW_56_in_ruleStructVariant6240 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_ruleStructVariant6254 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
+    public static final BitSet FOLLOW_ruleStructField_in_ruleStructVariant6275 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleStructVariant6288 = new BitSet(new long[]{0x0000000000000010L,0x0000000000000180L});
+    public static final BitSet FOLLOW_ruleStructField_in_ruleStructVariant6309 = new BitSet(new long[]{0x0020200000000000L});
+    public static final BitSet FOLLOW_53_in_ruleStructVariant6323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTupleVariant_in_entryRuleTupleVariant6359 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTupleVariant6369 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleTupleVariant6411 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_ruleTupleVariant6428 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleTupleVariant6449 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_45_in_ruleTupleVariant6462 = new BitSet(new long[]{0xE0008000000007C0L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleType_in_ruleTupleVariant6483 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_48_in_ruleTupleVariant6497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitVariant_in_entryRuleUnitVariant6533 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnitVariant6543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENT_in_ruleUnitVariant6584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLit_in_entryRuleStringLit6624 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLit6634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_LIT_in_ruleStringLit6675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral6715 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral6725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLit_in_ruleLiteral6772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCharLit_in_ruleLiteral6799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringLit_in_ruleLiteral6826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumberLit_in_entryRuleNumberLit6861 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNumberLit6871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_FLOAT_LIT_in_ruleNumberLit6914 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_LIT_in_ruleNumberLit6934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCharLit_in_entryRuleCharLit6977 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCharLit6987 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_CHAR_LIT_in_ruleCharLit7028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_ruleVisibility7082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_ruleVisibility7099 = new BitSet(new long[]{0x0000000000000002L});
 
 }

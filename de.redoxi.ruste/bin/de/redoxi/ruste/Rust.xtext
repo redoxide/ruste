@@ -124,7 +124,11 @@ PatNumberRange:
 ;
 
 PatEnum:
-	path=Path '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')'
+	path=Path ({PatTupleEnum.path=current} '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')' | {PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}')
+;
+
+FieldPat:
+	ident=IDENT (':' pattern=Pat)?
 ;
 
 Path:

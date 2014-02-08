@@ -11,6 +11,7 @@ import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumType;
+import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
@@ -31,7 +32,9 @@ import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
 import de.redoxi.ruste.rust.PatOwned;
+import de.redoxi.ruste.rust.PatStructEnum;
 import de.redoxi.ruste.rust.PatTuple;
+import de.redoxi.ruste.rust.PatTupleEnum;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
 import de.redoxi.ruste.rust.Path;
@@ -122,6 +125,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getEnumTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
 					sequence_EnumType(context, (EnumType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.FIELD_PAT:
+				if(context == grammarAccess.getFieldPatRule()) {
+					sequence_FieldPat(context, (FieldPat) semanticObject); 
 					return; 
 				}
 				else break;
@@ -228,9 +237,9 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.PAT_ENUM:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatEnumRule()) {
-					sequence_PatEnum(context, (PatEnum) semanticObject); 
+				if(context == grammarAccess.getPatEnumAccess().getPatStructEnumPathAction_1_1_0() ||
+				   context == grammarAccess.getPatEnumAccess().getPatTupleEnumPathAction_1_0_0()) {
+					sequence_PatEnum_PatStructEnum_1_1_0_PatTupleEnum_1_0_0(context, (PatEnum) semanticObject); 
 					return; 
 				}
 				else break;
@@ -263,10 +272,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.PAT_STRUCT_ENUM:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatEnumRule()) {
+					sequence_PatEnum(context, (PatStructEnum) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.PAT_TUPLE:
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatTupleRule()) {
 					sequence_PatTuple(context, (PatTuple) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.PAT_TUPLE_ENUM:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatEnumRule()) {
+					sequence_PatEnum(context, (PatTupleEnum) semanticObject); 
 					return; 
 				}
 				else break;
@@ -454,6 +477,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (ident=IDENT pattern=Pat?)
+	 */
+	protected void sequence_FieldPat(EObject context, FieldPat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? (args+=Arg args+=Arg*)? returnType=Type? body=Block)
 	 */
 	protected void sequence_FnItem(EObject context, FnItem semanticObject) {
@@ -610,9 +642,34 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (path=Path (patterns+=Pat patterns+=Pat*)?)
+	 *     (path=PatEnum_PatStructEnum_1_1_0 fieldPatterns+=FieldPat fieldPatterns+=FieldPat*)
 	 */
-	protected void sequence_PatEnum(EObject context, PatEnum semanticObject) {
+	protected void sequence_PatEnum(EObject context, PatStructEnum semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     path=Path
+	 */
+	protected void sequence_PatEnum_PatStructEnum_1_1_0_PatTupleEnum_1_0_0(EObject context, PatEnum semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_ENUM__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_ENUM__PATH));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPatEnumAccess().getPathPathParserRuleCall_0_0(), semanticObject.getPath());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path=PatEnum_PatTupleEnum_1_0_0 (patterns+=Pat patterns+=Pat*)?)
+	 */
+	protected void sequence_PatEnum(EObject context, PatTupleEnum semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

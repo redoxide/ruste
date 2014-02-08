@@ -895,24 +895,39 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cPathPathParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Keyword cAsteriskKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
-		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
-		private final Assignment cPatternsAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final RuleCall cPatternsPatParserRuleCall_2_2_0_0 = (RuleCall)cPatternsAssignment_2_2_0.eContents().get(0);
-		private final Group cGroup_2_2_1 = (Group)cGroup_2_2.eContents().get(1);
-		private final Keyword cCommaKeyword_2_2_1_0 = (Keyword)cGroup_2_2_1.eContents().get(0);
-		private final Assignment cPatternsAssignment_2_2_1_1 = (Assignment)cGroup_2_2_1.eContents().get(1);
-		private final RuleCall cPatternsPatParserRuleCall_2_2_1_1_0 = (RuleCall)cPatternsAssignment_2_2_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Action cPatTupleEnumPathAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_1_0_2 = (Alternatives)cGroup_1_0.eContents().get(2);
+		private final Keyword cAsteriskKeyword_1_0_2_0 = (Keyword)cAlternatives_1_0_2.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_1_0_2_1 = (Keyword)cAlternatives_1_0_2.eContents().get(1);
+		private final Group cGroup_1_0_2_2 = (Group)cAlternatives_1_0_2.eContents().get(2);
+		private final Assignment cPatternsAssignment_1_0_2_2_0 = (Assignment)cGroup_1_0_2_2.eContents().get(0);
+		private final RuleCall cPatternsPatParserRuleCall_1_0_2_2_0_0 = (RuleCall)cPatternsAssignment_1_0_2_2_0.eContents().get(0);
+		private final Group cGroup_1_0_2_2_1 = (Group)cGroup_1_0_2_2.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0_2_2_1_0 = (Keyword)cGroup_1_0_2_2_1.eContents().get(0);
+		private final Assignment cPatternsAssignment_1_0_2_2_1_1 = (Assignment)cGroup_1_0_2_2_1.eContents().get(1);
+		private final RuleCall cPatternsPatParserRuleCall_1_0_2_2_1_1_0 = (RuleCall)cPatternsAssignment_1_0_2_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_0_3 = (Keyword)cGroup_1_0.eContents().get(3);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Action cPatStructEnumPathAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cFieldPatternsAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cFieldPatternsFieldPatParserRuleCall_1_1_2_0 = (RuleCall)cFieldPatternsAssignment_1_1_2.eContents().get(0);
+		private final Group cGroup_1_1_3 = (Group)cGroup_1_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_1_3_0 = (Keyword)cGroup_1_1_3.eContents().get(0);
+		private final Assignment cFieldPatternsAssignment_1_1_3_1 = (Assignment)cGroup_1_1_3.eContents().get(1);
+		private final RuleCall cFieldPatternsFieldPatParserRuleCall_1_1_3_1_0 = (RuleCall)cFieldPatternsAssignment_1_1_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_1_4 = (Keyword)cGroup_1_1.eContents().get(4);
 		
 		//PatEnum:
-		//	path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")";
+		//	path=Path ({PatTupleEnum.path=current} "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")" |
+		//	{PatStructEnum.path=current} "{" fieldPatterns+=FieldPat ("," fieldPatterns+=FieldPat)* "}");
 		public ParserRule getRule() { return rule; }
 
-		//path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")"
+		//path=Path ({PatTupleEnum.path=current} "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")" |
+		//{PatStructEnum.path=current} "{" fieldPatterns+=FieldPat ("," fieldPatterns+=FieldPat)* "}")
 		public Group getGroup() { return cGroup; }
 
 		//path=Path
@@ -921,41 +936,117 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Path
 		public RuleCall getPathPathParserRuleCall_0_0() { return cPathPathParserRuleCall_0_0; }
 
+		//{PatTupleEnum.path=current} "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")" | {PatStructEnum.path=current} "{"
+		//fieldPatterns+=FieldPat ("," fieldPatterns+=FieldPat)* "}"
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//{PatTupleEnum.path=current} "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")"
+		public Group getGroup_1_0() { return cGroup_1_0; }
+
+		//{PatTupleEnum.path=current}
+		public Action getPatTupleEnumPathAction_1_0_0() { return cPatTupleEnumPathAction_1_0_0; }
+
 		//"("
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		public Keyword getLeftParenthesisKeyword_1_0_1() { return cLeftParenthesisKeyword_1_0_1; }
 
 		//"*" | ".." | patterns+=Pat ("," patterns+=Pat)*
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_1_0_2() { return cAlternatives_1_0_2; }
 
 		//"*"
-		public Keyword getAsteriskKeyword_2_0() { return cAsteriskKeyword_2_0; }
+		public Keyword getAsteriskKeyword_1_0_2_0() { return cAsteriskKeyword_1_0_2_0; }
 
 		//".."
-		public Keyword getFullStopFullStopKeyword_2_1() { return cFullStopFullStopKeyword_2_1; }
+		public Keyword getFullStopFullStopKeyword_1_0_2_1() { return cFullStopFullStopKeyword_1_0_2_1; }
 
 		//patterns+=Pat ("," patterns+=Pat)*
-		public Group getGroup_2_2() { return cGroup_2_2; }
+		public Group getGroup_1_0_2_2() { return cGroup_1_0_2_2; }
 
 		//patterns+=Pat
-		public Assignment getPatternsAssignment_2_2_0() { return cPatternsAssignment_2_2_0; }
+		public Assignment getPatternsAssignment_1_0_2_2_0() { return cPatternsAssignment_1_0_2_2_0; }
 
 		//Pat
-		public RuleCall getPatternsPatParserRuleCall_2_2_0_0() { return cPatternsPatParserRuleCall_2_2_0_0; }
+		public RuleCall getPatternsPatParserRuleCall_1_0_2_2_0_0() { return cPatternsPatParserRuleCall_1_0_2_2_0_0; }
 
 		//("," patterns+=Pat)*
-		public Group getGroup_2_2_1() { return cGroup_2_2_1; }
+		public Group getGroup_1_0_2_2_1() { return cGroup_1_0_2_2_1; }
 
 		//","
-		public Keyword getCommaKeyword_2_2_1_0() { return cCommaKeyword_2_2_1_0; }
+		public Keyword getCommaKeyword_1_0_2_2_1_0() { return cCommaKeyword_1_0_2_2_1_0; }
 
 		//patterns+=Pat
-		public Assignment getPatternsAssignment_2_2_1_1() { return cPatternsAssignment_2_2_1_1; }
+		public Assignment getPatternsAssignment_1_0_2_2_1_1() { return cPatternsAssignment_1_0_2_2_1_1; }
 
 		//Pat
-		public RuleCall getPatternsPatParserRuleCall_2_2_1_1_0() { return cPatternsPatParserRuleCall_2_2_1_1_0; }
+		public RuleCall getPatternsPatParserRuleCall_1_0_2_2_1_1_0() { return cPatternsPatParserRuleCall_1_0_2_2_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		public Keyword getRightParenthesisKeyword_1_0_3() { return cRightParenthesisKeyword_1_0_3; }
+
+		//{PatStructEnum.path=current} "{" fieldPatterns+=FieldPat ("," fieldPatterns+=FieldPat)* "}"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//{PatStructEnum.path=current}
+		public Action getPatStructEnumPathAction_1_1_0() { return cPatStructEnumPathAction_1_1_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_1_1() { return cLeftCurlyBracketKeyword_1_1_1; }
+
+		//fieldPatterns+=FieldPat
+		public Assignment getFieldPatternsAssignment_1_1_2() { return cFieldPatternsAssignment_1_1_2; }
+
+		//FieldPat
+		public RuleCall getFieldPatternsFieldPatParserRuleCall_1_1_2_0() { return cFieldPatternsFieldPatParserRuleCall_1_1_2_0; }
+
+		//("," fieldPatterns+=FieldPat)*
+		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
+
+		//","
+		public Keyword getCommaKeyword_1_1_3_0() { return cCommaKeyword_1_1_3_0; }
+
+		//fieldPatterns+=FieldPat
+		public Assignment getFieldPatternsAssignment_1_1_3_1() { return cFieldPatternsAssignment_1_1_3_1; }
+
+		//FieldPat
+		public RuleCall getFieldPatternsFieldPatParserRuleCall_1_1_3_1_0() { return cFieldPatternsFieldPatParserRuleCall_1_1_3_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_1_4() { return cRightCurlyBracketKeyword_1_1_4; }
+	}
+
+	public class FieldPatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FieldPat");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIdentAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cIdentIDENTTerminalRuleCall_0_0 = (RuleCall)cIdentAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPatternAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPatternPatParserRuleCall_1_1_0 = (RuleCall)cPatternAssignment_1_1.eContents().get(0);
+		
+		//FieldPat:
+		//	ident=IDENT (":" pattern=Pat)?;
+		public ParserRule getRule() { return rule; }
+
+		//ident=IDENT (":" pattern=Pat)?
+		public Group getGroup() { return cGroup; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_0() { return cIdentAssignment_0; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_0_0() { return cIdentIDENTTerminalRuleCall_0_0; }
+
+		//(":" pattern=Pat)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_0() { return cColonKeyword_1_0; }
+
+		//pattern=Pat
+		public Assignment getPatternAssignment_1_1() { return cPatternAssignment_1_1; }
+
+		//Pat
+		public RuleCall getPatternPatParserRuleCall_1_1_0() { return cPatternPatParserRuleCall_1_1_0; }
 	}
 
 	public class PathElements extends AbstractParserRuleElementFinder {
@@ -1862,6 +1953,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private PatCharRangeElements pPatCharRange;
 	private PatNumberRangeElements pPatNumberRange;
 	private PatEnumElements pPatEnum;
+	private FieldPatElements pFieldPat;
 	private PathElements pPath;
 	private LifetimeElements pLifetime;
 	private TypeElements pType;
@@ -2208,13 +2300,24 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PatEnum:
-	//	path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")";
+	//	path=Path ({PatTupleEnum.path=current} "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")" |
+	//	{PatStructEnum.path=current} "{" fieldPatterns+=FieldPat ("," fieldPatterns+=FieldPat)* "}");
 	public PatEnumElements getPatEnumAccess() {
 		return (pPatEnum != null) ? pPatEnum : (pPatEnum = new PatEnumElements());
 	}
 	
 	public ParserRule getPatEnumRule() {
 		return getPatEnumAccess().getRule();
+	}
+
+	//FieldPat:
+	//	ident=IDENT (":" pattern=Pat)?;
+	public FieldPatElements getFieldPatAccess() {
+		return (pFieldPat != null) ? pFieldPat : (pFieldPat = new FieldPatElements());
+	}
+	
+	public ParserRule getFieldPatRule() {
+		return getFieldPatAccess().getRule();
 	}
 
 	//Path:

@@ -248,6 +248,15 @@ public interface RustFactory extends EFactory
   PatEnum createPatEnum();
 
   /**
+   * Returns a new object of class '<em>Field Pat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Field Pat</em>'.
+   * @generated
+   */
+  FieldPat createFieldPat();
+
+  /**
    * Returns a new object of class '<em>Path</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -417,6 +426,24 @@ public interface RustFactory extends EFactory
    * @generated
    */
   CharLit createCharLit();
+
+  /**
+   * Returns a new object of class '<em>Pat Tuple Enum</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Tuple Enum</em>'.
+   * @generated
+   */
+  PatTupleEnum createPatTupleEnum();
+
+  /**
+   * Returns a new object of class '<em>Pat Struct Enum</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Struct Enum</em>'.
+   * @generated
+   */
+  PatStructEnum createPatStructEnum();
 
   /**
    * Returns a new object of class '<em>Int Type</em>'.

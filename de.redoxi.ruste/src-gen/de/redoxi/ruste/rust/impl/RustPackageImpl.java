@@ -12,6 +12,7 @@ import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumType;
+import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
@@ -36,7 +37,9 @@ import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
 import de.redoxi.ruste.rust.PatOwned;
 import de.redoxi.ruste.rust.PatRange;
+import de.redoxi.ruste.rust.PatStructEnum;
 import de.redoxi.ruste.rust.PatTuple;
+import de.redoxi.ruste.rust.PatTupleEnum;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
 import de.redoxi.ruste.rust.Path;
@@ -251,6 +254,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass fieldPatEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass pathEClass = null;
 
   /**
@@ -378,6 +388,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass charLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patTupleEnumEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patStructEnumEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1049,9 +1073,29 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPatEnum_Patterns()
+  public EClass getFieldPat()
   {
-    return (EReference)patEnumEClass.getEStructuralFeatures().get(1);
+    return fieldPatEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFieldPat_Ident()
+  {
+    return (EAttribute)fieldPatEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFieldPat_Pattern()
+  {
+    return (EReference)fieldPatEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1469,6 +1513,46 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPatTupleEnum()
+  {
+    return patTupleEnumEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatTupleEnum_Patterns()
+  {
+    return (EReference)patTupleEnumEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatStructEnum()
+  {
+    return patStructEnumEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatStructEnum_FieldPatterns()
+  {
+    return (EReference)patStructEnumEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getIntType()
   {
     return intTypeEClass;
@@ -1634,7 +1718,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     patEnumEClass = createEClass(PAT_ENUM);
     createEReference(patEnumEClass, PAT_ENUM__PATH);
-    createEReference(patEnumEClass, PAT_ENUM__PATTERNS);
+
+    fieldPatEClass = createEClass(FIELD_PAT);
+    createEAttribute(fieldPatEClass, FIELD_PAT__IDENT);
+    createEReference(fieldPatEClass, FIELD_PAT__PATTERN);
 
     pathEClass = createEClass(PATH);
     createEAttribute(pathEClass, PATH__SEGMENTS);
@@ -1695,6 +1782,12 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     numberLitEClass = createEClass(NUMBER_LIT);
 
     charLitEClass = createEClass(CHAR_LIT);
+
+    patTupleEnumEClass = createEClass(PAT_TUPLE_ENUM);
+    createEReference(patTupleEnumEClass, PAT_TUPLE_ENUM__PATTERNS);
+
+    patStructEnumEClass = createEClass(PAT_STRUCT_ENUM);
+    createEReference(patStructEnumEClass, PAT_STRUCT_ENUM__FIELD_PATTERNS);
 
     intTypeEClass = createEClass(INT_TYPE);
 
@@ -1768,6 +1861,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     stringLitEClass.getESuperTypes().add(this.getLiteral());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
     charLitEClass.getESuperTypes().add(this.getLiteral());
+    patTupleEnumEClass.getESuperTypes().add(this.getPatEnum());
+    patStructEnumEClass.getESuperTypes().add(this.getPatEnum());
     intTypeEClass.getESuperTypes().add(this.getPrimitiveType());
     floatTypeEClass.getESuperTypes().add(this.getPrimitiveType());
     boolTypeEClass.getESuperTypes().add(this.getPrimitiveType());
@@ -1854,8 +1949,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getPatNumberRange_End(), this.getNumberLit(), null, "end", null, 0, 1, PatNumberRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patEnumEClass, PatEnum.class, "PatEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPatEnum_Path(), this.getPath(), null, "path", null, 0, 1, PatEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPatEnum_Patterns(), this.getPat(), null, "patterns", null, 0, -1, PatEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatEnum_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, PatEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fieldPatEClass, FieldPat.class, "FieldPat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFieldPat_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, FieldPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFieldPat_Pattern(), this.getPat(), null, "pattern", null, 0, 1, FieldPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1916,6 +2014,12 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(numberLitEClass, NumberLit.class, "NumberLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(charLitEClass, CharLit.class, "CharLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(patTupleEnumEClass, PatTupleEnum.class, "PatTupleEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatTupleEnum_Patterns(), this.getPat(), null, "patterns", null, 0, -1, PatTupleEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patStructEnumEClass, PatStructEnum.class, "PatStructEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatStructEnum_FieldPatterns(), this.getFieldPat(), null, "fieldPatterns", null, 0, -1, PatStructEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -90,6 +90,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT_CHAR_RANGE: return createPatCharRange();
       case RustPackage.PAT_NUMBER_RANGE: return createPatNumberRange();
       case RustPackage.PAT_ENUM: return createPatEnum();
+      case RustPackage.FIELD_PAT: return createFieldPat();
       case RustPackage.PATH: return createPath();
       case RustPackage.LIFETIME: return createLifetime();
       case RustPackage.TYPE: return createType();
@@ -109,6 +110,8 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
       case RustPackage.CHAR_LIT: return createCharLit();
+      case RustPackage.PAT_TUPLE_ENUM: return createPatTupleEnum();
+      case RustPackage.PAT_STRUCT_ENUM: return createPatStructEnum();
       case RustPackage.INT_TYPE: return createIntType();
       case RustPackage.FLOAT_TYPE: return createFloatType();
       case RustPackage.BOOL_TYPE: return createBoolType();
@@ -433,6 +436,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public FieldPat createFieldPat()
+  {
+    FieldPatImpl fieldPat = new FieldPatImpl();
+    return fieldPat;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Path createPath()
   {
     PathImpl path = new PathImpl();
@@ -635,6 +649,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     CharLitImpl charLit = new CharLitImpl();
     return charLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatTupleEnum createPatTupleEnum()
+  {
+    PatTupleEnumImpl patTupleEnum = new PatTupleEnumImpl();
+    return patTupleEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatStructEnum createPatStructEnum()
+  {
+    PatStructEnumImpl patStructEnum = new PatStructEnumImpl();
+    return patStructEnum;
   }
 
   /**

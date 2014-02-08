@@ -87,7 +87,10 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatEnum">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/path"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//FieldPat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FieldPat/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FieldPat/pattern"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Path">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Path/segments"/>
@@ -143,6 +146,12 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
     <genClasses ecoreClass="Rust.ecore#//CharLit"/>
+    <genClasses ecoreClass="Rust.ecore#//PatTupleEnum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatTupleEnum/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatStructEnum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatStructEnum/fieldPatterns"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//IntType"/>
     <genClasses ecoreClass="Rust.ecore#//FloatType"/>
     <genClasses ecoreClass="Rust.ecore#//BoolType"/>

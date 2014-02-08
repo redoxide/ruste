@@ -839,22 +839,50 @@ public interface RustPackage extends EPackage
   int PAT_ENUM__PATH = PAT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PAT_ENUM__PATTERNS = PAT_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Pat Enum</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PAT_ENUM_FEATURE_COUNT = PAT_FEATURE_COUNT + 2;
+  int PAT_ENUM_FEATURE_COUNT = PAT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FieldPatImpl <em>Field Pat</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.FieldPatImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
+   * @generated
+   */
+  int FIELD_PAT = 25;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELD_PAT__IDENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELD_PAT__PATTERN = 1;
+
+  /**
+   * The number of structural features of the '<em>Field Pat</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELD_PAT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PathImpl <em>Path</em>}' class.
@@ -864,7 +892,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPath()
    * @generated
    */
-  int PATH = 25;
+  int PATH = 26;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -910,7 +938,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLifetime()
    * @generated
    */
-  int LIFETIME = 26;
+  int LIFETIME = 27;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -938,7 +966,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 27;
+  int TYPE = 28;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -957,7 +985,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 28;
+  int PRIMITIVE_TYPE = 29;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -976,7 +1004,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
    * @generated
    */
-  int TUPLE_TYPE = 29;
+  int TUPLE_TYPE = 30;
 
   /**
    * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -1004,7 +1032,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
    * @generated
    */
-  int STRUCT_TYPE = 30;
+  int STRUCT_TYPE = 31;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1050,7 +1078,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 31;
+  int BOXED_POINTER = 32;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1078,7 +1106,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 32;
+  int OWNED_POINTER = 33;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1106,7 +1134,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 33;
+  int BORROWED_POINTER = 34;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1134,7 +1162,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 34;
+  int STRUCT_FIELD = 35;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -1180,7 +1208,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
    * @generated
    */
-  int ENUM_TYPE = 35;
+  int ENUM_TYPE = 36;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1226,7 +1254,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 36;
+  int VARIANT = 37;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1254,7 +1282,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 37;
+  int STRUCT_VARIANT = 38;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1300,7 +1328,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 38;
+  int TUPLE_VARIANT = 39;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1337,7 +1365,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 39;
+  int UNIT_VARIANT = 40;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1365,7 +1393,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 41;
+  int LITERAL = 42;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1393,7 +1421,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 40;
+  int STRING_LIT = 41;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1421,7 +1449,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 42;
+  int NUMBER_LIT = 43;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1449,7 +1477,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 43;
+  int CHAR_LIT = 44;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1470,6 +1498,80 @@ public interface RustPackage extends EPackage
   int CHAR_LIT_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PatTupleEnumImpl <em>Pat Tuple Enum</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.PatTupleEnumImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
+   * @generated
+   */
+  int PAT_TUPLE_ENUM = 45;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_TUPLE_ENUM__PATH = PAT_ENUM__PATH;
+
+  /**
+   * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_TUPLE_ENUM__PATTERNS = PAT_ENUM_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pat Tuple Enum</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_TUPLE_ENUM_FEATURE_COUNT = PAT_ENUM_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PatStructEnumImpl <em>Pat Struct Enum</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.PatStructEnumImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
+   * @generated
+   */
+  int PAT_STRUCT_ENUM = 46;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_STRUCT_ENUM__PATH = PAT_ENUM__PATH;
+
+  /**
+   * The feature id for the '<em><b>Field Patterns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_STRUCT_ENUM__FIELD_PATTERNS = PAT_ENUM_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pat Struct Enum</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAT_STRUCT_ENUM_FEATURE_COUNT = PAT_ENUM_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1477,7 +1579,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 44;
+  int INT_TYPE = 47;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -1496,7 +1598,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 45;
+  int FLOAT_TYPE = 48;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -1515,7 +1617,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 46;
+  int BOOL_TYPE = 49;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -1534,7 +1636,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 47;
+  int MACHINE_TYPE = 50;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -1553,7 +1655,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 48;
+  int UNIT_TYPE = 51;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1572,7 +1674,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 49;
+  int VISIBILITY = 52;
 
 
   /**
@@ -2167,15 +2269,36 @@ public interface RustPackage extends EPackage
   EReference getPatEnum_Path();
 
   /**
-   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.PatEnum#getPatterns <em>Patterns</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.FieldPat <em>Field Pat</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Patterns</em>'.
-   * @see de.redoxi.ruste.rust.PatEnum#getPatterns()
-   * @see #getPatEnum()
+   * @return the meta object for class '<em>Field Pat</em>'.
+   * @see de.redoxi.ruste.rust.FieldPat
    * @generated
    */
-  EReference getPatEnum_Patterns();
+  EClass getFieldPat();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FieldPat#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.FieldPat#getIdent()
+   * @see #getFieldPat()
+   * @generated
+   */
+  EAttribute getFieldPat_Ident();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.FieldPat#getPattern <em>Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pattern</em>'.
+   * @see de.redoxi.ruste.rust.FieldPat#getPattern()
+   * @see #getFieldPat()
+   * @generated
+   */
+  EReference getFieldPat_Pattern();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Path <em>Path</em>}'.
@@ -2608,6 +2731,48 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getCharLit();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.PatTupleEnum <em>Pat Tuple Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pat Tuple Enum</em>'.
+   * @see de.redoxi.ruste.rust.PatTupleEnum
+   * @generated
+   */
+  EClass getPatTupleEnum();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.PatTupleEnum#getPatterns <em>Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Patterns</em>'.
+   * @see de.redoxi.ruste.rust.PatTupleEnum#getPatterns()
+   * @see #getPatTupleEnum()
+   * @generated
+   */
+  EReference getPatTupleEnum_Patterns();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.PatStructEnum <em>Pat Struct Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pat Struct Enum</em>'.
+   * @see de.redoxi.ruste.rust.PatStructEnum
+   * @generated
+   */
+  EClass getPatStructEnum();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.PatStructEnum#getFieldPatterns <em>Field Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Field Patterns</em>'.
+   * @see de.redoxi.ruste.rust.PatStructEnum#getFieldPatterns()
+   * @see #getPatStructEnum()
+   * @generated
+   */
+  EReference getPatStructEnum_FieldPatterns();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.IntType <em>Int Type</em>}'.
@@ -3191,12 +3356,30 @@ public interface RustPackage extends EPackage
     EReference PAT_ENUM__PATH = eINSTANCE.getPatEnum_Path();
 
     /**
-     * The meta object literal for the '<em><b>Patterns</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.FieldPatImpl <em>Field Pat</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.FieldPatImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
+     * @generated
+     */
+    EClass FIELD_PAT = eINSTANCE.getFieldPat();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PAT_ENUM__PATTERNS = eINSTANCE.getPatEnum_Patterns();
+    EAttribute FIELD_PAT__IDENT = eINSTANCE.getFieldPat_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FIELD_PAT__PATTERN = eINSTANCE.getFieldPat_Pattern();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PathImpl <em>Path</em>}' class.
@@ -3563,6 +3746,42 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass CHAR_LIT = eINSTANCE.getCharLit();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PatTupleEnumImpl <em>Pat Tuple Enum</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.PatTupleEnumImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
+     * @generated
+     */
+    EClass PAT_TUPLE_ENUM = eINSTANCE.getPatTupleEnum();
+
+    /**
+     * The meta object literal for the '<em><b>Patterns</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PAT_TUPLE_ENUM__PATTERNS = eINSTANCE.getPatTupleEnum_Patterns();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PatStructEnumImpl <em>Pat Struct Enum</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.PatStructEnumImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
+     * @generated
+     */
+    EClass PAT_STRUCT_ENUM = eINSTANCE.getPatStructEnum();
+
+    /**
+     * The meta object literal for the '<em><b>Field Patterns</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PAT_STRUCT_ENUM__FIELD_PATTERNS = eINSTANCE.getPatStructEnum_FieldPatterns();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.IntTypeImpl <em>Int Type</em>}' class.

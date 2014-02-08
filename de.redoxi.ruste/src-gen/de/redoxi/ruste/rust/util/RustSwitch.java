@@ -265,6 +265,13 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.FIELD_PAT:
+      {
+        FieldPat fieldPat = (FieldPat)theEObject;
+        T result = caseFieldPat(fieldPat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.PATH:
       {
         Path path = (Path)theEObject;
@@ -408,6 +415,24 @@ public class RustSwitch<T> extends Switch<T>
         CharLit charLit = (CharLit)theEObject;
         T result = caseCharLit(charLit);
         if (result == null) result = caseLiteral(charLit);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_TUPLE_ENUM:
+      {
+        PatTupleEnum patTupleEnum = (PatTupleEnum)theEObject;
+        T result = casePatTupleEnum(patTupleEnum);
+        if (result == null) result = casePatEnum(patTupleEnum);
+        if (result == null) result = casePat(patTupleEnum);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_STRUCT_ENUM:
+      {
+        PatStructEnum patStructEnum = (PatStructEnum)theEObject;
+        T result = casePatStructEnum(patStructEnum);
+        if (result == null) result = casePatEnum(patStructEnum);
+        if (result == null) result = casePat(patStructEnum);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -861,6 +886,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Field Pat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Field Pat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFieldPat(FieldPat object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Path</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1160,6 +1201,38 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCharLit(CharLit object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Tuple Enum</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Tuple Enum</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatTupleEnum(PatTupleEnum object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Struct Enum</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Struct Enum</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatStructEnum(PatStructEnum object)
   {
     return null;
   }

@@ -200,6 +200,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createPatEnumAdapter();
       }
       @Override
+      public Adapter caseFieldPat(FieldPat object)
+      {
+        return createFieldPatAdapter();
+      }
+      @Override
       public Adapter casePath(Path object)
       {
         return createPathAdapter();
@@ -293,6 +298,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCharLit(CharLit object)
       {
         return createCharLitAdapter();
+      }
+      @Override
+      public Adapter casePatTupleEnum(PatTupleEnum object)
+      {
+        return createPatTupleEnumAdapter();
+      }
+      @Override
+      public Adapter casePatStructEnum(PatStructEnum object)
+      {
+        return createPatStructEnumAdapter();
       }
       @Override
       public Adapter caseIntType(IntType object)
@@ -717,6 +732,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.FieldPat <em>Field Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.FieldPat
+   * @generated
+   */
+  public Adapter createFieldPatAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Path <em>Path</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -997,6 +1027,36 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCharLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatTupleEnum <em>Pat Tuple Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatTupleEnum
+   * @generated
+   */
+  public Adapter createPatTupleEnumAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatStructEnum <em>Pat Struct Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatStructEnum
+   * @generated
+   */
+  public Adapter createPatStructEnumAdapter()
   {
     return null;
   }

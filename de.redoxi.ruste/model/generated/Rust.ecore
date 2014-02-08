@@ -97,9 +97,13 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatEnum" eSuperTypes="#//Pat">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//Path" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
-        eType="#//Pat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FieldPat">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Path">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
@@ -170,6 +174,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLit" eSuperTypes="#//Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="CharLit" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatTupleEnum" eSuperTypes="#//PatEnum">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//Pat" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatStructEnum" eSuperTypes="#//PatEnum">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fieldPatterns" upperBound="-1"
+        eType="#//FieldPat" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="FloatType" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoolType" eSuperTypes="#//PrimitiveType"/>

@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.PatEnum#getPath <em>Path</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.PatEnum#getPatterns <em>Patterns</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,12 +31,12 @@ public interface PatEnum extends Pat
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Path</em>' containment reference.
-   * @see #setPath(Path)
+   * @see #setPath(EObject)
    * @see de.redoxi.ruste.rust.RustPackage#getPatEnum_Path()
    * @model containment="true"
    * @generated
    */
-  Path getPath();
+  EObject getPath();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.PatEnum#getPath <em>Path</em>}' containment reference.
@@ -47,22 +46,6 @@ public interface PatEnum extends Pat
    * @see #getPath()
    * @generated
    */
-  void setPath(Path value);
-
-  /**
-   * Returns the value of the '<em><b>Patterns</b></em>' containment reference list.
-   * The list contents are of type {@link de.redoxi.ruste.rust.Pat}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Patterns</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Patterns</em>' containment reference list.
-   * @see de.redoxi.ruste.rust.RustPackage#getPatEnum_Patterns()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Pat> getPatterns();
+  void setPath(EObject value);
 
 } // PatEnum
