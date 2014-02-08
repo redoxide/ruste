@@ -220,23 +220,27 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cModItemParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFnItemParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cTypeItemParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//// Items within a module or crate
 		//Item:
-		//	ModItem | // | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-		//	FnItem;
+		//	ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//	TypeItem;
 		public ParserRule getRule() { return rule; }
 
-		//ModItem | // | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-		//FnItem
+		//ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//TypeItem
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ModItem
 		public RuleCall getModItemParserRuleCall_0() { return cModItemParserRuleCall_0; }
 
-		//// | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
 		//FnItem
 		public RuleCall getFnItemParserRuleCall_1() { return cFnItemParserRuleCall_1; }
+
+		//// | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//TypeItem
+		public RuleCall getTypeItemParserRuleCall_2() { return cTypeItemParserRuleCall_2; }
 	}
 
 	public class ModItemElements extends AbstractParserRuleElementFinder {
@@ -419,6 +423,82 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getBodyBlockParserRuleCall_7_0() { return cBodyBlockParserRuleCall_7_0; }
 	}
 
+	public class TypeItemElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeItem");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIdentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdentIDENTTerminalRuleCall_1_0 = (RuleCall)cIdentAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLessThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cParamsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cParamsGenericParamDeclParserRuleCall_2_1_0 = (RuleCall)cParamsAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cParamsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cParamsGenericParamDeclParserRuleCall_2_2_1_0 = (RuleCall)cParamsAssignment_2_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
+		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTypeTypeParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//TypeItem:
+		//	"type" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "=" type=Type ";";
+		public ParserRule getRule() { return rule; }
+
+		//"type" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "=" type=Type ";"
+		public Group getGroup() { return cGroup; }
+
+		//"type"
+		public Keyword getTypeKeyword_0() { return cTypeKeyword_0; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_1() { return cIdentAssignment_1; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_1_0() { return cIdentIDENTTerminalRuleCall_1_0; }
+
+		//("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_2_0() { return cLessThanSignKeyword_2_0; }
+
+		//params+=GenericParamDecl
+		public Assignment getParamsAssignment_2_1() { return cParamsAssignment_2_1; }
+
+		//GenericParamDecl
+		public RuleCall getParamsGenericParamDeclParserRuleCall_2_1_0() { return cParamsGenericParamDeclParserRuleCall_2_1_0; }
+
+		//("," params+=GenericParamDecl)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+
+		//params+=GenericParamDecl
+		public Assignment getParamsAssignment_2_2_1() { return cParamsAssignment_2_2_1; }
+
+		//GenericParamDecl
+		public RuleCall getParamsGenericParamDeclParserRuleCall_2_2_1_0() { return cParamsGenericParamDeclParserRuleCall_2_2_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_2_3() { return cGreaterThanSignKeyword_2_3; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
+
+		//type=Type
+		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
+
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_4_0() { return cTypeTypeParserRuleCall_4_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+	}
+
 	public class BlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -505,6 +585,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
+		//// TODO Crossreference Type
 		//Arg:
 		//	pat=Pat ":" type=Type;
 		public ParserRule getRule() { return rule; }
@@ -1937,6 +2018,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ItemElements pItem;
 	private ModItemElements pModItem;
 	private FnItemElements pFnItem;
+	private TypeItemElements pTypeItem;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -2113,8 +2195,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Items within a module or crate
 	//Item:
-	//	ModItem | // | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-	//	FnItem;
+	//	ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+	//	TypeItem;
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
 	}
@@ -2146,6 +2228,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getFnItemAccess().getRule();
 	}
 
+	//TypeItem:
+	//	"type" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "=" type=Type ";";
+	public TypeItemElements getTypeItemAccess() {
+		return (pTypeItem != null) ? pTypeItem : (pTypeItem = new TypeItemElements());
+	}
+	
+	public ParserRule getTypeItemRule() {
+		return getTypeItemAccess().getRule();
+	}
+
 	//Block:
 	//	{Block} "{" / * TODO Statements, expression * / "}";
 	public BlockElements getBlockAccess() {
@@ -2167,6 +2259,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getGenericParamDeclAccess().getRule();
 	}
 
+	//// TODO Crossreference Type
 	//Arg:
 	//	pat=Pat ":" type=Type;
 	public ArgElements getArgAccess() {

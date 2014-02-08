@@ -53,6 +53,7 @@ import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.Type;
+import de.redoxi.ruste.rust.TypeItem;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.rust.UnitVariant;
 import de.redoxi.ruste.rust.Variant;
@@ -136,6 +137,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass fnItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeItemEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -736,6 +744,36 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getFnItem_Body()
   {
     return (EReference)fnItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeItem()
+  {
+    return typeItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeItem_Params()
+  {
+    return (EReference)typeItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeItem_Type()
+  {
+    return (EReference)typeItemEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1670,6 +1708,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(fnItemEClass, FN_ITEM__RETURN_TYPE);
     createEReference(fnItemEClass, FN_ITEM__BODY);
 
+    typeItemEClass = createEClass(TYPE_ITEM);
+    createEReference(typeItemEClass, TYPE_ITEM__PARAMS);
+    createEReference(typeItemEClass, TYPE_ITEM__TYPE);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -1836,6 +1878,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     literalAttrEClass.getESuperTypes().add(this.getAttr());
     modItemEClass.getESuperTypes().add(this.getItem());
     fnItemEClass.getESuperTypes().add(this.getItem());
+    typeItemEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -1901,6 +1944,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getFnItem_Args(), this.getArg(), null, "args", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_ReturnType(), this.getType(), null, "returnType", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Body(), this.getBlock(), null, "body", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeItemEClass, TypeItem.class, "TypeItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypeItem_Type(), this.getType(), null, "type", null, 0, 1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

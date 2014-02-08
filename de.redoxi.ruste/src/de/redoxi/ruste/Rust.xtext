@@ -37,7 +37,7 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem | FnItem // | TypeItem | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+	ModItem | FnItem | TypeItem // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
 ;
 
 // A module declaration item
@@ -50,6 +50,10 @@ FnItem:
 	"fn" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '(' (args += Arg (',' args += Arg)*)? ')' ("->" returnType = Type)? body = Block
 ;
 
+TypeItem:
+	"type" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '=' type=Type ';'
+;
+
 Block:
 	{Block} '{' /* TODO Statements, expression */ '}'
 ;
@@ -59,6 +63,7 @@ GenericParamDecl:
 	ident = IDENT (':' bounds += IDENT ('+' bounds += IDENT))?
 ;
 
+// TODO Crossreference Type
 Arg:
 	pat = Pat ':' type = Type
 ;

@@ -139,6 +139,14 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.TYPE_ITEM:
+      {
+        TypeItem typeItem = (TypeItem)theEObject;
+        T result = caseTypeItem(typeItem);
+        if (result == null) result = caseItem(typeItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -625,6 +633,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFnItem(FnItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeItem(TypeItem object)
   {
     return null;
   }

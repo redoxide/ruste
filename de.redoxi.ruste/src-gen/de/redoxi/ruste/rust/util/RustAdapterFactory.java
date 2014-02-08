@@ -120,6 +120,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createFnItemAdapter();
       }
       @Override
+      public Adapter caseTypeItem(TypeItem object)
+      {
+        return createTypeItemAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -487,6 +492,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFnItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TypeItem <em>Type Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.TypeItem
+   * @generated
+   */
+  public Adapter createTypeItemAdapter()
   {
     return null;
   }

@@ -45,6 +45,7 @@ import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.TupleVariant;
+import de.redoxi.ruste.rust.TypeItem;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.rust.UnitVariant;
 import de.redoxi.ruste.services.RustGrammarAccess;
@@ -351,6 +352,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getTupleVariantRule() ||
 				   context == grammarAccess.getVariantRule()) {
 					sequence_TupleVariant(context, (TupleVariant) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.TYPE_ITEM:
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getTypeItemRule()) {
+					sequence_TypeItem(context, (TypeItem) semanticObject); 
 					return; 
 				}
 				else break;
@@ -882,6 +890,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT types+=Type types+=Type*)
 	 */
 	protected void sequence_TupleVariant(EObject context, TupleVariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? type=Type)
+	 */
+	protected void sequence_TypeItem(EObject context, TypeItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

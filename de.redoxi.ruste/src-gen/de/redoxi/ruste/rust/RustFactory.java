@@ -104,6 +104,15 @@ public interface RustFactory extends EFactory
   FnItem createFnItem();
 
   /**
+   * Returns a new object of class '<em>Type Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Item</em>'.
+   * @generated
+   */
+  TypeItem createTypeItem();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
