@@ -8,6 +8,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
@@ -15,10 +18,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected RustGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_PatEnum_AsteriskKeyword_2_0_or_FullStopFullStopKeyword_2_1;
+	protected AbstractElementAlias match_Path_ColonColonKeyword_2_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (RustGrammarAccess) access;
+		match_PatEnum_AsteriskKeyword_2_0_or_FullStopFullStopKeyword_2_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPatEnumAccess().getAsteriskKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getPatEnumAccess().getFullStopFullStopKeyword_2_1()));
+		match_Path_ColonColonKeyword_2_q = new TokenAlias(false, true, grammarAccess.getPathAccess().getColonColonKeyword_2());
 	}
 	
 	@Override
@@ -98,8 +105,28 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if(match_PatEnum_AsteriskKeyword_2_0_or_FullStopFullStopKeyword_2_1.equals(syntax))
+				emit_PatEnum_AsteriskKeyword_2_0_or_FullStopFullStopKeyword_2_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Path_ColonColonKeyword_2_q.equals(syntax))
+				emit_Path_ColonColonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Syntax:
+	 *     '..' | '*'
+	 */
+	protected void emit_PatEnum_AsteriskKeyword_2_0_or_FullStopFullStopKeyword_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     '::'?
+	 */
+	protected void emit_Path_ColonColonKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

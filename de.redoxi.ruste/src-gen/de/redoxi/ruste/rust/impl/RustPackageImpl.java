@@ -5,6 +5,7 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
+import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
@@ -18,6 +19,7 @@ import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
+import de.redoxi.ruste.rust.Lifetime;
 import de.redoxi.ruste.rust.Literal;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.MachineType;
@@ -28,6 +30,7 @@ import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.PatBorrowed;
 import de.redoxi.ruste.rust.PatBoxed;
 import de.redoxi.ruste.rust.PatCharRange;
+import de.redoxi.ruste.rust.PatEnum;
 import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
@@ -36,6 +39,7 @@ import de.redoxi.ruste.rust.PatRange;
 import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
+import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
@@ -135,6 +139,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass blockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass genericParamDeclEClass = null;
 
   /**
@@ -227,6 +238,27 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass patNumberRangeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patEnumEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pathEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass lifetimeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -677,9 +709,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFnItem_Body()
+  public EReference getFnItem_Body()
   {
-    return (EAttribute)fnItemEClass.getEStructuralFeatures().get(3);
+    return (EReference)fnItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBlock()
+  {
+    return blockEClass;
   }
 
   /**
@@ -980,6 +1022,96 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getPatNumberRange_End()
   {
     return (EReference)patNumberRangeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatEnum()
+  {
+    return patEnumEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatEnum_Path()
+  {
+    return (EReference)patEnumEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatEnum_Patterns()
+  {
+    return (EReference)patEnumEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPath()
+  {
+    return pathEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPath_Segments()
+  {
+    return (EAttribute)pathEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPath_Lifetimes()
+  {
+    return (EReference)pathEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPath_GenericTypes()
+  {
+    return (EReference)pathEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLifetime()
+  {
+    return lifetimeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLifetime_Ident()
+  {
+    return (EAttribute)lifetimeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1452,7 +1584,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(fnItemEClass, FN_ITEM__PARAMS);
     createEReference(fnItemEClass, FN_ITEM__ARGS);
     createEReference(fnItemEClass, FN_ITEM__RETURN_TYPE);
-    createEAttribute(fnItemEClass, FN_ITEM__BODY);
+    createEReference(fnItemEClass, FN_ITEM__BODY);
+
+    blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
     createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__IDENT);
@@ -1497,6 +1631,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     patNumberRangeEClass = createEClass(PAT_NUMBER_RANGE);
     createEReference(patNumberRangeEClass, PAT_NUMBER_RANGE__START);
     createEReference(patNumberRangeEClass, PAT_NUMBER_RANGE__END);
+
+    patEnumEClass = createEClass(PAT_ENUM);
+    createEReference(patEnumEClass, PAT_ENUM__PATH);
+    createEReference(patEnumEClass, PAT_ENUM__PATTERNS);
+
+    pathEClass = createEClass(PATH);
+    createEAttribute(pathEClass, PATH__SEGMENTS);
+    createEReference(pathEClass, PATH__LIFETIMES);
+    createEReference(pathEClass, PATH__GENERIC_TYPES);
+
+    lifetimeEClass = createEClass(LIFETIME);
+    createEAttribute(lifetimeEClass, LIFETIME__IDENT);
 
     typeEClass = createEClass(TYPE);
 
@@ -1608,6 +1754,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     patRangeEClass.getESuperTypes().add(this.getPat());
     patCharRangeEClass.getESuperTypes().add(this.getPatRange());
     patNumberRangeEClass.getESuperTypes().add(this.getPatRange());
+    patEnumEClass.getESuperTypes().add(this.getPat());
     primitiveTypeEClass.getESuperTypes().add(this.getType());
     tupleTypeEClass.getESuperTypes().add(this.getType());
     structTypeEClass.getESuperTypes().add(this.getType());
@@ -1658,7 +1805,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getFnItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Args(), this.getArg(), null, "args", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_ReturnType(), this.getType(), null, "returnType", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFnItem_Body(), ecorePackage.getEString(), "body", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFnItem_Body(), this.getBlock(), null, "body", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenericParamDecl_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1703,6 +1852,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(patNumberRangeEClass, PatNumberRange.class, "PatNumberRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPatNumberRange_Start(), this.getNumberLit(), null, "start", null, 0, 1, PatNumberRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatNumberRange_End(), this.getNumberLit(), null, "end", null, 0, 1, PatNumberRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patEnumEClass, PatEnum.class, "PatEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatEnum_Path(), this.getPath(), null, "path", null, 0, 1, PatEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatEnum_Patterns(), this.getPat(), null, "patterns", null, 0, -1, PatEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPath_Lifetimes(), this.getLifetime(), null, "lifetimes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPath_GenericTypes(), this.getType(), null, "genericTypes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(lifetimeEClass, Lifetime.class, "Lifetime", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLifetime_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Lifetime.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

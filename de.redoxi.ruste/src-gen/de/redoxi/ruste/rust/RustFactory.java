@@ -104,6 +104,15 @@ public interface RustFactory extends EFactory
   FnItem createFnItem();
 
   /**
+   * Returns a new object of class '<em>Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Block</em>'.
+   * @generated
+   */
+  Block createBlock();
+
+  /**
    * Returns a new object of class '<em>Generic Param Decl</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -228,6 +237,33 @@ public interface RustFactory extends EFactory
    * @generated
    */
   PatNumberRange createPatNumberRange();
+
+  /**
+   * Returns a new object of class '<em>Pat Enum</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pat Enum</em>'.
+   * @generated
+   */
+  PatEnum createPatEnum();
+
+  /**
+   * Returns a new object of class '<em>Path</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Path</em>'.
+   * @generated
+   */
+  Path createPath();
+
+  /**
+   * Returns a new object of class '<em>Lifetime</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lifetime</em>'.
+   * @generated
+   */
+  Lifetime createLifetime();
 
   /**
    * Returns a new object of class '<em>Type</em>'.

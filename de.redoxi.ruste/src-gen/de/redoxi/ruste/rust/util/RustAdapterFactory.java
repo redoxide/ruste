@@ -120,6 +120,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createFnItemAdapter();
       }
       @Override
+      public Adapter caseBlock(Block object)
+      {
+        return createBlockAdapter();
+      }
+      @Override
       public Adapter caseGenericParamDecl(GenericParamDecl object)
       {
         return createGenericParamDeclAdapter();
@@ -188,6 +193,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter casePatNumberRange(PatNumberRange object)
       {
         return createPatNumberRangeAdapter();
+      }
+      @Override
+      public Adapter casePatEnum(PatEnum object)
+      {
+        return createPatEnumAdapter();
+      }
+      @Override
+      public Adapter casePath(Path object)
+      {
+        return createPathAdapter();
+      }
+      @Override
+      public Adapter caseLifetime(Lifetime object)
+      {
+        return createLifetimeAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -457,6 +477,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Block
+   * @generated
+   */
+  public Adapter createBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.GenericParamDecl <em>Generic Param Decl</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -662,6 +697,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatNumberRangeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatEnum <em>Pat Enum</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.PatEnum
+   * @generated
+   */
+  public Adapter createPatEnumAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Path <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Path
+   * @generated
+   */
+  public Adapter createPathAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Lifetime <em>Lifetime</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Lifetime
+   * @generated
+   */
+  public Adapter createLifetimeAdapter()
   {
     return null;
   }

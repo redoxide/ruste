@@ -41,8 +41,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/returnType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FnItem/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/body"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/bounds"/>
@@ -83,6 +84,18 @@
     <genClasses ecoreClass="Rust.ecore#//PatNumberRange">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/start"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/end"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatEnum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/patterns"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Path">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Path/segments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Path/lifetimes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Path/genericTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Lifetime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Lifetime/ident"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Type"/>
     <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>

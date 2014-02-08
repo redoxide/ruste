@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.AttrWithList;
+import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
@@ -16,6 +17,7 @@ import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
+import de.redoxi.ruste.rust.Lifetime;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ModItem;
@@ -24,6 +26,7 @@ import de.redoxi.ruste.rust.OwnedPointer;
 import de.redoxi.ruste.rust.PatBorrowed;
 import de.redoxi.ruste.rust.PatBoxed;
 import de.redoxi.ruste.rust.PatCharRange;
+import de.redoxi.ruste.rust.PatEnum;
 import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
 import de.redoxi.ruste.rust.PatNumberRange;
@@ -31,6 +34,7 @@ import de.redoxi.ruste.rust.PatOwned;
 import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
+import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
@@ -71,6 +75,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getAttrRule() ||
 				   context == grammarAccess.getAttrWithListRule()) {
 					sequence_AttrWithList(context, (AttrWithList) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.BLOCK:
+				if(context == grammarAccess.getBlockRule()) {
+					sequence_Block(context, (Block) semanticObject); 
 					return; 
 				}
 				else break;
@@ -154,6 +164,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.LIFETIME:
+				if(context == grammarAccess.getLifetimeRule()) {
+					sequence_Lifetime(context, (Lifetime) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.LITERAL_ATTR:
 				if(context == grammarAccess.getAttrRule() ||
 				   context == grammarAccess.getLiteralAttrRule()) {
@@ -211,6 +227,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.PAT_ENUM:
+				if(context == grammarAccess.getPatRule() ||
+				   context == grammarAccess.getPatEnumRule()) {
+					sequence_PatEnum(context, (PatEnum) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.PAT_IDENT:
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatIdentRule()) {
@@ -258,6 +281,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatWildcardRule()) {
 					sequence_PatWildcard(context, (PatWildcard) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.PATH:
+				if(context == grammarAccess.getPathRule()) {
+					sequence_Path(context, (Path) semanticObject); 
 					return; 
 				}
 				else break;
@@ -344,6 +373,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT attrs+=Attr attrs+=Attr*)
 	 */
 	protected void sequence_AttrWithList(EObject context, AttrWithList semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {Block}
+	 */
+	protected void sequence_Block(EObject context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -447,6 +485,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ItemAttr(EObject context, ItemAttr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ident=IDENT
+	 */
+	protected void sequence_Lifetime(EObject context, Lifetime semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LIFETIME__IDENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LIFETIME__IDENT));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getLifetimeAccess().getIdentIDENTTerminalRuleCall_1_0(), semanticObject.getIdent());
+		feeder.finish();
 	}
 	
 	
@@ -556,6 +610,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (path=Path (patterns+=Pat patterns+=Pat*)?)
+	 */
+	protected void sequence_PatEnum(EObject context, PatEnum semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (mutable?=MUT_KEYWORD ident=IDENT)
 	 */
 	protected void sequence_PatIdent(EObject context, PatIdent semanticObject) {
@@ -647,6 +710,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {PatWildcard}
 	 */
 	protected void sequence_PatWildcard(EObject context, PatWildcard semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (segments+=IDENT segments+=IDENT* ((lifetimes+=Lifetime | genericTypes+=Type) (lifetimes+=Lifetime | genericTypes+=Type)*)?)
+	 */
+	protected void sequence_Path(EObject context, Path semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

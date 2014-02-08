@@ -51,7 +51,7 @@ FnItem:
 ;
 
 Block:
-	'{' /* TODO Statements, expression */ '}'
+	{Block} '{' /* TODO Statements, expression */ '}'
 ;
 
 // TODO Crossreference Trait?
@@ -74,7 +74,8 @@ Pat:
 	PatTuple |
 	PatVector |
 	PatLiteral |
-	PatRange
+	PatRange |
+	PatEnum
 ;
 
 PatWildcard:
@@ -120,6 +121,18 @@ PatCharRange:
 
 PatNumberRange:
 	start=NumberLit '..' end=NumberLit
+;
+
+PatEnum:
+	path=Path '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')'
+;
+
+Path:
+	segments+=IDENT ('::' segments+=IDENT)* '::'? ('<' (lifetimes+=Lifetime | genericTypes+=Type) (',' (lifetimes+=Lifetime | genericTypes+=Type))* '>')?
+;
+
+Lifetime:
+	"'" ident=IDENT
 ;
 
 Type:

@@ -3,6 +3,7 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Arg;
+import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.RustPackage;
@@ -72,24 +73,14 @@ public class FnItemImpl extends ItemImpl implements FnItem
   protected Type returnType;
 
   /**
-   * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
+   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getBody()
    * @generated
    * @ordered
    */
-  protected static final String BODY_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBody()
-   * @generated
-   * @ordered
-   */
-  protected String body = BODY_EDEFAULT;
+  protected Block body;
 
   /**
    * <!-- begin-user-doc -->
@@ -193,7 +184,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getBody()
+  public Block getBody()
   {
     return body;
   }
@@ -203,12 +194,37 @@ public class FnItemImpl extends ItemImpl implements FnItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBody(String newBody)
+  public NotificationChain basicSetBody(Block newBody, NotificationChain msgs)
   {
-    String oldBody = body;
+    Block oldBody = body;
     body = newBody;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__BODY, oldBody, body));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__BODY, oldBody, newBody);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBody(Block newBody)
+  {
+    if (newBody != body)
+    {
+      NotificationChain msgs = null;
+      if (body != null)
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__BODY, null, msgs);
+      if (newBody != null)
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__BODY, null, msgs);
+      msgs = basicSetBody(newBody, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__BODY, newBody, newBody));
   }
 
   /**
@@ -227,6 +243,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
         return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
       case RustPackage.FN_ITEM__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
+      case RustPackage.FN_ITEM__BODY:
+        return basicSetBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -276,7 +294,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
         setReturnType((Type)newValue);
         return;
       case RustPackage.FN_ITEM__BODY:
-        setBody((String)newValue);
+        setBody((Block)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -302,7 +320,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
         setReturnType((Type)null);
         return;
       case RustPackage.FN_ITEM__BODY:
-        setBody(BODY_EDEFAULT);
+        setBody((Block)null);
         return;
     }
     super.eUnset(featureID);
@@ -325,26 +343,9 @@ public class FnItemImpl extends ItemImpl implements FnItem
       case RustPackage.FN_ITEM__RETURN_TYPE:
         return returnType != null;
       case RustPackage.FN_ITEM__BODY:
-        return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
+        return body != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (body: ");
-    result.append(body);
-    result.append(')');
-    return result.toString();
   }
 
 } //FnItemImpl

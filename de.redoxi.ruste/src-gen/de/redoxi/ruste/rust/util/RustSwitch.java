@@ -139,6 +139,13 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.BLOCK:
+      {
+        Block block = (Block)theEObject;
+        T result = caseBlock(block);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.GENERIC_PARAM_DECL:
       {
         GenericParamDecl genericParamDecl = (GenericParamDecl)theEObject;
@@ -247,6 +254,28 @@ public class RustSwitch<T> extends Switch<T>
         T result = casePatNumberRange(patNumberRange);
         if (result == null) result = casePatRange(patNumberRange);
         if (result == null) result = casePat(patNumberRange);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PAT_ENUM:
+      {
+        PatEnum patEnum = (PatEnum)theEObject;
+        T result = casePatEnum(patEnum);
+        if (result == null) result = casePat(patEnum);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PATH:
+      {
+        Path path = (Path)theEObject;
+        T result = casePath(path);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.LIFETIME:
+      {
+        Lifetime lifetime = (Lifetime)theEObject;
+        T result = caseLifetime(lifetime);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -576,6 +605,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBlock(Block object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Generic Param Decl</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -795,6 +840,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePatNumberRange(PatNumberRange object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pat Enum</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pat Enum</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatEnum(PatEnum object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Path</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Path</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePath(Path object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lifetime</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lifetime</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLifetime(Lifetime object)
   {
     return null;
   }

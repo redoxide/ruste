@@ -74,6 +74,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.ITEM: return createItem();
       case RustPackage.MOD_ITEM: return createModItem();
       case RustPackage.FN_ITEM: return createFnItem();
+      case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
       case RustPackage.PAT: return createPat();
@@ -88,6 +89,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT_RANGE: return createPatRange();
       case RustPackage.PAT_CHAR_RANGE: return createPatCharRange();
       case RustPackage.PAT_NUMBER_RANGE: return createPatNumberRange();
+      case RustPackage.PAT_ENUM: return createPatEnum();
+      case RustPackage.PATH: return createPath();
+      case RustPackage.LIFETIME: return createLifetime();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.TUPLE_TYPE: return createTupleType();
@@ -253,6 +257,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Block createBlock()
+  {
+    BlockImpl block = new BlockImpl();
+    return block;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public GenericParamDecl createGenericParamDecl()
   {
     GenericParamDeclImpl genericParamDecl = new GenericParamDeclImpl();
@@ -400,6 +415,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     PatNumberRangeImpl patNumberRange = new PatNumberRangeImpl();
     return patNumberRange;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatEnum createPatEnum()
+  {
+    PatEnumImpl patEnum = new PatEnumImpl();
+    return patEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Path createPath()
+  {
+    PathImpl path = new PathImpl();
+    return path;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Lifetime createLifetime()
+  {
+    LifetimeImpl lifetime = new LifetimeImpl();
+    return lifetime;
   }
 
   /**

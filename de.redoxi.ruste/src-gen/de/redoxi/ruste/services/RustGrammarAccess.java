@@ -422,21 +422,25 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	public class BlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cBlockAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Block:
-		//	"{" / * TODO Statements, expression * / "}";
+		//	{Block} "{" / * TODO Statements, expression * / "}";
 		public ParserRule getRule() { return rule; }
 
-		//"{" / * TODO Statements, expression * / "}"
+		//{Block} "{" / * TODO Statements, expression * / "}"
 		public Group getGroup() { return cGroup; }
 
+		//{Block}
+		public Action getBlockAction_0() { return cBlockAction_0; }
+
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		/// * TODO Statements, expression * / "}"
-		public Keyword getRightCurlyBracketKeyword_1() { return cRightCurlyBracketKeyword_1; }
+		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
 	}
 
 	public class GenericParamDeclElements extends AbstractParserRuleElementFinder {
@@ -536,14 +540,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPatVectorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cPatLiteralParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cPatRangeParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cPatEnumParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//// TODO Expand
 		//// See line 2869 of libsyntax/parse/parser.rs
 		//Pat:
-		//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange;
+		//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange | PatEnum;
 		public ParserRule getRule() { return rule; }
 
-		//PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange
+		//PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange | PatEnum
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PatWildcard
@@ -572,6 +577,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PatRange
 		public RuleCall getPatRangeParserRuleCall_8() { return cPatRangeParserRuleCall_8; }
+
+		//PatEnum
+		public RuleCall getPatEnumParserRuleCall_9() { return cPatEnumParserRuleCall_9; }
 	}
 
 	public class PatWildcardElements extends AbstractParserRuleElementFinder {
@@ -880,6 +888,200 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//NumberLit
 		public RuleCall getEndNumberLitParserRuleCall_2_0() { return cEndNumberLitParserRuleCall_2_0; }
+	}
+
+	public class PatEnumElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatEnum");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathPathParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Keyword cAsteriskKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
+		private final Assignment cPatternsAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
+		private final RuleCall cPatternsPatParserRuleCall_2_2_0_0 = (RuleCall)cPatternsAssignment_2_2_0.eContents().get(0);
+		private final Group cGroup_2_2_1 = (Group)cGroup_2_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_2_1_0 = (Keyword)cGroup_2_2_1.eContents().get(0);
+		private final Assignment cPatternsAssignment_2_2_1_1 = (Assignment)cGroup_2_2_1.eContents().get(1);
+		private final RuleCall cPatternsPatParserRuleCall_2_2_1_1_0 = (RuleCall)cPatternsAssignment_2_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//PatEnum:
+		//	path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")";
+		public ParserRule getRule() { return rule; }
+
+		//path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")"
+		public Group getGroup() { return cGroup; }
+
+		//path=Path
+		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
+
+		//Path
+		public RuleCall getPathPathParserRuleCall_0_0() { return cPathPathParserRuleCall_0_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//"*" | ".." | patterns+=Pat ("," patterns+=Pat)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_2_0() { return cAsteriskKeyword_2_0; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_2_1() { return cFullStopFullStopKeyword_2_1; }
+
+		//patterns+=Pat ("," patterns+=Pat)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//patterns+=Pat
+		public Assignment getPatternsAssignment_2_2_0() { return cPatternsAssignment_2_2_0; }
+
+		//Pat
+		public RuleCall getPatternsPatParserRuleCall_2_2_0_0() { return cPatternsPatParserRuleCall_2_2_0_0; }
+
+		//("," patterns+=Pat)*
+		public Group getGroup_2_2_1() { return cGroup_2_2_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_2_1_0() { return cCommaKeyword_2_2_1_0; }
+
+		//patterns+=Pat
+		public Assignment getPatternsAssignment_2_2_1_1() { return cPatternsAssignment_2_2_1_1; }
+
+		//Pat
+		public RuleCall getPatternsPatParserRuleCall_2_2_1_1_0() { return cPatternsPatParserRuleCall_2_2_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+
+	public class PathElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Path");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSegmentsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSegmentsIDENTTerminalRuleCall_0_0 = (RuleCall)cSegmentsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cSegmentsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cSegmentsIDENTTerminalRuleCall_1_1_0 = (RuleCall)cSegmentsAssignment_1_1.eContents().get(0);
+		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cLessThanSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
+		private final Assignment cLifetimesAssignment_3_1_0 = (Assignment)cAlternatives_3_1.eContents().get(0);
+		private final RuleCall cLifetimesLifetimeParserRuleCall_3_1_0_0 = (RuleCall)cLifetimesAssignment_3_1_0.eContents().get(0);
+		private final Assignment cGenericTypesAssignment_3_1_1 = (Assignment)cAlternatives_3_1.eContents().get(1);
+		private final RuleCall cGenericTypesTypeParserRuleCall_3_1_1_0 = (RuleCall)cGenericTypesAssignment_3_1_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Alternatives cAlternatives_3_2_1 = (Alternatives)cGroup_3_2.eContents().get(1);
+		private final Assignment cLifetimesAssignment_3_2_1_0 = (Assignment)cAlternatives_3_2_1.eContents().get(0);
+		private final RuleCall cLifetimesLifetimeParserRuleCall_3_2_1_0_0 = (RuleCall)cLifetimesAssignment_3_2_1_0.eContents().get(0);
+		private final Assignment cGenericTypesAssignment_3_2_1_1 = (Assignment)cAlternatives_3_2_1.eContents().get(1);
+		private final RuleCall cGenericTypesTypeParserRuleCall_3_2_1_1_0 = (RuleCall)cGenericTypesAssignment_3_2_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		
+		//Path:
+		//	segments+=IDENT ("::" segments+=IDENT)* "::"? ("<" (lifetimes+=Lifetime | genericTypes+=Type) (","
+		//	(lifetimes+=Lifetime | genericTypes+=Type))* ">")?;
+		public ParserRule getRule() { return rule; }
+
+		//segments+=IDENT ("::" segments+=IDENT)* "::"? ("<" (lifetimes+=Lifetime | genericTypes+=Type) ("," (lifetimes+=Lifetime
+		//| genericTypes+=Type))* ">")?
+		public Group getGroup() { return cGroup; }
+
+		//segments+=IDENT
+		public Assignment getSegmentsAssignment_0() { return cSegmentsAssignment_0; }
+
+		//IDENT
+		public RuleCall getSegmentsIDENTTerminalRuleCall_0_0() { return cSegmentsIDENTTerminalRuleCall_0_0; }
+
+		//("::" segments+=IDENT)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+
+		//segments+=IDENT
+		public Assignment getSegmentsAssignment_1_1() { return cSegmentsAssignment_1_1; }
+
+		//IDENT
+		public RuleCall getSegmentsIDENTTerminalRuleCall_1_1_0() { return cSegmentsIDENTTerminalRuleCall_1_1_0; }
+
+		//"::"?
+		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
+
+		//("<" (lifetimes+=Lifetime | genericTypes+=Type) ("," (lifetimes+=Lifetime | genericTypes+=Type))* ">")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_3_0() { return cLessThanSignKeyword_3_0; }
+
+		//lifetimes+=Lifetime | genericTypes+=Type
+		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+
+		//lifetimes+=Lifetime
+		public Assignment getLifetimesAssignment_3_1_0() { return cLifetimesAssignment_3_1_0; }
+
+		//Lifetime
+		public RuleCall getLifetimesLifetimeParserRuleCall_3_1_0_0() { return cLifetimesLifetimeParserRuleCall_3_1_0_0; }
+
+		//genericTypes+=Type
+		public Assignment getGenericTypesAssignment_3_1_1() { return cGenericTypesAssignment_3_1_1; }
+
+		//Type
+		public RuleCall getGenericTypesTypeParserRuleCall_3_1_1_0() { return cGenericTypesTypeParserRuleCall_3_1_1_0; }
+
+		//("," (lifetimes+=Lifetime | genericTypes+=Type))*
+		public Group getGroup_3_2() { return cGroup_3_2; }
+
+		//","
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+
+		//lifetimes+=Lifetime | genericTypes+=Type
+		public Alternatives getAlternatives_3_2_1() { return cAlternatives_3_2_1; }
+
+		//lifetimes+=Lifetime
+		public Assignment getLifetimesAssignment_3_2_1_0() { return cLifetimesAssignment_3_2_1_0; }
+
+		//Lifetime
+		public RuleCall getLifetimesLifetimeParserRuleCall_3_2_1_0_0() { return cLifetimesLifetimeParserRuleCall_3_2_1_0_0; }
+
+		//genericTypes+=Type
+		public Assignment getGenericTypesAssignment_3_2_1_1() { return cGenericTypesAssignment_3_2_1_1; }
+
+		//Type
+		public RuleCall getGenericTypesTypeParserRuleCall_3_2_1_1_0() { return cGenericTypesTypeParserRuleCall_3_2_1_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_3_3() { return cGreaterThanSignKeyword_3_3; }
+	}
+
+	public class LifetimeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Lifetime");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cApostropheKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIdentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdentIDENTTerminalRuleCall_1_0 = (RuleCall)cIdentAssignment_1.eContents().get(0);
+		
+		//Lifetime:
+		//	"\'" ident=IDENT;
+		public ParserRule getRule() { return rule; }
+
+		//"\'" ident=IDENT
+		public Group getGroup() { return cGroup; }
+
+		//"\'"
+		public Keyword getApostropheKeyword_0() { return cApostropheKeyword_0; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_1() { return cIdentAssignment_1; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_1_0() { return cIdentIDENTTerminalRuleCall_1_0; }
 	}
 
 	public class TypeElements extends AbstractParserRuleElementFinder {
@@ -1659,6 +1861,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private PatRangeElements pPatRange;
 	private PatCharRangeElements pPatCharRange;
 	private PatNumberRangeElements pPatNumberRange;
+	private PatEnumElements pPatEnum;
+	private PathElements pPath;
+	private LifetimeElements pLifetime;
 	private TypeElements pType;
 	private PrimitiveTypeElements pPrimitiveType;
 	private TupleTypeElements pTupleType;
@@ -1850,7 +2055,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Block:
-	//	"{" / * TODO Statements, expression * / "}";
+	//	{Block} "{" / * TODO Statements, expression * / "}";
 	public BlockElements getBlockAccess() {
 		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());
 	}
@@ -1883,7 +2088,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// TODO Expand
 	//// See line 2869 of libsyntax/parse/parser.rs
 	//Pat:
-	//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange;
+	//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatRange | PatEnum;
 	public PatElements getPatAccess() {
 		return (pPat != null) ? pPat : (pPat = new PatElements());
 	}
@@ -2000,6 +2205,37 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPatNumberRangeRule() {
 		return getPatNumberRangeAccess().getRule();
+	}
+
+	//PatEnum:
+	//	path=Path "(" ("*" | ".." | patterns+=Pat ("," patterns+=Pat)*) ")";
+	public PatEnumElements getPatEnumAccess() {
+		return (pPatEnum != null) ? pPatEnum : (pPatEnum = new PatEnumElements());
+	}
+	
+	public ParserRule getPatEnumRule() {
+		return getPatEnumAccess().getRule();
+	}
+
+	//Path:
+	//	segments+=IDENT ("::" segments+=IDENT)* "::"? ("<" (lifetimes+=Lifetime | genericTypes+=Type) (","
+	//	(lifetimes+=Lifetime | genericTypes+=Type))* ">")?;
+	public PathElements getPathAccess() {
+		return (pPath != null) ? pPath : (pPath = new PathElements());
+	}
+	
+	public ParserRule getPathRule() {
+		return getPathAccess().getRule();
+	}
+
+	//Lifetime:
+	//	"\'" ident=IDENT;
+	public LifetimeElements getLifetimeAccess() {
+		return (pLifetime != null) ? pLifetime : (pLifetime = new LifetimeElements());
+	}
+	
+	public ParserRule getLifetimeRule() {
+		return getLifetimeAccess().getRule();
 	}
 
 	//Type:

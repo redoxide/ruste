@@ -84,29 +84,29 @@ public interface FnItem extends Item
   void setReturnType(Type value);
 
   /**
-   * Returns the value of the '<em><b>Body</b></em>' attribute.
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Body</em>' attribute isn't clear,
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Body</em>' attribute.
-   * @see #setBody(String)
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(Block)
    * @see de.redoxi.ruste.rust.RustPackage#getFnItem_Body()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getBody();
+  Block getBody();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.FnItem#getBody <em>Body</em>}' attribute.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.FnItem#getBody <em>Body</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Body</em>' attribute.
+   * @param value the new value of the '<em>Body</em>' containment reference.
    * @see #getBody()
    * @generated
    */
-  void setBody(String value);
+  void setBody(Block value);
 
 } // FnItem
