@@ -41,6 +41,7 @@ import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
+import de.redoxi.ruste.rust.StructItem;
 import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
@@ -324,6 +325,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.STRUCT_FIELD:
 				if(context == grammarAccess.getStructFieldRule()) {
 					sequence_StructField(context, (StructField) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.STRUCT_ITEM:
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getStructItemRule()) {
+					sequence_StructItem(context, (StructItem) semanticObject); 
 					return; 
 				}
 				else break;
@@ -854,6 +862,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (vis=Visibility? ident=IDENT type=Type)
 	 */
 	protected void sequence_StructField(EObject context, StructField semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
+	 */
+	protected void sequence_StructItem(EObject context, StructItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

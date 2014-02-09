@@ -221,15 +221,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cModItemParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFnItemParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cTypeItemParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cStructItemParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//// Items within a module or crate
 		//Item:
-		//	ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-		//	TypeItem;
+		//	ModItem | FnItem | TypeItem | // | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//	StructItem;
 		public ParserRule getRule() { return rule; }
 
-		//ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-		//TypeItem
+		//ModItem | FnItem | TypeItem | // | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//StructItem
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ModItem
@@ -238,9 +239,12 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//FnItem
 		public RuleCall getFnItemParserRuleCall_1() { return cFnItemParserRuleCall_1; }
 
-		//// | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
 		//TypeItem
 		public RuleCall getTypeItemParserRuleCall_2() { return cTypeItemParserRuleCall_2; }
+
+		//// | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+		//StructItem
+		public RuleCall getStructItemParserRuleCall_3() { return cStructItemParserRuleCall_3; }
 	}
 
 	public class ModItemElements extends AbstractParserRuleElementFinder {
@@ -443,6 +447,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeTypeParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
+		//// TODO Reference Type?
 		//TypeItem:
 		//	"type" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "=" type=Type ";";
 		public ParserRule getRule() { return rule; }
@@ -497,6 +502,100 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+	}
+
+	public class StructItemElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructItem");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cStructKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIdentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdentIDENTTerminalRuleCall_1_0 = (RuleCall)cIdentAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLessThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cParamsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cParamsGenericParamDeclParserRuleCall_2_1_0 = (RuleCall)cParamsAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cParamsAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cParamsGenericParamDeclParserRuleCall_2_2_1_0 = (RuleCall)cParamsAssignment_2_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cFieldsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cFieldsStructFieldParserRuleCall_4_0 = (RuleCall)cFieldsAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cFieldsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cFieldsStructFieldParserRuleCall_5_1_0 = (RuleCall)cFieldsAssignment_5_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//StructItem:
+		//	"struct" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "{" fields+=StructField (","
+		//	fields+=StructField)* "}";
+		public ParserRule getRule() { return rule; }
+
+		//"struct" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "{" fields+=StructField (","
+		//fields+=StructField)* "}"
+		public Group getGroup() { return cGroup; }
+
+		//"struct"
+		public Keyword getStructKeyword_0() { return cStructKeyword_0; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_1() { return cIdentAssignment_1; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_1_0() { return cIdentIDENTTerminalRuleCall_1_0; }
+
+		//("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_2_0() { return cLessThanSignKeyword_2_0; }
+
+		//params+=GenericParamDecl
+		public Assignment getParamsAssignment_2_1() { return cParamsAssignment_2_1; }
+
+		//GenericParamDecl
+		public RuleCall getParamsGenericParamDeclParserRuleCall_2_1_0() { return cParamsGenericParamDeclParserRuleCall_2_1_0; }
+
+		//("," params+=GenericParamDecl)*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+
+		//params+=GenericParamDecl
+		public Assignment getParamsAssignment_2_2_1() { return cParamsAssignment_2_2_1; }
+
+		//GenericParamDecl
+		public RuleCall getParamsGenericParamDeclParserRuleCall_2_2_1_0() { return cParamsGenericParamDeclParserRuleCall_2_2_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_2_3() { return cGreaterThanSignKeyword_2_3; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+
+		//fields+=StructField
+		public Assignment getFieldsAssignment_4() { return cFieldsAssignment_4; }
+
+		//StructField
+		public RuleCall getFieldsStructFieldParserRuleCall_4_0() { return cFieldsStructFieldParserRuleCall_4_0; }
+
+		//("," fields+=StructField)*
+		public Group getGroup_5() { return cGroup_5; }
+
+		//","
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
+
+		//fields+=StructField
+		public Assignment getFieldsAssignment_5_1() { return cFieldsAssignment_5_1; }
+
+		//StructField
+		public RuleCall getFieldsStructFieldParserRuleCall_5_1_0() { return cFieldsStructFieldParserRuleCall_5_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -2019,6 +2118,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ModItemElements pModItem;
 	private FnItemElements pFnItem;
 	private TypeItemElements pTypeItem;
+	private StructItemElements pStructItem;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -2195,8 +2295,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Items within a module or crate
 	//Item:
-	//	ModItem | FnItem | // | StructItem | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
-	//	TypeItem;
+	//	ModItem | FnItem | TypeItem | // | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+	//	StructItem;
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
 	}
@@ -2228,6 +2328,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getFnItemAccess().getRule();
 	}
 
+	//// TODO Reference Type?
 	//TypeItem:
 	//	"type" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "=" type=Type ";";
 	public TypeItemElements getTypeItemAccess() {
@@ -2236,6 +2337,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypeItemRule() {
 		return getTypeItemAccess().getRule();
+	}
+
+	//StructItem:
+	//	"struct" ident=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? "{" fields+=StructField (","
+	//	fields+=StructField)* "}";
+	public StructItemElements getStructItemAccess() {
+		return (pStructItem != null) ? pStructItem : (pStructItem = new StructItemElements());
+	}
+	
+	public ParserRule getStructItemRule() {
+		return getStructItemAccess().getRule();
 	}
 
 	//Block:

@@ -75,6 +75,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.MOD_ITEM: return createModItem();
       case RustPackage.FN_ITEM: return createFnItem();
       case RustPackage.TYPE_ITEM: return createTypeItem();
+      case RustPackage.STRUCT_ITEM: return createStructItem();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -265,6 +266,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     TypeItemImpl typeItem = new TypeItemImpl();
     return typeItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StructItem createStructItem()
+  {
+    StructItemImpl structItem = new StructItemImpl();
+    return structItem;
   }
 
   /**

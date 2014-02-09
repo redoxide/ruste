@@ -48,6 +48,7 @@ import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
+import de.redoxi.ruste.rust.StructItem;
 import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TupleType;
@@ -144,6 +145,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass typeItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass structItemEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -774,6 +782,36 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getTypeItem_Type()
   {
     return (EReference)typeItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStructItem()
+  {
+    return structItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructItem_Params()
+  {
+    return (EReference)structItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStructItem_Fields()
+  {
+    return (EReference)structItemEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1712,6 +1750,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(typeItemEClass, TYPE_ITEM__PARAMS);
     createEReference(typeItemEClass, TYPE_ITEM__TYPE);
 
+    structItemEClass = createEClass(STRUCT_ITEM);
+    createEReference(structItemEClass, STRUCT_ITEM__PARAMS);
+    createEReference(structItemEClass, STRUCT_ITEM__FIELDS);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -1879,6 +1921,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     modItemEClass.getESuperTypes().add(this.getItem());
     fnItemEClass.getESuperTypes().add(this.getItem());
     typeItemEClass.getESuperTypes().add(this.getItem());
+    structItemEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -1948,6 +1991,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(typeItemEClass, TypeItem.class, "TypeItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeItem_Type(), this.getType(), null, "type", null, 0, 1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(structItemEClass, StructItem.class, "StructItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStructItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStructItem_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

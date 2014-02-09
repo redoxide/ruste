@@ -460,6 +460,16 @@ ruleItem returns [EObject current=null]
         $current = $this_TypeItem_2.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getItemAccess().getStructItemParserRuleCall_3()); 
+    }
+    this_StructItem_3=ruleStructItem
+    { 
+        $current = $this_StructItem_3.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -840,6 +850,145 @@ ruleTypeItem returns [EObject current=null]
 )	otherlv_9=';' 
     {
     	newLeafNode(otherlv_9, grammarAccess.getTypeItemAccess().getSemicolonKeyword_5());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleStructItem
+entryRuleStructItem returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStructItemRule()); }
+	 iv_ruleStructItem=ruleStructItem 
+	 { $current=$iv_ruleStructItem.current; } 
+	 EOF 
+;
+
+// Rule StructItem
+ruleStructItem returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='struct' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getStructItemAccess().getStructKeyword_0());
+    }
+(
+(
+		lv_ident_1_0=RULE_IDENT
+		{
+			newLeafNode(lv_ident_1_0, grammarAccess.getStructItemAccess().getIdentIDENTTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStructItemRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"ident",
+        		lv_ident_1_0, 
+        		"IDENT");
+	    }
+
+)
+)(	otherlv_2='<' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getStructItemAccess().getLessThanSignKeyword_2_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStructItemAccess().getParamsGenericParamDeclParserRuleCall_2_1_0()); 
+	    }
+		lv_params_3_0=ruleGenericParamDecl		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStructItemRule());
+	        }
+       		add(
+       			$current, 
+       			"params",
+        		lv_params_3_0, 
+        		"GenericParamDecl");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_4=',' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getStructItemAccess().getCommaKeyword_2_2_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStructItemAccess().getParamsGenericParamDeclParserRuleCall_2_2_1_0()); 
+	    }
+		lv_params_5_0=ruleGenericParamDecl		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStructItemRule());
+	        }
+       		add(
+       			$current, 
+       			"params",
+        		lv_params_5_0, 
+        		"GenericParamDecl");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_6='>' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getStructItemAccess().getGreaterThanSignKeyword_2_3());
+    }
+)?	otherlv_7='{' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getStructItemAccess().getLeftCurlyBracketKeyword_3());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStructItemAccess().getFieldsStructFieldParserRuleCall_4_0()); 
+	    }
+		lv_fields_8_0=ruleStructField		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStructItemRule());
+	        }
+       		add(
+       			$current, 
+       			"fields",
+        		lv_fields_8_0, 
+        		"StructField");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_9=',' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getStructItemAccess().getCommaKeyword_5_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getStructItemAccess().getFieldsStructFieldParserRuleCall_5_1_0()); 
+	    }
+		lv_fields_10_0=ruleStructField		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getStructItemRule());
+	        }
+       		add(
+       			$current, 
+       			"fields",
+        		lv_fields_10_0, 
+        		"StructField");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_11='}' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getStructItemAccess().getRightCurlyBracketKeyword_6());
     }
 )
 ;

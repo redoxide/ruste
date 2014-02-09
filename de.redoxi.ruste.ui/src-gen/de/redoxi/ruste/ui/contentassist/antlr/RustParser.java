@@ -69,6 +69,10 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeItemAccess().getGroup(), "rule__TypeItem__Group__0");
 					put(grammarAccess.getTypeItemAccess().getGroup_2(), "rule__TypeItem__Group_2__0");
 					put(grammarAccess.getTypeItemAccess().getGroup_2_2(), "rule__TypeItem__Group_2_2__0");
+					put(grammarAccess.getStructItemAccess().getGroup(), "rule__StructItem__Group__0");
+					put(grammarAccess.getStructItemAccess().getGroup_2(), "rule__StructItem__Group_2__0");
+					put(grammarAccess.getStructItemAccess().getGroup_2_2(), "rule__StructItem__Group_2_2__0");
+					put(grammarAccess.getStructItemAccess().getGroup_5(), "rule__StructItem__Group_5__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -147,6 +151,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeItemAccess().getParamsAssignment_2_1(), "rule__TypeItem__ParamsAssignment_2_1");
 					put(grammarAccess.getTypeItemAccess().getParamsAssignment_2_2_1(), "rule__TypeItem__ParamsAssignment_2_2_1");
 					put(grammarAccess.getTypeItemAccess().getTypeAssignment_4(), "rule__TypeItem__TypeAssignment_4");
+					put(grammarAccess.getStructItemAccess().getIdentAssignment_1(), "rule__StructItem__IdentAssignment_1");
+					put(grammarAccess.getStructItemAccess().getParamsAssignment_2_1(), "rule__StructItem__ParamsAssignment_2_1");
+					put(grammarAccess.getStructItemAccess().getParamsAssignment_2_2_1(), "rule__StructItem__ParamsAssignment_2_2_1");
+					put(grammarAccess.getStructItemAccess().getFieldsAssignment_4(), "rule__StructItem__FieldsAssignment_4");
+					put(grammarAccess.getStructItemAccess().getFieldsAssignment_5_1(), "rule__StructItem__FieldsAssignment_5_1");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

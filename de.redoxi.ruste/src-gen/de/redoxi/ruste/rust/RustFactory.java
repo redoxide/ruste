@@ -113,6 +113,15 @@ public interface RustFactory extends EFactory
   TypeItem createTypeItem();
 
   /**
+   * Returns a new object of class '<em>Struct Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Struct Item</em>'.
+   * @generated
+   */
+  StructItem createStructItem();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
