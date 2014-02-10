@@ -6,23 +6,23 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type Item</b></em>'.
+ * A representation of the model object '<em><b>Trait Item</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.TypeItem#getIdent <em>Ident</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.TypeItem#getParams <em>Params</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.TypeItem#getType <em>Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TraitItem#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TraitItem#getParams <em>Params</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TraitItem#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getTypeItem()
+ * @see de.redoxi.ruste.rust.RustPackage#getTraitItem()
  * @model
  * @generated
  */
-public interface TypeItem extends Item
+public interface TraitItem extends Item
 {
   /**
    * Returns the value of the '<em><b>Ident</b></em>' attribute.
@@ -34,14 +34,14 @@ public interface TypeItem extends Item
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ident</em>' attribute.
    * @see #setIdent(String)
-   * @see de.redoxi.ruste.rust.RustPackage#getTypeItem_Ident()
+   * @see de.redoxi.ruste.rust.RustPackage#getTraitItem_Ident()
    * @model
    * @generated
    */
   String getIdent();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.TypeItem#getIdent <em>Ident</em>}' attribute.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.TraitItem#getIdent <em>Ident</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Ident</em>' attribute.
@@ -60,36 +60,26 @@ public interface TypeItem extends Item
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Params</em>' containment reference list.
-   * @see de.redoxi.ruste.rust.RustPackage#getTypeItem_Params()
+   * @see de.redoxi.ruste.rust.RustPackage#getTraitItem_Params()
    * @model containment="true"
    * @generated
    */
   EList<GenericParamDecl> getParams();
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
+   * The list contents are of type {@link de.redoxi.ruste.rust.TraitMethod}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Methods</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(Type)
-   * @see de.redoxi.ruste.rust.RustPackage#getTypeItem_Type()
+   * @return the value of the '<em>Methods</em>' containment reference list.
+   * @see de.redoxi.ruste.rust.RustPackage#getTraitItem_Methods()
    * @model containment="true"
    * @generated
    */
-  Type getType();
+  EList<TraitMethod> getMethods();
 
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.TypeItem#getType <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(Type value);
-
-} // TypeItem
+} // TraitItem

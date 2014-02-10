@@ -78,6 +78,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.STRUCT_ITEM: return createStructItem();
       case RustPackage.ENUM_ITEM: return createEnumItem();
       case RustPackage.ENUM_VARIANT: return createEnumVariant();
+      case RustPackage.TRAIT_ITEM: return createTraitItem();
+      case RustPackage.TRAIT_METHOD: return createTraitMethod();
+      case RustPackage.IMPL_ITEM: return createImplItem();
+      case RustPackage.IMPL_METHOD: return createImplMethod();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -300,6 +304,50 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     EnumVariantImpl enumVariant = new EnumVariantImpl();
     return enumVariant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TraitItem createTraitItem()
+  {
+    TraitItemImpl traitItem = new TraitItemImpl();
+    return traitItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TraitMethod createTraitMethod()
+  {
+    TraitMethodImpl traitMethod = new TraitMethodImpl();
+    return traitMethod;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplItem createImplItem()
+  {
+    ImplItemImpl implItem = new ImplItemImpl();
+    return implItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImplMethod createImplMethod()
+  {
+    ImplMethodImpl implMethod = new ImplMethodImpl();
+    return implMethod;
   }
 
   /**

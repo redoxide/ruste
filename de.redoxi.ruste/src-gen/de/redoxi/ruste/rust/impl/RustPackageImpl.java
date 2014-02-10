@@ -18,6 +18,8 @@ import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
+import de.redoxi.ruste.rust.ImplItem;
+import de.redoxi.ruste.rust.ImplMethod;
 import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
@@ -52,6 +54,8 @@ import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
 import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
+import de.redoxi.ruste.rust.TraitItem;
+import de.redoxi.ruste.rust.TraitMethod;
 import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.Type;
@@ -167,6 +171,34 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass enumVariantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass traitItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass traitMethodEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass implMethodEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -677,16 +709,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getItem_Ident()
-  {
-    return (EAttribute)itemEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getModItem()
   {
     return modItemEClass;
@@ -697,7 +719,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModItem_ExternalBody()
+  public EAttribute getModItem_Ident()
   {
     return (EAttribute)modItemEClass.getEStructuralFeatures().get(0);
   }
@@ -707,9 +729,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getModItem_ExternalBody()
+  {
+    return (EAttribute)modItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getModItem_Items()
   {
-    return (EReference)modItemEClass.getEStructuralFeatures().get(1);
+    return (EReference)modItemEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -727,9 +759,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFnItem_Params()
+  public EAttribute getFnItem_Ident()
   {
-    return (EReference)fnItemEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)fnItemEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -737,7 +769,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFnItem_Args()
+  public EReference getFnItem_Params()
   {
     return (EReference)fnItemEClass.getEStructuralFeatures().get(1);
   }
@@ -747,7 +779,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFnItem_ReturnType()
+  public EReference getFnItem_Args()
   {
     return (EReference)fnItemEClass.getEStructuralFeatures().get(2);
   }
@@ -757,9 +789,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFnItem_Body()
+  public EReference getFnItem_ReturnType()
   {
     return (EReference)fnItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFnItem_Body()
+  {
+    return (EReference)fnItemEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -777,9 +819,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getTypeItem_Ident()
+  {
+    return (EAttribute)typeItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getTypeItem_Params()
   {
-    return (EReference)typeItemEClass.getEStructuralFeatures().get(0);
+    return (EReference)typeItemEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -789,7 +841,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    */
   public EReference getTypeItem_Type()
   {
-    return (EReference)typeItemEClass.getEStructuralFeatures().get(1);
+    return (EReference)typeItemEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -807,9 +859,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getStructItem_Ident()
+  {
+    return (EAttribute)structItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getStructItem_Params()
   {
-    return (EReference)structItemEClass.getEStructuralFeatures().get(0);
+    return (EReference)structItemEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -819,7 +881,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    */
   public EReference getStructItem_Fields()
   {
-    return (EReference)structItemEClass.getEStructuralFeatures().get(1);
+    return (EReference)structItemEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -837,9 +899,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getEnumItem_Ident()
+  {
+    return (EAttribute)enumItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getEnumItem_Params()
   {
-    return (EReference)enumItemEClass.getEStructuralFeatures().get(0);
+    return (EReference)enumItemEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -849,7 +921,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    */
   public EReference getEnumItem_Variants()
   {
-    return (EReference)enumItemEClass.getEStructuralFeatures().get(1);
+    return (EReference)enumItemEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -900,6 +972,256 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getEnumVariant_Fields()
   {
     return (EReference)enumVariantEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTraitItem()
+  {
+    return traitItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTraitItem_Ident()
+  {
+    return (EAttribute)traitItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitItem_Params()
+  {
+    return (EReference)traitItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitItem_Methods()
+  {
+    return (EReference)traitItemEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTraitMethod()
+  {
+    return traitMethodEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTraitMethod_Unsafe()
+  {
+    return (EAttribute)traitMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTraitMethod_Extern()
+  {
+    return (EAttribute)traitMethodEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTraitMethod_Vis()
+  {
+    return (EAttribute)traitMethodEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTraitMethod_Ident()
+  {
+    return (EAttribute)traitMethodEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitMethod_Params()
+  {
+    return (EReference)traitMethodEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitMethod_Args()
+  {
+    return (EReference)traitMethodEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitMethod_ReturnType()
+  {
+    return (EReference)traitMethodEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTraitMethod_Body()
+  {
+    return (EReference)traitMethodEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplItem()
+  {
+    return implItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplItem_Trait()
+  {
+    return (EAttribute)implItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplItem_Struct()
+  {
+    return (EAttribute)implItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplItem_Methods()
+  {
+    return (EReference)implItemEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImplMethod()
+  {
+    return implMethodEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplMethod_Unsafe()
+  {
+    return (EAttribute)implMethodEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplMethod_Extern()
+  {
+    return (EAttribute)implMethodEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImplMethod_Ident()
+  {
+    return (EAttribute)implMethodEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplMethod_Params()
+  {
+    return (EReference)implMethodEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplMethod_Args()
+  {
+    return (EReference)implMethodEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplMethod_ReturnType()
+  {
+    return (EReference)implMethodEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getImplMethod_Body()
+  {
+    return (EReference)implMethodEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1802,27 +2124,31 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(itemAndAttrsEClass, ITEM_AND_ATTRS__ITEM);
 
     itemEClass = createEClass(ITEM);
-    createEAttribute(itemEClass, ITEM__IDENT);
 
     modItemEClass = createEClass(MOD_ITEM);
+    createEAttribute(modItemEClass, MOD_ITEM__IDENT);
     createEAttribute(modItemEClass, MOD_ITEM__EXTERNAL_BODY);
     createEReference(modItemEClass, MOD_ITEM__ITEMS);
 
     fnItemEClass = createEClass(FN_ITEM);
+    createEAttribute(fnItemEClass, FN_ITEM__IDENT);
     createEReference(fnItemEClass, FN_ITEM__PARAMS);
     createEReference(fnItemEClass, FN_ITEM__ARGS);
     createEReference(fnItemEClass, FN_ITEM__RETURN_TYPE);
     createEReference(fnItemEClass, FN_ITEM__BODY);
 
     typeItemEClass = createEClass(TYPE_ITEM);
+    createEAttribute(typeItemEClass, TYPE_ITEM__IDENT);
     createEReference(typeItemEClass, TYPE_ITEM__PARAMS);
     createEReference(typeItemEClass, TYPE_ITEM__TYPE);
 
     structItemEClass = createEClass(STRUCT_ITEM);
+    createEAttribute(structItemEClass, STRUCT_ITEM__IDENT);
     createEReference(structItemEClass, STRUCT_ITEM__PARAMS);
     createEReference(structItemEClass, STRUCT_ITEM__FIELDS);
 
     enumItemEClass = createEClass(ENUM_ITEM);
+    createEAttribute(enumItemEClass, ENUM_ITEM__IDENT);
     createEReference(enumItemEClass, ENUM_ITEM__PARAMS);
     createEReference(enumItemEClass, ENUM_ITEM__VARIANTS);
 
@@ -1831,6 +2157,35 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEAttribute(enumVariantEClass, ENUM_VARIANT__PARAMS);
     createEReference(enumVariantEClass, ENUM_VARIANT__TYPES);
     createEReference(enumVariantEClass, ENUM_VARIANT__FIELDS);
+
+    traitItemEClass = createEClass(TRAIT_ITEM);
+    createEAttribute(traitItemEClass, TRAIT_ITEM__IDENT);
+    createEReference(traitItemEClass, TRAIT_ITEM__PARAMS);
+    createEReference(traitItemEClass, TRAIT_ITEM__METHODS);
+
+    traitMethodEClass = createEClass(TRAIT_METHOD);
+    createEAttribute(traitMethodEClass, TRAIT_METHOD__UNSAFE);
+    createEAttribute(traitMethodEClass, TRAIT_METHOD__EXTERN);
+    createEAttribute(traitMethodEClass, TRAIT_METHOD__VIS);
+    createEAttribute(traitMethodEClass, TRAIT_METHOD__IDENT);
+    createEReference(traitMethodEClass, TRAIT_METHOD__PARAMS);
+    createEReference(traitMethodEClass, TRAIT_METHOD__ARGS);
+    createEReference(traitMethodEClass, TRAIT_METHOD__RETURN_TYPE);
+    createEReference(traitMethodEClass, TRAIT_METHOD__BODY);
+
+    implItemEClass = createEClass(IMPL_ITEM);
+    createEAttribute(implItemEClass, IMPL_ITEM__TRAIT);
+    createEAttribute(implItemEClass, IMPL_ITEM__STRUCT);
+    createEReference(implItemEClass, IMPL_ITEM__METHODS);
+
+    implMethodEClass = createEClass(IMPL_METHOD);
+    createEAttribute(implMethodEClass, IMPL_METHOD__UNSAFE);
+    createEAttribute(implMethodEClass, IMPL_METHOD__EXTERN);
+    createEAttribute(implMethodEClass, IMPL_METHOD__IDENT);
+    createEReference(implMethodEClass, IMPL_METHOD__PARAMS);
+    createEReference(implMethodEClass, IMPL_METHOD__ARGS);
+    createEReference(implMethodEClass, IMPL_METHOD__RETURN_TYPE);
+    createEReference(implMethodEClass, IMPL_METHOD__BODY);
 
     blockEClass = createEClass(BLOCK);
 
@@ -1998,6 +2353,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     typeItemEClass.getESuperTypes().add(this.getItem());
     structItemEClass.getESuperTypes().add(this.getItem());
     enumItemEClass.getESuperTypes().add(this.getItem());
+    traitItemEClass.getESuperTypes().add(this.getItem());
+    implItemEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2052,27 +2409,31 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getItemAndAttrs_Item(), this.getItem(), null, "item", null, 0, 1, ItemAndAttrs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modItemEClass, ModItem.class, "ModItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModItem_ExternalBody(), ecorePackage.getEBoolean(), "externalBody", null, 0, 1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModItem_Items(), this.getItemAndAttrs(), null, "items", null, 0, -1, ModItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fnItemEClass, FnItem.class, "FnItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFnItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Args(), this.getArg(), null, "args", null, 0, -1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_ReturnType(), this.getType(), null, "returnType", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFnItem_Body(), this.getBlock(), null, "body", null, 0, 1, FnItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeItemEClass, TypeItem.class, "TypeItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTypeItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeItem_Type(), this.getType(), null, "type", null, 0, 1, TypeItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(structItemEClass, StructItem.class, "StructItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStructItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructItem_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumItemEClass, EnumItem.class, "EnumItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnumItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, EnumItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, EnumItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumItem_Variants(), this.getEnumVariant(), null, "variants", null, 0, -1, EnumItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2081,6 +2442,35 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getEnumVariant_Params(), ecorePackage.getEString(), "params", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumVariant_Types(), this.getType(), null, "types", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEnumVariant_Fields(), this.getStructField(), null, "fields", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(traitItemEClass, TraitItem.class, "TraitItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTraitItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, TraitItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, TraitItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitItem_Methods(), this.getTraitMethod(), null, "methods", null, 0, -1, TraitItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(traitMethodEClass, TraitMethod.class, "TraitMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTraitMethod_Unsafe(), ecorePackage.getEBoolean(), "unsafe", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTraitMethod_Extern(), ecorePackage.getEBoolean(), "extern", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTraitMethod_Vis(), this.getVisibility(), "vis", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTraitMethod_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitMethod_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitMethod_Args(), this.getArg(), null, "args", null, 0, -1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitMethod_ReturnType(), this.getType(), null, "returnType", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTraitMethod_Body(), this.getBlock(), null, "body", null, 0, 1, TraitMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implItemEClass, ImplItem.class, "ImplItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getImplItem_Trait(), ecorePackage.getEString(), "trait", null, 0, 1, ImplItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImplItem_Struct(), ecorePackage.getEString(), "struct", null, 0, 1, ImplItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplItem_Methods(), this.getImplMethod(), null, "methods", null, 0, -1, ImplItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(implMethodEClass, ImplMethod.class, "ImplMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getImplMethod_Unsafe(), ecorePackage.getEBoolean(), "unsafe", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImplMethod_Extern(), ecorePackage.getEBoolean(), "extern", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImplMethod_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplMethod_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplMethod_Args(), this.getArg(), null, "args", null, 0, -1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplMethod_ReturnType(), this.getType(), null, "returnType", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getImplMethod_Body(), this.getBlock(), null, "body", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

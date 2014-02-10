@@ -140,6 +140,42 @@ public interface RustFactory extends EFactory
   EnumVariant createEnumVariant();
 
   /**
+   * Returns a new object of class '<em>Trait Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Trait Item</em>'.
+   * @generated
+   */
+  TraitItem createTraitItem();
+
+  /**
+   * Returns a new object of class '<em>Trait Method</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Trait Method</em>'.
+   * @generated
+   */
+  TraitMethod createTraitMethod();
+
+  /**
+   * Returns a new object of class '<em>Impl Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Impl Item</em>'.
+   * @generated
+   */
+  ImplItem createImplItem();
+
+  /**
+   * Returns a new object of class '<em>Impl Method</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Impl Method</em>'.
+   * @generated
+   */
+  ImplMethod createImplMethod();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

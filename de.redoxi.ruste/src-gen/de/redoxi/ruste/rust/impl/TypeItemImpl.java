@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TypeItemImpl#getIdent <em>Ident</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TypeItemImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TypeItemImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -38,6 +39,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TypeItemImpl extends ItemImpl implements TypeItem
 {
+  /**
+   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected static final String IDENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected String ident = IDENT_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -77,6 +98,29 @@ public class TypeItemImpl extends ItemImpl implements TypeItem
   protected EClass eStaticClass()
   {
     return RustPackage.Literals.TYPE_ITEM;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getIdent()
+  {
+    return ident;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdent(String newIdent)
+  {
+    String oldIdent = ident;
+    ident = newIdent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.TYPE_ITEM__IDENT, oldIdent, ident));
   }
 
   /**
@@ -169,6 +213,8 @@ public class TypeItemImpl extends ItemImpl implements TypeItem
   {
     switch (featureID)
     {
+      case RustPackage.TYPE_ITEM__IDENT:
+        return getIdent();
       case RustPackage.TYPE_ITEM__PARAMS:
         return getParams();
       case RustPackage.TYPE_ITEM__TYPE:
@@ -188,6 +234,9 @@ public class TypeItemImpl extends ItemImpl implements TypeItem
   {
     switch (featureID)
     {
+      case RustPackage.TYPE_ITEM__IDENT:
+        setIdent((String)newValue);
+        return;
       case RustPackage.TYPE_ITEM__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends GenericParamDecl>)newValue);
@@ -209,6 +258,9 @@ public class TypeItemImpl extends ItemImpl implements TypeItem
   {
     switch (featureID)
     {
+      case RustPackage.TYPE_ITEM__IDENT:
+        setIdent(IDENT_EDEFAULT);
+        return;
       case RustPackage.TYPE_ITEM__PARAMS:
         getParams().clear();
         return;
@@ -229,12 +281,31 @@ public class TypeItemImpl extends ItemImpl implements TypeItem
   {
     switch (featureID)
     {
+      case RustPackage.TYPE_ITEM__IDENT:
+        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
       case RustPackage.TYPE_ITEM__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.TYPE_ITEM__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (ident: ");
+    result.append(ident);
+    result.append(')');
+    return result.toString();
   }
 
 } //TypeItemImpl

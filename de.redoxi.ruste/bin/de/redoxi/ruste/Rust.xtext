@@ -37,7 +37,7 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem // | StaticItem | TraitItem | ImplItem | ExternBlock
+	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem // | ExternBlock | StaticItem
 ;
 
 // A module declaration item
@@ -65,6 +65,23 @@ EnumItem:
 
 EnumVariant:
 	ident=IDENT ('<' params+=IDENT (',' params+=IDENT)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
+;
+
+TraitItem:
+	"trait" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" (methods+=TraitMethod)* "}"
+;
+
+TraitMethod:
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '(' (args+=Arg (',' args+=Arg)*)? ')' ("->" returnType=Type)? (body=Block | ';')
+;
+
+// TODO Crossreference struct and trait
+ImplItem:
+	"impl" (trait=IDENT "for")? struct=IDENT "{" (methods+=ImplMethod)* "}"
+;
+
+ImplMethod:
+	(unsafe?="unsafe" | extern?="extern")? "fn" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '(' (args+=Arg (',' args+=Arg)*)? ')' ("->" returnType=Type)? body=Block
 ;
 
 Block:

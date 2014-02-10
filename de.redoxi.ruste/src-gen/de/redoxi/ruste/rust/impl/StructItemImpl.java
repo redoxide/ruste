@@ -9,12 +9,15 @@ import de.redoxi.ruste.rust.StructItem;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -26,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getIdent <em>Ident</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getFields <em>Fields</em>}</li>
  * </ul>
@@ -35,6 +39,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StructItemImpl extends ItemImpl implements StructItem
 {
+  /**
+   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected static final String IDENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdent()
+   * @generated
+   * @ordered
+   */
+  protected String ident = IDENT_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -74,6 +98,29 @@ public class StructItemImpl extends ItemImpl implements StructItem
   protected EClass eStaticClass()
   {
     return RustPackage.Literals.STRUCT_ITEM;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getIdent()
+  {
+    return ident;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdent(String newIdent)
+  {
+    String oldIdent = ident;
+    ident = newIdent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STRUCT_ITEM__IDENT, oldIdent, ident));
   }
 
   /**
@@ -132,6 +179,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
+      case RustPackage.STRUCT_ITEM__IDENT:
+        return getIdent();
       case RustPackage.STRUCT_ITEM__PARAMS:
         return getParams();
       case RustPackage.STRUCT_ITEM__FIELDS:
@@ -151,6 +200,9 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
+      case RustPackage.STRUCT_ITEM__IDENT:
+        setIdent((String)newValue);
+        return;
       case RustPackage.STRUCT_ITEM__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends GenericParamDecl>)newValue);
@@ -173,6 +225,9 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
+      case RustPackage.STRUCT_ITEM__IDENT:
+        setIdent(IDENT_EDEFAULT);
+        return;
       case RustPackage.STRUCT_ITEM__PARAMS:
         getParams().clear();
         return;
@@ -193,12 +248,31 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
+      case RustPackage.STRUCT_ITEM__IDENT:
+        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
       case RustPackage.STRUCT_ITEM__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.STRUCT_ITEM__FIELDS:
         return fields != null && !fields.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (ident: ");
+    result.append(ident);
+    result.append(')');
+    return result.toString();
   }
 
 } //StructItemImpl

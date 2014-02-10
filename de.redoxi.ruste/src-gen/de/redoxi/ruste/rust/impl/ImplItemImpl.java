@@ -2,8 +2,8 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ItemAndAttrs;
-import de.redoxi.ruste.rust.ModItem;
+import de.redoxi.ruste.rust.ImplItem;
+import de.redoxi.ruste.rust.ImplMethod;
 import de.redoxi.ruste.rust.RustPackage;
 
 import java.util.Collection;
@@ -23,77 +23,77 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mod Item</b></em>'.
+ * An implementation of the model object '<em><b>Impl Item</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getIdent <em>Ident</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#isExternalBody <em>External Body</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getItems <em>Items</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplItemImpl#getTrait <em>Trait</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplItemImpl#getStruct <em>Struct</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplItemImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModItemImpl extends ItemImpl implements ModItem
+public class ImplItemImpl extends ItemImpl implements ImplItem
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getTrait() <em>Trait</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getTrait()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String TRAIT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getTrait() <em>Trait</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getTrait()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String trait = TRAIT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isExternalBody() <em>External Body</em>}' attribute.
+   * The default value of the '{@link #getStruct() <em>Struct</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isExternalBody()
+   * @see #getStruct()
    * @generated
    * @ordered
    */
-  protected static final boolean EXTERNAL_BODY_EDEFAULT = false;
+  protected static final String STRUCT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isExternalBody() <em>External Body</em>}' attribute.
+   * The cached value of the '{@link #getStruct() <em>Struct</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isExternalBody()
+   * @see #getStruct()
    * @generated
    * @ordered
    */
-  protected boolean externalBody = EXTERNAL_BODY_EDEFAULT;
+  protected String struct = STRUCT_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getItems() <em>Items</em>}' containment reference list.
+   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getItems()
+   * @see #getMethods()
    * @generated
    * @ordered
    */
-  protected EList<ItemAndAttrs> items;
+  protected EList<ImplMethod> methods;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ModItemImpl()
+  protected ImplItemImpl()
   {
     super();
   }
@@ -106,7 +106,7 @@ public class ModItemImpl extends ItemImpl implements ModItem
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.MOD_ITEM;
+    return RustPackage.Literals.IMPL_ITEM;
   }
 
   /**
@@ -114,9 +114,9 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getTrait()
   {
-    return ident;
+    return trait;
   }
 
   /**
@@ -124,12 +124,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setTrait(String newTrait)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldTrait = trait;
+    trait = newTrait;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.MOD_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_ITEM__TRAIT, oldTrait, trait));
   }
 
   /**
@@ -137,9 +137,9 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isExternalBody()
+  public String getStruct()
   {
-    return externalBody;
+    return struct;
   }
 
   /**
@@ -147,12 +147,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExternalBody(boolean newExternalBody)
+  public void setStruct(String newStruct)
   {
-    boolean oldExternalBody = externalBody;
-    externalBody = newExternalBody;
+    String oldStruct = struct;
+    struct = newStruct;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.MOD_ITEM__EXTERNAL_BODY, oldExternalBody, externalBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_ITEM__STRUCT, oldStruct, struct));
   }
 
   /**
@@ -160,13 +160,13 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ItemAndAttrs> getItems()
+  public EList<ImplMethod> getMethods()
   {
-    if (items == null)
+    if (methods == null)
     {
-      items = new EObjectContainmentEList<ItemAndAttrs>(ItemAndAttrs.class, this, RustPackage.MOD_ITEM__ITEMS);
+      methods = new EObjectContainmentEList<ImplMethod>(ImplMethod.class, this, RustPackage.IMPL_ITEM__METHODS);
     }
-    return items;
+    return methods;
   }
 
   /**
@@ -179,8 +179,8 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__ITEMS:
-        return ((InternalEList<?>)getItems()).basicRemove(otherEnd, msgs);
+      case RustPackage.IMPL_ITEM__METHODS:
+        return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -195,12 +195,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        return getIdent();
-      case RustPackage.MOD_ITEM__EXTERNAL_BODY:
-        return isExternalBody();
-      case RustPackage.MOD_ITEM__ITEMS:
-        return getItems();
+      case RustPackage.IMPL_ITEM__TRAIT:
+        return getTrait();
+      case RustPackage.IMPL_ITEM__STRUCT:
+        return getStruct();
+      case RustPackage.IMPL_ITEM__METHODS:
+        return getMethods();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,15 +216,15 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.IMPL_ITEM__TRAIT:
+        setTrait((String)newValue);
         return;
-      case RustPackage.MOD_ITEM__EXTERNAL_BODY:
-        setExternalBody((Boolean)newValue);
+      case RustPackage.IMPL_ITEM__STRUCT:
+        setStruct((String)newValue);
         return;
-      case RustPackage.MOD_ITEM__ITEMS:
-        getItems().clear();
-        getItems().addAll((Collection<? extends ItemAndAttrs>)newValue);
+      case RustPackage.IMPL_ITEM__METHODS:
+        getMethods().clear();
+        getMethods().addAll((Collection<? extends ImplMethod>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,14 +240,14 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.IMPL_ITEM__TRAIT:
+        setTrait(TRAIT_EDEFAULT);
         return;
-      case RustPackage.MOD_ITEM__EXTERNAL_BODY:
-        setExternalBody(EXTERNAL_BODY_EDEFAULT);
+      case RustPackage.IMPL_ITEM__STRUCT:
+        setStruct(STRUCT_EDEFAULT);
         return;
-      case RustPackage.MOD_ITEM__ITEMS:
-        getItems().clear();
+      case RustPackage.IMPL_ITEM__METHODS:
+        getMethods().clear();
         return;
     }
     super.eUnset(featureID);
@@ -263,12 +263,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
-      case RustPackage.MOD_ITEM__EXTERNAL_BODY:
-        return externalBody != EXTERNAL_BODY_EDEFAULT;
-      case RustPackage.MOD_ITEM__ITEMS:
-        return items != null && !items.isEmpty();
+      case RustPackage.IMPL_ITEM__TRAIT:
+        return TRAIT_EDEFAULT == null ? trait != null : !TRAIT_EDEFAULT.equals(trait);
+      case RustPackage.IMPL_ITEM__STRUCT:
+        return STRUCT_EDEFAULT == null ? struct != null : !STRUCT_EDEFAULT.equals(struct);
+      case RustPackage.IMPL_ITEM__METHODS:
+        return methods != null && !methods.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -284,12 +284,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
-    result.append(", externalBody: ");
-    result.append(externalBody);
+    result.append(" (trait: ");
+    result.append(trait);
+    result.append(", struct: ");
+    result.append(struct);
     result.append(')');
     return result.toString();
   }
 
-} //ModItemImpl
+} //ImplItemImpl

@@ -263,22 +263,13 @@ public interface RustPackage extends EPackage
   int ITEM = 6;
 
   /**
-   * The feature id for the '<em><b>Ident</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ITEM__IDENT = 0;
-
-  /**
    * The number of structural features of the '<em>Item</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ITEM_FEATURE_COUNT = 1;
+  int ITEM_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ModItemImpl <em>Mod Item</em>}' class.
@@ -297,7 +288,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM__IDENT = ITEM__IDENT;
+  int MOD_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>External Body</b></em>' attribute.
@@ -306,7 +297,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM__EXTERNAL_BODY = ITEM_FEATURE_COUNT + 0;
+  int MOD_ITEM__EXTERNAL_BODY = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -315,7 +306,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM__ITEMS = ITEM_FEATURE_COUNT + 1;
+  int MOD_ITEM__ITEMS = ITEM_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Mod Item</em>' class.
@@ -324,7 +315,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MOD_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+  int MOD_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.FnItemImpl <em>Fn Item</em>}' class.
@@ -343,7 +334,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM__IDENT = ITEM__IDENT;
+  int FN_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -352,7 +343,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM__PARAMS = ITEM_FEATURE_COUNT + 0;
+  int FN_ITEM__PARAMS = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -361,7 +352,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM__ARGS = ITEM_FEATURE_COUNT + 1;
+  int FN_ITEM__ARGS = ITEM_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Return Type</b></em>' containment reference.
@@ -370,7 +361,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM__RETURN_TYPE = ITEM_FEATURE_COUNT + 2;
+  int FN_ITEM__RETURN_TYPE = ITEM_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -379,7 +370,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM__BODY = ITEM_FEATURE_COUNT + 3;
+  int FN_ITEM__BODY = ITEM_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Fn Item</em>' class.
@@ -388,7 +379,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FN_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 4;
+  int FN_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TypeItemImpl <em>Type Item</em>}' class.
@@ -407,7 +398,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_ITEM__IDENT = ITEM__IDENT;
+  int TYPE_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -416,7 +407,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_ITEM__PARAMS = ITEM_FEATURE_COUNT + 0;
+  int TYPE_ITEM__PARAMS = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -425,7 +416,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_ITEM__TYPE = ITEM_FEATURE_COUNT + 1;
+  int TYPE_ITEM__TYPE = ITEM_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Type Item</em>' class.
@@ -434,7 +425,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+  int TYPE_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.StructItemImpl <em>Struct Item</em>}' class.
@@ -453,7 +444,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCT_ITEM__IDENT = ITEM__IDENT;
+  int STRUCT_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -462,7 +453,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCT_ITEM__PARAMS = ITEM_FEATURE_COUNT + 0;
+  int STRUCT_ITEM__PARAMS = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Fields</b></em>' containment reference list.
@@ -471,7 +462,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCT_ITEM__FIELDS = ITEM_FEATURE_COUNT + 1;
+  int STRUCT_ITEM__FIELDS = ITEM_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Struct Item</em>' class.
@@ -480,7 +471,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCT_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+  int STRUCT_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EnumItemImpl <em>Enum Item</em>}' class.
@@ -499,7 +490,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_ITEM__IDENT = ITEM__IDENT;
+  int ENUM_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -508,7 +499,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_ITEM__PARAMS = ITEM_FEATURE_COUNT + 0;
+  int ENUM_ITEM__PARAMS = ITEM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Variants</b></em>' containment reference list.
@@ -517,7 +508,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_ITEM__VARIANTS = ITEM_FEATURE_COUNT + 1;
+  int ENUM_ITEM__VARIANTS = ITEM_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Enum Item</em>' class.
@@ -526,7 +517,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENUM_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+  int ENUM_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EnumVariantImpl <em>Enum Variant</em>}' class.
@@ -584,6 +575,271 @@ public interface RustPackage extends EPackage
   int ENUM_VARIANT_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TraitItemImpl <em>Trait Item</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.TraitItemImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTraitItem()
+   * @generated
+   */
+  int TRAIT_ITEM = 13;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_ITEM__IDENT = ITEM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_ITEM__PARAMS = ITEM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_ITEM__METHODS = ITEM_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Trait Item</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.TraitMethodImpl <em>Trait Method</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.TraitMethodImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTraitMethod()
+   * @generated
+   */
+  int TRAIT_METHOD = 14;
+
+  /**
+   * The feature id for the '<em><b>Unsafe</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__UNSAFE = 0;
+
+  /**
+   * The feature id for the '<em><b>Extern</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__EXTERN = 1;
+
+  /**
+   * The feature id for the '<em><b>Vis</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__VIS = 2;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__IDENT = 3;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__PARAMS = 4;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__ARGS = 5;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__RETURN_TYPE = 6;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD__BODY = 7;
+
+  /**
+   * The number of structural features of the '<em>Trait Method</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRAIT_METHOD_FEATURE_COUNT = 8;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ImplItemImpl <em>Impl Item</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ImplItemImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getImplItem()
+   * @generated
+   */
+  int IMPL_ITEM = 15;
+
+  /**
+   * The feature id for the '<em><b>Trait</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_ITEM__TRAIT = ITEM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Struct</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_ITEM__STRUCT = ITEM_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_ITEM__METHODS = ITEM_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Impl Item</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_ITEM_FEATURE_COUNT = ITEM_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ImplMethodImpl <em>Impl Method</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ImplMethodImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getImplMethod()
+   * @generated
+   */
+  int IMPL_METHOD = 16;
+
+  /**
+   * The feature id for the '<em><b>Unsafe</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__UNSAFE = 0;
+
+  /**
+   * The feature id for the '<em><b>Extern</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__EXTERN = 1;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__IDENT = 2;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__PARAMS = 3;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__ARGS = 4;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__RETURN_TYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD__BODY = 6;
+
+  /**
+   * The number of structural features of the '<em>Impl Method</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPL_METHOD_FEATURE_COUNT = 7;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -591,7 +847,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 13;
+  int BLOCK = 17;
 
   /**
    * The number of structural features of the '<em>Block</em>' class.
@@ -610,7 +866,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
    * @generated
    */
-  int GENERIC_PARAM_DECL = 14;
+  int GENERIC_PARAM_DECL = 18;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -647,7 +903,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
    * @generated
    */
-  int ARG = 15;
+  int ARG = 19;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -684,7 +940,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
    * @generated
    */
-  int PAT = 16;
+  int PAT = 20;
 
   /**
    * The number of structural features of the '<em>Pat</em>' class.
@@ -703,7 +959,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatWildcard()
    * @generated
    */
-  int PAT_WILDCARD = 17;
+  int PAT_WILDCARD = 21;
 
   /**
    * The number of structural features of the '<em>Pat Wildcard</em>' class.
@@ -722,7 +978,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatIdent()
    * @generated
    */
-  int PAT_IDENT = 18;
+  int PAT_IDENT = 22;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -759,7 +1015,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBoxed()
    * @generated
    */
-  int PAT_BOXED = 19;
+  int PAT_BOXED = 23;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -787,7 +1043,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatOwned()
    * @generated
    */
-  int PAT_OWNED = 20;
+  int PAT_OWNED = 24;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -815,7 +1071,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBorrowed()
    * @generated
    */
-  int PAT_BORROWED = 21;
+  int PAT_BORROWED = 25;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -843,7 +1099,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTuple()
    * @generated
    */
-  int PAT_TUPLE = 22;
+  int PAT_TUPLE = 26;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -871,7 +1127,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatVector()
    * @generated
    */
-  int PAT_VECTOR = 23;
+  int PAT_VECTOR = 27;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -899,7 +1155,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatLiteral()
    * @generated
    */
-  int PAT_LITERAL = 24;
+  int PAT_LITERAL = 28;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -927,7 +1183,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatRange()
    * @generated
    */
-  int PAT_RANGE = 25;
+  int PAT_RANGE = 29;
 
   /**
    * The number of structural features of the '<em>Pat Range</em>' class.
@@ -946,7 +1202,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatCharRange()
    * @generated
    */
-  int PAT_CHAR_RANGE = 26;
+  int PAT_CHAR_RANGE = 30;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -983,7 +1239,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatNumberRange()
    * @generated
    */
-  int PAT_NUMBER_RANGE = 27;
+  int PAT_NUMBER_RANGE = 31;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -1020,7 +1276,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatEnum()
    * @generated
    */
-  int PAT_ENUM = 28;
+  int PAT_ENUM = 32;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1048,7 +1304,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
    * @generated
    */
-  int FIELD_PAT = 29;
+  int FIELD_PAT = 33;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1085,7 +1341,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPath()
    * @generated
    */
-  int PATH = 30;
+  int PATH = 34;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -1131,7 +1387,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 31;
+  int TYPE = 35;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -1150,7 +1406,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 32;
+  int PRIMITIVE_TYPE = 36;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -1169,7 +1425,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
    * @generated
    */
-  int TUPLE_TYPE = 33;
+  int TUPLE_TYPE = 37;
 
   /**
    * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -1197,7 +1453,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
    * @generated
    */
-  int STRUCT_TYPE = 34;
+  int STRUCT_TYPE = 38;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1243,7 +1499,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 35;
+  int BOXED_POINTER = 39;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1271,7 +1527,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 36;
+  int OWNED_POINTER = 40;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1299,7 +1555,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 37;
+  int BORROWED_POINTER = 41;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1327,7 +1583,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 38;
+  int STRUCT_FIELD = 42;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -1373,7 +1629,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
    * @generated
    */
-  int ENUM_TYPE = 39;
+  int ENUM_TYPE = 43;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1419,7 +1675,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 40;
+  int VARIANT = 44;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1447,7 +1703,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 41;
+  int STRUCT_VARIANT = 45;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1493,7 +1749,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 42;
+  int TUPLE_VARIANT = 46;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1530,7 +1786,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 43;
+  int UNIT_VARIANT = 47;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1558,7 +1814,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 45;
+  int LITERAL = 49;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1586,7 +1842,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 44;
+  int STRING_LIT = 48;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1614,7 +1870,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 46;
+  int NUMBER_LIT = 50;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1642,7 +1898,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 47;
+  int CHAR_LIT = 51;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1670,7 +1926,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
    * @generated
    */
-  int PAT_TUPLE_ENUM = 48;
+  int PAT_TUPLE_ENUM = 52;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1707,7 +1963,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
    * @generated
    */
-  int PAT_STRUCT_ENUM = 49;
+  int PAT_STRUCT_ENUM = 53;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1744,7 +2000,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 50;
+  int INT_TYPE = 54;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -1763,7 +2019,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 51;
+  int FLOAT_TYPE = 55;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -1782,7 +2038,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 52;
+  int BOOL_TYPE = 56;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -1801,7 +2057,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 53;
+  int MACHINE_TYPE = 57;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -1820,7 +2076,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 54;
+  int UNIT_TYPE = 58;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -1839,7 +2095,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 55;
+  int VISIBILITY = 59;
 
 
   /**
@@ -1990,17 +2246,6 @@ public interface RustPackage extends EPackage
   EClass getItem();
 
   /**
-   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.Item#getIdent <em>Ident</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ident</em>'.
-   * @see de.redoxi.ruste.rust.Item#getIdent()
-   * @see #getItem()
-   * @generated
-   */
-  EAttribute getItem_Ident();
-
-  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ModItem <em>Mod Item</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2009,6 +2254,17 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getModItem();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ModItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.ModItem#getIdent()
+   * @see #getModItem()
+   * @generated
+   */
+  EAttribute getModItem_Ident();
 
   /**
    * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ModItem#isExternalBody <em>External Body</em>}'.
@@ -2041,6 +2297,17 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getFnItem();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.FnItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.FnItem#getIdent()
+   * @see #getFnItem()
+   * @generated
+   */
+  EAttribute getFnItem_Ident();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.FnItem#getParams <em>Params</em>}'.
@@ -2097,6 +2364,17 @@ public interface RustPackage extends EPackage
   EClass getTypeItem();
 
   /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TypeItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.TypeItem#getIdent()
+   * @see #getTypeItem()
+   * @generated
+   */
+  EAttribute getTypeItem_Ident();
+
+  /**
    * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TypeItem#getParams <em>Params</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2129,6 +2407,17 @@ public interface RustPackage extends EPackage
   EClass getStructItem();
 
   /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.StructItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.StructItem#getIdent()
+   * @see #getStructItem()
+   * @generated
+   */
+  EAttribute getStructItem_Ident();
+
+  /**
    * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.StructItem#getParams <em>Params</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2159,6 +2448,17 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getEnumItem();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.EnumItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.EnumItem#getIdent()
+   * @see #getEnumItem()
+   * @generated
+   */
+  EAttribute getEnumItem_Ident();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.EnumItem#getParams <em>Params</em>}'.
@@ -2235,6 +2535,277 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getEnumVariant_Fields();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.TraitItem <em>Trait Item</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Trait Item</em>'.
+   * @see de.redoxi.ruste.rust.TraitItem
+   * @generated
+   */
+  EClass getTraitItem();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TraitItem#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.TraitItem#getIdent()
+   * @see #getTraitItem()
+   * @generated
+   */
+  EAttribute getTraitItem_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TraitItem#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.TraitItem#getParams()
+   * @see #getTraitItem()
+   * @generated
+   */
+  EReference getTraitItem_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TraitItem#getMethods <em>Methods</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Methods</em>'.
+   * @see de.redoxi.ruste.rust.TraitItem#getMethods()
+   * @see #getTraitItem()
+   * @generated
+   */
+  EReference getTraitItem_Methods();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.TraitMethod <em>Trait Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Trait Method</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod
+   * @generated
+   */
+  EClass getTraitMethod();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TraitMethod#isUnsafe <em>Unsafe</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Unsafe</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#isUnsafe()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EAttribute getTraitMethod_Unsafe();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TraitMethod#isExtern <em>Extern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Extern</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#isExtern()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EAttribute getTraitMethod_Extern();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TraitMethod#getVis <em>Vis</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Vis</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getVis()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EAttribute getTraitMethod_Vis();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.TraitMethod#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getIdent()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EAttribute getTraitMethod_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TraitMethod#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getParams()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EReference getTraitMethod_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.TraitMethod#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getArgs()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EReference getTraitMethod_Args();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.TraitMethod#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getReturnType()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EReference getTraitMethod_ReturnType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.TraitMethod#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see de.redoxi.ruste.rust.TraitMethod#getBody()
+   * @see #getTraitMethod()
+   * @generated
+   */
+  EReference getTraitMethod_Body();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ImplItem <em>Impl Item</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Impl Item</em>'.
+   * @see de.redoxi.ruste.rust.ImplItem
+   * @generated
+   */
+  EClass getImplItem();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ImplItem#getTrait <em>Trait</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Trait</em>'.
+   * @see de.redoxi.ruste.rust.ImplItem#getTrait()
+   * @see #getImplItem()
+   * @generated
+   */
+  EAttribute getImplItem_Trait();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ImplItem#getStruct <em>Struct</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Struct</em>'.
+   * @see de.redoxi.ruste.rust.ImplItem#getStruct()
+   * @see #getImplItem()
+   * @generated
+   */
+  EAttribute getImplItem_Struct();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ImplItem#getMethods <em>Methods</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Methods</em>'.
+   * @see de.redoxi.ruste.rust.ImplItem#getMethods()
+   * @see #getImplItem()
+   * @generated
+   */
+  EReference getImplItem_Methods();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ImplMethod <em>Impl Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Impl Method</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod
+   * @generated
+   */
+  EClass getImplMethod();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ImplMethod#isUnsafe <em>Unsafe</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Unsafe</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#isUnsafe()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EAttribute getImplMethod_Unsafe();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ImplMethod#isExtern <em>Extern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Extern</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#isExtern()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EAttribute getImplMethod_Extern();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ImplMethod#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#getIdent()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EAttribute getImplMethod_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ImplMethod#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Params</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#getParams()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EReference getImplMethod_Params();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ImplMethod#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#getArgs()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EReference getImplMethod_Args();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ImplMethod#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#getReturnType()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EReference getImplMethod_ReturnType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ImplMethod#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see de.redoxi.ruste.rust.ImplMethod#getBody()
+   * @see #getImplMethod()
+   * @generated
+   */
+  EReference getImplMethod_Body();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
@@ -3278,14 +3849,6 @@ public interface RustPackage extends EPackage
     EClass ITEM = eINSTANCE.getItem();
 
     /**
-     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ITEM__IDENT = eINSTANCE.getItem_Ident();
-
-    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ModItemImpl <em>Mod Item</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3294,6 +3857,14 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass MOD_ITEM = eINSTANCE.getModItem();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MOD_ITEM__IDENT = eINSTANCE.getModItem_Ident();
 
     /**
      * The meta object literal for the '<em><b>External Body</b></em>' attribute feature.
@@ -3320,6 +3891,14 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass FN_ITEM = eINSTANCE.getFnItem();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FN_ITEM__IDENT = eINSTANCE.getFnItem_Ident();
 
     /**
      * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
@@ -3364,6 +3943,14 @@ public interface RustPackage extends EPackage
     EClass TYPE_ITEM = eINSTANCE.getTypeItem();
 
     /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE_ITEM__IDENT = eINSTANCE.getTypeItem_Ident();
+
+    /**
      * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3390,6 +3977,14 @@ public interface RustPackage extends EPackage
     EClass STRUCT_ITEM = eINSTANCE.getStructItem();
 
     /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRUCT_ITEM__IDENT = eINSTANCE.getStructItem_Ident();
+
+    /**
      * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3414,6 +4009,14 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass ENUM_ITEM = eINSTANCE.getEnumItem();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENUM_ITEM__IDENT = eINSTANCE.getEnumItem_Ident();
 
     /**
      * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
@@ -3472,6 +4075,214 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference ENUM_VARIANT__FIELDS = eINSTANCE.getEnumVariant_Fields();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.TraitItemImpl <em>Trait Item</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.TraitItemImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTraitItem()
+     * @generated
+     */
+    EClass TRAIT_ITEM = eINSTANCE.getTraitItem();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRAIT_ITEM__IDENT = eINSTANCE.getTraitItem_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_ITEM__PARAMS = eINSTANCE.getTraitItem_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_ITEM__METHODS = eINSTANCE.getTraitItem_Methods();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.TraitMethodImpl <em>Trait Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.TraitMethodImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTraitMethod()
+     * @generated
+     */
+    EClass TRAIT_METHOD = eINSTANCE.getTraitMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Unsafe</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRAIT_METHOD__UNSAFE = eINSTANCE.getTraitMethod_Unsafe();
+
+    /**
+     * The meta object literal for the '<em><b>Extern</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRAIT_METHOD__EXTERN = eINSTANCE.getTraitMethod_Extern();
+
+    /**
+     * The meta object literal for the '<em><b>Vis</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRAIT_METHOD__VIS = eINSTANCE.getTraitMethod_Vis();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRAIT_METHOD__IDENT = eINSTANCE.getTraitMethod_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_METHOD__PARAMS = eINSTANCE.getTraitMethod_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_METHOD__ARGS = eINSTANCE.getTraitMethod_Args();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_METHOD__RETURN_TYPE = eINSTANCE.getTraitMethod_ReturnType();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRAIT_METHOD__BODY = eINSTANCE.getTraitMethod_Body();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ImplItemImpl <em>Impl Item</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ImplItemImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getImplItem()
+     * @generated
+     */
+    EClass IMPL_ITEM = eINSTANCE.getImplItem();
+
+    /**
+     * The meta object literal for the '<em><b>Trait</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPL_ITEM__TRAIT = eINSTANCE.getImplItem_Trait();
+
+    /**
+     * The meta object literal for the '<em><b>Struct</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPL_ITEM__STRUCT = eINSTANCE.getImplItem_Struct();
+
+    /**
+     * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPL_ITEM__METHODS = eINSTANCE.getImplItem_Methods();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ImplMethodImpl <em>Impl Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ImplMethodImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getImplMethod()
+     * @generated
+     */
+    EClass IMPL_METHOD = eINSTANCE.getImplMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Unsafe</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPL_METHOD__UNSAFE = eINSTANCE.getImplMethod_Unsafe();
+
+    /**
+     * The meta object literal for the '<em><b>Extern</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPL_METHOD__EXTERN = eINSTANCE.getImplMethod_Extern();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPL_METHOD__IDENT = eINSTANCE.getImplMethod_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPL_METHOD__PARAMS = eINSTANCE.getImplMethod_Params();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPL_METHOD__ARGS = eINSTANCE.getImplMethod_Args();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPL_METHOD__RETURN_TYPE = eINSTANCE.getImplMethod_ReturnType();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPL_METHOD__BODY = eINSTANCE.getImplMethod_Body();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.

@@ -4,8 +4,8 @@ package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.Block;
-import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
+import de.redoxi.ruste.rust.ImplMethod;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.Type;
 
@@ -20,29 +20,72 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Fn Item</b></em>'.
+ * An implementation of the model object '<em><b>Impl Method</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getIdent <em>Ident</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getParams <em>Params</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getArgs <em>Args</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#isUnsafe <em>Unsafe</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#isExtern <em>Extern</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getParams <em>Params</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FnItemImpl extends ItemImpl implements FnItem
+public class ImplMethodImpl extends MinimalEObjectImpl.Container implements ImplMethod
 {
+  /**
+   * The default value of the '{@link #isUnsafe() <em>Unsafe</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isUnsafe()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean UNSAFE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isUnsafe() <em>Unsafe</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isUnsafe()
+   * @generated
+   * @ordered
+   */
+  protected boolean unsafe = UNSAFE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isExtern() <em>Extern</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isExtern()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean EXTERN_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isExtern() <em>Extern</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isExtern()
+   * @generated
+   * @ordered
+   */
+  protected boolean extern = EXTERN_EDEFAULT;
+
   /**
    * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -108,7 +151,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FnItemImpl()
+  protected ImplMethodImpl()
   {
     super();
   }
@@ -121,7 +164,53 @@ public class FnItemImpl extends ItemImpl implements FnItem
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.FN_ITEM;
+    return RustPackage.Literals.IMPL_METHOD;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isUnsafe()
+  {
+    return unsafe;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setUnsafe(boolean newUnsafe)
+  {
+    boolean oldUnsafe = unsafe;
+    unsafe = newUnsafe;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__UNSAFE, oldUnsafe, unsafe));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isExtern()
+  {
+    return extern;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExtern(boolean newExtern)
+  {
+    boolean oldExtern = extern;
+    extern = newExtern;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__EXTERN, oldExtern, extern));
   }
 
   /**
@@ -144,7 +233,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
     String oldIdent = ident;
     ident = newIdent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__IDENT, oldIdent, ident));
   }
 
   /**
@@ -156,7 +245,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     if (params == null)
     {
-      params = new EObjectContainmentEList<GenericParamDecl>(GenericParamDecl.class, this, RustPackage.FN_ITEM__PARAMS);
+      params = new EObjectContainmentEList<GenericParamDecl>(GenericParamDecl.class, this, RustPackage.IMPL_METHOD__PARAMS);
     }
     return params;
   }
@@ -170,7 +259,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     if (args == null)
     {
-      args = new EObjectContainmentEList<Arg>(Arg.class, this, RustPackage.FN_ITEM__ARGS);
+      args = new EObjectContainmentEList<Arg>(Arg.class, this, RustPackage.IMPL_METHOD__ARGS);
     }
     return args;
   }
@@ -196,7 +285,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
     returnType = newReturnType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__RETURN_TYPE, oldReturnType, newReturnType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__RETURN_TYPE, oldReturnType, newReturnType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -213,14 +302,14 @@ public class FnItemImpl extends ItemImpl implements FnItem
     {
       NotificationChain msgs = null;
       if (returnType != null)
-        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.IMPL_METHOD__RETURN_TYPE, null, msgs);
       if (newReturnType != null)
-        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__RETURN_TYPE, null, msgs);
+        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.IMPL_METHOD__RETURN_TYPE, null, msgs);
       msgs = basicSetReturnType(newReturnType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__RETURN_TYPE, newReturnType, newReturnType));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__RETURN_TYPE, newReturnType, newReturnType));
   }
 
   /**
@@ -244,7 +333,7 @@ public class FnItemImpl extends ItemImpl implements FnItem
     body = newBody;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__BODY, oldBody, newBody);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__BODY, oldBody, newBody);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -261,14 +350,14 @@ public class FnItemImpl extends ItemImpl implements FnItem
     {
       NotificationChain msgs = null;
       if (body != null)
-        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__BODY, null, msgs);
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.IMPL_METHOD__BODY, null, msgs);
       if (newBody != null)
-        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.FN_ITEM__BODY, null, msgs);
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.IMPL_METHOD__BODY, null, msgs);
       msgs = basicSetBody(newBody, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__BODY, newBody, newBody));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__BODY, newBody, newBody));
   }
 
   /**
@@ -281,13 +370,13 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__PARAMS:
+      case RustPackage.IMPL_METHOD__PARAMS:
         return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
-      case RustPackage.FN_ITEM__ARGS:
+      case RustPackage.IMPL_METHOD__ARGS:
         return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
-      case RustPackage.FN_ITEM__RETURN_TYPE:
+      case RustPackage.IMPL_METHOD__RETURN_TYPE:
         return basicSetReturnType(null, msgs);
-      case RustPackage.FN_ITEM__BODY:
+      case RustPackage.IMPL_METHOD__BODY:
         return basicSetBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -303,15 +392,19 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
+      case RustPackage.IMPL_METHOD__UNSAFE:
+        return isUnsafe();
+      case RustPackage.IMPL_METHOD__EXTERN:
+        return isExtern();
+      case RustPackage.IMPL_METHOD__IDENT:
         return getIdent();
-      case RustPackage.FN_ITEM__PARAMS:
+      case RustPackage.IMPL_METHOD__PARAMS:
         return getParams();
-      case RustPackage.FN_ITEM__ARGS:
+      case RustPackage.IMPL_METHOD__ARGS:
         return getArgs();
-      case RustPackage.FN_ITEM__RETURN_TYPE:
+      case RustPackage.IMPL_METHOD__RETURN_TYPE:
         return getReturnType();
-      case RustPackage.FN_ITEM__BODY:
+      case RustPackage.IMPL_METHOD__BODY:
         return getBody();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -328,21 +421,27 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
+      case RustPackage.IMPL_METHOD__UNSAFE:
+        setUnsafe((Boolean)newValue);
+        return;
+      case RustPackage.IMPL_METHOD__EXTERN:
+        setExtern((Boolean)newValue);
+        return;
+      case RustPackage.IMPL_METHOD__IDENT:
         setIdent((String)newValue);
         return;
-      case RustPackage.FN_ITEM__PARAMS:
+      case RustPackage.IMPL_METHOD__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends GenericParamDecl>)newValue);
         return;
-      case RustPackage.FN_ITEM__ARGS:
+      case RustPackage.IMPL_METHOD__ARGS:
         getArgs().clear();
         getArgs().addAll((Collection<? extends Arg>)newValue);
         return;
-      case RustPackage.FN_ITEM__RETURN_TYPE:
+      case RustPackage.IMPL_METHOD__RETURN_TYPE:
         setReturnType((Type)newValue);
         return;
-      case RustPackage.FN_ITEM__BODY:
+      case RustPackage.IMPL_METHOD__BODY:
         setBody((Block)newValue);
         return;
     }
@@ -359,19 +458,25 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
+      case RustPackage.IMPL_METHOD__UNSAFE:
+        setUnsafe(UNSAFE_EDEFAULT);
+        return;
+      case RustPackage.IMPL_METHOD__EXTERN:
+        setExtern(EXTERN_EDEFAULT);
+        return;
+      case RustPackage.IMPL_METHOD__IDENT:
         setIdent(IDENT_EDEFAULT);
         return;
-      case RustPackage.FN_ITEM__PARAMS:
+      case RustPackage.IMPL_METHOD__PARAMS:
         getParams().clear();
         return;
-      case RustPackage.FN_ITEM__ARGS:
+      case RustPackage.IMPL_METHOD__ARGS:
         getArgs().clear();
         return;
-      case RustPackage.FN_ITEM__RETURN_TYPE:
+      case RustPackage.IMPL_METHOD__RETURN_TYPE:
         setReturnType((Type)null);
         return;
-      case RustPackage.FN_ITEM__BODY:
+      case RustPackage.IMPL_METHOD__BODY:
         setBody((Block)null);
         return;
     }
@@ -388,15 +493,19 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
+      case RustPackage.IMPL_METHOD__UNSAFE:
+        return unsafe != UNSAFE_EDEFAULT;
+      case RustPackage.IMPL_METHOD__EXTERN:
+        return extern != EXTERN_EDEFAULT;
+      case RustPackage.IMPL_METHOD__IDENT:
         return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
-      case RustPackage.FN_ITEM__PARAMS:
+      case RustPackage.IMPL_METHOD__PARAMS:
         return params != null && !params.isEmpty();
-      case RustPackage.FN_ITEM__ARGS:
+      case RustPackage.IMPL_METHOD__ARGS:
         return args != null && !args.isEmpty();
-      case RustPackage.FN_ITEM__RETURN_TYPE:
+      case RustPackage.IMPL_METHOD__RETURN_TYPE:
         return returnType != null;
-      case RustPackage.FN_ITEM__BODY:
+      case RustPackage.IMPL_METHOD__BODY:
         return body != null;
     }
     return super.eIsSet(featureID);
@@ -413,10 +522,14 @@ public class FnItemImpl extends ItemImpl implements FnItem
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
+    result.append(" (unsafe: ");
+    result.append(unsafe);
+    result.append(", extern: ");
+    result.append(extern);
+    result.append(", ident: ");
     result.append(ident);
     result.append(')');
     return result.toString();
   }
 
-} //FnItemImpl
+} //ImplMethodImpl

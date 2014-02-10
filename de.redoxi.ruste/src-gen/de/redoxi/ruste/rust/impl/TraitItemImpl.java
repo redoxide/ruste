@@ -2,10 +2,10 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.EnumItem;
-import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.TraitItem;
+import de.redoxi.ruste.rust.TraitMethod;
 
 import java.util.Collection;
 
@@ -24,20 +24,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Enum Item</b></em>'.
+ * An implementation of the model object '<em><b>Trait Item</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.EnumItemImpl#getIdent <em>Ident</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.EnumItemImpl#getParams <em>Params</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.EnumItemImpl#getVariants <em>Variants</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TraitItemImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TraitItemImpl#getParams <em>Params</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TraitItemImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EnumItemImpl extends ItemImpl implements EnumItem
+public class TraitItemImpl extends ItemImpl implements TraitItem
 {
   /**
    * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
@@ -70,21 +70,21 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   protected EList<GenericParamDecl> params;
 
   /**
-   * The cached value of the '{@link #getVariants() <em>Variants</em>}' containment reference list.
+   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariants()
+   * @see #getMethods()
    * @generated
    * @ordered
    */
-  protected EList<EnumVariant> variants;
+  protected EList<TraitMethod> methods;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EnumItemImpl()
+  protected TraitItemImpl()
   {
     super();
   }
@@ -97,7 +97,7 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.ENUM_ITEM;
+    return RustPackage.Literals.TRAIT_ITEM;
   }
 
   /**
@@ -120,7 +120,7 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
     String oldIdent = ident;
     ident = newIdent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.ENUM_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.TRAIT_ITEM__IDENT, oldIdent, ident));
   }
 
   /**
@@ -132,7 +132,7 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     if (params == null)
     {
-      params = new EObjectContainmentEList<GenericParamDecl>(GenericParamDecl.class, this, RustPackage.ENUM_ITEM__PARAMS);
+      params = new EObjectContainmentEList<GenericParamDecl>(GenericParamDecl.class, this, RustPackage.TRAIT_ITEM__PARAMS);
     }
     return params;
   }
@@ -142,13 +142,13 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EnumVariant> getVariants()
+  public EList<TraitMethod> getMethods()
   {
-    if (variants == null)
+    if (methods == null)
     {
-      variants = new EObjectContainmentEList<EnumVariant>(EnumVariant.class, this, RustPackage.ENUM_ITEM__VARIANTS);
+      methods = new EObjectContainmentEList<TraitMethod>(TraitMethod.class, this, RustPackage.TRAIT_ITEM__METHODS);
     }
-    return variants;
+    return methods;
   }
 
   /**
@@ -161,10 +161,10 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     switch (featureID)
     {
-      case RustPackage.ENUM_ITEM__PARAMS:
+      case RustPackage.TRAIT_ITEM__PARAMS:
         return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
-      case RustPackage.ENUM_ITEM__VARIANTS:
-        return ((InternalEList<?>)getVariants()).basicRemove(otherEnd, msgs);
+      case RustPackage.TRAIT_ITEM__METHODS:
+        return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -179,12 +179,12 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     switch (featureID)
     {
-      case RustPackage.ENUM_ITEM__IDENT:
+      case RustPackage.TRAIT_ITEM__IDENT:
         return getIdent();
-      case RustPackage.ENUM_ITEM__PARAMS:
+      case RustPackage.TRAIT_ITEM__PARAMS:
         return getParams();
-      case RustPackage.ENUM_ITEM__VARIANTS:
-        return getVariants();
+      case RustPackage.TRAIT_ITEM__METHODS:
+        return getMethods();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,16 +200,16 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     switch (featureID)
     {
-      case RustPackage.ENUM_ITEM__IDENT:
+      case RustPackage.TRAIT_ITEM__IDENT:
         setIdent((String)newValue);
         return;
-      case RustPackage.ENUM_ITEM__PARAMS:
+      case RustPackage.TRAIT_ITEM__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends GenericParamDecl>)newValue);
         return;
-      case RustPackage.ENUM_ITEM__VARIANTS:
-        getVariants().clear();
-        getVariants().addAll((Collection<? extends EnumVariant>)newValue);
+      case RustPackage.TRAIT_ITEM__METHODS:
+        getMethods().clear();
+        getMethods().addAll((Collection<? extends TraitMethod>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,14 +225,14 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     switch (featureID)
     {
-      case RustPackage.ENUM_ITEM__IDENT:
+      case RustPackage.TRAIT_ITEM__IDENT:
         setIdent(IDENT_EDEFAULT);
         return;
-      case RustPackage.ENUM_ITEM__PARAMS:
+      case RustPackage.TRAIT_ITEM__PARAMS:
         getParams().clear();
         return;
-      case RustPackage.ENUM_ITEM__VARIANTS:
-        getVariants().clear();
+      case RustPackage.TRAIT_ITEM__METHODS:
+        getMethods().clear();
         return;
     }
     super.eUnset(featureID);
@@ -248,12 +248,12 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
   {
     switch (featureID)
     {
-      case RustPackage.ENUM_ITEM__IDENT:
+      case RustPackage.TRAIT_ITEM__IDENT:
         return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
-      case RustPackage.ENUM_ITEM__PARAMS:
+      case RustPackage.TRAIT_ITEM__PARAMS:
         return params != null && !params.isEmpty();
-      case RustPackage.ENUM_ITEM__VARIANTS:
-        return variants != null && !variants.isEmpty();
+      case RustPackage.TRAIT_ITEM__METHODS:
+        return methods != null && !methods.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -275,4 +275,4 @@ public class EnumItemImpl extends ItemImpl implements EnumItem
     return result.toString();
   }
 
-} //EnumItemImpl
+} //TraitItemImpl

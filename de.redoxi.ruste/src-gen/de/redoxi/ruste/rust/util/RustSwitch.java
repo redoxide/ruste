@@ -170,6 +170,36 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.TRAIT_ITEM:
+      {
+        TraitItem traitItem = (TraitItem)theEObject;
+        T result = caseTraitItem(traitItem);
+        if (result == null) result = caseItem(traitItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.TRAIT_METHOD:
+      {
+        TraitMethod traitMethod = (TraitMethod)theEObject;
+        T result = caseTraitMethod(traitMethod);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.IMPL_ITEM:
+      {
+        ImplItem implItem = (ImplItem)theEObject;
+        T result = caseImplItem(implItem);
+        if (result == null) result = caseItem(implItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.IMPL_METHOD:
+      {
+        ImplMethod implMethod = (ImplMethod)theEObject;
+        T result = caseImplMethod(implMethod);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -713,6 +743,70 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEnumVariant(EnumVariant object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Trait Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Trait Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTraitItem(TraitItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Trait Method</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Trait Method</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTraitMethod(TraitMethod object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Impl Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Impl Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplItem(ImplItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Impl Method</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Impl Method</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImplMethod(ImplMethod object)
   {
     return null;
   }

@@ -140,6 +140,26 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createEnumVariantAdapter();
       }
       @Override
+      public Adapter caseTraitItem(TraitItem object)
+      {
+        return createTraitItemAdapter();
+      }
+      @Override
+      public Adapter caseTraitMethod(TraitMethod object)
+      {
+        return createTraitMethodAdapter();
+      }
+      @Override
+      public Adapter caseImplItem(ImplItem object)
+      {
+        return createImplItemAdapter();
+      }
+      @Override
+      public Adapter caseImplMethod(ImplMethod object)
+      {
+        return createImplMethodAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -562,6 +582,66 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEnumVariantAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TraitItem <em>Trait Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.TraitItem
+   * @generated
+   */
+  public Adapter createTraitItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TraitMethod <em>Trait Method</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.TraitMethod
+   * @generated
+   */
+  public Adapter createTraitMethodAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ImplItem <em>Impl Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ImplItem
+   * @generated
+   */
+  public Adapter createImplItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ImplMethod <em>Impl Method</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ImplMethod
+   * @generated
+   */
+  public Adapter createImplMethodAdapter()
   {
     return null;
   }

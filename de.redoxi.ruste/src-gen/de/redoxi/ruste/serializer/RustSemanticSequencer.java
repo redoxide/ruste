@@ -17,6 +17,8 @@ import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
 import de.redoxi.ruste.rust.GenericParamDecl;
+import de.redoxi.ruste.rust.ImplItem;
+import de.redoxi.ruste.rust.ImplMethod;
 import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
@@ -45,6 +47,8 @@ import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
 import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
+import de.redoxi.ruste.rust.TraitItem;
+import de.redoxi.ruste.rust.TraitMethod;
 import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.TypeItem;
@@ -167,6 +171,19 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.GENERIC_PARAM_DECL:
 				if(context == grammarAccess.getGenericParamDeclRule()) {
 					sequence_GenericParamDecl(context, (GenericParamDecl) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.IMPL_ITEM:
+				if(context == grammarAccess.getImplItemRule() ||
+				   context == grammarAccess.getItemRule()) {
+					sequence_ImplItem(context, (ImplItem) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.IMPL_METHOD:
+				if(context == grammarAccess.getImplMethodRule()) {
+					sequence_ImplMethod(context, (ImplMethod) semanticObject); 
 					return; 
 				}
 				else break;
@@ -357,6 +374,19 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.TRAIT_ITEM:
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getTraitItemRule()) {
+					sequence_TraitItem(context, (TraitItem) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.TRAIT_METHOD:
+				if(context == grammarAccess.getTraitMethodRule()) {
+					sequence_TraitMethod(context, (TraitMethod) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.TUPLE_TYPE:
 				if(context == grammarAccess.getTupleTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
@@ -540,6 +570,31 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT (bounds+=IDENT bounds+=IDENT)?)
 	 */
 	protected void sequence_GenericParamDecl(EObject context, GenericParamDecl semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (trait=IDENT? struct=IDENT methods+=ImplMethod*)
+	 */
+	protected void sequence_ImplItem(EObject context, ImplItem semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (unsafe?='unsafe' | extern?='extern')? 
+	 *         ident=IDENT 
+	 *         (params+=GenericParamDecl params+=GenericParamDecl*)? 
+	 *         (args+=Arg args+=Arg*)? 
+	 *         returnType=Type? 
+	 *         body=Block
+	 *     )
+	 */
+	protected void sequence_ImplMethod(EObject context, ImplMethod semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -899,6 +954,32 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
 	 */
 	protected void sequence_StructVariant(EObject context, StructVariant semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? methods+=TraitMethod*)
+	 */
+	protected void sequence_TraitItem(EObject context, TraitItem semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (unsafe?='unsafe' | extern?='extern')? 
+	 *         vis=Visibility? 
+	 *         ident=IDENT 
+	 *         (params+=GenericParamDecl params+=GenericParamDecl*)? 
+	 *         (args+=Arg args+=Arg*)? 
+	 *         returnType=Type? 
+	 *         body=Block?
+	 *     )
+	 */
+	protected void sequence_TraitMethod(EObject context, TraitMethod semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
