@@ -14,6 +14,9 @@ import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprLiteral;
+import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -51,6 +54,7 @@ import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StaticItem;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
@@ -215,6 +219,34 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass foreignFnEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass staticItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprRValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1315,6 +1347,96 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getStaticItem()
+  {
+    return staticItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStaticItem_Mutable()
+  {
+    return (EAttribute)staticItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStaticItem_Ident()
+  {
+    return (EAttribute)staticItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStaticItem_Type()
+  {
+    return (EReference)staticItemEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStaticItem_Expr()
+  {
+    return (EReference)staticItemEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpr()
+  {
+    return exprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprRValue()
+  {
+    return exprRValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprLiteral()
+  {
+    return exprLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprLiteral_Literal()
+  {
+    return (EReference)exprLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -2282,6 +2404,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(foreignFnEClass, FOREIGN_FN__ARGS);
     createEReference(foreignFnEClass, FOREIGN_FN__RETURN_TYPE);
 
+    staticItemEClass = createEClass(STATIC_ITEM);
+    createEAttribute(staticItemEClass, STATIC_ITEM__MUTABLE);
+    createEAttribute(staticItemEClass, STATIC_ITEM__IDENT);
+    createEReference(staticItemEClass, STATIC_ITEM__TYPE);
+    createEReference(staticItemEClass, STATIC_ITEM__EXPR);
+
+    exprEClass = createEClass(EXPR);
+
+    exprRValueEClass = createEClass(EXPR_RVALUE);
+
+    exprLiteralEClass = createEClass(EXPR_LITERAL);
+    createEReference(exprLiteralEClass, EXPR_LITERAL__LITERAL);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -2451,6 +2586,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     traitItemEClass.getESuperTypes().add(this.getItem());
     implItemEClass.getESuperTypes().add(this.getItem());
     externBlockEClass.getESuperTypes().add(this.getItem());
+    staticItemEClass.getESuperTypes().add(this.getItem());
+    exprRValueEClass.getESuperTypes().add(this.getExpr());
+    exprLiteralEClass.getESuperTypes().add(this.getExprRValue());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2576,6 +2714,19 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getForeignFn_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getForeignFn_Args(), this.getArg(), null, "args", null, 0, -1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getForeignFn_ReturnType(), this.getType(), null, "returnType", null, 0, 1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(staticItemEClass, StaticItem.class, "StaticItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStaticItem_Mutable(), ecorePackage.getEBoolean(), "mutable", null, 0, 1, StaticItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStaticItem_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StaticItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStaticItem_Type(), this.getType(), null, "type", null, 0, 1, StaticItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStaticItem_Expr(), this.getExpr(), null, "expr", null, 0, 1, StaticItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(exprRValueEClass, ExprRValue.class, "ExprRValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(exprLiteralEClass, ExprLiteral.class, "ExprLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

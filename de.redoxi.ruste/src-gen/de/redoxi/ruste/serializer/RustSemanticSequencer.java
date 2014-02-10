@@ -13,6 +13,7 @@ import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -44,6 +45,7 @@ import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
 import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.StaticItem;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
@@ -147,6 +149,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.ENUM_VARIANT:
 				if(context == grammarAccess.getEnumVariantRule()) {
 					sequence_EnumVariant(context, (EnumVariant) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_LITERAL:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLiteralRule() ||
+				   context == grammarAccess.getExprRValueRule()) {
+					sequence_ExprLiteral(context, (ExprLiteral) semanticObject); 
 					return; 
 				}
 				else break;
@@ -355,6 +365,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.STATIC_ITEM:
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getStaticItemRule()) {
+					sequence_StaticItem(context, (StaticItem) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.STRING_LIT:
 				if(context == grammarAccess.getLiteralRule() ||
 				   context == grammarAccess.getStringLitRule()) {
@@ -559,6 +576,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_EnumVariant(EObject context, EnumVariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     literal=Literal
+	 */
+	protected void sequence_ExprLiteral(EObject context, ExprLiteral semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_LITERAL__LITERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_LITERAL__LITERAL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprLiteralAccess().getLiteralLiteralParserRuleCall_0(), semanticObject.getLiteral());
+		feeder.finish();
 	}
 	
 	
@@ -935,6 +968,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {UnitType}
 	 */
 	protected void sequence_PrimitiveType(EObject context, UnitType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (mutable?=MUT_KEYWORD ident=IDENT type=Type? expr=Expr)
+	 */
+	protected void sequence_StaticItem(EObject context, StaticItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

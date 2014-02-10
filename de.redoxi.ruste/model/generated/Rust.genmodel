@@ -102,6 +102,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/returnType"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//StaticItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StaticItem/mutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StaticItem/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StaticItem/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StaticItem/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Expr"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprRValue"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprLiteral">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLiteral/literal"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>

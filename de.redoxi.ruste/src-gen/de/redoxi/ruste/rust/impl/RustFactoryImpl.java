@@ -84,6 +84,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.IMPL_METHOD: return createImplMethod();
       case RustPackage.EXTERN_BLOCK: return createExternBlock();
       case RustPackage.FOREIGN_FN: return createForeignFn();
+      case RustPackage.STATIC_ITEM: return createStaticItem();
+      case RustPackage.EXPR: return createExpr();
+      case RustPackage.EXPR_RVALUE: return createExprRValue();
+      case RustPackage.EXPR_LITERAL: return createExprLiteral();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -372,6 +376,50 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ForeignFnImpl foreignFn = new ForeignFnImpl();
     return foreignFn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StaticItem createStaticItem()
+  {
+    StaticItemImpl staticItem = new StaticItemImpl();
+    return staticItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr createExpr()
+  {
+    ExprImpl expr = new ExprImpl();
+    return expr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprRValue createExprRValue()
+  {
+    ExprRValueImpl exprRValue = new ExprRValueImpl();
+    return exprRValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprLiteral createExprLiteral()
+  {
+    ExprLiteralImpl exprLiteral = new ExprLiteralImpl();
+    return exprLiteral;
   }
 
   /**

@@ -194,6 +194,42 @@ public interface RustFactory extends EFactory
   ForeignFn createForeignFn();
 
   /**
+   * Returns a new object of class '<em>Static Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Static Item</em>'.
+   * @generated
+   */
+  StaticItem createStaticItem();
+
+  /**
+   * Returns a new object of class '<em>Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr</em>'.
+   * @generated
+   */
+  Expr createExpr();
+
+  /**
+   * Returns a new object of class '<em>Expr RValue</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr RValue</em>'.
+   * @generated
+   */
+  ExprRValue createExprRValue();
+
+  /**
+   * Returns a new object of class '<em>Expr Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Literal</em>'.
+   * @generated
+   */
+  ExprLiteral createExprLiteral();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

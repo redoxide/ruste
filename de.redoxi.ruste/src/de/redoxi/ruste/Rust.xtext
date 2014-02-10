@@ -37,7 +37,7 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock // | StaticItem
+	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
 ;
 
 // A module declaration item
@@ -90,6 +90,22 @@ ExternBlock:
 
 ForeignFn:
 	"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";"
+;
+
+StaticItem:
+	"static" mutable?=MUT_KEYWORD ident=IDENT (":" type=Type)? "=" expr=Expr ";"
+;
+
+Expr:
+	ExprRValue
+;
+
+ExprRValue:
+	ExprLiteral
+;
+
+ExprLiteral:
+	literal=Literal
 ;
 
 Block:

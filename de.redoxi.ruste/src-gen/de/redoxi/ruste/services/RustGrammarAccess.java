@@ -226,15 +226,14 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTraitItemParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cImplItemParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cExternBlockParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cStaticItemParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//// Items within a module or crate
 		//Item:
-		//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
-		//	ExternBlock;
+		//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem;
 		public ParserRule getRule() { return rule; }
 
-		//ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
-		//ExternBlock
+		//ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ModItem
@@ -258,9 +257,11 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//ImplItem
 		public RuleCall getImplItemParserRuleCall_6() { return cImplItemParserRuleCall_6; }
 
-		//// | StaticItem
 		//ExternBlock
 		public RuleCall getExternBlockParserRuleCall_7() { return cExternBlockParserRuleCall_7; }
+
+		//StaticItem
+		public RuleCall getStaticItemParserRuleCall_8() { return cStaticItemParserRuleCall_8; }
 	}
 
 	public class ModItemElements extends AbstractParserRuleElementFinder {
@@ -1398,6 +1399,110 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+	}
+
+	public class StaticItemElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StaticItem");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cStaticKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cMutableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMutableMUT_KEYWORDTerminalRuleCall_1_0 = (RuleCall)cMutableAssignment_1.eContents().get(0);
+		private final Assignment cIdentAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIdentIDENTTerminalRuleCall_2_0 = (RuleCall)cIdentAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cTypeTypeParserRuleCall_3_1_0 = (RuleCall)cTypeAssignment_3_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cExprAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cExprExprParserRuleCall_5_0 = (RuleCall)cExprAssignment_5.eContents().get(0);
+		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//StaticItem:
+		//	"static" mutable?=MUT_KEYWORD ident=IDENT (":" type=Type)? "=" expr=Expr ";";
+		public ParserRule getRule() { return rule; }
+
+		//"static" mutable?=MUT_KEYWORD ident=IDENT (":" type=Type)? "=" expr=Expr ";"
+		public Group getGroup() { return cGroup; }
+
+		//"static"
+		public Keyword getStaticKeyword_0() { return cStaticKeyword_0; }
+
+		//mutable?=MUT_KEYWORD
+		public Assignment getMutableAssignment_1() { return cMutableAssignment_1; }
+
+		//MUT_KEYWORD
+		public RuleCall getMutableMUT_KEYWORDTerminalRuleCall_1_0() { return cMutableMUT_KEYWORDTerminalRuleCall_1_0; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_2() { return cIdentAssignment_2; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_2_0() { return cIdentIDENTTerminalRuleCall_2_0; }
+
+		//(":" type=Type)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//":"
+		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
+
+		//type=Type
+		public Assignment getTypeAssignment_3_1() { return cTypeAssignment_3_1; }
+
+		//Type
+		public RuleCall getTypeTypeParserRuleCall_3_1_0() { return cTypeTypeParserRuleCall_3_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_5() { return cExprAssignment_5; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_5_0() { return cExprExprParserRuleCall_5_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+	}
+
+	public class ExprElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expr");
+		private final RuleCall cExprRValueParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Expr:
+		//	ExprRValue;
+		public ParserRule getRule() { return rule; }
+
+		//ExprRValue
+		public RuleCall getExprRValueParserRuleCall() { return cExprRValueParserRuleCall; }
+	}
+
+	public class ExprRValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprRValue");
+		private final RuleCall cExprLiteralParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ExprRValue:
+		//	ExprLiteral;
+		public ParserRule getRule() { return rule; }
+
+		//ExprLiteral
+		public RuleCall getExprLiteralParserRuleCall() { return cExprLiteralParserRuleCall; }
+	}
+
+	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprLiteral");
+		private final Assignment cLiteralAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cLiteralLiteralParserRuleCall_0 = (RuleCall)cLiteralAssignment.eContents().get(0);
+		
+		//ExprLiteral:
+		//	literal=Literal;
+		public ParserRule getRule() { return rule; }
+
+		//literal=Literal
+		public Assignment getLiteralAssignment() { return cLiteralAssignment; }
+
+		//Literal
+		public RuleCall getLiteralLiteralParserRuleCall_0() { return cLiteralLiteralParserRuleCall_0; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -2905,6 +3010,10 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ImplMethodElements pImplMethod;
 	private ExternBlockElements pExternBlock;
 	private ForeignFnElements pForeignFn;
+	private StaticItemElements pStaticItem;
+	private ExprElements pExpr;
+	private ExprRValueElements pExprRValue;
+	private ExprLiteralElements pExprLiteral;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -3081,8 +3190,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Items within a module or crate
 	//Item:
-	//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
-	//	ExternBlock;
+	//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem;
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
 	}
@@ -3219,6 +3327,46 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getForeignFnRule() {
 		return getForeignFnAccess().getRule();
+	}
+
+	//StaticItem:
+	//	"static" mutable?=MUT_KEYWORD ident=IDENT (":" type=Type)? "=" expr=Expr ";";
+	public StaticItemElements getStaticItemAccess() {
+		return (pStaticItem != null) ? pStaticItem : (pStaticItem = new StaticItemElements());
+	}
+	
+	public ParserRule getStaticItemRule() {
+		return getStaticItemAccess().getRule();
+	}
+
+	//Expr:
+	//	ExprRValue;
+	public ExprElements getExprAccess() {
+		return (pExpr != null) ? pExpr : (pExpr = new ExprElements());
+	}
+	
+	public ParserRule getExprRule() {
+		return getExprAccess().getRule();
+	}
+
+	//ExprRValue:
+	//	ExprLiteral;
+	public ExprRValueElements getExprRValueAccess() {
+		return (pExprRValue != null) ? pExprRValue : (pExprRValue = new ExprRValueElements());
+	}
+	
+	public ParserRule getExprRValueRule() {
+		return getExprRValueAccess().getRule();
+	}
+
+	//ExprLiteral:
+	//	literal=Literal;
+	public ExprLiteralElements getExprLiteralAccess() {
+		return (pExprLiteral != null) ? pExprLiteral : (pExprLiteral = new ExprLiteralElements());
+	}
+	
+	public ParserRule getExprLiteralRule() {
+		return getExprLiteralAccess().getRule();
 	}
 
 	//Block:

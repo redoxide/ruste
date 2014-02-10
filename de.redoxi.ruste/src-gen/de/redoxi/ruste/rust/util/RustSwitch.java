@@ -215,6 +215,38 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.STATIC_ITEM:
+      {
+        StaticItem staticItem = (StaticItem)theEObject;
+        T result = caseStaticItem(staticItem);
+        if (result == null) result = caseItem(staticItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR:
+      {
+        Expr expr = (Expr)theEObject;
+        T result = caseExpr(expr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_RVALUE:
+      {
+        ExprRValue exprRValue = (ExprRValue)theEObject;
+        T result = caseExprRValue(exprRValue);
+        if (result == null) result = caseExpr(exprRValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_LITERAL:
+      {
+        ExprLiteral exprLiteral = (ExprLiteral)theEObject;
+        T result = caseExprLiteral(exprLiteral);
+        if (result == null) result = caseExprRValue(exprLiteral);
+        if (result == null) result = caseExpr(exprLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -854,6 +886,70 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseForeignFn(ForeignFn object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Static Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Static Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStaticItem(StaticItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpr(Expr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr RValue</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr RValue</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprRValue(ExprRValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprLiteral(ExprLiteral object)
   {
     return null;
   }
