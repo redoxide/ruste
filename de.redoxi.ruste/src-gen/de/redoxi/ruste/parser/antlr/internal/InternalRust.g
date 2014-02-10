@@ -2406,9 +2406,9 @@ ruleExprRValue returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getExprRValueAccess().getExprLiteralParserRuleCall()); 
+        newCompositeNode(grammarAccess.getExprRValueAccess().getExprLiteralParserRuleCall_0()); 
     }
     this_ExprLiteral_0=ruleExprLiteral
     { 
@@ -2416,6 +2416,16 @@ ruleExprRValue returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprRValueAccess().getExprTupleParserRuleCall_1()); 
+    }
+    this_ExprTuple_1=ruleExprTuple
+    { 
+        $current = $this_ExprTuple_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -2493,6 +2503,57 @@ ruleExprPath returns [EObject current=null]
 	    }
 
 )
+)
+;
+
+
+
+
+
+// Entry rule entryRuleExprTuple
+entryRuleExprTuple returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprTupleRule()); }
+	 iv_ruleExprTuple=ruleExprTuple 
+	 { $current=$iv_ruleExprTuple.current; } 
+	 EOF 
+;
+
+// Rule ExprTuple
+ruleExprTuple returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='(' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getExprTupleAccess().getLeftParenthesisKeyword_0());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprTupleAccess().getExprsExprParserRuleCall_1_0_0()); 
+	    }
+		lv_exprs_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprTupleRule());
+	        }
+       		add(
+       			$current, 
+       			"exprs",
+        		lv_exprs_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2=',' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getExprTupleAccess().getCommaKeyword_1_1());
+    }
+)+	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getExprTupleAccess().getRightParenthesisKeyword_2());
+    }
 )
 ;
 

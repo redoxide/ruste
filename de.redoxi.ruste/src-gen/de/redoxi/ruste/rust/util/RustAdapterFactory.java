@@ -200,6 +200,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprPathAdapter();
       }
       @Override
+      public Adapter caseExprTuple(ExprTuple object)
+      {
+        return createExprTupleAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -802,6 +807,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprPathAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprTuple <em>Expr Tuple</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprTuple
+   * @generated
+   */
+  public Adapter createExprTupleAdapter()
   {
     return null;
   }

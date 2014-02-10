@@ -19,6 +19,7 @@ import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
+import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -263,6 +264,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprPathEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprTupleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1483,6 +1491,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprTuple()
+  {
+    return exprTupleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprTuple_Exprs()
+  {
+    return (EReference)exprTupleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -2468,6 +2496,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprPathEClass = createEClass(EXPR_PATH);
     createEReference(exprPathEClass, EXPR_PATH__PATH);
 
+    exprTupleEClass = createEClass(EXPR_TUPLE);
+    createEReference(exprTupleEClass, EXPR_TUPLE__EXPRS);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -2642,6 +2673,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprRValueEClass.getESuperTypes().add(this.getExpr());
     exprLiteralEClass.getESuperTypes().add(this.getExprRValue());
     exprPathEClass.getESuperTypes().add(this.getExprLValue());
+    exprTupleEClass.getESuperTypes().add(this.getExprRValue());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2785,6 +2817,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprPath_Path(), this.getPath(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprTuple_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

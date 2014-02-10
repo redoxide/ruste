@@ -1499,14 +1499,22 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExprRValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprRValue");
-		private final RuleCall cExprLiteralParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cExprLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExprTupleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//ExprRValue:
-		//	ExprLiteral;
+		//	ExprLiteral | ExprTuple;
 		public ParserRule getRule() { return rule; }
 
+		//ExprLiteral | ExprTuple
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//ExprLiteral
-		public RuleCall getExprLiteralParserRuleCall() { return cExprLiteralParserRuleCall; }
+		public RuleCall getExprLiteralParserRuleCall_0() { return cExprLiteralParserRuleCall_0; }
+
+		//ExprTuple
+		public RuleCall getExprTupleParserRuleCall_1() { return cExprTupleParserRuleCall_1; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -1539,6 +1547,42 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Path
 		public RuleCall getPathPathParserRuleCall_0() { return cPathPathParserRuleCall_0; }
+	}
+
+	public class ExprTupleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprTuple");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cExprsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cExprsExprParserRuleCall_1_0_0 = (RuleCall)cExprsAssignment_1_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//ExprTuple:
+		//	"(" (exprs+=Expr ",")+ ")";
+		public ParserRule getRule() { return rule; }
+
+		//"(" (exprs+=Expr ",")+ ")"
+		public Group getGroup() { return cGroup; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+
+		//(exprs+=Expr ",")+
+		public Group getGroup_1() { return cGroup_1; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_1_0() { return cExprsAssignment_1_0; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_1_0_0() { return cExprsExprParserRuleCall_1_0_0; }
+
+		//","
+		public Keyword getCommaKeyword_1_1() { return cCommaKeyword_1_1; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -3052,6 +3096,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprRValueElements pExprRValue;
 	private ExprLiteralElements pExprLiteral;
 	private ExprPathElements pExprPath;
+	private ExprTupleElements pExprTuple;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -3398,7 +3443,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprRValue:
-	//	ExprLiteral;
+	//	ExprLiteral | ExprTuple;
 	public ExprRValueElements getExprRValueAccess() {
 		return (pExprRValue != null) ? pExprRValue : (pExprRValue = new ExprRValueElements());
 	}
@@ -3425,6 +3470,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprPathRule() {
 		return getExprPathAccess().getRule();
+	}
+
+	//ExprTuple:
+	//	"(" (exprs+=Expr ",")+ ")";
+	public ExprTupleElements getExprTupleAccess() {
+		return (pExprTuple != null) ? pExprTuple : (pExprTuple = new ExprTupleElements());
+	}
+	
+	public ParserRule getExprTupleRule() {
+		return getExprTupleAccess().getRule();
 	}
 
 	//Block:

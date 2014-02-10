@@ -106,7 +106,8 @@ ExprLValue:
 ;
 
 ExprRValue:
-	ExprLiteral
+	ExprLiteral |
+	ExprTuple
 ;
 
 ExprLiteral:
@@ -115,6 +116,10 @@ ExprLiteral:
 
 ExprPath:
 	path=Path
+;
+
+ExprTuple:
+	'(' (exprs+=Expr ',')+ ')'
 ;
 
 Block:
