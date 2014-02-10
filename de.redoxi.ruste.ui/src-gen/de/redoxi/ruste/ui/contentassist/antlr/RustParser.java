@@ -47,6 +47,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprAccess().getAlternatives(), "rule__Expr__Alternatives");
 					put(grammarAccess.getExprRValueAccess().getAlternatives(), "rule__ExprRValue__Alternatives");
 					put(grammarAccess.getExprPathAccess().getAlternatives_1(), "rule__ExprPath__Alternatives_1");
+					put(grammarAccess.getExprVecAccess().getAlternatives_2_2(), "rule__ExprVec__Alternatives_2_2");
 					put(grammarAccess.getPatAccess().getAlternatives(), "rule__Pat__Alternatives");
 					put(grammarAccess.getPatRangeAccess().getAlternatives(), "rule__PatRange__Alternatives");
 					put(grammarAccess.getPatEnumAccess().getAlternatives_1(), "rule__PatEnum__Alternatives_1");
@@ -123,6 +124,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprStructAccess().getGroup(), "rule__ExprStruct__Group__0");
 					put(grammarAccess.getExprStructAccess().getGroup_2(), "rule__ExprStruct__Group_2__0");
 					put(grammarAccess.getExprStructAccess().getGroup_3(), "rule__ExprStruct__Group_3__0");
+					put(grammarAccess.getExprVecAccess().getGroup(), "rule__ExprVec__Group__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2(), "rule__ExprVec__Group_2__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_0(), "rule__ExprVec__Group_2_2_0__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_1(), "rule__ExprVec__Group_2_2_1__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_1_1(), "rule__ExprVec__Group_2_2_1_1__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -261,6 +267,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprStructAccess().getFieldsAssignment_1(), "rule__ExprStruct__FieldsAssignment_1");
 					put(grammarAccess.getExprStructAccess().getFieldsAssignment_2_1(), "rule__ExprStruct__FieldsAssignment_2_1");
 					put(grammarAccess.getExprStructAccess().getBaseExprAssignment_3_1(), "rule__ExprStruct__BaseExprAssignment_3_1");
+					put(grammarAccess.getExprVecAccess().getMutableAssignment_1(), "rule__ExprVec__MutableAssignment_1");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_0(), "rule__ExprVec__ExprsAssignment_2_0");
+					put(grammarAccess.getExprVecAccess().getLenExprAssignment_2_2_0_1(), "rule__ExprVec__LenExprAssignment_2_2_0_1");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_0(), "rule__ExprVec__ExprsAssignment_2_2_1_0");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_1_1(), "rule__ExprVec__ExprsAssignment_2_2_1_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

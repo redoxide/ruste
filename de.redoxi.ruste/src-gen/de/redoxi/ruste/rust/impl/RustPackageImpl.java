@@ -21,6 +21,7 @@ import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprTuple;
+import de.redoxi.ruste.rust.ExprVec;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -279,6 +280,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprStructEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprVecEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1569,6 +1577,46 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprVec()
+  {
+    return exprVecEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprVec_Mutable()
+  {
+    return (EAttribute)exprVecEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprVec_Exprs()
+  {
+    return (EReference)exprVecEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprVec_LenExpr()
+  {
+    return (EReference)exprVecEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -2563,6 +2611,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprStructEClass, EXPR_STRUCT__FIELDS);
     createEReference(exprStructEClass, EXPR_STRUCT__BASE_EXPR);
 
+    exprVecEClass = createEClass(EXPR_VEC);
+    createEAttribute(exprVecEClass, EXPR_VEC__MUTABLE);
+    createEReference(exprVecEClass, EXPR_VEC__EXPRS);
+    createEReference(exprVecEClass, EXPR_VEC__LEN_EXPR);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -2741,6 +2794,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprTupleEClass.getESuperTypes().add(this.getExprPath());
     exprStructEClass.getESuperTypes().add(this.getExprRValue());
     exprStructEClass.getESuperTypes().add(this.getExprPath());
+    exprVecEClass.getESuperTypes().add(this.getExprRValue());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2893,6 +2947,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getExprStruct_Struct(), this.getExprStruct(), null, "struct", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprStruct_Fields(), this.getStructField(), null, "fields", null, 0, -1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprStruct_BaseExpr(), this.getExpr(), null, "baseExpr", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprVecEClass, ExprVec.class, "ExprVec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExprVec_Mutable(), ecorePackage.getEBoolean(), "mutable", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprVec_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprVec_LenExpr(), this.getExpr(), null, "lenExpr", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -286,6 +286,15 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_VEC:
+      {
+        ExprVec exprVec = (ExprVec)theEObject;
+        T result = caseExprVec(exprVec);
+        if (result == null) result = caseExprRValue(exprVec);
+        if (result == null) result = caseExpr(exprVec);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -1053,6 +1062,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprStruct(ExprStruct object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Vec</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Vec</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprVec(ExprVec object)
   {
     return null;
   }

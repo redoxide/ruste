@@ -1192,6 +1192,52 @@ public interface RustPackage extends EPackage
   int EXPR_STRUCT_FEATURE_COUNT = EXPR_RVALUE_FEATURE_COUNT + 4;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprVecImpl <em>Expr Vec</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprVecImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprVec()
+   * @generated
+   */
+  int EXPR_VEC = 27;
+
+  /**
+   * The feature id for the '<em><b>Mutable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC__MUTABLE = EXPR_RVALUE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC__EXPRS = EXPR_RVALUE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Len Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC__LEN_EXPR = EXPR_RVALUE_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Expr Vec</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC_FEATURE_COUNT = EXPR_RVALUE_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1199,7 +1245,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 27;
+  int BLOCK = 28;
 
   /**
    * The number of structural features of the '<em>Block</em>' class.
@@ -1218,7 +1264,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
    * @generated
    */
-  int GENERIC_PARAM_DECL = 28;
+  int GENERIC_PARAM_DECL = 29;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1255,7 +1301,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
    * @generated
    */
-  int ARG = 29;
+  int ARG = 30;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -1292,7 +1338,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
    * @generated
    */
-  int PAT = 30;
+  int PAT = 31;
 
   /**
    * The number of structural features of the '<em>Pat</em>' class.
@@ -1311,7 +1357,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatWildcard()
    * @generated
    */
-  int PAT_WILDCARD = 31;
+  int PAT_WILDCARD = 32;
 
   /**
    * The number of structural features of the '<em>Pat Wildcard</em>' class.
@@ -1330,7 +1376,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatIdent()
    * @generated
    */
-  int PAT_IDENT = 32;
+  int PAT_IDENT = 33;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -1367,7 +1413,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBoxed()
    * @generated
    */
-  int PAT_BOXED = 33;
+  int PAT_BOXED = 34;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1395,7 +1441,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatOwned()
    * @generated
    */
-  int PAT_OWNED = 34;
+  int PAT_OWNED = 35;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1423,7 +1469,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBorrowed()
    * @generated
    */
-  int PAT_BORROWED = 35;
+  int PAT_BORROWED = 36;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1451,7 +1497,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTuple()
    * @generated
    */
-  int PAT_TUPLE = 36;
+  int PAT_TUPLE = 37;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -1479,7 +1525,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatVector()
    * @generated
    */
-  int PAT_VECTOR = 37;
+  int PAT_VECTOR = 38;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -1507,7 +1553,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatLiteral()
    * @generated
    */
-  int PAT_LITERAL = 38;
+  int PAT_LITERAL = 39;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -1535,7 +1581,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatRange()
    * @generated
    */
-  int PAT_RANGE = 39;
+  int PAT_RANGE = 40;
 
   /**
    * The number of structural features of the '<em>Pat Range</em>' class.
@@ -1554,7 +1600,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatCharRange()
    * @generated
    */
-  int PAT_CHAR_RANGE = 40;
+  int PAT_CHAR_RANGE = 41;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -1591,7 +1637,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatNumberRange()
    * @generated
    */
-  int PAT_NUMBER_RANGE = 41;
+  int PAT_NUMBER_RANGE = 42;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -1628,7 +1674,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatEnum()
    * @generated
    */
-  int PAT_ENUM = 42;
+  int PAT_ENUM = 43;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1656,7 +1702,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
    * @generated
    */
-  int FIELD_PAT = 43;
+  int FIELD_PAT = 44;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1693,7 +1739,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPath()
    * @generated
    */
-  int PATH = 44;
+  int PATH = 45;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -1739,7 +1785,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 45;
+  int TYPE = 46;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -1758,7 +1804,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 46;
+  int PRIMITIVE_TYPE = 47;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -1777,7 +1823,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
    * @generated
    */
-  int TUPLE_TYPE = 47;
+  int TUPLE_TYPE = 48;
 
   /**
    * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -1805,7 +1851,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
    * @generated
    */
-  int STRUCT_TYPE = 48;
+  int STRUCT_TYPE = 49;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1851,7 +1897,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 49;
+  int BOXED_POINTER = 50;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1879,7 +1925,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 50;
+  int OWNED_POINTER = 51;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1907,7 +1953,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 51;
+  int BORROWED_POINTER = 52;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1935,7 +1981,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 52;
+  int STRUCT_FIELD = 53;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -1981,7 +2027,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
    * @generated
    */
-  int ENUM_TYPE = 53;
+  int ENUM_TYPE = 54;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2027,7 +2073,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 54;
+  int VARIANT = 55;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2055,7 +2101,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 55;
+  int STRUCT_VARIANT = 56;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2101,7 +2147,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 56;
+  int TUPLE_VARIANT = 57;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2138,7 +2184,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 57;
+  int UNIT_VARIANT = 58;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2166,7 +2212,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 59;
+  int LITERAL = 60;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2194,7 +2240,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 58;
+  int STRING_LIT = 59;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2222,7 +2268,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 60;
+  int NUMBER_LIT = 61;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2250,7 +2296,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 61;
+  int CHAR_LIT = 62;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2278,7 +2324,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
    * @generated
    */
-  int PAT_TUPLE_ENUM = 62;
+  int PAT_TUPLE_ENUM = 63;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -2315,7 +2361,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
    * @generated
    */
-  int PAT_STRUCT_ENUM = 63;
+  int PAT_STRUCT_ENUM = 64;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -2352,7 +2398,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 64;
+  int INT_TYPE = 65;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -2371,7 +2417,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 65;
+  int FLOAT_TYPE = 66;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -2390,7 +2436,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 66;
+  int BOOL_TYPE = 67;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -2409,7 +2455,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 67;
+  int MACHINE_TYPE = 68;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -2428,7 +2474,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 68;
+  int UNIT_TYPE = 69;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -2447,7 +2493,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 69;
+  int VISIBILITY = 70;
 
 
   /**
@@ -3434,6 +3480,49 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getExprStruct_BaseExpr();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprVec <em>Expr Vec</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Vec</em>'.
+   * @see de.redoxi.ruste.rust.ExprVec
+   * @generated
+   */
+  EClass getExprVec();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ExprVec#isMutable <em>Mutable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mutable</em>'.
+   * @see de.redoxi.ruste.rust.ExprVec#isMutable()
+   * @see #getExprVec()
+   * @generated
+   */
+  EAttribute getExprVec_Mutable();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprVec#getExprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprVec#getExprs()
+   * @see #getExprVec()
+   * @generated
+   */
+  EReference getExprVec_Exprs();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprVec#getLenExpr <em>Len Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Len Expr</em>'.
+   * @see de.redoxi.ruste.rust.ExprVec#getLenExpr()
+   * @see #getExprVec()
+   * @generated
+   */
+  EReference getExprVec_LenExpr();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
@@ -5139,6 +5228,40 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference EXPR_STRUCT__BASE_EXPR = eINSTANCE.getExprStruct_BaseExpr();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprVecImpl <em>Expr Vec</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprVecImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprVec()
+     * @generated
+     */
+    EClass EXPR_VEC = eINSTANCE.getExprVec();
+
+    /**
+     * The meta object literal for the '<em><b>Mutable</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_VEC__MUTABLE = eINSTANCE.getExprVec_Mutable();
+
+    /**
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_VEC__EXPRS = eINSTANCE.getExprVec_Exprs();
+
+    /**
+     * The meta object literal for the '<em><b>Len Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_VEC__LEN_EXPR = eINSTANCE.getExprVec_LenExpr();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.

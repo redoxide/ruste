@@ -108,7 +108,10 @@ ExprLValue:
 ExprRValue:
 	ExprLiteral |
 	ExprTuple |
-	ExprStruct
+	ExprStruct |
+	// TODO ExprField
+	// TODO ExprMethodCall
+	ExprVec
 ;
 
 ExprLiteral:
@@ -125,6 +128,10 @@ ExprTuple:
 
 ExprStruct:
 	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr = Expr)? "}"
+;
+
+ExprVec:
+	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
 ;
 
 Block:

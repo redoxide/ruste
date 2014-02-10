@@ -266,6 +266,15 @@ public interface RustFactory extends EFactory
   ExprStruct createExprStruct();
 
   /**
+   * Returns a new object of class '<em>Expr Vec</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Vec</em>'.
+   * @generated
+   */
+  ExprVec createExprVec();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

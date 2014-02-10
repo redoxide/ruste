@@ -17,6 +17,7 @@ import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprTuple;
+import de.redoxi.ruste.rust.ExprVec;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -202,6 +203,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else if(context == grammarAccess.getExprRule()) {
 					sequence_Expr_ExprPath_ExprTuple(context, (ExprTuple) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_VEC:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprVecRule()) {
+					sequence_ExprVec(context, (ExprVec) semanticObject); 
 					return; 
 				}
 				else break;
@@ -688,6 +697,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     exprs+=Expr+
 	 */
 	protected void sequence_ExprTuple(EObject context, ExprTuple semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (mutable?=MUT_KEYWORD (exprs+=Expr (lenExpr=Expr | (exprs+=Expr exprs+=Expr+)))?)
+	 */
+	protected void sequence_ExprVec(EObject context, ExprVec semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

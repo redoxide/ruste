@@ -210,6 +210,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprStructAdapter();
       }
       @Override
+      public Adapter caseExprVec(ExprVec object)
+      {
+        return createExprVecAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -842,6 +847,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprStructAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprVec <em>Expr Vec</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprVec
+   * @generated
+   */
+  public Adapter createExprVecAdapter()
   {
     return null;
   }

@@ -155,6 +155,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprVec" eSuperTypes="#//ExprRValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lenExpr" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenericParamDecl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
