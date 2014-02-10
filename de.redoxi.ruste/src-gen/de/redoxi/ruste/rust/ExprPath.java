@@ -2,6 +2,7 @@
  */
 package de.redoxi.ruste.rust;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +31,12 @@ public interface ExprPath extends ExprLValue
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Path</em>' containment reference.
-   * @see #setPath(Path)
+   * @see #setPath(EObject)
    * @see de.redoxi.ruste.rust.RustPackage#getExprPath_Path()
    * @model containment="true"
    * @generated
    */
-  Path getPath();
+  EObject getPath();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.ExprPath#getPath <em>Path</em>}' containment reference.
@@ -45,6 +46,6 @@ public interface ExprPath extends ExprLValue
    * @see #getPath()
    * @generated
    */
-  void setPath(Path value);
+  void setPath(EObject value);
 
 } // ExprPath

@@ -3,13 +3,13 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.ExprPath;
-import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -37,7 +37,7 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * @generated
    * @ordered
    */
-  protected Path path;
+  protected EObject path;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public Path getPath()
+  public EObject getPath()
   {
     return path;
   }
@@ -75,9 +75,9 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPath(Path newPath, NotificationChain msgs)
+  public NotificationChain basicSetPath(EObject newPath, NotificationChain msgs)
   {
-    Path oldPath = path;
+    EObject oldPath = path;
     path = newPath;
     if (eNotificationRequired())
     {
@@ -92,7 +92,7 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPath(Path newPath)
+  public void setPath(EObject newPath)
   {
     if (newPath != path)
     {
@@ -151,7 +151,7 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
     switch (featureID)
     {
       case RustPackage.EXPR_PATH__PATH:
-        setPath((Path)newValue);
+        setPath((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,7 +168,7 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
     switch (featureID)
     {
       case RustPackage.EXPR_PATH__PATH:
-        setPath((Path)null);
+        setPath((EObject)null);
         return;
     }
     super.eUnset(featureID);

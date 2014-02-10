@@ -91,6 +91,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
       case RustPackage.EXPR_PATH: return createExprPath();
       case RustPackage.EXPR_TUPLE: return createExprTuple();
+      case RustPackage.EXPR_STRUCT: return createExprStruct();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -456,6 +457,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprTupleImpl exprTuple = new ExprTupleImpl();
     return exprTuple;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprStruct createExprStruct()
+  {
+    ExprStructImpl exprStruct = new ExprStructImpl();
+    return exprStruct;
   }
 
   /**

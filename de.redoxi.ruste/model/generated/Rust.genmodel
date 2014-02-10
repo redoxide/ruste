@@ -118,7 +118,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPath/path"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprTuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprTuple/tuple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprTuple/exprs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprStruct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprStruct/struct"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprStruct/fields"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprStruct/baseExpr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">

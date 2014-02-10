@@ -1502,12 +1502,13 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cExprLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cExprTupleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExprStructParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ExprRValue:
-		//	ExprLiteral | ExprTuple;
+		//	ExprLiteral | ExprTuple | ExprStruct;
 		public ParserRule getRule() { return rule; }
 
-		//ExprLiteral | ExprTuple
+		//ExprLiteral | ExprTuple | ExprStruct
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1515,6 +1516,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExprTuple
 		public RuleCall getExprTupleParserRuleCall_1() { return cExprTupleParserRuleCall_1; }
+
+		//ExprStruct
+		public RuleCall getExprStructParserRuleCall_2() { return cExprStructParserRuleCall_2; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -1535,18 +1539,58 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExprPathElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprPath");
-		private final Assignment cPathAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cPathPathParserRuleCall_0 = (RuleCall)cPathAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathPathParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Action cExprStructPathAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Assignment cStructAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cStructExprStructParserRuleCall_1_0_1_0 = (RuleCall)cStructAssignment_1_0_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Action cExprTuplePathAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
+		private final Assignment cTupleAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cTupleExprTupleParserRuleCall_1_1_1_0 = (RuleCall)cTupleAssignment_1_1_1.eContents().get(0);
 		
 		//ExprPath:
-		//	path=Path;
+		//	path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?;
 		public ParserRule getRule() { return rule; }
 
+		//path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
+		public Group getGroup() { return cGroup; }
+
 		//path=Path
-		public Assignment getPathAssignment() { return cPathAssignment; }
+		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
 
 		//Path
-		public RuleCall getPathPathParserRuleCall_0() { return cPathPathParserRuleCall_0; }
+		public RuleCall getPathPathParserRuleCall_0_0() { return cPathPathParserRuleCall_0_0; }
+
+		//({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//{ExprStruct.path=current} struct=ExprStruct
+		public Group getGroup_1_0() { return cGroup_1_0; }
+
+		//{ExprStruct.path=current}
+		public Action getExprStructPathAction_1_0_0() { return cExprStructPathAction_1_0_0; }
+
+		//struct=ExprStruct
+		public Assignment getStructAssignment_1_0_1() { return cStructAssignment_1_0_1; }
+
+		//ExprStruct
+		public RuleCall getStructExprStructParserRuleCall_1_0_1_0() { return cStructExprStructParserRuleCall_1_0_1_0; }
+
+		//{ExprTuple.path=current} tuple=ExprTuple
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//{ExprTuple.path=current}
+		public Action getExprTuplePathAction_1_1_0() { return cExprTuplePathAction_1_1_0; }
+
+		//tuple=ExprTuple
+		public Assignment getTupleAssignment_1_1_1() { return cTupleAssignment_1_1_1; }
+
+		//ExprTuple
+		public RuleCall getTupleExprTupleParserRuleCall_1_1_1_0() { return cTupleExprTupleParserRuleCall_1_1_1_0; }
 	}
 
 	public class ExprTupleElements extends AbstractParserRuleElementFinder {
@@ -1583,6 +1627,66 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+
+	public class ExprStructElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprStruct");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cFieldsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cFieldsStructFieldParserRuleCall_1_0 = (RuleCall)cFieldsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cFieldsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cFieldsStructFieldParserRuleCall_2_1_0 = (RuleCall)cFieldsAssignment_2_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cFullStopFullStopKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cBaseExprAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cBaseExprExprParserRuleCall_3_1_0 = (RuleCall)cBaseExprAssignment_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ExprStruct:
+		//	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr=Expr)? "}";
+		public ParserRule getRule() { return rule; }
+
+		//"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr=Expr)? "}"
+		public Group getGroup() { return cGroup; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+
+		//fields+=StructField
+		public Assignment getFieldsAssignment_1() { return cFieldsAssignment_1; }
+
+		//StructField
+		public RuleCall getFieldsStructFieldParserRuleCall_1_0() { return cFieldsStructFieldParserRuleCall_1_0; }
+
+		//("," fields+=StructField)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//fields+=StructField
+		public Assignment getFieldsAssignment_2_1() { return cFieldsAssignment_2_1; }
+
+		//StructField
+		public RuleCall getFieldsStructFieldParserRuleCall_2_1_0() { return cFieldsStructFieldParserRuleCall_2_1_0; }
+
+		//(".." baseExpr=Expr)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_3_0() { return cFullStopFullStopKeyword_3_0; }
+
+		//baseExpr=Expr
+		public Assignment getBaseExprAssignment_3_1() { return cBaseExprAssignment_3_1; }
+
+		//Expr
+		public RuleCall getBaseExprExprParserRuleCall_3_1_0() { return cBaseExprExprParserRuleCall_3_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -3097,6 +3201,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprLiteralElements pExprLiteral;
 	private ExprPathElements pExprPath;
 	private ExprTupleElements pExprTuple;
+	private ExprStructElements pExprStruct;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -3443,7 +3548,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprRValue:
-	//	ExprLiteral | ExprTuple;
+	//	ExprLiteral | ExprTuple | ExprStruct;
 	public ExprRValueElements getExprRValueAccess() {
 		return (pExprRValue != null) ? pExprRValue : (pExprRValue = new ExprRValueElements());
 	}
@@ -3463,7 +3568,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprPath:
-	//	path=Path;
+	//	path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?;
 	public ExprPathElements getExprPathAccess() {
 		return (pExprPath != null) ? pExprPath : (pExprPath = new ExprPathElements());
 	}
@@ -3480,6 +3585,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprTupleRule() {
 		return getExprTupleAccess().getRule();
+	}
+
+	//ExprStruct:
+	//	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr=Expr)? "}";
+	public ExprStructElements getExprStructAccess() {
+		return (pExprStruct != null) ? pExprStruct : (pExprStruct = new ExprStructElements());
+	}
+	
+	public ParserRule getExprStructRule() {
+		return getExprStructAccess().getRule();
 	}
 
 	//Block:

@@ -107,7 +107,8 @@ ExprLValue:
 
 ExprRValue:
 	ExprLiteral |
-	ExprTuple
+	ExprTuple |
+	ExprStruct
 ;
 
 ExprLiteral:
@@ -115,11 +116,15 @@ ExprLiteral:
 ;
 
 ExprPath:
-	path=Path
+	path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
 ;
 
 ExprTuple:
 	'(' (exprs+=Expr ',')+ ')'
+;
+
+ExprStruct:
+	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr = Expr)? "}"
 ;
 
 Block:

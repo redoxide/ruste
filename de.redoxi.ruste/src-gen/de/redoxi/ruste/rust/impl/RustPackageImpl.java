@@ -19,6 +19,7 @@ import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
+import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
@@ -271,6 +272,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprTupleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprStructEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1501,9 +1509,59 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprTuple_Exprs()
+  public EReference getExprTuple_Tuple()
   {
     return (EReference)exprTupleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprTuple_Exprs()
+  {
+    return (EReference)exprTupleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprStruct()
+  {
+    return exprStructEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprStruct_Struct()
+  {
+    return (EReference)exprStructEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprStruct_Fields()
+  {
+    return (EReference)exprStructEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprStruct_BaseExpr()
+  {
+    return (EReference)exprStructEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2497,7 +2555,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprPathEClass, EXPR_PATH__PATH);
 
     exprTupleEClass = createEClass(EXPR_TUPLE);
+    createEReference(exprTupleEClass, EXPR_TUPLE__TUPLE);
     createEReference(exprTupleEClass, EXPR_TUPLE__EXPRS);
+
+    exprStructEClass = createEClass(EXPR_STRUCT);
+    createEReference(exprStructEClass, EXPR_STRUCT__STRUCT);
+    createEReference(exprStructEClass, EXPR_STRUCT__FIELDS);
+    createEReference(exprStructEClass, EXPR_STRUCT__BASE_EXPR);
 
     blockEClass = createEClass(BLOCK);
 
@@ -2674,6 +2738,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprLiteralEClass.getESuperTypes().add(this.getExprRValue());
     exprPathEClass.getESuperTypes().add(this.getExprLValue());
     exprTupleEClass.getESuperTypes().add(this.getExprRValue());
+    exprTupleEClass.getESuperTypes().add(this.getExprPath());
+    exprStructEClass.getESuperTypes().add(this.getExprRValue());
+    exprStructEClass.getESuperTypes().add(this.getExprPath());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2816,10 +2883,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprPath_Path(), this.getPath(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprPath_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprTuple_Tuple(), this.getExprTuple(), null, "tuple", null, 0, 1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprTuple_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprStructEClass, ExprStruct.class, "ExprStruct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprStruct_Struct(), this.getExprStruct(), null, "struct", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprStruct_Fields(), this.getStructField(), null, "fields", null, 0, -1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprStruct_BaseExpr(), this.getExpr(), null, "baseExpr", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

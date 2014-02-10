@@ -257,6 +257,15 @@ public interface RustFactory extends EFactory
   ExprTuple createExprTuple();
 
   /**
+   * Returns a new object of class '<em>Expr Struct</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Struct</em>'.
+   * @generated
+   */
+  ExprStruct createExprStruct();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

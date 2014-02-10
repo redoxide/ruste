@@ -269,7 +269,20 @@ public class RustSwitch<T> extends Switch<T>
         ExprTuple exprTuple = (ExprTuple)theEObject;
         T result = caseExprTuple(exprTuple);
         if (result == null) result = caseExprRValue(exprTuple);
+        if (result == null) result = caseExprPath(exprTuple);
+        if (result == null) result = caseExprLValue(exprTuple);
         if (result == null) result = caseExpr(exprTuple);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_STRUCT:
+      {
+        ExprStruct exprStruct = (ExprStruct)theEObject;
+        T result = caseExprStruct(exprStruct);
+        if (result == null) result = caseExprRValue(exprStruct);
+        if (result == null) result = caseExprPath(exprStruct);
+        if (result == null) result = caseExprLValue(exprStruct);
+        if (result == null) result = caseExpr(exprStruct);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1024,6 +1037,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprTuple(ExprTuple object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Struct</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Struct</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprStruct(ExprStruct object)
   {
     return null;
   }

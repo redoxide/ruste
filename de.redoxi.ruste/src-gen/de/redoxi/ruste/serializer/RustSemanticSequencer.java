@@ -15,6 +15,7 @@ import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
+import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
@@ -165,16 +166,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.EXPR_PATH:
 				if(context == grammarAccess.getExprRule() ||
 				   context == grammarAccess.getExprLValueRule() ||
-				   context == grammarAccess.getExprPathRule()) {
+				   context == grammarAccess.getExprPathRule() ||
+				   context == grammarAccess.getExprPathAccess().getExprStructPathAction_1_0_0() ||
+				   context == grammarAccess.getExprPathAccess().getExprTuplePathAction_1_1_0()) {
 					sequence_ExprPath(context, (ExprPath) semanticObject); 
 					return; 
 				}
 				else break;
+			case RustPackage.EXPR_STRUCT:
+				if(context == grammarAccess.getExprLValueRule() ||
+				   context == grammarAccess.getExprPathRule()) {
+					sequence_ExprPath(context, (ExprStruct) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprStructRule()) {
+					sequence_ExprStruct(context, (ExprStruct) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getExprRule()) {
+					sequence_Expr_ExprPath_ExprStruct(context, (ExprStruct) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.EXPR_TUPLE:
-				if(context == grammarAccess.getExprRule() ||
-				   context == grammarAccess.getExprRValueRule() ||
+				if(context == grammarAccess.getExprLValueRule() ||
+				   context == grammarAccess.getExprPathRule()) {
+					sequence_ExprPath(context, (ExprTuple) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprTupleRule()) {
 					sequence_ExprTuple(context, (ExprTuple) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getExprRule()) {
+					sequence_Expr_ExprPath_ExprTuple(context, (ExprTuple) semanticObject); 
 					return; 
 				}
 				else break;
@@ -624,8 +651,35 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getExprPathAccess().getPathPathParserRuleCall_0(), semanticObject.getPath());
+		feeder.accept(grammarAccess.getExprPathAccess().getPathPathParserRuleCall_0_0(), semanticObject.getPath());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path=ExprPath_ExprStruct_1_0_0 struct=ExprStruct)
+	 */
+	protected void sequence_ExprPath(EObject context, ExprStruct semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path=ExprPath_ExprTuple_1_1_0 tuple=ExprTuple)
+	 */
+	protected void sequence_ExprPath(EObject context, ExprTuple semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (fields+=StructField fields+=StructField* baseExpr=Expr?)
+	 */
+	protected void sequence_ExprStruct(EObject context, ExprStruct semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -634,6 +688,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     exprs+=Expr+
 	 */
 	protected void sequence_ExprTuple(EObject context, ExprTuple semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((path=ExprPath_ExprStruct_1_0_0 struct=ExprStruct) | (fields+=StructField fields+=StructField* baseExpr=Expr?))
+	 */
+	protected void sequence_Expr_ExprPath_ExprStruct(EObject context, ExprStruct semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((path=ExprPath_ExprTuple_1_1_0 tuple=ExprTuple) | exprs+=Expr+)
+	 */
+	protected void sequence_Expr_ExprPath_ExprTuple(EObject context, ExprTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
