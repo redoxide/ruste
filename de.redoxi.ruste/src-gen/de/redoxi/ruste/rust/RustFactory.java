@@ -212,6 +212,15 @@ public interface RustFactory extends EFactory
   Expr createExpr();
 
   /**
+   * Returns a new object of class '<em>Expr LValue</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr LValue</em>'.
+   * @generated
+   */
+  ExprLValue createExprLValue();
+
+  /**
    * Returns a new object of class '<em>Expr RValue</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -228,6 +237,15 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ExprLiteral createExprLiteral();
+
+  /**
+   * Returns a new object of class '<em>Expr Path</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Path</em>'.
+   * @generated
+   */
+  ExprPath createExprPath();
 
   /**
    * Returns a new object of class '<em>Block</em>'.

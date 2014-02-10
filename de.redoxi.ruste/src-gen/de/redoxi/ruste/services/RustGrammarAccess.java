@@ -1467,14 +1467,34 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expr");
-		private final RuleCall cExprRValueParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cExprLValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExprRValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Expr:
-		//	ExprRValue;
+		//	ExprLValue | ExprRValue;
 		public ParserRule getRule() { return rule; }
 
+		//ExprLValue | ExprRValue
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ExprLValue
+		public RuleCall getExprLValueParserRuleCall_0() { return cExprLValueParserRuleCall_0; }
+
 		//ExprRValue
-		public RuleCall getExprRValueParserRuleCall() { return cExprRValueParserRuleCall; }
+		public RuleCall getExprRValueParserRuleCall_1() { return cExprRValueParserRuleCall_1; }
+	}
+
+	public class ExprLValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprLValue");
+		private final RuleCall cExprPathParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ExprLValue:
+		//	ExprPath;
+		public ParserRule getRule() { return rule; }
+
+		//ExprPath
+		public RuleCall getExprPathParserRuleCall() { return cExprPathParserRuleCall; }
 	}
 
 	public class ExprRValueElements extends AbstractParserRuleElementFinder {
@@ -1503,6 +1523,22 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Literal
 		public RuleCall getLiteralLiteralParserRuleCall_0() { return cLiteralLiteralParserRuleCall_0; }
+	}
+
+	public class ExprPathElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprPath");
+		private final Assignment cPathAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cPathPathParserRuleCall_0 = (RuleCall)cPathAssignment.eContents().get(0);
+		
+		//ExprPath:
+		//	path=Path;
+		public ParserRule getRule() { return rule; }
+
+		//path=Path
+		public Assignment getPathAssignment() { return cPathAssignment; }
+
+		//Path
+		public RuleCall getPathPathParserRuleCall_0() { return cPathPathParserRuleCall_0; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -3012,8 +3048,10 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ForeignFnElements pForeignFn;
 	private StaticItemElements pStaticItem;
 	private ExprElements pExpr;
+	private ExprLValueElements pExprLValue;
 	private ExprRValueElements pExprRValue;
 	private ExprLiteralElements pExprLiteral;
+	private ExprPathElements pExprPath;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -3340,13 +3378,23 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Expr:
-	//	ExprRValue;
+	//	ExprLValue | ExprRValue;
 	public ExprElements getExprAccess() {
 		return (pExpr != null) ? pExpr : (pExpr = new ExprElements());
 	}
 	
 	public ParserRule getExprRule() {
 		return getExprAccess().getRule();
+	}
+
+	//ExprLValue:
+	//	ExprPath;
+	public ExprLValueElements getExprLValueAccess() {
+		return (pExprLValue != null) ? pExprLValue : (pExprLValue = new ExprLValueElements());
+	}
+	
+	public ParserRule getExprLValueRule() {
+		return getExprLValueAccess().getRule();
 	}
 
 	//ExprRValue:
@@ -3367,6 +3415,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprLiteralRule() {
 		return getExprLiteralAccess().getRule();
+	}
+
+	//ExprPath:
+	//	path=Path;
+	public ExprPathElements getExprPathAccess() {
+		return (pExprPath != null) ? pExprPath : (pExprPath = new ExprPathElements());
+	}
+	
+	public ParserRule getExprPathRule() {
+		return getExprPathAccess().getRule();
 	}
 
 	//Block:

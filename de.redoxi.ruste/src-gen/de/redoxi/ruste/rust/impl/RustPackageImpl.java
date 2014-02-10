@@ -15,7 +15,9 @@ import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLiteral;
+import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
@@ -239,6 +241,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass exprLValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass exprRValueEClass = null;
 
   /**
@@ -247,6 +256,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprPathEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1407,6 +1423,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprLValue()
+  {
+    return exprLValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExprRValue()
   {
     return exprRValueEClass;
@@ -1430,6 +1456,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getExprLiteral_Literal()
   {
     return (EReference)exprLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprPath()
+  {
+    return exprPathEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprPath_Path()
+  {
+    return (EReference)exprPathEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2412,10 +2458,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     exprEClass = createEClass(EXPR);
 
+    exprLValueEClass = createEClass(EXPR_LVALUE);
+
     exprRValueEClass = createEClass(EXPR_RVALUE);
 
     exprLiteralEClass = createEClass(EXPR_LITERAL);
     createEReference(exprLiteralEClass, EXPR_LITERAL__LITERAL);
+
+    exprPathEClass = createEClass(EXPR_PATH);
+    createEReference(exprPathEClass, EXPR_PATH__PATH);
 
     blockEClass = createEClass(BLOCK);
 
@@ -2587,8 +2638,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     implItemEClass.getESuperTypes().add(this.getItem());
     externBlockEClass.getESuperTypes().add(this.getItem());
     staticItemEClass.getESuperTypes().add(this.getItem());
+    exprLValueEClass.getESuperTypes().add(this.getExpr());
     exprRValueEClass.getESuperTypes().add(this.getExpr());
     exprLiteralEClass.getESuperTypes().add(this.getExprRValue());
+    exprPathEClass.getESuperTypes().add(this.getExprLValue());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2723,10 +2776,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(exprLValueEClass, ExprLValue.class, "ExprLValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(exprRValueEClass, ExprRValue.class, "ExprRValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(exprLiteralEClass, ExprLiteral.class, "ExprLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprPath_Path(), this.getPath(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

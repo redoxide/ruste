@@ -86,8 +86,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.FOREIGN_FN: return createForeignFn();
       case RustPackage.STATIC_ITEM: return createStaticItem();
       case RustPackage.EXPR: return createExpr();
+      case RustPackage.EXPR_LVALUE: return createExprLValue();
       case RustPackage.EXPR_RVALUE: return createExprRValue();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
+      case RustPackage.EXPR_PATH: return createExprPath();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -405,6 +407,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ExprLValue createExprLValue()
+  {
+    ExprLValueImpl exprLValue = new ExprLValueImpl();
+    return exprLValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ExprRValue createExprRValue()
   {
     ExprRValueImpl exprRValue = new ExprRValueImpl();
@@ -420,6 +433,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprLiteralImpl exprLiteral = new ExprLiteralImpl();
     return exprLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprPath createExprPath()
+  {
+    ExprPathImpl exprPath = new ExprPathImpl();
+    return exprPath;
   }
 
   /**

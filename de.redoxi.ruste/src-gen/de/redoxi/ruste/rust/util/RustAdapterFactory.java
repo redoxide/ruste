@@ -180,6 +180,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprAdapter();
       }
       @Override
+      public Adapter caseExprLValue(ExprLValue object)
+      {
+        return createExprLValueAdapter();
+      }
+      @Override
       public Adapter caseExprRValue(ExprRValue object)
       {
         return createExprRValueAdapter();
@@ -188,6 +193,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExprLiteral(ExprLiteral object)
       {
         return createExprLiteralAdapter();
+      }
+      @Override
+      public Adapter caseExprPath(ExprPath object)
+      {
+        return createExprPathAdapter();
       }
       @Override
       public Adapter caseBlock(Block object)
@@ -737,6 +747,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLValue <em>Expr LValue</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprLValue
+   * @generated
+   */
+  public Adapter createExprLValueAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprRValue <em>Expr RValue</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -762,6 +787,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprPath <em>Expr Path</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprPath
+   * @generated
+   */
+  public Adapter createExprPathAdapter()
   {
     return null;
   }

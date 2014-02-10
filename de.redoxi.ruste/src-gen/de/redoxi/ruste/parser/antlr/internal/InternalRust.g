@@ -2336,13 +2336,53 @@ ruleExpr returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getExprAccess().getExprLValueParserRuleCall_0()); 
+    }
+    this_ExprLValue_0=ruleExprLValue
+    { 
+        $current = $this_ExprLValue_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprAccess().getExprRValueParserRuleCall_1()); 
+    }
+    this_ExprRValue_1=ruleExprRValue
+    { 
+        $current = $this_ExprRValue_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleExprLValue
+entryRuleExprLValue returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprLValueRule()); }
+	 iv_ruleExprLValue=ruleExprLValue 
+	 { $current=$iv_ruleExprLValue.current; } 
+	 EOF 
+;
+
+// Rule ExprLValue
+ruleExprLValue returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 
     { 
-        newCompositeNode(grammarAccess.getExprAccess().getExprRValueParserRuleCall()); 
+        newCompositeNode(grammarAccess.getExprLValueAccess().getExprPathParserRuleCall()); 
     }
-    this_ExprRValue_0=ruleExprRValue
+    this_ExprPath_0=ruleExprPath
     { 
-        $current = $this_ExprRValue_0.current; 
+        $current = $this_ExprPath_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -2410,6 +2450,45 @@ ruleExprLiteral returns [EObject current=null]
        			"literal",
         		lv_literal_0_0, 
         		"Literal");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleExprPath
+entryRuleExprPath returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprPathRule()); }
+	 iv_ruleExprPath=ruleExprPath 
+	 { $current=$iv_ruleExprPath.current; } 
+	 EOF 
+;
+
+// Rule ExprPath
+ruleExprPath returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprPathAccess().getPathPathParserRuleCall_0()); 
+	    }
+		lv_path_0_0=rulePath		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprPathRule());
+	        }
+       		set(
+       			$current, 
+       			"path",
+        		lv_path_0_0, 
+        		"Path");
 	        afterParserOrEnumRuleCall();
 	    }
 

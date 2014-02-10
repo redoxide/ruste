@@ -230,6 +230,14 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_LVALUE:
+      {
+        ExprLValue exprLValue = (ExprLValue)theEObject;
+        T result = caseExprLValue(exprLValue);
+        if (result == null) result = caseExpr(exprLValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.EXPR_RVALUE:
       {
         ExprRValue exprRValue = (ExprRValue)theEObject;
@@ -244,6 +252,15 @@ public class RustSwitch<T> extends Switch<T>
         T result = caseExprLiteral(exprLiteral);
         if (result == null) result = caseExprRValue(exprLiteral);
         if (result == null) result = caseExpr(exprLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_PATH:
+      {
+        ExprPath exprPath = (ExprPath)theEObject;
+        T result = caseExprPath(exprPath);
+        if (result == null) result = caseExprLValue(exprPath);
+        if (result == null) result = caseExpr(exprPath);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -923,6 +940,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr LValue</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr LValue</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprLValue(ExprLValue object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expr RValue</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -950,6 +983,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprLiteral(ExprLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprPath(ExprPath object)
   {
     return null;
   }

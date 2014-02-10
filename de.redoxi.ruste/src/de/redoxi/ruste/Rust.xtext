@@ -97,7 +97,12 @@ StaticItem:
 ;
 
 Expr:
+	ExprLValue |
 	ExprRValue
+;
+
+ExprLValue:
+	ExprPath
 ;
 
 ExprRValue:
@@ -106,6 +111,10 @@ ExprRValue:
 
 ExprLiteral:
 	literal=Literal
+;
+
+ExprPath:
+	path=Path
 ;
 
 Block:

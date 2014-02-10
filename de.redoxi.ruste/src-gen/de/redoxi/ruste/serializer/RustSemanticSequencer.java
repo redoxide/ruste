@@ -14,6 +14,7 @@ import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.ExprLiteral;
+import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -157,6 +158,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getExprLiteralRule() ||
 				   context == grammarAccess.getExprRValueRule()) {
 					sequence_ExprLiteral(context, (ExprLiteral) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_PATH:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLValueRule() ||
+				   context == grammarAccess.getExprPathRule()) {
+					sequence_ExprPath(context, (ExprPath) semanticObject); 
 					return; 
 				}
 				else break;
@@ -591,6 +600,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getExprLiteralAccess().getLiteralLiteralParserRuleCall_0(), semanticObject.getLiteral());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     path=Path
+	 */
+	protected void sequence_ExprPath(EObject context, ExprPath semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_PATH__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_PATH__PATH));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprPathAccess().getPathPathParserRuleCall_0(), semanticObject.getPath());
 		feeder.finish();
 	}
 	
