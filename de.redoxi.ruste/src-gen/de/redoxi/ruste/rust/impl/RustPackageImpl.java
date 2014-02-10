@@ -11,7 +11,9 @@ import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
+import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
@@ -20,7 +22,6 @@ import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
-import de.redoxi.ruste.rust.Lifetime;
 import de.redoxi.ruste.rust.Literal;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.MachineType;
@@ -158,6 +159,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass enumItemEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumVariantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass blockEClass = null;
 
   /**
@@ -278,13 +293,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass pathEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass lifetimeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -819,6 +827,86 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEnumItem()
+  {
+    return enumItemEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumItem_Params()
+  {
+    return (EReference)enumItemEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumItem_Variants()
+  {
+    return (EReference)enumItemEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumVariant()
+  {
+    return enumVariantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumVariant_Ident()
+  {
+    return (EAttribute)enumVariantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnumVariant_Params()
+  {
+    return (EAttribute)enumVariantEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumVariant_Types()
+  {
+    return (EReference)enumVariantEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumVariant_Fields()
+  {
+    return (EReference)enumVariantEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -1199,9 +1287,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPath_Lifetimes()
+  public EAttribute getPath_Lifetimes()
   {
-    return (EReference)pathEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)pathEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1212,26 +1300,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getPath_GenericTypes()
   {
     return (EReference)pathEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getLifetime()
-  {
-    return lifetimeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getLifetime_Ident()
-  {
-    return (EAttribute)lifetimeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1754,6 +1822,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(structItemEClass, STRUCT_ITEM__PARAMS);
     createEReference(structItemEClass, STRUCT_ITEM__FIELDS);
 
+    enumItemEClass = createEClass(ENUM_ITEM);
+    createEReference(enumItemEClass, ENUM_ITEM__PARAMS);
+    createEReference(enumItemEClass, ENUM_ITEM__VARIANTS);
+
+    enumVariantEClass = createEClass(ENUM_VARIANT);
+    createEAttribute(enumVariantEClass, ENUM_VARIANT__IDENT);
+    createEAttribute(enumVariantEClass, ENUM_VARIANT__PARAMS);
+    createEReference(enumVariantEClass, ENUM_VARIANT__TYPES);
+    createEReference(enumVariantEClass, ENUM_VARIANT__FIELDS);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -1809,11 +1887,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     pathEClass = createEClass(PATH);
     createEAttribute(pathEClass, PATH__SEGMENTS);
-    createEReference(pathEClass, PATH__LIFETIMES);
+    createEAttribute(pathEClass, PATH__LIFETIMES);
     createEReference(pathEClass, PATH__GENERIC_TYPES);
-
-    lifetimeEClass = createEClass(LIFETIME);
-    createEAttribute(lifetimeEClass, LIFETIME__IDENT);
 
     typeEClass = createEClass(TYPE);
 
@@ -1922,6 +1997,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     fnItemEClass.getESuperTypes().add(this.getItem());
     typeItemEClass.getESuperTypes().add(this.getItem());
     structItemEClass.getESuperTypes().add(this.getItem());
+    enumItemEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -1996,6 +2072,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getStructItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructItem_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(enumItemEClass, EnumItem.class, "EnumItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumItem_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, EnumItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumItem_Variants(), this.getEnumVariant(), null, "variants", null, 0, -1, EnumItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumVariantEClass, EnumVariant.class, "EnumVariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnumVariant_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEnumVariant_Params(), ecorePackage.getEString(), "params", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumVariant_Types(), this.getType(), null, "types", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEnumVariant_Fields(), this.getStructField(), null, "fields", null, 0, -1, EnumVariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2051,11 +2137,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPath_Lifetimes(), this.getLifetime(), null, "lifetimes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPath_Lifetimes(), ecorePackage.getEString(), "lifetimes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPath_GenericTypes(), this.getType(), null, "genericTypes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(lifetimeEClass, Lifetime.class, "Lifetime", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLifetime_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Lifetime.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

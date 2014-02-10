@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Lifetime;
 import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.Type;
@@ -50,14 +49,14 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   protected EList<String> segments;
 
   /**
-   * The cached value of the '{@link #getLifetimes() <em>Lifetimes</em>}' containment reference list.
+   * The cached value of the '{@link #getLifetimes() <em>Lifetimes</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getLifetimes()
    * @generated
    * @ordered
    */
-  protected EList<Lifetime> lifetimes;
+  protected EList<String> lifetimes;
 
   /**
    * The cached value of the '{@link #getGenericTypes() <em>Generic Types</em>}' containment reference list.
@@ -109,11 +108,11 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Lifetime> getLifetimes()
+  public EList<String> getLifetimes()
   {
     if (lifetimes == null)
     {
-      lifetimes = new EObjectContainmentEList<Lifetime>(Lifetime.class, this, RustPackage.PATH__LIFETIMES);
+      lifetimes = new EDataTypeEList<String>(String.class, this, RustPackage.PATH__LIFETIMES);
     }
     return lifetimes;
   }
@@ -142,8 +141,6 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__LIFETIMES:
-        return ((InternalEList<?>)getLifetimes()).basicRemove(otherEnd, msgs);
       case RustPackage.PATH__GENERIC_TYPES:
         return ((InternalEList<?>)getGenericTypes()).basicRemove(otherEnd, msgs);
     }
@@ -187,7 +184,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
         return;
       case RustPackage.PATH__LIFETIMES:
         getLifetimes().clear();
-        getLifetimes().addAll((Collection<? extends Lifetime>)newValue);
+        getLifetimes().addAll((Collection<? extends String>)newValue);
         return;
       case RustPackage.PATH__GENERIC_TYPES:
         getGenericTypes().clear();
@@ -253,6 +250,8 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (segments: ");
     result.append(segments);
+    result.append(", lifetimes: ");
+    result.append(lifetimes);
     result.append(')');
     return result.toString();
   }

@@ -43,20 +43,20 @@ public interface Path extends EObject
   EList<String> getSegments();
 
   /**
-   * Returns the value of the '<em><b>Lifetimes</b></em>' containment reference list.
-   * The list contents are of type {@link de.redoxi.ruste.rust.Lifetime}.
+   * Returns the value of the '<em><b>Lifetimes</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Lifetimes</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Lifetimes</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Lifetimes</em>' containment reference list.
+   * @return the value of the '<em>Lifetimes</em>' attribute list.
    * @see de.redoxi.ruste.rust.RustPackage#getPath_Lifetimes()
-   * @model containment="true"
+   * @model unique="false"
    * @generated
    */
-  EList<Lifetime> getLifetimes();
+  EList<String> getLifetimes();
 
   /**
    * Returns the value of the '<em><b>Generic Types</b></em>' containment reference list.

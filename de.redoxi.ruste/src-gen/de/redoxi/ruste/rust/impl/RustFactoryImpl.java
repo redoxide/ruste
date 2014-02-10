@@ -76,6 +76,8 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.FN_ITEM: return createFnItem();
       case RustPackage.TYPE_ITEM: return createTypeItem();
       case RustPackage.STRUCT_ITEM: return createStructItem();
+      case RustPackage.ENUM_ITEM: return createEnumItem();
+      case RustPackage.ENUM_VARIANT: return createEnumVariant();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -94,7 +96,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT_ENUM: return createPatEnum();
       case RustPackage.FIELD_PAT: return createFieldPat();
       case RustPackage.PATH: return createPath();
-      case RustPackage.LIFETIME: return createLifetime();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case RustPackage.TUPLE_TYPE: return createTupleType();
@@ -277,6 +278,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     StructItemImpl structItem = new StructItemImpl();
     return structItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumItem createEnumItem()
+  {
+    EnumItemImpl enumItem = new EnumItemImpl();
+    return enumItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EnumVariant createEnumVariant()
+  {
+    EnumVariantImpl enumVariant = new EnumVariantImpl();
+    return enumVariant;
   }
 
   /**
@@ -475,17 +498,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     PathImpl path = new PathImpl();
     return path;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Lifetime createLifetime()
-  {
-    LifetimeImpl lifetime = new LifetimeImpl();
-    return lifetime;
   }
 
   /**

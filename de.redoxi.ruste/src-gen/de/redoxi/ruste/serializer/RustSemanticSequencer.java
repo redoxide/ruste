@@ -10,7 +10,9 @@ import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
+import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
@@ -18,7 +20,6 @@ import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
-import de.redoxi.ruste.rust.Lifetime;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ModItem;
@@ -123,10 +124,23 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.ENUM_ITEM:
+				if(context == grammarAccess.getEnumItemRule() ||
+				   context == grammarAccess.getItemRule()) {
+					sequence_EnumItem(context, (EnumItem) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.ENUM_TYPE:
 				if(context == grammarAccess.getEnumTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
 					sequence_EnumType(context, (EnumType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.ENUM_VARIANT:
+				if(context == grammarAccess.getEnumVariantRule()) {
+					sequence_EnumVariant(context, (EnumVariant) semanticObject); 
 					return; 
 				}
 				else break;
@@ -172,12 +186,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.ITEM_ATTR:
 				if(context == grammarAccess.getItemAttrRule()) {
 					sequence_ItemAttr(context, (ItemAttr) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.LIFETIME:
-				if(context == grammarAccess.getLifetimeRule()) {
-					sequence_Lifetime(context, (Lifetime) semanticObject); 
 					return; 
 				}
 				else break;
@@ -484,9 +492,27 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? variants+=EnumVariant variants+=EnumVariant*)
+	 */
+	protected void sequence_EnumItem(EObject context, EnumItem semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? variants+=Variant variants+=Variant*)
 	 */
 	protected void sequence_EnumType(EObject context, EnumType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (params+=IDENT params+=IDENT*)? ((types+=Type types+=Type*) | (fields+=StructField fields+=StructField*))?)
+	 */
+	protected void sequence_EnumVariant(EObject context, EnumVariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -533,22 +559,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ItemAttr(EObject context, ItemAttr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ident=IDENT
-	 */
-	protected void sequence_Lifetime(EObject context, Lifetime semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LIFETIME__IDENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LIFETIME__IDENT));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getLifetimeAccess().getIdentIDENTTerminalRuleCall_1_0(), semanticObject.getIdent());
-		feeder.finish();
 	}
 	
 	
@@ -789,7 +799,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (segments+=IDENT segments+=IDENT* ((lifetimes+=Lifetime | genericTypes+=Type) (lifetimes+=Lifetime | genericTypes+=Type)*)?)
+	 *     (segments+=IDENT segments+=IDENT* ((lifetimes+=LIFETIME | genericTypes+=Type) (lifetimes+=LIFETIME | genericTypes+=Type)*)?)
 	 */
 	protected void sequence_Path(EObject context, Path semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

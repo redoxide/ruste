@@ -122,6 +122,24 @@ public interface RustFactory extends EFactory
   StructItem createStructItem();
 
   /**
+   * Returns a new object of class '<em>Enum Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Item</em>'.
+   * @generated
+   */
+  EnumItem createEnumItem();
+
+  /**
+   * Returns a new object of class '<em>Enum Variant</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Enum Variant</em>'.
+   * @generated
+   */
+  EnumVariant createEnumVariant();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -282,15 +300,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   Path createPath();
-
-  /**
-   * Returns a new object of class '<em>Lifetime</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Lifetime</em>'.
-   * @generated
-   */
-  Lifetime createLifetime();
 
   /**
    * Returns a new object of class '<em>Type</em>'.

@@ -155,6 +155,21 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.ENUM_ITEM:
+      {
+        EnumItem enumItem = (EnumItem)theEObject;
+        T result = caseEnumItem(enumItem);
+        if (result == null) result = caseItem(enumItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.ENUM_VARIANT:
+      {
+        EnumVariant enumVariant = (EnumVariant)theEObject;
+        T result = caseEnumVariant(enumVariant);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -292,13 +307,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         Path path = (Path)theEObject;
         T result = casePath(path);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.LIFETIME:
-      {
-        Lifetime lifetime = (Lifetime)theEObject;
-        T result = caseLifetime(lifetime);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -678,6 +686,38 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumItem(EnumItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Enum Variant</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Enum Variant</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEnumVariant(EnumVariant object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -961,22 +1001,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePath(Path object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Lifetime</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Lifetime</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLifetime(Lifetime object)
   {
     return null;
   }

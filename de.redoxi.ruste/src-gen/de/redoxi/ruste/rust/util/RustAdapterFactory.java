@@ -130,6 +130,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createStructItemAdapter();
       }
       @Override
+      public Adapter caseEnumItem(EnumItem object)
+      {
+        return createEnumItemAdapter();
+      }
+      @Override
+      public Adapter caseEnumVariant(EnumVariant object)
+      {
+        return createEnumVariantAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -218,11 +228,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter casePath(Path object)
       {
         return createPathAdapter();
-      }
-      @Override
-      public Adapter caseLifetime(Lifetime object)
-      {
-        return createLifetimeAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -532,6 +537,36 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.EnumItem <em>Enum Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.EnumItem
+   * @generated
+   */
+  public Adapter createEnumItemAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.EnumVariant <em>Enum Variant</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.EnumVariant
+   * @generated
+   */
+  public Adapter createEnumVariantAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -797,21 +832,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPathAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Lifetime <em>Lifetime</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.Lifetime
-   * @generated
-   */
-  public Adapter createLifetimeAdapter()
   {
     return null;
   }

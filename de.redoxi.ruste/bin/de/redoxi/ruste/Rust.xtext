@@ -37,7 +37,7 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem | FnItem | TypeItem | StructItem // | EnumItem | StaticItem | TraitItem | ImplItem | ExternBlock
+	ModItem | FnItem | TypeItem | StructItem | EnumItem // | StaticItem | TraitItem | ImplItem | ExternBlock
 ;
 
 // A module declaration item
@@ -52,11 +52,19 @@ FnItem:
 
 // TODO Reference Type?
 TypeItem:
-	"type" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '=' type=Type ';'
+	"type" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '=' type=Type ';'
 ;
 
 StructItem:
-	"struct" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	"struct" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+;
+
+EnumItem:
+	"enum" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" variants+=EnumVariant ("," variants+=EnumVariant)* "}"
+;
+
+EnumVariant:
+	ident=IDENT ('<' params+=IDENT (',' params+=IDENT)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
 ;
 
 Block:
@@ -65,12 +73,12 @@ Block:
 
 // TODO Crossreference Trait?
 GenericParamDecl:
-	ident = IDENT (':' bounds += IDENT ('+' bounds += IDENT))?
+	ident=IDENT (':' bounds+=IDENT ('+' bounds+=IDENT))?
 ;
 
 // TODO Crossreference Type
 Arg:
-	pat = Pat ':' type = Type
+	pat=Pat ':' type=Type
 ;
 
 // TODO Expand
@@ -142,11 +150,11 @@ FieldPat:
 ;
 
 Path:
-	segments+=IDENT ('::' segments+=IDENT)* '::'? ('<' (lifetimes+=Lifetime | genericTypes+=Type) (',' (lifetimes+=Lifetime | genericTypes+=Type))* '>')?
+	segments+=IDENT ('::' segments+=IDENT)* '::'? ('<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))* '>')?
 ;
 
-Lifetime:
-	"'" ident=IDENT
+terminal LIFETIME:
+	"'" IDENT
 ;
 
 Type:
