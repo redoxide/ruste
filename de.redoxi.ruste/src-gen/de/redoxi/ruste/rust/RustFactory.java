@@ -176,6 +176,24 @@ public interface RustFactory extends EFactory
   ImplMethod createImplMethod();
 
   /**
+   * Returns a new object of class '<em>Extern Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extern Block</em>'.
+   * @generated
+   */
+  ExternBlock createExternBlock();
+
+  /**
+   * Returns a new object of class '<em>Foreign Fn</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Foreign Fn</em>'.
+   * @generated
+   */
+  ForeignFn createForeignFn();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

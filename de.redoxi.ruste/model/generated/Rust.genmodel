@@ -93,6 +93,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/returnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/body"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExternBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExternBlock/abi"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternBlock/functions"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ForeignFn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ForeignFn/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/returnType"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>

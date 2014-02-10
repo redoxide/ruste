@@ -105,6 +105,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImplMethodAccess().getGroup_5(), "rule__ImplMethod__Group_5__0");
 					put(grammarAccess.getImplMethodAccess().getGroup_5_1(), "rule__ImplMethod__Group_5_1__0");
 					put(grammarAccess.getImplMethodAccess().getGroup_7(), "rule__ImplMethod__Group_7__0");
+					put(grammarAccess.getExternBlockAccess().getGroup(), "rule__ExternBlock__Group__0");
+					put(grammarAccess.getForeignFnAccess().getGroup(), "rule__ForeignFn__Group__0");
+					put(grammarAccess.getForeignFnAccess().getGroup_3(), "rule__ForeignFn__Group_3__0");
+					put(grammarAccess.getForeignFnAccess().getGroup_3_1(), "rule__ForeignFn__Group_3_1__0");
+					put(grammarAccess.getForeignFnAccess().getGroup_5(), "rule__ForeignFn__Group_5__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -225,6 +230,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImplMethodAccess().getArgsAssignment_5_1_1(), "rule__ImplMethod__ArgsAssignment_5_1_1");
 					put(grammarAccess.getImplMethodAccess().getReturnTypeAssignment_7_1(), "rule__ImplMethod__ReturnTypeAssignment_7_1");
 					put(grammarAccess.getImplMethodAccess().getBodyAssignment_8(), "rule__ImplMethod__BodyAssignment_8");
+					put(grammarAccess.getExternBlockAccess().getAbiAssignment_2(), "rule__ExternBlock__AbiAssignment_2");
+					put(grammarAccess.getExternBlockAccess().getFunctionsAssignment_4(), "rule__ExternBlock__FunctionsAssignment_4");
+					put(grammarAccess.getForeignFnAccess().getIdentAssignment_1(), "rule__ForeignFn__IdentAssignment_1");
+					put(grammarAccess.getForeignFnAccess().getArgsAssignment_3_0(), "rule__ForeignFn__ArgsAssignment_3_0");
+					put(grammarAccess.getForeignFnAccess().getArgsAssignment_3_1_1(), "rule__ForeignFn__ArgsAssignment_3_1_1");
+					put(grammarAccess.getForeignFnAccess().getReturnTypeAssignment_5_1(), "rule__ForeignFn__ReturnTypeAssignment_5_1");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

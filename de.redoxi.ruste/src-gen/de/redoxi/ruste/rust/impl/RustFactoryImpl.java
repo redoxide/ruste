@@ -82,6 +82,8 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.TRAIT_METHOD: return createTraitMethod();
       case RustPackage.IMPL_ITEM: return createImplItem();
       case RustPackage.IMPL_METHOD: return createImplMethod();
+      case RustPackage.EXTERN_BLOCK: return createExternBlock();
+      case RustPackage.FOREIGN_FN: return createForeignFn();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -348,6 +350,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ImplMethodImpl implMethod = new ImplMethodImpl();
     return implMethod;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExternBlock createExternBlock()
+  {
+    ExternBlockImpl externBlock = new ExternBlockImpl();
+    return externBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ForeignFn createForeignFn()
+  {
+    ForeignFnImpl foreignFn = new ForeignFnImpl();
+    return foreignFn;
   }
 
   /**

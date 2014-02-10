@@ -160,6 +160,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createImplMethodAdapter();
       }
       @Override
+      public Adapter caseExternBlock(ExternBlock object)
+      {
+        return createExternBlockAdapter();
+      }
+      @Override
+      public Adapter caseForeignFn(ForeignFn object)
+      {
+        return createForeignFnAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -642,6 +652,36 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createImplMethodAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExternBlock <em>Extern Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExternBlock
+   * @generated
+   */
+  public Adapter createExternBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ForeignFn <em>Foreign Fn</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ForeignFn
+   * @generated
+   */
+  public Adapter createForeignFnAdapter()
   {
     return null;
   }

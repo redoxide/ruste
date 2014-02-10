@@ -840,6 +840,89 @@ public interface RustPackage extends EPackage
   int IMPL_METHOD_FEATURE_COUNT = 7;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExternBlockImpl <em>Extern Block</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExternBlockImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExternBlock()
+   * @generated
+   */
+  int EXTERN_BLOCK = 17;
+
+  /**
+   * The feature id for the '<em><b>Abi</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERN_BLOCK__ABI = ITEM_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Functions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERN_BLOCK__FUNCTIONS = ITEM_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Extern Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERN_BLOCK_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ForeignFnImpl <em>Foreign Fn</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ForeignFnImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getForeignFn()
+   * @generated
+   */
+  int FOREIGN_FN = 18;
+
+  /**
+   * The feature id for the '<em><b>Ident</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOREIGN_FN__IDENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOREIGN_FN__ARGS = 1;
+
+  /**
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOREIGN_FN__RETURN_TYPE = 2;
+
+  /**
+   * The number of structural features of the '<em>Foreign Fn</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOREIGN_FN_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -847,7 +930,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 17;
+  int BLOCK = 19;
 
   /**
    * The number of structural features of the '<em>Block</em>' class.
@@ -866,7 +949,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
    * @generated
    */
-  int GENERIC_PARAM_DECL = 18;
+  int GENERIC_PARAM_DECL = 20;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -903,7 +986,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
    * @generated
    */
-  int ARG = 19;
+  int ARG = 21;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -940,7 +1023,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
    * @generated
    */
-  int PAT = 20;
+  int PAT = 22;
 
   /**
    * The number of structural features of the '<em>Pat</em>' class.
@@ -959,7 +1042,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatWildcard()
    * @generated
    */
-  int PAT_WILDCARD = 21;
+  int PAT_WILDCARD = 23;
 
   /**
    * The number of structural features of the '<em>Pat Wildcard</em>' class.
@@ -978,7 +1061,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatIdent()
    * @generated
    */
-  int PAT_IDENT = 22;
+  int PAT_IDENT = 24;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -1015,7 +1098,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBoxed()
    * @generated
    */
-  int PAT_BOXED = 23;
+  int PAT_BOXED = 25;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1043,7 +1126,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatOwned()
    * @generated
    */
-  int PAT_OWNED = 24;
+  int PAT_OWNED = 26;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1071,7 +1154,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBorrowed()
    * @generated
    */
-  int PAT_BORROWED = 25;
+  int PAT_BORROWED = 27;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1099,7 +1182,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTuple()
    * @generated
    */
-  int PAT_TUPLE = 26;
+  int PAT_TUPLE = 28;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -1127,7 +1210,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatVector()
    * @generated
    */
-  int PAT_VECTOR = 27;
+  int PAT_VECTOR = 29;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -1155,7 +1238,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatLiteral()
    * @generated
    */
-  int PAT_LITERAL = 28;
+  int PAT_LITERAL = 30;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -1183,7 +1266,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatRange()
    * @generated
    */
-  int PAT_RANGE = 29;
+  int PAT_RANGE = 31;
 
   /**
    * The number of structural features of the '<em>Pat Range</em>' class.
@@ -1202,7 +1285,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatCharRange()
    * @generated
    */
-  int PAT_CHAR_RANGE = 30;
+  int PAT_CHAR_RANGE = 32;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -1239,7 +1322,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatNumberRange()
    * @generated
    */
-  int PAT_NUMBER_RANGE = 31;
+  int PAT_NUMBER_RANGE = 33;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -1276,7 +1359,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatEnum()
    * @generated
    */
-  int PAT_ENUM = 32;
+  int PAT_ENUM = 34;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1304,7 +1387,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
    * @generated
    */
-  int FIELD_PAT = 33;
+  int FIELD_PAT = 35;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1341,7 +1424,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPath()
    * @generated
    */
-  int PATH = 34;
+  int PATH = 36;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -1387,7 +1470,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 35;
+  int TYPE = 37;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -1406,7 +1489,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 36;
+  int PRIMITIVE_TYPE = 38;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -1425,7 +1508,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleType()
    * @generated
    */
-  int TUPLE_TYPE = 37;
+  int TUPLE_TYPE = 39;
 
   /**
    * The feature id for the '<em><b>Types</b></em>' containment reference list.
@@ -1453,7 +1536,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructType()
    * @generated
    */
-  int STRUCT_TYPE = 38;
+  int STRUCT_TYPE = 40;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1499,7 +1582,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 39;
+  int BOXED_POINTER = 41;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1527,7 +1610,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 40;
+  int OWNED_POINTER = 42;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1555,7 +1638,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 41;
+  int BORROWED_POINTER = 43;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1583,7 +1666,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 42;
+  int STRUCT_FIELD = 44;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -1629,7 +1712,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEnumType()
    * @generated
    */
-  int ENUM_TYPE = 43;
+  int ENUM_TYPE = 45;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1675,7 +1758,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 44;
+  int VARIANT = 46;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1703,7 +1786,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 45;
+  int STRUCT_VARIANT = 47;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1749,7 +1832,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 46;
+  int TUPLE_VARIANT = 48;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1786,7 +1869,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 47;
+  int UNIT_VARIANT = 49;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -1814,7 +1897,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 49;
+  int LITERAL = 51;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1842,7 +1925,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 48;
+  int STRING_LIT = 50;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1870,7 +1953,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 50;
+  int NUMBER_LIT = 52;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1898,7 +1981,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 51;
+  int CHAR_LIT = 53;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1926,7 +2009,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
    * @generated
    */
-  int PAT_TUPLE_ENUM = 52;
+  int PAT_TUPLE_ENUM = 54;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -1963,7 +2046,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
    * @generated
    */
-  int PAT_STRUCT_ENUM = 53;
+  int PAT_STRUCT_ENUM = 55;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -2000,7 +2083,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 54;
+  int INT_TYPE = 56;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -2019,7 +2102,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 55;
+  int FLOAT_TYPE = 57;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -2038,7 +2121,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 56;
+  int BOOL_TYPE = 58;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -2057,7 +2140,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 57;
+  int MACHINE_TYPE = 59;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -2076,7 +2159,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 58;
+  int UNIT_TYPE = 60;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -2095,7 +2178,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 59;
+  int VISIBILITY = 61;
 
 
   /**
@@ -2806,6 +2889,81 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getImplMethod_Body();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExternBlock <em>Extern Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Extern Block</em>'.
+   * @see de.redoxi.ruste.rust.ExternBlock
+   * @generated
+   */
+  EClass getExternBlock();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ExternBlock#getAbi <em>Abi</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Abi</em>'.
+   * @see de.redoxi.ruste.rust.ExternBlock#getAbi()
+   * @see #getExternBlock()
+   * @generated
+   */
+  EAttribute getExternBlock_Abi();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExternBlock#getFunctions <em>Functions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Functions</em>'.
+   * @see de.redoxi.ruste.rust.ExternBlock#getFunctions()
+   * @see #getExternBlock()
+   * @generated
+   */
+  EReference getExternBlock_Functions();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ForeignFn <em>Foreign Fn</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Foreign Fn</em>'.
+   * @see de.redoxi.ruste.rust.ForeignFn
+   * @generated
+   */
+  EClass getForeignFn();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ForeignFn#getIdent <em>Ident</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ident</em>'.
+   * @see de.redoxi.ruste.rust.ForeignFn#getIdent()
+   * @see #getForeignFn()
+   * @generated
+   */
+  EAttribute getForeignFn_Ident();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ForeignFn#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.ForeignFn#getArgs()
+   * @see #getForeignFn()
+   * @generated
+   */
+  EReference getForeignFn_Args();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ForeignFn#getReturnType <em>Return Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
+   * @see de.redoxi.ruste.rust.ForeignFn#getReturnType()
+   * @see #getForeignFn()
+   * @generated
+   */
+  EReference getForeignFn_ReturnType();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
@@ -4283,6 +4441,66 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference IMPL_METHOD__BODY = eINSTANCE.getImplMethod_Body();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExternBlockImpl <em>Extern Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExternBlockImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExternBlock()
+     * @generated
+     */
+    EClass EXTERN_BLOCK = eINSTANCE.getExternBlock();
+
+    /**
+     * The meta object literal for the '<em><b>Abi</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXTERN_BLOCK__ABI = eINSTANCE.getExternBlock_Abi();
+
+    /**
+     * The meta object literal for the '<em><b>Functions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTERN_BLOCK__FUNCTIONS = eINSTANCE.getExternBlock_Functions();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ForeignFnImpl <em>Foreign Fn</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ForeignFnImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getForeignFn()
+     * @generated
+     */
+    EClass FOREIGN_FN = eINSTANCE.getForeignFn();
+
+    /**
+     * The meta object literal for the '<em><b>Ident</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FOREIGN_FN__IDENT = eINSTANCE.getForeignFn_Ident();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FOREIGN_FN__ARGS = eINSTANCE.getForeignFn_Args();
+
+    /**
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FOREIGN_FN__RETURN_TYPE = eINSTANCE.getForeignFn_ReturnType();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.BlockImpl <em>Block</em>}' class.

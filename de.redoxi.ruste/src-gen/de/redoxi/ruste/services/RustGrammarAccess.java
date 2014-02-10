@@ -225,15 +225,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEnumItemParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cTraitItemParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cImplItemParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cExternBlockParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//// Items within a module or crate
 		//Item:
-		//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | // | ExternBlock | StaticItem
-		//	ImplItem;
+		//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
+		//	ExternBlock;
 		public ParserRule getRule() { return rule; }
 
-		//ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | // | ExternBlock | StaticItem
-		//ImplItem
+		//ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
+		//ExternBlock
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ModItem
@@ -254,9 +255,12 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//TraitItem
 		public RuleCall getTraitItemParserRuleCall_5() { return cTraitItemParserRuleCall_5; }
 
-		//// | ExternBlock | StaticItem
 		//ImplItem
 		public RuleCall getImplItemParserRuleCall_6() { return cImplItemParserRuleCall_6; }
+
+		//// | StaticItem
+		//ExternBlock
+		public RuleCall getExternBlockParserRuleCall_7() { return cExternBlockParserRuleCall_7; }
 	}
 
 	public class ModItemElements extends AbstractParserRuleElementFinder {
@@ -1270,6 +1274,130 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Block
 		public RuleCall getBodyBlockParserRuleCall_8_0() { return cBodyBlockParserRuleCall_8_0; }
+	}
+
+	public class ExternBlockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExternBlock");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cExternBlockAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cExternKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cAbiAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cAbiSTRING_LITTerminalRuleCall_2_0 = (RuleCall)cAbiAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cFunctionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cFunctionsForeignFnParserRuleCall_4_0 = (RuleCall)cFunctionsAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//ExternBlock:
+		//	{ExternBlock} "extern" abi=STRING_LIT? "{" functions+=ForeignFn* "}";
+		public ParserRule getRule() { return rule; }
+
+		//{ExternBlock} "extern" abi=STRING_LIT? "{" functions+=ForeignFn* "}"
+		public Group getGroup() { return cGroup; }
+
+		//{ExternBlock}
+		public Action getExternBlockAction_0() { return cExternBlockAction_0; }
+
+		//"extern"
+		public Keyword getExternKeyword_1() { return cExternKeyword_1; }
+
+		//abi=STRING_LIT?
+		public Assignment getAbiAssignment_2() { return cAbiAssignment_2; }
+
+		//STRING_LIT
+		public RuleCall getAbiSTRING_LITTerminalRuleCall_2_0() { return cAbiSTRING_LITTerminalRuleCall_2_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+
+		//functions+=ForeignFn*
+		public Assignment getFunctionsAssignment_4() { return cFunctionsAssignment_4; }
+
+		//ForeignFn
+		public RuleCall getFunctionsForeignFnParserRuleCall_4_0() { return cFunctionsForeignFnParserRuleCall_4_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+
+	public class ForeignFnElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ForeignFn");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cFnKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIdentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdentIDENTTerminalRuleCall_1_0 = (RuleCall)cIdentAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cArgsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cArgsArgParserRuleCall_3_0_0 = (RuleCall)cArgsAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cArgsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cArgsArgParserRuleCall_3_1_1_0 = (RuleCall)cArgsAssignment_3_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cReturnTypeAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cReturnTypeTypeParserRuleCall_5_1_0 = (RuleCall)cReturnTypeAssignment_5_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//ForeignFn:
+		//	"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";";
+		public ParserRule getRule() { return rule; }
+
+		//"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";"
+		public Group getGroup() { return cGroup; }
+
+		//"fn"
+		public Keyword getFnKeyword_0() { return cFnKeyword_0; }
+
+		//ident=IDENT
+		public Assignment getIdentAssignment_1() { return cIdentAssignment_1; }
+
+		//IDENT
+		public RuleCall getIdentIDENTTerminalRuleCall_1_0() { return cIdentIDENTTerminalRuleCall_1_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//(args+=Arg ("," args+=Arg)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//args+=Arg
+		public Assignment getArgsAssignment_3_0() { return cArgsAssignment_3_0; }
+
+		//Arg
+		public RuleCall getArgsArgParserRuleCall_3_0_0() { return cArgsArgParserRuleCall_3_0_0; }
+
+		//("," args+=Arg)*
+		public Group getGroup_3_1() { return cGroup_3_1; }
+
+		//","
+		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+
+		//args+=Arg
+		public Assignment getArgsAssignment_3_1_1() { return cArgsAssignment_3_1_1; }
+
+		//Arg
+		public RuleCall getArgsArgParserRuleCall_3_1_1_0() { return cArgsArgParserRuleCall_3_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+
+		//("->" returnType=Type)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"->"
+		public Keyword getHyphenMinusGreaterThanSignKeyword_5_0() { return cHyphenMinusGreaterThanSignKeyword_5_0; }
+
+		//returnType=Type
+		public Assignment getReturnTypeAssignment_5_1() { return cReturnTypeAssignment_5_1; }
+
+		//Type
+		public RuleCall getReturnTypeTypeParserRuleCall_5_1_0() { return cReturnTypeTypeParserRuleCall_5_1_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -2775,6 +2903,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private TraitMethodElements pTraitMethod;
 	private ImplItemElements pImplItem;
 	private ImplMethodElements pImplMethod;
+	private ExternBlockElements pExternBlock;
+	private ForeignFnElements pForeignFn;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -2951,8 +3081,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Items within a module or crate
 	//Item:
-	//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | // | ExternBlock | StaticItem
-	//	ImplItem;
+	//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | // | StaticItem
+	//	ExternBlock;
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
 	}
@@ -3069,6 +3199,26 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getImplMethodRule() {
 		return getImplMethodAccess().getRule();
+	}
+
+	//ExternBlock:
+	//	{ExternBlock} "extern" abi=STRING_LIT? "{" functions+=ForeignFn* "}";
+	public ExternBlockElements getExternBlockAccess() {
+		return (pExternBlock != null) ? pExternBlock : (pExternBlock = new ExternBlockElements());
+	}
+	
+	public ParserRule getExternBlockRule() {
+		return getExternBlockAccess().getRule();
+	}
+
+	//ForeignFn:
+	//	"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";";
+	public ForeignFnElements getForeignFnAccess() {
+		return (pForeignFn != null) ? pForeignFn : (pForeignFn = new ForeignFnElements());
+	}
+	
+	public ParserRule getForeignFnRule() {
+		return getForeignFnAccess().getRule();
 	}
 
 	//Block:

@@ -13,9 +13,11 @@ import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
+import de.redoxi.ruste.rust.ForeignFn;
 import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.ImplItem;
 import de.redoxi.ruste.rust.ImplMethod;
@@ -148,6 +150,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.EXTERN_BLOCK:
+				if(context == grammarAccess.getExternBlockRule() ||
+				   context == grammarAccess.getItemRule()) {
+					sequence_ExternBlock(context, (ExternBlock) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.FIELD_PAT:
 				if(context == grammarAccess.getFieldPatRule()) {
 					sequence_FieldPat(context, (FieldPat) semanticObject); 
@@ -165,6 +174,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getFnItemRule() ||
 				   context == grammarAccess.getItemRule()) {
 					sequence_FnItem(context, (FnItem) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.FOREIGN_FN:
+				if(context == grammarAccess.getForeignFnRule()) {
+					sequence_ForeignFn(context, (ForeignFn) semanticObject); 
 					return; 
 				}
 				else break;
@@ -549,6 +564,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (abi=STRING_LIT? functions+=ForeignFn*)
+	 */
+	protected void sequence_ExternBlock(EObject context, ExternBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ident=IDENT pattern=Pat?)
 	 */
 	protected void sequence_FieldPat(EObject context, FieldPat semanticObject) {
@@ -561,6 +585,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? (args+=Arg args+=Arg*)? returnType=Type? body=Block)
 	 */
 	protected void sequence_FnItem(EObject context, FnItem semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ident=IDENT (args+=Arg args+=Arg*)? returnType=Type?)
+	 */
+	protected void sequence_ForeignFn(EObject context, ForeignFn semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

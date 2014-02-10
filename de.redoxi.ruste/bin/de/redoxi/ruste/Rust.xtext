@@ -37,7 +37,7 @@ ItemAndAttrs:
 
 // Items within a module or crate
 Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem // | ExternBlock | StaticItem
+	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock // | StaticItem
 ;
 
 // A module declaration item
@@ -82,6 +82,14 @@ ImplItem:
 
 ImplMethod:
 	(unsafe?="unsafe" | extern?="extern")? "fn" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '(' (args+=Arg (',' args+=Arg)*)? ')' ("->" returnType=Type)? body=Block
+;
+
+ExternBlock:
+	{ExternBlock} "extern" abi=STRING_LIT? "{" (functions += ForeignFn)* "}" 
+;
+
+ForeignFn:
+	"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";"
 ;
 
 Block:

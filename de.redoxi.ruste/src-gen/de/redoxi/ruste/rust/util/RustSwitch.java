@@ -200,6 +200,21 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXTERN_BLOCK:
+      {
+        ExternBlock externBlock = (ExternBlock)theEObject;
+        T result = caseExternBlock(externBlock);
+        if (result == null) result = caseItem(externBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.FOREIGN_FN:
+      {
+        ForeignFn foreignFn = (ForeignFn)theEObject;
+        T result = caseForeignFn(foreignFn);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -807,6 +822,38 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImplMethod(ImplMethod object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Extern Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extern Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExternBlock(ExternBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Foreign Fn</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Foreign Fn</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseForeignFn(ForeignFn object)
   {
     return null;
   }

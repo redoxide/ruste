@@ -14,9 +14,11 @@ import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
+import de.redoxi.ruste.rust.ForeignFn;
 import de.redoxi.ruste.rust.GenericParamDecl;
 import de.redoxi.ruste.rust.ImplItem;
 import de.redoxi.ruste.rust.ImplMethod;
@@ -199,6 +201,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass implMethodEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass externBlockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass foreignFnEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1229,6 +1245,76 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExternBlock()
+  {
+    return externBlockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExternBlock_Abi()
+  {
+    return (EAttribute)externBlockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExternBlock_Functions()
+  {
+    return (EReference)externBlockEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getForeignFn()
+  {
+    return foreignFnEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getForeignFn_Ident()
+  {
+    return (EAttribute)foreignFnEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getForeignFn_Args()
+  {
+    return (EReference)foreignFnEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getForeignFn_ReturnType()
+  {
+    return (EReference)foreignFnEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -2187,6 +2273,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(implMethodEClass, IMPL_METHOD__RETURN_TYPE);
     createEReference(implMethodEClass, IMPL_METHOD__BODY);
 
+    externBlockEClass = createEClass(EXTERN_BLOCK);
+    createEAttribute(externBlockEClass, EXTERN_BLOCK__ABI);
+    createEReference(externBlockEClass, EXTERN_BLOCK__FUNCTIONS);
+
+    foreignFnEClass = createEClass(FOREIGN_FN);
+    createEAttribute(foreignFnEClass, FOREIGN_FN__IDENT);
+    createEReference(foreignFnEClass, FOREIGN_FN__ARGS);
+    createEReference(foreignFnEClass, FOREIGN_FN__RETURN_TYPE);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -2355,6 +2450,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     enumItemEClass.getESuperTypes().add(this.getItem());
     traitItemEClass.getESuperTypes().add(this.getItem());
     implItemEClass.getESuperTypes().add(this.getItem());
+    externBlockEClass.getESuperTypes().add(this.getItem());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2471,6 +2567,15 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getImplMethod_Args(), this.getArg(), null, "args", null, 0, -1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplMethod_ReturnType(), this.getType(), null, "returnType", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getImplMethod_Body(), this.getBlock(), null, "body", null, 0, 1, ImplMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(externBlockEClass, ExternBlock.class, "ExternBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExternBlock_Abi(), ecorePackage.getEString(), "abi", null, 0, 1, ExternBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExternBlock_Functions(), this.getForeignFn(), null, "functions", null, 0, -1, ExternBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(foreignFnEClass, ForeignFn.class, "ForeignFn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getForeignFn_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getForeignFn_Args(), this.getArg(), null, "args", null, 0, -1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getForeignFn_ReturnType(), this.getType(), null, "returnType", null, 0, 1, ForeignFn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
