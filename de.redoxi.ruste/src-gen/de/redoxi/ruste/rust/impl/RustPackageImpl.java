@@ -7,10 +7,12 @@ import de.redoxi.ruste.rust.Attr;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.BoolType;
+import de.redoxi.ruste.rust.Borrow;
 import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
@@ -21,6 +23,7 @@ import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprTuple;
+import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.ExprVec;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
@@ -36,9 +39,13 @@ import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.Literal;
 import de.redoxi.ruste.rust.LiteralAttr;
+import de.redoxi.ruste.rust.LogicalNegation;
 import de.redoxi.ruste.rust.MachineType;
+import de.redoxi.ruste.rust.ManagedBox;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
+import de.redoxi.ruste.rust.NumericNegation;
+import de.redoxi.ruste.rust.OwnedBox;
 import de.redoxi.ruste.rust.OwnedPointer;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.PatBorrowed;
@@ -287,6 +294,55 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprVecEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprUnaryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numericNegationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dereferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass logicalNegationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass managedBoxEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ownedBoxEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass borrowEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1617,6 +1673,86 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprUnary()
+  {
+    return exprUnaryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprUnary_Expr()
+  {
+    return (EReference)exprUnaryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNumericNegation()
+  {
+    return numericNegationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDereference()
+  {
+    return dereferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLogicalNegation()
+  {
+    return logicalNegationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getManagedBox()
+  {
+    return managedBoxEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOwnedBox()
+  {
+    return ownedBoxEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBorrow()
+  {
+    return borrowEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -2616,6 +2752,21 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprVecEClass, EXPR_VEC__EXPRS);
     createEReference(exprVecEClass, EXPR_VEC__LEN_EXPR);
 
+    exprUnaryEClass = createEClass(EXPR_UNARY);
+    createEReference(exprUnaryEClass, EXPR_UNARY__EXPR);
+
+    numericNegationEClass = createEClass(NUMERIC_NEGATION);
+
+    dereferenceEClass = createEClass(DEREFERENCE);
+
+    logicalNegationEClass = createEClass(LOGICAL_NEGATION);
+
+    managedBoxEClass = createEClass(MANAGED_BOX);
+
+    ownedBoxEClass = createEClass(OWNED_BOX);
+
+    borrowEClass = createEClass(BORROW);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -2795,6 +2946,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprStructEClass.getESuperTypes().add(this.getExprRValue());
     exprStructEClass.getESuperTypes().add(this.getExprPath());
     exprVecEClass.getESuperTypes().add(this.getExprRValue());
+    exprUnaryEClass.getESuperTypes().add(this.getExprRValue());
+    numericNegationEClass.getESuperTypes().add(this.getExprUnary());
+    dereferenceEClass.getESuperTypes().add(this.getExprUnary());
+    logicalNegationEClass.getESuperTypes().add(this.getExprUnary());
+    managedBoxEClass.getESuperTypes().add(this.getExprUnary());
+    ownedBoxEClass.getESuperTypes().add(this.getExprUnary());
+    borrowEClass.getESuperTypes().add(this.getExprUnary());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -2952,6 +3110,21 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getExprVec_Mutable(), ecorePackage.getEBoolean(), "mutable", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprVec_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprVec_LenExpr(), this.getExpr(), null, "lenExpr", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprUnaryEClass, ExprUnary.class, "ExprUnary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprUnary_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprUnary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(numericNegationEClass, NumericNegation.class, "NumericNegation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(dereferenceEClass, Dereference.class, "Dereference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(logicalNegationEClass, LogicalNegation.class, "LogicalNegation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(managedBoxEClass, ManagedBox.class, "ManagedBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(ownedBoxEClass, OwnedBox.class, "OwnedBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(borrowEClass, Borrow.class, "Borrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

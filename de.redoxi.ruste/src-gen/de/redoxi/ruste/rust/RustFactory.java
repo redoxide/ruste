@@ -275,6 +275,69 @@ public interface RustFactory extends EFactory
   ExprVec createExprVec();
 
   /**
+   * Returns a new object of class '<em>Expr Unary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Unary</em>'.
+   * @generated
+   */
+  ExprUnary createExprUnary();
+
+  /**
+   * Returns a new object of class '<em>Numeric Negation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Numeric Negation</em>'.
+   * @generated
+   */
+  NumericNegation createNumericNegation();
+
+  /**
+   * Returns a new object of class '<em>Dereference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dereference</em>'.
+   * @generated
+   */
+  Dereference createDereference();
+
+  /**
+   * Returns a new object of class '<em>Logical Negation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logical Negation</em>'.
+   * @generated
+   */
+  LogicalNegation createLogicalNegation();
+
+  /**
+   * Returns a new object of class '<em>Managed Box</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Managed Box</em>'.
+   * @generated
+   */
+  ManagedBox createManagedBox();
+
+  /**
+   * Returns a new object of class '<em>Owned Box</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Owned Box</em>'.
+   * @generated
+   */
+  OwnedBox createOwnedBox();
+
+  /**
+   * Returns a new object of class '<em>Borrow</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Borrow</em>'.
+   * @generated
+   */
+  Borrow createBorrow();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

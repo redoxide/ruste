@@ -6,10 +6,12 @@ import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.AttrWithList;
 import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.BoolType;
+import de.redoxi.ruste.rust.Borrow;
 import de.redoxi.ruste.rust.BorrowedPointer;
 import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.Crate;
+import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
@@ -30,9 +32,13 @@ import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.LiteralAttr;
+import de.redoxi.ruste.rust.LogicalNegation;
 import de.redoxi.ruste.rust.MachineType;
+import de.redoxi.ruste.rust.ManagedBox;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.NumberLit;
+import de.redoxi.ruste.rust.NumericNegation;
+import de.redoxi.ruste.rust.OwnedBox;
 import de.redoxi.ruste.rust.OwnedPointer;
 import de.redoxi.ruste.rust.PatBorrowed;
 import de.redoxi.ruste.rust.PatBoxed;
@@ -109,6 +115,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.BORROW:
+				if(context == grammarAccess.getBorrowRule() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule()) {
+					sequence_Borrow(context, (Borrow) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.BORROWED_POINTER:
 				if(context == grammarAccess.getBorrowedPointerRule() ||
 				   context == grammarAccess.getTypeRule()) {
@@ -133,6 +148,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.CRATE:
 				if(context == grammarAccess.getCrateRule()) {
 					sequence_Crate(context, (Crate) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.DEREFERENCE:
+				if(context == grammarAccess.getDereferenceRule() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule()) {
+					sequence_Dereference(context, (Dereference) semanticObject); 
 					return; 
 				}
 				else break;
@@ -292,10 +316,28 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.LOGICAL_NEGATION:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getLogicalNegationRule()) {
+					sequence_LogicalNegation(context, (LogicalNegation) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.MACHINE_TYPE:
 				if(context == grammarAccess.getPrimitiveTypeRule() ||
 				   context == grammarAccess.getTypeRule()) {
 					sequence_PrimitiveType(context, (MachineType) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.MANAGED_BOX:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getManagedBoxRule()) {
+					sequence_ManagedBox(context, (ManagedBox) semanticObject); 
 					return; 
 				}
 				else break;
@@ -310,6 +352,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getLiteralRule() ||
 				   context == grammarAccess.getNumberLitRule()) {
 					sequence_NumberLit(context, (NumberLit) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.NUMERIC_NEGATION:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getNumericNegationRule()) {
+					sequence_NumericNegation(context, (NumericNegation) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.OWNED_BOX:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getOwnedBoxRule()) {
+					sequence_OwnedBox(context, (OwnedBox) semanticObject); 
 					return; 
 				}
 				else break;
@@ -551,6 +611,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_Borrow(EObject context, Borrow semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getBorrowAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     type=Type
 	 */
 	protected void sequence_BorrowedPointer(EObject context, BorrowedPointer semanticObject) {
@@ -603,6 +679,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Crate(EObject context, Crate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_Dereference(EObject context, Dereference semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getDereferenceAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
 	}
 	
 	
@@ -837,6 +929,38 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_LogicalNegation(EObject context, LogicalNegation semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getLogicalNegationAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_ManagedBox(EObject context, ManagedBox semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getManagedBoxAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ident=IDENT (externalBody?=';' | items+=ItemAndAttrs*))
 	 */
 	protected void sequence_ModItem(EObject context, ModItem semanticObject) {
@@ -850,6 +974,38 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_NumberLit(EObject context, NumberLit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_NumericNegation(EObject context, NumericNegation semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getNumericNegationAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_OwnedBox(EObject context, OwnedBox semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getOwnedBoxAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
 	}
 	
 	

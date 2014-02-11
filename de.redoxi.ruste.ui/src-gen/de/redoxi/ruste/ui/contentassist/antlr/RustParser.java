@@ -48,6 +48,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprRValueAccess().getAlternatives(), "rule__ExprRValue__Alternatives");
 					put(grammarAccess.getExprPathAccess().getAlternatives_1(), "rule__ExprPath__Alternatives_1");
 					put(grammarAccess.getExprVecAccess().getAlternatives_2_2(), "rule__ExprVec__Alternatives_2_2");
+					put(grammarAccess.getExprUnaryAccess().getAlternatives(), "rule__ExprUnary__Alternatives");
 					put(grammarAccess.getPatAccess().getAlternatives(), "rule__Pat__Alternatives");
 					put(grammarAccess.getPatRangeAccess().getAlternatives(), "rule__PatRange__Alternatives");
 					put(grammarAccess.getPatEnumAccess().getAlternatives_1(), "rule__PatEnum__Alternatives_1");
@@ -129,6 +130,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprVecAccess().getGroup_2_2_0(), "rule__ExprVec__Group_2_2_0__0");
 					put(grammarAccess.getExprVecAccess().getGroup_2_2_1(), "rule__ExprVec__Group_2_2_1__0");
 					put(grammarAccess.getExprVecAccess().getGroup_2_2_1_1(), "rule__ExprVec__Group_2_2_1_1__0");
+					put(grammarAccess.getNumericNegationAccess().getGroup(), "rule__NumericNegation__Group__0");
+					put(grammarAccess.getDereferenceAccess().getGroup(), "rule__Dereference__Group__0");
+					put(grammarAccess.getLogicalNegationAccess().getGroup(), "rule__LogicalNegation__Group__0");
+					put(grammarAccess.getManagedBoxAccess().getGroup(), "rule__ManagedBox__Group__0");
+					put(grammarAccess.getOwnedBoxAccess().getGroup(), "rule__OwnedBox__Group__0");
+					put(grammarAccess.getBorrowAccess().getGroup(), "rule__Borrow__Group__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -272,6 +279,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprVecAccess().getLenExprAssignment_2_2_0_1(), "rule__ExprVec__LenExprAssignment_2_2_0_1");
 					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_0(), "rule__ExprVec__ExprsAssignment_2_2_1_0");
 					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_1_1(), "rule__ExprVec__ExprsAssignment_2_2_1_1_1");
+					put(grammarAccess.getNumericNegationAccess().getExprAssignment_1(), "rule__NumericNegation__ExprAssignment_1");
+					put(grammarAccess.getDereferenceAccess().getExprAssignment_1(), "rule__Dereference__ExprAssignment_1");
+					put(grammarAccess.getLogicalNegationAccess().getExprAssignment_1(), "rule__LogicalNegation__ExprAssignment_1");
+					put(grammarAccess.getManagedBoxAccess().getExprAssignment_1(), "rule__ManagedBox__ExprAssignment_1");
+					put(grammarAccess.getOwnedBoxAccess().getExprAssignment_1(), "rule__OwnedBox__ExprAssignment_1");
+					put(grammarAccess.getBorrowAccess().getExprAssignment_1(), "rule__Borrow__ExprAssignment_1");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

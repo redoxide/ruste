@@ -295,6 +295,75 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_UNARY:
+      {
+        ExprUnary exprUnary = (ExprUnary)theEObject;
+        T result = caseExprUnary(exprUnary);
+        if (result == null) result = caseExprRValue(exprUnary);
+        if (result == null) result = caseExpr(exprUnary);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.NUMERIC_NEGATION:
+      {
+        NumericNegation numericNegation = (NumericNegation)theEObject;
+        T result = caseNumericNegation(numericNegation);
+        if (result == null) result = caseExprUnary(numericNegation);
+        if (result == null) result = caseExprRValue(numericNegation);
+        if (result == null) result = caseExpr(numericNegation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.DEREFERENCE:
+      {
+        Dereference dereference = (Dereference)theEObject;
+        T result = caseDereference(dereference);
+        if (result == null) result = caseExprUnary(dereference);
+        if (result == null) result = caseExprRValue(dereference);
+        if (result == null) result = caseExpr(dereference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.LOGICAL_NEGATION:
+      {
+        LogicalNegation logicalNegation = (LogicalNegation)theEObject;
+        T result = caseLogicalNegation(logicalNegation);
+        if (result == null) result = caseExprUnary(logicalNegation);
+        if (result == null) result = caseExprRValue(logicalNegation);
+        if (result == null) result = caseExpr(logicalNegation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.MANAGED_BOX:
+      {
+        ManagedBox managedBox = (ManagedBox)theEObject;
+        T result = caseManagedBox(managedBox);
+        if (result == null) result = caseExprUnary(managedBox);
+        if (result == null) result = caseExprRValue(managedBox);
+        if (result == null) result = caseExpr(managedBox);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.OWNED_BOX:
+      {
+        OwnedBox ownedBox = (OwnedBox)theEObject;
+        T result = caseOwnedBox(ownedBox);
+        if (result == null) result = caseExprUnary(ownedBox);
+        if (result == null) result = caseExprRValue(ownedBox);
+        if (result == null) result = caseExpr(ownedBox);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.BORROW:
+      {
+        Borrow borrow = (Borrow)theEObject;
+        T result = caseBorrow(borrow);
+        if (result == null) result = caseExprUnary(borrow);
+        if (result == null) result = caseExprRValue(borrow);
+        if (result == null) result = caseExpr(borrow);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -1078,6 +1147,118 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprVec(ExprVec object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Unary</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Unary</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprUnary(ExprUnary object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Numeric Negation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Numeric Negation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumericNegation(NumericNegation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dereference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dereference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDereference(Dereference object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logical Negation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logical Negation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicalNegation(LogicalNegation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Managed Box</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Managed Box</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseManagedBox(ManagedBox object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Owned Box</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Owned Box</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOwnedBox(OwnedBox object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Borrow</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Borrow</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBorrow(Borrow object)
   {
     return null;
   }

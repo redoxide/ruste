@@ -1504,16 +1504,19 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprTupleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cExprStructParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cExprVecParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cExprUnaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//ExprRValue:
 		//	ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
 		//	// TODO ExprMethodCall
-		//	ExprVec;
+		//	ExprVec | // TODO ExprIndex
+		//	ExprUnary;
 		public ParserRule getRule() { return rule; }
 
 		//ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
 		//// TODO ExprMethodCall
-		//ExprVec
+		//ExprVec | // TODO ExprIndex
+		//ExprUnary
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1529,6 +1532,10 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//// TODO ExprMethodCall
 		//ExprVec
 		public RuleCall getExprVecParserRuleCall_3() { return cExprVecParserRuleCall_3; }
+
+		//// TODO ExprIndex
+		//ExprUnary
+		public RuleCall getExprUnaryParserRuleCall_4() { return cExprUnaryParserRuleCall_4; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -1789,6 +1796,186 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
+	public class ExprUnaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprUnary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNumericNegationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDereferenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLogicalNegationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cManagedBoxParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cOwnedBoxParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cBorrowParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		
+		//ExprUnary:
+		//	NumericNegation | Dereference | LogicalNegation | ManagedBox | OwnedBox | Borrow;
+		public ParserRule getRule() { return rule; }
+
+		//NumericNegation | Dereference | LogicalNegation | ManagedBox | OwnedBox | Borrow
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//NumericNegation
+		public RuleCall getNumericNegationParserRuleCall_0() { return cNumericNegationParserRuleCall_0; }
+
+		//Dereference
+		public RuleCall getDereferenceParserRuleCall_1() { return cDereferenceParserRuleCall_1; }
+
+		//LogicalNegation
+		public RuleCall getLogicalNegationParserRuleCall_2() { return cLogicalNegationParserRuleCall_2; }
+
+		//ManagedBox
+		public RuleCall getManagedBoxParserRuleCall_3() { return cManagedBoxParserRuleCall_3; }
+
+		//OwnedBox
+		public RuleCall getOwnedBoxParserRuleCall_4() { return cOwnedBoxParserRuleCall_4; }
+
+		//Borrow
+		public RuleCall getBorrowParserRuleCall_5() { return cBorrowParserRuleCall_5; }
+	}
+
+	public class NumericNegationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumericNegation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//NumericNegation:
+		//	"-" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"-" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+	}
+
+	public class DereferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Dereference");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAsteriskKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//Dereference:
+		//	"*" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"*" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_0() { return cAsteriskKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+	}
+
+	public class LogicalNegationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LogicalNegation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cExclamationMarkKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//LogicalNegation:
+		//	"!" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"!" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"!"
+		public Keyword getExclamationMarkKeyword_0() { return cExclamationMarkKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+	}
+
+	public class ManagedBoxElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ManagedBox");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//ManagedBox:
+		//	"@" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"@" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+	}
+
+	public class OwnedBoxElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OwnedBox");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTildeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//OwnedBox:
+		//	"~" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"~" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"~"
+		public Keyword getTildeKeyword_0() { return cTildeKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+	}
+
+	public class BorrowElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Borrow");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAmpersandKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		
+		//Borrow:
+		//	"&" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//"&" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//"&"
+		public Keyword getAmpersandKeyword_0() { return cAmpersandKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -3305,6 +3492,13 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprTupleElements pExprTuple;
 	private ExprStructElements pExprStruct;
 	private ExprVecElements pExprVec;
+	private ExprUnaryElements pExprUnary;
+	private NumericNegationElements pNumericNegation;
+	private DereferenceElements pDereference;
+	private LogicalNegationElements pLogicalNegation;
+	private ManagedBoxElements pManagedBox;
+	private OwnedBoxElements pOwnedBox;
+	private BorrowElements pBorrow;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -3653,7 +3847,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//ExprRValue:
 	//	ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
 	//	// TODO ExprMethodCall
-	//	ExprVec;
+	//	ExprVec | // TODO ExprIndex
+	//	ExprUnary;
 	public ExprRValueElements getExprRValueAccess() {
 		return (pExprRValue != null) ? pExprRValue : (pExprRValue = new ExprRValueElements());
 	}
@@ -3710,6 +3905,76 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprVecRule() {
 		return getExprVecAccess().getRule();
+	}
+
+	//ExprUnary:
+	//	NumericNegation | Dereference | LogicalNegation | ManagedBox | OwnedBox | Borrow;
+	public ExprUnaryElements getExprUnaryAccess() {
+		return (pExprUnary != null) ? pExprUnary : (pExprUnary = new ExprUnaryElements());
+	}
+	
+	public ParserRule getExprUnaryRule() {
+		return getExprUnaryAccess().getRule();
+	}
+
+	//NumericNegation:
+	//	"-" expr=Expr;
+	public NumericNegationElements getNumericNegationAccess() {
+		return (pNumericNegation != null) ? pNumericNegation : (pNumericNegation = new NumericNegationElements());
+	}
+	
+	public ParserRule getNumericNegationRule() {
+		return getNumericNegationAccess().getRule();
+	}
+
+	//Dereference:
+	//	"*" expr=Expr;
+	public DereferenceElements getDereferenceAccess() {
+		return (pDereference != null) ? pDereference : (pDereference = new DereferenceElements());
+	}
+	
+	public ParserRule getDereferenceRule() {
+		return getDereferenceAccess().getRule();
+	}
+
+	//LogicalNegation:
+	//	"!" expr=Expr;
+	public LogicalNegationElements getLogicalNegationAccess() {
+		return (pLogicalNegation != null) ? pLogicalNegation : (pLogicalNegation = new LogicalNegationElements());
+	}
+	
+	public ParserRule getLogicalNegationRule() {
+		return getLogicalNegationAccess().getRule();
+	}
+
+	//ManagedBox:
+	//	"@" expr=Expr;
+	public ManagedBoxElements getManagedBoxAccess() {
+		return (pManagedBox != null) ? pManagedBox : (pManagedBox = new ManagedBoxElements());
+	}
+	
+	public ParserRule getManagedBoxRule() {
+		return getManagedBoxAccess().getRule();
+	}
+
+	//OwnedBox:
+	//	"~" expr=Expr;
+	public OwnedBoxElements getOwnedBoxAccess() {
+		return (pOwnedBox != null) ? pOwnedBox : (pOwnedBox = new OwnedBoxElements());
+	}
+	
+	public ParserRule getOwnedBoxRule() {
+		return getOwnedBoxAccess().getRule();
+	}
+
+	//Borrow:
+	//	"&" expr=Expr;
+	public BorrowElements getBorrowAccess() {
+		return (pBorrow != null) ? pBorrow : (pBorrow = new BorrowElements());
+	}
+	
+	public ParserRule getBorrowRule() {
+		return getBorrowAccess().getRule();
 	}
 
 	//Block:

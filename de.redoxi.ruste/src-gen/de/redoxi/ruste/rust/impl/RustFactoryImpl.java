@@ -93,6 +93,13 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
       case RustPackage.EXPR_VEC: return createExprVec();
+      case RustPackage.EXPR_UNARY: return createExprUnary();
+      case RustPackage.NUMERIC_NEGATION: return createNumericNegation();
+      case RustPackage.DEREFERENCE: return createDereference();
+      case RustPackage.LOGICAL_NEGATION: return createLogicalNegation();
+      case RustPackage.MANAGED_BOX: return createManagedBox();
+      case RustPackage.OWNED_BOX: return createOwnedBox();
+      case RustPackage.BORROW: return createBorrow();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -480,6 +487,83 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprVecImpl exprVec = new ExprVecImpl();
     return exprVec;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprUnary createExprUnary()
+  {
+    ExprUnaryImpl exprUnary = new ExprUnaryImpl();
+    return exprUnary;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NumericNegation createNumericNegation()
+  {
+    NumericNegationImpl numericNegation = new NumericNegationImpl();
+    return numericNegation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Dereference createDereference()
+  {
+    DereferenceImpl dereference = new DereferenceImpl();
+    return dereference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LogicalNegation createLogicalNegation()
+  {
+    LogicalNegationImpl logicalNegation = new LogicalNegationImpl();
+    return logicalNegation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ManagedBox createManagedBox()
+  {
+    ManagedBoxImpl managedBox = new ManagedBoxImpl();
+    return managedBox;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OwnedBox createOwnedBox()
+  {
+    OwnedBoxImpl ownedBox = new OwnedBoxImpl();
+    return ownedBox;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Borrow createBorrow()
+  {
+    BorrowImpl borrow = new BorrowImpl();
+    return borrow;
   }
 
   /**

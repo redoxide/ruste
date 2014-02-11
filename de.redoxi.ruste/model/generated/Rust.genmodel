@@ -131,6 +131,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/exprs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/lenExpr"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprUnary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprUnary/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//NumericNegation"/>
+    <genClasses ecoreClass="Rust.ecore#//Dereference"/>
+    <genClasses ecoreClass="Rust.ecore#//LogicalNegation"/>
+    <genClasses ecoreClass="Rust.ecore#//ManagedBox"/>
+    <genClasses ecoreClass="Rust.ecore#//OwnedBox"/>
+    <genClasses ecoreClass="Rust.ecore#//Borrow"/>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>

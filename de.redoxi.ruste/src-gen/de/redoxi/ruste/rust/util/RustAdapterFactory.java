@@ -215,6 +215,41 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprVecAdapter();
       }
       @Override
+      public Adapter caseExprUnary(ExprUnary object)
+      {
+        return createExprUnaryAdapter();
+      }
+      @Override
+      public Adapter caseNumericNegation(NumericNegation object)
+      {
+        return createNumericNegationAdapter();
+      }
+      @Override
+      public Adapter caseDereference(Dereference object)
+      {
+        return createDereferenceAdapter();
+      }
+      @Override
+      public Adapter caseLogicalNegation(LogicalNegation object)
+      {
+        return createLogicalNegationAdapter();
+      }
+      @Override
+      public Adapter caseManagedBox(ManagedBox object)
+      {
+        return createManagedBoxAdapter();
+      }
+      @Override
+      public Adapter caseOwnedBox(OwnedBox object)
+      {
+        return createOwnedBoxAdapter();
+      }
+      @Override
+      public Adapter caseBorrow(Borrow object)
+      {
+        return createBorrowAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -862,6 +897,111 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprVecAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprUnary <em>Expr Unary</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprUnary
+   * @generated
+   */
+  public Adapter createExprUnaryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.NumericNegation <em>Numeric Negation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.NumericNegation
+   * @generated
+   */
+  public Adapter createNumericNegationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Dereference <em>Dereference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Dereference
+   * @generated
+   */
+  public Adapter createDereferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.LogicalNegation <em>Logical Negation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.LogicalNegation
+   * @generated
+   */
+  public Adapter createLogicalNegationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ManagedBox <em>Managed Box</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ManagedBox
+   * @generated
+   */
+  public Adapter createManagedBoxAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.OwnedBox <em>Owned Box</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.OwnedBox
+   * @generated
+   */
+  public Adapter createOwnedBoxAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Borrow <em>Borrow</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Borrow
+   * @generated
+   */
+  public Adapter createBorrowAdapter()
   {
     return null;
   }

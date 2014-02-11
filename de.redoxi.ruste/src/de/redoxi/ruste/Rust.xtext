@@ -111,7 +111,9 @@ ExprRValue:
 	ExprStruct |
 	// TODO ExprField
 	// TODO ExprMethodCall
-	ExprVec
+	ExprVec |
+	// TODO ExprIndex
+	ExprUnary
 ;
 
 ExprLiteral:
@@ -132,6 +134,39 @@ ExprStruct:
 
 ExprVec:
 	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
+;
+
+ExprUnary:
+	NumericNegation |
+	Dereference |
+	LogicalNegation |
+	ManagedBox |
+	OwnedBox |
+	Borrow
+;
+
+NumericNegation:
+	"-" expr = Expr
+;
+
+Dereference:
+	"*" expr = Expr
+;
+
+LogicalNegation:
+	"!" expr = Expr
+;
+
+ManagedBox:
+	"@" expr = Expr
+;
+
+OwnedBox:
+	"~" expr = Expr
+;
+
+Borrow:
+	"&" expr = Expr
 ;
 
 Block:

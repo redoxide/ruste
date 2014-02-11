@@ -2445,6 +2445,16 @@ ruleExprRValue returns [EObject current=null]
         $current = $this_ExprVec_3.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprRValueAccess().getExprUnaryParserRuleCall_4()); 
+    }
+    this_ExprUnary_4=ruleExprUnary
+    { 
+        $current = $this_ExprUnary_4.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -2847,6 +2857,344 @@ ruleExprVec returns [EObject current=null]
     	newLeafNode(otherlv_9, grammarAccess.getExprVecAccess().getRightSquareBracketKeyword_3());
     }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleExprUnary
+entryRuleExprUnary returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprUnaryRule()); }
+	 iv_ruleExprUnary=ruleExprUnary 
+	 { $current=$iv_ruleExprUnary.current; } 
+	 EOF 
+;
+
+// Rule ExprUnary
+ruleExprUnary returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getNumericNegationParserRuleCall_0()); 
+    }
+    this_NumericNegation_0=ruleNumericNegation
+    { 
+        $current = $this_NumericNegation_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getDereferenceParserRuleCall_1()); 
+    }
+    this_Dereference_1=ruleDereference
+    { 
+        $current = $this_Dereference_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getLogicalNegationParserRuleCall_2()); 
+    }
+    this_LogicalNegation_2=ruleLogicalNegation
+    { 
+        $current = $this_LogicalNegation_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getManagedBoxParserRuleCall_3()); 
+    }
+    this_ManagedBox_3=ruleManagedBox
+    { 
+        $current = $this_ManagedBox_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getOwnedBoxParserRuleCall_4()); 
+    }
+    this_OwnedBox_4=ruleOwnedBox
+    { 
+        $current = $this_OwnedBox_4.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprUnaryAccess().getBorrowParserRuleCall_5()); 
+    }
+    this_Borrow_5=ruleBorrow
+    { 
+        $current = $this_Borrow_5.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleNumericNegation
+entryRuleNumericNegation returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getNumericNegationRule()); }
+	 iv_ruleNumericNegation=ruleNumericNegation 
+	 { $current=$iv_ruleNumericNegation.current; } 
+	 EOF 
+;
+
+// Rule NumericNegation
+ruleNumericNegation returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='-' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getNumericNegationAccess().getHyphenMinusKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getNumericNegationAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getNumericNegationRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleDereference
+entryRuleDereference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDereferenceRule()); }
+	 iv_ruleDereference=ruleDereference 
+	 { $current=$iv_ruleDereference.current; } 
+	 EOF 
+;
+
+// Rule Dereference
+ruleDereference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='*' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getDereferenceAccess().getAsteriskKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDereferenceAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDereferenceRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleLogicalNegation
+entryRuleLogicalNegation returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLogicalNegationRule()); }
+	 iv_ruleLogicalNegation=ruleLogicalNegation 
+	 { $current=$iv_ruleLogicalNegation.current; } 
+	 EOF 
+;
+
+// Rule LogicalNegation
+ruleLogicalNegation returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='!' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getLogicalNegationAccess().getExclamationMarkKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLogicalNegationAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLogicalNegationRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleManagedBox
+entryRuleManagedBox returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getManagedBoxRule()); }
+	 iv_ruleManagedBox=ruleManagedBox 
+	 { $current=$iv_ruleManagedBox.current; } 
+	 EOF 
+;
+
+// Rule ManagedBox
+ruleManagedBox returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='@' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getManagedBoxAccess().getCommercialAtKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getManagedBoxAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getManagedBoxRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleOwnedBox
+entryRuleOwnedBox returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOwnedBoxRule()); }
+	 iv_ruleOwnedBox=ruleOwnedBox 
+	 { $current=$iv_ruleOwnedBox.current; } 
+	 EOF 
+;
+
+// Rule OwnedBox
+ruleOwnedBox returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='~' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getOwnedBoxAccess().getTildeKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOwnedBoxAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOwnedBoxRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleBorrow
+entryRuleBorrow returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBorrowRule()); }
+	 iv_ruleBorrow=ruleBorrow 
+	 { $current=$iv_ruleBorrow.current; } 
+	 EOF 
+;
+
+// Rule Borrow
+ruleBorrow returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='&' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getBorrowAccess().getAmpersandKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBorrowAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBorrowRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 
