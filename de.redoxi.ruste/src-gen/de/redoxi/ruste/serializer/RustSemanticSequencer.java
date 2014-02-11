@@ -15,6 +15,7 @@ import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprStruct;
@@ -118,6 +119,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.BORROW:
 				if(context == grammarAccess.getBorrowRule() ||
 				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule()) {
 					sequence_Borrow(context, (Borrow) semanticObject); 
@@ -154,6 +156,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.DEREFERENCE:
 				if(context == grammarAccess.getDereferenceRule() ||
 				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule()) {
 					sequence_Dereference(context, (Dereference) semanticObject); 
@@ -180,8 +183,18 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.EXPR_GROUP:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprGroupRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprRValueRule()) {
+					sequence_ExprGroup(context, (ExprGroup) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.EXPR_LITERAL:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprLiteralRule() ||
 				   context == grammarAccess.getExprRValueRule()) {
 					sequence_ExprLiteral(context, (ExprLiteral) semanticObject); 
@@ -189,8 +202,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_PATH:
-				if(context == grammarAccess.getExprRule() ||
-				   context == grammarAccess.getExprLValueRule() ||
+				if(context == grammarAccess.getExprLValueRule() ||
 				   context == grammarAccess.getExprPathRule() ||
 				   context == grammarAccess.getExprPathAccess().getExprStructPathAction_1_0_0() ||
 				   context == grammarAccess.getExprPathAccess().getExprTuplePathAction_1_1_0()) {
@@ -204,13 +216,11 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ExprPath(context, (ExprStruct) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getExprRValueRule() ||
+				else if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprStructRule()) {
 					sequence_ExprStruct(context, (ExprStruct) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getExprRule()) {
-					sequence_Expr_ExprPath_ExprStruct(context, (ExprStruct) semanticObject); 
 					return; 
 				}
 				else break;
@@ -220,18 +230,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_ExprPath(context, (ExprTuple) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getExprRValueRule() ||
-				   context == grammarAccess.getExprTupleRule()) {
+				else if(context == grammarAccess.getExprTupleRule()) {
 					sequence_ExprTuple(context, (ExprTuple) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getExprRule()) {
-					sequence_Expr_ExprPath_ExprTuple(context, (ExprTuple) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_VEC:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprVecRule()) {
 					sequence_ExprVec(context, (ExprVec) semanticObject); 
@@ -318,6 +324,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case RustPackage.LOGICAL_NEGATION:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
 				   context == grammarAccess.getLogicalNegationRule()) {
@@ -334,6 +341,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case RustPackage.MANAGED_BOX:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
 				   context == grammarAccess.getManagedBoxRule()) {
@@ -357,6 +365,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case RustPackage.NUMERIC_NEGATION:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
 				   context == grammarAccess.getNumericNegationRule()) {
@@ -366,6 +375,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case RustPackage.OWNED_BOX:
 				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
 				   context == grammarAccess.getOwnedBoxRule()) {
@@ -727,6 +737,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_ExprGroup(EObject context, ExprGroup semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_GROUP__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_GROUP__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprGroupAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     literal=Literal
 	 */
 	protected void sequence_ExprLiteral(EObject context, ExprLiteral semanticObject) {
@@ -786,7 +812,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     exprs+=Expr+
+	 *     (exprs+=Expr exprs+=Expr*)
 	 */
 	protected void sequence_ExprTuple(EObject context, ExprTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -798,24 +824,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (mutable?=MUT_KEYWORD (exprs+=Expr (lenExpr=Expr | (exprs+=Expr exprs+=Expr+)))?)
 	 */
 	protected void sequence_ExprVec(EObject context, ExprVec semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((path=ExprPath_ExprStruct_1_0_0 struct=ExprStruct) | (fields+=StructField fields+=StructField* baseExpr=Expr?))
-	 */
-	protected void sequence_Expr_ExprPath_ExprStruct(EObject context, ExprStruct semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((path=ExprPath_ExprTuple_1_1_0 tuple=ExprTuple) | exprs+=Expr+)
-	 */
-	protected void sequence_Expr_ExprPath_ExprTuple(EObject context, ExprTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

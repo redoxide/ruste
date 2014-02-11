@@ -5,21 +5,21 @@ package de.redoxi.ruste.rust;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Expr Unary</b></em>'.
+ * A representation of the model object '<em><b>Expr Group</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.ExprUnary#getExpr <em>Expr</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.ExprGroup#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getExprUnary()
+ * @see de.redoxi.ruste.rust.RustPackage#getExprGroup()
  * @model
  * @generated
  */
-public interface ExprUnary extends ExprLeaf
+public interface ExprGroup extends ExprLeaf
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.
@@ -31,14 +31,14 @@ public interface ExprUnary extends ExprLeaf
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference.
    * @see #setExpr(Expr)
-   * @see de.redoxi.ruste.rust.RustPackage#getExprUnary_Expr()
+   * @see de.redoxi.ruste.rust.RustPackage#getExprGroup_Expr()
    * @model containment="true"
    * @generated
    */
   Expr getExpr();
 
   /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprUnary#getExpr <em>Expr</em>}' containment reference.
+   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprGroup#getExpr <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Expr</em>' containment reference.
@@ -47,4 +47,4 @@ public interface ExprUnary extends ExprLeaf
    */
   void setExpr(Expr value);
 
-} // ExprUnary
+} // ExprGroup

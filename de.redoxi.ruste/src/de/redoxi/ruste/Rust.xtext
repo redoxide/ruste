@@ -97,7 +97,7 @@ StaticItem:
 ;
 
 Expr:
-	ExprLValue |
+	// ExprLValue |
 	ExprRValue
 ;
 
@@ -106,13 +106,20 @@ ExprLValue:
 ;
 
 ExprRValue:
-	ExprLiteral |
-	ExprTuple |
-	ExprStruct |
 	// TODO ExprField
 	// TODO ExprMethodCall
-	ExprVec |
 	// TODO ExprIndex
+	// ExprBinary
+	ExprLeaf
+;
+
+// Expressions that avoid left recursion
+ExprLeaf:
+	ExprLiteral |
+	// TODO ExprTupleOrGroup |
+	ExprGroup |
+	ExprStruct |
+	ExprVec |
 	ExprUnary
 ;
 
@@ -124,8 +131,12 @@ ExprPath:
 	path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
 ;
 
+ExprGroup:
+	'(' expr=Expr ')'
+;
+
 ExprTuple:
-	'(' (exprs+=Expr ',')+ ')'
+	'(' exprs+=Expr (',' exprs+=Expr)* ','? ')'
 ;
 
 ExprStruct:
@@ -168,6 +179,111 @@ OwnedBox:
 Borrow:
 	"&" expr = Expr
 ;
+
+/*ExprBinary:
+	Assign
+;
+
+DivisionMultiplicationOrModulo:
+	Division | Multiplication | Modulo
+;
+
+Multiplication:
+	ExprLeaf ({Multiplication.left=current} "*" right=ExprLeaf)?
+;
+
+Division:
+	ExprLeaf ({Division.left=current} "/" right=ExprLeaf)?
+;
+
+Modulo:
+	ExprLeaf ({Modulo.left=current} "%" right=ExprLeaf)?
+;
+
+As:
+	DivisionMultiplicationOrModulo ({ExprCast.expr=current} 'as' type=Type)?
+;
+
+AdditionOrSubtraction:
+	Addition | Subtraction
+;
+
+Addition:
+	As ({ExprAddition.left=current} "+" right=As)?
+;
+
+Subtraction:
+	As ({ExprSubtraction.left=current} "-" right=As)?
+;
+
+ShiftOperator:
+	LeftShift | RightShift
+;
+
+LeftShift:
+	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction)?
+;
+
+RightShift:
+	AdditionOrSubtraction ({ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
+;
+
+BitwiseAnd:
+	ShiftOperator ({ExprBitwiseAnd.left=current} "&" right=ShiftOperator)?
+;
+
+BitwiseXor:
+	BitwiseAnd ({ExprBitwiseXor.left=current} "^" right=BitwiseAnd)?
+;
+
+BitwiseOr:
+	BitwiseXor ({ExprBitwiseOr.left=current} "|" right=BitwiseXor)?
+;
+
+ComparisonOperators:
+	LessThan | GreaterThan | LessThanOrEqualTo | GreaterThanOrEqualTo
+;
+
+LessThan:
+	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr)?
+;
+
+GreaterThan:
+	BitwiseOr ({ExprGreaterThan.left=current} ">" right=BitwiseOr)?
+;
+
+LessThanOrEqualTo:
+	BitwiseOr ({ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr)?
+;
+
+GreaterThanOrEqualTo:
+	BitwiseOr ({ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
+;
+
+EqualityOperator:
+	EqualTo | NotEqualTo
+;
+
+EqualTo:
+	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators)?
+;
+
+NotEqualTo:
+	EqualTo ({ExprNotEqualTo.left=current} "!=" right=EqualTo)?
+;
+
+BooleanAnd:
+	EqualityOperator ({ExprBooleanAnd.left=current} "&&" right=EqualityOperator)?
+;
+
+BooleanOr:
+	BooleanAnd ({ExprBooleanOr.left=current} "||" right=BooleanAnd)?
+;
+
+// TODO Divide expressions into lvalues and rvalues
+Assign:
+	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
+;*/
 
 Block:
 	{Block} '{' /* TODO Statements, expression */ '}'

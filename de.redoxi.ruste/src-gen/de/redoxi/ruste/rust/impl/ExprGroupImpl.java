@@ -3,7 +3,7 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprUnary;
+import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,18 +16,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Unary</b></em>'.
+ * An implementation of the model object '<em><b>Expr Group</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprUnaryImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprGroupImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
+public class ExprGroupImpl extends ExprLeafImpl implements ExprGroup
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -44,7 +44,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprUnaryImpl()
+  protected ExprGroupImpl()
   {
     super();
   }
@@ -57,7 +57,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_UNARY;
+    return RustPackage.Literals.EXPR_GROUP;
   }
 
   /**
@@ -81,7 +81,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
     expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_UNARY__EXPR, oldExpr, newExpr);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_GROUP__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -98,14 +98,14 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
     {
       NotificationChain msgs = null;
       if (expr != null)
-        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_UNARY__EXPR, null, msgs);
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_GROUP__EXPR, null, msgs);
       if (newExpr != null)
-        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_UNARY__EXPR, null, msgs);
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_GROUP__EXPR, null, msgs);
       msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_UNARY__EXPR, newExpr, newExpr));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_GROUP__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -118,7 +118,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_UNARY__EXPR:
+      case RustPackage.EXPR_GROUP__EXPR:
         return basicSetExpr(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +134,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_UNARY__EXPR:
+      case RustPackage.EXPR_GROUP__EXPR:
         return getExpr();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -150,7 +150,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_UNARY__EXPR:
+      case RustPackage.EXPR_GROUP__EXPR:
         setExpr((Expr)newValue);
         return;
     }
@@ -167,7 +167,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_UNARY__EXPR:
+      case RustPackage.EXPR_GROUP__EXPR:
         setExpr((Expr)null);
         return;
     }
@@ -184,10 +184,10 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_UNARY__EXPR:
+      case RustPackage.EXPR_GROUP__EXPR:
         return expr != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprUnaryImpl
+} //ExprGroupImpl

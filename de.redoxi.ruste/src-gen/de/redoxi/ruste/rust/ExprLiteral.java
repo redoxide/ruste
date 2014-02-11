@@ -19,7 +19,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLiteral extends ExprRValue
+public interface ExprLiteral extends ExprLeaf
 {
   /**
    * Returns the value of the '<em><b>Literal</b></em>' containment reference.

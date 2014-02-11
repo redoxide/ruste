@@ -1467,22 +1467,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expr");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cExprLValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cExprRValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExprRValueParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//Expr:
-		//	ExprLValue | ExprRValue;
+		//Expr: // ExprLValue |
+		//	ExprRValue;
 		public ParserRule getRule() { return rule; }
 
-		//ExprLValue | ExprRValue
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//ExprLValue
-		public RuleCall getExprLValueParserRuleCall_0() { return cExprLValueParserRuleCall_0; }
-
+		//// ExprLValue |
 		//ExprRValue
-		public RuleCall getExprRValueParserRuleCall_1() { return cExprRValueParserRuleCall_1; }
+		public RuleCall getExprRValueParserRuleCall() { return cExprRValueParserRuleCall; }
 	}
 
 	public class ExprLValueElements extends AbstractParserRuleElementFinder {
@@ -1499,41 +1492,55 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExprRValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprRValue");
+		private final RuleCall cExprLeafParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ExprRValue: // TODO ExprField
+		//// TODO ExprMethodCall
+		//// TODO ExprIndex
+		//// ExprBinary
+		//	ExprLeaf;
+		public ParserRule getRule() { return rule; }
+
+		//// TODO ExprField
+		//// TODO ExprMethodCall
+		//// TODO ExprIndex
+		//// ExprBinary
+		//ExprLeaf
+		public RuleCall getExprLeafParserRuleCall() { return cExprLeafParserRuleCall; }
+	}
+
+	public class ExprLeafElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprLeaf");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cExprLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cExprTupleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExprGroupParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cExprStructParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cExprVecParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cExprUnaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
-		//ExprRValue:
-		//	ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
-		//	// TODO ExprMethodCall
-		//	ExprVec | // TODO ExprIndex
-		//	ExprUnary;
+		//// Expressions that avoid left recursion
+		//ExprLeaf:
+		//	ExprLiteral | // ExprTupleOrGroup |
+		//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
 		public ParserRule getRule() { return rule; }
 
-		//ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
-		//// TODO ExprMethodCall
-		//ExprVec | // TODO ExprIndex
-		//ExprUnary
+		//ExprLiteral | // ExprTupleOrGroup |
+		//ExprGroup | ExprStruct | ExprVec | ExprUnary
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
 		public RuleCall getExprLiteralParserRuleCall_0() { return cExprLiteralParserRuleCall_0; }
 
-		//ExprTuple
-		public RuleCall getExprTupleParserRuleCall_1() { return cExprTupleParserRuleCall_1; }
+		//// ExprTupleOrGroup |
+		//ExprGroup
+		public RuleCall getExprGroupParserRuleCall_1() { return cExprGroupParserRuleCall_1; }
 
 		//ExprStruct
 		public RuleCall getExprStructParserRuleCall_2() { return cExprStructParserRuleCall_2; }
 
-		//// TODO ExprField
-		//// TODO ExprMethodCall
 		//ExprVec
 		public RuleCall getExprVecParserRuleCall_3() { return cExprVecParserRuleCall_3; }
 
-		//// TODO ExprIndex
 		//ExprUnary
 		public RuleCall getExprUnaryParserRuleCall_4() { return cExprUnaryParserRuleCall_4; }
 	}
@@ -1610,40 +1617,84 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getTupleExprTupleParserRuleCall_1_1_1_0() { return cTupleExprTupleParserRuleCall_1_1_1_0; }
 	}
 
-	public class ExprTupleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprTuple");
+	public class ExprGroupElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprGroup");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cExprsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cExprsExprParserRuleCall_1_0_0 = (RuleCall)cExprsAssignment_1_0.eContents().get(0);
-		private final Keyword cCommaKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//ExprTuple:
-		//	"(" (exprs+=Expr ",")+ ")";
+		/// *ExprTupleOrGroup:
+		//	'(' exprs+=Expr ({ExprGroup.exprs+=current} ')' | {ExprTuple.exprs+=current} ',' (exprs+=Expr ',')* exprs+=Expr?)
+		//	// Tuple ( Expr , )
+		//	// Group ( Expr )
+		//;* / ExprGroup:
+		//	"(" expr=Expr ")";
 		public ParserRule getRule() { return rule; }
 
-		//"(" (exprs+=Expr ",")+ ")"
+		//"(" expr=Expr ")"
 		public Group getGroup() { return cGroup; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//(exprs+=Expr ",")+
-		public Group getGroup_1() { return cGroup_1; }
-
-		//exprs+=Expr
-		public Assignment getExprsAssignment_1_0() { return cExprsAssignment_1_0; }
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
 
 		//Expr
-		public RuleCall getExprsExprParserRuleCall_1_0_0() { return cExprsExprParserRuleCall_1_0_0; }
-
-		//","
-		public Keyword getCommaKeyword_1_1() { return cCommaKeyword_1_1; }
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+
+	public class ExprTupleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprTuple");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprsExprParserRuleCall_1_0 = (RuleCall)cExprsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cExprsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cExprsExprParserRuleCall_2_1_0 = (RuleCall)cExprsAssignment_2_1.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ExprTuple:
+		//	"(" exprs+=Expr ("," exprs+=Expr)* ","? ")";
+		public ParserRule getRule() { return rule; }
+
+		//"(" exprs+=Expr ("," exprs+=Expr)* ","? ")"
+		public Group getGroup() { return cGroup; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_1() { return cExprsAssignment_1; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_1_0() { return cExprsExprParserRuleCall_1_0; }
+
+		//("," exprs+=Expr)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_1() { return cExprsAssignment_2_1; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_1_0() { return cExprsExprParserRuleCall_2_1_0; }
+
+		//","?
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 
 	public class ExprStructElements extends AbstractParserRuleElementFinder {
@@ -1985,7 +2036,110 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//Block:
+		/// *ExprBinary:
+		//	Assign
+		//;
+		//
+		//DivisionMultiplicationOrModulo:
+		//	Division | Multiplication | Modulo
+		//;
+		//
+		//Multiplication:
+		//	ExprLeaf ({Multiplication.left=current} "*" right=ExprLeaf)?
+		//;
+		//
+		//Division:
+		//	ExprLeaf ({Division.left=current} "/" right=ExprLeaf)?
+		//;
+		//
+		//Modulo:
+		//	ExprLeaf ({Modulo.left=current} "%" right=ExprLeaf)?
+		//;
+		//
+		//As:
+		//	DivisionMultiplicationOrModulo ({ExprCast.expr=current} 'as' type=Type)?
+		//;
+		//
+		//AdditionOrSubtraction:
+		//	Addition | Subtraction
+		//;
+		//
+		//Addition:
+		//	As ({ExprAddition.left=current} "+" right=As)?
+		//;
+		//
+		//Subtraction:
+		//	As ({ExprSubtraction.left=current} "-" right=As)?
+		//;
+		//
+		//ShiftOperator:
+		//	LeftShift | RightShift
+		//;
+		//
+		//LeftShift:
+		//	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction)?
+		//;
+		//
+		//RightShift:
+		//	AdditionOrSubtraction ({ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
+		//;
+		//
+		//BitwiseAnd:
+		//	ShiftOperator ({ExprBitwiseAnd.left=current} "&" right=ShiftOperator)?
+		//;
+		//
+		//BitwiseXor:
+		//	BitwiseAnd ({ExprBitwiseXor.left=current} "^" right=BitwiseAnd)?
+		//;
+		//
+		//BitwiseOr:
+		//	BitwiseXor ({ExprBitwiseOr.left=current} "|" right=BitwiseXor)?
+		//;
+		//
+		//ComparisonOperators:
+		//	LessThan | GreaterThan | LessThanOrEqualTo | GreaterThanOrEqualTo
+		//;
+		//
+		//LessThan:
+		//	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr)?
+		//;
+		//
+		//GreaterThan:
+		//	BitwiseOr ({ExprGreaterThan.left=current} ">" right=BitwiseOr)?
+		//;
+		//
+		//LessThanOrEqualTo:
+		//	BitwiseOr ({ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr)?
+		//;
+		//
+		//GreaterThanOrEqualTo:
+		//	BitwiseOr ({ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
+		//;
+		//
+		//EqualityOperator:
+		//	EqualTo | NotEqualTo
+		//;
+		//
+		//EqualTo:
+		//	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators)?
+		//;
+		//
+		//NotEqualTo:
+		//	EqualTo ({ExprNotEqualTo.left=current} "!=" right=EqualTo)?
+		//;
+		//
+		//BooleanAnd:
+		//	EqualityOperator ({ExprBooleanAnd.left=current} "&&" right=EqualityOperator)?
+		//;
+		//
+		//BooleanOr:
+		//	BooleanAnd ({ExprBooleanOr.left=current} "||" right=BooleanAnd)?
+		//;
+		//
+		//// TODO Divide expressions into lvalues and rvalues
+		//Assign:
+		//	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
+		//;* / Block:
 		//	{Block} "{" / * TODO Statements, expression * / "}";
 		public ParserRule getRule() { return rule; }
 
@@ -3487,8 +3641,10 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprElements pExpr;
 	private ExprLValueElements pExprLValue;
 	private ExprRValueElements pExprRValue;
+	private ExprLeafElements pExprLeaf;
 	private ExprLiteralElements pExprLiteral;
 	private ExprPathElements pExprPath;
+	private ExprGroupElements pExprGroup;
 	private ExprTupleElements pExprTuple;
 	private ExprStructElements pExprStruct;
 	private ExprVecElements pExprVec;
@@ -3824,8 +3980,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getStaticItemAccess().getRule();
 	}
 
-	//Expr:
-	//	ExprLValue | ExprRValue;
+	//Expr: // ExprLValue |
+	//	ExprRValue;
 	public ExprElements getExprAccess() {
 		return (pExpr != null) ? pExpr : (pExpr = new ExprElements());
 	}
@@ -3844,17 +4000,29 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprLValueAccess().getRule();
 	}
 
-	//ExprRValue:
-	//	ExprLiteral | ExprTuple | ExprStruct | // TODO ExprField
-	//	// TODO ExprMethodCall
-	//	ExprVec | // TODO ExprIndex
-	//	ExprUnary;
+	//ExprRValue: // TODO ExprField
+	//// TODO ExprMethodCall
+	//// TODO ExprIndex
+	//// ExprBinary
+	//	ExprLeaf;
 	public ExprRValueElements getExprRValueAccess() {
 		return (pExprRValue != null) ? pExprRValue : (pExprRValue = new ExprRValueElements());
 	}
 	
 	public ParserRule getExprRValueRule() {
 		return getExprRValueAccess().getRule();
+	}
+
+	//// Expressions that avoid left recursion
+	//ExprLeaf:
+	//	ExprLiteral | // ExprTupleOrGroup |
+	//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
+	public ExprLeafElements getExprLeafAccess() {
+		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
+	}
+	
+	public ParserRule getExprLeafRule() {
+		return getExprLeafAccess().getRule();
 	}
 
 	//ExprLiteral:
@@ -3877,8 +4045,22 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprPathAccess().getRule();
 	}
 
+	/// *ExprTupleOrGroup:
+	//	'(' exprs+=Expr ({ExprGroup.exprs+=current} ')' | {ExprTuple.exprs+=current} ',' (exprs+=Expr ',')* exprs+=Expr?)
+	//	// Tuple ( Expr , )
+	//	// Group ( Expr )
+	//;* / ExprGroup:
+	//	"(" expr=Expr ")";
+	public ExprGroupElements getExprGroupAccess() {
+		return (pExprGroup != null) ? pExprGroup : (pExprGroup = new ExprGroupElements());
+	}
+	
+	public ParserRule getExprGroupRule() {
+		return getExprGroupAccess().getRule();
+	}
+
 	//ExprTuple:
-	//	"(" (exprs+=Expr ",")+ ")";
+	//	"(" exprs+=Expr ("," exprs+=Expr)* ","? ")";
 	public ExprTupleElements getExprTupleAccess() {
 		return (pExprTuple != null) ? pExprTuple : (pExprTuple = new ExprTupleElements());
 	}
@@ -3977,7 +4159,110 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getBorrowAccess().getRule();
 	}
 
-	//Block:
+	/// *ExprBinary:
+	//	Assign
+	//;
+	//
+	//DivisionMultiplicationOrModulo:
+	//	Division | Multiplication | Modulo
+	//;
+	//
+	//Multiplication:
+	//	ExprLeaf ({Multiplication.left=current} "*" right=ExprLeaf)?
+	//;
+	//
+	//Division:
+	//	ExprLeaf ({Division.left=current} "/" right=ExprLeaf)?
+	//;
+	//
+	//Modulo:
+	//	ExprLeaf ({Modulo.left=current} "%" right=ExprLeaf)?
+	//;
+	//
+	//As:
+	//	DivisionMultiplicationOrModulo ({ExprCast.expr=current} 'as' type=Type)?
+	//;
+	//
+	//AdditionOrSubtraction:
+	//	Addition | Subtraction
+	//;
+	//
+	//Addition:
+	//	As ({ExprAddition.left=current} "+" right=As)?
+	//;
+	//
+	//Subtraction:
+	//	As ({ExprSubtraction.left=current} "-" right=As)?
+	//;
+	//
+	//ShiftOperator:
+	//	LeftShift | RightShift
+	//;
+	//
+	//LeftShift:
+	//	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction)?
+	//;
+	//
+	//RightShift:
+	//	AdditionOrSubtraction ({ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
+	//;
+	//
+	//BitwiseAnd:
+	//	ShiftOperator ({ExprBitwiseAnd.left=current} "&" right=ShiftOperator)?
+	//;
+	//
+	//BitwiseXor:
+	//	BitwiseAnd ({ExprBitwiseXor.left=current} "^" right=BitwiseAnd)?
+	//;
+	//
+	//BitwiseOr:
+	//	BitwiseXor ({ExprBitwiseOr.left=current} "|" right=BitwiseXor)?
+	//;
+	//
+	//ComparisonOperators:
+	//	LessThan | GreaterThan | LessThanOrEqualTo | GreaterThanOrEqualTo
+	//;
+	//
+	//LessThan:
+	//	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr)?
+	//;
+	//
+	//GreaterThan:
+	//	BitwiseOr ({ExprGreaterThan.left=current} ">" right=BitwiseOr)?
+	//;
+	//
+	//LessThanOrEqualTo:
+	//	BitwiseOr ({ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr)?
+	//;
+	//
+	//GreaterThanOrEqualTo:
+	//	BitwiseOr ({ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
+	//;
+	//
+	//EqualityOperator:
+	//	EqualTo | NotEqualTo
+	//;
+	//
+	//EqualTo:
+	//	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators)?
+	//;
+	//
+	//NotEqualTo:
+	//	EqualTo ({ExprNotEqualTo.left=current} "!=" right=EqualTo)?
+	//;
+	//
+	//BooleanAnd:
+	//	EqualityOperator ({ExprBooleanAnd.left=current} "&&" right=EqualityOperator)?
+	//;
+	//
+	//BooleanOr:
+	//	BooleanAnd ({ExprBooleanOr.left=current} "||" right=BooleanAnd)?
+	//;
+	//
+	//// TODO Divide expressions into lvalues and rvalues
+	//Assign:
+	//	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
+	//;* / Block:
 	//	{Block} "{" / * TODO Statements, expression * / "}";
 	public BlockElements getBlockAccess() {
 		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());

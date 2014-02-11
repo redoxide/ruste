@@ -111,11 +111,15 @@
     <genClasses ecoreClass="Rust.ecore#//Expr"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLValue"/>
     <genClasses ecoreClass="Rust.ecore#//ExprRValue"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprLeaf"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLiteral/literal"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprPath">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPath/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGroup/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprTuple">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprTuple/tuple"/>

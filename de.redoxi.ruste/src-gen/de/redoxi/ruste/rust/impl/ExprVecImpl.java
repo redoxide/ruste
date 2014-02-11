@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprVecImpl extends ExprRValueImpl implements ExprVec
+public class ExprVecImpl extends ExprLeafImpl implements ExprVec
 {
   /**
    * The default value of the '{@link #isMutable() <em>Mutable</em>}' attribute.

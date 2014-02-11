@@ -230,6 +230,15 @@ public interface RustFactory extends EFactory
   ExprRValue createExprRValue();
 
   /**
+   * Returns a new object of class '<em>Expr Leaf</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Leaf</em>'.
+   * @generated
+   */
+  ExprLeaf createExprLeaf();
+
+  /**
    * Returns a new object of class '<em>Expr Literal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -246,6 +255,15 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ExprPath createExprPath();
+
+  /**
+   * Returns a new object of class '<em>Expr Group</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Group</em>'.
+   * @generated
+   */
+  ExprGroup createExprGroup();
 
   /**
    * Returns a new object of class '<em>Expr Tuple</em>'.

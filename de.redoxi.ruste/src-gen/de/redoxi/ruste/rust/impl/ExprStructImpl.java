@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprStructImpl extends ExprRValueImpl implements ExprStruct
+public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
 {
   /**
    * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.

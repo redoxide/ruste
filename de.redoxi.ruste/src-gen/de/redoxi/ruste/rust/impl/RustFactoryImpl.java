@@ -88,8 +88,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR: return createExpr();
       case RustPackage.EXPR_LVALUE: return createExprLValue();
       case RustPackage.EXPR_RVALUE: return createExprRValue();
+      case RustPackage.EXPR_LEAF: return createExprLeaf();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
       case RustPackage.EXPR_PATH: return createExprPath();
+      case RustPackage.EXPR_GROUP: return createExprGroup();
       case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
       case RustPackage.EXPR_VEC: return createExprVec();
@@ -439,6 +441,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ExprLeaf createExprLeaf()
+  {
+    ExprLeafImpl exprLeaf = new ExprLeafImpl();
+    return exprLeaf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ExprLiteral createExprLiteral()
   {
     ExprLiteralImpl exprLiteral = new ExprLiteralImpl();
@@ -454,6 +467,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprPathImpl exprPath = new ExprPathImpl();
     return exprPath;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprGroup createExprGroup()
+  {
+    ExprGroupImpl exprGroup = new ExprGroupImpl();
+    return exprGroup;
   }
 
   /**

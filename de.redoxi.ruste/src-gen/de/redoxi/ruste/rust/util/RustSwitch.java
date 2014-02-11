@@ -234,7 +234,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprLValue exprLValue = (ExprLValue)theEObject;
         T result = caseExprLValue(exprLValue);
-        if (result == null) result = caseExpr(exprLValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -246,10 +245,20 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_LEAF:
+      {
+        ExprLeaf exprLeaf = (ExprLeaf)theEObject;
+        T result = caseExprLeaf(exprLeaf);
+        if (result == null) result = caseExprRValue(exprLeaf);
+        if (result == null) result = caseExpr(exprLeaf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.EXPR_LITERAL:
       {
         ExprLiteral exprLiteral = (ExprLiteral)theEObject;
         T result = caseExprLiteral(exprLiteral);
+        if (result == null) result = caseExprLeaf(exprLiteral);
         if (result == null) result = caseExprRValue(exprLiteral);
         if (result == null) result = caseExpr(exprLiteral);
         if (result == null) result = defaultCase(theEObject);
@@ -260,7 +269,16 @@ public class RustSwitch<T> extends Switch<T>
         ExprPath exprPath = (ExprPath)theEObject;
         T result = caseExprPath(exprPath);
         if (result == null) result = caseExprLValue(exprPath);
-        if (result == null) result = caseExpr(exprPath);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_GROUP:
+      {
+        ExprGroup exprGroup = (ExprGroup)theEObject;
+        T result = caseExprGroup(exprGroup);
+        if (result == null) result = caseExprLeaf(exprGroup);
+        if (result == null) result = caseExprRValue(exprGroup);
+        if (result == null) result = caseExpr(exprGroup);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -268,10 +286,8 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprTuple exprTuple = (ExprTuple)theEObject;
         T result = caseExprTuple(exprTuple);
-        if (result == null) result = caseExprRValue(exprTuple);
         if (result == null) result = caseExprPath(exprTuple);
         if (result == null) result = caseExprLValue(exprTuple);
-        if (result == null) result = caseExpr(exprTuple);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -279,8 +295,9 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprStruct exprStruct = (ExprStruct)theEObject;
         T result = caseExprStruct(exprStruct);
-        if (result == null) result = caseExprRValue(exprStruct);
+        if (result == null) result = caseExprLeaf(exprStruct);
         if (result == null) result = caseExprPath(exprStruct);
+        if (result == null) result = caseExprRValue(exprStruct);
         if (result == null) result = caseExprLValue(exprStruct);
         if (result == null) result = caseExpr(exprStruct);
         if (result == null) result = defaultCase(theEObject);
@@ -290,6 +307,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprVec exprVec = (ExprVec)theEObject;
         T result = caseExprVec(exprVec);
+        if (result == null) result = caseExprLeaf(exprVec);
         if (result == null) result = caseExprRValue(exprVec);
         if (result == null) result = caseExpr(exprVec);
         if (result == null) result = defaultCase(theEObject);
@@ -299,6 +317,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprUnary exprUnary = (ExprUnary)theEObject;
         T result = caseExprUnary(exprUnary);
+        if (result == null) result = caseExprLeaf(exprUnary);
         if (result == null) result = caseExprRValue(exprUnary);
         if (result == null) result = caseExpr(exprUnary);
         if (result == null) result = defaultCase(theEObject);
@@ -309,6 +328,7 @@ public class RustSwitch<T> extends Switch<T>
         NumericNegation numericNegation = (NumericNegation)theEObject;
         T result = caseNumericNegation(numericNegation);
         if (result == null) result = caseExprUnary(numericNegation);
+        if (result == null) result = caseExprLeaf(numericNegation);
         if (result == null) result = caseExprRValue(numericNegation);
         if (result == null) result = caseExpr(numericNegation);
         if (result == null) result = defaultCase(theEObject);
@@ -319,6 +339,7 @@ public class RustSwitch<T> extends Switch<T>
         Dereference dereference = (Dereference)theEObject;
         T result = caseDereference(dereference);
         if (result == null) result = caseExprUnary(dereference);
+        if (result == null) result = caseExprLeaf(dereference);
         if (result == null) result = caseExprRValue(dereference);
         if (result == null) result = caseExpr(dereference);
         if (result == null) result = defaultCase(theEObject);
@@ -329,6 +350,7 @@ public class RustSwitch<T> extends Switch<T>
         LogicalNegation logicalNegation = (LogicalNegation)theEObject;
         T result = caseLogicalNegation(logicalNegation);
         if (result == null) result = caseExprUnary(logicalNegation);
+        if (result == null) result = caseExprLeaf(logicalNegation);
         if (result == null) result = caseExprRValue(logicalNegation);
         if (result == null) result = caseExpr(logicalNegation);
         if (result == null) result = defaultCase(theEObject);
@@ -339,6 +361,7 @@ public class RustSwitch<T> extends Switch<T>
         ManagedBox managedBox = (ManagedBox)theEObject;
         T result = caseManagedBox(managedBox);
         if (result == null) result = caseExprUnary(managedBox);
+        if (result == null) result = caseExprLeaf(managedBox);
         if (result == null) result = caseExprRValue(managedBox);
         if (result == null) result = caseExpr(managedBox);
         if (result == null) result = defaultCase(theEObject);
@@ -349,6 +372,7 @@ public class RustSwitch<T> extends Switch<T>
         OwnedBox ownedBox = (OwnedBox)theEObject;
         T result = caseOwnedBox(ownedBox);
         if (result == null) result = caseExprUnary(ownedBox);
+        if (result == null) result = caseExprLeaf(ownedBox);
         if (result == null) result = caseExprRValue(ownedBox);
         if (result == null) result = caseExpr(ownedBox);
         if (result == null) result = defaultCase(theEObject);
@@ -359,6 +383,7 @@ public class RustSwitch<T> extends Switch<T>
         Borrow borrow = (Borrow)theEObject;
         T result = caseBorrow(borrow);
         if (result == null) result = caseExprUnary(borrow);
+        if (result == null) result = caseExprLeaf(borrow);
         if (result == null) result = caseExprRValue(borrow);
         if (result == null) result = caseExpr(borrow);
         if (result == null) result = defaultCase(theEObject);
@@ -1072,6 +1097,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Leaf</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Leaf</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprLeaf(ExprLeaf object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expr Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1099,6 +1140,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprPath(ExprPath object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Group</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Group</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprGroup(ExprGroup object)
   {
     return null;
   }

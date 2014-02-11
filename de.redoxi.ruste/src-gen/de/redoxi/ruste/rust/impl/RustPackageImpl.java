@@ -17,7 +17,9 @@ import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprLValue;
+import de.redoxi.ruste.rust.ExprLeaf;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprRValue;
@@ -265,6 +267,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass exprLeafEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass exprLiteralEClass = null;
 
   /**
@@ -273,6 +282,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprPathEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprGroupEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1523,6 +1539,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprLeaf()
+  {
+    return exprLeafEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExprLiteral()
   {
     return exprLiteralEClass;
@@ -1556,6 +1582,26 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getExprPath_Path()
   {
     return (EReference)exprPathEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprGroup()
+  {
+    return exprGroupEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprGroup_Expr()
+  {
+    return (EReference)exprGroupEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2732,11 +2778,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     exprRValueEClass = createEClass(EXPR_RVALUE);
 
+    exprLeafEClass = createEClass(EXPR_LEAF);
+
     exprLiteralEClass = createEClass(EXPR_LITERAL);
     createEReference(exprLiteralEClass, EXPR_LITERAL__LITERAL);
 
     exprPathEClass = createEClass(EXPR_PATH);
     createEReference(exprPathEClass, EXPR_PATH__PATH);
+
+    exprGroupEClass = createEClass(EXPR_GROUP);
+    createEReference(exprGroupEClass, EXPR_GROUP__EXPR);
 
     exprTupleEClass = createEClass(EXPR_TUPLE);
     createEReference(exprTupleEClass, EXPR_TUPLE__TUPLE);
@@ -2937,16 +2988,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     implItemEClass.getESuperTypes().add(this.getItem());
     externBlockEClass.getESuperTypes().add(this.getItem());
     staticItemEClass.getESuperTypes().add(this.getItem());
-    exprLValueEClass.getESuperTypes().add(this.getExpr());
     exprRValueEClass.getESuperTypes().add(this.getExpr());
-    exprLiteralEClass.getESuperTypes().add(this.getExprRValue());
+    exprLeafEClass.getESuperTypes().add(this.getExprRValue());
+    exprLiteralEClass.getESuperTypes().add(this.getExprLeaf());
     exprPathEClass.getESuperTypes().add(this.getExprLValue());
-    exprTupleEClass.getESuperTypes().add(this.getExprRValue());
+    exprGroupEClass.getESuperTypes().add(this.getExprLeaf());
     exprTupleEClass.getESuperTypes().add(this.getExprPath());
-    exprStructEClass.getESuperTypes().add(this.getExprRValue());
+    exprStructEClass.getESuperTypes().add(this.getExprLeaf());
     exprStructEClass.getESuperTypes().add(this.getExprPath());
-    exprVecEClass.getESuperTypes().add(this.getExprRValue());
-    exprUnaryEClass.getESuperTypes().add(this.getExprRValue());
+    exprVecEClass.getESuperTypes().add(this.getExprLeaf());
+    exprUnaryEClass.getESuperTypes().add(this.getExprLeaf());
     numericNegationEClass.getESuperTypes().add(this.getExprUnary());
     dereferenceEClass.getESuperTypes().add(this.getExprUnary());
     logicalNegationEClass.getESuperTypes().add(this.getExprUnary());
@@ -3091,11 +3142,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(exprRValueEClass, ExprRValue.class, "ExprRValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(exprLeafEClass, ExprLeaf.class, "ExprLeaf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(exprLiteralEClass, ExprLiteral.class, "ExprLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprPath_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprGroupEClass, ExprGroup.class, "ExprGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprGroup_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprTuple_Tuple(), this.getExprTuple(), null, "tuple", null, 0, 1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

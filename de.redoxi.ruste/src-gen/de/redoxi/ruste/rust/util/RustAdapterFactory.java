@@ -190,6 +190,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprRValueAdapter();
       }
       @Override
+      public Adapter caseExprLeaf(ExprLeaf object)
+      {
+        return createExprLeafAdapter();
+      }
+      @Override
       public Adapter caseExprLiteral(ExprLiteral object)
       {
         return createExprLiteralAdapter();
@@ -198,6 +203,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExprPath(ExprPath object)
       {
         return createExprPathAdapter();
+      }
+      @Override
+      public Adapter caseExprGroup(ExprGroup object)
+      {
+        return createExprGroupAdapter();
       }
       @Override
       public Adapter caseExprTuple(ExprTuple object)
@@ -827,6 +837,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLeaf <em>Expr Leaf</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprLeaf
+   * @generated
+   */
+  public Adapter createExprLeafAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLiteral <em>Expr Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -852,6 +877,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprPathAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprGroup <em>Expr Group</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprGroup
+   * @generated
+   */
+  public Adapter createExprGroupAdapter()
   {
     return null;
   }

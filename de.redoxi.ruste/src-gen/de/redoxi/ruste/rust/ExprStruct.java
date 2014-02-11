@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprStruct extends ExprRValue, ExprPath
+public interface ExprStruct extends ExprLeaf, ExprPath
 {
   /**
    * Returns the value of the '<em><b>Struct</b></em>' containment reference.
