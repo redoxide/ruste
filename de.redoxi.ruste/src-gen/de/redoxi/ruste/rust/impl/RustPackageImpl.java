@@ -2994,6 +2994,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprPathEClass.getESuperTypes().add(this.getExprLValue());
     exprGroupEClass.getESuperTypes().add(this.getExprLeaf());
     exprTupleEClass.getESuperTypes().add(this.getExprPath());
+    exprTupleEClass.getESuperTypes().add(this.getExprGroup());
     exprStructEClass.getESuperTypes().add(this.getExprLeaf());
     exprStructEClass.getESuperTypes().add(this.getExprPath());
     exprVecEClass.getESuperTypes().add(this.getExprLeaf());

@@ -1157,13 +1157,22 @@ public interface RustPackage extends EPackage
   int EXPR_TUPLE__PATH = EXPR_PATH__PATH;
 
   /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_TUPLE__EXPR = EXPR_PATH_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Tuple</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_TUPLE__TUPLE = EXPR_PATH_FEATURE_COUNT + 0;
+  int EXPR_TUPLE__TUPLE = EXPR_PATH_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
@@ -1172,7 +1181,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_TUPLE__EXPRS = EXPR_PATH_FEATURE_COUNT + 1;
+  int EXPR_TUPLE__EXPRS = EXPR_PATH_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Expr Tuple</em>' class.
@@ -1181,7 +1190,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_TUPLE_FEATURE_COUNT = EXPR_PATH_FEATURE_COUNT + 2;
+  int EXPR_TUPLE_FEATURE_COUNT = EXPR_PATH_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprStructImpl <em>Expr Struct</em>}' class.

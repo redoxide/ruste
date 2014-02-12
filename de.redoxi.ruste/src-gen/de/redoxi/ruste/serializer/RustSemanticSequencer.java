@@ -186,6 +186,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.EXPR_GROUP:
 				if(context == grammarAccess.getExprRule() ||
 				   context == grammarAccess.getExprGroupRule() ||
+				   context == grammarAccess.getExprGroupAccess().getExprTupleExprsAction_2_0() ||
 				   context == grammarAccess.getExprLeafRule() ||
 				   context == grammarAccess.getExprRValueRule()) {
 					sequence_ExprGroup(context, (ExprGroup) semanticObject); 
@@ -225,7 +226,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_TUPLE:
-				if(context == grammarAccess.getExprLValueRule() ||
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprGroupRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprRValueRule()) {
+					sequence_ExprGroup(context, (ExprTuple) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getExprLValueRule() ||
 				   context == grammarAccess.getExprPathRule()) {
 					sequence_ExprPath(context, (ExprTuple) semanticObject); 
 					return; 
@@ -748,6 +756,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getExprGroupAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((exprs+=ExprGroup_ExprTuple_2_0 (exprs+=Expr exprs+=Expr*)?) | exprs+=ExprGroup_ExprTuple_2_0)
+	 */
+	protected void sequence_ExprGroup(EObject context, ExprTuple semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -132,7 +132,7 @@ ExprPath:
 ;
 
 ExprGroup:
-	'(' expr=Expr ')'
+	'(' expr=Expr ({ExprTuple.exprs+=current} ',' (exprs+=Expr (',' exprs+=Expr)* ','?)?)? ')'
 ;
 
 ExprTuple:

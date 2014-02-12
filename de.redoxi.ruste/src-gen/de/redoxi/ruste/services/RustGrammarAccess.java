@@ -1520,18 +1520,18 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Expressions that avoid left recursion
 		//ExprLeaf:
-		//	ExprLiteral | // ExprTupleOrGroup |
+		//	ExprLiteral | // TODO ExprTupleOrGroup |
 		//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
 		public ParserRule getRule() { return rule; }
 
-		//ExprLiteral | // ExprTupleOrGroup |
+		//ExprLiteral | // TODO ExprTupleOrGroup |
 		//ExprGroup | ExprStruct | ExprVec | ExprUnary
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
 		public RuleCall getExprLiteralParserRuleCall_0() { return cExprLiteralParserRuleCall_0; }
 
-		//// ExprTupleOrGroup |
+		//// TODO ExprTupleOrGroup |
 		//ExprGroup
 		public RuleCall getExprGroupParserRuleCall_1() { return cExprGroupParserRuleCall_1; }
 
@@ -1623,17 +1623,24 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Action cExprTupleExprsAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Keyword cCommaKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Assignment cExprsAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
+		private final RuleCall cExprsExprParserRuleCall_2_2_0_0 = (RuleCall)cExprsAssignment_2_2_0.eContents().get(0);
+		private final Group cGroup_2_2_1 = (Group)cGroup_2_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_2_1_0 = (Keyword)cGroup_2_2_1.eContents().get(0);
+		private final Assignment cExprsAssignment_2_2_1_1 = (Assignment)cGroup_2_2_1.eContents().get(1);
+		private final RuleCall cExprsExprParserRuleCall_2_2_1_1_0 = (RuleCall)cExprsAssignment_2_2_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		/// *ExprTupleOrGroup:
-		//	'(' exprs+=Expr ({ExprGroup.exprs+=current} ')' | {ExprTuple.exprs+=current} ',' (exprs+=Expr ',')* exprs+=Expr?)
-		//	// Tuple ( Expr , )
-		//	// Group ( Expr )
-		//;* / ExprGroup:
-		//	"(" expr=Expr ")";
+		//ExprGroup:
+		//	"(" expr=Expr ({ExprTuple.exprs+=current} "," (exprs+=Expr ("," exprs+=Expr)* ","?)?)? ")";
 		public ParserRule getRule() { return rule; }
 
-		//"(" expr=Expr ")"
+		//"(" expr=Expr ({ExprTuple.exprs+=current} "," (exprs+=Expr ("," exprs+=Expr)* ","?)?)? ")"
 		public Group getGroup() { return cGroup; }
 
 		//"("
@@ -1645,8 +1652,41 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
 
+		//({ExprTuple.exprs+=current} "," (exprs+=Expr ("," exprs+=Expr)* ","?)?)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//{ExprTuple.exprs+=current}
+		public Action getExprTupleExprsAction_2_0() { return cExprTupleExprsAction_2_0; }
+
+		//","
+		public Keyword getCommaKeyword_2_1() { return cCommaKeyword_2_1; }
+
+		//(exprs+=Expr ("," exprs+=Expr)* ","?)?
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_2_0() { return cExprsAssignment_2_2_0; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_2_0_0() { return cExprsExprParserRuleCall_2_2_0_0; }
+
+		//("," exprs+=Expr)*
+		public Group getGroup_2_2_1() { return cGroup_2_2_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_2_1_0() { return cCommaKeyword_2_2_1_0; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_2_1_1() { return cExprsAssignment_2_2_1_1; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_2_1_1_0() { return cExprsExprParserRuleCall_2_2_1_1_0; }
+
+		//","?
+		public Keyword getCommaKeyword_2_2_2() { return cCommaKeyword_2_2_2; }
+
 		//")"
-		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
 	public class ExprTupleElements extends AbstractParserRuleElementFinder {
@@ -4015,7 +4055,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Expressions that avoid left recursion
 	//ExprLeaf:
-	//	ExprLiteral | // ExprTupleOrGroup |
+	//	ExprLiteral | // TODO ExprTupleOrGroup |
 	//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
@@ -4045,12 +4085,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprPathAccess().getRule();
 	}
 
-	/// *ExprTupleOrGroup:
-	//	'(' exprs+=Expr ({ExprGroup.exprs+=current} ')' | {ExprTuple.exprs+=current} ',' (exprs+=Expr ',')* exprs+=Expr?)
-	//	// Tuple ( Expr , )
-	//	// Group ( Expr )
-	//;* / ExprGroup:
-	//	"(" expr=Expr ")";
+	//ExprGroup:
+	//	"(" expr=Expr ({ExprTuple.exprs+=current} "," (exprs+=Expr ("," exprs+=Expr)* ","?)?)? ")";
 	public ExprGroupElements getExprGroupAccess() {
 		return (pExprGroup != null) ? pExprGroup : (pExprGroup = new ExprGroupElements());
 	}

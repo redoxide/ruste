@@ -287,7 +287,11 @@ public class RustSwitch<T> extends Switch<T>
         ExprTuple exprTuple = (ExprTuple)theEObject;
         T result = caseExprTuple(exprTuple);
         if (result == null) result = caseExprPath(exprTuple);
+        if (result == null) result = caseExprGroup(exprTuple);
         if (result == null) result = caseExprLValue(exprTuple);
+        if (result == null) result = caseExprLeaf(exprTuple);
+        if (result == null) result = caseExprRValue(exprTuple);
+        if (result == null) result = caseExpr(exprTuple);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

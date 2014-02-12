@@ -3,6 +3,9 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprGroup;
+import de.redoxi.ruste.rust.ExprLeaf;
+import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -28,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprTupleImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ExprTupleImpl#getTuple <em>Tuple</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ExprTupleImpl#getExprs <em>Exprs</em>}</li>
  * </ul>
@@ -37,6 +41,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
 {
+  /**
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpr()
+   * @generated
+   * @ordered
+   */
+  protected Expr expr;
+
   /**
    * The cached value of the '{@link #getTuple() <em>Tuple</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -76,6 +90,54 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   protected EClass eStaticClass()
   {
     return RustPackage.Literals.EXPR_TUPLE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getExpr()
+  {
+    return expr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
+  {
+    Expr oldExpr = expr;
+    expr = newExpr;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_TUPLE__EXPR, oldExpr, newExpr);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpr(Expr newExpr)
+  {
+    if (newExpr != expr)
+    {
+      NotificationChain msgs = null;
+      if (expr != null)
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_TUPLE__EXPR, null, msgs);
+      if (newExpr != null)
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_TUPLE__EXPR, null, msgs);
+      msgs = basicSetExpr(newExpr, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_TUPLE__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -150,6 +212,8 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   {
     switch (featureID)
     {
+      case RustPackage.EXPR_TUPLE__EXPR:
+        return basicSetExpr(null, msgs);
       case RustPackage.EXPR_TUPLE__TUPLE:
         return basicSetTuple(null, msgs);
       case RustPackage.EXPR_TUPLE__EXPRS:
@@ -168,6 +232,8 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   {
     switch (featureID)
     {
+      case RustPackage.EXPR_TUPLE__EXPR:
+        return getExpr();
       case RustPackage.EXPR_TUPLE__TUPLE:
         return getTuple();
       case RustPackage.EXPR_TUPLE__EXPRS:
@@ -187,6 +253,9 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   {
     switch (featureID)
     {
+      case RustPackage.EXPR_TUPLE__EXPR:
+        setExpr((Expr)newValue);
+        return;
       case RustPackage.EXPR_TUPLE__TUPLE:
         setTuple((ExprTuple)newValue);
         return;
@@ -208,6 +277,9 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   {
     switch (featureID)
     {
+      case RustPackage.EXPR_TUPLE__EXPR:
+        setExpr((Expr)null);
+        return;
       case RustPackage.EXPR_TUPLE__TUPLE:
         setTuple((ExprTuple)null);
         return;
@@ -228,12 +300,94 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   {
     switch (featureID)
     {
+      case RustPackage.EXPR_TUPLE__EXPR:
+        return expr != null;
       case RustPackage.EXPR_TUPLE__TUPLE:
         return tuple != null;
       case RustPackage.EXPR_TUPLE__EXPRS:
         return exprs != null && !exprs.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Expr.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprRValue.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprLeaf.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprGroup.class)
+    {
+      switch (derivedFeatureID)
+      {
+        case RustPackage.EXPR_TUPLE__EXPR: return RustPackage.EXPR_GROUP__EXPR;
+        default: return -1;
+      }
+    }
+    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Expr.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprRValue.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprLeaf.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ExprGroup.class)
+    {
+      switch (baseFeatureID)
+      {
+        case RustPackage.EXPR_GROUP__EXPR: return RustPackage.EXPR_TUPLE__EXPR;
+        default: return -1;
+      }
+    }
+    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } //ExprTupleImpl
