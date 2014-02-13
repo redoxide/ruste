@@ -2,6 +2,7 @@
  */
 package de.redoxi.ruste.rust;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLiteral extends ExprLeaf
+public interface ExprLiteral extends EObject
 {
   /**
    * Returns the value of the '<em><b>Literal</b></em>' containment reference.

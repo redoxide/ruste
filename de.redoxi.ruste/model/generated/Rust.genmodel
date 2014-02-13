@@ -130,11 +130,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprStruct/fields"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprStruct/baseExpr"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprVec">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprVec/mutable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/exprs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/lenExpr"/>
-    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprUnary/expr"/>
     </genClasses>
@@ -144,6 +139,19 @@
     <genClasses ecoreClass="Rust.ecore#//ManagedBox"/>
     <genClasses ecoreClass="Rust.ecore#//OwnedBox"/>
     <genClasses ecoreClass="Rust.ecore#//Borrow"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinary"/>
+    <genClasses ecoreClass="Rust.ecore#//DivisionMultiplicationOrModulo"/>
+    <genClasses ecoreClass="Rust.ecore#//As"/>
+    <genClasses ecoreClass="Rust.ecore#//AdditionOrSubtraction"/>
+    <genClasses ecoreClass="Rust.ecore#//ShiftOperator"/>
+    <genClasses ecoreClass="Rust.ecore#//BitwiseAnd"/>
+    <genClasses ecoreClass="Rust.ecore#//BitwiseXor"/>
+    <genClasses ecoreClass="Rust.ecore#//BitwiseOr"/>
+    <genClasses ecoreClass="Rust.ecore#//ComparisonOperators"/>
+    <genClasses ecoreClass="Rust.ecore#//EqualityOperator"/>
+    <genClasses ecoreClass="Rust.ecore#//BooleanAnd"/>
+    <genClasses ecoreClass="Rust.ecore#//BooleanOr"/>
+    <genClasses ecoreClass="Rust.ecore#//Assign"/>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
@@ -244,6 +252,86 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
     <genClasses ecoreClass="Rust.ecore#//CharLit"/>
+    <genClasses ecoreClass="Rust.ecore#//Division">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Division/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Division/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Multiplication">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Multiplication/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Multiplication/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Modulo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Modulo/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Modulo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprCast">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCast/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCast/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprAddition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddition/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddition/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprSubtraction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprSubtraction/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprSubtraction/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLeftShift">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLeftShift/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLeftShift/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprRightShift">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRightShift/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRightShift/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBitwiseAnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseAnd/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseAnd/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBitwiseXor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseXor/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseXor/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBitwiseOr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseOr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBitwiseOr/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLessThan">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLessThan/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLessThan/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprGreaterThan">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGreaterThan/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGreaterThan/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLessThanOrEqualTo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLessThanOrEqualTo/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLessThanOrEqualTo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprGreaterThanOrEqualTo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGreaterThanOrEqualTo/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGreaterThanOrEqualTo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprEqualTo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprEqualTo/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprEqualTo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprNotEqualTo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprNotEqualTo/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprNotEqualTo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBooleanAnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBooleanAnd/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBooleanAnd/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBooleanOr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBooleanOr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBooleanOr/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprAssign">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAssign/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAssign/right"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatTupleEnum">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatTupleEnum/patterns"/>
     </genClasses>

@@ -2,12 +2,22 @@
  */
 package de.redoxi.ruste.rust.impl;
 
+import de.redoxi.ruste.rust.AdditionOrSubtraction;
+import de.redoxi.ruste.rust.As;
+import de.redoxi.ruste.rust.BitwiseAnd;
+import de.redoxi.ruste.rust.BitwiseOr;
+import de.redoxi.ruste.rust.BitwiseXor;
+import de.redoxi.ruste.rust.BooleanAnd;
+import de.redoxi.ruste.rust.BooleanOr;
+import de.redoxi.ruste.rust.ComparisonOperators;
+import de.redoxi.ruste.rust.DivisionMultiplicationOrModulo;
+import de.redoxi.ruste.rust.EqualityOperator;
 import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprLeaf;
-import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.ShiftOperator;
 
 import java.util.Collection;
 
@@ -318,14 +328,77 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
-    if (baseClass == Expr.class)
+    if (baseClass == BooleanOr.class)
     {
       switch (derivedFeatureID)
       {
         default: return -1;
       }
     }
-    if (baseClass == ExprRValue.class)
+    if (baseClass == BooleanAnd.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == EqualityOperator.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ComparisonOperators.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseOr.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseXor.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseAnd.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ShiftOperator.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == AdditionOrSubtraction.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == As.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == DivisionMultiplicationOrModulo.class)
     {
       switch (derivedFeatureID)
       {
@@ -358,14 +431,77 @@ public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
-    if (baseClass == Expr.class)
+    if (baseClass == BooleanOr.class)
     {
       switch (baseFeatureID)
       {
         default: return -1;
       }
     }
-    if (baseClass == ExprRValue.class)
+    if (baseClass == BooleanAnd.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == EqualityOperator.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ComparisonOperators.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseOr.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseXor.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == BitwiseAnd.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == ShiftOperator.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == AdditionOrSubtraction.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == As.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == DivisionMultiplicationOrModulo.class)
     {
       switch (baseFeatureID)
       {

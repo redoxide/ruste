@@ -284,15 +284,6 @@ public interface RustFactory extends EFactory
   ExprStruct createExprStruct();
 
   /**
-   * Returns a new object of class '<em>Expr Vec</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Vec</em>'.
-   * @generated
-   */
-  ExprVec createExprVec();
-
-  /**
    * Returns a new object of class '<em>Expr Unary</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -354,6 +345,123 @@ public interface RustFactory extends EFactory
    * @generated
    */
   Borrow createBorrow();
+
+  /**
+   * Returns a new object of class '<em>Expr Binary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Binary</em>'.
+   * @generated
+   */
+  ExprBinary createExprBinary();
+
+  /**
+   * Returns a new object of class '<em>Division Multiplication Or Modulo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Division Multiplication Or Modulo</em>'.
+   * @generated
+   */
+  DivisionMultiplicationOrModulo createDivisionMultiplicationOrModulo();
+
+  /**
+   * Returns a new object of class '<em>As</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>As</em>'.
+   * @generated
+   */
+  As createAs();
+
+  /**
+   * Returns a new object of class '<em>Addition Or Subtraction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Addition Or Subtraction</em>'.
+   * @generated
+   */
+  AdditionOrSubtraction createAdditionOrSubtraction();
+
+  /**
+   * Returns a new object of class '<em>Shift Operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Shift Operator</em>'.
+   * @generated
+   */
+  ShiftOperator createShiftOperator();
+
+  /**
+   * Returns a new object of class '<em>Bitwise And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bitwise And</em>'.
+   * @generated
+   */
+  BitwiseAnd createBitwiseAnd();
+
+  /**
+   * Returns a new object of class '<em>Bitwise Xor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bitwise Xor</em>'.
+   * @generated
+   */
+  BitwiseXor createBitwiseXor();
+
+  /**
+   * Returns a new object of class '<em>Bitwise Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bitwise Or</em>'.
+   * @generated
+   */
+  BitwiseOr createBitwiseOr();
+
+  /**
+   * Returns a new object of class '<em>Comparison Operators</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comparison Operators</em>'.
+   * @generated
+   */
+  ComparisonOperators createComparisonOperators();
+
+  /**
+   * Returns a new object of class '<em>Equality Operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equality Operator</em>'.
+   * @generated
+   */
+  EqualityOperator createEqualityOperator();
+
+  /**
+   * Returns a new object of class '<em>Boolean And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Boolean And</em>'.
+   * @generated
+   */
+  BooleanAnd createBooleanAnd();
+
+  /**
+   * Returns a new object of class '<em>Boolean Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Boolean Or</em>'.
+   * @generated
+   */
+  BooleanOr createBooleanOr();
+
+  /**
+   * Returns a new object of class '<em>Assign</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assign</em>'.
+   * @generated
+   */
+  Assign createAssign();
 
   /**
    * Returns a new object of class '<em>Block</em>'.
@@ -669,6 +777,186 @@ public interface RustFactory extends EFactory
    * @generated
    */
   CharLit createCharLit();
+
+  /**
+   * Returns a new object of class '<em>Division</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Division</em>'.
+   * @generated
+   */
+  Division createDivision();
+
+  /**
+   * Returns a new object of class '<em>Multiplication</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multiplication</em>'.
+   * @generated
+   */
+  Multiplication createMultiplication();
+
+  /**
+   * Returns a new object of class '<em>Modulo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Modulo</em>'.
+   * @generated
+   */
+  Modulo createModulo();
+
+  /**
+   * Returns a new object of class '<em>Expr Cast</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Cast</em>'.
+   * @generated
+   */
+  ExprCast createExprCast();
+
+  /**
+   * Returns a new object of class '<em>Expr Addition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Addition</em>'.
+   * @generated
+   */
+  ExprAddition createExprAddition();
+
+  /**
+   * Returns a new object of class '<em>Expr Subtraction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Subtraction</em>'.
+   * @generated
+   */
+  ExprSubtraction createExprSubtraction();
+
+  /**
+   * Returns a new object of class '<em>Expr Left Shift</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Left Shift</em>'.
+   * @generated
+   */
+  ExprLeftShift createExprLeftShift();
+
+  /**
+   * Returns a new object of class '<em>Expr Right Shift</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Right Shift</em>'.
+   * @generated
+   */
+  ExprRightShift createExprRightShift();
+
+  /**
+   * Returns a new object of class '<em>Expr Bitwise And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Bitwise And</em>'.
+   * @generated
+   */
+  ExprBitwiseAnd createExprBitwiseAnd();
+
+  /**
+   * Returns a new object of class '<em>Expr Bitwise Xor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Bitwise Xor</em>'.
+   * @generated
+   */
+  ExprBitwiseXor createExprBitwiseXor();
+
+  /**
+   * Returns a new object of class '<em>Expr Bitwise Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Bitwise Or</em>'.
+   * @generated
+   */
+  ExprBitwiseOr createExprBitwiseOr();
+
+  /**
+   * Returns a new object of class '<em>Expr Less Than</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Less Than</em>'.
+   * @generated
+   */
+  ExprLessThan createExprLessThan();
+
+  /**
+   * Returns a new object of class '<em>Expr Greater Than</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Greater Than</em>'.
+   * @generated
+   */
+  ExprGreaterThan createExprGreaterThan();
+
+  /**
+   * Returns a new object of class '<em>Expr Less Than Or Equal To</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Less Than Or Equal To</em>'.
+   * @generated
+   */
+  ExprLessThanOrEqualTo createExprLessThanOrEqualTo();
+
+  /**
+   * Returns a new object of class '<em>Expr Greater Than Or Equal To</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Greater Than Or Equal To</em>'.
+   * @generated
+   */
+  ExprGreaterThanOrEqualTo createExprGreaterThanOrEqualTo();
+
+  /**
+   * Returns a new object of class '<em>Expr Equal To</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Equal To</em>'.
+   * @generated
+   */
+  ExprEqualTo createExprEqualTo();
+
+  /**
+   * Returns a new object of class '<em>Expr Not Equal To</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Not Equal To</em>'.
+   * @generated
+   */
+  ExprNotEqualTo createExprNotEqualTo();
+
+  /**
+   * Returns a new object of class '<em>Expr Boolean And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Boolean And</em>'.
+   * @generated
+   */
+  ExprBooleanAnd createExprBooleanAnd();
+
+  /**
+   * Returns a new object of class '<em>Expr Boolean Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Boolean Or</em>'.
+   * @generated
+   */
+  ExprBooleanOr createExprBooleanOr();
+
+  /**
+   * Returns a new object of class '<em>Expr Assign</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Assign</em>'.
+   * @generated
+   */
+  ExprAssign createExprAssign();
 
   /**
    * Returns a new object of class '<em>Pat Tuple Enum</em>'.

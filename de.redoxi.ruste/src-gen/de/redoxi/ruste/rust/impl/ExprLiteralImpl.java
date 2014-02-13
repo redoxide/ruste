@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprLiteralImpl extends ExprLeafImpl implements ExprLiteral
+public class ExprLiteralImpl extends MinimalEObjectImpl.Container implements ExprLiteral
 {
   /**
    * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.

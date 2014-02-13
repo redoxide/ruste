@@ -30,12 +30,12 @@ public interface ExprUnary extends ExprLeaf
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference.
-   * @see #setExpr(Expr)
+   * @see #setExpr(ExprLeaf)
    * @see de.redoxi.ruste.rust.RustPackage#getExprUnary_Expr()
    * @model containment="true"
    * @generated
    */
-  Expr getExpr();
+  ExprLeaf getExpr();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.ExprUnary#getExpr <em>Expr</em>}' containment reference.
@@ -45,6 +45,6 @@ public interface ExprUnary extends ExprLeaf
    * @see #getExpr()
    * @generated
    */
-  void setExpr(Expr value);
+  void setExpr(ExprLeaf value);
 
 } // ExprUnary

@@ -7,8 +7,6 @@ import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Expr LValue</b></em>'.
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class ExprLValueImpl extends MinimalEObjectImpl.Container implements ExprLValue
+public class ExprLValueImpl extends AssignImpl implements ExprLValue
 {
   /**
    * <!-- begin-user-doc -->

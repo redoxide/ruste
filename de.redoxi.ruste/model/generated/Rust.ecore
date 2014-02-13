@@ -131,10 +131,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLValue" eSuperTypes="#//Assign"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprRValue" eSuperTypes="#//Expr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLeaf" eSuperTypes="#//ExprRValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLeaf" eSuperTypes="#//ExprRValue #//DivisionMultiplicationOrModulo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
@@ -159,15 +159,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprVec" eSuperTypes="#//ExprLeaf">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
-        eType="#//Expr" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lenExpr" eType="#//Expr"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//ExprLeaf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprLeaf"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumericNegation" eSuperTypes="#//ExprUnary"/>
   <eClassifiers xsi:type="ecore:EClass" name="Dereference" eSuperTypes="#//ExprUnary"/>
@@ -175,6 +169,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="ManagedBox" eSuperTypes="#//ExprUnary"/>
   <eClassifiers xsi:type="ecore:EClass" name="OwnedBox" eSuperTypes="#//ExprUnary"/>
   <eClassifiers xsi:type="ecore:EClass" name="Borrow" eSuperTypes="#//ExprUnary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBinary" eSuperTypes="#//ExprRValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DivisionMultiplicationOrModulo" eSuperTypes="#//As"/>
+  <eClassifiers xsi:type="ecore:EClass" name="As" eSuperTypes="#//AdditionOrSubtraction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionOrSubtraction" eSuperTypes="#//ShiftOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ShiftOperator" eSuperTypes="#//BitwiseAnd"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BitwiseAnd" eSuperTypes="#//BitwiseXor"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BitwiseXor" eSuperTypes="#//BitwiseOr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BitwiseOr" eSuperTypes="#//ComparisonOperators"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComparisonOperators" eSuperTypes="#//EqualityOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualityOperator" eSuperTypes="#//BooleanAnd"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanAnd" eSuperTypes="#//BooleanOr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanOr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//ExprBinary"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenericParamDecl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -303,6 +310,121 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLit" eSuperTypes="#//Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="CharLit" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//DivisionMultiplicationOrModulo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLeaf"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprLeaf"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//DivisionMultiplicationOrModulo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLeaf"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprLeaf"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Modulo" eSuperTypes="#//DivisionMultiplicationOrModulo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLeaf"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprLeaf"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprCast" eSuperTypes="#//As">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//DivisionMultiplicationOrModulo"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprAddition" eSuperTypes="#//AdditionOrSubtraction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//As" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//As" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprSubtraction" eSuperTypes="#//AdditionOrSubtraction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//As" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//As" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLeftShift" eSuperTypes="#//ShiftOperator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AdditionOrSubtraction"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AdditionOrSubtraction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprRightShift" eSuperTypes="#//ShiftOperator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AdditionOrSubtraction"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AdditionOrSubtraction"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBitwiseAnd" eSuperTypes="#//BitwiseAnd">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ShiftOperator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ShiftOperator"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBitwiseXor" eSuperTypes="#//BitwiseXor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseAnd"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseAnd"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBitwiseOr" eSuperTypes="#//BitwiseOr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseXor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseXor"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLessThan" eSuperTypes="#//ComparisonOperators">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseOr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseOr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprGreaterThan" eSuperTypes="#//ComparisonOperators">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseOr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseOr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLessThanOrEqualTo" eSuperTypes="#//ComparisonOperators">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseOr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseOr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprGreaterThanOrEqualTo" eSuperTypes="#//ComparisonOperators">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BitwiseOr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BitwiseOr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprEqualTo" eSuperTypes="#//EqualityOperator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ComparisonOperators"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ComparisonOperators"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprNotEqualTo" eSuperTypes="#//EqualityOperator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ComparisonOperators"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ComparisonOperators"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBooleanAnd" eSuperTypes="#//BooleanAnd">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//EqualityOperator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//EqualityOperator"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBooleanOr" eSuperTypes="#//BooleanOr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BooleanAnd"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BooleanAnd"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprAssign" eSuperTypes="#//Assign">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprUnary"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatTupleEnum" eSuperTypes="#//PatEnum">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>

@@ -2,7 +2,9 @@
  */
 package de.redoxi.ruste.rust.impl;
 
+import de.redoxi.ruste.rust.Assign;
 import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprBinary;
 import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprStruct;
@@ -390,6 +392,20 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
+    if (baseClass == ExprBinary.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == Assign.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == ExprLValue.class)
     {
       switch (derivedFeatureID)
@@ -416,6 +432,20 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
+    if (baseClass == ExprBinary.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
+    if (baseClass == Assign.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == ExprLValue.class)
     {
       switch (baseFeatureID)

@@ -94,7 +94,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_GROUP: return createExprGroup();
       case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
-      case RustPackage.EXPR_VEC: return createExprVec();
       case RustPackage.EXPR_UNARY: return createExprUnary();
       case RustPackage.NUMERIC_NEGATION: return createNumericNegation();
       case RustPackage.DEREFERENCE: return createDereference();
@@ -102,6 +101,19 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.MANAGED_BOX: return createManagedBox();
       case RustPackage.OWNED_BOX: return createOwnedBox();
       case RustPackage.BORROW: return createBorrow();
+      case RustPackage.EXPR_BINARY: return createExprBinary();
+      case RustPackage.DIVISION_MULTIPLICATION_OR_MODULO: return createDivisionMultiplicationOrModulo();
+      case RustPackage.AS: return createAs();
+      case RustPackage.ADDITION_OR_SUBTRACTION: return createAdditionOrSubtraction();
+      case RustPackage.SHIFT_OPERATOR: return createShiftOperator();
+      case RustPackage.BITWISE_AND: return createBitwiseAnd();
+      case RustPackage.BITWISE_XOR: return createBitwiseXor();
+      case RustPackage.BITWISE_OR: return createBitwiseOr();
+      case RustPackage.COMPARISON_OPERATORS: return createComparisonOperators();
+      case RustPackage.EQUALITY_OPERATOR: return createEqualityOperator();
+      case RustPackage.BOOLEAN_AND: return createBooleanAnd();
+      case RustPackage.BOOLEAN_OR: return createBooleanOr();
+      case RustPackage.ASSIGN: return createAssign();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -137,6 +149,26 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
       case RustPackage.CHAR_LIT: return createCharLit();
+      case RustPackage.DIVISION: return createDivision();
+      case RustPackage.MULTIPLICATION: return createMultiplication();
+      case RustPackage.MODULO: return createModulo();
+      case RustPackage.EXPR_CAST: return createExprCast();
+      case RustPackage.EXPR_ADDITION: return createExprAddition();
+      case RustPackage.EXPR_SUBTRACTION: return createExprSubtraction();
+      case RustPackage.EXPR_LEFT_SHIFT: return createExprLeftShift();
+      case RustPackage.EXPR_RIGHT_SHIFT: return createExprRightShift();
+      case RustPackage.EXPR_BITWISE_AND: return createExprBitwiseAnd();
+      case RustPackage.EXPR_BITWISE_XOR: return createExprBitwiseXor();
+      case RustPackage.EXPR_BITWISE_OR: return createExprBitwiseOr();
+      case RustPackage.EXPR_LESS_THAN: return createExprLessThan();
+      case RustPackage.EXPR_GREATER_THAN: return createExprGreaterThan();
+      case RustPackage.EXPR_LESS_THAN_OR_EQUAL_TO: return createExprLessThanOrEqualTo();
+      case RustPackage.EXPR_GREATER_THAN_OR_EQUAL_TO: return createExprGreaterThanOrEqualTo();
+      case RustPackage.EXPR_EQUAL_TO: return createExprEqualTo();
+      case RustPackage.EXPR_NOT_EQUAL_TO: return createExprNotEqualTo();
+      case RustPackage.EXPR_BOOLEAN_AND: return createExprBooleanAnd();
+      case RustPackage.EXPR_BOOLEAN_OR: return createExprBooleanOr();
+      case RustPackage.EXPR_ASSIGN: return createExprAssign();
       case RustPackage.PAT_TUPLE_ENUM: return createPatTupleEnum();
       case RustPackage.PAT_STRUCT_ENUM: return createPatStructEnum();
       case RustPackage.INT_TYPE: return createIntType();
@@ -507,17 +539,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprVec createExprVec()
-  {
-    ExprVecImpl exprVec = new ExprVecImpl();
-    return exprVec;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ExprUnary createExprUnary()
   {
     ExprUnaryImpl exprUnary = new ExprUnaryImpl();
@@ -588,6 +609,149 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     BorrowImpl borrow = new BorrowImpl();
     return borrow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBinary createExprBinary()
+  {
+    ExprBinaryImpl exprBinary = new ExprBinaryImpl();
+    return exprBinary;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DivisionMultiplicationOrModulo createDivisionMultiplicationOrModulo()
+  {
+    DivisionMultiplicationOrModuloImpl divisionMultiplicationOrModulo = new DivisionMultiplicationOrModuloImpl();
+    return divisionMultiplicationOrModulo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public As createAs()
+  {
+    AsImpl as = new AsImpl();
+    return as;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditionOrSubtraction createAdditionOrSubtraction()
+  {
+    AdditionOrSubtractionImpl additionOrSubtraction = new AdditionOrSubtractionImpl();
+    return additionOrSubtraction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ShiftOperator createShiftOperator()
+  {
+    ShiftOperatorImpl shiftOperator = new ShiftOperatorImpl();
+    return shiftOperator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BitwiseAnd createBitwiseAnd()
+  {
+    BitwiseAndImpl bitwiseAnd = new BitwiseAndImpl();
+    return bitwiseAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BitwiseXor createBitwiseXor()
+  {
+    BitwiseXorImpl bitwiseXor = new BitwiseXorImpl();
+    return bitwiseXor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BitwiseOr createBitwiseOr()
+  {
+    BitwiseOrImpl bitwiseOr = new BitwiseOrImpl();
+    return bitwiseOr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComparisonOperators createComparisonOperators()
+  {
+    ComparisonOperatorsImpl comparisonOperators = new ComparisonOperatorsImpl();
+    return comparisonOperators;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EqualityOperator createEqualityOperator()
+  {
+    EqualityOperatorImpl equalityOperator = new EqualityOperatorImpl();
+    return equalityOperator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BooleanAnd createBooleanAnd()
+  {
+    BooleanAndImpl booleanAnd = new BooleanAndImpl();
+    return booleanAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BooleanOr createBooleanOr()
+  {
+    BooleanOrImpl booleanOr = new BooleanOrImpl();
+    return booleanOr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Assign createAssign()
+  {
+    AssignImpl assign = new AssignImpl();
+    return assign;
   }
 
   /**
@@ -973,6 +1137,226 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     CharLitImpl charLit = new CharLitImpl();
     return charLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Division createDivision()
+  {
+    DivisionImpl division = new DivisionImpl();
+    return division;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Multiplication createMultiplication()
+  {
+    MultiplicationImpl multiplication = new MultiplicationImpl();
+    return multiplication;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Modulo createModulo()
+  {
+    ModuloImpl modulo = new ModuloImpl();
+    return modulo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprCast createExprCast()
+  {
+    ExprCastImpl exprCast = new ExprCastImpl();
+    return exprCast;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprAddition createExprAddition()
+  {
+    ExprAdditionImpl exprAddition = new ExprAdditionImpl();
+    return exprAddition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprSubtraction createExprSubtraction()
+  {
+    ExprSubtractionImpl exprSubtraction = new ExprSubtractionImpl();
+    return exprSubtraction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprLeftShift createExprLeftShift()
+  {
+    ExprLeftShiftImpl exprLeftShift = new ExprLeftShiftImpl();
+    return exprLeftShift;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprRightShift createExprRightShift()
+  {
+    ExprRightShiftImpl exprRightShift = new ExprRightShiftImpl();
+    return exprRightShift;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBitwiseAnd createExprBitwiseAnd()
+  {
+    ExprBitwiseAndImpl exprBitwiseAnd = new ExprBitwiseAndImpl();
+    return exprBitwiseAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBitwiseXor createExprBitwiseXor()
+  {
+    ExprBitwiseXorImpl exprBitwiseXor = new ExprBitwiseXorImpl();
+    return exprBitwiseXor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBitwiseOr createExprBitwiseOr()
+  {
+    ExprBitwiseOrImpl exprBitwiseOr = new ExprBitwiseOrImpl();
+    return exprBitwiseOr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprLessThan createExprLessThan()
+  {
+    ExprLessThanImpl exprLessThan = new ExprLessThanImpl();
+    return exprLessThan;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprGreaterThan createExprGreaterThan()
+  {
+    ExprGreaterThanImpl exprGreaterThan = new ExprGreaterThanImpl();
+    return exprGreaterThan;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprLessThanOrEqualTo createExprLessThanOrEqualTo()
+  {
+    ExprLessThanOrEqualToImpl exprLessThanOrEqualTo = new ExprLessThanOrEqualToImpl();
+    return exprLessThanOrEqualTo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprGreaterThanOrEqualTo createExprGreaterThanOrEqualTo()
+  {
+    ExprGreaterThanOrEqualToImpl exprGreaterThanOrEqualTo = new ExprGreaterThanOrEqualToImpl();
+    return exprGreaterThanOrEqualTo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprEqualTo createExprEqualTo()
+  {
+    ExprEqualToImpl exprEqualTo = new ExprEqualToImpl();
+    return exprEqualTo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprNotEqualTo createExprNotEqualTo()
+  {
+    ExprNotEqualToImpl exprNotEqualTo = new ExprNotEqualToImpl();
+    return exprNotEqualTo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBooleanAnd createExprBooleanAnd()
+  {
+    ExprBooleanAndImpl exprBooleanAnd = new ExprBooleanAndImpl();
+    return exprBooleanAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBooleanOr createExprBooleanOr()
+  {
+    ExprBooleanOrImpl exprBooleanOr = new ExprBooleanOrImpl();
+    return exprBooleanOr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprAssign createExprAssign()
+  {
+    ExprAssignImpl exprAssign = new ExprAssignImpl();
+    return exprAssign;
   }
 
   /**

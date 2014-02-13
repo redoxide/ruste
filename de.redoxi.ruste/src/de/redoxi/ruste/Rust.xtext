@@ -109,17 +109,17 @@ ExprRValue:
 	// TODO ExprField
 	// TODO ExprMethodCall
 	// TODO ExprIndex
-	// ExprBinary
+	ExprBinary |
 	ExprLeaf
 ;
 
 // Expressions that avoid left recursion
 ExprLeaf:
-	ExprLiteral |
+	// ExprLiteral |
 	// TODO ExprTupleOrGroup |
 	ExprGroup |
 	ExprStruct |
-	ExprVec |
+	// ExprVec |
 	ExprUnary
 ;
 
@@ -143,9 +143,9 @@ ExprStruct:
 	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr = Expr)? "}"
 ;
 
-ExprVec:
+/*ExprVec:
 	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
-;
+;*/
 
 ExprUnary:
 	NumericNegation |
@@ -157,47 +157,35 @@ ExprUnary:
 ;
 
 NumericNegation:
-	"-" expr = Expr
+	"-" expr = ExprLeaf
 ;
 
 Dereference:
-	"*" expr = Expr
+	"*" expr = ExprLeaf
 ;
 
 LogicalNegation:
-	"!" expr = Expr
+	"!" expr = ExprLeaf
 ;
 
 ManagedBox:
-	"@" expr = Expr
+	"@" expr = ExprLeaf
 ;
 
 OwnedBox:
-	"~" expr = Expr
+	"~" expr = ExprLeaf
 ;
 
 Borrow:
-	"&" expr = Expr
+	"&" expr = ExprLeaf
 ;
 
-/*ExprBinary:
+ExprBinary:
 	Assign
 ;
 
 DivisionMultiplicationOrModulo:
-	Division | Multiplication | Modulo
-;
-
-Multiplication:
-	ExprLeaf ({Multiplication.left=current} "*" right=ExprLeaf)?
-;
-
-Division:
-	ExprLeaf ({Division.left=current} "/" right=ExprLeaf)?
-;
-
-Modulo:
-	ExprLeaf ({Modulo.left=current} "%" right=ExprLeaf)?
+	ExprLeaf ({Division.left=current} "/" right=ExprLeaf | {Multiplication.left=current} "*" right=ExprLeaf | {Modulo.left=current} "%" right=ExprLeaf)?
 ;
 
 As:
@@ -205,27 +193,11 @@ As:
 ;
 
 AdditionOrSubtraction:
-	Addition | Subtraction
-;
-
-Addition:
-	As ({ExprAddition.left=current} "+" right=As)?
-;
-
-Subtraction:
-	As ({ExprSubtraction.left=current} "-" right=As)?
+	As ({ExprAddition.left=current} "+" right=As | {ExprSubtraction.left=current} "-" right=As)?
 ;
 
 ShiftOperator:
-	LeftShift | RightShift
-;
-
-LeftShift:
-	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction)?
-;
-
-RightShift:
-	AdditionOrSubtraction ({ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
+	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction | {ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
 ;
 
 BitwiseAnd:
@@ -241,35 +213,11 @@ BitwiseOr:
 ;
 
 ComparisonOperators:
-	LessThan | GreaterThan | LessThanOrEqualTo | GreaterThanOrEqualTo
-;
-
-LessThan:
-	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr)?
-;
-
-GreaterThan:
-	BitwiseOr ({ExprGreaterThan.left=current} ">" right=BitwiseOr)?
-;
-
-LessThanOrEqualTo:
-	BitwiseOr ({ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr)?
-;
-
-GreaterThanOrEqualTo:
-	BitwiseOr ({ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
+	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr | {ExprGreaterThan.left=current} ">" right=BitwiseOr | {ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr | {ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
 ;
 
 EqualityOperator:
-	EqualTo | NotEqualTo
-;
-
-EqualTo:
-	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators)?
-;
-
-NotEqualTo:
-	EqualTo ({ExprNotEqualTo.left=current} "!=" right=EqualTo)?
+	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators | {ExprNotEqualTo.left=current} "!=" right=ComparisonOperators)?
 ;
 
 BooleanAnd:
@@ -283,7 +231,7 @@ BooleanOr:
 // TODO Divide expressions into lvalues and rvalues
 Assign:
 	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
-;*/
+;
 
 Block:
 	{Block} '{' /* TODO Statements, expression */ '}'

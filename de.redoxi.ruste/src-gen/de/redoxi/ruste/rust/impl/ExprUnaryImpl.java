@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Expr;
+import de.redoxi.ruste.rust.ExprLeaf;
 import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -37,7 +37,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
    * @generated
    * @ordered
    */
-  protected Expr expr;
+  protected ExprLeaf expr;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getExpr()
+  public ExprLeaf getExpr()
   {
     return expr;
   }
@@ -75,9 +75,9 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
+  public NotificationChain basicSetExpr(ExprLeaf newExpr, NotificationChain msgs)
   {
-    Expr oldExpr = expr;
+    ExprLeaf oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
     {
@@ -92,7 +92,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExpr(Expr newExpr)
+  public void setExpr(ExprLeaf newExpr)
   {
     if (newExpr != expr)
     {
@@ -151,7 +151,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
     switch (featureID)
     {
       case RustPackage.EXPR_UNARY__EXPR:
-        setExpr((Expr)newValue);
+        setExpr((ExprLeaf)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,7 +168,7 @@ public class ExprUnaryImpl extends ExprLeafImpl implements ExprUnary
     switch (featureID)
     {
       case RustPackage.EXPR_UNARY__EXPR:
-        setExpr((Expr)null);
+        setExpr((ExprLeaf)null);
         return;
     }
     super.eUnset(featureID);
