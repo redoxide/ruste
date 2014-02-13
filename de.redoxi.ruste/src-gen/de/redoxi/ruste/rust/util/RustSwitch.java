@@ -273,6 +273,20 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprLiteral exprLiteral = (ExprLiteral)theEObject;
         T result = caseExprLiteral(exprLiteral);
+        if (result == null) result = caseExprLeaf(exprLiteral);
+        if (result == null) result = caseExprRValue(exprLiteral);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprLiteral);
+        if (result == null) result = caseExpr(exprLiteral);
+        if (result == null) result = caseAs(exprLiteral);
+        if (result == null) result = caseAdditionOrSubtraction(exprLiteral);
+        if (result == null) result = caseShiftOperator(exprLiteral);
+        if (result == null) result = caseBitwiseAnd(exprLiteral);
+        if (result == null) result = caseBitwiseXor(exprLiteral);
+        if (result == null) result = caseBitwiseOr(exprLiteral);
+        if (result == null) result = caseComparisonOperators(exprLiteral);
+        if (result == null) result = caseEqualityOperator(exprLiteral);
+        if (result == null) result = caseBooleanAnd(exprLiteral);
+        if (result == null) result = caseBooleanOr(exprLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -357,6 +371,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = caseEqualityOperator(exprStruct);
         if (result == null) result = caseBooleanAnd(exprStruct);
         if (result == null) result = caseBooleanOr(exprStruct);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_VEC:
+      {
+        ExprVec exprVec = (ExprVec)theEObject;
+        T result = caseExprVec(exprVec);
+        if (result == null) result = caseExprLeaf(exprVec);
+        if (result == null) result = caseExprRValue(exprVec);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprVec);
+        if (result == null) result = caseExpr(exprVec);
+        if (result == null) result = caseAs(exprVec);
+        if (result == null) result = caseAdditionOrSubtraction(exprVec);
+        if (result == null) result = caseShiftOperator(exprVec);
+        if (result == null) result = caseBitwiseAnd(exprVec);
+        if (result == null) result = caseBitwiseXor(exprVec);
+        if (result == null) result = caseBitwiseOr(exprVec);
+        if (result == null) result = caseComparisonOperators(exprVec);
+        if (result == null) result = caseEqualityOperator(exprVec);
+        if (result == null) result = caseBooleanAnd(exprVec);
+        if (result == null) result = caseBooleanOr(exprVec);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1727,6 +1762,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprStruct(ExprStruct object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Vec</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Vec</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprVec(ExprVec object)
   {
     return null;
   }

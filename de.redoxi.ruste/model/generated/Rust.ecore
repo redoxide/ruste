@@ -134,7 +134,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprLValue" eSuperTypes="#//Assign"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprRValue" eSuperTypes="#//Expr"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprLeaf" eSuperTypes="#//ExprRValue #//DivisionMultiplicationOrModulo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral" eSuperTypes="#//ExprLeaf">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
@@ -157,6 +157,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
         eType="#//StructField" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseExpr" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprVec" eSuperTypes="#//ExprLeaf">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lenExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//ExprLeaf">

@@ -94,6 +94,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_GROUP: return createExprGroup();
       case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
+      case RustPackage.EXPR_VEC: return createExprVec();
       case RustPackage.EXPR_UNARY: return createExprUnary();
       case RustPackage.NUMERIC_NEGATION: return createNumericNegation();
       case RustPackage.DEREFERENCE: return createDereference();
@@ -532,6 +533,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprStructImpl exprStruct = new ExprStructImpl();
     return exprStruct;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprVec createExprVec()
+  {
+    ExprVecImpl exprVec = new ExprVecImpl();
+    return exprVec;
   }
 
   /**

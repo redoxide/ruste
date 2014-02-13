@@ -115,11 +115,11 @@ ExprRValue:
 
 // Expressions that avoid left recursion
 ExprLeaf:
-	// ExprLiteral |
+	ExprLiteral |
 	// TODO ExprTupleOrGroup |
 	ExprGroup |
 	ExprStruct |
-	// ExprVec |
+	ExprVec |
 	ExprUnary
 ;
 
@@ -143,9 +143,9 @@ ExprStruct:
 	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr = Expr)? "}"
 ;
 
-/*ExprVec:
+ExprVec:
 	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
-;*/
+;
 
 ExprUnary:
 	NumericNegation |

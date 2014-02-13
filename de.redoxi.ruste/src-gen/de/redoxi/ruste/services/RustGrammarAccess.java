@@ -1521,34 +1521,37 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExprLeafElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprLeaf");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cExprGroupParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cExprStructParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cExprUnaryParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cExprLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExprGroupParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cExprStructParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cExprVecParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cExprUnaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//// Expressions that avoid left recursion
-		//ExprLeaf: // ExprLiteral |
-		//// TODO ExprTupleOrGroup |
-		//	ExprGroup | ExprStruct | // ExprVec |
-		//	ExprUnary;
+		//ExprLeaf:
+		//	ExprLiteral | // TODO ExprTupleOrGroup |
+		//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
 		public ParserRule getRule() { return rule; }
 
-		//// ExprLiteral |
-		//// TODO ExprTupleOrGroup |
-		//ExprGroup | ExprStruct | // ExprVec |
-		//ExprUnary
+		//ExprLiteral | // TODO ExprTupleOrGroup |
+		//ExprGroup | ExprStruct | ExprVec | ExprUnary
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//// ExprLiteral |
+		//ExprLiteral
+		public RuleCall getExprLiteralParserRuleCall_0() { return cExprLiteralParserRuleCall_0; }
+
 		//// TODO ExprTupleOrGroup |
 		//ExprGroup
-		public RuleCall getExprGroupParserRuleCall_0() { return cExprGroupParserRuleCall_0; }
+		public RuleCall getExprGroupParserRuleCall_1() { return cExprGroupParserRuleCall_1; }
 
 		//ExprStruct
-		public RuleCall getExprStructParserRuleCall_1() { return cExprStructParserRuleCall_1; }
+		public RuleCall getExprStructParserRuleCall_2() { return cExprStructParserRuleCall_2; }
 
-		//// ExprVec |
+		//ExprVec
+		public RuleCall getExprVecParserRuleCall_3() { return cExprVecParserRuleCall_3; }
+
 		//ExprUnary
-		public RuleCall getExprUnaryParserRuleCall_2() { return cExprUnaryParserRuleCall_2; }
+		public RuleCall getExprUnaryParserRuleCall_4() { return cExprUnaryParserRuleCall_4; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -1803,6 +1806,98 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
+	public class ExprVecElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprVec");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cMutableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMutableMUT_KEYWORDTerminalRuleCall_1_0 = (RuleCall)cMutableAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cExprsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cExprsExprParserRuleCall_2_0_0 = (RuleCall)cExprsAssignment_2_0.eContents().get(0);
+		private final Keyword cCommaKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Alternatives cAlternatives_2_2 = (Alternatives)cGroup_2.eContents().get(2);
+		private final Group cGroup_2_2_0 = (Group)cAlternatives_2_2.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_2_2_0_0 = (Keyword)cGroup_2_2_0.eContents().get(0);
+		private final Assignment cLenExprAssignment_2_2_0_1 = (Assignment)cGroup_2_2_0.eContents().get(1);
+		private final RuleCall cLenExprExprParserRuleCall_2_2_0_1_0 = (RuleCall)cLenExprAssignment_2_2_0_1.eContents().get(0);
+		private final Group cGroup_2_2_1 = (Group)cAlternatives_2_2.eContents().get(1);
+		private final Assignment cExprsAssignment_2_2_1_0 = (Assignment)cGroup_2_2_1.eContents().get(0);
+		private final RuleCall cExprsExprParserRuleCall_2_2_1_0_0 = (RuleCall)cExprsAssignment_2_2_1_0.eContents().get(0);
+		private final Group cGroup_2_2_1_1 = (Group)cGroup_2_2_1.eContents().get(1);
+		private final Keyword cCommaKeyword_2_2_1_1_0 = (Keyword)cGroup_2_2_1_1.eContents().get(0);
+		private final Assignment cExprsAssignment_2_2_1_1_1 = (Assignment)cGroup_2_2_1_1.eContents().get(1);
+		private final RuleCall cExprsExprParserRuleCall_2_2_1_1_1_0 = (RuleCall)cExprsAssignment_2_2_1_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//ExprVec:
+		//	"[" mutable?=MUT_KEYWORD (exprs+=Expr "," (".." lenExpr=Expr | exprs+=Expr ("," exprs+=Expr)+))? "]";
+		public ParserRule getRule() { return rule; }
+
+		//"[" mutable?=MUT_KEYWORD (exprs+=Expr "," (".." lenExpr=Expr | exprs+=Expr ("," exprs+=Expr)+))? "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//mutable?=MUT_KEYWORD
+		public Assignment getMutableAssignment_1() { return cMutableAssignment_1; }
+
+		//MUT_KEYWORD
+		public RuleCall getMutableMUT_KEYWORDTerminalRuleCall_1_0() { return cMutableMUT_KEYWORDTerminalRuleCall_1_0; }
+
+		//(exprs+=Expr "," (".." lenExpr=Expr | exprs+=Expr ("," exprs+=Expr)+))?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_0() { return cExprsAssignment_2_0; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_0_0() { return cExprsExprParserRuleCall_2_0_0; }
+
+		//","
+		public Keyword getCommaKeyword_2_1() { return cCommaKeyword_2_1; }
+
+		//".." lenExpr=Expr | exprs+=Expr ("," exprs+=Expr)+
+		public Alternatives getAlternatives_2_2() { return cAlternatives_2_2; }
+
+		//".." lenExpr=Expr
+		public Group getGroup_2_2_0() { return cGroup_2_2_0; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_2_2_0_0() { return cFullStopFullStopKeyword_2_2_0_0; }
+
+		//lenExpr=Expr
+		public Assignment getLenExprAssignment_2_2_0_1() { return cLenExprAssignment_2_2_0_1; }
+
+		//Expr
+		public RuleCall getLenExprExprParserRuleCall_2_2_0_1_0() { return cLenExprExprParserRuleCall_2_2_0_1_0; }
+
+		//exprs+=Expr ("," exprs+=Expr)+
+		public Group getGroup_2_2_1() { return cGroup_2_2_1; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_2_1_0() { return cExprsAssignment_2_2_1_0; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_2_1_0_0() { return cExprsExprParserRuleCall_2_2_1_0_0; }
+
+		//("," exprs+=Expr)+
+		public Group getGroup_2_2_1_1() { return cGroup_2_2_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_2_1_1_0() { return cCommaKeyword_2_2_1_1_0; }
+
+		//exprs+=Expr
+		public Assignment getExprsAssignment_2_2_1_1_1() { return cExprsAssignment_2_2_1_1_1; }
+
+		//Expr
+		public RuleCall getExprsExprParserRuleCall_2_2_1_1_1_0() { return cExprsExprParserRuleCall_2_2_1_1_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
 	public class ExprUnaryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprUnary");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1813,9 +1908,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedBoxParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cBorrowParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
-		/// *ExprVec:
-		//	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
-		//;* / ExprUnary:
+		//ExprUnary:
 		//	NumericNegation | Dereference | LogicalNegation | ManagedBox | OwnedBox | Borrow;
 		public ParserRule getRule() { return rule; }
 
@@ -4140,6 +4233,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprGroupElements pExprGroup;
 	private ExprTupleElements pExprTuple;
 	private ExprStructElements pExprStruct;
+	private ExprVecElements pExprVec;
 	private ExprUnaryElements pExprUnary;
 	private NumericNegationElements pNumericNegation;
 	private DereferenceElements pDereference;
@@ -4518,10 +4612,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Expressions that avoid left recursion
-	//ExprLeaf: // ExprLiteral |
-	//// TODO ExprTupleOrGroup |
-	//	ExprGroup | ExprStruct | // ExprVec |
-	//	ExprUnary;
+	//ExprLeaf:
+	//	ExprLiteral | // TODO ExprTupleOrGroup |
+	//	ExprGroup | ExprStruct | ExprVec | ExprUnary;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
 	}
@@ -4580,9 +4673,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprStructAccess().getRule();
 	}
 
-	/// *ExprVec:
-	//	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
-	//;* / ExprUnary:
+	//ExprVec:
+	//	"[" mutable?=MUT_KEYWORD (exprs+=Expr "," (".." lenExpr=Expr | exprs+=Expr ("," exprs+=Expr)+))? "]";
+	public ExprVecElements getExprVecAccess() {
+		return (pExprVec != null) ? pExprVec : (pExprVec = new ExprVecElements());
+	}
+	
+	public ParserRule getExprVecRule() {
+		return getExprVecAccess().getRule();
+	}
+
+	//ExprUnary:
 	//	NumericNegation | Dereference | LogicalNegation | ManagedBox | OwnedBox | Borrow;
 	public ExprUnaryElements getExprUnaryAccess() {
 		return (pExprUnary != null) ? pExprUnary : (pExprUnary = new ExprUnaryElements());

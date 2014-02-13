@@ -47,6 +47,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprRValueAccess().getAlternatives(), "rule__ExprRValue__Alternatives");
 					put(grammarAccess.getExprLeafAccess().getAlternatives(), "rule__ExprLeaf__Alternatives");
 					put(grammarAccess.getExprPathAccess().getAlternatives_1(), "rule__ExprPath__Alternatives_1");
+					put(grammarAccess.getExprVecAccess().getAlternatives_2_2(), "rule__ExprVec__Alternatives_2_2");
 					put(grammarAccess.getExprUnaryAccess().getAlternatives(), "rule__ExprUnary__Alternatives");
 					put(grammarAccess.getDivisionMultiplicationOrModuloAccess().getAlternatives_1(), "rule__DivisionMultiplicationOrModulo__Alternatives_1");
 					put(grammarAccess.getAdditionOrSubtractionAccess().getAlternatives_1(), "rule__AdditionOrSubtraction__Alternatives_1");
@@ -133,6 +134,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprStructAccess().getGroup(), "rule__ExprStruct__Group__0");
 					put(grammarAccess.getExprStructAccess().getGroup_2(), "rule__ExprStruct__Group_2__0");
 					put(grammarAccess.getExprStructAccess().getGroup_3(), "rule__ExprStruct__Group_3__0");
+					put(grammarAccess.getExprVecAccess().getGroup(), "rule__ExprVec__Group__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2(), "rule__ExprVec__Group_2__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_0(), "rule__ExprVec__Group_2_2_0__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_1(), "rule__ExprVec__Group_2_2_1__0");
+					put(grammarAccess.getExprVecAccess().getGroup_2_2_1_1(), "rule__ExprVec__Group_2_2_1_1__0");
 					put(grammarAccess.getNumericNegationAccess().getGroup(), "rule__NumericNegation__Group__0");
 					put(grammarAccess.getDereferenceAccess().getGroup(), "rule__Dereference__Group__0");
 					put(grammarAccess.getLogicalNegationAccess().getGroup(), "rule__LogicalNegation__Group__0");
@@ -313,6 +319,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprStructAccess().getFieldsAssignment_1(), "rule__ExprStruct__FieldsAssignment_1");
 					put(grammarAccess.getExprStructAccess().getFieldsAssignment_2_1(), "rule__ExprStruct__FieldsAssignment_2_1");
 					put(grammarAccess.getExprStructAccess().getBaseExprAssignment_3_1(), "rule__ExprStruct__BaseExprAssignment_3_1");
+					put(grammarAccess.getExprVecAccess().getMutableAssignment_1(), "rule__ExprVec__MutableAssignment_1");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_0(), "rule__ExprVec__ExprsAssignment_2_0");
+					put(grammarAccess.getExprVecAccess().getLenExprAssignment_2_2_0_1(), "rule__ExprVec__LenExprAssignment_2_2_0_1");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_0(), "rule__ExprVec__ExprsAssignment_2_2_1_0");
+					put(grammarAccess.getExprVecAccess().getExprsAssignment_2_2_1_1_1(), "rule__ExprVec__ExprsAssignment_2_2_1_1_1");
 					put(grammarAccess.getNumericNegationAccess().getExprAssignment_1(), "rule__NumericNegation__ExprAssignment_1");
 					put(grammarAccess.getDereferenceAccess().getExprAssignment_1(), "rule__Dereference__ExprAssignment_1");
 					put(grammarAccess.getLogicalNegationAccess().getExprAssignment_1(), "rule__LogicalNegation__ExprAssignment_1");
