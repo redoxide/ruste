@@ -122,7 +122,8 @@ ExprLeaf:
 	ExprVec |
 	ExprUnary |
 	ExprLambda |
-	ExprWhile
+	ExprWhile |
+	ExprLoop
 ;
 
 ExprLiteral:
@@ -241,6 +242,10 @@ ExprLambda:
 
 ExprWhile:
 	"while" expr=Expr block=Block
+;
+
+ExprLoop:
+	(lifetime=LIFETIME ':')? 'loop' block=Block
 ;
 
 Block:

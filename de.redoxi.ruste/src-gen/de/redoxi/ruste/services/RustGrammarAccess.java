@@ -1528,15 +1528,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprUnaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cExprLambdaParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cExprWhileParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cExprLoopParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//// Expressions that avoid left recursion
 		//ExprLeaf:
 		//	ExprLiteral | // TODO ExprTupleOrGroup |
-		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile;
+		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop;
 		public ParserRule getRule() { return rule; }
 
 		//ExprLiteral | // TODO ExprTupleOrGroup |
-		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile
+		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1560,6 +1561,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExprWhile
 		public RuleCall getExprWhileParserRuleCall_6() { return cExprWhileParserRuleCall_6; }
+
+		//ExprLoop
+		public RuleCall getExprLoopParserRuleCall_7() { return cExprLoopParserRuleCall_7; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -2806,6 +2810,46 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expr
 		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+
+		//block=Block
+		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
+
+		//Block
+		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
+	}
+
+	public class ExprLoopElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprLoop");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cLifetimeAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cLifetimeLIFETIMETerminalRuleCall_0_0_0 = (RuleCall)cLifetimeAssignment_0_0.eContents().get(0);
+		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cLoopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
+		
+		//ExprLoop:
+		//	(lifetime=LIFETIME ":")? "loop" block=Block;
+		public ParserRule getRule() { return rule; }
+
+		//(lifetime=LIFETIME ":")? "loop" block=Block
+		public Group getGroup() { return cGroup; }
+
+		//(lifetime=LIFETIME ":")?
+		public Group getGroup_0() { return cGroup_0; }
+
+		//lifetime=LIFETIME
+		public Assignment getLifetimeAssignment_0_0() { return cLifetimeAssignment_0_0; }
+
+		//LIFETIME
+		public RuleCall getLifetimeLIFETIMETerminalRuleCall_0_0_0() { return cLifetimeLIFETIMETerminalRuleCall_0_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_0_1() { return cColonKeyword_0_1; }
+
+		//"loop"
+		public Keyword getLoopKeyword_1() { return cLoopKeyword_1; }
 
 		//block=Block
 		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
@@ -4218,6 +4262,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private AssignElements pAssign;
 	private ExprLambdaElements pExprLambda;
 	private ExprWhileElements pExprWhile;
+	private ExprLoopElements pExprLoop;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -4577,7 +4622,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// Expressions that avoid left recursion
 	//ExprLeaf:
 	//	ExprLiteral | // TODO ExprTupleOrGroup |
-	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile;
+	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
 	}
@@ -4870,6 +4915,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprWhileRule() {
 		return getExprWhileAccess().getRule();
+	}
+
+	//ExprLoop:
+	//	(lifetime=LIFETIME ":")? "loop" block=Block;
+	public ExprLoopElements getExprLoopAccess() {
+		return (pExprLoop != null) ? pExprLoop : (pExprLoop = new ExprLoopElements());
+	}
+	
+	public ParserRule getExprLoopRule() {
+		return getExprLoopAccess().getRule();
 	}
 
 	//Block:

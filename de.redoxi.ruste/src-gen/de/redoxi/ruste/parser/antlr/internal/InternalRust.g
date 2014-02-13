@@ -2505,6 +2505,16 @@ ruleExprLeaf returns [EObject current=null]
         $current = $this_ExprWhile_6.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprLeafAccess().getExprLoopParserRuleCall_7()); 
+    }
+    this_ExprLoop_7=ruleExprLoop
+    { 
+        $current = $this_ExprLoop_7.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -4412,6 +4422,71 @@ ruleExprWhile returns [EObject current=null]
        			$current, 
        			"block",
         		lv_block_2_0, 
+        		"Block");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleExprLoop
+entryRuleExprLoop returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprLoopRule()); }
+	 iv_ruleExprLoop=ruleExprLoop 
+	 { $current=$iv_ruleExprLoop.current; } 
+	 EOF 
+;
+
+// Rule ExprLoop
+ruleExprLoop returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+(
+		lv_lifetime_0_0=RULE_LIFETIME
+		{
+			newLeafNode(lv_lifetime_0_0, grammarAccess.getExprLoopAccess().getLifetimeLIFETIMETerminalRuleCall_0_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getExprLoopRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"lifetime",
+        		lv_lifetime_0_0, 
+        		"LIFETIME");
+	    }
+
+)
+)	otherlv_1=':' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getExprLoopAccess().getColonKeyword_0_1());
+    }
+)?	otherlv_2='loop' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getExprLoopAccess().getLoopKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprLoopAccess().getBlockBlockParserRuleCall_2_0()); 
+	    }
+		lv_block_3_0=ruleBlock		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprLoopRule());
+	        }
+       		set(
+       			$current, 
+       			"block",
+        		lv_block_3_0, 
         		"Block");
 	        afterParserOrEnumRuleCall();
 	    }

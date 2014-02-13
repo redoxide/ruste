@@ -741,6 +741,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_LOOP:
+      {
+        ExprLoop exprLoop = (ExprLoop)theEObject;
+        T result = caseExprLoop(exprLoop);
+        if (result == null) result = caseExprLeaf(exprLoop);
+        if (result == null) result = caseExprRValue(exprLoop);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprLoop);
+        if (result == null) result = caseExpr(exprLoop);
+        if (result == null) result = caseAs(exprLoop);
+        if (result == null) result = caseAdditionOrSubtraction(exprLoop);
+        if (result == null) result = caseShiftOperator(exprLoop);
+        if (result == null) result = caseBitwiseAnd(exprLoop);
+        if (result == null) result = caseBitwiseXor(exprLoop);
+        if (result == null) result = caseBitwiseOr(exprLoop);
+        if (result == null) result = caseComparisonOperators(exprLoop);
+        if (result == null) result = caseEqualityOperator(exprLoop);
+        if (result == null) result = caseBooleanAnd(exprLoop);
+        if (result == null) result = caseBooleanOr(exprLoop);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -2163,6 +2184,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprWhile(ExprWhile object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Loop</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Loop</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprLoop(ExprLoop object)
   {
     return null;
   }

@@ -48,6 +48,7 @@ import de.redoxi.ruste.rust.ExprLeftShift;
 import de.redoxi.ruste.rust.ExprLessThan;
 import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
+import de.redoxi.ruste.rust.ExprLoop;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
@@ -498,6 +499,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprWhileEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprLoopEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2261,6 +2269,36 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprLoop()
+  {
+    return exprLoopEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprLoop_Lifetime()
+  {
+    return (EAttribute)exprLoopEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprLoop_Block()
+  {
+    return (EReference)exprLoopEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -3874,6 +3912,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprWhileEClass, EXPR_WHILE__EXPR);
     createEReference(exprWhileEClass, EXPR_WHILE__BLOCK);
 
+    exprLoopEClass = createEClass(EXPR_LOOP);
+    createEAttribute(exprLoopEClass, EXPR_LOOP__LIFETIME);
+    createEReference(exprLoopEClass, EXPR_LOOP__BLOCK);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -4152,6 +4194,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     assignEClass.getESuperTypes().add(this.getExprBinary());
     exprLambdaEClass.getESuperTypes().add(this.getExprLeaf());
     exprWhileEClass.getESuperTypes().add(this.getExprLeaf());
+    exprLoopEClass.getESuperTypes().add(this.getExprLeaf());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4381,6 +4424,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(exprWhileEClass, ExprWhile.class, "ExprWhile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprWhile_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprWhile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprWhile_Block(), this.getBlock(), null, "block", null, 0, 1, ExprWhile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprLoopEClass, ExprLoop.class, "ExprLoop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExprLoop_Lifetime(), ecorePackage.getEString(), "lifetime", null, 0, 1, ExprLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprLoop_Block(), this.getBlock(), null, "block", null, 0, 1, ExprLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

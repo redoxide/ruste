@@ -491,6 +491,15 @@ public interface RustFactory extends EFactory
   ExprWhile createExprWhile();
 
   /**
+   * Returns a new object of class '<em>Expr Loop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Loop</em>'.
+   * @generated
+   */
+  ExprLoop createExprLoop();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
