@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprTuple extends ExprPath, ExprGroup
+public interface ExprTuple extends ExprPathHead, ExprGroup
 {
   /**
    * Returns the value of the '<em><b>Tuple</b></em>' containment reference.

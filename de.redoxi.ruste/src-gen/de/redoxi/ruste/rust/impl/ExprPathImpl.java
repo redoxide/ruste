@@ -4,15 +4,22 @@ package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.Type;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,23 +28,45 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprPathImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprPathImpl#getSegments <em>Segments</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprPathImpl#getLifetimes <em>Lifetimes</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprPathImpl#getGenericTypes <em>Generic Types</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprPathImpl extends ExprLValueImpl implements ExprPath
+public class ExprPathImpl extends MinimalEObjectImpl.Container implements ExprPath
 {
   /**
-   * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
+   * The cached value of the '{@link #getSegments() <em>Segments</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPath()
+   * @see #getSegments()
    * @generated
    * @ordered
    */
-  protected EObject path;
+  protected EList<String> segments;
+
+  /**
+   * The cached value of the '{@link #getLifetimes() <em>Lifetimes</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLifetimes()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> lifetimes;
+
+  /**
+   * The cached value of the '{@link #getGenericTypes() <em>Generic Types</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getGenericTypes()
+   * @generated
+   * @ordered
+   */
+  protected EList<Type> genericTypes;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,9 +94,13 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getPath()
+  public EList<String> getSegments()
   {
-    return path;
+    if (segments == null)
+    {
+      segments = new EDataTypeEList<String>(String.class, this, RustPackage.EXPR_PATH__SEGMENTS);
+    }
+    return segments;
   }
 
   /**
@@ -75,16 +108,13 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPath(EObject newPath, NotificationChain msgs)
+  public EList<String> getLifetimes()
   {
-    EObject oldPath = path;
-    path = newPath;
-    if (eNotificationRequired())
+    if (lifetimes == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_PATH__PATH, oldPath, newPath);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      lifetimes = new EDataTypeEList<String>(String.class, this, RustPackage.EXPR_PATH__LIFETIMES);
     }
-    return msgs;
+    return lifetimes;
   }
 
   /**
@@ -92,20 +122,13 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPath(EObject newPath)
+  public EList<Type> getGenericTypes()
   {
-    if (newPath != path)
+    if (genericTypes == null)
     {
-      NotificationChain msgs = null;
-      if (path != null)
-        msgs = ((InternalEObject)path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_PATH__PATH, null, msgs);
-      if (newPath != null)
-        msgs = ((InternalEObject)newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_PATH__PATH, null, msgs);
-      msgs = basicSetPath(newPath, msgs);
-      if (msgs != null) msgs.dispatch();
+      genericTypes = new EObjectContainmentEList<Type>(Type.class, this, RustPackage.EXPR_PATH__GENERIC_TYPES);
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_PATH__PATH, newPath, newPath));
+    return genericTypes;
   }
 
   /**
@@ -118,8 +141,8 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_PATH__PATH:
-        return basicSetPath(null, msgs);
+      case RustPackage.EXPR_PATH__GENERIC_TYPES:
+        return ((InternalEList<?>)getGenericTypes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -134,8 +157,12 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_PATH__PATH:
-        return getPath();
+      case RustPackage.EXPR_PATH__SEGMENTS:
+        return getSegments();
+      case RustPackage.EXPR_PATH__LIFETIMES:
+        return getLifetimes();
+      case RustPackage.EXPR_PATH__GENERIC_TYPES:
+        return getGenericTypes();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -145,13 +172,23 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_PATH__PATH:
-        setPath((EObject)newValue);
+      case RustPackage.EXPR_PATH__SEGMENTS:
+        getSegments().clear();
+        getSegments().addAll((Collection<? extends String>)newValue);
+        return;
+      case RustPackage.EXPR_PATH__LIFETIMES:
+        getLifetimes().clear();
+        getLifetimes().addAll((Collection<? extends String>)newValue);
+        return;
+      case RustPackage.EXPR_PATH__GENERIC_TYPES:
+        getGenericTypes().clear();
+        getGenericTypes().addAll((Collection<? extends Type>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -167,8 +204,14 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_PATH__PATH:
-        setPath((EObject)null);
+      case RustPackage.EXPR_PATH__SEGMENTS:
+        getSegments().clear();
+        return;
+      case RustPackage.EXPR_PATH__LIFETIMES:
+        getLifetimes().clear();
+        return;
+      case RustPackage.EXPR_PATH__GENERIC_TYPES:
+        getGenericTypes().clear();
         return;
     }
     super.eUnset(featureID);
@@ -184,10 +227,33 @@ public class ExprPathImpl extends ExprLValueImpl implements ExprPath
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_PATH__PATH:
-        return path != null;
+      case RustPackage.EXPR_PATH__SEGMENTS:
+        return segments != null && !segments.isEmpty();
+      case RustPackage.EXPR_PATH__LIFETIMES:
+        return lifetimes != null && !lifetimes.isEmpty();
+      case RustPackage.EXPR_PATH__GENERIC_TYPES:
+        return genericTypes != null && !genericTypes.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (segments: ");
+    result.append(segments);
+    result.append(", lifetimes: ");
+    result.append(lifetimes);
+    result.append(')');
+    return result.toString();
   }
 
 } //ExprPathImpl

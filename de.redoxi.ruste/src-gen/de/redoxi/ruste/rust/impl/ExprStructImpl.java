@@ -6,7 +6,7 @@ import de.redoxi.ruste.rust.Assign;
 import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.ExprBinary;
 import de.redoxi.ruste.rust.ExprLValue;
-import de.redoxi.ruste.rust.ExprPath;
+import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StructField;
@@ -413,11 +413,11 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
         default: return -1;
       }
     }
-    if (baseClass == ExprPath.class)
+    if (baseClass == ExprPathHead.class)
     {
       switch (derivedFeatureID)
       {
-        case RustPackage.EXPR_STRUCT__PATH: return RustPackage.EXPR_PATH__PATH;
+        case RustPackage.EXPR_STRUCT__PATH: return RustPackage.EXPR_PATH_HEAD__PATH;
         default: return -1;
       }
     }
@@ -453,11 +453,11 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
         default: return -1;
       }
     }
-    if (baseClass == ExprPath.class)
+    if (baseClass == ExprPathHead.class)
     {
       switch (baseFeatureID)
       {
-        case RustPackage.EXPR_PATH__PATH: return RustPackage.EXPR_STRUCT__PATH;
+        case RustPackage.EXPR_PATH_HEAD__PATH: return RustPackage.EXPR_STRUCT__PATH;
         default: return -1;
       }
     }

@@ -200,9 +200,9 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprLiteralAdapter();
       }
       @Override
-      public Adapter caseExprPath(ExprPath object)
+      public Adapter caseExprPathHead(ExprPathHead object)
       {
-        return createExprPathAdapter();
+        return createExprPathHeadAdapter();
       }
       @Override
       public Adapter caseExprGroup(ExprGroup object)
@@ -325,6 +325,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createAssignAdapter();
       }
       @Override
+      public Adapter caseExprLambda(ExprLambda object)
+      {
+        return createExprLambdaAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -410,9 +415,14 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createFieldPatAdapter();
       }
       @Override
-      public Adapter casePath(Path object)
+      public Adapter caseTypePath(TypePath object)
       {
-        return createPathAdapter();
+        return createTypePathAdapter();
+      }
+      @Override
+      public Adapter caseExprPath(ExprPath object)
+      {
+        return createExprPathAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -425,14 +435,9 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createPrimitiveTypeAdapter();
       }
       @Override
-      public Adapter caseTupleType(TupleType object)
+      public Adapter caseNamedType(NamedType object)
       {
-        return createTupleTypeAdapter();
-      }
-      @Override
-      public Adapter caseStructType(StructType object)
-      {
-        return createStructTypeAdapter();
+        return createNamedTypeAdapter();
       }
       @Override
       public Adapter caseBoxedPointer(BoxedPointer object)
@@ -453,11 +458,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseStructField(StructField object)
       {
         return createStructFieldAdapter();
-      }
-      @Override
-      public Adapter caseEnumType(EnumType object)
-      {
-        return createEnumTypeAdapter();
       }
       @Override
       public Adapter caseVariant(Variant object)
@@ -1032,16 +1032,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprPath <em>Expr Path</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprPathHead <em>Expr Path Head</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprPath
+   * @see de.redoxi.ruste.rust.ExprPathHead
    * @generated
    */
-  public Adapter createExprPathAdapter()
+  public Adapter createExprPathHeadAdapter()
   {
     return null;
   }
@@ -1407,6 +1407,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLambda <em>Expr Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprLambda
+   * @generated
+   */
+  public Adapter createExprLambdaAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1662,16 +1677,31 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Path <em>Path</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TypePath <em>Type Path</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.Path
+   * @see de.redoxi.ruste.rust.TypePath
    * @generated
    */
-  public Adapter createPathAdapter()
+  public Adapter createTypePathAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprPath <em>Expr Path</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprPath
+   * @generated
+   */
+  public Adapter createExprPathAdapter()
   {
     return null;
   }
@@ -1707,31 +1737,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.TupleType <em>Tuple Type</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.NamedType <em>Named Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.TupleType
+   * @see de.redoxi.ruste.rust.NamedType
    * @generated
    */
-  public Adapter createTupleTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.StructType <em>Struct Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.StructType
-   * @generated
-   */
-  public Adapter createStructTypeAdapter()
+  public Adapter createNamedTypeAdapter()
   {
     return null;
   }
@@ -1792,21 +1807,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStructFieldAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.EnumType <em>Enum Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.EnumType
-   * @generated
-   */
-  public Adapter createEnumTypeAdapter()
   {
     return null;
   }

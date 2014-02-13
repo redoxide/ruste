@@ -102,7 +102,7 @@ Expr:
 ;
 
 ExprLValue:
-	ExprPath
+	ExprPathHead
 ;
 
 ExprRValue:
@@ -120,15 +120,16 @@ ExprLeaf:
 	ExprGroup |
 	ExprStruct |
 	ExprVec |
-	ExprUnary
+	ExprUnary |
+	ExprLambda
 ;
 
 ExprLiteral:
 	literal=Literal
 ;
 
-ExprPath:
-	path=Path ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
+ExprPathHead:
+	path=ExprPath ({ExprStruct.path=current} struct=ExprStruct | {ExprTuple.path=current} tuple=ExprTuple)?
 ;
 
 ExprGroup:
@@ -233,6 +234,10 @@ Assign:
 	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
 ;
 
+ExprLambda:
+	'|' (args+=IDENT (',' args+=IDENT)*)? '|' expr=Expr
+;
+
 Block:
 	{Block} '{' /* TODO Statements, expression */ '}'
 ;
@@ -308,15 +313,19 @@ PatNumberRange:
 ;
 
 PatEnum:
-	path=Path ({PatTupleEnum.path=current} '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')' | {PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}')
+	path=ExprPath ({PatTupleEnum.path=current} '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')' | {PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}')
 ;
 
 FieldPat:
 	ident=IDENT (':' pattern=Pat)?
 ;
 
-Path:
-	segments+=IDENT ('::' segments+=IDENT)* '::'? ('<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))* '>')?
+TypePath:
+	segments+=IDENT ('::' segments+=IDENT)* '<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))+ '>'
+;
+
+ExprPath:
+	segments+=IDENT ('::' segments+=IDENT)* ('::<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))* '>')?
 ;
 
 terminal LIFETIME:
@@ -325,9 +334,7 @@ terminal LIFETIME:
 
 Type:
 	PrimitiveType |
-	TupleType |
-	StructType |
-	EnumType |
+	NamedType |
 	BoxedPointer |
 	OwnedPointer |
 	BorrowedPointer
@@ -341,13 +348,8 @@ PrimitiveType:
 	{UnitType} UNIT_TYPE
 ;
 
-TupleType:
-	'(' types+=Type (',' types+=Type)* ')'
-;
-
-// TODO Move generics to own rule, but attach here
-StructType:
-	"struct" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+NamedType:
+	path=TypePath
 ;
 
 BoxedPointer:
@@ -364,10 +366,6 @@ BorrowedPointer:
 
 StructField:
 	vis=Visibility? ident=IDENT ':' type=Type
-;
-
-EnumType:
-	"enum" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' variants+=Variant (',' variants+=Variant)* '}'
 ;
 
 Variant:
@@ -413,6 +411,7 @@ terminal fragment MACHINE_UINT_TYPE: "uint";
 terminal UNIT_TYPE: "()";
 
 terminal MUT_KEYWORD: 'mut';
+// TODO Add all keywords
 
 StringLit: 
 	value = STRING_LIT

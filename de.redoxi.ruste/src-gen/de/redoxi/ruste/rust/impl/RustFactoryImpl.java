@@ -90,7 +90,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_RVALUE: return createExprRValue();
       case RustPackage.EXPR_LEAF: return createExprLeaf();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
-      case RustPackage.EXPR_PATH: return createExprPath();
+      case RustPackage.EXPR_PATH_HEAD: return createExprPathHead();
       case RustPackage.EXPR_GROUP: return createExprGroup();
       case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
@@ -115,6 +115,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.BOOLEAN_AND: return createBooleanAnd();
       case RustPackage.BOOLEAN_OR: return createBooleanOr();
       case RustPackage.ASSIGN: return createAssign();
+      case RustPackage.EXPR_LAMBDA: return createExprLambda();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -132,16 +133,15 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT_NUMBER_RANGE: return createPatNumberRange();
       case RustPackage.PAT_ENUM: return createPatEnum();
       case RustPackage.FIELD_PAT: return createFieldPat();
-      case RustPackage.PATH: return createPath();
+      case RustPackage.TYPE_PATH: return createTypePath();
+      case RustPackage.EXPR_PATH: return createExprPath();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
-      case RustPackage.TUPLE_TYPE: return createTupleType();
-      case RustPackage.STRUCT_TYPE: return createStructType();
+      case RustPackage.NAMED_TYPE: return createNamedType();
       case RustPackage.BOXED_POINTER: return createBoxedPointer();
       case RustPackage.OWNED_POINTER: return createOwnedPointer();
       case RustPackage.BORROWED_POINTER: return createBorrowedPointer();
       case RustPackage.STRUCT_FIELD: return createStructField();
-      case RustPackage.ENUM_TYPE: return createEnumType();
       case RustPackage.VARIANT: return createVariant();
       case RustPackage.STRUCT_VARIANT: return createStructVariant();
       case RustPackage.TUPLE_VARIANT: return createTupleVariant();
@@ -496,10 +496,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprPath createExprPath()
+  public ExprPathHead createExprPathHead()
   {
-    ExprPathImpl exprPath = new ExprPathImpl();
-    return exprPath;
+    ExprPathHeadImpl exprPathHead = new ExprPathHeadImpl();
+    return exprPathHead;
   }
 
   /**
@@ -771,6 +771,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ExprLambda createExprLambda()
+  {
+    ExprLambdaImpl exprLambda = new ExprLambdaImpl();
+    return exprLambda;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Block createBlock()
   {
     BlockImpl block = new BlockImpl();
@@ -958,10 +969,21 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Path createPath()
+  public TypePath createTypePath()
   {
-    PathImpl path = new PathImpl();
-    return path;
+    TypePathImpl typePath = new TypePathImpl();
+    return typePath;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprPath createExprPath()
+  {
+    ExprPathImpl exprPath = new ExprPathImpl();
+    return exprPath;
   }
 
   /**
@@ -991,21 +1013,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TupleType createTupleType()
+  public NamedType createNamedType()
   {
-    TupleTypeImpl tupleType = new TupleTypeImpl();
-    return tupleType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StructType createStructType()
-  {
-    StructTypeImpl structType = new StructTypeImpl();
-    return structType;
+    NamedTypeImpl namedType = new NamedTypeImpl();
+    return namedType;
   }
 
   /**
@@ -1050,17 +1061,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     StructFieldImpl structField = new StructFieldImpl();
     return structField;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EnumType createEnumType()
-  {
-    EnumTypeImpl enumType = new EnumTypeImpl();
-    return enumType;
   }
 
   /**

@@ -25,7 +25,6 @@ import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.Division;
 import de.redoxi.ruste.rust.DivisionMultiplicationOrModulo;
 import de.redoxi.ruste.rust.EnumItem;
-import de.redoxi.ruste.rust.EnumType;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.EqualityOperator;
 import de.redoxi.ruste.rust.Expr;
@@ -43,6 +42,7 @@ import de.redoxi.ruste.rust.ExprGreaterThan;
 import de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprLValue;
+import de.redoxi.ruste.rust.ExprLambda;
 import de.redoxi.ruste.rust.ExprLeaf;
 import de.redoxi.ruste.rust.ExprLeftShift;
 import de.redoxi.ruste.rust.ExprLessThan;
@@ -50,6 +50,7 @@ import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
+import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprRightShift;
 import de.redoxi.ruste.rust.ExprStruct;
@@ -77,6 +78,7 @@ import de.redoxi.ruste.rust.ManagedBox;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.Modulo;
 import de.redoxi.ruste.rust.Multiplication;
+import de.redoxi.ruste.rust.NamedType;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.NumericNegation;
 import de.redoxi.ruste.rust.OwnedBox;
@@ -96,7 +98,6 @@ import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatTupleEnum;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
-import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
@@ -105,14 +106,13 @@ import de.redoxi.ruste.rust.StaticItem;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
-import de.redoxi.ruste.rust.StructType;
 import de.redoxi.ruste.rust.StructVariant;
 import de.redoxi.ruste.rust.TraitItem;
 import de.redoxi.ruste.rust.TraitMethod;
-import de.redoxi.ruste.rust.TupleType;
 import de.redoxi.ruste.rust.TupleVariant;
 import de.redoxi.ruste.rust.Type;
 import de.redoxi.ruste.rust.TypeItem;
+import de.redoxi.ruste.rust.TypePath;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.rust.UnitVariant;
 import de.redoxi.ruste.rust.Variant;
@@ -314,7 +314,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprPathEClass = null;
+  private EClass exprPathHeadEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -489,6 +489,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass exprLambdaEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass blockEClass = null;
 
   /**
@@ -608,7 +615,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass pathEClass = null;
+  private EClass typePathEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprPathEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -629,14 +643,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tupleTypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass structTypeEClass = null;
+  private EClass namedTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -665,13 +672,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass structFieldEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass enumTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1833,9 +1833,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprPath()
+  public EClass getExprPathHead()
   {
-    return exprPathEClass;
+    return exprPathHeadEClass;
   }
 
   /**
@@ -1843,9 +1843,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprPath_Path()
+  public EReference getExprPathHead_Path()
   {
-    return (EReference)exprPathEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprPathHeadEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2186,6 +2186,36 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EClass getAssign()
   {
     return assignEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprLambda()
+  {
+    return exprLambdaEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprLambda_Args()
+  {
+    return (EAttribute)exprLambdaEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprLambda_Expr()
+  {
+    return (EReference)exprLambdaEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2553,9 +2583,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPath()
+  public EClass getTypePath()
   {
-    return pathEClass;
+    return typePathEClass;
   }
 
   /**
@@ -2563,9 +2593,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPath_Segments()
+  public EAttribute getTypePath_Segments()
   {
-    return (EAttribute)pathEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)typePathEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2573,9 +2603,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPath_Lifetimes()
+  public EAttribute getTypePath_Lifetimes()
   {
-    return (EAttribute)pathEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)typePathEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2583,9 +2613,49 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPath_GenericTypes()
+  public EReference getTypePath_GenericTypes()
   {
-    return (EReference)pathEClass.getEStructuralFeatures().get(2);
+    return (EReference)typePathEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprPath()
+  {
+    return exprPathEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprPath_Segments()
+  {
+    return (EAttribute)exprPathEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprPath_Lifetimes()
+  {
+    return (EAttribute)exprPathEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprPath_GenericTypes()
+  {
+    return (EReference)exprPathEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2613,9 +2683,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTupleType()
+  public EClass getNamedType()
   {
-    return tupleTypeEClass;
+    return namedTypeEClass;
   }
 
   /**
@@ -2623,49 +2693,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTupleType_Types()
+  public EReference getNamedType_Path()
   {
-    return (EReference)tupleTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStructType()
-  {
-    return structTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStructType_Ident()
-  {
-    return (EAttribute)structTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getStructType_Params()
-  {
-    return (EReference)structTypeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getStructType_Fields()
-  {
-    return (EReference)structTypeEClass.getEStructuralFeatures().get(2);
+    return (EReference)namedTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2766,46 +2796,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getStructField_Type()
   {
     return (EReference)structFieldEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEnumType()
-  {
-    return enumTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEnumType_Ident()
-  {
-    return (EAttribute)enumTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEnumType_Params()
-  {
-    return (EReference)enumTypeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEnumType_Variants()
-  {
-    return (EReference)enumTypeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3777,8 +3767,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprLiteralEClass = createEClass(EXPR_LITERAL);
     createEReference(exprLiteralEClass, EXPR_LITERAL__LITERAL);
 
-    exprPathEClass = createEClass(EXPR_PATH);
-    createEReference(exprPathEClass, EXPR_PATH__PATH);
+    exprPathHeadEClass = createEClass(EXPR_PATH_HEAD);
+    createEReference(exprPathHeadEClass, EXPR_PATH_HEAD__PATH);
 
     exprGroupEClass = createEClass(EXPR_GROUP);
     createEReference(exprGroupEClass, EXPR_GROUP__EXPR);
@@ -3838,6 +3828,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     assignEClass = createEClass(ASSIGN);
 
+    exprLambdaEClass = createEClass(EXPR_LAMBDA);
+    createEAttribute(exprLambdaEClass, EXPR_LAMBDA__ARGS);
+    createEReference(exprLambdaEClass, EXPR_LAMBDA__EXPR);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -3891,22 +3885,22 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEAttribute(fieldPatEClass, FIELD_PAT__IDENT);
     createEReference(fieldPatEClass, FIELD_PAT__PATTERN);
 
-    pathEClass = createEClass(PATH);
-    createEAttribute(pathEClass, PATH__SEGMENTS);
-    createEAttribute(pathEClass, PATH__LIFETIMES);
-    createEReference(pathEClass, PATH__GENERIC_TYPES);
+    typePathEClass = createEClass(TYPE_PATH);
+    createEAttribute(typePathEClass, TYPE_PATH__SEGMENTS);
+    createEAttribute(typePathEClass, TYPE_PATH__LIFETIMES);
+    createEReference(typePathEClass, TYPE_PATH__GENERIC_TYPES);
+
+    exprPathEClass = createEClass(EXPR_PATH);
+    createEAttribute(exprPathEClass, EXPR_PATH__SEGMENTS);
+    createEAttribute(exprPathEClass, EXPR_PATH__LIFETIMES);
+    createEReference(exprPathEClass, EXPR_PATH__GENERIC_TYPES);
 
     typeEClass = createEClass(TYPE);
 
     primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
-    tupleTypeEClass = createEClass(TUPLE_TYPE);
-    createEReference(tupleTypeEClass, TUPLE_TYPE__TYPES);
-
-    structTypeEClass = createEClass(STRUCT_TYPE);
-    createEAttribute(structTypeEClass, STRUCT_TYPE__IDENT);
-    createEReference(structTypeEClass, STRUCT_TYPE__PARAMS);
-    createEReference(structTypeEClass, STRUCT_TYPE__FIELDS);
+    namedTypeEClass = createEClass(NAMED_TYPE);
+    createEReference(namedTypeEClass, NAMED_TYPE__PATH);
 
     boxedPointerEClass = createEClass(BOXED_POINTER);
     createEReference(boxedPointerEClass, BOXED_POINTER__TYPE);
@@ -3921,11 +3915,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEAttribute(structFieldEClass, STRUCT_FIELD__VIS);
     createEAttribute(structFieldEClass, STRUCT_FIELD__IDENT);
     createEReference(structFieldEClass, STRUCT_FIELD__TYPE);
-
-    enumTypeEClass = createEClass(ENUM_TYPE);
-    createEAttribute(enumTypeEClass, ENUM_TYPE__IDENT);
-    createEReference(enumTypeEClass, ENUM_TYPE__PARAMS);
-    createEReference(enumTypeEClass, ENUM_TYPE__VARIANTS);
 
     variantEClass = createEClass(VARIANT);
     createEAttribute(variantEClass, VARIANT__IDENT);
@@ -4093,12 +4082,12 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprLeafEClass.getESuperTypes().add(this.getExprRValue());
     exprLeafEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     exprLiteralEClass.getESuperTypes().add(this.getExprLeaf());
-    exprPathEClass.getESuperTypes().add(this.getExprLValue());
+    exprPathHeadEClass.getESuperTypes().add(this.getExprLValue());
     exprGroupEClass.getESuperTypes().add(this.getExprLeaf());
-    exprTupleEClass.getESuperTypes().add(this.getExprPath());
+    exprTupleEClass.getESuperTypes().add(this.getExprPathHead());
     exprTupleEClass.getESuperTypes().add(this.getExprGroup());
     exprStructEClass.getESuperTypes().add(this.getExprLeaf());
-    exprStructEClass.getESuperTypes().add(this.getExprPath());
+    exprStructEClass.getESuperTypes().add(this.getExprPathHead());
     exprVecEClass.getESuperTypes().add(this.getExprLeaf());
     exprUnaryEClass.getESuperTypes().add(this.getExprLeaf());
     numericNegationEClass.getESuperTypes().add(this.getExprUnary());
@@ -4119,6 +4108,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     equalityOperatorEClass.getESuperTypes().add(this.getBooleanAnd());
     booleanAndEClass.getESuperTypes().add(this.getBooleanOr());
     assignEClass.getESuperTypes().add(this.getExprBinary());
+    exprLambdaEClass.getESuperTypes().add(this.getExprLeaf());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4132,12 +4122,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     patNumberRangeEClass.getESuperTypes().add(this.getPatRange());
     patEnumEClass.getESuperTypes().add(this.getPat());
     primitiveTypeEClass.getESuperTypes().add(this.getType());
-    tupleTypeEClass.getESuperTypes().add(this.getType());
-    structTypeEClass.getESuperTypes().add(this.getType());
+    namedTypeEClass.getESuperTypes().add(this.getType());
     boxedPointerEClass.getESuperTypes().add(this.getType());
     ownedPointerEClass.getESuperTypes().add(this.getType());
     borrowedPointerEClass.getESuperTypes().add(this.getType());
-    enumTypeEClass.getESuperTypes().add(this.getType());
     structVariantEClass.getESuperTypes().add(this.getVariant());
     tupleVariantEClass.getESuperTypes().add(this.getVariant());
     unitVariantEClass.getESuperTypes().add(this.getVariant());
@@ -4282,8 +4270,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(exprLiteralEClass, ExprLiteral.class, "ExprLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprPath_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprPathHeadEClass, ExprPathHead.class, "ExprPathHead", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprPathHead_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, ExprPathHead.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprGroupEClass, ExprGroup.class, "ExprGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprGroup_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4343,6 +4331,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(assignEClass, Assign.class, "Assign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(exprLambdaEClass, ExprLambda.class, "ExprLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExprLambda_Args(), ecorePackage.getEString(), "args", null, 0, -1, ExprLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprLambda_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4396,22 +4388,22 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getFieldPat_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, FieldPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFieldPat_Pattern(), this.getPat(), null, "pattern", null, 0, 1, FieldPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(pathEClass, Path.class, "Path", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPath_Lifetimes(), ecorePackage.getEString(), "lifetimes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPath_GenericTypes(), this.getType(), null, "genericTypes", null, 0, -1, Path.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(typePathEClass, TypePath.class, "TypePath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTypePath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, TypePath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTypePath_Lifetimes(), ecorePackage.getEString(), "lifetimes", null, 0, -1, TypePath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypePath_GenericTypes(), this.getType(), null, "genericTypes", null, 0, -1, TypePath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprPathEClass, ExprPath.class, "ExprPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExprPath_Segments(), ecorePackage.getEString(), "segments", null, 0, -1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprPath_Lifetimes(), ecorePackage.getEString(), "lifetimes", null, 0, -1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprPath_GenericTypes(), this.getType(), null, "genericTypes", null, 0, -1, ExprPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTupleType_Types(), this.getType(), null, "types", null, 0, -1, TupleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(structTypeEClass, StructType.class, "StructType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStructType_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getStructType_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getStructType_Fields(), this.getStructField(), null, "fields", null, 0, -1, StructType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(namedTypeEClass, NamedType.class, "NamedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNamedType_Path(), this.getTypePath(), null, "path", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boxedPointerEClass, BoxedPointer.class, "BoxedPointer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBoxedPointer_Type(), this.getType(), null, "type", null, 0, 1, BoxedPointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4426,11 +4418,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEAttribute(getStructField_Vis(), this.getVisibility(), "vis", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStructField_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructField_Type(), this.getType(), null, "type", null, 0, 1, StructField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(enumTypeEClass, EnumType.class, "EnumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEnumType_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEnumType_Params(), this.getGenericParamDecl(), null, "params", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEnumType_Variants(), this.getVariant(), null, "variants", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variantEClass, Variant.class, "Variant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariant_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, Variant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

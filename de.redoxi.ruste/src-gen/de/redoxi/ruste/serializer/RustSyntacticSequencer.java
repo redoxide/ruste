@@ -21,7 +21,6 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ExprGroup_CommaKeyword_2_2_2_q;
 	protected AbstractElementAlias match_ExprTuple_CommaKeyword_3_q;
 	protected AbstractElementAlias match_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1;
-	protected AbstractElementAlias match_Path_ColonColonKeyword_2_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -29,7 +28,6 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ExprGroup_CommaKeyword_2_2_2_q = new TokenAlias(false, true, grammarAccess.getExprGroupAccess().getCommaKeyword_2_2_2());
 		match_ExprTuple_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getExprTupleAccess().getCommaKeyword_3());
 		match_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPatEnumAccess().getAsteriskKeyword_1_0_2_0()), new TokenAlias(false, false, grammarAccess.getPatEnumAccess().getFullStopFullStopKeyword_1_0_2_1()));
-		match_Path_ColonColonKeyword_2_q = new TokenAlias(false, true, grammarAccess.getPathAccess().getColonColonKeyword_2());
 	}
 	
 	@Override
@@ -115,8 +113,6 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ExprTuple_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1.equals(syntax))
 				emit_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Path_ColonColonKeyword_2_q.equals(syntax))
-				emit_Path_ColonColonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -142,14 +138,6 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '..' | '*'
 	 */
 	protected void emit_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     '::'?
-	 */
-	protected void emit_Path_ColonColonKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

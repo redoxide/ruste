@@ -248,13 +248,13 @@ public interface RustFactory extends EFactory
   ExprLiteral createExprLiteral();
 
   /**
-   * Returns a new object of class '<em>Expr Path</em>'.
+   * Returns a new object of class '<em>Expr Path Head</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Path</em>'.
+   * @return a new object of class '<em>Expr Path Head</em>'.
    * @generated
    */
-  ExprPath createExprPath();
+  ExprPathHead createExprPathHead();
 
   /**
    * Returns a new object of class '<em>Expr Group</em>'.
@@ -473,6 +473,15 @@ public interface RustFactory extends EFactory
   Assign createAssign();
 
   /**
+   * Returns a new object of class '<em>Expr Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Lambda</em>'.
+   * @generated
+   */
+  ExprLambda createExprLambda();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -626,13 +635,22 @@ public interface RustFactory extends EFactory
   FieldPat createFieldPat();
 
   /**
-   * Returns a new object of class '<em>Path</em>'.
+   * Returns a new object of class '<em>Type Path</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Path</em>'.
+   * @return a new object of class '<em>Type Path</em>'.
    * @generated
    */
-  Path createPath();
+  TypePath createTypePath();
+
+  /**
+   * Returns a new object of class '<em>Expr Path</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Path</em>'.
+   * @generated
+   */
+  ExprPath createExprPath();
 
   /**
    * Returns a new object of class '<em>Type</em>'.
@@ -653,22 +671,13 @@ public interface RustFactory extends EFactory
   PrimitiveType createPrimitiveType();
 
   /**
-   * Returns a new object of class '<em>Tuple Type</em>'.
+   * Returns a new object of class '<em>Named Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Tuple Type</em>'.
+   * @return a new object of class '<em>Named Type</em>'.
    * @generated
    */
-  TupleType createTupleType();
-
-  /**
-   * Returns a new object of class '<em>Struct Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Struct Type</em>'.
-   * @generated
-   */
-  StructType createStructType();
+  NamedType createNamedType();
 
   /**
    * Returns a new object of class '<em>Boxed Pointer</em>'.
@@ -705,15 +714,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   StructField createStructField();
-
-  /**
-   * Returns a new object of class '<em>Enum Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Type</em>'.
-   * @generated
-   */
-  EnumType createEnumType();
 
   /**
    * Returns a new object of class '<em>Variant</em>'.

@@ -2,9 +2,9 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Path;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.Type;
+import de.redoxi.ruste.rust.TypePath;
 
 import java.util.Collection;
 
@@ -23,20 +23,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Path</b></em>'.
+ * An implementation of the model object '<em><b>Type Path</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.PathImpl#getSegments <em>Segments</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.PathImpl#getLifetimes <em>Lifetimes</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.PathImpl#getGenericTypes <em>Generic Types</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TypePathImpl#getSegments <em>Segments</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TypePathImpl#getLifetimes <em>Lifetimes</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TypePathImpl#getGenericTypes <em>Generic Types</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PathImpl extends MinimalEObjectImpl.Container implements Path
+public class TypePathImpl extends MinimalEObjectImpl.Container implements TypePath
 {
   /**
    * The cached value of the '{@link #getSegments() <em>Segments</em>}' attribute list.
@@ -73,7 +73,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PathImpl()
+  protected TypePathImpl()
   {
     super();
   }
@@ -86,7 +86,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.PATH;
+    return RustPackage.Literals.TYPE_PATH;
   }
 
   /**
@@ -98,7 +98,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     if (segments == null)
     {
-      segments = new EDataTypeEList<String>(String.class, this, RustPackage.PATH__SEGMENTS);
+      segments = new EDataTypeEList<String>(String.class, this, RustPackage.TYPE_PATH__SEGMENTS);
     }
     return segments;
   }
@@ -112,7 +112,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     if (lifetimes == null)
     {
-      lifetimes = new EDataTypeEList<String>(String.class, this, RustPackage.PATH__LIFETIMES);
+      lifetimes = new EDataTypeEList<String>(String.class, this, RustPackage.TYPE_PATH__LIFETIMES);
     }
     return lifetimes;
   }
@@ -126,7 +126,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     if (genericTypes == null)
     {
-      genericTypes = new EObjectContainmentEList<Type>(Type.class, this, RustPackage.PATH__GENERIC_TYPES);
+      genericTypes = new EObjectContainmentEList<Type>(Type.class, this, RustPackage.TYPE_PATH__GENERIC_TYPES);
     }
     return genericTypes;
   }
@@ -141,7 +141,7 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__GENERIC_TYPES:
+      case RustPackage.TYPE_PATH__GENERIC_TYPES:
         return ((InternalEList<?>)getGenericTypes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -157,11 +157,11 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__SEGMENTS:
+      case RustPackage.TYPE_PATH__SEGMENTS:
         return getSegments();
-      case RustPackage.PATH__LIFETIMES:
+      case RustPackage.TYPE_PATH__LIFETIMES:
         return getLifetimes();
-      case RustPackage.PATH__GENERIC_TYPES:
+      case RustPackage.TYPE_PATH__GENERIC_TYPES:
         return getGenericTypes();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -178,15 +178,15 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__SEGMENTS:
+      case RustPackage.TYPE_PATH__SEGMENTS:
         getSegments().clear();
         getSegments().addAll((Collection<? extends String>)newValue);
         return;
-      case RustPackage.PATH__LIFETIMES:
+      case RustPackage.TYPE_PATH__LIFETIMES:
         getLifetimes().clear();
         getLifetimes().addAll((Collection<? extends String>)newValue);
         return;
-      case RustPackage.PATH__GENERIC_TYPES:
+      case RustPackage.TYPE_PATH__GENERIC_TYPES:
         getGenericTypes().clear();
         getGenericTypes().addAll((Collection<? extends Type>)newValue);
         return;
@@ -204,13 +204,13 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__SEGMENTS:
+      case RustPackage.TYPE_PATH__SEGMENTS:
         getSegments().clear();
         return;
-      case RustPackage.PATH__LIFETIMES:
+      case RustPackage.TYPE_PATH__LIFETIMES:
         getLifetimes().clear();
         return;
-      case RustPackage.PATH__GENERIC_TYPES:
+      case RustPackage.TYPE_PATH__GENERIC_TYPES:
         getGenericTypes().clear();
         return;
     }
@@ -227,11 +227,11 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
   {
     switch (featureID)
     {
-      case RustPackage.PATH__SEGMENTS:
+      case RustPackage.TYPE_PATH__SEGMENTS:
         return segments != null && !segments.isEmpty();
-      case RustPackage.PATH__LIFETIMES:
+      case RustPackage.TYPE_PATH__LIFETIMES:
         return lifetimes != null && !lifetimes.isEmpty();
-      case RustPackage.PATH__GENERIC_TYPES:
+      case RustPackage.TYPE_PATH__GENERIC_TYPES:
         return genericTypes != null && !genericTypes.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -256,4 +256,4 @@ public class PathImpl extends MinimalEObjectImpl.Container implements Path
     return result.toString();
   }
 
-} //PathImpl
+} //TypePathImpl

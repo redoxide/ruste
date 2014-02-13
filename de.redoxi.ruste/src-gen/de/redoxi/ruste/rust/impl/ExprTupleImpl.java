@@ -49,7 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprTupleImpl extends ExprPathImpl implements ExprTuple
+public class ExprTupleImpl extends ExprPathHeadImpl implements ExprTuple
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.

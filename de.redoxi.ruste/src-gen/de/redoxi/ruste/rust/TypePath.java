@@ -8,23 +8,23 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Path</b></em>'.
+ * A representation of the model object '<em><b>Type Path</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.Path#getSegments <em>Segments</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.Path#getLifetimes <em>Lifetimes</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.Path#getGenericTypes <em>Generic Types</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TypePath#getSegments <em>Segments</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TypePath#getLifetimes <em>Lifetimes</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.TypePath#getGenericTypes <em>Generic Types</em>}</li>
  * </ul>
  * </p>
  *
- * @see de.redoxi.ruste.rust.RustPackage#getPath()
+ * @see de.redoxi.ruste.rust.RustPackage#getTypePath()
  * @model
  * @generated
  */
-public interface Path extends EObject
+public interface TypePath extends EObject
 {
   /**
    * Returns the value of the '<em><b>Segments</b></em>' attribute list.
@@ -36,7 +36,7 @@ public interface Path extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Segments</em>' attribute list.
-   * @see de.redoxi.ruste.rust.RustPackage#getPath_Segments()
+   * @see de.redoxi.ruste.rust.RustPackage#getTypePath_Segments()
    * @model unique="false"
    * @generated
    */
@@ -52,7 +52,7 @@ public interface Path extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Lifetimes</em>' attribute list.
-   * @see de.redoxi.ruste.rust.RustPackage#getPath_Lifetimes()
+   * @see de.redoxi.ruste.rust.RustPackage#getTypePath_Lifetimes()
    * @model unique="false"
    * @generated
    */
@@ -68,10 +68,10 @@ public interface Path extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Generic Types</em>' containment reference list.
-   * @see de.redoxi.ruste.rust.RustPackage#getPath_GenericTypes()
+   * @see de.redoxi.ruste.rust.RustPackage#getTypePath_GenericTypes()
    * @model containment="true"
    * @generated
    */
   EList<Type> getGenericTypes();
 
-} // Path
+} // TypePath

@@ -2,6 +2,8 @@
  */
 package de.redoxi.ruste.rust;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -12,7 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.ExprPath#getPath <em>Path</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.ExprPath#getSegments <em>Segments</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.ExprPath#getLifetimes <em>Lifetimes</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.ExprPath#getGenericTypes <em>Generic Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -20,32 +24,54 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ExprPath extends ExprLValue
+public interface ExprPath extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Path</b></em>' containment reference.
+   * Returns the value of the '<em><b>Segments</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Path</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Segments</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Path</em>' containment reference.
-   * @see #setPath(EObject)
-   * @see de.redoxi.ruste.rust.RustPackage#getExprPath_Path()
+   * @return the value of the '<em>Segments</em>' attribute list.
+   * @see de.redoxi.ruste.rust.RustPackage#getExprPath_Segments()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getSegments();
+
+  /**
+   * Returns the value of the '<em><b>Lifetimes</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Lifetimes</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Lifetimes</em>' attribute list.
+   * @see de.redoxi.ruste.rust.RustPackage#getExprPath_Lifetimes()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getLifetimes();
+
+  /**
+   * Returns the value of the '<em><b>Generic Types</b></em>' containment reference list.
+   * The list contents are of type {@link de.redoxi.ruste.rust.Type}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Generic Types</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Generic Types</em>' containment reference list.
+   * @see de.redoxi.ruste.rust.RustPackage#getExprPath_GenericTypes()
    * @model containment="true"
    * @generated
    */
-  EObject getPath();
-
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprPath#getPath <em>Path</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Path</em>' containment reference.
-   * @see #getPath()
-   * @generated
-   */
-  void setPath(EObject value);
+  EList<Type> getGenericTypes();
 
 } // ExprPath

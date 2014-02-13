@@ -290,15 +290,15 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_PATH:
+      case RustPackage.EXPR_PATH_HEAD:
       {
-        ExprPath exprPath = (ExprPath)theEObject;
-        T result = caseExprPath(exprPath);
-        if (result == null) result = caseExprLValue(exprPath);
-        if (result == null) result = caseAssign(exprPath);
-        if (result == null) result = caseExprBinary(exprPath);
-        if (result == null) result = caseExprRValue(exprPath);
-        if (result == null) result = caseExpr(exprPath);
+        ExprPathHead exprPathHead = (ExprPathHead)theEObject;
+        T result = caseExprPathHead(exprPathHead);
+        if (result == null) result = caseExprLValue(exprPathHead);
+        if (result == null) result = caseAssign(exprPathHead);
+        if (result == null) result = caseExprBinary(exprPathHead);
+        if (result == null) result = caseExprRValue(exprPathHead);
+        if (result == null) result = caseExpr(exprPathHead);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -327,7 +327,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprTuple exprTuple = (ExprTuple)theEObject;
         T result = caseExprTuple(exprTuple);
-        if (result == null) result = caseExprPath(exprTuple);
+        if (result == null) result = caseExprPathHead(exprTuple);
         if (result == null) result = caseExprGroup(exprTuple);
         if (result == null) result = caseExprLValue(exprTuple);
         if (result == null) result = caseExprLeaf(exprTuple);
@@ -354,7 +354,7 @@ public class RustSwitch<T> extends Switch<T>
         ExprStruct exprStruct = (ExprStruct)theEObject;
         T result = caseExprStruct(exprStruct);
         if (result == null) result = caseExprLeaf(exprStruct);
-        if (result == null) result = caseExprPath(exprStruct);
+        if (result == null) result = caseExprPathHead(exprStruct);
         if (result == null) result = caseDivisionMultiplicationOrModulo(exprStruct);
         if (result == null) result = caseExprLValue(exprStruct);
         if (result == null) result = caseExpr(exprStruct);
@@ -699,6 +699,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_LAMBDA:
+      {
+        ExprLambda exprLambda = (ExprLambda)theEObject;
+        T result = caseExprLambda(exprLambda);
+        if (result == null) result = caseExprLeaf(exprLambda);
+        if (result == null) result = caseExprRValue(exprLambda);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprLambda);
+        if (result == null) result = caseExpr(exprLambda);
+        if (result == null) result = caseAs(exprLambda);
+        if (result == null) result = caseAdditionOrSubtraction(exprLambda);
+        if (result == null) result = caseShiftOperator(exprLambda);
+        if (result == null) result = caseBitwiseAnd(exprLambda);
+        if (result == null) result = caseBitwiseXor(exprLambda);
+        if (result == null) result = caseBitwiseOr(exprLambda);
+        if (result == null) result = caseComparisonOperators(exprLambda);
+        if (result == null) result = caseEqualityOperator(exprLambda);
+        if (result == null) result = caseBooleanAnd(exprLambda);
+        if (result == null) result = caseBooleanOr(exprLambda);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -832,10 +853,17 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.PATH:
+      case RustPackage.TYPE_PATH:
       {
-        Path path = (Path)theEObject;
-        T result = casePath(path);
+        TypePath typePath = (TypePath)theEObject;
+        T result = caseTypePath(typePath);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_PATH:
+      {
+        ExprPath exprPath = (ExprPath)theEObject;
+        T result = caseExprPath(exprPath);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -854,19 +882,11 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.TUPLE_TYPE:
+      case RustPackage.NAMED_TYPE:
       {
-        TupleType tupleType = (TupleType)theEObject;
-        T result = caseTupleType(tupleType);
-        if (result == null) result = caseType(tupleType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.STRUCT_TYPE:
-      {
-        StructType structType = (StructType)theEObject;
-        T result = caseStructType(structType);
-        if (result == null) result = caseType(structType);
+        NamedType namedType = (NamedType)theEObject;
+        T result = caseNamedType(namedType);
+        if (result == null) result = caseType(namedType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -898,14 +918,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         StructField structField = (StructField)theEObject;
         T result = caseStructField(structField);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.ENUM_TYPE:
-      {
-        EnumType enumType = (EnumType)theEObject;
-        T result = caseEnumType(enumType);
-        if (result == null) result = caseType(enumType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1703,17 +1715,17 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Path Head</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Path Head</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExprPath(ExprPath object)
+  public T caseExprPathHead(ExprPathHead object)
   {
     return null;
   }
@@ -2103,6 +2115,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Lambda</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprLambda(ExprLambda object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2375,17 +2403,33 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Path</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Path</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Path</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Type Path</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePath(Path object)
+  public T caseTypePath(TypePath object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Path</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprPath(ExprPath object)
   {
     return null;
   }
@@ -2423,33 +2467,17 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Named Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Named Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTupleType(TupleType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Struct Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Struct Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStructType(StructType object)
+  public T caseNamedType(NamedType object)
   {
     return null;
   }
@@ -2514,22 +2542,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStructField(StructField object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Enum Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enum Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEnumType(EnumType object)
   {
     return null;
   }
