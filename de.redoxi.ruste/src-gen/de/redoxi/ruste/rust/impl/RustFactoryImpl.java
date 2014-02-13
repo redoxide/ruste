@@ -116,6 +116,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.BOOLEAN_OR: return createBooleanOr();
       case RustPackage.ASSIGN: return createAssign();
       case RustPackage.EXPR_LAMBDA: return createExprLambda();
+      case RustPackage.EXPR_WHILE: return createExprWhile();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -775,6 +776,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprLambdaImpl exprLambda = new ExprLambdaImpl();
     return exprLambda;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprWhile createExprWhile()
+  {
+    ExprWhileImpl exprWhile = new ExprWhileImpl();
+    return exprWhile;
   }
 
   /**

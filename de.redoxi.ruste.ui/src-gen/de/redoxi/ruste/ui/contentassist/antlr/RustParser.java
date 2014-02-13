@@ -182,6 +182,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprLambdaAccess().getGroup(), "rule__ExprLambda__Group__0");
 					put(grammarAccess.getExprLambdaAccess().getGroup_1(), "rule__ExprLambda__Group_1__0");
 					put(grammarAccess.getExprLambdaAccess().getGroup_1_1(), "rule__ExprLambda__Group_1_1__0");
+					put(grammarAccess.getExprWhileAccess().getGroup(), "rule__ExprWhile__Group__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -351,6 +352,8 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprLambdaAccess().getArgsAssignment_1_0(), "rule__ExprLambda__ArgsAssignment_1_0");
 					put(grammarAccess.getExprLambdaAccess().getArgsAssignment_1_1_1(), "rule__ExprLambda__ArgsAssignment_1_1_1");
 					put(grammarAccess.getExprLambdaAccess().getExprAssignment_3(), "rule__ExprLambda__ExprAssignment_3");
+					put(grammarAccess.getExprWhileAccess().getExprAssignment_1(), "rule__ExprWhile__ExprAssignment_1");
+					put(grammarAccess.getExprWhileAccess().getBlockAssignment_2(), "rule__ExprWhile__BlockAssignment_2");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

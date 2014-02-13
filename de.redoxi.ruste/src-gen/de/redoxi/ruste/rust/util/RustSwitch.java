@@ -720,6 +720,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_WHILE:
+      {
+        ExprWhile exprWhile = (ExprWhile)theEObject;
+        T result = caseExprWhile(exprWhile);
+        if (result == null) result = caseExprLeaf(exprWhile);
+        if (result == null) result = caseExprRValue(exprWhile);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprWhile);
+        if (result == null) result = caseExpr(exprWhile);
+        if (result == null) result = caseAs(exprWhile);
+        if (result == null) result = caseAdditionOrSubtraction(exprWhile);
+        if (result == null) result = caseShiftOperator(exprWhile);
+        if (result == null) result = caseBitwiseAnd(exprWhile);
+        if (result == null) result = caseBitwiseXor(exprWhile);
+        if (result == null) result = caseBitwiseOr(exprWhile);
+        if (result == null) result = caseComparisonOperators(exprWhile);
+        if (result == null) result = caseEqualityOperator(exprWhile);
+        if (result == null) result = caseBooleanAnd(exprWhile);
+        if (result == null) result = caseBooleanOr(exprWhile);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -2126,6 +2147,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprLambda(ExprLambda object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr While</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr While</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprWhile(ExprWhile object)
   {
     return null;
   }

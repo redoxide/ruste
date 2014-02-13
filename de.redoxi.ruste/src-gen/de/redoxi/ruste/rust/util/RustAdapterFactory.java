@@ -330,6 +330,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprLambdaAdapter();
       }
       @Override
+      public Adapter caseExprWhile(ExprWhile object)
+      {
+        return createExprWhileAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -1417,6 +1422,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprLambdaAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprWhile <em>Expr While</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprWhile
+   * @generated
+   */
+  public Adapter createExprWhileAdapter()
   {
     return null;
   }

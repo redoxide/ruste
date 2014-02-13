@@ -121,7 +121,8 @@ ExprLeaf:
 	ExprStruct |
 	ExprVec |
 	ExprUnary |
-	ExprLambda
+	ExprLambda |
+	ExprWhile
 ;
 
 ExprLiteral:
@@ -158,27 +159,27 @@ ExprUnary:
 ;
 
 NumericNegation:
-	"-" expr = ExprLeaf
+	"-" expr=ExprLeaf
 ;
 
 Dereference:
-	"*" expr = ExprLeaf
+	"*" expr=ExprLeaf
 ;
 
 LogicalNegation:
-	"!" expr = ExprLeaf
+	"!" expr=ExprLeaf
 ;
 
 ManagedBox:
-	"@" expr = ExprLeaf
+	"@" expr=ExprLeaf
 ;
 
 OwnedBox:
-	"~" expr = ExprLeaf
+	"~" expr=ExprLeaf
 ;
 
 Borrow:
-	"&" expr = ExprLeaf
+	"&" expr=ExprLeaf
 ;
 
 ExprBinary:
@@ -236,6 +237,10 @@ Assign:
 
 ExprLambda:
 	'|' (args+=IDENT (',' args+=IDENT)*)? '|' expr=Expr
+;
+
+ExprWhile:
+	"while" expr=Expr block=Block
 ;
 
 Block:

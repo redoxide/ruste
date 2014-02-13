@@ -1527,15 +1527,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprVecParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cExprUnaryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cExprLambdaParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cExprWhileParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//// Expressions that avoid left recursion
 		//ExprLeaf:
 		//	ExprLiteral | // TODO ExprTupleOrGroup |
-		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda;
+		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile;
 		public ParserRule getRule() { return rule; }
 
 		//ExprLiteral | // TODO ExprTupleOrGroup |
-		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda
+		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1556,6 +1557,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExprLambda
 		public RuleCall getExprLambdaParserRuleCall_5() { return cExprLambdaParserRuleCall_5; }
+
+		//ExprWhile
+		public RuleCall getExprWhileParserRuleCall_6() { return cExprWhileParserRuleCall_6; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -2776,6 +2780,38 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expr
 		public RuleCall getExprExprParserRuleCall_3_0() { return cExprExprParserRuleCall_3_0; }
+	}
+
+	public class ExprWhileElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprWhile");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cWhileKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
+		
+		//ExprWhile:
+		//	"while" expr=Expr block=Block;
+		public ParserRule getRule() { return rule; }
+
+		//"while" expr=Expr block=Block
+		public Group getGroup() { return cGroup; }
+
+		//"while"
+		public Keyword getWhileKeyword_0() { return cWhileKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+
+		//block=Block
+		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
+
+		//Block
+		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -4181,6 +4217,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanOrElements pBooleanOr;
 	private AssignElements pAssign;
 	private ExprLambdaElements pExprLambda;
+	private ExprWhileElements pExprWhile;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -4540,7 +4577,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// Expressions that avoid left recursion
 	//ExprLeaf:
 	//	ExprLiteral | // TODO ExprTupleOrGroup |
-	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda;
+	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
 	}
@@ -4823,6 +4860,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprLambdaRule() {
 		return getExprLambdaAccess().getRule();
+	}
+
+	//ExprWhile:
+	//	"while" expr=Expr block=Block;
+	public ExprWhileElements getExprWhileAccess() {
+		return (pExprWhile != null) ? pExprWhile : (pExprWhile = new ExprWhileElements());
+	}
+	
+	public ParserRule getExprWhileRule() {
+		return getExprWhileAccess().getRule();
 	}
 
 	//Block:

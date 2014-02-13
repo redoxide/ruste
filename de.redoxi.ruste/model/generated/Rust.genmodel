@@ -161,6 +161,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprLambda/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLambda/expr"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprWhile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprWhile/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprWhile/block"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>

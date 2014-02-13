@@ -58,6 +58,7 @@ import de.redoxi.ruste.rust.ExprSubtraction;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.ExprVec;
+import de.redoxi.ruste.rust.ExprWhile;
 import de.redoxi.ruste.rust.ExternBlock;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
@@ -490,6 +491,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprLambdaEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprWhileEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2223,6 +2231,36 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprWhile()
+  {
+    return exprWhileEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprWhile_Expr()
+  {
+    return (EReference)exprWhileEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprWhile_Block()
+  {
+    return (EReference)exprWhileEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -3832,6 +3870,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEAttribute(exprLambdaEClass, EXPR_LAMBDA__ARGS);
     createEReference(exprLambdaEClass, EXPR_LAMBDA__EXPR);
 
+    exprWhileEClass = createEClass(EXPR_WHILE);
+    createEReference(exprWhileEClass, EXPR_WHILE__EXPR);
+    createEReference(exprWhileEClass, EXPR_WHILE__BLOCK);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -4109,6 +4151,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     booleanAndEClass.getESuperTypes().add(this.getBooleanOr());
     assignEClass.getESuperTypes().add(this.getExprBinary());
     exprLambdaEClass.getESuperTypes().add(this.getExprLeaf());
+    exprWhileEClass.getESuperTypes().add(this.getExprLeaf());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4334,6 +4377,10 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(exprLambdaEClass, ExprLambda.class, "ExprLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExprLambda_Args(), ecorePackage.getEString(), "args", null, 0, -1, ExprLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprLambda_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprWhileEClass, ExprWhile.class, "ExprWhile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprWhile_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprWhile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprWhile_Block(), this.getBlock(), null, "block", null, 0, 1, ExprWhile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
