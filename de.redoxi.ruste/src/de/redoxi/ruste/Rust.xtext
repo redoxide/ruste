@@ -126,7 +126,9 @@ ExprLeaf:
 	ExprLoop |
 	ExprBreak |
 	ExprContinue |
-	ExprDo
+	ExprDo |
+	ExprFor |
+	ExprIf
 ;
 
 ExprLiteral:
@@ -261,6 +263,18 @@ ExprContinue:
 
 ExprDo:
 	'do' expr=Expr '|' (args+=IDENT (',' args+=IDENT)*)? '|' block=Block
+;
+
+ExprFor:
+	'for' pat=Pat 'in' expr=Expr block=Block
+;
+
+ExprIf:
+	'if' expr=Expr block=Block else=ElseTail?
+;
+
+ElseTail:
+	'else' (ExprIf | block=Block)
 ;
 
 Block:

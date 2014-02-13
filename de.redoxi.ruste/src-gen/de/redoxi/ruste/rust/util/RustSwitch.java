@@ -825,6 +825,56 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_FOR:
+      {
+        ExprFor exprFor = (ExprFor)theEObject;
+        T result = caseExprFor(exprFor);
+        if (result == null) result = caseExprLeaf(exprFor);
+        if (result == null) result = caseExprRValue(exprFor);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprFor);
+        if (result == null) result = caseExpr(exprFor);
+        if (result == null) result = caseAs(exprFor);
+        if (result == null) result = caseAdditionOrSubtraction(exprFor);
+        if (result == null) result = caseShiftOperator(exprFor);
+        if (result == null) result = caseBitwiseAnd(exprFor);
+        if (result == null) result = caseBitwiseXor(exprFor);
+        if (result == null) result = caseBitwiseOr(exprFor);
+        if (result == null) result = caseComparisonOperators(exprFor);
+        if (result == null) result = caseEqualityOperator(exprFor);
+        if (result == null) result = caseBooleanAnd(exprFor);
+        if (result == null) result = caseBooleanOr(exprFor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_IF:
+      {
+        ExprIf exprIf = (ExprIf)theEObject;
+        T result = caseExprIf(exprIf);
+        if (result == null) result = caseExprLeaf(exprIf);
+        if (result == null) result = caseElseTail(exprIf);
+        if (result == null) result = caseExprRValue(exprIf);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprIf);
+        if (result == null) result = caseExpr(exprIf);
+        if (result == null) result = caseAs(exprIf);
+        if (result == null) result = caseAdditionOrSubtraction(exprIf);
+        if (result == null) result = caseShiftOperator(exprIf);
+        if (result == null) result = caseBitwiseAnd(exprIf);
+        if (result == null) result = caseBitwiseXor(exprIf);
+        if (result == null) result = caseBitwiseOr(exprIf);
+        if (result == null) result = caseComparisonOperators(exprIf);
+        if (result == null) result = caseEqualityOperator(exprIf);
+        if (result == null) result = caseBooleanAnd(exprIf);
+        if (result == null) result = caseBooleanOr(exprIf);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.ELSE_TAIL:
+      {
+        ElseTail elseTail = (ElseTail)theEObject;
+        T result = caseElseTail(elseTail);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -2311,6 +2361,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprDo(ExprDo object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr For</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr For</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprFor(ExprFor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprIf(ExprIf object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Else Tail</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Else Tail</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseElseTail(ElseTail object)
   {
     return null;
   }

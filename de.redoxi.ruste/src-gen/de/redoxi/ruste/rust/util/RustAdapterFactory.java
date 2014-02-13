@@ -355,6 +355,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprDoAdapter();
       }
       @Override
+      public Adapter caseExprFor(ExprFor object)
+      {
+        return createExprForAdapter();
+      }
+      @Override
+      public Adapter caseExprIf(ExprIf object)
+      {
+        return createExprIfAdapter();
+      }
+      @Override
+      public Adapter caseElseTail(ElseTail object)
+      {
+        return createElseTailAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -1517,6 +1532,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprDoAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprFor <em>Expr For</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprFor
+   * @generated
+   */
+  public Adapter createExprForAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprIf <em>Expr If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprIf
+   * @generated
+   */
+  public Adapter createExprIfAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ElseTail <em>Else Tail</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ElseTail
+   * @generated
+   */
+  public Adapter createElseTailAdapter()
   {
     return null;
   }

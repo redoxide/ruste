@@ -24,6 +24,7 @@ import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.Division;
 import de.redoxi.ruste.rust.DivisionMultiplicationOrModulo;
+import de.redoxi.ruste.rust.ElseTail;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumVariant;
 import de.redoxi.ruste.rust.EqualityOperator;
@@ -41,9 +42,11 @@ import de.redoxi.ruste.rust.ExprCast;
 import de.redoxi.ruste.rust.ExprContinue;
 import de.redoxi.ruste.rust.ExprDo;
 import de.redoxi.ruste.rust.ExprEqualTo;
+import de.redoxi.ruste.rust.ExprFor;
 import de.redoxi.ruste.rust.ExprGreaterThan;
 import de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprGroup;
+import de.redoxi.ruste.rust.ExprIf;
 import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLambda;
 import de.redoxi.ruste.rust.ExprLeaf;
@@ -530,6 +533,27 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprDoEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprForEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprIfEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass elseTailEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2403,6 +2427,96 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprFor()
+  {
+    return exprForEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprFor_Pat()
+  {
+    return (EReference)exprForEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprFor_Expr()
+  {
+    return (EReference)exprForEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprFor_Block()
+  {
+    return (EReference)exprForEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprIf()
+  {
+    return exprIfEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprIf_Expr()
+  {
+    return (EReference)exprIfEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprIf_Else()
+  {
+    return (EReference)exprIfEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getElseTail()
+  {
+    return elseTailEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getElseTail_Block()
+  {
+    return (EReference)elseTailEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -4031,6 +4145,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEAttribute(exprDoEClass, EXPR_DO__ARGS);
     createEReference(exprDoEClass, EXPR_DO__BLOCK);
 
+    exprForEClass = createEClass(EXPR_FOR);
+    createEReference(exprForEClass, EXPR_FOR__PAT);
+    createEReference(exprForEClass, EXPR_FOR__EXPR);
+    createEReference(exprForEClass, EXPR_FOR__BLOCK);
+
+    exprIfEClass = createEClass(EXPR_IF);
+    createEReference(exprIfEClass, EXPR_IF__EXPR);
+    createEReference(exprIfEClass, EXPR_IF__ELSE);
+
+    elseTailEClass = createEClass(ELSE_TAIL);
+    createEReference(elseTailEClass, ELSE_TAIL__BLOCK);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -4313,6 +4439,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprBreakEClass.getESuperTypes().add(this.getExprLeaf());
     exprContinueEClass.getESuperTypes().add(this.getExprLeaf());
     exprDoEClass.getESuperTypes().add(this.getExprLeaf());
+    exprForEClass.getESuperTypes().add(this.getExprLeaf());
+    exprIfEClass.getESuperTypes().add(this.getExprLeaf());
+    exprIfEClass.getESuperTypes().add(this.getElseTail());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4557,6 +4686,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getExprDo_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprDo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprDo_Args(), ecorePackage.getEString(), "args", null, 0, -1, ExprDo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprDo_Block(), this.getBlock(), null, "block", null, 0, 1, ExprDo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprForEClass, ExprFor.class, "ExprFor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprFor_Pat(), this.getPat(), null, "pat", null, 0, 1, ExprFor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprFor_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprFor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprFor_Block(), this.getBlock(), null, "block", null, 0, 1, ExprFor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprIfEClass, ExprIf.class, "ExprIf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprIf_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprIf_Else(), this.getElseTail(), null, "else", null, 0, 1, ExprIf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(elseTailEClass, ElseTail.class, "ElseTail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getElseTail_Block(), this.getBlock(), null, "block", null, 0, 1, ElseTail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

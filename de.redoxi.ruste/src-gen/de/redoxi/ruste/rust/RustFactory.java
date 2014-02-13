@@ -527,6 +527,33 @@ public interface RustFactory extends EFactory
   ExprDo createExprDo();
 
   /**
+   * Returns a new object of class '<em>Expr For</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr For</em>'.
+   * @generated
+   */
+  ExprFor createExprFor();
+
+  /**
+   * Returns a new object of class '<em>Expr If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr If</em>'.
+   * @generated
+   */
+  ExprIf createExprIf();
+
+  /**
+   * Returns a new object of class '<em>Else Tail</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Else Tail</em>'.
+   * @generated
+   */
+  ElseTail createElseTail();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

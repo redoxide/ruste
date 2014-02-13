@@ -2545,6 +2545,26 @@ ruleExprLeaf returns [EObject current=null]
         $current = $this_ExprDo_10.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprLeafAccess().getExprForParserRuleCall_11()); 
+    }
+    this_ExprFor_11=ruleExprFor
+    { 
+        $current = $this_ExprFor_11.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprLeafAccess().getExprIfParserRuleCall_12()); 
+    }
+    this_ExprIf_12=ruleExprIf
+    { 
+        $current = $this_ExprIf_12.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -4730,6 +4750,221 @@ ruleExprDo returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleExprFor
+entryRuleExprFor returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprForRule()); }
+	 iv_ruleExprFor=ruleExprFor 
+	 { $current=$iv_ruleExprFor.current; } 
+	 EOF 
+;
+
+// Rule ExprFor
+ruleExprFor returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='for' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getExprForAccess().getForKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprForAccess().getPatPatParserRuleCall_1_0()); 
+	    }
+		lv_pat_1_0=rulePat		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprForRule());
+	        }
+       		set(
+       			$current, 
+       			"pat",
+        		lv_pat_1_0, 
+        		"Pat");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='in' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getExprForAccess().getInKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprForAccess().getExprExprParserRuleCall_3_0()); 
+	    }
+		lv_expr_3_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprForRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_3_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprForAccess().getBlockBlockParserRuleCall_4_0()); 
+	    }
+		lv_block_4_0=ruleBlock		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprForRule());
+	        }
+       		set(
+       			$current, 
+       			"block",
+        		lv_block_4_0, 
+        		"Block");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleExprIf
+entryRuleExprIf returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprIfRule()); }
+	 iv_ruleExprIf=ruleExprIf 
+	 { $current=$iv_ruleExprIf.current; } 
+	 EOF 
+;
+
+// Rule ExprIf
+ruleExprIf returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='if' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getExprIfAccess().getIfKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprIfAccess().getExprExprParserRuleCall_1_0()); 
+	    }
+		lv_expr_1_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprIfRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_1_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprIfAccess().getBlockBlockParserRuleCall_2_0()); 
+	    }
+		lv_block_2_0=ruleBlock		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprIfRule());
+	        }
+       		set(
+       			$current, 
+       			"block",
+        		lv_block_2_0, 
+        		"Block");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprIfAccess().getElseElseTailParserRuleCall_3_0()); 
+	    }
+		lv_else_3_0=ruleElseTail		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprIfRule());
+	        }
+       		set(
+       			$current, 
+       			"else",
+        		lv_else_3_0, 
+        		"ElseTail");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleElseTail
+entryRuleElseTail returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getElseTailRule()); }
+	 iv_ruleElseTail=ruleElseTail 
+	 { $current=$iv_ruleElseTail.current; } 
+	 EOF 
+;
+
+// Rule ElseTail
+ruleElseTail returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='else' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getElseTailAccess().getElseKeyword_0());
+    }
+(
+    { 
+        newCompositeNode(grammarAccess.getElseTailAccess().getExprIfParserRuleCall_1_0()); 
+    }
+    this_ExprIf_1=ruleExprIf
+    { 
+        $current = $this_ExprIf_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getElseTailAccess().getBlockBlockParserRuleCall_1_1_0()); 
+	    }
+		lv_block_2_0=ruleBlock		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getElseTailRule());
+	        }
+       		set(
+       			$current, 
+       			"block",
+        		lv_block_2_0, 
+        		"Block");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
 ;
 
 

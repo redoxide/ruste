@@ -180,6 +180,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprDo/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprDo/block"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprFor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/block"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprIf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIf/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIf/else"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ElseTail">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ElseTail/block"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
