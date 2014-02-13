@@ -340,6 +340,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprLoopAdapter();
       }
       @Override
+      public Adapter caseExprBreak(ExprBreak object)
+      {
+        return createExprBreakAdapter();
+      }
+      @Override
+      public Adapter caseExprContinue(ExprContinue object)
+      {
+        return createExprContinueAdapter();
+      }
+      @Override
+      public Adapter caseExprDo(ExprDo object)
+      {
+        return createExprDoAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -1457,6 +1472,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprLoopAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprBreak <em>Expr Break</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprBreak
+   * @generated
+   */
+  public Adapter createExprBreakAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprContinue <em>Expr Continue</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprContinue
+   * @generated
+   */
+  public Adapter createExprContinueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprDo <em>Expr Do</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprDo
+   * @generated
+   */
+  public Adapter createExprDoAdapter()
   {
     return null;
   }

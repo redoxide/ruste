@@ -1529,15 +1529,18 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprLambdaParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cExprWhileParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cExprLoopParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cExprBreakParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cExprContinueParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cExprDoParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		
 		//// Expressions that avoid left recursion
 		//ExprLeaf:
 		//	ExprLiteral | // TODO ExprTupleOrGroup |
-		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop;
+		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo;
 		public ParserRule getRule() { return rule; }
 
 		//ExprLiteral | // TODO ExprTupleOrGroup |
-		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop
+		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1564,6 +1567,15 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExprLoop
 		public RuleCall getExprLoopParserRuleCall_7() { return cExprLoopParserRuleCall_7; }
+
+		//ExprBreak
+		public RuleCall getExprBreakParserRuleCall_8() { return cExprBreakParserRuleCall_8; }
+
+		//ExprContinue
+		public RuleCall getExprContinueParserRuleCall_9() { return cExprContinueParserRuleCall_9; }
+
+		//ExprDo
+		public RuleCall getExprDoParserRuleCall_10() { return cExprDoParserRuleCall_10; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -2856,6 +2868,130 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Block
 		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
+	}
+
+	public class ExprBreakElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprBreak");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cExprBreakAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBreakKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLifetimeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLifetimeLIFETIMETerminalRuleCall_2_0 = (RuleCall)cLifetimeAssignment_2.eContents().get(0);
+		
+		//ExprBreak:
+		//	{ExprBreak} "break" lifetime=LIFETIME?;
+		public ParserRule getRule() { return rule; }
+
+		//{ExprBreak} "break" lifetime=LIFETIME?
+		public Group getGroup() { return cGroup; }
+
+		//{ExprBreak}
+		public Action getExprBreakAction_0() { return cExprBreakAction_0; }
+
+		//"break"
+		public Keyword getBreakKeyword_1() { return cBreakKeyword_1; }
+
+		//lifetime=LIFETIME?
+		public Assignment getLifetimeAssignment_2() { return cLifetimeAssignment_2; }
+
+		//LIFETIME
+		public RuleCall getLifetimeLIFETIMETerminalRuleCall_2_0() { return cLifetimeLIFETIMETerminalRuleCall_2_0; }
+	}
+
+	public class ExprContinueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprContinue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cExprContinueAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cContinueKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLifetimeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLifetimeLIFETIMETerminalRuleCall_2_0 = (RuleCall)cLifetimeAssignment_2.eContents().get(0);
+		
+		//ExprContinue:
+		//	{ExprContinue} "continue" lifetime=LIFETIME?;
+		public ParserRule getRule() { return rule; }
+
+		//{ExprContinue} "continue" lifetime=LIFETIME?
+		public Group getGroup() { return cGroup; }
+
+		//{ExprContinue}
+		public Action getExprContinueAction_0() { return cExprContinueAction_0; }
+
+		//"continue"
+		public Keyword getContinueKeyword_1() { return cContinueKeyword_1; }
+
+		//lifetime=LIFETIME?
+		public Assignment getLifetimeAssignment_2() { return cLifetimeAssignment_2; }
+
+		//LIFETIME
+		public RuleCall getLifetimeLIFETIMETerminalRuleCall_2_0() { return cLifetimeLIFETIMETerminalRuleCall_2_0; }
+	}
+
+	public class ExprDoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprDo");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDoKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
+		private final Keyword cVerticalLineKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cArgsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cArgsIDENTTerminalRuleCall_3_0_0 = (RuleCall)cArgsAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cArgsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cArgsIDENTTerminalRuleCall_3_1_1_0 = (RuleCall)cArgsAssignment_3_1_1.eContents().get(0);
+		private final Keyword cVerticalLineKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBlockAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBlockBlockParserRuleCall_5_0 = (RuleCall)cBlockAssignment_5.eContents().get(0);
+		
+		//ExprDo:
+		//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block;
+		public ParserRule getRule() { return rule; }
+
+		//"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block
+		public Group getGroup() { return cGroup; }
+
+		//"do"
+		public Keyword getDoKeyword_0() { return cDoKeyword_0; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
+
+		//"|"
+		public Keyword getVerticalLineKeyword_2() { return cVerticalLineKeyword_2; }
+
+		//(args+=IDENT ("," args+=IDENT)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//args+=IDENT
+		public Assignment getArgsAssignment_3_0() { return cArgsAssignment_3_0; }
+
+		//IDENT
+		public RuleCall getArgsIDENTTerminalRuleCall_3_0_0() { return cArgsIDENTTerminalRuleCall_3_0_0; }
+
+		//("," args+=IDENT)*
+		public Group getGroup_3_1() { return cGroup_3_1; }
+
+		//","
+		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+
+		//args+=IDENT
+		public Assignment getArgsAssignment_3_1_1() { return cArgsAssignment_3_1_1; }
+
+		//IDENT
+		public RuleCall getArgsIDENTTerminalRuleCall_3_1_1_0() { return cArgsIDENTTerminalRuleCall_3_1_1_0; }
+
+		//"|"
+		public Keyword getVerticalLineKeyword_4() { return cVerticalLineKeyword_4; }
+
+		//block=Block
+		public Assignment getBlockAssignment_5() { return cBlockAssignment_5; }
+
+		//Block
+		public RuleCall getBlockBlockParserRuleCall_5_0() { return cBlockBlockParserRuleCall_5_0; }
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
@@ -4263,6 +4399,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprLambdaElements pExprLambda;
 	private ExprWhileElements pExprWhile;
 	private ExprLoopElements pExprLoop;
+	private ExprBreakElements pExprBreak;
+	private ExprContinueElements pExprContinue;
+	private ExprDoElements pExprDo;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -4622,7 +4761,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// Expressions that avoid left recursion
 	//ExprLeaf:
 	//	ExprLiteral | // TODO ExprTupleOrGroup |
-	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop;
+	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
 	}
@@ -4925,6 +5064,36 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExprLoopRule() {
 		return getExprLoopAccess().getRule();
+	}
+
+	//ExprBreak:
+	//	{ExprBreak} "break" lifetime=LIFETIME?;
+	public ExprBreakElements getExprBreakAccess() {
+		return (pExprBreak != null) ? pExprBreak : (pExprBreak = new ExprBreakElements());
+	}
+	
+	public ParserRule getExprBreakRule() {
+		return getExprBreakAccess().getRule();
+	}
+
+	//ExprContinue:
+	//	{ExprContinue} "continue" lifetime=LIFETIME?;
+	public ExprContinueElements getExprContinueAccess() {
+		return (pExprContinue != null) ? pExprContinue : (pExprContinue = new ExprContinueElements());
+	}
+	
+	public ParserRule getExprContinueRule() {
+		return getExprContinueAccess().getRule();
+	}
+
+	//ExprDo:
+	//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block;
+	public ExprDoElements getExprDoAccess() {
+		return (pExprDo != null) ? pExprDo : (pExprDo = new ExprDoElements());
+	}
+	
+	public ParserRule getExprDoRule() {
+		return getExprDoAccess().getRule();
 	}
 
 	//Block:

@@ -123,7 +123,10 @@ ExprLeaf:
 	ExprUnary |
 	ExprLambda |
 	ExprWhile |
-	ExprLoop
+	ExprLoop |
+	ExprBreak |
+	ExprContinue |
+	ExprDo
 ;
 
 ExprLiteral:
@@ -246,6 +249,18 @@ ExprWhile:
 
 ExprLoop:
 	(lifetime=LIFETIME ':')? 'loop' block=Block
+;
+
+ExprBreak:
+	{ExprBreak} 'break' lifetime=LIFETIME?
+;
+
+ExprContinue:
+	{ExprContinue} 'continue' lifetime=LIFETIME?
+;
+
+ExprDo:
+	'do' expr=Expr '|' (args+=IDENT (',' args+=IDENT)*)? '|' block=Block
 ;
 
 Block:

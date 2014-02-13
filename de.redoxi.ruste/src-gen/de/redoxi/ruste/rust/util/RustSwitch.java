@@ -762,6 +762,69 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_BREAK:
+      {
+        ExprBreak exprBreak = (ExprBreak)theEObject;
+        T result = caseExprBreak(exprBreak);
+        if (result == null) result = caseExprLeaf(exprBreak);
+        if (result == null) result = caseExprRValue(exprBreak);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprBreak);
+        if (result == null) result = caseExpr(exprBreak);
+        if (result == null) result = caseAs(exprBreak);
+        if (result == null) result = caseAdditionOrSubtraction(exprBreak);
+        if (result == null) result = caseShiftOperator(exprBreak);
+        if (result == null) result = caseBitwiseAnd(exprBreak);
+        if (result == null) result = caseBitwiseXor(exprBreak);
+        if (result == null) result = caseBitwiseOr(exprBreak);
+        if (result == null) result = caseComparisonOperators(exprBreak);
+        if (result == null) result = caseEqualityOperator(exprBreak);
+        if (result == null) result = caseBooleanAnd(exprBreak);
+        if (result == null) result = caseBooleanOr(exprBreak);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_CONTINUE:
+      {
+        ExprContinue exprContinue = (ExprContinue)theEObject;
+        T result = caseExprContinue(exprContinue);
+        if (result == null) result = caseExprLeaf(exprContinue);
+        if (result == null) result = caseExprRValue(exprContinue);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprContinue);
+        if (result == null) result = caseExpr(exprContinue);
+        if (result == null) result = caseAs(exprContinue);
+        if (result == null) result = caseAdditionOrSubtraction(exprContinue);
+        if (result == null) result = caseShiftOperator(exprContinue);
+        if (result == null) result = caseBitwiseAnd(exprContinue);
+        if (result == null) result = caseBitwiseXor(exprContinue);
+        if (result == null) result = caseBitwiseOr(exprContinue);
+        if (result == null) result = caseComparisonOperators(exprContinue);
+        if (result == null) result = caseEqualityOperator(exprContinue);
+        if (result == null) result = caseBooleanAnd(exprContinue);
+        if (result == null) result = caseBooleanOr(exprContinue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_DO:
+      {
+        ExprDo exprDo = (ExprDo)theEObject;
+        T result = caseExprDo(exprDo);
+        if (result == null) result = caseExprLeaf(exprDo);
+        if (result == null) result = caseExprRValue(exprDo);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprDo);
+        if (result == null) result = caseExpr(exprDo);
+        if (result == null) result = caseAs(exprDo);
+        if (result == null) result = caseAdditionOrSubtraction(exprDo);
+        if (result == null) result = caseShiftOperator(exprDo);
+        if (result == null) result = caseBitwiseAnd(exprDo);
+        if (result == null) result = caseBitwiseXor(exprDo);
+        if (result == null) result = caseBitwiseOr(exprDo);
+        if (result == null) result = caseComparisonOperators(exprDo);
+        if (result == null) result = caseEqualityOperator(exprDo);
+        if (result == null) result = caseBooleanAnd(exprDo);
+        if (result == null) result = caseBooleanOr(exprDo);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -2200,6 +2263,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprLoop(ExprLoop object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Break</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Break</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprBreak(ExprBreak object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Continue</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Continue</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprContinue(ExprContinue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Do</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Do</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprDo(ExprDo object)
   {
     return null;
   }

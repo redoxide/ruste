@@ -185,6 +185,11 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprWhileAccess().getGroup(), "rule__ExprWhile__Group__0");
 					put(grammarAccess.getExprLoopAccess().getGroup(), "rule__ExprLoop__Group__0");
 					put(grammarAccess.getExprLoopAccess().getGroup_0(), "rule__ExprLoop__Group_0__0");
+					put(grammarAccess.getExprBreakAccess().getGroup(), "rule__ExprBreak__Group__0");
+					put(grammarAccess.getExprContinueAccess().getGroup(), "rule__ExprContinue__Group__0");
+					put(grammarAccess.getExprDoAccess().getGroup(), "rule__ExprDo__Group__0");
+					put(grammarAccess.getExprDoAccess().getGroup_3(), "rule__ExprDo__Group_3__0");
+					put(grammarAccess.getExprDoAccess().getGroup_3_1(), "rule__ExprDo__Group_3_1__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -358,6 +363,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprWhileAccess().getBlockAssignment_2(), "rule__ExprWhile__BlockAssignment_2");
 					put(grammarAccess.getExprLoopAccess().getLifetimeAssignment_0_0(), "rule__ExprLoop__LifetimeAssignment_0_0");
 					put(grammarAccess.getExprLoopAccess().getBlockAssignment_2(), "rule__ExprLoop__BlockAssignment_2");
+					put(grammarAccess.getExprBreakAccess().getLifetimeAssignment_2(), "rule__ExprBreak__LifetimeAssignment_2");
+					put(grammarAccess.getExprContinueAccess().getLifetimeAssignment_2(), "rule__ExprContinue__LifetimeAssignment_2");
+					put(grammarAccess.getExprDoAccess().getExprAssignment_1(), "rule__ExprDo__ExprAssignment_1");
+					put(grammarAccess.getExprDoAccess().getArgsAssignment_3_0(), "rule__ExprDo__ArgsAssignment_3_0");
+					put(grammarAccess.getExprDoAccess().getArgsAssignment_3_1_1(), "rule__ExprDo__ArgsAssignment_3_1_1");
+					put(grammarAccess.getExprDoAccess().getBlockAssignment_5(), "rule__ExprDo__BlockAssignment_5");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

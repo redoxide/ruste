@@ -169,6 +169,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprLoop/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoop/block"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBreak">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprBreak/lifetime"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprContinue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprContinue/lifetime"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprDo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprDo/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprDo/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprDo/block"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>

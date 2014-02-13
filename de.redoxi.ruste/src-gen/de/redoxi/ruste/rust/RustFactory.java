@@ -500,6 +500,33 @@ public interface RustFactory extends EFactory
   ExprLoop createExprLoop();
 
   /**
+   * Returns a new object of class '<em>Expr Break</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Break</em>'.
+   * @generated
+   */
+  ExprBreak createExprBreak();
+
+  /**
+   * Returns a new object of class '<em>Expr Continue</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Continue</em>'.
+   * @generated
+   */
+  ExprContinue createExprContinue();
+
+  /**
+   * Returns a new object of class '<em>Expr Do</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Do</em>'.
+   * @generated
+   */
+  ExprDo createExprDo();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

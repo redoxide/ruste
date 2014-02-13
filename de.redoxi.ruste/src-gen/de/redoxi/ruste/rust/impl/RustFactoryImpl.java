@@ -118,6 +118,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_LAMBDA: return createExprLambda();
       case RustPackage.EXPR_WHILE: return createExprWhile();
       case RustPackage.EXPR_LOOP: return createExprLoop();
+      case RustPackage.EXPR_BREAK: return createExprBreak();
+      case RustPackage.EXPR_CONTINUE: return createExprContinue();
+      case RustPackage.EXPR_DO: return createExprDo();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -799,6 +802,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprLoopImpl exprLoop = new ExprLoopImpl();
     return exprLoop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprBreak createExprBreak()
+  {
+    ExprBreakImpl exprBreak = new ExprBreakImpl();
+    return exprBreak;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprContinue createExprContinue()
+  {
+    ExprContinueImpl exprContinue = new ExprContinueImpl();
+    return exprContinue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprDo createExprDo()
+  {
+    ExprDoImpl exprDo = new ExprDoImpl();
+    return exprDo;
   }
 
   /**
