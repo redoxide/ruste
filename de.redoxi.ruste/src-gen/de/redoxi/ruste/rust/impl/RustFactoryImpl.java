@@ -124,6 +124,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_FOR: return createExprFor();
       case RustPackage.EXPR_IF: return createExprIf();
       case RustPackage.ELSE_TAIL: return createElseTail();
+      case RustPackage.EXPR_MATCH: return createExprMatch();
+      case RustPackage.MATCH_ARM: return createMatchArm();
+      case RustPackage.MATCH_PAT: return createMatchPat();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -871,6 +874,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ElseTailImpl elseTail = new ElseTailImpl();
     return elseTail;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprMatch createExprMatch()
+  {
+    ExprMatchImpl exprMatch = new ExprMatchImpl();
+    return exprMatch;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MatchArm createMatchArm()
+  {
+    MatchArmImpl matchArm = new MatchArmImpl();
+    return matchArm;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MatchPat createMatchPat()
+  {
+    MatchPatImpl matchPat = new MatchPatImpl();
+    return matchPat;
   }
 
   /**

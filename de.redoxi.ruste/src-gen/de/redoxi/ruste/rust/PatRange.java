@@ -2,6 +2,7 @@
  */
 package de.redoxi.ruste.rust;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +14,6 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface PatRange extends Pat
+public interface PatRange extends EObject
 {
 } // PatRange

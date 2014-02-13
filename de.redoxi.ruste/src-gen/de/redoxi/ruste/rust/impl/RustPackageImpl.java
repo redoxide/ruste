@@ -55,6 +55,7 @@ import de.redoxi.ruste.rust.ExprLessThan;
 import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprLoop;
+import de.redoxi.ruste.rust.ExprMatch;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
@@ -83,6 +84,8 @@ import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.LogicalNegation;
 import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ManagedBox;
+import de.redoxi.ruste.rust.MatchArm;
+import de.redoxi.ruste.rust.MatchPat;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.Modulo;
 import de.redoxi.ruste.rust.Multiplication;
@@ -554,6 +557,27 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass elseTailEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprMatchEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass matchArmEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass matchPatEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2517,6 +2541,116 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprMatch()
+  {
+    return exprMatchEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprMatch_Expr()
+  {
+    return (EReference)exprMatchEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprMatch_Arms()
+  {
+    return (EReference)exprMatchEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMatchArm()
+  {
+    return matchArmEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchArm_MatchPat()
+  {
+    return (EReference)matchArmEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchArm_Expr()
+  {
+    return (EReference)matchArmEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchArm_Block()
+  {
+    return (EReference)matchArmEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMatchPat()
+  {
+    return matchPatEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchPat_Pat()
+  {
+    return (EReference)matchPatEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchPat_EndPat()
+  {
+    return (EReference)matchPatEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchPat_Expr()
+  {
+    return (EReference)matchPatEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -4157,6 +4291,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     elseTailEClass = createEClass(ELSE_TAIL);
     createEReference(elseTailEClass, ELSE_TAIL__BLOCK);
 
+    exprMatchEClass = createEClass(EXPR_MATCH);
+    createEReference(exprMatchEClass, EXPR_MATCH__EXPR);
+    createEReference(exprMatchEClass, EXPR_MATCH__ARMS);
+
+    matchArmEClass = createEClass(MATCH_ARM);
+    createEReference(matchArmEClass, MATCH_ARM__MATCH_PAT);
+    createEReference(matchArmEClass, MATCH_ARM__EXPR);
+    createEReference(matchArmEClass, MATCH_ARM__BLOCK);
+
+    matchPatEClass = createEClass(MATCH_PAT);
+    createEReference(matchPatEClass, MATCH_PAT__PAT);
+    createEReference(matchPatEClass, MATCH_PAT__END_PAT);
+    createEReference(matchPatEClass, MATCH_PAT__EXPR);
+
     blockEClass = createEClass(BLOCK);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
@@ -4442,6 +4590,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprForEClass.getESuperTypes().add(this.getExprLeaf());
     exprIfEClass.getESuperTypes().add(this.getExprLeaf());
     exprIfEClass.getESuperTypes().add(this.getElseTail());
+    exprMatchEClass.getESuperTypes().add(this.getExprLeaf());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4450,7 +4599,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     patTupleEClass.getESuperTypes().add(this.getPat());
     patVectorEClass.getESuperTypes().add(this.getPat());
     patLiteralEClass.getESuperTypes().add(this.getPat());
-    patRangeEClass.getESuperTypes().add(this.getPat());
     patCharRangeEClass.getESuperTypes().add(this.getPatRange());
     patNumberRangeEClass.getESuperTypes().add(this.getPatRange());
     patEnumEClass.getESuperTypes().add(this.getPat());
@@ -4698,6 +4846,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(elseTailEClass, ElseTail.class, "ElseTail", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getElseTail_Block(), this.getBlock(), null, "block", null, 0, 1, ElseTail.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprMatchEClass, ExprMatch.class, "ExprMatch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprMatch_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprMatch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprMatch_Arms(), this.getMatchArm(), null, "arms", null, 0, -1, ExprMatch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(matchArmEClass, MatchArm.class, "MatchArm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchArm_MatchPat(), this.getMatchPat(), null, "matchPat", null, 0, 1, MatchArm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchArm_Expr(), this.getExpr(), null, "expr", null, 0, 1, MatchArm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchArm_Block(), this.getBlock(), null, "block", null, 0, 1, MatchArm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(matchPatEClass, MatchPat.class, "MatchPat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchPat_Pat(), this.getPat(), null, "pat", null, 0, 1, MatchPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchPat_EndPat(), this.getPat(), null, "endPat", null, 0, 1, MatchPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchPat_Expr(), this.getExpr(), null, "expr", null, 0, 1, MatchPat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

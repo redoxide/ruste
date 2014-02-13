@@ -39,6 +39,7 @@ import de.redoxi.ruste.rust.ExprLessThan;
 import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprLoop;
+import de.redoxi.ruste.rust.ExprMatch;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
@@ -63,6 +64,8 @@ import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.LogicalNegation;
 import de.redoxi.ruste.rust.MachineType;
 import de.redoxi.ruste.rust.ManagedBox;
+import de.redoxi.ruste.rust.MatchArm;
+import de.redoxi.ruste.rust.MatchPat;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.Modulo;
 import de.redoxi.ruste.rust.Multiplication;
@@ -881,6 +884,45 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.EXPR_MATCH:
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprMatchRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_1_0()) {
+					sequence_ExprMatch(context, (ExprMatch) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.EXPR_NOT_EQUAL_TO:
 				if(context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0() ||
@@ -1309,6 +1351,18 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.MATCH_ARM:
+				if(context == grammarAccess.getMatchArmRule()) {
+					sequence_MatchArm(context, (MatchArm) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.MATCH_PAT:
+				if(context == grammarAccess.getMatchPatRule()) {
+					sequence_MatchPat(context, (MatchPat) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.MOD_ITEM:
 				if(context == grammarAccess.getItemRule() ||
 				   context == grammarAccess.getModItemRule()) {
@@ -1496,8 +1550,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.PAT_CHAR_RANGE:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatCharRangeRule() ||
+				if(context == grammarAccess.getPatCharRangeRule() ||
 				   context == grammarAccess.getPatRangeRule()) {
 					sequence_PatCharRange(context, (PatCharRange) semanticObject); 
 					return; 
@@ -1525,8 +1578,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.PAT_NUMBER_RANGE:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatNumberRangeRule() ||
+				if(context == grammarAccess.getPatNumberRangeRule() ||
 				   context == grammarAccess.getPatRangeRule()) {
 					sequence_PatNumberRange(context, (PatNumberRange) semanticObject); 
 					return; 
@@ -2293,6 +2345,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (expr=Expr arms+=MatchArm arms+=MatchArm*)
+	 */
+	protected void sequence_ExprMatch(EObject context, ExprMatch semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     path=ExprPath
 	 */
 	protected void sequence_ExprPathHead(EObject context, ExprPathHead semanticObject) {
@@ -2525,6 +2586,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getManagedBoxAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (matchPat=MatchPat (expr=Expr | block=Block))
+	 */
+	protected void sequence_MatchArm(EObject context, MatchArm semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (pat=Pat endPat=Pat? expr=Expr)
+	 */
+	protected void sequence_MatchPat(EObject context, MatchPat semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

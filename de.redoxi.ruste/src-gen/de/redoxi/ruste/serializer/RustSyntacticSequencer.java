@@ -135,7 +135,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '*' | '..'
+	 *     '..' | '*'
 	 */
 	protected void emit_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

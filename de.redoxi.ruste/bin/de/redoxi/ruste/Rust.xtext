@@ -128,7 +128,8 @@ ExprLeaf:
 	ExprContinue |
 	ExprDo |
 	ExprFor |
-	ExprIf
+	ExprIf |
+	ExprMatch
 ;
 
 ExprLiteral:
@@ -277,6 +278,18 @@ ElseTail:
 	'else' (ExprIf | block=Block)
 ;
 
+ExprMatch:
+	'match' expr=Expr '{' arms+=MatchArm ('|' arms+=MatchArm)* '}'
+;
+
+MatchArm:
+	matchPat=MatchPat '=>' (expr=Expr ',' | block=Block)
+;
+
+MatchPat:
+	pat=Pat ('..' endPat=Pat)? ('if' expr=Expr)
+;
+
 Block:
 	{Block} '{' /* TODO Statements, expression */ '}'
 ;
@@ -302,7 +315,6 @@ Pat:
 	PatTuple |
 	PatVector |
 	PatLiteral |
-	PatRange |
 	PatEnum
 ;
 
@@ -336,19 +348,6 @@ PatVector:
 
 PatLiteral:
 	literal=Literal
-;
-
-PatRange:
-	PatCharRange |
-	PatNumberRange
-;
-
-PatCharRange:
-	start=CharLit '..' end=CharLit
-;
-
-PatNumberRange:
-	start=NumberLit '..' end=NumberLit
 ;
 
 PatEnum:

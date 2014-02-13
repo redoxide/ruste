@@ -55,6 +55,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComparisonOperatorsAccess().getAlternatives_1(), "rule__ComparisonOperators__Alternatives_1");
 					put(grammarAccess.getEqualityOperatorAccess().getAlternatives_1(), "rule__EqualityOperator__Alternatives_1");
 					put(grammarAccess.getElseTailAccess().getAlternatives_1(), "rule__ElseTail__Alternatives_1");
+					put(grammarAccess.getMatchArmAccess().getAlternatives_2(), "rule__MatchArm__Alternatives_2");
 					put(grammarAccess.getPatAccess().getAlternatives(), "rule__Pat__Alternatives");
 					put(grammarAccess.getPatRangeAccess().getAlternatives(), "rule__PatRange__Alternatives");
 					put(grammarAccess.getPatEnumAccess().getAlternatives_1(), "rule__PatEnum__Alternatives_1");
@@ -194,6 +195,13 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprForAccess().getGroup(), "rule__ExprFor__Group__0");
 					put(grammarAccess.getExprIfAccess().getGroup(), "rule__ExprIf__Group__0");
 					put(grammarAccess.getElseTailAccess().getGroup(), "rule__ElseTail__Group__0");
+					put(grammarAccess.getExprMatchAccess().getGroup(), "rule__ExprMatch__Group__0");
+					put(grammarAccess.getExprMatchAccess().getGroup_4(), "rule__ExprMatch__Group_4__0");
+					put(grammarAccess.getMatchArmAccess().getGroup(), "rule__MatchArm__Group__0");
+					put(grammarAccess.getMatchArmAccess().getGroup_2_0(), "rule__MatchArm__Group_2_0__0");
+					put(grammarAccess.getMatchPatAccess().getGroup(), "rule__MatchPat__Group__0");
+					put(grammarAccess.getMatchPatAccess().getGroup_1(), "rule__MatchPat__Group_1__0");
+					put(grammarAccess.getMatchPatAccess().getGroup_2(), "rule__MatchPat__Group_2__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup(), "rule__GenericParamDecl__Group__0");
 					put(grammarAccess.getGenericParamDeclAccess().getGroup_1(), "rule__GenericParamDecl__Group_1__0");
@@ -380,6 +388,15 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprIfAccess().getBlockAssignment_2(), "rule__ExprIf__BlockAssignment_2");
 					put(grammarAccess.getExprIfAccess().getElseAssignment_3(), "rule__ExprIf__ElseAssignment_3");
 					put(grammarAccess.getElseTailAccess().getBlockAssignment_1_1(), "rule__ElseTail__BlockAssignment_1_1");
+					put(grammarAccess.getExprMatchAccess().getExprAssignment_1(), "rule__ExprMatch__ExprAssignment_1");
+					put(grammarAccess.getExprMatchAccess().getArmsAssignment_3(), "rule__ExprMatch__ArmsAssignment_3");
+					put(grammarAccess.getExprMatchAccess().getArmsAssignment_4_1(), "rule__ExprMatch__ArmsAssignment_4_1");
+					put(grammarAccess.getMatchArmAccess().getMatchPatAssignment_0(), "rule__MatchArm__MatchPatAssignment_0");
+					put(grammarAccess.getMatchArmAccess().getExprAssignment_2_0_0(), "rule__MatchArm__ExprAssignment_2_0_0");
+					put(grammarAccess.getMatchArmAccess().getBlockAssignment_2_1(), "rule__MatchArm__BlockAssignment_2_1");
+					put(grammarAccess.getMatchPatAccess().getPatAssignment_0(), "rule__MatchPat__PatAssignment_0");
+					put(grammarAccess.getMatchPatAccess().getEndPatAssignment_1_1(), "rule__MatchPat__EndPatAssignment_1_1");
+					put(grammarAccess.getMatchPatAccess().getExprAssignment_2_1(), "rule__MatchPat__ExprAssignment_2_1");
 					put(grammarAccess.getGenericParamDeclAccess().getIdentAssignment_0(), "rule__GenericParamDecl__IdentAssignment_0");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_1(), "rule__GenericParamDecl__BoundsAssignment_1_1");
 					put(grammarAccess.getGenericParamDeclAccess().getBoundsAssignment_1_2_1(), "rule__GenericParamDecl__BoundsAssignment_1_2_1");

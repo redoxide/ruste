@@ -554,6 +554,33 @@ public interface RustFactory extends EFactory
   ElseTail createElseTail();
 
   /**
+   * Returns a new object of class '<em>Expr Match</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Match</em>'.
+   * @generated
+   */
+  ExprMatch createExprMatch();
+
+  /**
+   * Returns a new object of class '<em>Match Arm</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Match Arm</em>'.
+   * @generated
+   */
+  MatchArm createMatchArm();
+
+  /**
+   * Returns a new object of class '<em>Match Pat</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Match Pat</em>'.
+   * @generated
+   */
+  MatchPat createMatchPat();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

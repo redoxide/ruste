@@ -232,6 +232,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprMatch" eSuperTypes="#//ExprLeaf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arms" upperBound="-1" eType="#//MatchArm"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchArm">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchPat" eType="#//MatchPat"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchPat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPat" eType="#//Pat"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenericParamDecl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -272,7 +290,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatRange" eSuperTypes="#//Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatRange"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatCharRange" eSuperTypes="#//PatRange">
     <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//CharLit"
         containment="true"/>

@@ -370,6 +370,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createElseTailAdapter();
       }
       @Override
+      public Adapter caseExprMatch(ExprMatch object)
+      {
+        return createExprMatchAdapter();
+      }
+      @Override
+      public Adapter caseMatchArm(MatchArm object)
+      {
+        return createMatchArmAdapter();
+      }
+      @Override
+      public Adapter caseMatchPat(MatchPat object)
+      {
+        return createMatchPatAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -1577,6 +1592,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createElseTailAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprMatch <em>Expr Match</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprMatch
+   * @generated
+   */
+  public Adapter createExprMatchAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.MatchArm <em>Match Arm</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.MatchArm
+   * @generated
+   */
+  public Adapter createMatchArmAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.MatchPat <em>Match Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.MatchPat
+   * @generated
+   */
+  public Adapter createMatchPatAdapter()
   {
     return null;
   }

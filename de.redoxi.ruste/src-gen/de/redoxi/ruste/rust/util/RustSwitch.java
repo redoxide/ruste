@@ -875,6 +875,41 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_MATCH:
+      {
+        ExprMatch exprMatch = (ExprMatch)theEObject;
+        T result = caseExprMatch(exprMatch);
+        if (result == null) result = caseExprLeaf(exprMatch);
+        if (result == null) result = caseExprRValue(exprMatch);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprMatch);
+        if (result == null) result = caseExpr(exprMatch);
+        if (result == null) result = caseAs(exprMatch);
+        if (result == null) result = caseAdditionOrSubtraction(exprMatch);
+        if (result == null) result = caseShiftOperator(exprMatch);
+        if (result == null) result = caseBitwiseAnd(exprMatch);
+        if (result == null) result = caseBitwiseXor(exprMatch);
+        if (result == null) result = caseBitwiseOr(exprMatch);
+        if (result == null) result = caseComparisonOperators(exprMatch);
+        if (result == null) result = caseEqualityOperator(exprMatch);
+        if (result == null) result = caseBooleanAnd(exprMatch);
+        if (result == null) result = caseBooleanOr(exprMatch);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.MATCH_ARM:
+      {
+        MatchArm matchArm = (MatchArm)theEObject;
+        T result = caseMatchArm(matchArm);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.MATCH_PAT:
+      {
+        MatchPat matchPat = (MatchPat)theEObject;
+        T result = caseMatchPat(matchPat);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -971,7 +1006,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         PatRange patRange = (PatRange)theEObject;
         T result = casePatRange(patRange);
-        if (result == null) result = casePat(patRange);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -980,7 +1014,6 @@ public class RustSwitch<T> extends Switch<T>
         PatCharRange patCharRange = (PatCharRange)theEObject;
         T result = casePatCharRange(patCharRange);
         if (result == null) result = casePatRange(patCharRange);
-        if (result == null) result = casePat(patCharRange);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -989,7 +1022,6 @@ public class RustSwitch<T> extends Switch<T>
         PatNumberRange patNumberRange = (PatNumberRange)theEObject;
         T result = casePatNumberRange(patNumberRange);
         if (result == null) result = casePatRange(patNumberRange);
-        if (result == null) result = casePat(patNumberRange);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2409,6 +2441,54 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseElseTail(ElseTail object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Match</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Match</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprMatch(ExprMatch object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Match Arm</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Match Arm</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMatchArm(MatchArm object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Match Pat</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Match Pat</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMatchPat(MatchPat object)
   {
     return null;
   }
