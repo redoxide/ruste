@@ -129,7 +129,8 @@ ExprLeaf:
 	ExprDo |
 	ExprFor |
 	ExprIf |
-	ExprMatch
+	ExprMatch |
+	ExprReturn
 ;
 
 ExprLiteral:
@@ -288,6 +289,11 @@ MatchArm:
 
 MatchPat:
 	pat=Pat ('..' endPat=Pat)? ('if' expr=Expr)
+;
+
+// TODO Expression is optional
+ExprReturn:
+	{ExprReturn} 'return' expr=Expr
 ;
 
 Block:

@@ -250,6 +250,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprReturn" eSuperTypes="#//ExprLeaf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block"/>
   <eClassifiers xsi:type="ecore:EClass" name="GenericParamDecl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -288,19 +291,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatLiteral" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatRange"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatCharRange" eSuperTypes="#//PatRange">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//CharLit"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//CharLit"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatNumberRange" eSuperTypes="#//PatRange">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//NumberLit"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//NumberLit"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatEnum" eSuperTypes="#//Pat">

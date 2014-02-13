@@ -206,6 +206,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MatchPat/endPat"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MatchPat/expr"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprReturn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprReturn/expr"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
@@ -238,15 +241,6 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatLiteral/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//PatRange"/>
-    <genClasses ecoreClass="Rust.ecore#//PatCharRange">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatCharRange/start"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatCharRange/end"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//PatNumberRange">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/start"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatNumberRange/end"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatEnum">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/path"/>

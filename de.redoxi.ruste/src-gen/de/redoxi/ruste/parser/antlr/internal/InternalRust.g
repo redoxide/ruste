@@ -2575,6 +2575,16 @@ ruleExprLeaf returns [EObject current=null]
         $current = $this_ExprMatch_13.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getExprLeafAccess().getExprReturnParserRuleCall_14()); 
+    }
+    this_ExprReturn_14=ruleExprReturn
+    { 
+        $current = $this_ExprReturn_14.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -5239,6 +5249,55 @@ ruleMatchPat returns [EObject current=null]
 
 
 
+// Entry rule entryRuleExprReturn
+entryRuleExprReturn returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprReturnRule()); }
+	 iv_ruleExprReturn=ruleExprReturn 
+	 { $current=$iv_ruleExprReturn.current; } 
+	 EOF 
+;
+
+// Rule ExprReturn
+ruleExprReturn returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getExprReturnAccess().getExprReturnAction_0(),
+            $current);
+    }
+)	otherlv_1='return' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getExprReturnAccess().getReturnKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprReturnAccess().getExprExprParserRuleCall_2_0()); 
+	    }
+		lv_expr_2_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprReturnRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_2_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
 // Entry rule entryRuleBlock
 entryRuleBlock returns [EObject current=null] 
 	:
@@ -5916,130 +5975,6 @@ rulePatLiteral returns [EObject current=null]
 
 )
 )
-;
-
-
-
-
-
-
-
-// Entry rule entryRulePatCharRange
-entryRulePatCharRange returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPatCharRangeRule()); }
-	 iv_rulePatCharRange=rulePatCharRange 
-	 { $current=$iv_rulePatCharRange.current; } 
-	 EOF 
-;
-
-// Rule PatCharRange
-rulePatCharRange returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatCharRangeAccess().getStartCharLitParserRuleCall_0_0()); 
-	    }
-		lv_start_0_0=ruleCharLit		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatCharRangeRule());
-	        }
-       		set(
-       			$current, 
-       			"start",
-        		lv_start_0_0, 
-        		"CharLit");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_1='..' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getPatCharRangeAccess().getFullStopFullStopKeyword_1());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatCharRangeAccess().getEndCharLitParserRuleCall_2_0()); 
-	    }
-		lv_end_2_0=ruleCharLit		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatCharRangeRule());
-	        }
-       		set(
-       			$current, 
-       			"end",
-        		lv_end_2_0, 
-        		"CharLit");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRulePatNumberRange
-entryRulePatNumberRange returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPatNumberRangeRule()); }
-	 iv_rulePatNumberRange=rulePatNumberRange 
-	 { $current=$iv_rulePatNumberRange.current; } 
-	 EOF 
-;
-
-// Rule PatNumberRange
-rulePatNumberRange returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatNumberRangeAccess().getStartNumberLitParserRuleCall_0_0()); 
-	    }
-		lv_start_0_0=ruleNumberLit		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatNumberRangeRule());
-	        }
-       		set(
-       			$current, 
-       			"start",
-        		lv_start_0_0, 
-        		"NumberLit");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_1='..' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getPatNumberRangeAccess().getFullStopFullStopKeyword_1());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatNumberRangeAccess().getEndNumberLitParserRuleCall_2_0()); 
-	    }
-		lv_end_2_0=ruleNumberLit		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatNumberRangeRule());
-	        }
-       		set(
-       			$current, 
-       			"end",
-        		lv_end_2_0, 
-        		"NumberLit");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

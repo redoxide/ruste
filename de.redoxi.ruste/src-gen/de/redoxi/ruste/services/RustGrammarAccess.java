@@ -1535,17 +1535,18 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprForParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		private final RuleCall cExprIfParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
 		private final RuleCall cExprMatchParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cExprReturnParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
 		
 		//// Expressions that avoid left recursion
 		//ExprLeaf:
 		//	ExprLiteral | // TODO ExprTupleOrGroup |
 		//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo |
-		//	ExprFor | ExprIf | ExprMatch;
+		//	ExprFor | ExprIf | ExprMatch | ExprReturn;
 		public ParserRule getRule() { return rule; }
 
 		//ExprLiteral | // TODO ExprTupleOrGroup |
 		//ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo |
-		//ExprFor | ExprIf | ExprMatch
+		//ExprFor | ExprIf | ExprMatch | ExprReturn
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ExprLiteral
@@ -1590,6 +1591,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExprMatch
 		public RuleCall getExprMatchParserRuleCall_13() { return cExprMatchParserRuleCall_13; }
+
+		//ExprReturn
+		public RuleCall getExprReturnParserRuleCall_14() { return cExprReturnParserRuleCall_14; }
 	}
 
 	public class ExprLiteralElements extends AbstractParserRuleElementFinder {
@@ -3284,6 +3288,34 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExprExprParserRuleCall_2_1_0() { return cExprExprParserRuleCall_2_1_0; }
 	}
 
+	public class ExprReturnElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprReturn");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cExprReturnAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cReturnKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cExprAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExprExprParserRuleCall_2_0 = (RuleCall)cExprAssignment_2.eContents().get(0);
+		
+		//ExprReturn:
+		//	{ExprReturn} "return" expr=Expr;
+		public ParserRule getRule() { return rule; }
+
+		//{ExprReturn} "return" expr=Expr
+		public Group getGroup() { return cGroup; }
+
+		//{ExprReturn}
+		public Action getExprReturnAction_0() { return cExprReturnAction_0; }
+
+		//"return"
+		public Keyword getReturnKeyword_1() { return cReturnKeyword_1; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_2() { return cExprAssignment_2; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_2_0() { return cExprExprParserRuleCall_2_0; }
+	}
+
 	public class BlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3666,90 +3698,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Literal
 		public RuleCall getLiteralLiteralParserRuleCall_0() { return cLiteralLiteralParserRuleCall_0; }
-	}
-
-	public class PatRangeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatRange");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPatCharRangeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPatNumberRangeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//PatRange:
-		//	PatCharRange | PatNumberRange;
-		public ParserRule getRule() { return rule; }
-
-		//PatCharRange | PatNumberRange
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//PatCharRange
-		public RuleCall getPatCharRangeParserRuleCall_0() { return cPatCharRangeParserRuleCall_0; }
-
-		//PatNumberRange
-		public RuleCall getPatNumberRangeParserRuleCall_1() { return cPatNumberRangeParserRuleCall_1; }
-	}
-
-	public class PatCharRangeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatCharRange");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cStartAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cStartCharLitParserRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cEndCharLitParserRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
-		
-		//PatCharRange:
-		//	start=CharLit ".." end=CharLit;
-		public ParserRule getRule() { return rule; }
-
-		//start=CharLit ".." end=CharLit
-		public Group getGroup() { return cGroup; }
-
-		//start=CharLit
-		public Assignment getStartAssignment_0() { return cStartAssignment_0; }
-
-		//CharLit
-		public RuleCall getStartCharLitParserRuleCall_0_0() { return cStartCharLitParserRuleCall_0_0; }
-
-		//".."
-		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
-
-		//end=CharLit
-		public Assignment getEndAssignment_2() { return cEndAssignment_2; }
-
-		//CharLit
-		public RuleCall getEndCharLitParserRuleCall_2_0() { return cEndCharLitParserRuleCall_2_0; }
-	}
-
-	public class PatNumberRangeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatNumberRange");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cStartAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cStartNumberLitParserRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cEndNumberLitParserRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
-		
-		//PatNumberRange:
-		//	start=NumberLit ".." end=NumberLit;
-		public ParserRule getRule() { return rule; }
-
-		//start=NumberLit ".." end=NumberLit
-		public Group getGroup() { return cGroup; }
-
-		//start=NumberLit
-		public Assignment getStartAssignment_0() { return cStartAssignment_0; }
-
-		//NumberLit
-		public RuleCall getStartNumberLitParserRuleCall_0_0() { return cStartNumberLitParserRuleCall_0_0; }
-
-		//".."
-		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
-
-		//end=NumberLit
-		public Assignment getEndAssignment_2() { return cEndAssignment_2; }
-
-		//NumberLit
-		public RuleCall getEndNumberLitParserRuleCall_2_0() { return cEndNumberLitParserRuleCall_2_0; }
 	}
 
 	public class PatEnumElements extends AbstractParserRuleElementFinder {
@@ -4694,6 +4642,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private ExprMatchElements pExprMatch;
 	private MatchArmElements pMatchArm;
 	private MatchPatElements pMatchPat;
+	private ExprReturnElements pExprReturn;
 	private BlockElements pBlock;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
@@ -4706,9 +4655,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private PatTupleElements pPatTuple;
 	private PatVectorElements pPatVector;
 	private PatLiteralElements pPatLiteral;
-	private PatRangeElements pPatRange;
-	private PatCharRangeElements pPatCharRange;
-	private PatNumberRangeElements pPatNumberRange;
 	private PatEnumElements pPatEnum;
 	private FieldPatElements pFieldPat;
 	private TypePathElements pTypePath;
@@ -5054,7 +5000,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//ExprLeaf:
 	//	ExprLiteral | // TODO ExprTupleOrGroup |
 	//	ExprGroup | ExprStruct | ExprVec | ExprUnary | ExprLambda | ExprWhile | ExprLoop | ExprBreak | ExprContinue | ExprDo |
-	//	ExprFor | ExprIf | ExprMatch;
+	//	ExprFor | ExprIf | ExprMatch | ExprReturn;
 	public ExprLeafElements getExprLeafAccess() {
 		return (pExprLeaf != null) ? pExprLeaf : (pExprLeaf = new ExprLeafElements());
 	}
@@ -5449,6 +5395,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getMatchPatAccess().getRule();
 	}
 
+	//ExprReturn:
+	//	{ExprReturn} "return" expr=Expr;
+	public ExprReturnElements getExprReturnAccess() {
+		return (pExprReturn != null) ? pExprReturn : (pExprReturn = new ExprReturnElements());
+	}
+	
+	public ParserRule getExprReturnRule() {
+		return getExprReturnAccess().getRule();
+	}
+
 	//Block:
 	//	{Block} "{" / * TODO Statements, expression * / "}";
 	public BlockElements getBlockAccess() {
@@ -5571,36 +5527,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPatLiteralRule() {
 		return getPatLiteralAccess().getRule();
-	}
-
-	//PatRange:
-	//	PatCharRange | PatNumberRange;
-	public PatRangeElements getPatRangeAccess() {
-		return (pPatRange != null) ? pPatRange : (pPatRange = new PatRangeElements());
-	}
-	
-	public ParserRule getPatRangeRule() {
-		return getPatRangeAccess().getRule();
-	}
-
-	//PatCharRange:
-	//	start=CharLit ".." end=CharLit;
-	public PatCharRangeElements getPatCharRangeAccess() {
-		return (pPatCharRange != null) ? pPatCharRange : (pPatCharRange = new PatCharRangeElements());
-	}
-	
-	public ParserRule getPatCharRangeRule() {
-		return getPatCharRangeAccess().getRule();
-	}
-
-	//PatNumberRange:
-	//	start=NumberLit ".." end=NumberLit;
-	public PatNumberRangeElements getPatNumberRangeAccess() {
-		return (pPatNumberRange != null) ? pPatNumberRange : (pPatNumberRange = new PatNumberRangeElements());
-	}
-	
-	public ParserRule getPatNumberRangeRule() {
-		return getPatNumberRangeAccess().getRule();
 	}
 
 	//PatEnum:

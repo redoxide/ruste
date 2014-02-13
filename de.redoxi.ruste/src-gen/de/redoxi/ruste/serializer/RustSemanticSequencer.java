@@ -43,6 +43,7 @@ import de.redoxi.ruste.rust.ExprMatch;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
+import de.redoxi.ruste.rust.ExprReturn;
 import de.redoxi.ruste.rust.ExprRightShift;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprSubtraction;
@@ -76,11 +77,9 @@ import de.redoxi.ruste.rust.OwnedBox;
 import de.redoxi.ruste.rust.OwnedPointer;
 import de.redoxi.ruste.rust.PatBorrowed;
 import de.redoxi.ruste.rust.PatBoxed;
-import de.redoxi.ruste.rust.PatCharRange;
 import de.redoxi.ruste.rust.PatEnum;
 import de.redoxi.ruste.rust.PatIdent;
 import de.redoxi.ruste.rust.PatLiteral;
-import de.redoxi.ruste.rust.PatNumberRange;
 import de.redoxi.ruste.rust.PatOwned;
 import de.redoxi.ruste.rust.PatStructEnum;
 import de.redoxi.ruste.rust.PatTuple;
@@ -953,6 +952,45 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.EXPR_RETURN:
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprRValueRule() ||
+				   context == grammarAccess.getExprReturnRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_1_0()) {
+					sequence_ExprReturn(context, (ExprReturn) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.EXPR_RIGHT_SHIFT:
 				if(context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0() ||
@@ -1549,13 +1587,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case RustPackage.PAT_CHAR_RANGE:
-				if(context == grammarAccess.getPatCharRangeRule() ||
-				   context == grammarAccess.getPatRangeRule()) {
-					sequence_PatCharRange(context, (PatCharRange) semanticObject); 
-					return; 
-				}
-				else break;
 			case RustPackage.PAT_ENUM:
 				if(context == grammarAccess.getPatEnumAccess().getPatStructEnumPathAction_1_1_0() ||
 				   context == grammarAccess.getPatEnumAccess().getPatTupleEnumPathAction_1_0_0()) {
@@ -1574,13 +1605,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatLiteralRule()) {
 					sequence_PatLiteral(context, (PatLiteral) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.PAT_NUMBER_RANGE:
-				if(context == grammarAccess.getPatNumberRangeRule() ||
-				   context == grammarAccess.getPatRangeRule()) {
-					sequence_PatNumberRange(context, (PatNumberRange) semanticObject); 
 					return; 
 				}
 				else break;
@@ -2406,6 +2430,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_ExprReturn(EObject context, ExprReturn semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_RETURN__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_RETURN__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprReturnAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (fields+=StructField fields+=StructField* baseExpr=Expr?)
 	 */
 	protected void sequence_ExprStruct(EObject context, ExprStruct semanticObject) {
@@ -2723,25 +2763,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (start=CharLit end=CharLit)
-	 */
-	protected void sequence_PatCharRange(EObject context, PatCharRange semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_CHAR_RANGE__START) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_CHAR_RANGE__START));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_CHAR_RANGE__END) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_CHAR_RANGE__END));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPatCharRangeAccess().getStartCharLitParserRuleCall_0_0(), semanticObject.getStart());
-		feeder.accept(grammarAccess.getPatCharRangeAccess().getEndCharLitParserRuleCall_2_0(), semanticObject.getEnd());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (path=PatEnum_PatStructEnum_1_1_0 fieldPatterns+=FieldPat fieldPatterns+=FieldPat*)
 	 */
 	protected void sequence_PatEnum(EObject context, PatStructEnum semanticObject) {
@@ -2805,25 +2826,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPatLiteralAccess().getLiteralLiteralParserRuleCall_0(), semanticObject.getLiteral());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (start=NumberLit end=NumberLit)
-	 */
-	protected void sequence_PatNumberRange(EObject context, PatNumberRange semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_NUMBER_RANGE__START) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_NUMBER_RANGE__START));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_NUMBER_RANGE__END) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_NUMBER_RANGE__END));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPatNumberRangeAccess().getStartNumberLitParserRuleCall_0_0(), semanticObject.getStart());
-		feeder.accept(grammarAccess.getPatNumberRangeAccess().getEndNumberLitParserRuleCall_2_0(), semanticObject.getEnd());
 		feeder.finish();
 	}
 	

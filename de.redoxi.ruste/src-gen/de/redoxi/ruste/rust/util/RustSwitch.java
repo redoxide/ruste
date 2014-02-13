@@ -910,6 +910,27 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.EXPR_RETURN:
+      {
+        ExprReturn exprReturn = (ExprReturn)theEObject;
+        T result = caseExprReturn(exprReturn);
+        if (result == null) result = caseExprLeaf(exprReturn);
+        if (result == null) result = caseExprRValue(exprReturn);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprReturn);
+        if (result == null) result = caseExpr(exprReturn);
+        if (result == null) result = caseAs(exprReturn);
+        if (result == null) result = caseAdditionOrSubtraction(exprReturn);
+        if (result == null) result = caseShiftOperator(exprReturn);
+        if (result == null) result = caseBitwiseAnd(exprReturn);
+        if (result == null) result = caseBitwiseXor(exprReturn);
+        if (result == null) result = caseBitwiseOr(exprReturn);
+        if (result == null) result = caseComparisonOperators(exprReturn);
+        if (result == null) result = caseEqualityOperator(exprReturn);
+        if (result == null) result = caseBooleanAnd(exprReturn);
+        if (result == null) result = caseBooleanOr(exprReturn);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.BLOCK:
       {
         Block block = (Block)theEObject;
@@ -999,29 +1020,6 @@ public class RustSwitch<T> extends Switch<T>
         PatLiteral patLiteral = (PatLiteral)theEObject;
         T result = casePatLiteral(patLiteral);
         if (result == null) result = casePat(patLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.PAT_RANGE:
-      {
-        PatRange patRange = (PatRange)theEObject;
-        T result = casePatRange(patRange);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.PAT_CHAR_RANGE:
-      {
-        PatCharRange patCharRange = (PatCharRange)theEObject;
-        T result = casePatCharRange(patCharRange);
-        if (result == null) result = casePatRange(patCharRange);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.PAT_NUMBER_RANGE:
-      {
-        PatNumberRange patNumberRange = (PatNumberRange)theEObject;
-        T result = casePatNumberRange(patNumberRange);
-        if (result == null) result = casePatRange(patNumberRange);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2494,6 +2492,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Return</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Return</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprReturn(ExprReturn object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2681,54 +2695,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePatLiteral(PatLiteral object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pat Range</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pat Range</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePatRange(PatRange object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pat Char Range</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pat Char Range</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePatCharRange(PatCharRange object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pat Number Range</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pat Number Range</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePatNumberRange(PatNumberRange object)
   {
     return null;
   }

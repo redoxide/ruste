@@ -385,6 +385,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createMatchPatAdapter();
       }
       @Override
+      public Adapter caseExprReturn(ExprReturn object)
+      {
+        return createExprReturnAdapter();
+      }
+      @Override
       public Adapter caseBlock(Block object)
       {
         return createBlockAdapter();
@@ -443,21 +448,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter casePatLiteral(PatLiteral object)
       {
         return createPatLiteralAdapter();
-      }
-      @Override
-      public Adapter casePatRange(PatRange object)
-      {
-        return createPatRangeAdapter();
-      }
-      @Override
-      public Adapter casePatCharRange(PatCharRange object)
-      {
-        return createPatCharRangeAdapter();
-      }
-      @Override
-      public Adapter casePatNumberRange(PatNumberRange object)
-      {
-        return createPatNumberRangeAdapter();
       }
       @Override
       public Adapter casePatEnum(PatEnum object)
@@ -1642,6 +1632,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprReturn <em>Expr Return</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprReturn
+   * @generated
+   */
+  public Adapter createExprReturnAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Block <em>Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1817,51 +1822,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatRange <em>Pat Range</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.PatRange
-   * @generated
-   */
-  public Adapter createPatRangeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatCharRange <em>Pat Char Range</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.PatCharRange
-   * @generated
-   */
-  public Adapter createPatCharRangeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.PatNumberRange <em>Pat Number Range</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.PatNumberRange
-   * @generated
-   */
-  public Adapter createPatNumberRangeAdapter()
   {
     return null;
   }

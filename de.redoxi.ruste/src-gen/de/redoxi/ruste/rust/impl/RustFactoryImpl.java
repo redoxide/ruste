@@ -127,6 +127,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_MATCH: return createExprMatch();
       case RustPackage.MATCH_ARM: return createMatchArm();
       case RustPackage.MATCH_PAT: return createMatchPat();
+      case RustPackage.EXPR_RETURN: return createExprReturn();
       case RustPackage.BLOCK: return createBlock();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
@@ -139,9 +140,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.PAT_TUPLE: return createPatTuple();
       case RustPackage.PAT_VECTOR: return createPatVector();
       case RustPackage.PAT_LITERAL: return createPatLiteral();
-      case RustPackage.PAT_RANGE: return createPatRange();
-      case RustPackage.PAT_CHAR_RANGE: return createPatCharRange();
-      case RustPackage.PAT_NUMBER_RANGE: return createPatNumberRange();
       case RustPackage.PAT_ENUM: return createPatEnum();
       case RustPackage.FIELD_PAT: return createFieldPat();
       case RustPackage.TYPE_PATH: return createTypePath();
@@ -914,6 +912,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ExprReturn createExprReturn()
+  {
+    ExprReturnImpl exprReturn = new ExprReturnImpl();
+    return exprReturn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Block createBlock()
   {
     BlockImpl block = new BlockImpl();
@@ -1039,39 +1048,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     PatLiteralImpl patLiteral = new PatLiteralImpl();
     return patLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatRange createPatRange()
-  {
-    PatRangeImpl patRange = new PatRangeImpl();
-    return patRange;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatCharRange createPatCharRange()
-  {
-    PatCharRangeImpl patCharRange = new PatCharRangeImpl();
-    return patCharRange;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatNumberRange createPatNumberRange()
-  {
-    PatNumberRangeImpl patNumberRange = new PatNumberRangeImpl();
-    return patNumberRange;
   }
 
   /**

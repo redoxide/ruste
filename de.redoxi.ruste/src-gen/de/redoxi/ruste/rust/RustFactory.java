@@ -581,6 +581,15 @@ public interface RustFactory extends EFactory
   MatchPat createMatchPat();
 
   /**
+   * Returns a new object of class '<em>Expr Return</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Return</em>'.
+   * @generated
+   */
+  ExprReturn createExprReturn();
+
+  /**
    * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -687,33 +696,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   PatLiteral createPatLiteral();
-
-  /**
-   * Returns a new object of class '<em>Pat Range</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pat Range</em>'.
-   * @generated
-   */
-  PatRange createPatRange();
-
-  /**
-   * Returns a new object of class '<em>Pat Char Range</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pat Char Range</em>'.
-   * @generated
-   */
-  PatCharRange createPatCharRange();
-
-  /**
-   * Returns a new object of class '<em>Pat Number Range</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pat Number Range</em>'.
-   * @generated
-   */
-  PatNumberRange createPatNumberRange();
 
   /**
    * Returns a new object of class '<em>Pat Enum</em>'.
