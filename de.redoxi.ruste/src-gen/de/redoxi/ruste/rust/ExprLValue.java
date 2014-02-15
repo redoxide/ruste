@@ -13,6 +13,6 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLValue extends Assign
+public interface ExprLValue extends ExprLeaf, Assign
 {
 } // ExprLValue

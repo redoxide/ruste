@@ -209,7 +209,14 @@
     <genClasses ecoreClass="Rust.ecore#//ExprReturn">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprReturn/expr"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Block"/>
+    <genClasses ecoreClass="Rust.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/stmts"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//SlotDeclStmt">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//SlotDeclStmt/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//SlotDeclStmt/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//SlotDeclStmt/expr"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/bounds"/>

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExprLValueImpl extends AssignImpl implements ExprLValue
+public class ExprLValueImpl extends ExprLeafImpl implements ExprLValue
 {
   /**
    * <!-- begin-user-doc -->

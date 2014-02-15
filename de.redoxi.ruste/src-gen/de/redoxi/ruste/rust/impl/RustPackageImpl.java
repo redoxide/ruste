@@ -111,6 +111,7 @@ import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.ShiftOperator;
+import de.redoxi.ruste.rust.SlotDeclStmt;
 import de.redoxi.ruste.rust.StaticItem;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
@@ -590,6 +591,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass blockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass slotDeclStmtEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2665,6 +2673,56 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getBlock_Stmts()
+  {
+    return (EReference)blockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSlotDeclStmt()
+  {
+    return slotDeclStmtEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSlotDeclStmt_Pat()
+  {
+    return (EReference)slotDeclStmtEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSlotDeclStmt_Type()
+  {
+    return (EReference)slotDeclStmtEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSlotDeclStmt_Expr()
+  {
+    return (EReference)slotDeclStmtEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getGenericParamDecl()
   {
     return genericParamDeclEClass;
@@ -4243,6 +4301,12 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprReturnEClass, EXPR_RETURN__EXPR);
 
     blockEClass = createEClass(BLOCK);
+    createEReference(blockEClass, BLOCK__STMTS);
+
+    slotDeclStmtEClass = createEClass(SLOT_DECL_STMT);
+    createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__PAT);
+    createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__TYPE);
+    createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__EXPR);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
     createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__IDENT);
@@ -4477,9 +4541,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     implItemEClass.getESuperTypes().add(this.getItem());
     externBlockEClass.getESuperTypes().add(this.getItem());
     staticItemEClass.getESuperTypes().add(this.getItem());
+    exprLValueEClass.getESuperTypes().add(this.getExprLeaf());
     exprLValueEClass.getESuperTypes().add(this.getAssign());
     exprRValueEClass.getESuperTypes().add(this.getExpr());
-    exprLeafEClass.getESuperTypes().add(this.getExprRValue());
     exprLeafEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     exprLiteralEClass.getESuperTypes().add(this.getExprLeaf());
     exprPathHeadEClass.getESuperTypes().add(this.getExprLValue());
@@ -4685,7 +4749,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprTuple_Tuple(), this.getExprTuple(), null, "tuple", null, 0, 1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprTuple_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprTuple_Exprs(), ecorePackage.getEObject(), null, "exprs", null, 0, -1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprStructEClass, ExprStruct.class, "ExprStruct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprStruct_Struct(), this.getExprStruct(), null, "struct", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4791,6 +4855,12 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getExprReturn_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBlock_Stmts(), ecorePackage.getEObject(), null, "stmts", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(slotDeclStmtEClass, SlotDeclStmt.class, "SlotDeclStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSlotDeclStmt_Pat(), this.getPat(), null, "pat", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSlotDeclStmt_Type(), this.getType(), null, "type", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSlotDeclStmt_Expr(), this.getExpr(), null, "expr", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenericParamDecl_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

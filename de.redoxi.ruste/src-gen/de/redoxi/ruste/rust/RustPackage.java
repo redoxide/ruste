@@ -997,80 +997,213 @@ public interface RustPackage extends EPackage
   int EXPR_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprRValueImpl <em>Expr RValue</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BooleanOrImpl <em>Boolean Or</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprRValueImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprRValue()
+   * @see de.redoxi.ruste.rust.impl.BooleanOrImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanOr()
    * @generated
    */
-  int EXPR_RVALUE = 22;
+  int BOOLEAN_OR = 48;
 
   /**
-   * The number of structural features of the '<em>Expr RValue</em>' class.
+   * The number of structural features of the '<em>Boolean Or</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_RVALUE_FEATURE_COUNT = EXPR_FEATURE_COUNT + 0;
+  int BOOLEAN_OR_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBinaryImpl <em>Expr Binary</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BooleanAndImpl <em>Boolean And</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprBinaryImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBinary()
+   * @see de.redoxi.ruste.rust.impl.BooleanAndImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanAnd()
    * @generated
    */
-  int EXPR_BINARY = 37;
+  int BOOLEAN_AND = 47;
 
   /**
-   * The number of structural features of the '<em>Expr Binary</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BINARY_FEATURE_COUNT = EXPR_RVALUE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AssignImpl <em>Assign</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.AssignImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAssign()
-   * @generated
-   */
-  int ASSIGN = 49;
-
-  /**
-   * The number of structural features of the '<em>Assign</em>' class.
+   * The number of structural features of the '<em>Boolean And</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSIGN_FEATURE_COUNT = EXPR_BINARY_FEATURE_COUNT + 0;
+  int BOOLEAN_AND_FEATURE_COUNT = BOOLEAN_OR_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLValueImpl <em>Expr LValue</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EqualityOperatorImpl <em>Equality Operator</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprLValueImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLValue()
+   * @see de.redoxi.ruste.rust.impl.EqualityOperatorImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEqualityOperator()
    * @generated
    */
-  int EXPR_LVALUE = 21;
+  int EQUALITY_OPERATOR = 46;
 
   /**
-   * The number of structural features of the '<em>Expr LValue</em>' class.
+   * The number of structural features of the '<em>Equality Operator</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LVALUE_FEATURE_COUNT = ASSIGN_FEATURE_COUNT + 0;
+  int EQUALITY_OPERATOR_FEATURE_COUNT = BOOLEAN_AND_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ComparisonOperatorsImpl <em>Comparison Operators</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ComparisonOperatorsImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getComparisonOperators()
+   * @generated
+   */
+  int COMPARISON_OPERATORS = 45;
+
+  /**
+   * The number of structural features of the '<em>Comparison Operators</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARISON_OPERATORS_FEATURE_COUNT = EQUALITY_OPERATOR_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseOrImpl <em>Bitwise Or</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BitwiseOrImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseOr()
+   * @generated
+   */
+  int BITWISE_OR = 44;
+
+  /**
+   * The number of structural features of the '<em>Bitwise Or</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BITWISE_OR_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseXorImpl <em>Bitwise Xor</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BitwiseXorImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseXor()
+   * @generated
+   */
+  int BITWISE_XOR = 43;
+
+  /**
+   * The number of structural features of the '<em>Bitwise Xor</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BITWISE_XOR_FEATURE_COUNT = BITWISE_OR_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseAndImpl <em>Bitwise And</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.BitwiseAndImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseAnd()
+   * @generated
+   */
+  int BITWISE_AND = 42;
+
+  /**
+   * The number of structural features of the '<em>Bitwise And</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BITWISE_AND_FEATURE_COUNT = BITWISE_XOR_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ShiftOperatorImpl <em>Shift Operator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ShiftOperatorImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getShiftOperator()
+   * @generated
+   */
+  int SHIFT_OPERATOR = 41;
+
+  /**
+   * The number of structural features of the '<em>Shift Operator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SHIFT_OPERATOR_FEATURE_COUNT = BITWISE_AND_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AdditionOrSubtractionImpl <em>Addition Or Subtraction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.AdditionOrSubtractionImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAdditionOrSubtraction()
+   * @generated
+   */
+  int ADDITION_OR_SUBTRACTION = 40;
+
+  /**
+   * The number of structural features of the '<em>Addition Or Subtraction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION_OR_SUBTRACTION_FEATURE_COUNT = SHIFT_OPERATOR_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AsImpl <em>As</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.AsImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAs()
+   * @generated
+   */
+  int AS = 39;
+
+  /**
+   * The number of structural features of the '<em>As</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AS_FEATURE_COUNT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.DivisionMultiplicationOrModuloImpl <em>Division Multiplication Or Modulo</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.DivisionMultiplicationOrModuloImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivisionMultiplicationOrModulo()
+   * @generated
+   */
+  int DIVISION_MULTIPLICATION_OR_MODULO = 38;
+
+  /**
+   * The number of structural features of the '<em>Division Multiplication Or Modulo</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT = AS_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLeafImpl <em>Expr Leaf</em>}' class.
@@ -1089,7 +1222,45 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_LEAF_FEATURE_COUNT = EXPR_RVALUE_FEATURE_COUNT + 0;
+  int EXPR_LEAF_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLValueImpl <em>Expr LValue</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprLValueImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLValue()
+   * @generated
+   */
+  int EXPR_LVALUE = 21;
+
+  /**
+   * The number of structural features of the '<em>Expr LValue</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_LVALUE_FEATURE_COUNT = EXPR_LEAF_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprRValueImpl <em>Expr RValue</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprRValueImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprRValue()
+   * @generated
+   */
+  int EXPR_RVALUE = 22;
+
+  /**
+   * The number of structural features of the '<em>Expr RValue</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_RVALUE_FEATURE_COUNT = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLiteralImpl <em>Expr Literal</em>}' class.
@@ -1528,213 +1699,42 @@ public interface RustPackage extends EPackage
   int BORROW_FEATURE_COUNT = EXPR_UNARY_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BooleanOrImpl <em>Boolean Or</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBinaryImpl <em>Expr Binary</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BooleanOrImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanOr()
+   * @see de.redoxi.ruste.rust.impl.ExprBinaryImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBinary()
    * @generated
    */
-  int BOOLEAN_OR = 48;
+  int EXPR_BINARY = 37;
 
   /**
-   * The number of structural features of the '<em>Boolean Or</em>' class.
+   * The number of structural features of the '<em>Expr Binary</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BOOLEAN_OR_FEATURE_COUNT = 0;
+  int EXPR_BINARY_FEATURE_COUNT = EXPR_RVALUE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BooleanAndImpl <em>Boolean And</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AssignImpl <em>Assign</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BooleanAndImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanAnd()
+   * @see de.redoxi.ruste.rust.impl.AssignImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAssign()
    * @generated
    */
-  int BOOLEAN_AND = 47;
+  int ASSIGN = 49;
 
   /**
-   * The number of structural features of the '<em>Boolean And</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOLEAN_AND_FEATURE_COUNT = BOOLEAN_OR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.EqualityOperatorImpl <em>Equality Operator</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.EqualityOperatorImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEqualityOperator()
-   * @generated
-   */
-  int EQUALITY_OPERATOR = 46;
-
-  /**
-   * The number of structural features of the '<em>Equality Operator</em>' class.
+   * The number of structural features of the '<em>Assign</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EQUALITY_OPERATOR_FEATURE_COUNT = BOOLEAN_AND_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ComparisonOperatorsImpl <em>Comparison Operators</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ComparisonOperatorsImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getComparisonOperators()
-   * @generated
-   */
-  int COMPARISON_OPERATORS = 45;
-
-  /**
-   * The number of structural features of the '<em>Comparison Operators</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARISON_OPERATORS_FEATURE_COUNT = EQUALITY_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseOrImpl <em>Bitwise Or</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BitwiseOrImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseOr()
-   * @generated
-   */
-  int BITWISE_OR = 44;
-
-  /**
-   * The number of structural features of the '<em>Bitwise Or</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BITWISE_OR_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseXorImpl <em>Bitwise Xor</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BitwiseXorImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseXor()
-   * @generated
-   */
-  int BITWISE_XOR = 43;
-
-  /**
-   * The number of structural features of the '<em>Bitwise Xor</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BITWISE_XOR_FEATURE_COUNT = BITWISE_OR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.BitwiseAndImpl <em>Bitwise And</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.BitwiseAndImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseAnd()
-   * @generated
-   */
-  int BITWISE_AND = 42;
-
-  /**
-   * The number of structural features of the '<em>Bitwise And</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BITWISE_AND_FEATURE_COUNT = BITWISE_XOR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ShiftOperatorImpl <em>Shift Operator</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ShiftOperatorImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getShiftOperator()
-   * @generated
-   */
-  int SHIFT_OPERATOR = 41;
-
-  /**
-   * The number of structural features of the '<em>Shift Operator</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SHIFT_OPERATOR_FEATURE_COUNT = BITWISE_AND_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AdditionOrSubtractionImpl <em>Addition Or Subtraction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.AdditionOrSubtractionImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAdditionOrSubtraction()
-   * @generated
-   */
-  int ADDITION_OR_SUBTRACTION = 40;
-
-  /**
-   * The number of structural features of the '<em>Addition Or Subtraction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDITION_OR_SUBTRACTION_FEATURE_COUNT = SHIFT_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.AsImpl <em>As</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.AsImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAs()
-   * @generated
-   */
-  int AS = 39;
-
-  /**
-   * The number of structural features of the '<em>As</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AS_FEATURE_COUNT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.DivisionMultiplicationOrModuloImpl <em>Division Multiplication Or Modulo</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.DivisionMultiplicationOrModuloImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivisionMultiplicationOrModulo()
-   * @generated
-   */
-  int DIVISION_MULTIPLICATION_OR_MODULO = 38;
-
-  /**
-   * The number of structural features of the '<em>Division Multiplication Or Modulo</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT = AS_FEATURE_COUNT + 0;
+  int ASSIGN_FEATURE_COUNT = EXPR_BINARY_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLambdaImpl <em>Expr Lambda</em>}' class.
@@ -2237,13 +2237,68 @@ public interface RustPackage extends EPackage
   int BLOCK = 63;
 
   /**
+   * The feature id for the '<em><b>Stmts</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLOCK__STMTS = 0;
+
+  /**
    * The number of structural features of the '<em>Block</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BLOCK_FEATURE_COUNT = 0;
+  int BLOCK_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.SlotDeclStmtImpl <em>Slot Decl Stmt</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.SlotDeclStmtImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getSlotDeclStmt()
+   * @generated
+   */
+  int SLOT_DECL_STMT = 64;
+
+  /**
+   * The feature id for the '<em><b>Pat</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SLOT_DECL_STMT__PAT = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SLOT_DECL_STMT__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SLOT_DECL_STMT__EXPR = 2;
+
+  /**
+   * The number of structural features of the '<em>Slot Decl Stmt</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SLOT_DECL_STMT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.
@@ -2253,7 +2308,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
    * @generated
    */
-  int GENERIC_PARAM_DECL = 64;
+  int GENERIC_PARAM_DECL = 65;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2290,7 +2345,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
    * @generated
    */
-  int ARG = 65;
+  int ARG = 66;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -2327,7 +2382,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
    * @generated
    */
-  int PAT = 66;
+  int PAT = 67;
 
   /**
    * The number of structural features of the '<em>Pat</em>' class.
@@ -2346,7 +2401,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatWildcard()
    * @generated
    */
-  int PAT_WILDCARD = 67;
+  int PAT_WILDCARD = 68;
 
   /**
    * The number of structural features of the '<em>Pat Wildcard</em>' class.
@@ -2365,7 +2420,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatIdent()
    * @generated
    */
-  int PAT_IDENT = 68;
+  int PAT_IDENT = 69;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -2402,7 +2457,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBoxed()
    * @generated
    */
-  int PAT_BOXED = 69;
+  int PAT_BOXED = 70;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2430,7 +2485,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatOwned()
    * @generated
    */
-  int PAT_OWNED = 70;
+  int PAT_OWNED = 71;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2458,7 +2513,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBorrowed()
    * @generated
    */
-  int PAT_BORROWED = 71;
+  int PAT_BORROWED = 72;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2486,7 +2541,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTuple()
    * @generated
    */
-  int PAT_TUPLE = 72;
+  int PAT_TUPLE = 73;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -2514,7 +2569,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatVector()
    * @generated
    */
-  int PAT_VECTOR = 73;
+  int PAT_VECTOR = 74;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -2542,7 +2597,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatLiteral()
    * @generated
    */
-  int PAT_LITERAL = 74;
+  int PAT_LITERAL = 75;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -2570,7 +2625,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatEnum()
    * @generated
    */
-  int PAT_ENUM = 75;
+  int PAT_ENUM = 76;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -2598,7 +2653,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
    * @generated
    */
-  int FIELD_PAT = 76;
+  int FIELD_PAT = 77;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2635,7 +2690,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTypePath()
    * @generated
    */
-  int TYPE_PATH = 77;
+  int TYPE_PATH = 78;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -2681,7 +2736,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprPath()
    * @generated
    */
-  int EXPR_PATH = 78;
+  int EXPR_PATH = 79;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -2727,7 +2782,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 79;
+  int TYPE = 80;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -2746,7 +2801,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 80;
+  int PRIMITIVE_TYPE = 81;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -2765,7 +2820,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNamedType()
    * @generated
    */
-  int NAMED_TYPE = 81;
+  int NAMED_TYPE = 82;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -2793,7 +2848,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 82;
+  int BOXED_POINTER = 83;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2821,7 +2876,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 83;
+  int OWNED_POINTER = 84;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2849,7 +2904,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 84;
+  int BORROWED_POINTER = 85;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2877,7 +2932,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 85;
+  int STRUCT_FIELD = 86;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -2923,7 +2978,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 86;
+  int VARIANT = 87;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2951,7 +3006,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 87;
+  int STRUCT_VARIANT = 88;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -2997,7 +3052,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 88;
+  int TUPLE_VARIANT = 89;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -3034,7 +3089,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 89;
+  int UNIT_VARIANT = 90;
 
   /**
    * The feature id for the '<em><b>Ident</b></em>' attribute.
@@ -3062,7 +3117,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 91;
+  int LITERAL = 92;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3090,7 +3145,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 90;
+  int STRING_LIT = 91;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3118,7 +3173,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 92;
+  int NUMBER_LIT = 93;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3146,7 +3201,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 93;
+  int CHAR_LIT = 94;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3174,7 +3229,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 94;
+  int DIVISION = 95;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3211,7 +3266,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 95;
+  int MULTIPLICATION = 96;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3248,7 +3303,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 96;
+  int MODULO = 97;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3285,7 +3340,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprCast()
    * @generated
    */
-  int EXPR_CAST = 97;
+  int EXPR_CAST = 98;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -3322,7 +3377,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAddition()
    * @generated
    */
-  int EXPR_ADDITION = 98;
+  int EXPR_ADDITION = 99;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3359,7 +3414,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprSubtraction()
    * @generated
    */
-  int EXPR_SUBTRACTION = 99;
+  int EXPR_SUBTRACTION = 100;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3396,7 +3451,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLeftShift()
    * @generated
    */
-  int EXPR_LEFT_SHIFT = 100;
+  int EXPR_LEFT_SHIFT = 101;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3433,7 +3488,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprRightShift()
    * @generated
    */
-  int EXPR_RIGHT_SHIFT = 101;
+  int EXPR_RIGHT_SHIFT = 102;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3470,7 +3525,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseAnd()
    * @generated
    */
-  int EXPR_BITWISE_AND = 102;
+  int EXPR_BITWISE_AND = 103;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3507,7 +3562,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseXor()
    * @generated
    */
-  int EXPR_BITWISE_XOR = 103;
+  int EXPR_BITWISE_XOR = 104;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3544,7 +3599,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseOr()
    * @generated
    */
-  int EXPR_BITWISE_OR = 104;
+  int EXPR_BITWISE_OR = 105;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3581,7 +3636,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThan()
    * @generated
    */
-  int EXPR_LESS_THAN = 105;
+  int EXPR_LESS_THAN = 106;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3618,7 +3673,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThan()
    * @generated
    */
-  int EXPR_GREATER_THAN = 106;
+  int EXPR_GREATER_THAN = 107;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3655,7 +3710,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThanOrEqualTo()
    * @generated
    */
-  int EXPR_LESS_THAN_OR_EQUAL_TO = 107;
+  int EXPR_LESS_THAN_OR_EQUAL_TO = 108;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3692,7 +3747,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThanOrEqualTo()
    * @generated
    */
-  int EXPR_GREATER_THAN_OR_EQUAL_TO = 108;
+  int EXPR_GREATER_THAN_OR_EQUAL_TO = 109;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3729,7 +3784,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprEqualTo()
    * @generated
    */
-  int EXPR_EQUAL_TO = 109;
+  int EXPR_EQUAL_TO = 110;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3766,7 +3821,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprNotEqualTo()
    * @generated
    */
-  int EXPR_NOT_EQUAL_TO = 110;
+  int EXPR_NOT_EQUAL_TO = 111;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3803,7 +3858,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBooleanAnd()
    * @generated
    */
-  int EXPR_BOOLEAN_AND = 111;
+  int EXPR_BOOLEAN_AND = 112;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3840,7 +3895,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBooleanOr()
    * @generated
    */
-  int EXPR_BOOLEAN_OR = 112;
+  int EXPR_BOOLEAN_OR = 113;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3877,7 +3932,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAssign()
    * @generated
    */
-  int EXPR_ASSIGN = 113;
+  int EXPR_ASSIGN = 114;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3914,7 +3969,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
    * @generated
    */
-  int PAT_TUPLE_ENUM = 114;
+  int PAT_TUPLE_ENUM = 115;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -3951,7 +4006,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
    * @generated
    */
-  int PAT_STRUCT_ENUM = 115;
+  int PAT_STRUCT_ENUM = 116;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -3988,7 +4043,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 116;
+  int INT_TYPE = 117;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -4007,7 +4062,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 117;
+  int FLOAT_TYPE = 118;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -4026,7 +4081,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 118;
+  int BOOL_TYPE = 119;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -4045,7 +4100,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 119;
+  int MACHINE_TYPE = 120;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -4064,7 +4119,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 120;
+  int UNIT_TYPE = 121;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -4083,7 +4138,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 121;
+  int VISIBILITY = 122;
 
 
   /**
@@ -5781,6 +5836,60 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getBlock();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.Block#getStmts <em>Stmts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Stmts</em>'.
+   * @see de.redoxi.ruste.rust.Block#getStmts()
+   * @see #getBlock()
+   * @generated
+   */
+  EReference getBlock_Stmts();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.SlotDeclStmt <em>Slot Decl Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Slot Decl Stmt</em>'.
+   * @see de.redoxi.ruste.rust.SlotDeclStmt
+   * @generated
+   */
+  EClass getSlotDeclStmt();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.SlotDeclStmt#getPat <em>Pat</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pat</em>'.
+   * @see de.redoxi.ruste.rust.SlotDeclStmt#getPat()
+   * @see #getSlotDeclStmt()
+   * @generated
+   */
+  EReference getSlotDeclStmt_Pat();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.SlotDeclStmt#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.redoxi.ruste.rust.SlotDeclStmt#getType()
+   * @see #getSlotDeclStmt()
+   * @generated
+   */
+  EReference getSlotDeclStmt_Type();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.SlotDeclStmt#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see de.redoxi.ruste.rust.SlotDeclStmt#getExpr()
+   * @see #getSlotDeclStmt()
+   * @generated
+   */
+  EReference getSlotDeclStmt_Expr();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.GenericParamDecl <em>Generic Param Decl</em>}'.
@@ -8617,6 +8726,48 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass BLOCK = eINSTANCE.getBlock();
+
+    /**
+     * The meta object literal for the '<em><b>Stmts</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BLOCK__STMTS = eINSTANCE.getBlock_Stmts();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.SlotDeclStmtImpl <em>Slot Decl Stmt</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.SlotDeclStmtImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getSlotDeclStmt()
+     * @generated
+     */
+    EClass SLOT_DECL_STMT = eINSTANCE.getSlotDeclStmt();
+
+    /**
+     * The meta object literal for the '<em><b>Pat</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SLOT_DECL_STMT__PAT = eINSTANCE.getSlotDeclStmt_Pat();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SLOT_DECL_STMT__TYPE = eINSTANCE.getSlotDeclStmt_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SLOT_DECL_STMT__EXPR = eINSTANCE.getSlotDeclStmt_Expr();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl <em>Generic Param Decl</em>}' class.

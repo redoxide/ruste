@@ -97,7 +97,6 @@ StaticItem:
 ;
 
 Expr:
-	// ExprLValue |
 	ExprRValue
 ;
 
@@ -109,8 +108,7 @@ ExprRValue:
 	// TODO ExprField
 	// TODO ExprMethodCall
 	// TODO ExprIndex
-	ExprBinary |
-	ExprLeaf
+	ExprBinary
 ;
 
 // Expressions that avoid left recursion
@@ -130,7 +128,8 @@ ExprLeaf:
 	ExprFor |
 	ExprIf |
 	ExprMatch |
-	ExprReturn
+	ExprReturn |
+	ExprLValue
 ;
 
 ExprLiteral:
@@ -293,11 +292,16 @@ MatchPat:
 
 // TODO Expression is optional
 ExprReturn:
-	{ExprReturn} 'return' expr=Expr
+	{ExprReturn} 'return' expr=Expr?
 ;
 
+// TODO Optional expr at end of block
 Block:
-	{Block} '{' /* TODO Statements, expression */ '}'
+	{Block} '{' (stmts+=SlotDeclStmt | stmts+=Expr ';')* '}'
+;
+
+SlotDeclStmt:
+	'let' pat=Pat (':' type=Type)? '=' expr=Expr ';'
 ;
 
 // TODO Crossreference Trait?

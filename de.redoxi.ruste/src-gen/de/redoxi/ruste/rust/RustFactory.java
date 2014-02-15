@@ -599,6 +599,15 @@ public interface RustFactory extends EFactory
   Block createBlock();
 
   /**
+   * Returns a new object of class '<em>Slot Decl Stmt</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Slot Decl Stmt</em>'.
+   * @generated
+   */
+  SlotDeclStmt createSlotDeclStmt();
+
+  /**
    * Returns a new object of class '<em>Generic Param Decl</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -395,6 +395,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createBlockAdapter();
       }
       @Override
+      public Adapter caseSlotDeclStmt(SlotDeclStmt object)
+      {
+        return createSlotDeclStmtAdapter();
+      }
+      @Override
       public Adapter caseGenericParamDecl(GenericParamDecl object)
       {
         return createGenericParamDeclAdapter();
@@ -1657,6 +1662,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.SlotDeclStmt <em>Slot Decl Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.SlotDeclStmt
+   * @generated
+   */
+  public Adapter createSlotDeclStmtAdapter()
   {
     return null;
   }

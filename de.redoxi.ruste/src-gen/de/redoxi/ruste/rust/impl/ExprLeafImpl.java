@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExprLeafImpl extends ExprRValueImpl implements ExprLeaf
+public class ExprLeafImpl extends DivisionMultiplicationOrModuloImpl implements ExprLeaf
 {
   /**
    * <!-- begin-user-doc -->

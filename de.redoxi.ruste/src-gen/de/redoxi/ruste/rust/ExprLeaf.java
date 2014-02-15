@@ -13,6 +13,6 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLeaf extends ExprRValue, DivisionMultiplicationOrModulo
+public interface ExprLeaf extends DivisionMultiplicationOrModulo
 {
 } // ExprLeaf
