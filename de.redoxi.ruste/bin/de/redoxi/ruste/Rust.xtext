@@ -295,13 +295,22 @@ ExprReturn:
 	{ExprReturn} 'return' expr=Expr?
 ;
 
-// TODO Optional expr at end of block
+// Left-factored. Bit messy
 Block:
-	{Block} '{' (stmts+=SlotDeclStmt | stmts+=Expr ';')* '}'
+	{Block} '{' expr=Expr ({Block.stmts+=current} ';' stmts+=Stmt (';' stmts+=Stmt)* expr=Expr?)? '}'
+;
+
+Stmt:
+	SlotDeclStmt |
+	ExprStmt
 ;
 
 SlotDeclStmt:
 	'let' pat=Pat (':' type=Type)? '=' expr=Expr ';'
+;
+
+ExprStmt:
+	expr=Expr ';'
 ;
 
 // TODO Crossreference Trait?

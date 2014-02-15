@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.Pat;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.SlotDeclStmt;
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,13 +24,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.impl.SlotDeclStmtImpl#getPat <em>Pat</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.SlotDeclStmtImpl#getType <em>Type</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.SlotDeclStmtImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements SlotDeclStmt
+public class SlotDeclStmtImpl extends StmtImpl implements SlotDeclStmt
 {
   /**
    * The cached value of the '{@link #getPat() <em>Pat</em>}' containment reference.
@@ -53,16 +50,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
    * @ordered
    */
   protected Type type;
-
-  /**
-   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExpr()
-   * @generated
-   * @ordered
-   */
-  protected Expr expr;
 
   /**
    * <!-- begin-user-doc -->
@@ -186,54 +173,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getExpr()
-  {
-    return expr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
-  {
-    Expr oldExpr = expr;
-    expr = newExpr;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.SLOT_DECL_STMT__EXPR, oldExpr, newExpr);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExpr(Expr newExpr)
-  {
-    if (newExpr != expr)
-    {
-      NotificationChain msgs = null;
-      if (expr != null)
-        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.SLOT_DECL_STMT__EXPR, null, msgs);
-      if (newExpr != null)
-        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.SLOT_DECL_STMT__EXPR, null, msgs);
-      msgs = basicSetExpr(newExpr, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.SLOT_DECL_STMT__EXPR, newExpr, newExpr));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -243,8 +182,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
         return basicSetPat(null, msgs);
       case RustPackage.SLOT_DECL_STMT__TYPE:
         return basicSetType(null, msgs);
-      case RustPackage.SLOT_DECL_STMT__EXPR:
-        return basicSetExpr(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -263,8 +200,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
         return getPat();
       case RustPackage.SLOT_DECL_STMT__TYPE:
         return getType();
-      case RustPackage.SLOT_DECL_STMT__EXPR:
-        return getExpr();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -284,9 +219,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
         return;
       case RustPackage.SLOT_DECL_STMT__TYPE:
         setType((Type)newValue);
-        return;
-      case RustPackage.SLOT_DECL_STMT__EXPR:
-        setExpr((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -308,9 +240,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
       case RustPackage.SLOT_DECL_STMT__TYPE:
         setType((Type)null);
         return;
-      case RustPackage.SLOT_DECL_STMT__EXPR:
-        setExpr((Expr)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -329,8 +258,6 @@ public class SlotDeclStmtImpl extends MinimalEObjectImpl.Container implements Sl
         return pat != null;
       case RustPackage.SLOT_DECL_STMT__TYPE:
         return type != null;
-      case RustPackage.SLOT_DECL_STMT__EXPR:
-        return expr != null;
     }
     return super.eIsSet(featureID);
   }

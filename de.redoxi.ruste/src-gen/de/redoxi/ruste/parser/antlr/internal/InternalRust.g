@@ -5322,50 +5322,135 @@ ruleBlock returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getBlockAccess().getLeftCurlyBracketKeyword_1());
     }
-((
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getBlockAccess().getStmtsSlotDeclStmtParserRuleCall_2_0_0()); 
+	        newCompositeNode(grammarAccess.getBlockAccess().getExprExprParserRuleCall_2_0()); 
 	    }
-		lv_stmts_2_0=ruleSlotDeclStmt		{
+		lv_expr_2_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getBlockRule());
 	        }
-       		add(
+       		set(
        			$current, 
-       			"stmts",
-        		lv_stmts_2_0, 
-        		"SlotDeclStmt");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getBlockAccess().getStmtsExprParserRuleCall_2_1_0_0()); 
-	    }
-		lv_stmts_3_0=ruleExpr		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getBlockRule());
-	        }
-       		add(
-       			$current, 
-       			"stmts",
-        		lv_stmts_3_0, 
+       			"expr",
+        		lv_expr_2_0, 
         		"Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)((
+    {
+        $current = forceCreateModelElementAndAdd(
+            grammarAccess.getBlockAccess().getBlockStmtsAction_3_0(),
+            $current);
+    }
 )	otherlv_4=';' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getBlockAccess().getSemicolonKeyword_2_1_1());
+    	newLeafNode(otherlv_4, grammarAccess.getBlockAccess().getSemicolonKeyword_3_1());
     }
-))*	otherlv_5='}' 
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBlockAccess().getStmtsStmtParserRuleCall_3_2_0()); 
+	    }
+		lv_stmts_5_0=ruleStmt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBlockRule());
+	        }
+       		add(
+       			$current, 
+       			"stmts",
+        		lv_stmts_5_0, 
+        		"Stmt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_6=';' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getBlockAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_6, grammarAccess.getBlockAccess().getSemicolonKeyword_3_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBlockAccess().getStmtsStmtParserRuleCall_3_3_1_0()); 
+	    }
+		lv_stmts_7_0=ruleStmt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBlockRule());
+	        }
+       		add(
+       			$current, 
+       			"stmts",
+        		lv_stmts_7_0, 
+        		"Stmt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBlockAccess().getExprExprParserRuleCall_3_4_0()); 
+	    }
+		lv_expr_8_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBlockRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_8_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)?	otherlv_9='}' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getBlockAccess().getRightCurlyBracketKeyword_4());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleStmt
+entryRuleStmt returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStmtRule()); }
+	 iv_ruleStmt=ruleStmt 
+	 { $current=$iv_ruleStmt.current; } 
+	 EOF 
+;
+
+// Rule Stmt
+ruleStmt returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getStmtAccess().getSlotDeclStmtParserRuleCall_0()); 
+    }
+    this_SlotDeclStmt_0=ruleSlotDeclStmt
+    { 
+        $current = $this_SlotDeclStmt_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getStmtAccess().getExprStmtParserRuleCall_1()); 
+    }
+    this_ExprStmt_1=ruleExprStmt
+    { 
+        $current = $this_ExprStmt_1.current; 
+        afterParserOrEnumRuleCall();
     }
 )
 ;
@@ -5457,6 +5542,49 @@ ruleSlotDeclStmt returns [EObject current=null]
 )	otherlv_6=';' 
     {
     	newLeafNode(otherlv_6, grammarAccess.getSlotDeclStmtAccess().getSemicolonKeyword_5());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleExprStmt
+entryRuleExprStmt returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExprStmtRule()); }
+	 iv_ruleExprStmt=ruleExprStmt 
+	 { $current=$iv_ruleExprStmt.current; } 
+	 EOF 
+;
+
+// Rule ExprStmt
+ruleExprStmt returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExprStmtAccess().getExprExprParserRuleCall_0_0()); 
+	    }
+		lv_expr_0_0=ruleExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExprStmtRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_0_0, 
+        		"Expr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1=';' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getExprStmtAccess().getSemicolonKeyword_1());
     }
 )
 ;

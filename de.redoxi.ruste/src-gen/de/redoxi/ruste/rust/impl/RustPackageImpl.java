@@ -62,6 +62,7 @@ import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprReturn;
 import de.redoxi.ruste.rust.ExprRightShift;
+import de.redoxi.ruste.rust.ExprStmt;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprSubtraction;
 import de.redoxi.ruste.rust.ExprTuple;
@@ -113,6 +114,7 @@ import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.ShiftOperator;
 import de.redoxi.ruste.rust.SlotDeclStmt;
 import de.redoxi.ruste.rust.StaticItem;
+import de.redoxi.ruste.rust.Stmt;
 import de.redoxi.ruste.rust.StringLit;
 import de.redoxi.ruste.rust.StructField;
 import de.redoxi.ruste.rust.StructItem;
@@ -597,7 +599,21 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass stmtEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass slotDeclStmtEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprStmtEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2673,9 +2689,39 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBlock_Stmts()
+  public EReference getBlock_Expr()
   {
     return (EReference)blockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBlock_Stmts()
+  {
+    return (EReference)blockEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStmt()
+  {
+    return stmtEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStmt_Expr()
+  {
+    return (EReference)stmtEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2713,9 +2759,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSlotDeclStmt_Expr()
+  public EClass getExprStmt()
   {
-    return (EReference)slotDeclStmtEClass.getEStructuralFeatures().get(2);
+    return exprStmtEClass;
   }
 
   /**
@@ -4301,12 +4347,17 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     createEReference(exprReturnEClass, EXPR_RETURN__EXPR);
 
     blockEClass = createEClass(BLOCK);
+    createEReference(blockEClass, BLOCK__EXPR);
     createEReference(blockEClass, BLOCK__STMTS);
+
+    stmtEClass = createEClass(STMT);
+    createEReference(stmtEClass, STMT__EXPR);
 
     slotDeclStmtEClass = createEClass(SLOT_DECL_STMT);
     createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__PAT);
     createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__TYPE);
-    createEReference(slotDeclStmtEClass, SLOT_DECL_STMT__EXPR);
+
+    exprStmtEClass = createEClass(EXPR_STMT);
 
     genericParamDeclEClass = createEClass(GENERIC_PARAM_DECL);
     createEAttribute(genericParamDeclEClass, GENERIC_PARAM_DECL__IDENT);
@@ -4583,6 +4634,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprIfEClass.getESuperTypes().add(this.getElseTail());
     exprMatchEClass.getESuperTypes().add(this.getExprLeaf());
     exprReturnEClass.getESuperTypes().add(this.getExprLeaf());
+    slotDeclStmtEClass.getESuperTypes().add(this.getStmt());
+    exprStmtEClass.getESuperTypes().add(this.getStmt());
     patWildcardEClass.getESuperTypes().add(this.getPat());
     patIdentEClass.getESuperTypes().add(this.getPat());
     patBoxedEClass.getESuperTypes().add(this.getPat());
@@ -4855,12 +4908,17 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEReference(getExprReturn_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBlock_Expr(), this.getExpr(), null, "expr", null, 0, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBlock_Stmts(), ecorePackage.getEObject(), null, "stmts", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stmtEClass, Stmt.class, "Stmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStmt_Expr(), this.getExpr(), null, "expr", null, 0, 1, Stmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(slotDeclStmtEClass, SlotDeclStmt.class, "SlotDeclStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSlotDeclStmt_Pat(), this.getPat(), null, "pat", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSlotDeclStmt_Type(), this.getType(), null, "type", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSlotDeclStmt_Expr(), this.getExpr(), null, "expr", null, 0, 1, SlotDeclStmt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprStmtEClass, ExprStmt.class, "ExprStmt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(genericParamDeclEClass, GenericParamDecl.class, "GenericParamDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGenericParamDecl_Ident(), ecorePackage.getEString(), "ident", null, 0, 1, GenericParamDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -3314,21 +3314,27 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBlockAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cStmtsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cStmtsSlotDeclStmtParserRuleCall_2_0_0 = (RuleCall)cStmtsAssignment_2_0.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cStmtsAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cStmtsExprParserRuleCall_2_1_0_0 = (RuleCall)cStmtsAssignment_2_1_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cExprAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExprExprParserRuleCall_2_0 = (RuleCall)cExprAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Action cBlockStmtsAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cStmtsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cStmtsStmtParserRuleCall_3_2_0 = (RuleCall)cStmtsAssignment_3_2.eContents().get(0);
+		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
+		private final Keyword cSemicolonKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Assignment cStmtsAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cStmtsStmtParserRuleCall_3_3_1_0 = (RuleCall)cStmtsAssignment_3_3_1.eContents().get(0);
+		private final Assignment cExprAssignment_3_4 = (Assignment)cGroup_3.eContents().get(4);
+		private final RuleCall cExprExprParserRuleCall_3_4_0 = (RuleCall)cExprAssignment_3_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//// TODO Optional expr at end of block
 		//Block:
-		//	{Block} "{" (stmts+=SlotDeclStmt | stmts+=Expr ";")* "}";
+		//	{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Block} "{" (stmts+=SlotDeclStmt | stmts+=Expr ";")* "}"
+		//{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//{Block}
@@ -3337,29 +3343,67 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//(stmts+=SlotDeclStmt | stmts+=Expr ";")*
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-
-		//stmts+=SlotDeclStmt
-		public Assignment getStmtsAssignment_2_0() { return cStmtsAssignment_2_0; }
-
-		//SlotDeclStmt
-		public RuleCall getStmtsSlotDeclStmtParserRuleCall_2_0_0() { return cStmtsSlotDeclStmtParserRuleCall_2_0_0; }
-
-		//stmts+=Expr ";"
-		public Group getGroup_2_1() { return cGroup_2_1; }
-
-		//stmts+=Expr
-		public Assignment getStmtsAssignment_2_1_0() { return cStmtsAssignment_2_1_0; }
+		//expr=Expr
+		public Assignment getExprAssignment_2() { return cExprAssignment_2; }
 
 		//Expr
-		public RuleCall getStmtsExprParserRuleCall_2_1_0_0() { return cStmtsExprParserRuleCall_2_1_0_0; }
+		public RuleCall getExprExprParserRuleCall_2_0() { return cExprExprParserRuleCall_2_0; }
+
+		//({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//{Block.stmts+=current}
+		public Action getBlockStmtsAction_3_0() { return cBlockStmtsAction_3_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_2_1_1() { return cSemicolonKeyword_2_1_1; }
+		public Keyword getSemicolonKeyword_3_1() { return cSemicolonKeyword_3_1; }
+
+		//stmts+=Stmt
+		public Assignment getStmtsAssignment_3_2() { return cStmtsAssignment_3_2; }
+
+		//Stmt
+		public RuleCall getStmtsStmtParserRuleCall_3_2_0() { return cStmtsStmtParserRuleCall_3_2_0; }
+
+		//(";" stmts+=Stmt)*
+		public Group getGroup_3_3() { return cGroup_3_3; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3_3_0() { return cSemicolonKeyword_3_3_0; }
+
+		//stmts+=Stmt
+		public Assignment getStmtsAssignment_3_3_1() { return cStmtsAssignment_3_3_1; }
+
+		//Stmt
+		public RuleCall getStmtsStmtParserRuleCall_3_3_1_0() { return cStmtsStmtParserRuleCall_3_3_1_0; }
+
+		//expr=Expr?
+		public Assignment getExprAssignment_3_4() { return cExprAssignment_3_4; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_3_4_0() { return cExprExprParserRuleCall_3_4_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+
+	public class StmtElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Stmt");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSlotDeclStmtParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExprStmtParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Stmt:
+		//	SlotDeclStmt | ExprStmt;
+		public ParserRule getRule() { return rule; }
+
+		//SlotDeclStmt | ExprStmt
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SlotDeclStmt
+		public RuleCall getSlotDeclStmtParserRuleCall_0() { return cSlotDeclStmtParserRuleCall_0; }
+
+		//ExprStmt
+		public RuleCall getExprStmtParserRuleCall_1() { return cExprStmtParserRuleCall_1; }
 	}
 
 	public class SlotDeclStmtElements extends AbstractParserRuleElementFinder {
@@ -3416,6 +3460,30 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+	}
+
+	public class ExprStmtElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExprStmt");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cExprAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cExprExprParserRuleCall_0_0 = (RuleCall)cExprAssignment_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//ExprStmt:
+		//	expr=Expr ";";
+		public ParserRule getRule() { return rule; }
+
+		//expr=Expr ";"
+		public Group getGroup() { return cGroup; }
+
+		//expr=Expr
+		public Assignment getExprAssignment_0() { return cExprAssignment_0; }
+
+		//Expr
+		public RuleCall getExprExprParserRuleCall_0_0() { return cExprExprParserRuleCall_0_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
 	public class GenericParamDeclElements extends AbstractParserRuleElementFinder {
@@ -4722,7 +4790,9 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private MatchPatElements pMatchPat;
 	private ExprReturnElements pExprReturn;
 	private BlockElements pBlock;
+	private StmtElements pStmt;
 	private SlotDeclStmtElements pSlotDeclStmt;
+	private ExprStmtElements pExprStmt;
 	private GenericParamDeclElements pGenericParamDecl;
 	private ArgElements pArg;
 	private PatElements pPat;
@@ -5487,13 +5557,23 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// TODO Optional expr at end of block
 	//Block:
-	//	{Block} "{" (stmts+=SlotDeclStmt | stmts+=Expr ";")* "}";
+	//	{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}";
 	public BlockElements getBlockAccess() {
 		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());
 	}
 	
 	public ParserRule getBlockRule() {
 		return getBlockAccess().getRule();
+	}
+
+	//Stmt:
+	//	SlotDeclStmt | ExprStmt;
+	public StmtElements getStmtAccess() {
+		return (pStmt != null) ? pStmt : (pStmt = new StmtElements());
+	}
+	
+	public ParserRule getStmtRule() {
+		return getStmtAccess().getRule();
 	}
 
 	//SlotDeclStmt:
@@ -5504,6 +5584,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getSlotDeclStmtRule() {
 		return getSlotDeclStmtAccess().getRule();
+	}
+
+	//ExprStmt:
+	//	expr=Expr ";";
+	public ExprStmtElements getExprStmtAccess() {
+		return (pExprStmt != null) ? pExprStmt : (pExprStmt = new ExprStmtElements());
+	}
+	
+	public ParserRule getExprStmtRule() {
+		return getExprStmtAccess().getRule();
 	}
 
 	//// TODO Crossreference Trait?

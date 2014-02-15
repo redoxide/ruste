@@ -920,10 +920,26 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.STMT:
+      {
+        Stmt stmt = (Stmt)theEObject;
+        T result = caseStmt(stmt);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.SLOT_DECL_STMT:
       {
         SlotDeclStmt slotDeclStmt = (SlotDeclStmt)theEObject;
         T result = caseSlotDeclStmt(slotDeclStmt);
+        if (result == null) result = caseStmt(slotDeclStmt);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_STMT:
+      {
+        ExprStmt exprStmt = (ExprStmt)theEObject;
+        T result = caseExprStmt(exprStmt);
+        if (result == null) result = caseStmt(exprStmt);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2513,6 +2529,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Stmt</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Stmt</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStmt(Stmt object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Slot Decl Stmt</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2524,6 +2556,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSlotDeclStmt(SlotDeclStmt object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Stmt</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Stmt</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprStmt(ExprStmt object)
   {
     return null;
   }

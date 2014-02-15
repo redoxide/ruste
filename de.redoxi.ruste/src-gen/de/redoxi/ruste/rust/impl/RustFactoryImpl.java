@@ -129,7 +129,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.MATCH_PAT: return createMatchPat();
       case RustPackage.EXPR_RETURN: return createExprReturn();
       case RustPackage.BLOCK: return createBlock();
+      case RustPackage.STMT: return createStmt();
       case RustPackage.SLOT_DECL_STMT: return createSlotDeclStmt();
+      case RustPackage.EXPR_STMT: return createExprStmt();
       case RustPackage.GENERIC_PARAM_DECL: return createGenericParamDecl();
       case RustPackage.ARG: return createArg();
       case RustPackage.PAT: return createPat();
@@ -935,10 +937,32 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Stmt createStmt()
+  {
+    StmtImpl stmt = new StmtImpl();
+    return stmt;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SlotDeclStmt createSlotDeclStmt()
   {
     SlotDeclStmtImpl slotDeclStmt = new SlotDeclStmtImpl();
     return slotDeclStmt;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprStmt createExprStmt()
+  {
+    ExprStmtImpl exprStmt = new ExprStmtImpl();
+    return exprStmt;
   }
 
   /**

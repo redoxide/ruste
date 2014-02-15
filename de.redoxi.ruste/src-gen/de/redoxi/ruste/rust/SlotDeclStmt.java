@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.SlotDeclStmt#getPat <em>Pat</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.SlotDeclStmt#getType <em>Type</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.SlotDeclStmt#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SlotDeclStmt extends EObject
+public interface SlotDeclStmt extends Stmt
 {
   /**
    * Returns the value of the '<em><b>Pat</b></em>' containment reference.
@@ -75,31 +73,5 @@ public interface SlotDeclStmt extends EObject
    * @generated
    */
   void setType(Type value);
-
-  /**
-   * Returns the value of the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr</em>' containment reference.
-   * @see #setExpr(Expr)
-   * @see de.redoxi.ruste.rust.RustPackage#getSlotDeclStmt_Expr()
-   * @model containment="true"
-   * @generated
-   */
-  Expr getExpr();
-
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.SlotDeclStmt#getExpr <em>Expr</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr</em>' containment reference.
-   * @see #getExpr()
-   * @generated
-   */
-  void setExpr(Expr value);
 
 } // SlotDeclStmt

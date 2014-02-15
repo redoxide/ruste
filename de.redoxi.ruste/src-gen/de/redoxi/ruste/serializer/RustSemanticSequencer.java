@@ -45,6 +45,7 @@ import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprReturn;
 import de.redoxi.ruste.rust.ExprRightShift;
+import de.redoxi.ruste.rust.ExprStmt;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.ExprSubtraction;
 import de.redoxi.ruste.rust.ExprTuple;
@@ -137,6 +138,10 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.BLOCK:
 				if(context == grammarAccess.getBlockRule()) {
 					sequence_Block(context, (Block) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getBlockAccess().getBlockStmtsAction_3_0()) {
+					sequence_Block_Block_3_0(context, (Block) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1021,6 +1026,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.EXPR_STMT:
+				if(context == grammarAccess.getExprStmtRule() ||
+				   context == grammarAccess.getStmtRule()) {
+					sequence_ExprStmt(context, (ExprStmt) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.EXPR_STRUCT:
 				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0() ||
@@ -1645,7 +1657,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.SLOT_DECL_STMT:
-				if(context == grammarAccess.getSlotDeclStmtRule()) {
+				if(context == grammarAccess.getSlotDeclStmtRule() ||
+				   context == grammarAccess.getStmtRule()) {
 					sequence_SlotDeclStmt(context, (SlotDeclStmt) semanticObject); 
 					return; 
 				}
@@ -1898,9 +1911,18 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((stmts+=SlotDeclStmt | stmts+=Expr)*)
+	 *     ((stmts+=Block_Block_3_0 stmts+=Stmt stmts+=Stmt* expr=Expr?) | expr=Expr)
 	 */
 	protected void sequence_Block(EObject context, Block semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_Block_Block_3_0(EObject context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2434,6 +2456,22 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ExprReturn(EObject context, ExprReturn semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expr=Expr
+	 */
+	protected void sequence_ExprStmt(EObject context, ExprStmt semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.STMT__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.STMT__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprStmtAccess().getExprExprParserRuleCall_0_0(), semanticObject.getExpr());
+		feeder.finish();
 	}
 	
 	

@@ -395,9 +395,19 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createBlockAdapter();
       }
       @Override
+      public Adapter caseStmt(Stmt object)
+      {
+        return createStmtAdapter();
+      }
+      @Override
       public Adapter caseSlotDeclStmt(SlotDeclStmt object)
       {
         return createSlotDeclStmtAdapter();
+      }
+      @Override
+      public Adapter caseExprStmt(ExprStmt object)
+      {
+        return createExprStmtAdapter();
       }
       @Override
       public Adapter caseGenericParamDecl(GenericParamDecl object)
@@ -1667,6 +1677,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Stmt <em>Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Stmt
+   * @generated
+   */
+  public Adapter createStmtAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.SlotDeclStmt <em>Slot Decl Stmt</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1677,6 +1702,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSlotDeclStmtAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprStmt <em>Expr Stmt</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprStmt
+   * @generated
+   */
+  public Adapter createExprStmtAdapter()
   {
     return null;
   }
