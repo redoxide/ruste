@@ -88,6 +88,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR: return createExpr();
       case RustPackage.EXPR_LVALUE: return createExprLValue();
       case RustPackage.EXPR_RVALUE: return createExprRValue();
+      case RustPackage.EXPR_RVALUE1: return createExprRValue1();
       case RustPackage.EXPR_LEAF: return createExprLeaf();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
       case RustPackage.EXPR_PATH_HEAD: return createExprPathHead();
@@ -162,6 +163,9 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.LITERAL: return createLiteral();
       case RustPackage.NUMBER_LIT: return createNumberLit();
       case RustPackage.CHAR_LIT: return createCharLit();
+      case RustPackage.EXPR_FIELD: return createExprField();
+      case RustPackage.EXPR_METHOD_CALL: return createExprMethodCall();
+      case RustPackage.EXPR_INDEX: return createExprIndex();
       case RustPackage.DIVISION: return createDivision();
       case RustPackage.MULTIPLICATION: return createMultiplication();
       case RustPackage.MODULO: return createModulo();
@@ -479,6 +483,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprRValueImpl exprRValue = new ExprRValueImpl();
     return exprRValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprRValue1 createExprRValue1()
+  {
+    ExprRValue1Impl exprRValue1 = new ExprRValue1Impl();
+    return exprRValue1;
   }
 
   /**
@@ -1293,6 +1308,39 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     CharLitImpl charLit = new CharLitImpl();
     return charLit;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprField createExprField()
+  {
+    ExprFieldImpl exprField = new ExprFieldImpl();
+    return exprField;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprMethodCall createExprMethodCall()
+  {
+    ExprMethodCallImpl exprMethodCall = new ExprMethodCallImpl();
+    return exprMethodCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprIndex createExprIndex()
+  {
+    ExprIndexImpl exprIndex = new ExprIndexImpl();
+    return exprIndex;
   }
 
   /**

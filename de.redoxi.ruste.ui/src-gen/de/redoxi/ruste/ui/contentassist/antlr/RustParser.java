@@ -44,6 +44,7 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTraitMethodAccess().getAlternatives_0(), "rule__TraitMethod__Alternatives_0");
 					put(grammarAccess.getTraitMethodAccess().getAlternatives_9(), "rule__TraitMethod__Alternatives_9");
 					put(grammarAccess.getImplMethodAccess().getAlternatives_0(), "rule__ImplMethod__Alternatives_0");
+					put(grammarAccess.getExprRValue1Access().getAlternatives_1(), "rule__ExprRValue1__Alternatives_1");
 					put(grammarAccess.getExprLeafAccess().getAlternatives(), "rule__ExprLeaf__Alternatives");
 					put(grammarAccess.getExprPathHeadAccess().getAlternatives_1(), "rule__ExprPathHead__Alternatives_1");
 					put(grammarAccess.getExprVecAccess().getAlternatives_2_2(), "rule__ExprVec__Alternatives_2_2");
@@ -125,6 +126,12 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getForeignFnAccess().getGroup_5(), "rule__ForeignFn__Group_5__0");
 					put(grammarAccess.getStaticItemAccess().getGroup(), "rule__StaticItem__Group__0");
 					put(grammarAccess.getStaticItemAccess().getGroup_3(), "rule__StaticItem__Group_3__0");
+					put(grammarAccess.getExprRValue1Access().getGroup(), "rule__ExprRValue1__Group__0");
+					put(grammarAccess.getExprRValue1Access().getGroup_1_0(), "rule__ExprRValue1__Group_1_0__0");
+					put(grammarAccess.getExprRValue1Access().getGroup_1_0_3(), "rule__ExprRValue1__Group_1_0_3__0");
+					put(grammarAccess.getExprRValue1Access().getGroup_1_0_3_2(), "rule__ExprRValue1__Group_1_0_3_2__0");
+					put(grammarAccess.getExprRValue1Access().getGroup_1_0_3_2_1(), "rule__ExprRValue1__Group_1_0_3_2_1__0");
+					put(grammarAccess.getExprRValue1Access().getGroup_1_1(), "rule__ExprRValue1__Group_1_1__0");
 					put(grammarAccess.getExprPathHeadAccess().getGroup(), "rule__ExprPathHead__Group__0");
 					put(grammarAccess.getExprPathHeadAccess().getGroup_1_0(), "rule__ExprPathHead__Group_1_0__0");
 					put(grammarAccess.getExprPathHeadAccess().getGroup_1_1(), "rule__ExprPathHead__Group_1_1__0");
@@ -339,6 +346,10 @@ public class RustParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStaticItemAccess().getIdentAssignment_2(), "rule__StaticItem__IdentAssignment_2");
 					put(grammarAccess.getStaticItemAccess().getTypeAssignment_3_1(), "rule__StaticItem__TypeAssignment_3_1");
 					put(grammarAccess.getStaticItemAccess().getExprAssignment_5(), "rule__StaticItem__ExprAssignment_5");
+					put(grammarAccess.getExprRValue1Access().getFieldAssignment_1_0_2(), "rule__ExprRValue1__FieldAssignment_1_0_2");
+					put(grammarAccess.getExprRValue1Access().getArgsAssignment_1_0_3_2_0(), "rule__ExprRValue1__ArgsAssignment_1_0_3_2_0");
+					put(grammarAccess.getExprRValue1Access().getArgsAssignment_1_0_3_2_1_1(), "rule__ExprRValue1__ArgsAssignment_1_0_3_2_1_1");
+					put(grammarAccess.getExprRValue1Access().getIndexExprAssignment_1_1_2(), "rule__ExprRValue1__IndexExprAssignment_1_1_2");
 					put(grammarAccess.getExprLiteralAccess().getLiteralAssignment(), "rule__ExprLiteral__LiteralAssignment");
 					put(grammarAccess.getExprPathHeadAccess().getPathAssignment_0(), "rule__ExprPathHead__PathAssignment_0");
 					put(grammarAccess.getExprPathHeadAccess().getStructAssignment_1_0_1(), "rule__ExprPathHead__StructAssignment_1_0_1");

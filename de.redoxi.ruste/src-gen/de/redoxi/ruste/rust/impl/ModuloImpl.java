@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ExprLeaf;
+import de.redoxi.ruste.rust.ExprRValue1;
 import de.redoxi.ruste.rust.Modulo;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -38,7 +38,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * @generated
    * @ordered
    */
-  protected ExprLeaf left;
+  protected ExprRValue1 left;
 
   /**
    * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -48,7 +48,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * @generated
    * @ordered
    */
-  protected ExprLeaf right;
+  protected ExprRValue1 right;
 
   /**
    * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprLeaf getLeft()
+  public ExprRValue1 getLeft()
   {
     return left;
   }
@@ -86,9 +86,9 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(ExprLeaf newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(ExprRValue1 newLeft, NotificationChain msgs)
   {
-    ExprLeaf oldLeft = left;
+    ExprRValue1 oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -103,7 +103,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLeft(ExprLeaf newLeft)
+  public void setLeft(ExprRValue1 newLeft)
   {
     if (newLeft != left)
     {
@@ -124,7 +124,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprLeaf getRight()
+  public ExprRValue1 getRight()
   {
     return right;
   }
@@ -134,9 +134,9 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(ExprLeaf newRight, NotificationChain msgs)
+  public NotificationChain basicSetRight(ExprRValue1 newRight, NotificationChain msgs)
   {
-    ExprLeaf oldRight = right;
+    ExprRValue1 oldRight = right;
     right = newRight;
     if (eNotificationRequired())
     {
@@ -151,7 +151,7 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRight(ExprLeaf newRight)
+  public void setRight(ExprRValue1 newRight)
   {
     if (newRight != right)
     {
@@ -214,10 +214,10 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
     switch (featureID)
     {
       case RustPackage.MODULO__LEFT:
-        setLeft((ExprLeaf)newValue);
+        setLeft((ExprRValue1)newValue);
         return;
       case RustPackage.MODULO__RIGHT:
-        setRight((ExprLeaf)newValue);
+        setRight((ExprRValue1)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,10 +234,10 @@ public class ModuloImpl extends DivisionMultiplicationOrModuloImpl implements Mo
     switch (featureID)
     {
       case RustPackage.MODULO__LEFT:
-        setLeft((ExprLeaf)null);
+        setLeft((ExprRValue1)null);
         return;
       case RustPackage.MODULO__RIGHT:
-        setRight((ExprLeaf)null);
+        setRight((ExprRValue1)null);
         return;
     }
     super.eUnset(featureID);

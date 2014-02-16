@@ -190,6 +190,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprRValueAdapter();
       }
       @Override
+      public Adapter caseExprRValue1(ExprRValue1 object)
+      {
+        return createExprRValue1Adapter();
+      }
+      @Override
       public Adapter caseExprLeaf(ExprLeaf object)
       {
         return createExprLeafAdapter();
@@ -558,6 +563,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCharLit(CharLit object)
       {
         return createCharLitAdapter();
+      }
+      @Override
+      public Adapter caseExprField(ExprField object)
+      {
+        return createExprFieldAdapter();
+      }
+      @Override
+      public Adapter caseExprMethodCall(ExprMethodCall object)
+      {
+        return createExprMethodCallAdapter();
+      }
+      @Override
+      public Adapter caseExprIndex(ExprIndex object)
+      {
+        return createExprIndexAdapter();
       }
       @Override
       public Adapter caseDivision(Division object)
@@ -1057,6 +1077,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprRValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprRValue1 <em>Expr RValue1</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprRValue1
+   * @generated
+   */
+  public Adapter createExprRValue1Adapter()
   {
     return null;
   }
@@ -2167,6 +2202,51 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCharLitAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprField <em>Expr Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprField
+   * @generated
+   */
+  public Adapter createExprFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprMethodCall <em>Expr Method Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprMethodCall
+   * @generated
+   */
+  public Adapter createExprMethodCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprIndex <em>Expr Index</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprIndex
+   * @generated
+   */
+  public Adapter createExprIndexAdapter()
   {
     return null;
   }

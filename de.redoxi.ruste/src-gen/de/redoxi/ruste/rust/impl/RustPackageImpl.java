@@ -42,11 +42,13 @@ import de.redoxi.ruste.rust.ExprCast;
 import de.redoxi.ruste.rust.ExprContinue;
 import de.redoxi.ruste.rust.ExprDo;
 import de.redoxi.ruste.rust.ExprEqualTo;
+import de.redoxi.ruste.rust.ExprField;
 import de.redoxi.ruste.rust.ExprFor;
 import de.redoxi.ruste.rust.ExprGreaterThan;
 import de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprIf;
+import de.redoxi.ruste.rust.ExprIndex;
 import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLambda;
 import de.redoxi.ruste.rust.ExprLeaf;
@@ -56,10 +58,12 @@ import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprLoop;
 import de.redoxi.ruste.rust.ExprMatch;
+import de.redoxi.ruste.rust.ExprMethodCall;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprRValue;
+import de.redoxi.ruste.rust.ExprRValue1;
 import de.redoxi.ruste.rust.ExprReturn;
 import de.redoxi.ruste.rust.ExprRightShift;
 import de.redoxi.ruste.rust.ExprStmt;
@@ -306,6 +310,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass exprRValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprRValue1EClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -824,6 +835,27 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass charLitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprMethodCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprIndexEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1892,6 +1924,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EClass getExprRValue()
   {
     return exprRValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprRValue1()
+  {
+    return exprRValue1EClass;
   }
 
   /**
@@ -3399,6 +3441,96 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExprField()
+  {
+    return exprFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprField_Expr()
+  {
+    return (EReference)exprFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprField_Field()
+  {
+    return (EAttribute)exprFieldEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprMethodCall()
+  {
+    return exprMethodCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprMethodCall_Method()
+  {
+    return (EReference)exprMethodCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprMethodCall_Args()
+  {
+    return (EReference)exprMethodCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprIndex()
+  {
+    return exprIndexEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprIndex_Expr()
+  {
+    return (EReference)exprIndexEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprIndex_IndexExpr()
+  {
+    return (EReference)exprIndexEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDivision()
   {
     return divisionEClass;
@@ -4228,6 +4360,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     exprRValueEClass = createEClass(EXPR_RVALUE);
 
+    exprRValue1EClass = createEClass(EXPR_RVALUE1);
+
     exprLeafEClass = createEClass(EXPR_LEAF);
 
     exprLiteralEClass = createEClass(EXPR_LITERAL);
@@ -4452,6 +4586,18 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     charLitEClass = createEClass(CHAR_LIT);
 
+    exprFieldEClass = createEClass(EXPR_FIELD);
+    createEReference(exprFieldEClass, EXPR_FIELD__EXPR);
+    createEAttribute(exprFieldEClass, EXPR_FIELD__FIELD);
+
+    exprMethodCallEClass = createEClass(EXPR_METHOD_CALL);
+    createEReference(exprMethodCallEClass, EXPR_METHOD_CALL__METHOD);
+    createEReference(exprMethodCallEClass, EXPR_METHOD_CALL__ARGS);
+
+    exprIndexEClass = createEClass(EXPR_INDEX);
+    createEReference(exprIndexEClass, EXPR_INDEX__EXPR);
+    createEReference(exprIndexEClass, EXPR_INDEX__INDEX_EXPR);
+
     divisionEClass = createEClass(DIVISION);
     createEReference(divisionEClass, DIVISION__LEFT);
     createEReference(divisionEClass, DIVISION__RIGHT);
@@ -4595,7 +4741,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprLValueEClass.getESuperTypes().add(this.getExprLeaf());
     exprLValueEClass.getESuperTypes().add(this.getAssign());
     exprRValueEClass.getESuperTypes().add(this.getExpr());
-    exprLeafEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
+    exprRValue1EClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
+    exprLeafEClass.getESuperTypes().add(this.getExprRValue1());
     exprLiteralEClass.getESuperTypes().add(this.getExprLeaf());
     exprPathHeadEClass.getESuperTypes().add(this.getExprLValue());
     exprGroupEClass.getESuperTypes().add(this.getExprLeaf());
@@ -4656,6 +4803,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     stringLitEClass.getESuperTypes().add(this.getLiteral());
     numberLitEClass.getESuperTypes().add(this.getLiteral());
     charLitEClass.getESuperTypes().add(this.getLiteral());
+    exprFieldEClass.getESuperTypes().add(this.getExprRValue1());
+    exprMethodCallEClass.getESuperTypes().add(this.getExprRValue1());
+    exprIndexEClass.getESuperTypes().add(this.getExprRValue1());
     divisionEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     multiplicationEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     moduloEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
@@ -4788,6 +4938,8 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(exprLValueEClass, ExprLValue.class, "ExprLValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(exprRValueEClass, ExprRValue.class, "ExprRValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(exprRValue1EClass, ExprRValue1.class, "ExprRValue1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(exprLeafEClass, ExprLeaf.class, "ExprLeaf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -5013,17 +5165,29 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(charLitEClass, CharLit.class, "CharLit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(exprFieldEClass, ExprField.class, "ExprField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprField_Expr(), this.getExprLeaf(), null, "expr", null, 0, 1, ExprField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprField_Field(), ecorePackage.getEString(), "field", null, 0, 1, ExprField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprMethodCallEClass, ExprMethodCall.class, "ExprMethodCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprMethodCall_Method(), this.getExprField(), null, "method", null, 0, 1, ExprMethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprMethodCall_Args(), this.getExpr(), null, "args", null, 0, -1, ExprMethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprIndexEClass, ExprIndex.class, "ExprIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprIndex_Expr(), this.getExprLeaf(), null, "expr", null, 0, 1, ExprIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprIndex_IndexExpr(), this.getExpr(), null, "indexExpr", null, 0, 1, ExprIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(divisionEClass, Division.class, "Division", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDivision_Left(), this.getExprLeaf(), null, "left", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDivision_Right(), this.getExprLeaf(), null, "right", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDivision_Left(), this.getExprRValue1(), null, "left", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDivision_Right(), this.getExprRValue1(), null, "right", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multiplicationEClass, Multiplication.class, "Multiplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMultiplication_Left(), this.getExprLeaf(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMultiplication_Right(), this.getExprLeaf(), null, "right", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplication_Left(), this.getExprRValue1(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplication_Right(), this.getExprRValue1(), null, "right", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moduloEClass, Modulo.class, "Modulo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModulo_Left(), this.getExprLeaf(), null, "left", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModulo_Right(), this.getExprLeaf(), null, "right", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModulo_Left(), this.getExprRValue1(), null, "left", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModulo_Right(), this.getExprRValue1(), null, "right", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprCastEClass, ExprCast.class, "ExprCast", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprCast_Expr(), this.getDivisionMultiplicationOrModulo(), null, "expr", null, 0, 1, ExprCast.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

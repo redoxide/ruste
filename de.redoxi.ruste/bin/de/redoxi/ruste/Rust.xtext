@@ -105,16 +105,16 @@ ExprLValue:
 ;
 
 ExprRValue:
-	// TODO ExprField
-	// TODO ExprMethodCall
-	// TODO ExprIndex
 	ExprBinary
+;
+
+ExprRValue1:
+	ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT ({ExprMethodCall.method=current} '(' (args+=Expr (',' args+=Expr))? ')')? | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
 ;
 
 // Expressions that avoid left recursion
 ExprLeaf:
 	ExprLiteral |
-	// TODO ExprTupleOrGroup |
 	ExprGroup |
 	ExprStruct |
 	ExprVec |
@@ -194,7 +194,7 @@ ExprBinary:
 ;
 
 DivisionMultiplicationOrModulo:
-	ExprLeaf =>({Division.left=current} "/" right=ExprLeaf | {Multiplication.left=current} "*" right=ExprLeaf | {Modulo.left=current} "%" right=ExprLeaf)?
+	ExprRValue1 =>({Division.left=current} "/" right=ExprRValue1 | {Multiplication.left=current} "*" right=ExprRValue1 | {Modulo.left=current} "%" right=ExprRValue1)?
 ;
 
 As:

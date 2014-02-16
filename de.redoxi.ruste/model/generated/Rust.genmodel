@@ -111,6 +111,7 @@
     <genClasses ecoreClass="Rust.ecore#//Expr"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLValue"/>
     <genClasses ecoreClass="Rust.ecore#//ExprRValue"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprRValue1"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLeaf"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLiteral/literal"/>
@@ -306,6 +307,18 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
     <genClasses ecoreClass="Rust.ecore#//CharLit"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprField">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprField/field"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprMethodCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprMethodCall/method"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprMethodCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/indexExpr"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Division">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Division/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Division/right"/>

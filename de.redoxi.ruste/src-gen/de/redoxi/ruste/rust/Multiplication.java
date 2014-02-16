@@ -31,12 +31,12 @@ public interface Multiplication extends DivisionMultiplicationOrModulo
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(ExprLeaf)
+   * @see #setLeft(ExprRValue1)
    * @see de.redoxi.ruste.rust.RustPackage#getMultiplication_Left()
    * @model containment="true"
    * @generated
    */
-  ExprLeaf getLeft();
+  ExprRValue1 getLeft();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.Multiplication#getLeft <em>Left</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface Multiplication extends DivisionMultiplicationOrModulo
    * @see #getLeft()
    * @generated
    */
-  void setLeft(ExprLeaf value);
+  void setLeft(ExprRValue1 value);
 
   /**
    * Returns the value of the '<em><b>Right</b></em>' containment reference.
@@ -57,12 +57,12 @@ public interface Multiplication extends DivisionMultiplicationOrModulo
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(ExprLeaf)
+   * @see #setRight(ExprRValue1)
    * @see de.redoxi.ruste.rust.RustPackage#getMultiplication_Right()
    * @model containment="true"
    * @generated
    */
-  ExprLeaf getRight();
+  ExprRValue1 getRight();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.Multiplication#getRight <em>Right</em>}' containment reference.
@@ -72,6 +72,6 @@ public interface Multiplication extends DivisionMultiplicationOrModulo
    * @see #getRight()
    * @generated
    */
-  void setRight(ExprLeaf value);
+  void setRight(ExprRValue1 value);
 
 } // Multiplication

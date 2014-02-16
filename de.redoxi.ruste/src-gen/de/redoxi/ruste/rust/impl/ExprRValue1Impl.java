@@ -2,28 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ExprLeaf;
+import de.redoxi.ruste.rust.ExprRValue1;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Leaf</b></em>'.
+ * An implementation of the model object '<em><b>Expr RValue1</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ExprLeafImpl extends ExprRValue1Impl implements ExprLeaf
+public class ExprRValue1Impl extends DivisionMultiplicationOrModuloImpl implements ExprRValue1
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprLeafImpl()
+  protected ExprRValue1Impl()
   {
     super();
   }
@@ -36,7 +36,7 @@ public class ExprLeafImpl extends ExprRValue1Impl implements ExprLeaf
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_LEAF;
+    return RustPackage.Literals.EXPR_RVALUE1;
   }
 
-} //ExprLeafImpl
+} //ExprRValue1Impl
