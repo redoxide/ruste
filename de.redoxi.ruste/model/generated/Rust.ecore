@@ -486,7 +486,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprAssign" eSuperTypes="#//Assign">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLValue"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprUnary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BooleanOr"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatTupleEnum" eSuperTypes="#//PatEnum">

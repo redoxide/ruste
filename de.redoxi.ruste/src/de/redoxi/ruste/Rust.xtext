@@ -194,52 +194,52 @@ ExprBinary:
 ;
 
 DivisionMultiplicationOrModulo:
-	ExprLeaf ({Division.left=current} "/" right=ExprLeaf | {Multiplication.left=current} "*" right=ExprLeaf | {Modulo.left=current} "%" right=ExprLeaf)?
+	ExprLeaf =>({Division.left=current} "/" right=ExprLeaf | {Multiplication.left=current} "*" right=ExprLeaf | {Modulo.left=current} "%" right=ExprLeaf)?
 ;
 
 As:
-	DivisionMultiplicationOrModulo ({ExprCast.expr=current} 'as' type=Type)?
+	DivisionMultiplicationOrModulo =>({ExprCast.expr=current} 'as' type=Type)?
 ;
 
 AdditionOrSubtraction:
-	As ({ExprAddition.left=current} "+" right=As | {ExprSubtraction.left=current} "-" right=As)?
+	As =>({ExprAddition.left=current} "+" right=As | {ExprSubtraction.left=current} "-" right=As)?
 ;
 
 ShiftOperator:
-	AdditionOrSubtraction ({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction | {ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
+	AdditionOrSubtraction =>({ExprLeftShift.left=current} "<<" right=AdditionOrSubtraction | {ExprRightShift.left=current} ">>" right=AdditionOrSubtraction)?
 ;
 
 BitwiseAnd:
-	ShiftOperator ({ExprBitwiseAnd.left=current} "&" right=ShiftOperator)?
+	ShiftOperator =>({ExprBitwiseAnd.left=current} "&" right=ShiftOperator)?
 ;
 
 BitwiseXor:
-	BitwiseAnd ({ExprBitwiseXor.left=current} "^" right=BitwiseAnd)?
+	BitwiseAnd =>({ExprBitwiseXor.left=current} "^" right=BitwiseAnd)?
 ;
 
 BitwiseOr:
-	BitwiseXor ({ExprBitwiseOr.left=current} "|" right=BitwiseXor)?
+	BitwiseXor =>({ExprBitwiseOr.left=current} "|" right=BitwiseXor)?
 ;
 
 ComparisonOperators:
-	BitwiseOr ({ExprLessThan.left=current} "<" right=BitwiseOr | {ExprGreaterThan.left=current} ">" right=BitwiseOr | {ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr | {ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
+	BitwiseOr =>({ExprLessThan.left=current} "<" right=BitwiseOr | {ExprGreaterThan.left=current} ">" right=BitwiseOr | {ExprLessThanOrEqualTo.left=current} "<=" right=BitwiseOr | {ExprGreaterThanOrEqualTo.left=current} ">=" right=BitwiseOr)?
 ;
 
 EqualityOperator:
-	ComparisonOperators ({ExprEqualTo.left=current} "==" right=ComparisonOperators | {ExprNotEqualTo.left=current} "!=" right=ComparisonOperators)?
+	ComparisonOperators =>({ExprEqualTo.left=current} "==" right=ComparisonOperators | {ExprNotEqualTo.left=current} "!=" right=ComparisonOperators)?
 ;
 
 BooleanAnd:
-	EqualityOperator ({ExprBooleanAnd.left=current} "&&" right=EqualityOperator)?
+	EqualityOperator =>({ExprBooleanAnd.left=current} "&&" right=EqualityOperator)?
 ;
 
 BooleanOr:
-	BooleanAnd ({ExprBooleanOr.left=current} "||" right=BooleanAnd)?
+	BooleanAnd =>({ExprBooleanOr.left=current} "||" right=BooleanAnd)?
 ;
 
 // TODO Divide expressions into lvalues and rvalues
 Assign:
-	ExprLValue ({ExprAssign.left=current} "=" right=ExprUnary)?
+	ExprLValue ({ExprAssign.left=current} "=" right=BooleanOr)?
 ;
 
 ExprLambda:

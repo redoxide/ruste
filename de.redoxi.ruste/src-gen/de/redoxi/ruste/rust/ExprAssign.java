@@ -57,12 +57,12 @@ public interface ExprAssign extends Assign
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(ExprUnary)
+   * @see #setRight(BooleanOr)
    * @see de.redoxi.ruste.rust.RustPackage#getExprAssign_Right()
    * @model containment="true"
    * @generated
    */
-  ExprUnary getRight();
+  BooleanOr getRight();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.ExprAssign#getRight <em>Right</em>}' containment reference.
@@ -72,6 +72,6 @@ public interface ExprAssign extends Assign
    * @see #getRight()
    * @generated
    */
-  void setRight(ExprUnary value);
+  void setRight(BooleanOr value);
 
 } // ExprAssign

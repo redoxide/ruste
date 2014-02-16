@@ -2,9 +2,9 @@
  */
 package de.redoxi.ruste.rust.impl;
 
+import de.redoxi.ruste.rust.BooleanOr;
 import de.redoxi.ruste.rust.ExprAssign;
 import de.redoxi.ruste.rust.ExprLValue;
-import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -49,7 +49,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * @generated
    * @ordered
    */
-  protected ExprUnary right;
+  protected BooleanOr right;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,7 +125,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprUnary getRight()
+  public BooleanOr getRight()
   {
     return right;
   }
@@ -135,9 +135,9 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(ExprUnary newRight, NotificationChain msgs)
+  public NotificationChain basicSetRight(BooleanOr newRight, NotificationChain msgs)
   {
-    ExprUnary oldRight = right;
+    BooleanOr oldRight = right;
     right = newRight;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRight(ExprUnary newRight)
+  public void setRight(BooleanOr newRight)
   {
     if (newRight != right)
     {
@@ -218,7 +218,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
         setLeft((ExprLValue)newValue);
         return;
       case RustPackage.EXPR_ASSIGN__RIGHT:
-        setRight((ExprUnary)newValue);
+        setRight((BooleanOr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,7 +238,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
         setLeft((ExprLValue)null);
         return;
       case RustPackage.EXPR_ASSIGN__RIGHT:
-        setRight((ExprUnary)null);
+        setRight((BooleanOr)null);
         return;
     }
     super.eUnset(featureID);
