@@ -5,6 +5,7 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.ViewItem;
 
 import java.util.Collection;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.redoxi.ruste.rust.impl.CrateImpl#getViewItems <em>View Items</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.CrateImpl#getItems <em>Items</em>}</li>
  * </ul>
  * </p>
@@ -35,6 +37,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
 {
+  /**
+   * The cached value of the '{@link #getViewItems() <em>View Items</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getViewItems()
+   * @generated
+   * @ordered
+   */
+  protected EList<ViewItem> viewItems;
+
   /**
    * The cached value of the '{@link #getItems() <em>Items</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -71,6 +83,20 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ViewItem> getViewItems()
+  {
+    if (viewItems == null)
+    {
+      viewItems = new EObjectContainmentEList<ViewItem>(ViewItem.class, this, RustPackage.CRATE__VIEW_ITEMS);
+    }
+    return viewItems;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<ItemAndAttrs> getItems()
   {
     if (items == null)
@@ -90,6 +116,8 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
   {
     switch (featureID)
     {
+      case RustPackage.CRATE__VIEW_ITEMS:
+        return ((InternalEList<?>)getViewItems()).basicRemove(otherEnd, msgs);
       case RustPackage.CRATE__ITEMS:
         return ((InternalEList<?>)getItems()).basicRemove(otherEnd, msgs);
     }
@@ -106,6 +134,8 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
   {
     switch (featureID)
     {
+      case RustPackage.CRATE__VIEW_ITEMS:
+        return getViewItems();
       case RustPackage.CRATE__ITEMS:
         return getItems();
     }
@@ -123,6 +153,10 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
   {
     switch (featureID)
     {
+      case RustPackage.CRATE__VIEW_ITEMS:
+        getViewItems().clear();
+        getViewItems().addAll((Collection<? extends ViewItem>)newValue);
+        return;
       case RustPackage.CRATE__ITEMS:
         getItems().clear();
         getItems().addAll((Collection<? extends ItemAndAttrs>)newValue);
@@ -141,6 +175,9 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
   {
     switch (featureID)
     {
+      case RustPackage.CRATE__VIEW_ITEMS:
+        getViewItems().clear();
+        return;
       case RustPackage.CRATE__ITEMS:
         getItems().clear();
         return;
@@ -158,6 +195,8 @@ public class CrateImpl extends MinimalEObjectImpl.Container implements Crate
   {
     switch (featureID)
     {
+      case RustPackage.CRATE__VIEW_ITEMS:
+        return viewItems != null && !viewItems.isEmpty();
       case RustPackage.CRATE__ITEMS:
         return items != null && !items.isEmpty();
     }

@@ -15,7 +15,7 @@ public class RustParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 	
 	@Override
 	protected void setInitialHiddenTokens(XtextTokenStream tokenStream) {
-		tokenStream.setInitialHiddenTokens();
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_SL_COMMENT", "RULE_ML_COMMENT");
 	}
 	
 	@Override

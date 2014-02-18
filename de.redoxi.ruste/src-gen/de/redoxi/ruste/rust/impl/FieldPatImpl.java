@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.FieldPatImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.FieldPatImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FieldPatImpl#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
@@ -32,24 +32,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldPat
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference.
@@ -87,9 +87,9 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -97,12 +97,12 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FIELD_PAT__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FIELD_PAT__NAME, oldName, name));
   }
 
   /**
@@ -179,8 +179,8 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
   {
     switch (featureID)
     {
-      case RustPackage.FIELD_PAT__IDENT:
-        return getIdent();
+      case RustPackage.FIELD_PAT__NAME:
+        return getName();
       case RustPackage.FIELD_PAT__PATTERN:
         return getPattern();
     }
@@ -197,8 +197,8 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
   {
     switch (featureID)
     {
-      case RustPackage.FIELD_PAT__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.FIELD_PAT__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.FIELD_PAT__PATTERN:
         setPattern((Pat)newValue);
@@ -217,8 +217,8 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
   {
     switch (featureID)
     {
-      case RustPackage.FIELD_PAT__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.FIELD_PAT__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.FIELD_PAT__PATTERN:
         setPattern((Pat)null);
@@ -237,8 +237,8 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
   {
     switch (featureID)
     {
-      case RustPackage.FIELD_PAT__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.FIELD_PAT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.FIELD_PAT__PATTERN:
         return pattern != null;
     }
@@ -256,8 +256,8 @@ public class FieldPatImpl extends MinimalEObjectImpl.Container implements FieldP
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

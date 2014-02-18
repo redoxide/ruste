@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.impl.StaticItemImpl#isMutable <em>Mutable</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.StaticItemImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.StaticItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StaticItemImpl#getType <em>Type</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StaticItemImpl#getExpr <em>Expr</em>}</li>
  * </ul>
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class StaticItemImpl extends ItemImpl implements StaticItem
+public class StaticItemImpl extends MinimalEObjectImpl.Container implements StaticItem
 {
   /**
    * The default value of the '{@link #isMutable() <em>Mutable</em>}' attribute.
@@ -54,24 +55,24 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
   protected boolean mutable = MUTABLE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -142,9 +143,9 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -152,12 +153,12 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STATIC_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STATIC_ITEM__NAME, oldName, name));
   }
 
   /**
@@ -286,8 +287,8 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
     {
       case RustPackage.STATIC_ITEM__MUTABLE:
         return isMutable();
-      case RustPackage.STATIC_ITEM__IDENT:
-        return getIdent();
+      case RustPackage.STATIC_ITEM__NAME:
+        return getName();
       case RustPackage.STATIC_ITEM__TYPE:
         return getType();
       case RustPackage.STATIC_ITEM__EXPR:
@@ -309,8 +310,8 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
       case RustPackage.STATIC_ITEM__MUTABLE:
         setMutable((Boolean)newValue);
         return;
-      case RustPackage.STATIC_ITEM__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.STATIC_ITEM__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.STATIC_ITEM__TYPE:
         setType((Type)newValue);
@@ -335,8 +336,8 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
       case RustPackage.STATIC_ITEM__MUTABLE:
         setMutable(MUTABLE_EDEFAULT);
         return;
-      case RustPackage.STATIC_ITEM__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.STATIC_ITEM__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.STATIC_ITEM__TYPE:
         setType((Type)null);
@@ -360,8 +361,8 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
     {
       case RustPackage.STATIC_ITEM__MUTABLE:
         return mutable != MUTABLE_EDEFAULT;
-      case RustPackage.STATIC_ITEM__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.STATIC_ITEM__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.STATIC_ITEM__TYPE:
         return type != null;
       case RustPackage.STATIC_ITEM__EXPR:
@@ -383,8 +384,8 @@ public class StaticItemImpl extends ItemImpl implements StaticItem
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mutable: ");
     result.append(mutable);
-    result.append(", ident: ");
-    result.append(ident);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

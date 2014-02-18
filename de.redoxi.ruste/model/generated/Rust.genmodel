@@ -12,13 +12,34 @@
       <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//Visibility/PUBLIC"/>
     </genEnums>
     <genClasses ecoreClass="Rust.ecore#//Crate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/viewItems"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ViewItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewItem/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExternModDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternModDecl/attrs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternModDecl/externalIdent"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//LinkAttr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//LinkAttr/ident"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LinkAttr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UseDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UseDecl/vis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UseDecl/externPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UseDecl/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PathGlob">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PathGlob/head"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathGlob/tail"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ItemAttr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAttr/attrs"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Attr">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Attr/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Attr/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//AttrWithList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//AttrWithList/attrs"/>
@@ -30,42 +51,42 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/item"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Item"/>
     <genClasses ecoreClass="Rust.ecore#//ModItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/externalBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ModItem/viewItems"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ModItem/items"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//FnItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FnItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FnItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/returnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/body"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TypeItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypeItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypeItem/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructItem/fields"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//EnumItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumItem/variants"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//EnumVariant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumVariant/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumVariant/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumVariant/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumVariant/types"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumVariant/fields"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TraitItem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitItem/methods"/>
     </genClasses>
@@ -73,7 +94,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitMethod/unsafe"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitMethod/extern"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitMethod/vis"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitMethod/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitMethod/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitMethod/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitMethod/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitMethod/returnType"/>
@@ -87,7 +108,7 @@
     <genClasses ecoreClass="Rust.ecore#//ImplMethod">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ImplMethod/unsafe"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ImplMethod/extern"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ImplMethod/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ImplMethod/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/returnType"/>
@@ -98,13 +119,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternBlock/functions"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ForeignFn">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ForeignFn/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ForeignFn/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/returnType"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StaticItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StaticItem/mutable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StaticItem/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StaticItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StaticItem/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StaticItem/expr"/>
     </genClasses>
@@ -223,7 +244,7 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprStmt"/>
     <genClasses ecoreClass="Rust.ecore#//GenericParamDecl">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericParamDecl/bounds"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Arg">
@@ -234,7 +255,7 @@
     <genClasses ecoreClass="Rust.ecore#//PatWildcard"/>
     <genClasses ecoreClass="Rust.ecore#//PatIdent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/mutable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatBoxed">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatBoxed/pattern"/>
@@ -258,7 +279,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/path"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//FieldPat">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FieldPat/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FieldPat/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FieldPat/pattern"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TypePath">
@@ -273,6 +294,7 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Type"/>
     <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
+    <genClasses ecoreClass="Rust.ecore#//TextualType"/>
     <genClasses ecoreClass="Rust.ecore#//NamedType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//NamedType/path"/>
     </genClasses>
@@ -287,11 +309,11 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/vis"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructField/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructField/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Variant">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Variant/ident"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Variant/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructVariant">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructVariant/params"/>
@@ -410,5 +432,9 @@
     <genClasses ecoreClass="Rust.ecore#//BoolType"/>
     <genClasses ecoreClass="Rust.ecore#//MachineType"/>
     <genClasses ecoreClass="Rust.ecore#//UnitType"/>
+    <genClasses ecoreClass="Rust.ecore#//CharType"/>
+    <genClasses ecoreClass="Rust.ecore#//BoxedStrType"/>
+    <genClasses ecoreClass="Rust.ecore#//OwnedStrType"/>
+    <genClasses ecoreClass="Rust.ecore#//BorrowedStrType"/>
   </genPackages>
 </genmodel:GenModel>

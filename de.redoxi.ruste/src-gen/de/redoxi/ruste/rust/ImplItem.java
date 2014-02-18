@@ -4,6 +4,8 @@ package de.redoxi.ruste.rust;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Impl Item</b></em>'.
@@ -22,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ImplItem extends Item
+public interface ImplItem extends EObject
 {
   /**
    * Returns the value of the '<em><b>Trait</b></em>' attribute.

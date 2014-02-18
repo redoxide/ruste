@@ -66,12 +66,16 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
     switch (eClass.getClassifierID())
     {
       case RustPackage.CRATE: return createCrate();
+      case RustPackage.VIEW_ITEM: return createViewItem();
+      case RustPackage.EXTERN_MOD_DECL: return createExternModDecl();
+      case RustPackage.LINK_ATTR: return createLinkAttr();
+      case RustPackage.USE_DECL: return createUseDecl();
+      case RustPackage.PATH_GLOB: return createPathGlob();
       case RustPackage.ITEM_ATTR: return createItemAttr();
       case RustPackage.ATTR: return createAttr();
       case RustPackage.ATTR_WITH_LIST: return createAttrWithList();
       case RustPackage.LITERAL_ATTR: return createLiteralAttr();
       case RustPackage.ITEM_AND_ATTRS: return createItemAndAttrs();
-      case RustPackage.ITEM: return createItem();
       case RustPackage.MOD_ITEM: return createModItem();
       case RustPackage.FN_ITEM: return createFnItem();
       case RustPackage.TYPE_ITEM: return createTypeItem();
@@ -150,6 +154,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR_PATH: return createExprPath();
       case RustPackage.TYPE: return createType();
       case RustPackage.PRIMITIVE_TYPE: return createPrimitiveType();
+      case RustPackage.TEXTUAL_TYPE: return createTextualType();
       case RustPackage.NAMED_TYPE: return createNamedType();
       case RustPackage.BOXED_POINTER: return createBoxedPointer();
       case RustPackage.OWNED_POINTER: return createOwnedPointer();
@@ -193,6 +198,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.BOOL_TYPE: return createBoolType();
       case RustPackage.MACHINE_TYPE: return createMachineType();
       case RustPackage.UNIT_TYPE: return createUnitType();
+      case RustPackage.CHAR_TYPE: return createCharType();
+      case RustPackage.BOXED_STR_TYPE: return createBoxedStrType();
+      case RustPackage.OWNED_STR_TYPE: return createOwnedStrType();
+      case RustPackage.BORROWED_STR_TYPE: return createBorrowedStrType();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -248,6 +257,61 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ViewItem createViewItem()
+  {
+    ViewItemImpl viewItem = new ViewItemImpl();
+    return viewItem;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExternModDecl createExternModDecl()
+  {
+    ExternModDeclImpl externModDecl = new ExternModDeclImpl();
+    return externModDecl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LinkAttr createLinkAttr()
+  {
+    LinkAttrImpl linkAttr = new LinkAttrImpl();
+    return linkAttr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UseDecl createUseDecl()
+  {
+    UseDeclImpl useDecl = new UseDeclImpl();
+    return useDecl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PathGlob createPathGlob()
+  {
+    PathGlobImpl pathGlob = new PathGlobImpl();
+    return pathGlob;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ItemAttr createItemAttr()
   {
     ItemAttrImpl itemAttr = new ItemAttrImpl();
@@ -296,17 +360,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ItemAndAttrsImpl itemAndAttrs = new ItemAndAttrsImpl();
     return itemAndAttrs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Item createItem()
-  {
-    ItemImpl item = new ItemImpl();
-    return item;
   }
 
   /**
@@ -1172,6 +1225,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public TextualType createTextualType()
+  {
+    TextualTypeImpl textualType = new TextualTypeImpl();
+    return textualType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public NamedType createNamedType()
   {
     NamedTypeImpl namedType = new NamedTypeImpl();
@@ -1638,6 +1702,50 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     UnitTypeImpl unitType = new UnitTypeImpl();
     return unitType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CharType createCharType()
+  {
+    CharTypeImpl charType = new CharTypeImpl();
+    return charType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoxedStrType createBoxedStrType()
+  {
+    BoxedStrTypeImpl boxedStrType = new BoxedStrTypeImpl();
+    return boxedStrType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OwnedStrType createOwnedStrType()
+  {
+    OwnedStrTypeImpl ownedStrType = new OwnedStrTypeImpl();
+    return ownedStrType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BorrowedStrType createBorrowedStrType()
+  {
+    BorrowedStrTypeImpl borrowedStrType = new BorrowedStrTypeImpl();
+    return borrowedStrType;
   }
 
   /**

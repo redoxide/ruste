@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link de.redoxi.ruste.rust.Crate#getViewItems <em>View Items</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.Crate#getItems <em>Items</em>}</li>
  * </ul>
  * </p>
@@ -24,6 +25,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Crate extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>View Items</b></em>' containment reference list.
+   * The list contents are of type {@link de.redoxi.ruste.rust.ViewItem}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>View Items</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>View Items</em>' containment reference list.
+   * @see de.redoxi.ruste.rust.RustPackage#getCrate_ViewItems()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ViewItem> getViewItems();
+
   /**
    * Returns the value of the '<em><b>Items</b></em>' containment reference list.
    * The list contents are of type {@link de.redoxi.ruste.rust.ItemAndAttrs}.

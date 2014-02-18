@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -29,7 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructItemImpl#getFields <em>Fields</em>}</li>
  * </ul>
@@ -37,27 +38,27 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class StructItemImpl extends ItemImpl implements StructItem
+public class StructItemImpl extends MinimalEObjectImpl.Container implements StructItem
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
@@ -105,9 +106,9 @@ public class StructItemImpl extends ItemImpl implements StructItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -115,12 +116,12 @@ public class StructItemImpl extends ItemImpl implements StructItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STRUCT_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STRUCT_ITEM__NAME, oldName, name));
   }
 
   /**
@@ -179,8 +180,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
-      case RustPackage.STRUCT_ITEM__IDENT:
-        return getIdent();
+      case RustPackage.STRUCT_ITEM__NAME:
+        return getName();
       case RustPackage.STRUCT_ITEM__PARAMS:
         return getParams();
       case RustPackage.STRUCT_ITEM__FIELDS:
@@ -200,8 +201,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
-      case RustPackage.STRUCT_ITEM__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.STRUCT_ITEM__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.STRUCT_ITEM__PARAMS:
         getParams().clear();
@@ -225,8 +226,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
-      case RustPackage.STRUCT_ITEM__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.STRUCT_ITEM__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.STRUCT_ITEM__PARAMS:
         getParams().clear();
@@ -248,8 +249,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
   {
     switch (featureID)
     {
-      case RustPackage.STRUCT_ITEM__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.STRUCT_ITEM__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.STRUCT_ITEM__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.STRUCT_ITEM__FIELDS:
@@ -269,8 +270,8 @@ public class StructItemImpl extends ItemImpl implements StructItem
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

@@ -50,12 +50,12 @@ public interface ItemAndAttrs extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Item</em>' containment reference.
-   * @see #setItem(Item)
+   * @see #setItem(EObject)
    * @see de.redoxi.ruste.rust.RustPackage#getItemAndAttrs_Item()
    * @model containment="true"
    * @generated
    */
-  Item getItem();
+  EObject getItem();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.ItemAndAttrs#getItem <em>Item</em>}' containment reference.
@@ -65,6 +65,6 @@ public interface ItemAndAttrs extends EObject
    * @see #getItem()
    * @generated
    */
-  void setItem(Item value);
+  void setItem(EObject value);
 
 } // ItemAndAttrs

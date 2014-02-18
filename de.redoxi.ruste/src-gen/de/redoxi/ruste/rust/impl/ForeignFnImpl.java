@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ForeignFnImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ForeignFnImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ForeignFnImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ForeignFnImpl#getReturnType <em>Return Type</em>}</li>
  * </ul>
@@ -41,24 +41,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ForeignFnImpl extends MinimalEObjectImpl.Container implements ForeignFn
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
@@ -106,9 +106,9 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -116,12 +116,12 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FOREIGN_FN__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FOREIGN_FN__NAME, oldName, name));
   }
 
   /**
@@ -214,8 +214,8 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
   {
     switch (featureID)
     {
-      case RustPackage.FOREIGN_FN__IDENT:
-        return getIdent();
+      case RustPackage.FOREIGN_FN__NAME:
+        return getName();
       case RustPackage.FOREIGN_FN__ARGS:
         return getArgs();
       case RustPackage.FOREIGN_FN__RETURN_TYPE:
@@ -235,8 +235,8 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
   {
     switch (featureID)
     {
-      case RustPackage.FOREIGN_FN__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.FOREIGN_FN__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.FOREIGN_FN__ARGS:
         getArgs().clear();
@@ -259,8 +259,8 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
   {
     switch (featureID)
     {
-      case RustPackage.FOREIGN_FN__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.FOREIGN_FN__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.FOREIGN_FN__ARGS:
         getArgs().clear();
@@ -282,8 +282,8 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
   {
     switch (featureID)
     {
-      case RustPackage.FOREIGN_FN__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.FOREIGN_FN__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.FOREIGN_FN__ARGS:
         return args != null && !args.isEmpty();
       case RustPackage.FOREIGN_FN__RETURN_TYPE:
@@ -303,8 +303,8 @@ public class ForeignFnImpl extends MinimalEObjectImpl.Container implements Forei
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

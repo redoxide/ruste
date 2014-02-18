@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructFieldImpl#getVis <em>Vis</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.StructFieldImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.StructFieldImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.StructFieldImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -54,24 +54,24 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
   protected Visibility vis = VIS_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -132,9 +132,9 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -142,12 +142,12 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STRUCT_FIELD__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.STRUCT_FIELD__NAME, oldName, name));
   }
 
   /**
@@ -226,8 +226,8 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
     {
       case RustPackage.STRUCT_FIELD__VIS:
         return getVis();
-      case RustPackage.STRUCT_FIELD__IDENT:
-        return getIdent();
+      case RustPackage.STRUCT_FIELD__NAME:
+        return getName();
       case RustPackage.STRUCT_FIELD__TYPE:
         return getType();
     }
@@ -247,8 +247,8 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
       case RustPackage.STRUCT_FIELD__VIS:
         setVis((Visibility)newValue);
         return;
-      case RustPackage.STRUCT_FIELD__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.STRUCT_FIELD__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.STRUCT_FIELD__TYPE:
         setType((Type)newValue);
@@ -270,8 +270,8 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
       case RustPackage.STRUCT_FIELD__VIS:
         setVis(VIS_EDEFAULT);
         return;
-      case RustPackage.STRUCT_FIELD__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.STRUCT_FIELD__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.STRUCT_FIELD__TYPE:
         setType((Type)null);
@@ -292,8 +292,8 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
     {
       case RustPackage.STRUCT_FIELD__VIS:
         return vis != VIS_EDEFAULT;
-      case RustPackage.STRUCT_FIELD__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.STRUCT_FIELD__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.STRUCT_FIELD__TYPE:
         return type != null;
     }
@@ -313,8 +313,8 @@ public class StructFieldImpl extends MinimalEObjectImpl.Container implements Str
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (vis: ");
     result.append(vis);
-    result.append(", ident: ");
-    result.append(ident);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

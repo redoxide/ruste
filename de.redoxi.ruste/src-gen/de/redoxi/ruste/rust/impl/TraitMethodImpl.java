@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#isUnsafe <em>Unsafe</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#isExtern <em>Extern</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getVis <em>Vis</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.TraitMethodImpl#getReturnType <em>Return Type</em>}</li>
@@ -109,24 +109,24 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
   protected Visibility vis = VIS_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
@@ -263,9 +263,9 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -273,12 +273,12 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.TRAIT_METHOD__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.TRAIT_METHOD__NAME, oldName, name));
   }
 
   /**
@@ -443,8 +443,8 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
         return isExtern();
       case RustPackage.TRAIT_METHOD__VIS:
         return getVis();
-      case RustPackage.TRAIT_METHOD__IDENT:
-        return getIdent();
+      case RustPackage.TRAIT_METHOD__NAME:
+        return getName();
       case RustPackage.TRAIT_METHOD__PARAMS:
         return getParams();
       case RustPackage.TRAIT_METHOD__ARGS:
@@ -477,8 +477,8 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
       case RustPackage.TRAIT_METHOD__VIS:
         setVis((Visibility)newValue);
         return;
-      case RustPackage.TRAIT_METHOD__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.TRAIT_METHOD__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.TRAIT_METHOD__PARAMS:
         getParams().clear();
@@ -517,8 +517,8 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
       case RustPackage.TRAIT_METHOD__VIS:
         setVis(VIS_EDEFAULT);
         return;
-      case RustPackage.TRAIT_METHOD__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.TRAIT_METHOD__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.TRAIT_METHOD__PARAMS:
         getParams().clear();
@@ -552,8 +552,8 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
         return extern != EXTERN_EDEFAULT;
       case RustPackage.TRAIT_METHOD__VIS:
         return vis != VIS_EDEFAULT;
-      case RustPackage.TRAIT_METHOD__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.TRAIT_METHOD__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.TRAIT_METHOD__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.TRAIT_METHOD__ARGS:
@@ -583,8 +583,8 @@ public class TraitMethodImpl extends MinimalEObjectImpl.Container implements Tra
     result.append(extern);
     result.append(", vis: ");
     result.append(vis);
-    result.append(", ident: ");
-    result.append(ident);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

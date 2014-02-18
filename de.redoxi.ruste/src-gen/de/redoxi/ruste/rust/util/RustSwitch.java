@@ -79,6 +79,43 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.VIEW_ITEM:
+      {
+        ViewItem viewItem = (ViewItem)theEObject;
+        T result = caseViewItem(viewItem);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXTERN_MOD_DECL:
+      {
+        ExternModDecl externModDecl = (ExternModDecl)theEObject;
+        T result = caseExternModDecl(externModDecl);
+        if (result == null) result = caseViewItem(externModDecl);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.LINK_ATTR:
+      {
+        LinkAttr linkAttr = (LinkAttr)theEObject;
+        T result = caseLinkAttr(linkAttr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.USE_DECL:
+      {
+        UseDecl useDecl = (UseDecl)theEObject;
+        T result = caseUseDecl(useDecl);
+        if (result == null) result = caseViewItem(useDecl);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.PATH_GLOB:
+      {
+        PathGlob pathGlob = (PathGlob)theEObject;
+        T result = casePathGlob(pathGlob);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.ITEM_ATTR:
       {
         ItemAttr itemAttr = (ItemAttr)theEObject;
@@ -116,18 +153,10 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.ITEM:
-      {
-        Item item = (Item)theEObject;
-        T result = caseItem(item);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case RustPackage.MOD_ITEM:
       {
         ModItem modItem = (ModItem)theEObject;
         T result = caseModItem(modItem);
-        if (result == null) result = caseItem(modItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -135,7 +164,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         FnItem fnItem = (FnItem)theEObject;
         T result = caseFnItem(fnItem);
-        if (result == null) result = caseItem(fnItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -143,7 +171,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         TypeItem typeItem = (TypeItem)theEObject;
         T result = caseTypeItem(typeItem);
-        if (result == null) result = caseItem(typeItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -151,7 +178,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         StructItem structItem = (StructItem)theEObject;
         T result = caseStructItem(structItem);
-        if (result == null) result = caseItem(structItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -159,7 +185,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         EnumItem enumItem = (EnumItem)theEObject;
         T result = caseEnumItem(enumItem);
-        if (result == null) result = caseItem(enumItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -174,7 +199,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         TraitItem traitItem = (TraitItem)theEObject;
         T result = caseTraitItem(traitItem);
-        if (result == null) result = caseItem(traitItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -189,7 +213,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         ImplItem implItem = (ImplItem)theEObject;
         T result = caseImplItem(implItem);
-        if (result == null) result = caseItem(implItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,7 +227,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExternBlock externBlock = (ExternBlock)theEObject;
         T result = caseExternBlock(externBlock);
-        if (result == null) result = caseItem(externBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -219,7 +241,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         StaticItem staticItem = (StaticItem)theEObject;
         T result = caseStaticItem(staticItem);
-        if (result == null) result = caseItem(staticItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1115,6 +1136,14 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.TEXTUAL_TYPE:
+      {
+        TextualType textualType = (TextualType)theEObject;
+        T result = caseTextualType(textualType);
+        if (result == null) result = caseType(textualType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.NAMED_TYPE:
       {
         NamedType namedType = (NamedType)theEObject;
@@ -1600,6 +1629,42 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.CHAR_TYPE:
+      {
+        CharType charType = (CharType)theEObject;
+        T result = caseCharType(charType);
+        if (result == null) result = caseTextualType(charType);
+        if (result == null) result = caseType(charType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.BOXED_STR_TYPE:
+      {
+        BoxedStrType boxedStrType = (BoxedStrType)theEObject;
+        T result = caseBoxedStrType(boxedStrType);
+        if (result == null) result = caseTextualType(boxedStrType);
+        if (result == null) result = caseType(boxedStrType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.OWNED_STR_TYPE:
+      {
+        OwnedStrType ownedStrType = (OwnedStrType)theEObject;
+        T result = caseOwnedStrType(ownedStrType);
+        if (result == null) result = caseTextualType(ownedStrType);
+        if (result == null) result = caseType(ownedStrType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.BORROWED_STR_TYPE:
+      {
+        BorrowedStrType borrowedStrType = (BorrowedStrType)theEObject;
+        T result = caseBorrowedStrType(borrowedStrType);
+        if (result == null) result = caseTextualType(borrowedStrType);
+        if (result == null) result = caseType(borrowedStrType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -1616,6 +1681,86 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCrate(Crate object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>View Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>View Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseViewItem(ViewItem object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Extern Mod Decl</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extern Mod Decl</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExternModDecl(ExternModDecl object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Link Attr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Link Attr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLinkAttr(LinkAttr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Use Decl</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Use Decl</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUseDecl(UseDecl object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Path Glob</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Path Glob</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePathGlob(PathGlob object)
   {
     return null;
   }
@@ -1696,22 +1841,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseItemAndAttrs(ItemAndAttrs object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Item</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseItem(Item object)
   {
     return null;
   }
@@ -2965,6 +3094,22 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Textual Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Textual Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTextualType(TextualType object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Named Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -3648,6 +3793,70 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseUnitType(UnitType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Char Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Char Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCharType(CharType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Boxed Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Boxed Str Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBoxedStrType(BoxedStrType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Owned Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Owned Str Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOwnedStrType(OwnedStrType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Borrowed Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Borrowed Str Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBorrowedStrType(BorrowedStrType object)
   {
     return null;
   }

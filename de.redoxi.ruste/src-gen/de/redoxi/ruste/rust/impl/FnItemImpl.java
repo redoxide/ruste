@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.FnItemImpl#getReturnType <em>Return Type</em>}</li>
@@ -41,27 +42,27 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class FnItemImpl extends ItemImpl implements FnItem
+public class FnItemImpl extends MinimalEObjectImpl.Container implements FnItem
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
@@ -129,9 +130,9 @@ public class FnItemImpl extends ItemImpl implements FnItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -139,12 +140,12 @@ public class FnItemImpl extends ItemImpl implements FnItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.FN_ITEM__NAME, oldName, name));
   }
 
   /**
@@ -303,8 +304,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
-        return getIdent();
+      case RustPackage.FN_ITEM__NAME:
+        return getName();
       case RustPackage.FN_ITEM__PARAMS:
         return getParams();
       case RustPackage.FN_ITEM__ARGS:
@@ -328,8 +329,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.FN_ITEM__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.FN_ITEM__PARAMS:
         getParams().clear();
@@ -359,8 +360,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.FN_ITEM__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.FN_ITEM__PARAMS:
         getParams().clear();
@@ -388,8 +389,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
   {
     switch (featureID)
     {
-      case RustPackage.FN_ITEM__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.FN_ITEM__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.FN_ITEM__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.FN_ITEM__ARGS:
@@ -413,8 +414,8 @@ public class FnItemImpl extends ItemImpl implements FnItem
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

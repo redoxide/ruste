@@ -8,8 +8,11 @@ import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.BoolType;
 import de.redoxi.ruste.rust.Borrow;
 import de.redoxi.ruste.rust.BorrowedPointer;
+import de.redoxi.ruste.rust.BorrowedStrType;
 import de.redoxi.ruste.rust.BoxedPointer;
+import de.redoxi.ruste.rust.BoxedStrType;
 import de.redoxi.ruste.rust.CharLit;
+import de.redoxi.ruste.rust.CharType;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.Dereference;
 import de.redoxi.ruste.rust.Division;
@@ -55,6 +58,7 @@ import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExprVec;
 import de.redoxi.ruste.rust.ExprWhile;
 import de.redoxi.ruste.rust.ExternBlock;
+import de.redoxi.ruste.rust.ExternModDecl;
 import de.redoxi.ruste.rust.FieldPat;
 import de.redoxi.ruste.rust.FloatType;
 import de.redoxi.ruste.rust.FnItem;
@@ -65,6 +69,7 @@ import de.redoxi.ruste.rust.ImplMethod;
 import de.redoxi.ruste.rust.IntType;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
+import de.redoxi.ruste.rust.LinkAttr;
 import de.redoxi.ruste.rust.LiteralAttr;
 import de.redoxi.ruste.rust.LogicalNegation;
 import de.redoxi.ruste.rust.MachineType;
@@ -79,6 +84,7 @@ import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.NumericNegation;
 import de.redoxi.ruste.rust.OwnedBox;
 import de.redoxi.ruste.rust.OwnedPointer;
+import de.redoxi.ruste.rust.OwnedStrType;
 import de.redoxi.ruste.rust.PatBorrowed;
 import de.redoxi.ruste.rust.PatBoxed;
 import de.redoxi.ruste.rust.PatEnum;
@@ -90,6 +96,7 @@ import de.redoxi.ruste.rust.PatTuple;
 import de.redoxi.ruste.rust.PatTupleEnum;
 import de.redoxi.ruste.rust.PatVector;
 import de.redoxi.ruste.rust.PatWildcard;
+import de.redoxi.ruste.rust.PathGlob;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.SlotDeclStmt;
 import de.redoxi.ruste.rust.StaticItem;
@@ -104,6 +111,7 @@ import de.redoxi.ruste.rust.TypeItem;
 import de.redoxi.ruste.rust.TypePath;
 import de.redoxi.ruste.rust.UnitType;
 import de.redoxi.ruste.rust.UnitVariant;
+import de.redoxi.ruste.rust.UseDecl;
 import de.redoxi.ruste.services.RustGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -172,6 +180,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.BORROWED_STR_TYPE:
+				if(context == grammarAccess.getTextualTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_TextualType(context, (BorrowedStrType) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.BOXED_POINTER:
 				if(context == grammarAccess.getBoxedPointerRule() ||
 				   context == grammarAccess.getTypeRule()) {
@@ -179,10 +194,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.BOXED_STR_TYPE:
+				if(context == grammarAccess.getTextualTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_TextualType(context, (BoxedStrType) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.CHAR_LIT:
 				if(context == grammarAccess.getCharLitRule() ||
 				   context == grammarAccess.getLiteralRule()) {
 					sequence_CharLit(context, (CharLit) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.CHAR_TYPE:
+				if(context == grammarAccess.getTextualTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_TextualType(context, (CharType) semanticObject); 
 					return; 
 				}
 				else break;
@@ -241,8 +270,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.ENUM_ITEM:
-				if(context == grammarAccess.getEnumItemRule() ||
-				   context == grammarAccess.getItemRule()) {
+				if(context == grammarAccess.getEnumItemRule()) {
 					sequence_EnumItem(context, (EnumItem) semanticObject); 
 					return; 
 				}
@@ -847,9 +875,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXTERN_BLOCK:
-				if(context == grammarAccess.getExternBlockRule() ||
-				   context == grammarAccess.getItemRule()) {
+				if(context == grammarAccess.getExternBlockRule()) {
 					sequence_ExternBlock(context, (ExternBlock) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXTERN_MOD_DECL:
+				if(context == grammarAccess.getExternModDeclRule() ||
+				   context == grammarAccess.getViewItemRule()) {
+					sequence_ExternModDecl(context, (ExternModDecl) semanticObject); 
 					return; 
 				}
 				else break;
@@ -867,8 +901,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.FN_ITEM:
-				if(context == grammarAccess.getFnItemRule() ||
-				   context == grammarAccess.getItemRule()) {
+				if(context == grammarAccess.getFnItemRule()) {
 					sequence_FnItem(context, (FnItem) semanticObject); 
 					return; 
 				}
@@ -886,8 +919,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.IMPL_ITEM:
-				if(context == grammarAccess.getImplItemRule() ||
-				   context == grammarAccess.getItemRule()) {
+				if(context == grammarAccess.getImplItemRule()) {
 					sequence_ImplItem(context, (ImplItem) semanticObject); 
 					return; 
 				}
@@ -914,6 +946,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.ITEM_ATTR:
 				if(context == grammarAccess.getItemAttrRule()) {
 					sequence_ItemAttr(context, (ItemAttr) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.LINK_ATTR:
+				if(context == grammarAccess.getLinkAttrRule()) {
+					sequence_LinkAttr(context, (LinkAttr) semanticObject); 
 					return; 
 				}
 				else break;
@@ -964,8 +1002,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.MOD_ITEM:
-				if(context == grammarAccess.getItemRule() ||
-				   context == grammarAccess.getModItemRule()) {
+				if(context == grammarAccess.getModItemRule()) {
 					sequence_ModItem(context, (ModItem) semanticObject); 
 					return; 
 				}
@@ -1075,6 +1112,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.OWNED_STR_TYPE:
+				if(context == grammarAccess.getTextualTypeRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_TextualType(context, (OwnedStrType) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.PAT_BORROWED:
 				if(context == grammarAccess.getPatRule() ||
 				   context == grammarAccess.getPatBorrowedRule()) {
@@ -1152,6 +1196,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case RustPackage.PATH_GLOB:
+				if(context == grammarAccess.getPathGlobRule()) {
+					sequence_PathGlob(context, (PathGlob) semanticObject); 
+					return; 
+				}
+				else break;
 			case RustPackage.SLOT_DECL_STMT:
 				if(context == grammarAccess.getSlotDeclStmtRule() ||
 				   context == grammarAccess.getStmtRule()) {
@@ -1160,8 +1210,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.STATIC_ITEM:
-				if(context == grammarAccess.getItemRule() ||
-				   context == grammarAccess.getStaticItemRule()) {
+				if(context == grammarAccess.getStaticItemRule()) {
 					sequence_StaticItem(context, (StaticItem) semanticObject); 
 					return; 
 				}
@@ -1180,8 +1229,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.STRUCT_ITEM:
-				if(context == grammarAccess.getItemRule() ||
-				   context == grammarAccess.getStructItemRule()) {
+				if(context == grammarAccess.getStructItemRule()) {
 					sequence_StructItem(context, (StructItem) semanticObject); 
 					return; 
 				}
@@ -1194,8 +1242,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.TRAIT_ITEM:
-				if(context == grammarAccess.getItemRule() ||
-				   context == grammarAccess.getTraitItemRule()) {
+				if(context == grammarAccess.getTraitItemRule()) {
 					sequence_TraitItem(context, (TraitItem) semanticObject); 
 					return; 
 				}
@@ -1214,8 +1261,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.TYPE_ITEM:
-				if(context == grammarAccess.getItemRule() ||
-				   context == grammarAccess.getTypeItemRule()) {
+				if(context == grammarAccess.getTypeItemRule()) {
 					sequence_TypeItem(context, (TypeItem) semanticObject); 
 					return; 
 				}
@@ -1237,6 +1283,13 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getUnitVariantRule() ||
 				   context == grammarAccess.getVariantRule()) {
 					sequence_UnitVariant(context, (UnitVariant) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.USE_DECL:
+				if(context == grammarAccess.getUseDeclRule() ||
+				   context == grammarAccess.getViewItemRule()) {
+					sequence_UseDecl(context, (UseDecl) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1341,7 +1394,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT attrs+=Attr attrs+=Attr*)
+	 *     (name=IDENT attrs+=Attr attrs+=Attr*)
 	 */
 	protected void sequence_AttrWithList(EObject context, AttrWithList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1603,7 +1656,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     items+=ItemAndAttrs*
+	 *     (viewItems+=ViewItem* items+=ItemAndAttrs*)
 	 */
 	protected void sequence_Crate(EObject context, Crate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1701,7 +1754,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? variants+=EnumVariant variants+=EnumVariant*)
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? variants+=EnumVariant variants+=EnumVariant*)
 	 */
 	protected void sequence_EnumItem(EObject context, EnumItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1710,7 +1763,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=IDENT params+=IDENT*)? ((types+=Type types+=Type*) | (fields+=StructField fields+=StructField*))?)
+	 *     (name=IDENT (params+=IDENT params+=IDENT*)? ((types+=Type types+=Type*) | (fields+=StructField fields+=StructField*))?)
 	 */
 	protected void sequence_EnumVariant(EObject context, EnumVariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1986,7 +2039,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((method=ExprRValue1_ExprMethodCall_1_0_3_0 (args+=Expr args+=Expr)?) | method=ExprRValue1_ExprMethodCall_1_0_3_0)
+	 *     (method=ExprRValue1_ExprMethodCall_1_0_3_0 (args+=Expr args+=Expr)?)
 	 */
 	protected void sequence_ExprRValue1(EObject context, ExprMethodCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2075,7 +2128,16 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT pattern=Pat?)
+	 *     (name=IDENT (attrs+=LinkAttr attrs+=LinkAttr*)? externalIdent=StringLit?)
+	 */
+	protected void sequence_ExternModDecl(EObject context, ExternModDecl semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT pattern=Pat?)
 	 */
 	protected void sequence_FieldPat(EObject context, FieldPat semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2084,7 +2146,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? (args+=Arg args+=Arg*)? returnType=Type? body=Block)
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? (args+=Arg args+=Arg*)? returnType=Type? body=Block)
 	 */
 	protected void sequence_FnItem(EObject context, FnItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2093,7 +2155,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (args+=Arg args+=Arg*)? returnType=Type?)
+	 *     (name=IDENT (args+=Arg args+=Arg*)? returnType=Type?)
 	 */
 	protected void sequence_ForeignFn(EObject context, ForeignFn semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2102,7 +2164,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (bounds+=IDENT bounds+=IDENT)?)
+	 *     (name=IDENT (bounds+=IDENT bounds+=IDENT*)?)
 	 */
 	protected void sequence_GenericParamDecl(EObject context, GenericParamDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2122,7 +2184,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         (unsafe?='unsafe' | extern?='extern')? 
-	 *         ident=IDENT 
+	 *         name=IDENT 
 	 *         (params+=GenericParamDecl params+=GenericParamDecl*)? 
 	 *         (args+=Arg args+=Arg*)? 
 	 *         returnType=Type? 
@@ -2136,7 +2198,20 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (attrs+=ItemAttr* item=Item)
+	 *     (
+	 *         attrs+=ItemAttr* 
+	 *         (
+	 *             item=ModItem | 
+	 *             item=FnItem | 
+	 *             item=TypeItem | 
+	 *             item=StructItem | 
+	 *             item=EnumItem | 
+	 *             item=TraitItem | 
+	 *             item=ImplItem | 
+	 *             item=ExternBlock | 
+	 *             item=StaticItem
+	 *         )
+	 *     )
 	 */
 	protected void sequence_ItemAndAttrs(EObject context, ItemAndAttrs semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2156,16 +2231,35 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (ident=IDENT value=Literal)
 	 */
+	protected void sequence_LinkAttr(EObject context, LinkAttr semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LINK_ATTR__IDENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LINK_ATTR__IDENT));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LINK_ATTR__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LINK_ATTR__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getLinkAttrAccess().getIdentIDENTTerminalRuleCall_0_0(), semanticObject.getIdent());
+		feeder.accept(grammarAccess.getLinkAttrAccess().getValueLiteralParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT value=Literal)
+	 */
 	protected void sequence_LiteralAttr(EObject context, LiteralAttr semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.ATTR__IDENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.ATTR__IDENT));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.ATTR__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.ATTR__NAME));
 			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LITERAL_ATTR__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LITERAL_ATTR__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getLiteralAttrAccess().getIdentIDENTTerminalRuleCall_0_0(), semanticObject.getIdent());
+		feeder.accept(grammarAccess.getLiteralAttrAccess().getNameIDENTTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getLiteralAttrAccess().getValueLiteralParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -2223,7 +2317,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (externalBody?=';' | items+=ItemAndAttrs*))
+	 *     (name=IDENT (externalBody?=';' | (viewItems+=ViewItem* items+=ItemAndAttrs*)))
 	 */
 	protected void sequence_ModItem(EObject context, ModItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2371,19 +2465,19 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mutable?=MUT_KEYWORD ident=IDENT)
+	 *     (mutable?=MUT_KEYWORD name=IDENT)
 	 */
 	protected void sequence_PatIdent(EObject context, PatIdent semanticObject) {
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_IDENT__MUTABLE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_IDENT__MUTABLE));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_IDENT__IDENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_IDENT__IDENT));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_IDENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_IDENT__NAME));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPatIdentAccess().getMutableMUT_KEYWORDTerminalRuleCall_0_0(), semanticObject.isMutable());
-		feeder.accept(grammarAccess.getPatIdentAccess().getIdentIDENTTerminalRuleCall_1_0(), semanticObject.getIdent());
+		feeder.accept(grammarAccess.getPatIdentAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
@@ -2443,6 +2537,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {PatWildcard}
 	 */
 	protected void sequence_PatWildcard(EObject context, PatWildcard semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((head+=IDENT tail=PathGlob?) | head+='*' | (head+=IDENT head+=IDENT*))
+	 */
+	protected void sequence_PathGlob(EObject context, PathGlob semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2541,7 +2644,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mutable?=MUT_KEYWORD ident=IDENT type=Type? expr=Expr)
+	 *     (mutable?=MUT_KEYWORD name=IDENT type=Type? expr=Expr)
 	 */
 	protected void sequence_StaticItem(EObject context, StaticItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2566,7 +2669,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (vis=Visibility? ident=IDENT type=Type)
+	 *     (vis=Visibility? name=IDENT type=Type)
 	 */
 	protected void sequence_StructField(EObject context, StructField semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2575,7 +2678,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
 	 */
 	protected void sequence_StructItem(EObject context, StructItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2584,7 +2687,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? fields+=StructField fields+=StructField*)
 	 */
 	protected void sequence_StructVariant(EObject context, StructVariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2593,7 +2696,43 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? methods+=TraitMethod*)
+	 *     {BorrowedStrType}
+	 */
+	protected void sequence_TextualType(EObject context, BorrowedStrType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {BoxedStrType}
+	 */
+	protected void sequence_TextualType(EObject context, BoxedStrType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {CharType}
+	 */
+	protected void sequence_TextualType(EObject context, CharType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {OwnedStrType}
+	 */
+	protected void sequence_TextualType(EObject context, OwnedStrType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? methods+=TraitMethod*)
 	 */
 	protected void sequence_TraitItem(EObject context, TraitItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2605,7 +2744,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         (unsafe?='unsafe' | extern?='extern')? 
 	 *         vis=Visibility? 
-	 *         ident=IDENT 
+	 *         name=IDENT 
 	 *         (params+=GenericParamDecl params+=GenericParamDecl*)? 
 	 *         (args+=Arg args+=Arg*)? 
 	 *         returnType=Type? 
@@ -2619,7 +2758,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT types+=Type types+=Type*)
+	 *     (name=IDENT types+=Type types+=Type*)
 	 */
 	protected void sequence_TupleVariant(EObject context, TupleVariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2628,7 +2767,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (ident=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? type=Type)
+	 *     (name=IDENT (params+=GenericParamDecl params+=GenericParamDecl*)? type=Type)
 	 */
 	protected void sequence_TypeItem(EObject context, TypeItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2637,7 +2776,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (segments+=IDENT segments+=IDENT* (lifetimes+=LIFETIME | genericTypes+=Type) (lifetimes+=LIFETIME | genericTypes+=Type)+)
+	 *     (segments+=IDENT segments+=IDENT* ((lifetimes+=LIFETIME | genericTypes+=Type) (lifetimes+=LIFETIME | genericTypes+=Type)+)?)
 	 */
 	protected void sequence_TypePath(EObject context, TypePath semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2646,16 +2785,25 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ident=IDENT
+	 *     name=IDENT
 	 */
 	protected void sequence_UnitVariant(EObject context, UnitVariant semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.VARIANT__IDENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.VARIANT__IDENT));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.VARIANT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.VARIANT__NAME));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getUnitVariantAccess().getIdentIDENTTerminalRuleCall_0(), semanticObject.getIdent());
+		feeder.accept(grammarAccess.getUnitVariantAccess().getNameIDENTTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (vis=Visibility? name=IDENT (externPath=TypePath | path=PathGlob))
+	 */
+	protected void sequence_UseDecl(EObject context, UseDecl semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

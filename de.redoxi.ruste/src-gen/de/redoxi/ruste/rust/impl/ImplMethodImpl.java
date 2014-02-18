@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#isUnsafe <em>Unsafe</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#isExtern <em>Extern</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getParams <em>Params</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ImplMethodImpl#getReturnType <em>Return Type</em>}</li>
@@ -87,24 +87,24 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
   protected boolean extern = EXTERN_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
@@ -218,9 +218,9 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -228,12 +228,12 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.IMPL_METHOD__NAME, oldName, name));
   }
 
   /**
@@ -396,8 +396,8 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
         return isUnsafe();
       case RustPackage.IMPL_METHOD__EXTERN:
         return isExtern();
-      case RustPackage.IMPL_METHOD__IDENT:
-        return getIdent();
+      case RustPackage.IMPL_METHOD__NAME:
+        return getName();
       case RustPackage.IMPL_METHOD__PARAMS:
         return getParams();
       case RustPackage.IMPL_METHOD__ARGS:
@@ -427,8 +427,8 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
       case RustPackage.IMPL_METHOD__EXTERN:
         setExtern((Boolean)newValue);
         return;
-      case RustPackage.IMPL_METHOD__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.IMPL_METHOD__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.IMPL_METHOD__PARAMS:
         getParams().clear();
@@ -464,8 +464,8 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
       case RustPackage.IMPL_METHOD__EXTERN:
         setExtern(EXTERN_EDEFAULT);
         return;
-      case RustPackage.IMPL_METHOD__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.IMPL_METHOD__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.IMPL_METHOD__PARAMS:
         getParams().clear();
@@ -497,8 +497,8 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
         return unsafe != UNSAFE_EDEFAULT;
       case RustPackage.IMPL_METHOD__EXTERN:
         return extern != EXTERN_EDEFAULT;
-      case RustPackage.IMPL_METHOD__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.IMPL_METHOD__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.IMPL_METHOD__PARAMS:
         return params != null && !params.isEmpty();
       case RustPackage.IMPL_METHOD__ARGS:
@@ -526,8 +526,8 @@ public class ImplMethodImpl extends MinimalEObjectImpl.Container implements Impl
     result.append(unsafe);
     result.append(", extern: ");
     result.append(extern);
-    result.append(", ident: ");
-    result.append(ident);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

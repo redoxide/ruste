@@ -32,6 +32,51 @@ public interface RustFactory extends EFactory
   Crate createCrate();
 
   /**
+   * Returns a new object of class '<em>View Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>View Item</em>'.
+   * @generated
+   */
+  ViewItem createViewItem();
+
+  /**
+   * Returns a new object of class '<em>Extern Mod Decl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extern Mod Decl</em>'.
+   * @generated
+   */
+  ExternModDecl createExternModDecl();
+
+  /**
+   * Returns a new object of class '<em>Link Attr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Link Attr</em>'.
+   * @generated
+   */
+  LinkAttr createLinkAttr();
+
+  /**
+   * Returns a new object of class '<em>Use Decl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Use Decl</em>'.
+   * @generated
+   */
+  UseDecl createUseDecl();
+
+  /**
+   * Returns a new object of class '<em>Path Glob</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Path Glob</em>'.
+   * @generated
+   */
+  PathGlob createPathGlob();
+
+  /**
    * Returns a new object of class '<em>Item Attr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -75,15 +120,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ItemAndAttrs createItemAndAttrs();
-
-  /**
-   * Returns a new object of class '<em>Item</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Item</em>'.
-   * @generated
-   */
-  Item createItem();
 
   /**
    * Returns a new object of class '<em>Mod Item</em>'.
@@ -788,6 +824,15 @@ public interface RustFactory extends EFactory
   PrimitiveType createPrimitiveType();
 
   /**
+   * Returns a new object of class '<em>Textual Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Textual Type</em>'.
+   * @generated
+   */
+  TextualType createTextualType();
+
+  /**
    * Returns a new object of class '<em>Named Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1173,6 +1218,42 @@ public interface RustFactory extends EFactory
    * @generated
    */
   UnitType createUnitType();
+
+  /**
+   * Returns a new object of class '<em>Char Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Char Type</em>'.
+   * @generated
+   */
+  CharType createCharType();
+
+  /**
+   * Returns a new object of class '<em>Boxed Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Boxed Str Type</em>'.
+   * @generated
+   */
+  BoxedStrType createBoxedStrType();
+
+  /**
+   * Returns a new object of class '<em>Owned Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Owned Str Type</em>'.
+   * @generated
+   */
+  OwnedStrType createOwnedStrType();
+
+  /**
+   * Returns a new object of class '<em>Borrowed Str Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Borrowed Str Type</em>'.
+   * @generated
+   */
+  BorrowedStrType createBorrowedStrType();
 
   /**
    * Returns the package supported by this factory.

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.GenericParamDeclImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
  * </p>
@@ -35,24 +35,24 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implements GenericParamDecl
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getBounds() <em>Bounds</em>}' attribute list.
@@ -90,9 +90,9 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -100,12 +100,12 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.GENERIC_PARAM_DECL__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.GENERIC_PARAM_DECL__NAME, oldName, name));
   }
 
   /**
@@ -132,8 +132,8 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case RustPackage.GENERIC_PARAM_DECL__IDENT:
-        return getIdent();
+      case RustPackage.GENERIC_PARAM_DECL__NAME:
+        return getName();
       case RustPackage.GENERIC_PARAM_DECL__BOUNDS:
         return getBounds();
     }
@@ -151,8 +151,8 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case RustPackage.GENERIC_PARAM_DECL__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.GENERIC_PARAM_DECL__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.GENERIC_PARAM_DECL__BOUNDS:
         getBounds().clear();
@@ -172,8 +172,8 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case RustPackage.GENERIC_PARAM_DECL__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.GENERIC_PARAM_DECL__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.GENERIC_PARAM_DECL__BOUNDS:
         getBounds().clear();
@@ -192,8 +192,8 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case RustPackage.GENERIC_PARAM_DECL__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.GENERIC_PARAM_DECL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.GENERIC_PARAM_DECL__BOUNDS:
         return bounds != null && !bounds.isEmpty();
     }
@@ -211,8 +211,8 @@ public class GenericParamDeclImpl extends MinimalEObjectImpl.Container implement
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", bounds: ");
     result.append(bounds);
     result.append(')');

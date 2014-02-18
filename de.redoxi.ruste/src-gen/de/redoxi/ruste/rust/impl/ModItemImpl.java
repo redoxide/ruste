@@ -5,6 +5,7 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ModItem;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.ViewItem;
 
 import java.util.Collection;
 
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -28,35 +30,36 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#isExternalBody <em>External Body</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getViewItems <em>View Items</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ModItemImpl#getItems <em>Items</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModItemImpl extends ItemImpl implements ModItem
+public class ModItemImpl extends MinimalEObjectImpl.Container implements ModItem
 {
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #isExternalBody() <em>External Body</em>}' attribute.
@@ -77,6 +80,16 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * @ordered
    */
   protected boolean externalBody = EXTERNAL_BODY_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getViewItems() <em>View Items</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getViewItems()
+   * @generated
+   * @ordered
+   */
+  protected EList<ViewItem> viewItems;
 
   /**
    * The cached value of the '{@link #getItems() <em>Items</em>}' containment reference list.
@@ -114,9 +127,9 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -124,12 +137,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.MOD_ITEM__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.MOD_ITEM__NAME, oldName, name));
   }
 
   /**
@@ -160,6 +173,20 @@ public class ModItemImpl extends ItemImpl implements ModItem
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ViewItem> getViewItems()
+  {
+    if (viewItems == null)
+    {
+      viewItems = new EObjectContainmentEList<ViewItem>(ViewItem.class, this, RustPackage.MOD_ITEM__VIEW_ITEMS);
+    }
+    return viewItems;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<ItemAndAttrs> getItems()
   {
     if (items == null)
@@ -179,6 +206,8 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
+      case RustPackage.MOD_ITEM__VIEW_ITEMS:
+        return ((InternalEList<?>)getViewItems()).basicRemove(otherEnd, msgs);
       case RustPackage.MOD_ITEM__ITEMS:
         return ((InternalEList<?>)getItems()).basicRemove(otherEnd, msgs);
     }
@@ -195,10 +224,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        return getIdent();
+      case RustPackage.MOD_ITEM__NAME:
+        return getName();
       case RustPackage.MOD_ITEM__EXTERNAL_BODY:
         return isExternalBody();
+      case RustPackage.MOD_ITEM__VIEW_ITEMS:
+        return getViewItems();
       case RustPackage.MOD_ITEM__ITEMS:
         return getItems();
     }
@@ -216,11 +247,15 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.MOD_ITEM__NAME:
+        setName((String)newValue);
         return;
       case RustPackage.MOD_ITEM__EXTERNAL_BODY:
         setExternalBody((Boolean)newValue);
+        return;
+      case RustPackage.MOD_ITEM__VIEW_ITEMS:
+        getViewItems().clear();
+        getViewItems().addAll((Collection<? extends ViewItem>)newValue);
         return;
       case RustPackage.MOD_ITEM__ITEMS:
         getItems().clear();
@@ -240,11 +275,14 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.MOD_ITEM__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case RustPackage.MOD_ITEM__EXTERNAL_BODY:
         setExternalBody(EXTERNAL_BODY_EDEFAULT);
+        return;
+      case RustPackage.MOD_ITEM__VIEW_ITEMS:
+        getViewItems().clear();
         return;
       case RustPackage.MOD_ITEM__ITEMS:
         getItems().clear();
@@ -263,10 +301,12 @@ public class ModItemImpl extends ItemImpl implements ModItem
   {
     switch (featureID)
     {
-      case RustPackage.MOD_ITEM__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.MOD_ITEM__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RustPackage.MOD_ITEM__EXTERNAL_BODY:
         return externalBody != EXTERNAL_BODY_EDEFAULT;
+      case RustPackage.MOD_ITEM__VIEW_ITEMS:
+        return viewItems != null && !viewItems.isEmpty();
       case RustPackage.MOD_ITEM__ITEMS:
         return items != null && !items.isEmpty();
     }
@@ -284,8 +324,8 @@ public class ModItemImpl extends ItemImpl implements ModItem
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ident: ");
-    result.append(ident);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", externalBody: ");
     result.append(externalBody);
     result.append(')');

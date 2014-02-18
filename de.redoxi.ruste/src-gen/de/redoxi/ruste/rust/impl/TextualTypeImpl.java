@@ -2,30 +2,28 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.TextualType;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Item</b></em>'.
+ * An implementation of the model object '<em><b>Textual Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ItemImpl extends MinimalEObjectImpl.Container implements Item
+public class TextualTypeImpl extends TypeImpl implements TextualType
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ItemImpl()
+  protected TextualTypeImpl()
   {
     super();
   }
@@ -38,7 +36,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.ITEM;
+    return RustPackage.Literals.TEXTUAL_TYPE;
   }
 
-} //ItemImpl
+} //TextualTypeImpl

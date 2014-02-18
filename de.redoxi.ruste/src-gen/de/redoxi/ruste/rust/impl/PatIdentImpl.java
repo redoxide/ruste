@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.impl.PatIdentImpl#isMutable <em>Mutable</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.PatIdentImpl#getIdent <em>Ident</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.PatIdentImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,24 +48,24 @@ public class PatIdentImpl extends PatImpl implements PatIdent
   protected boolean mutable = MUTABLE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String IDENT_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdent() <em>Ident</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String ident = IDENT_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,9 +116,9 @@ public class PatIdentImpl extends PatImpl implements PatIdent
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIdent()
+  public String getName()
   {
-    return ident;
+    return name;
   }
 
   /**
@@ -126,12 +126,12 @@ public class PatIdentImpl extends PatImpl implements PatIdent
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdent(String newIdent)
+  public void setName(String newName)
   {
-    String oldIdent = ident;
-    ident = newIdent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.PAT_IDENT__IDENT, oldIdent, ident));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.PAT_IDENT__NAME, oldName, name));
   }
 
   /**
@@ -146,8 +146,8 @@ public class PatIdentImpl extends PatImpl implements PatIdent
     {
       case RustPackage.PAT_IDENT__MUTABLE:
         return isMutable();
-      case RustPackage.PAT_IDENT__IDENT:
-        return getIdent();
+      case RustPackage.PAT_IDENT__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -165,8 +165,8 @@ public class PatIdentImpl extends PatImpl implements PatIdent
       case RustPackage.PAT_IDENT__MUTABLE:
         setMutable((Boolean)newValue);
         return;
-      case RustPackage.PAT_IDENT__IDENT:
-        setIdent((String)newValue);
+      case RustPackage.PAT_IDENT__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -185,8 +185,8 @@ public class PatIdentImpl extends PatImpl implements PatIdent
       case RustPackage.PAT_IDENT__MUTABLE:
         setMutable(MUTABLE_EDEFAULT);
         return;
-      case RustPackage.PAT_IDENT__IDENT:
-        setIdent(IDENT_EDEFAULT);
+      case RustPackage.PAT_IDENT__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -204,8 +204,8 @@ public class PatIdentImpl extends PatImpl implements PatIdent
     {
       case RustPackage.PAT_IDENT__MUTABLE:
         return mutable != MUTABLE_EDEFAULT;
-      case RustPackage.PAT_IDENT__IDENT:
-        return IDENT_EDEFAULT == null ? ident != null : !IDENT_EDEFAULT.equals(ident);
+      case RustPackage.PAT_IDENT__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }
@@ -223,8 +223,8 @@ public class PatIdentImpl extends PatImpl implements PatIdent
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mutable: ");
     result.append(mutable);
-    result.append(", ident: ");
-    result.append(ident);
+    result.append(", name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

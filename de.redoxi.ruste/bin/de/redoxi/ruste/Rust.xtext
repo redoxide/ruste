@@ -1,12 +1,35 @@
-grammar de.redoxi.ruste.Rust 
+grammar de.redoxi.ruste.Rust hidden(WS, SL_COMMENT, ML_COMMENT)
 
-generate rust "http://www.redoxi.de/ruste/grammar/Rust"
+generate rust "http://www.redoxi.de/ruste/grammar/Rust" 
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // Top level crate and its implicit module
 Crate:
-	items+=ItemAndAttrs*
+	viewItems+=ViewItem* items+=ItemAndAttrs*
+;
+
+ViewItem:
+	ExternModDecl | UseDecl
+;
+
+ExternModDecl:
+	"extern" "mod" name=IDENT ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'
+;
+
+LinkAttr:
+	ident=IDENT '=' value=Literal
+;
+
+// TODO Match rules for internal vs external paths
+UseDecl:
+	vis=Visibility? "use" name=IDENT ('=' externPath=TypePath | "::" path=PathGlob) ';'
+;
+
+PathGlob:
+	head += IDENT ("::" tail=PathGlob)? |
+	head += "*" |
+	'{' head+=IDENT (',' head+=IDENT)* '}'
 ;
 
 // Attribute for an item
@@ -22,57 +45,52 @@ Attr:
 
 // Attribute with a list of other attributes
 AttrWithList:
-	ident=IDENT '(' attrs+=Attr (',' attrs+=Attr)* ')'
+	name=IDENT  '('  attrs+=Attr  (','  attrs+=Attr )* ')'
 ;
 
 // An attribute with a literal value
 LiteralAttr:
-	ident=IDENT '=' value=Literal
+	name=IDENT '=' value=Literal
 ;
 
 // An item and any associated attributes
 ItemAndAttrs:
-	attrs+=ItemAttr* item=Item
-;
-
-// Items within a module or crate
-Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
+	attrs+=ItemAttr* item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem)
 ;
 
 // A module declaration item
 ModItem:
-	"mod" ident=IDENT (externalBody?=';' | '{' items+=ItemAndAttrs* '}')
+	"mod" name=IDENT (externalBody?=';' | '{' viewItems+=ViewItem* items+=ItemAndAttrs* '}')
 ;
 
 // Function item
 FnItem:
-	"fn" ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '(' (args += Arg (',' args += Arg)*)? ')' ("->" returnType = Type)? body = Block
+	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('('  (args += Arg  (','  args += Arg)*)? ')' | '()') ( "->"  returnType = Type)?  body = Block
 ;
 
 // TODO Reference Type?
 TypeItem:
-	"type" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '=' type=Type ';'
+	"type" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '=' type=Type ';'
 ;
 
 StructItem:
-	"struct" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	"struct" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
 ;
 
 EnumItem:
-	"enum" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" variants+=EnumVariant ("," variants+=EnumVariant)* "}"
+	"enum" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" variants+=EnumVariant ("," variants+=EnumVariant)* "}"
 ;
 
 EnumVariant:
-	ident=IDENT ('<' params+=IDENT (',' params+=IDENT)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
+	name=IDENT ('<' params+=IDENT (',' params+=IDENT)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
 ;
 
 TraitItem:
-	"trait" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" (methods+=TraitMethod)* "}"
+	"trait" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" (methods+=TraitMethod)* "}"
 ;
 
 TraitMethod:
-	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '(' (args+=Arg (',' args+=Arg)*)? ')' ("->" returnType=Type)? (body=Block | ';')
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? (body=Block | ';')
 ;
 
 // TODO Crossreference struct and trait
@@ -81,7 +99,7 @@ ImplItem:
 ;
 
 ImplMethod:
-	(unsafe?="unsafe" | extern?="extern")? "fn" ident=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '(' (args+=Arg (',' args+=Arg)*)? ')' ("->" returnType=Type)? body=Block
+	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? body=Block
 ;
 
 ExternBlock:
@@ -89,11 +107,11 @@ ExternBlock:
 ;
 
 ForeignFn:
-	"fn" ident=IDENT "(" (args+=Arg ("," args+=Arg)*)? ")" ("->" returnType=Type)? ";"
+	"fn" name=IDENT ("(" (args+=Arg ("," args+=Arg)*)? ")" | '()') ("->" returnType=Type)? ";"
 ;
 
 StaticItem:
-	"static" mutable?=MUT_KEYWORD ident=IDENT (":" type=Type)? "=" expr=Expr ";"
+	"static" mutable?=MUT_KEYWORD name=IDENT (":" type=Type)? "=" expr=Expr ";"
 ;
 
 Expr:
@@ -108,8 +126,8 @@ ExprRValue:
 	ExprBinary
 ;
 
-ExprRValue1:
-	ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT ({ExprMethodCall.method=current} '(' (args+=Expr (',' args+=Expr))? ')')? | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
+ExprRValue1 hidden(ML_COMMENT):
+	ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT ({ExprMethodCall.method=current} ('(' (args+=Expr (',' args+=Expr))? ')'))? | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
 ;
 
 // Expressions that avoid left recursion
@@ -165,27 +183,27 @@ ExprUnary:
 	Borrow
 ;
 
-NumericNegation:
+NumericNegation hidden(SL_COMMENT, ML_COMMENT):
 	"-" expr=ExprLeaf
 ;
 
-Dereference:
+Dereference hidden(SL_COMMENT, ML_COMMENT):
 	"*" expr=ExprLeaf
 ;
 
-LogicalNegation:
+LogicalNegation hidden(SL_COMMENT, ML_COMMENT):
 	"!" expr=ExprLeaf
 ;
 
-ManagedBox:
+ManagedBox hidden(SL_COMMENT, ML_COMMENT):
 	"@" expr=ExprLeaf
 ;
 
-OwnedBox:
+OwnedBox hidden(SL_COMMENT, ML_COMMENT):
 	"~" expr=ExprLeaf
 ;
 
-Borrow:
+Borrow hidden(SL_COMMENT, ML_COMMENT):
 	"&" expr=ExprLeaf
 ;
 
@@ -315,7 +333,7 @@ ExprStmt:
 
 // TODO Crossreference Trait?
 GenericParamDecl:
-	ident=IDENT (':' bounds+=IDENT ('+' bounds+=IDENT))?
+	name=IDENT (':' bounds+=IDENT ( '+' bounds+=IDENT)* )?
 ;
 
 // TODO Crossreference Type
@@ -342,18 +360,18 @@ PatWildcard:
 ;
 
 PatIdent:
-	mutable?=MUT_KEYWORD ident=IDENT
+	mutable?=MUT_KEYWORD name=IDENT
 ;
 
-PatBoxed:
+PatBoxed hidden(SL_COMMENT, ML_COMMENT):
 	"@" pattern=Pat
 ;
 
-PatOwned:
+PatOwned hidden(SL_COMMENT, ML_COMMENT):
 	"~" pattern=Pat
 ;
 
-PatBorrowed:
+PatBorrowed hidden(SL_COMMENT, ML_COMMENT):
 	"&" pattern=Pat
 ;
 
@@ -374,11 +392,11 @@ PatEnum:
 ;
 
 FieldPat:
-	ident=IDENT (':' pattern=Pat)?
+	name=IDENT (':' pattern=Pat)?
 ;
 
 TypePath:
-	segments+=IDENT ('::' segments+=IDENT)* '<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))+ '>'
+	segments+=IDENT ('::' segments+=IDENT)* (=>'<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))+ '>')?
 ;
 
 ExprPath:
@@ -391,6 +409,7 @@ terminal LIFETIME:
 
 Type:
 	PrimitiveType |
+	TextualType |
 	NamedType |
 	BoxedPointer |
 	OwnedPointer |
@@ -402,27 +421,34 @@ PrimitiveType:
 	{FloatType} FLOAT_TYPE |
 	{BoolType} BOOLEAN_TYPE |
 	{MachineType} MACHINE_TYPE |
-	{UnitType} UNIT_TYPE
+	{UnitType} '()'
+;
+
+TextualType:
+	{CharType} 'char' |
+	{BoxedStrType} '@str' |
+	{OwnedStrType} '~str' |
+	{BorrowedStrType} '&str'
 ;
 
 NamedType:
 	path=TypePath
 ;
 
-BoxedPointer:
+BoxedPointer hidden(SL_COMMENT, ML_COMMENT):
 	"@" type=Type
 ;
 
-OwnedPointer:
+OwnedPointer hidden(SL_COMMENT, ML_COMMENT):
 	"~" type=Type
 ;
 
-BorrowedPointer:
+BorrowedPointer hidden(SL_COMMENT, ML_COMMENT):
 	"&" type=Type
 ;
 
 StructField:
-	vis=Visibility? ident=IDENT ':' type=Type
+	vis=Visibility? name=IDENT ':' type=Type
 ;
 
 Variant:
@@ -430,15 +456,15 @@ Variant:
 ;
 
 StructVariant:
-	ident=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
 ;
 
 TupleVariant:
-	ident=IDENT '(' types+=Type (',' types+=Type)* ')'
+	name=IDENT '(' types+=Type (',' types+=Type)* ')'
 ;
 
 UnitVariant:
-	ident=IDENT
+	name=IDENT
 ;
 
 enum Visibility:
@@ -465,7 +491,6 @@ terminal BOOLEAN_TYPE: "bool";
 terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
 terminal fragment MACHINE_INT_TYPE: "int";
 terminal fragment MACHINE_UINT_TYPE: "uint";
-terminal UNIT_TYPE: "()";
 
 terminal MUT_KEYWORD: 'mut';
 // TODO Add all keywords
@@ -521,8 +546,13 @@ terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 
 // terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
 
-terminal fragment XID_START: 'a'..'z'; // TODO Expand
-terminal fragment XID_CONTINUE: 'a'..'z' | '_'; // TODO Expand
+terminal fragment XID_START: 'a'..'z' | 'A'..'Z' | '_'; // TODO Expand
+terminal fragment XID_CONTINUE: XID_START | '0'..'9'; // TODO Expand
 terminal IDENT: XID_START XID_CONTINUE*;
 
+terminal WS:
+	(' ' | '\t' | '\n' | '\r')+
+;
 
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
