@@ -122,6 +122,15 @@ public interface RustFactory extends EFactory
   ItemAndAttrs createItemAndAttrs();
 
   /**
+   * Returns a new object of class '<em>Item</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Item</em>'.
+   * @generated
+   */
+  Item createItem();
+
+  /**
    * Returns a new object of class '<em>Mod Item</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

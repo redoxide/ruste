@@ -497,25 +497,14 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAttrsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cAttrsItemAttrParserRuleCall_0_0 = (RuleCall)cAttrsAssignment_0.eContents().get(0);
 		private final Assignment cItemAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cItemAlternatives_1_0 = (Alternatives)cItemAssignment_1.eContents().get(0);
-		private final RuleCall cItemModItemParserRuleCall_1_0_0 = (RuleCall)cItemAlternatives_1_0.eContents().get(0);
-		private final RuleCall cItemFnItemParserRuleCall_1_0_1 = (RuleCall)cItemAlternatives_1_0.eContents().get(1);
-		private final RuleCall cItemTypeItemParserRuleCall_1_0_2 = (RuleCall)cItemAlternatives_1_0.eContents().get(2);
-		private final RuleCall cItemStructItemParserRuleCall_1_0_3 = (RuleCall)cItemAlternatives_1_0.eContents().get(3);
-		private final RuleCall cItemEnumItemParserRuleCall_1_0_4 = (RuleCall)cItemAlternatives_1_0.eContents().get(4);
-		private final RuleCall cItemTraitItemParserRuleCall_1_0_5 = (RuleCall)cItemAlternatives_1_0.eContents().get(5);
-		private final RuleCall cItemImplItemParserRuleCall_1_0_6 = (RuleCall)cItemAlternatives_1_0.eContents().get(6);
-		private final RuleCall cItemExternBlockParserRuleCall_1_0_7 = (RuleCall)cItemAlternatives_1_0.eContents().get(7);
-		private final RuleCall cItemStaticItemParserRuleCall_1_0_8 = (RuleCall)cItemAlternatives_1_0.eContents().get(8);
+		private final RuleCall cItemItemParserRuleCall_1_0 = (RuleCall)cItemAssignment_1.eContents().get(0);
 		
 		//// An item and any associated attributes
 		//ItemAndAttrs:
-		//	attrs+=ItemAttr* item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock |
-		//	StaticItem);
+		//	attrs+=ItemAttr* item=Item;
 		public ParserRule getRule() { return rule; }
 
-		//attrs+=ItemAttr* item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock |
-		//StaticItem)
+		//attrs+=ItemAttr* item=Item
 		public Group getGroup() { return cGroup; }
 
 		//attrs+=ItemAttr*
@@ -524,38 +513,59 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//ItemAttr
 		public RuleCall getAttrsItemAttrParserRuleCall_0_0() { return cAttrsItemAttrParserRuleCall_0_0; }
 
-		//item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem)
+		//item=Item
 		public Assignment getItemAssignment_1() { return cItemAssignment_1; }
 
+		//Item
+		public RuleCall getItemItemParserRuleCall_1_0() { return cItemItemParserRuleCall_1_0; }
+	}
+
+	public class ItemElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Item");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cModItemParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFnItemParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cTypeItemParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cStructItemParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cEnumItemParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cTraitItemParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cImplItemParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cExternBlockParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cStaticItemParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		
+		//Item:
+		//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem;
+		public ParserRule getRule() { return rule; }
+
 		//ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
-		public Alternatives getItemAlternatives_1_0() { return cItemAlternatives_1_0; }
+		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ModItem
-		public RuleCall getItemModItemParserRuleCall_1_0_0() { return cItemModItemParserRuleCall_1_0_0; }
+		public RuleCall getModItemParserRuleCall_0() { return cModItemParserRuleCall_0; }
 
 		//FnItem
-		public RuleCall getItemFnItemParserRuleCall_1_0_1() { return cItemFnItemParserRuleCall_1_0_1; }
+		public RuleCall getFnItemParserRuleCall_1() { return cFnItemParserRuleCall_1; }
 
 		//TypeItem
-		public RuleCall getItemTypeItemParserRuleCall_1_0_2() { return cItemTypeItemParserRuleCall_1_0_2; }
+		public RuleCall getTypeItemParserRuleCall_2() { return cTypeItemParserRuleCall_2; }
 
 		//StructItem
-		public RuleCall getItemStructItemParserRuleCall_1_0_3() { return cItemStructItemParserRuleCall_1_0_3; }
+		public RuleCall getStructItemParserRuleCall_3() { return cStructItemParserRuleCall_3; }
 
 		//EnumItem
-		public RuleCall getItemEnumItemParserRuleCall_1_0_4() { return cItemEnumItemParserRuleCall_1_0_4; }
+		public RuleCall getEnumItemParserRuleCall_4() { return cEnumItemParserRuleCall_4; }
 
 		//TraitItem
-		public RuleCall getItemTraitItemParserRuleCall_1_0_5() { return cItemTraitItemParserRuleCall_1_0_5; }
+		public RuleCall getTraitItemParserRuleCall_5() { return cTraitItemParserRuleCall_5; }
 
 		//ImplItem
-		public RuleCall getItemImplItemParserRuleCall_1_0_6() { return cItemImplItemParserRuleCall_1_0_6; }
+		public RuleCall getImplItemParserRuleCall_6() { return cImplItemParserRuleCall_6; }
 
 		//ExternBlock
-		public RuleCall getItemExternBlockParserRuleCall_1_0_7() { return cItemExternBlockParserRuleCall_1_0_7; }
+		public RuleCall getExternBlockParserRuleCall_7() { return cExternBlockParserRuleCall_7; }
 
 		//StaticItem
-		public RuleCall getItemStaticItemParserRuleCall_1_0_8() { return cItemStaticItemParserRuleCall_1_0_8; }
+		public RuleCall getStaticItemParserRuleCall_8() { return cStaticItemParserRuleCall_8; }
 	}
 
 	public class ModItemElements extends AbstractParserRuleElementFinder {
@@ -654,17 +664,19 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cReturnTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cReturnTypeTypeParserRuleCall_4_1_0 = (RuleCall)cReturnTypeAssignment_4_1.eContents().get(0);
-		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyBlockParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cBodyAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cBodyBlockParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//// Function item
 		//FnItem:
 		//	"fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)?
-		//	")" | "()") ("->" returnType=Type)? body=Block;
+		//	")" | "()") ("->" returnType=Type)? "{" body=Block "}";
 		public ParserRule getRule() { return rule; }
 
 		//"fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)?
-		//")" | "()") ("->" returnType=Type)? body=Block
+		//")" | "()") ("->" returnType=Type)? "{" body=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//"fn"
@@ -751,11 +763,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Type
 		public RuleCall getReturnTypeTypeParserRuleCall_4_1_0() { return cReturnTypeTypeParserRuleCall_4_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+
 		//body=Block
-		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
+		public Assignment getBodyAssignment_6() { return cBodyAssignment_6; }
 
 		//Block
-		public RuleCall getBodyBlockParserRuleCall_5_0() { return cBodyBlockParserRuleCall_5_0; }
+		public RuleCall getBodyBlockParserRuleCall_6_0() { return cBodyBlockParserRuleCall_6_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class TypeItemElements extends AbstractParserRuleElementFinder {
@@ -1273,19 +1291,22 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReturnTypeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
 		private final RuleCall cReturnTypeTypeParserRuleCall_6_1_0 = (RuleCall)cReturnTypeAssignment_6_1.eContents().get(0);
 		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
-		private final Assignment cBodyAssignment_7_0 = (Assignment)cAlternatives_7.eContents().get(0);
-		private final RuleCall cBodyBlockParserRuleCall_7_0_0 = (RuleCall)cBodyAssignment_7_0.eContents().get(0);
+		private final Group cGroup_7_0 = (Group)cAlternatives_7.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_7_0_0 = (Keyword)cGroup_7_0.eContents().get(0);
+		private final Assignment cBodyAssignment_7_0_1 = (Assignment)cGroup_7_0.eContents().get(1);
+		private final RuleCall cBodyBlockParserRuleCall_7_0_1_0 = (RuleCall)cBodyAssignment_7_0_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7_0_2 = (Keyword)cGroup_7_0.eContents().get(2);
 		private final Keyword cSemicolonKeyword_7_1 = (Keyword)cAlternatives_7.eContents().get(1);
 		
 		//TraitMethod:
 		//	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ("<" params+=GenericParamDecl (","
-		//	params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? (body=Block |
-		//	";");
+		//	params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? ("{"
+		//	body=Block "}" | ";");
 		public ParserRule getRule() { return rule; }
 
 		//(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ("<" params+=GenericParamDecl (","
-		//params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? (body=Block |
-		//";")
+		//params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? ("{" body=Block
+		//"}" | ";")
 		public Group getGroup() { return cGroup; }
 
 		//(unsafe?="unsafe" | extern?="extern")?
@@ -1393,14 +1414,23 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Type
 		public RuleCall getReturnTypeTypeParserRuleCall_6_1_0() { return cReturnTypeTypeParserRuleCall_6_1_0; }
 
-		//body=Block | ";"
+		//"{" body=Block "}" | ";"
 		public Alternatives getAlternatives_7() { return cAlternatives_7; }
 
+		//"{" body=Block "}"
+		public Group getGroup_7_0() { return cGroup_7_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_7_0_0() { return cLeftCurlyBracketKeyword_7_0_0; }
+
 		//body=Block
-		public Assignment getBodyAssignment_7_0() { return cBodyAssignment_7_0; }
+		public Assignment getBodyAssignment_7_0_1() { return cBodyAssignment_7_0_1; }
 
 		//Block
-		public RuleCall getBodyBlockParserRuleCall_7_0_0() { return cBodyBlockParserRuleCall_7_0_0; }
+		public RuleCall getBodyBlockParserRuleCall_7_0_1_0() { return cBodyBlockParserRuleCall_7_0_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7_0_2() { return cRightCurlyBracketKeyword_7_0_2; }
 
 		//";"
 		public Keyword getSemicolonKeyword_7_1() { return cSemicolonKeyword_7_1; }
@@ -1499,16 +1529,18 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cReturnTypeAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cReturnTypeTypeParserRuleCall_5_1_0 = (RuleCall)cReturnTypeAssignment_5_1.eContents().get(0);
-		private final Assignment cBodyAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cBodyBlockParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cBodyAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cBodyBlockParserRuleCall_7_0 = (RuleCall)cBodyAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//ImplMethod:
 		//	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)*
-		//	">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? body=Block;
+		//	">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? "{" body=Block "}";
 		public ParserRule getRule() { return rule; }
 
 		//(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)*
-		//">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? body=Block
+		//">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? "{" body=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//(unsafe?="unsafe" | extern?="extern")?
@@ -1610,11 +1642,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Type
 		public RuleCall getReturnTypeTypeParserRuleCall_5_1_0() { return cReturnTypeTypeParserRuleCall_5_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
+
 		//body=Block
-		public Assignment getBodyAssignment_6() { return cBodyAssignment_6; }
+		public Assignment getBodyAssignment_7() { return cBodyAssignment_7; }
 
 		//Block
-		public RuleCall getBodyBlockParserRuleCall_6_0() { return cBodyBlockParserRuleCall_6_0; }
+		public RuleCall getBodyBlockParserRuleCall_7_0() { return cBodyBlockParserRuleCall_7_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class ExternBlockElements extends AbstractParserRuleElementFinder {
@@ -1771,16 +1809,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//StaticItem:
-		//	"static" mutable?=MUT_KEYWORD name=IDENT (":" type=Type)? "=" expr=Expr ";";
+		//	"static" mutable?=MUT_KEYWORD? name=IDENT (":" type=Type)? "=" expr=Expr ";";
 		public ParserRule getRule() { return rule; }
 
-		//"static" mutable?=MUT_KEYWORD name=IDENT (":" type=Type)? "=" expr=Expr ";"
+		//"static" mutable?=MUT_KEYWORD? name=IDENT (":" type=Type)? "=" expr=Expr ";"
 		public Group getGroup() { return cGroup; }
 
 		//"static"
 		public Keyword getStaticKeyword_0() { return cStaticKeyword_0; }
 
-		//mutable?=MUT_KEYWORD
+		//mutable?=MUT_KEYWORD?
 		public Assignment getMutableAssignment_1() { return cMutableAssignment_1; }
 
 		//MUT_KEYWORD
@@ -3321,14 +3359,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cWhileKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
-		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cBlockAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBlockBlockParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ExprWhile:
-		//	"while" expr=Expr block=Block;
+		//	"while" expr=Expr "{" block=Block "}";
 		public ParserRule getRule() { return rule; }
 
-		//"while" expr=Expr block=Block
+		//"while" expr=Expr "{" block=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//"while"
@@ -3340,11 +3380,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
 		//block=Block
-		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
+		public Assignment getBlockAssignment_3() { return cBlockAssignment_3; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
+		public RuleCall getBlockBlockParserRuleCall_3_0() { return cBlockBlockParserRuleCall_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class ExprLoopElements extends AbstractParserRuleElementFinder {
@@ -3355,14 +3401,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLifetimeLIFETIMETerminalRuleCall_0_0_0 = (RuleCall)cLifetimeAssignment_0_0.eContents().get(0);
 		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Keyword cLoopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cBlockAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBlockBlockParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ExprLoop:
-		//	(lifetime=LIFETIME ":")? "loop" block=Block;
+		//	(lifetime=LIFETIME ":")? "loop" "{" block=Block "}";
 		public ParserRule getRule() { return rule; }
 
-		//(lifetime=LIFETIME ":")? "loop" block=Block
+		//(lifetime=LIFETIME ":")? "loop" "{" block=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//(lifetime=LIFETIME ":")?
@@ -3380,11 +3428,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//"loop"
 		public Keyword getLoopKeyword_1() { return cLoopKeyword_1; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
 		//block=Block
-		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
+		public Assignment getBlockAssignment_3() { return cBlockAssignment_3; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
+		public RuleCall getBlockBlockParserRuleCall_3_0() { return cBlockBlockParserRuleCall_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class ExprBreakElements extends AbstractParserRuleElementFinder {
@@ -3458,14 +3512,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArgsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
 		private final RuleCall cArgsIDENTTerminalRuleCall_3_1_1_0 = (RuleCall)cArgsAssignment_3_1_1.eContents().get(0);
 		private final Keyword cVerticalLineKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cBlockAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBlockBlockParserRuleCall_5_0 = (RuleCall)cBlockAssignment_5.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cBlockAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cBlockBlockParserRuleCall_6_0 = (RuleCall)cBlockAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//ExprDo:
-		//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block;
+		//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" "{" block=Block "}";
 		public ParserRule getRule() { return rule; }
 
-		//"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block
+		//"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" "{" block=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//"do"
@@ -3504,11 +3560,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//"|"
 		public Keyword getVerticalLineKeyword_4() { return cVerticalLineKeyword_4; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+
 		//block=Block
-		public Assignment getBlockAssignment_5() { return cBlockAssignment_5; }
+		public Assignment getBlockAssignment_6() { return cBlockAssignment_6; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_5_0() { return cBlockBlockParserRuleCall_5_0; }
+		public RuleCall getBlockBlockParserRuleCall_6_0() { return cBlockBlockParserRuleCall_6_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class ExprForElements extends AbstractParserRuleElementFinder {
@@ -3520,14 +3582,16 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cExprAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cExprExprParserRuleCall_3_0 = (RuleCall)cExprAssignment_3.eContents().get(0);
-		private final Assignment cBlockAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cBlockBlockParserRuleCall_4_0 = (RuleCall)cBlockAssignment_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBlockAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBlockBlockParserRuleCall_5_0 = (RuleCall)cBlockAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//ExprFor:
-		//	"for" pat=Pat "in" expr=Expr block=Block;
+		//	"for" pat=Pat "in" expr=Expr "{" block=Block "}";
 		public ParserRule getRule() { return rule; }
 
-		//"for" pat=Pat "in" expr=Expr block=Block
+		//"for" pat=Pat "in" expr=Expr "{" block=Block "}"
 		public Group getGroup() { return cGroup; }
 
 		//"for"
@@ -3548,11 +3612,17 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getExprExprParserRuleCall_3_0() { return cExprExprParserRuleCall_3_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+
 		//block=Block
-		public Assignment getBlockAssignment_4() { return cBlockAssignment_4; }
+		public Assignment getBlockAssignment_5() { return cBlockAssignment_5; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_4_0() { return cBlockBlockParserRuleCall_4_0; }
+		public RuleCall getBlockBlockParserRuleCall_5_0() { return cBlockBlockParserRuleCall_5_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
 	public class ExprIfElements extends AbstractParserRuleElementFinder {
@@ -3561,16 +3631,18 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprExprParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
-		private final Assignment cBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBlockBlockParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
-		private final Assignment cElseAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElseElseTailParserRuleCall_3_0 = (RuleCall)cElseAssignment_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cBlockAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBlockBlockParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cElseAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cElseElseTailParserRuleCall_5_0 = (RuleCall)cElseAssignment_5.eContents().get(0);
 		
 		//ExprIf:
-		//	"if" expr=Expr block=Block else=ElseTail?;
+		//	"if" expr=Expr "{" block=Block "}" else=ElseTail?;
 		public ParserRule getRule() { return rule; }
 
-		//"if" expr=Expr block=Block else=ElseTail?
+		//"if" expr=Expr "{" block=Block "}" else=ElseTail?
 		public Group getGroup() { return cGroup; }
 
 		//"if"
@@ -3582,17 +3654,23 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getExprExprParserRuleCall_1_0() { return cExprExprParserRuleCall_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
 		//block=Block
-		public Assignment getBlockAssignment_2() { return cBlockAssignment_2; }
+		public Assignment getBlockAssignment_3() { return cBlockAssignment_3; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_2_0() { return cBlockBlockParserRuleCall_2_0; }
+		public RuleCall getBlockBlockParserRuleCall_3_0() { return cBlockBlockParserRuleCall_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 
 		//else=ElseTail?
-		public Assignment getElseAssignment_3() { return cElseAssignment_3; }
+		public Assignment getElseAssignment_5() { return cElseAssignment_5; }
 
 		//ElseTail
-		public RuleCall getElseElseTailParserRuleCall_3_0() { return cElseElseTailParserRuleCall_3_0; }
+		public RuleCall getElseElseTailParserRuleCall_5_0() { return cElseElseTailParserRuleCall_5_0; }
 	}
 
 	public class ElseTailElements extends AbstractParserRuleElementFinder {
@@ -3601,30 +3679,42 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cElseKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final RuleCall cExprIfParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final Assignment cBlockAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final RuleCall cBlockBlockParserRuleCall_1_1_0 = (RuleCall)cBlockAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cBlockAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cBlockBlockParserRuleCall_1_1_1_0 = (RuleCall)cBlockAssignment_1_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//ElseTail:
-		//	"else" (ExprIf | block=Block);
+		//	"else" (ExprIf | "{" block=Block "}");
 		public ParserRule getRule() { return rule; }
 
-		//"else" (ExprIf | block=Block)
+		//"else" (ExprIf | "{" block=Block "}")
 		public Group getGroup() { return cGroup; }
 
 		//"else"
 		public Keyword getElseKeyword_0() { return cElseKeyword_0; }
 
-		//ExprIf | block=Block
+		//ExprIf | "{" block=Block "}"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//ExprIf
 		public RuleCall getExprIfParserRuleCall_1_0() { return cExprIfParserRuleCall_1_0; }
 
+		//"{" block=Block "}"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
+
 		//block=Block
-		public Assignment getBlockAssignment_1_1() { return cBlockAssignment_1_1; }
+		public Assignment getBlockAssignment_1_1_1() { return cBlockAssignment_1_1_1; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_1_1_0() { return cBlockBlockParserRuleCall_1_1_0; }
+		public RuleCall getBlockBlockParserRuleCall_1_1_1_0() { return cBlockBlockParserRuleCall_1_1_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class ExprMatchElements extends AbstractParserRuleElementFinder {
@@ -3687,33 +3777,44 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MatchArm");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cMatchPatAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cMatchPatMatchPatParserRuleCall_0_0 = (RuleCall)cMatchPatAssignment_0.eContents().get(0);
+		private final Alternatives cMatchPatAlternatives_0_0 = (Alternatives)cMatchPatAssignment_0.eContents().get(0);
+		private final RuleCall cMatchPatMatchPatParserRuleCall_0_0_0 = (RuleCall)cMatchPatAlternatives_0_0.eContents().get(0);
+		private final RuleCall cMatchPatPatEnumParserRuleCall_0_0_1 = (RuleCall)cMatchPatAlternatives_0_0.eContents().get(1);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cExprAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cExprExprParserRuleCall_2_0_0_0 = (RuleCall)cExprAssignment_2_0_0.eContents().get(0);
 		private final Keyword cCommaKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
-		private final Assignment cBlockAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cBlockBlockParserRuleCall_2_1_0 = (RuleCall)cBlockAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cBlockAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cBlockBlockParserRuleCall_2_1_1_0 = (RuleCall)cBlockAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		
 		//MatchArm:
-		//	matchPat=MatchPat "=>" (expr=Expr "," | block=Block);
+		//	matchPat=(MatchPat | PatEnum) "=>" (expr=Expr "," | "{" block=Block "}");
 		public ParserRule getRule() { return rule; }
 
-		//matchPat=MatchPat "=>" (expr=Expr "," | block=Block)
+		//matchPat=(MatchPat | PatEnum) "=>" (expr=Expr "," | "{" block=Block "}")
 		public Group getGroup() { return cGroup; }
 
-		//matchPat=MatchPat
+		//matchPat=(MatchPat | PatEnum)
 		public Assignment getMatchPatAssignment_0() { return cMatchPatAssignment_0; }
 
+		//MatchPat | PatEnum
+		public Alternatives getMatchPatAlternatives_0_0() { return cMatchPatAlternatives_0_0; }
+
 		//MatchPat
-		public RuleCall getMatchPatMatchPatParserRuleCall_0_0() { return cMatchPatMatchPatParserRuleCall_0_0; }
+		public RuleCall getMatchPatMatchPatParserRuleCall_0_0_0() { return cMatchPatMatchPatParserRuleCall_0_0_0; }
+
+		//PatEnum
+		public RuleCall getMatchPatPatEnumParserRuleCall_0_0_1() { return cMatchPatPatEnumParserRuleCall_0_0_1; }
 
 		//"=>"
 		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 
-		//expr=Expr "," | block=Block
+		//expr=Expr "," | "{" block=Block "}"
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//expr=Expr ","
@@ -3728,11 +3829,20 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		//","
 		public Keyword getCommaKeyword_2_0_1() { return cCommaKeyword_2_0_1; }
 
+		//"{" block=Block "}"
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2_1_0() { return cLeftCurlyBracketKeyword_2_1_0; }
+
 		//block=Block
-		public Assignment getBlockAssignment_2_1() { return cBlockAssignment_2_1; }
+		public Assignment getBlockAssignment_2_1_1() { return cBlockAssignment_2_1_1; }
 
 		//Block
-		public RuleCall getBlockBlockParserRuleCall_2_1_0() { return cBlockBlockParserRuleCall_2_1_0; }
+		public RuleCall getBlockBlockParserRuleCall_2_1_1_0() { return cBlockBlockParserRuleCall_2_1_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_2_1_2() { return cRightCurlyBracketKeyword_2_1_2; }
 	}
 
 	public class MatchPatElements extends AbstractParserRuleElementFinder {
@@ -3820,77 +3930,73 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBlockAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cExprAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cExprExprParserRuleCall_2_0 = (RuleCall)cExprAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Action cBlockStmtsAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cStmtsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cStmtsStmtParserRuleCall_3_2_0 = (RuleCall)cStmtsAssignment_3_2.eContents().get(0);
-		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
-		private final Keyword cSemicolonKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
-		private final Assignment cStmtsAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
-		private final RuleCall cStmtsStmtParserRuleCall_3_3_1_0 = (RuleCall)cStmtsAssignment_3_3_1.eContents().get(0);
-		private final Assignment cExprAssignment_3_4 = (Assignment)cGroup_3.eContents().get(4);
-		private final RuleCall cExprExprParserRuleCall_3_4_0 = (RuleCall)cExprAssignment_3_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cExprAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cExprExprParserRuleCall_1_0_0 = (RuleCall)cExprAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Action cBlockStmtsAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cStmtsAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cStmtsStmtParserRuleCall_1_1_2_0 = (RuleCall)cStmtsAssignment_1_1_2.eContents().get(0);
+		private final Group cGroup_1_1_3 = (Group)cGroup_1_1.eContents().get(3);
+		private final Keyword cSemicolonKeyword_1_1_3_0 = (Keyword)cGroup_1_1_3.eContents().get(0);
+		private final Assignment cStmtsAssignment_1_1_3_1 = (Assignment)cGroup_1_1_3.eContents().get(1);
+		private final RuleCall cStmtsStmtParserRuleCall_1_1_3_1_0 = (RuleCall)cStmtsAssignment_1_1_3_1.eContents().get(0);
+		private final Assignment cExprAssignment_1_1_4 = (Assignment)cGroup_1_1.eContents().get(4);
+		private final RuleCall cExprExprParserRuleCall_1_1_4_0 = (RuleCall)cExprAssignment_1_1_4.eContents().get(0);
 		
 		//// Left-factored. Bit messy
 		//Block:
-		//	{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}";
+		//	{Block} (expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?)?;
 		public ParserRule getRule() { return rule; }
 
-		//{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}"
+		//{Block} (expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?)?
 		public Group getGroup() { return cGroup; }
 
 		//{Block}
 		public Action getBlockAction_0() { return cBlockAction_0; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		//(expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?)?
+		public Group getGroup_1() { return cGroup_1; }
 
 		//expr=Expr
-		public Assignment getExprAssignment_2() { return cExprAssignment_2; }
+		public Assignment getExprAssignment_1_0() { return cExprAssignment_1_0; }
 
 		//Expr
-		public RuleCall getExprExprParserRuleCall_2_0() { return cExprExprParserRuleCall_2_0; }
+		public RuleCall getExprExprParserRuleCall_1_0_0() { return cExprExprParserRuleCall_1_0_0; }
 
 		//({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//{Block.stmts+=current}
-		public Action getBlockStmtsAction_3_0() { return cBlockStmtsAction_3_0; }
+		public Action getBlockStmtsAction_1_1_0() { return cBlockStmtsAction_1_1_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_3_1() { return cSemicolonKeyword_3_1; }
+		public Keyword getSemicolonKeyword_1_1_1() { return cSemicolonKeyword_1_1_1; }
 
 		//stmts+=Stmt
-		public Assignment getStmtsAssignment_3_2() { return cStmtsAssignment_3_2; }
+		public Assignment getStmtsAssignment_1_1_2() { return cStmtsAssignment_1_1_2; }
 
 		//Stmt
-		public RuleCall getStmtsStmtParserRuleCall_3_2_0() { return cStmtsStmtParserRuleCall_3_2_0; }
+		public RuleCall getStmtsStmtParserRuleCall_1_1_2_0() { return cStmtsStmtParserRuleCall_1_1_2_0; }
 
 		//(";" stmts+=Stmt)*
-		public Group getGroup_3_3() { return cGroup_3_3; }
+		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
 
 		//";"
-		public Keyword getSemicolonKeyword_3_3_0() { return cSemicolonKeyword_3_3_0; }
+		public Keyword getSemicolonKeyword_1_1_3_0() { return cSemicolonKeyword_1_1_3_0; }
 
 		//stmts+=Stmt
-		public Assignment getStmtsAssignment_3_3_1() { return cStmtsAssignment_3_3_1; }
+		public Assignment getStmtsAssignment_1_1_3_1() { return cStmtsAssignment_1_1_3_1; }
 
 		//Stmt
-		public RuleCall getStmtsStmtParserRuleCall_3_3_1_0() { return cStmtsStmtParserRuleCall_3_3_1_0; }
+		public RuleCall getStmtsStmtParserRuleCall_1_1_3_1_0() { return cStmtsStmtParserRuleCall_1_1_3_1_0; }
 
 		//expr=Expr?
-		public Assignment getExprAssignment_3_4() { return cExprAssignment_3_4; }
+		public Assignment getExprAssignment_1_1_4() { return cExprAssignment_1_1_4; }
 
 		//Expr
-		public RuleCall getExprExprParserRuleCall_3_4_0() { return cExprExprParserRuleCall_3_4_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public RuleCall getExprExprParserRuleCall_1_1_4_0() { return cExprExprParserRuleCall_1_1_4_0; }
 	}
 
 	public class StmtElements extends AbstractParserRuleElementFinder {
@@ -4090,15 +4196,14 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPatTupleParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cPatVectorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cPatLiteralParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cPatEnumParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//// TODO Expand
 		//// See line 2869 of libsyntax/parse/parser.rs
 		//Pat:
-		//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatEnum;
+		//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatEnum
+		//PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PatWildcard
@@ -4124,9 +4229,6 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 		//PatLiteral
 		public RuleCall getPatLiteralParserRuleCall_7() { return cPatLiteralParserRuleCall_7; }
-
-		//PatEnum
-		public RuleCall getPatEnumParserRuleCall_8() { return cPatEnumParserRuleCall_8; }
 	}
 
 	public class PatWildcardElements extends AbstractParserRuleElementFinder {
@@ -4158,13 +4260,13 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDENTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//PatIdent:
-		//	mutable?=MUT_KEYWORD name=IDENT;
+		//	mutable?=MUT_KEYWORD? name=IDENT;
 		public ParserRule getRule() { return rule; }
 
-		//mutable?=MUT_KEYWORD name=IDENT
+		//mutable?=MUT_KEYWORD? name=IDENT
 		public Group getGroup() { return cGroup; }
 
-		//mutable?=MUT_KEYWORD
+		//mutable?=MUT_KEYWORD?
 		public Assignment getMutableAssignment_0() { return cMutableAssignment_0; }
 
 		//MUT_KEYWORD
@@ -4537,7 +4639,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cGenericTypesTypeParserRuleCall_2_2_1_1_0 = (RuleCall)cGenericTypesAssignment_2_2_1_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
-		//TypePath:
+		//TypePath hidden(ML_COMMENT):
 		//	segments+=IDENT ("::" segments+=IDENT)* ("<" (lifetimes+=LIFETIME | genericTypes+=Type) ("," (lifetimes+=LIFETIME |
 		//	genericTypes+=Type))+ ">")?;
 		public ParserRule getRule() { return rule; }
@@ -4635,7 +4737,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cGenericTypesTypeParserRuleCall_2_2_1_1_0 = (RuleCall)cGenericTypesAssignment_2_2_1_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
-		//ExprPath:
+		//ExprPath hidden(ML_COMMENT):
 		//	segments+=IDENT ("::" segments+=IDENT)* ("::<" (lifetimes+=LIFETIME | genericTypes+=Type) ("," (lifetimes+=LIFETIME |
 		//	genericTypes+=Type))* ">")?;
 		public ParserRule getRule() { return rule; }
@@ -5310,6 +5412,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	private AttrWithListElements pAttrWithList;
 	private LiteralAttrElements pLiteralAttr;
 	private ItemAndAttrsElements pItemAndAttrs;
+	private ItemElements pItem;
 	private ModItemElements pModItem;
 	private FnItemElements pFnItem;
 	private TypeItemElements pTypeItem;
@@ -5585,14 +5688,23 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// An item and any associated attributes
 	//ItemAndAttrs:
-	//	attrs+=ItemAttr* item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock |
-	//	StaticItem);
+	//	attrs+=ItemAttr* item=Item;
 	public ItemAndAttrsElements getItemAndAttrsAccess() {
 		return (pItemAndAttrs != null) ? pItemAndAttrs : (pItemAndAttrs = new ItemAndAttrsElements());
 	}
 	
 	public ParserRule getItemAndAttrsRule() {
 		return getItemAndAttrsAccess().getRule();
+	}
+
+	//Item:
+	//	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem;
+	public ItemElements getItemAccess() {
+		return (pItem != null) ? pItem : (pItem = new ItemElements());
+	}
+	
+	public ParserRule getItemRule() {
+		return getItemAccess().getRule();
 	}
 
 	//// A module declaration item
@@ -5609,7 +5721,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// Function item
 	//FnItem:
 	//	"fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)?
-	//	")" | "()") ("->" returnType=Type)? body=Block;
+	//	")" | "()") ("->" returnType=Type)? "{" body=Block "}";
 	public FnItemElements getFnItemAccess() {
 		return (pFnItem != null) ? pFnItem : (pFnItem = new FnItemElements());
 	}
@@ -5674,8 +5786,8 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//TraitMethod:
 	//	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ("<" params+=GenericParamDecl (","
-	//	params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? (body=Block |
-	//	";");
+	//	params+=GenericParamDecl)* ">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? ("{"
+	//	body=Block "}" | ";");
 	public TraitMethodElements getTraitMethodAccess() {
 		return (pTraitMethod != null) ? pTraitMethod : (pTraitMethod = new TraitMethodElements());
 	}
@@ -5697,7 +5809,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ImplMethod:
 	//	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ("<" params+=GenericParamDecl ("," params+=GenericParamDecl)*
-	//	">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? body=Block;
+	//	">")? ("(" (args+=Arg ("," args+=Arg)*)? ")" | "()") ("->" returnType=Type)? "{" body=Block "}";
 	public ImplMethodElements getImplMethodAccess() {
 		return (pImplMethod != null) ? pImplMethod : (pImplMethod = new ImplMethodElements());
 	}
@@ -5727,7 +5839,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StaticItem:
-	//	"static" mutable?=MUT_KEYWORD name=IDENT (":" type=Type)? "=" expr=Expr ";";
+	//	"static" mutable?=MUT_KEYWORD? name=IDENT (":" type=Type)? "=" expr=Expr ";";
 	public StaticItemElements getStaticItemAccess() {
 		return (pStaticItem != null) ? pStaticItem : (pStaticItem = new StaticItemElements());
 	}
@@ -6066,7 +6178,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprWhile:
-	//	"while" expr=Expr block=Block;
+	//	"while" expr=Expr "{" block=Block "}";
 	public ExprWhileElements getExprWhileAccess() {
 		return (pExprWhile != null) ? pExprWhile : (pExprWhile = new ExprWhileElements());
 	}
@@ -6076,7 +6188,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprLoop:
-	//	(lifetime=LIFETIME ":")? "loop" block=Block;
+	//	(lifetime=LIFETIME ":")? "loop" "{" block=Block "}";
 	public ExprLoopElements getExprLoopAccess() {
 		return (pExprLoop != null) ? pExprLoop : (pExprLoop = new ExprLoopElements());
 	}
@@ -6106,7 +6218,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprDo:
-	//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" block=Block;
+	//	"do" expr=Expr "|" (args+=IDENT ("," args+=IDENT)*)? "|" "{" block=Block "}";
 	public ExprDoElements getExprDoAccess() {
 		return (pExprDo != null) ? pExprDo : (pExprDo = new ExprDoElements());
 	}
@@ -6116,7 +6228,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprFor:
-	//	"for" pat=Pat "in" expr=Expr block=Block;
+	//	"for" pat=Pat "in" expr=Expr "{" block=Block "}";
 	public ExprForElements getExprForAccess() {
 		return (pExprFor != null) ? pExprFor : (pExprFor = new ExprForElements());
 	}
@@ -6126,7 +6238,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprIf:
-	//	"if" expr=Expr block=Block else=ElseTail?;
+	//	"if" expr=Expr "{" block=Block "}" else=ElseTail?;
 	public ExprIfElements getExprIfAccess() {
 		return (pExprIf != null) ? pExprIf : (pExprIf = new ExprIfElements());
 	}
@@ -6136,7 +6248,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ElseTail:
-	//	"else" (ExprIf | block=Block);
+	//	"else" (ExprIf | "{" block=Block "}");
 	public ElseTailElements getElseTailAccess() {
 		return (pElseTail != null) ? pElseTail : (pElseTail = new ElseTailElements());
 	}
@@ -6156,7 +6268,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MatchArm:
-	//	matchPat=MatchPat "=>" (expr=Expr "," | block=Block);
+	//	matchPat=(MatchPat | PatEnum) "=>" (expr=Expr "," | "{" block=Block "}");
 	public MatchArmElements getMatchArmAccess() {
 		return (pMatchArm != null) ? pMatchArm : (pMatchArm = new MatchArmElements());
 	}
@@ -6188,7 +6300,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// Left-factored. Bit messy
 	//Block:
-	//	{Block} "{" expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)? "}";
+	//	{Block} (expr=Expr ({Block.stmts+=current} ";" stmts+=Stmt (";" stmts+=Stmt)* expr=Expr?)?)?;
 	public BlockElements getBlockAccess() {
 		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());
 	}
@@ -6252,7 +6364,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	//// TODO Expand
 	//// See line 2869 of libsyntax/parse/parser.rs
 	//Pat:
-	//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral | PatEnum;
+	//	PatWildcard | PatIdent | PatBoxed | PatOwned | PatBorrowed | PatTuple | PatVector | PatLiteral;
 	public PatElements getPatAccess() {
 		return (pPat != null) ? pPat : (pPat = new PatElements());
 	}
@@ -6272,7 +6384,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PatIdent:
-	//	mutable?=MUT_KEYWORD name=IDENT;
+	//	mutable?=MUT_KEYWORD? name=IDENT;
 	public PatIdentElements getPatIdentAccess() {
 		return (pPatIdent != null) ? pPatIdent : (pPatIdent = new PatIdentElements());
 	}
@@ -6362,7 +6474,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getFieldPatAccess().getRule();
 	}
 
-	//TypePath:
+	//TypePath hidden(ML_COMMENT):
 	//	segments+=IDENT ("::" segments+=IDENT)* ("<" (lifetimes+=LIFETIME | genericTypes+=Type) ("," (lifetimes+=LIFETIME |
 	//	genericTypes+=Type))+ ">")?;
 	public TypePathElements getTypePathAccess() {
@@ -6373,7 +6485,7 @@ public class RustGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypePathAccess().getRule();
 	}
 
-	//ExprPath:
+	//ExprPath hidden(ML_COMMENT):
 	//	segments+=IDENT ("::" segments+=IDENT)* ("::<" (lifetimes+=LIFETIME | genericTypes+=Type) ("," (lifetimes+=LIFETIME |
 	//	genericTypes+=Type))* ">")?;
 	public ExprPathElements getExprPathAccess() {

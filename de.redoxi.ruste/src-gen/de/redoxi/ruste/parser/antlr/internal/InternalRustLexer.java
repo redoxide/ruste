@@ -1590,8 +1590,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_LIFETIME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8673:15: ( '\\'' RULE_IDENT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8673:17: '\\'' RULE_IDENT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8760:15: ( '\\'' RULE_IDENT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8760:17: '\\'' RULE_IDENT
             {
             match('\''); 
             mRULE_IDENT(); 
@@ -1611,8 +1611,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_INT_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8675:15: ( RULE_INT_SIZE )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8675:17: RULE_INT_SIZE
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8762:15: ( RULE_INT_SIZE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8762:17: RULE_INT_SIZE
             {
             mRULE_INT_SIZE(); 
 
@@ -1629,10 +1629,10 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_INT_SIZE"
     public final void mRULE_INT_SIZE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8677:24: ( ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8677:26: ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8764:24: ( ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8764:26: ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8677:26: ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8764:26: ( RULE_SIGNED_INT_TYPE | RULE_UNSIGNED_INT_TYPE )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1650,14 +1650,14 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8677:27: RULE_SIGNED_INT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8764:27: RULE_SIGNED_INT_TYPE
                     {
                     mRULE_SIGNED_INT_TYPE(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8677:48: RULE_UNSIGNED_INT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8764:48: RULE_UNSIGNED_INT_TYPE
                     {
                     mRULE_UNSIGNED_INT_TYPE(); 
 
@@ -1678,10 +1678,10 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_SIGNED_INT_TYPE"
     public final void mRULE_SIGNED_INT_TYPE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:31: ( ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:33: ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:31: ( ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:33: ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:33: ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:33: ( RULE_I8 | RULE_I16 | RULE_I32 | RULE_I64 )
             int alt2=4;
             int LA2_0 = input.LA(1);
 
@@ -1723,28 +1723,28 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:34: RULE_I8
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:34: RULE_I8
                     {
                     mRULE_I8(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:42: RULE_I16
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:42: RULE_I16
                     {
                     mRULE_I16(); 
 
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:51: RULE_I32
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:51: RULE_I32
                     {
                     mRULE_I32(); 
 
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8679:60: RULE_I64
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8766:60: RULE_I64
                     {
                     mRULE_I64(); 
 
@@ -1765,8 +1765,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_I8"
     public final void mRULE_I8() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8681:18: ( 'i8' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8681:20: 'i8'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8768:18: ( 'i8' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8768:20: 'i8'
             {
             match("i8"); 
 
@@ -1782,8 +1782,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_I16"
     public final void mRULE_I16() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8683:19: ( 'i16' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8683:21: 'i16'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8770:19: ( 'i16' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8770:21: 'i16'
             {
             match("i16"); 
 
@@ -1799,8 +1799,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_I32"
     public final void mRULE_I32() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8685:19: ( 'i32' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8685:21: 'i32'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8772:19: ( 'i32' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8772:21: 'i32'
             {
             match("i32"); 
 
@@ -1816,8 +1816,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_I64"
     public final void mRULE_I64() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8687:19: ( 'i64' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8687:21: 'i64'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8774:19: ( 'i64' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8774:21: 'i64'
             {
             match("i64"); 
 
@@ -1833,10 +1833,10 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_UNSIGNED_INT_TYPE"
     public final void mRULE_UNSIGNED_INT_TYPE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:33: ( ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:35: ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:33: ( ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:35: ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:35: ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:35: ( RULE_U8 | RULE_U16 | RULE_U32 | RULE_U64 )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -1878,28 +1878,28 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:36: RULE_U8
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:36: RULE_U8
                     {
                     mRULE_U8(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:44: RULE_U16
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:44: RULE_U16
                     {
                     mRULE_U16(); 
 
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:53: RULE_U32
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:53: RULE_U32
                     {
                     mRULE_U32(); 
 
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8689:62: RULE_U64
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8776:62: RULE_U64
                     {
                     mRULE_U64(); 
 
@@ -1920,8 +1920,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_U8"
     public final void mRULE_U8() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8691:18: ( 'u8' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8691:20: 'u8'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8778:18: ( 'u8' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8778:20: 'u8'
             {
             match("u8"); 
 
@@ -1937,8 +1937,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_U16"
     public final void mRULE_U16() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8693:19: ( 'u16' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8693:21: 'u16'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8780:19: ( 'u16' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8780:21: 'u16'
             {
             match("u16"); 
 
@@ -1954,8 +1954,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_U32"
     public final void mRULE_U32() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8695:19: ( 'u32' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8695:21: 'u32'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8782:19: ( 'u32' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8782:21: 'u32'
             {
             match("u32"); 
 
@@ -1971,8 +1971,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_U64"
     public final void mRULE_U64() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8697:19: ( 'u64' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8697:21: 'u64'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8784:19: ( 'u64' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8784:21: 'u64'
             {
             match("u64"); 
 
@@ -1990,8 +1990,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_FLOAT_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8699:17: ( RULE_FLOAT_SIZE )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8699:19: RULE_FLOAT_SIZE
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8786:17: ( RULE_FLOAT_SIZE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8786:19: RULE_FLOAT_SIZE
             {
             mRULE_FLOAT_SIZE(); 
 
@@ -2008,10 +2008,10 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_FLOAT_SIZE"
     public final void mRULE_FLOAT_SIZE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8701:26: ( ( RULE_F32 | RULE_F64 ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8701:28: ( RULE_F32 | RULE_F64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8788:26: ( ( RULE_F32 | RULE_F64 ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8788:28: ( RULE_F32 | RULE_F64 )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8701:28: ( RULE_F32 | RULE_F64 )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8788:28: ( RULE_F32 | RULE_F64 )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2039,14 +2039,14 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8701:29: RULE_F32
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8788:29: RULE_F32
                     {
                     mRULE_F32(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8701:38: RULE_F64
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8788:38: RULE_F64
                     {
                     mRULE_F64(); 
 
@@ -2067,8 +2067,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_F32"
     public final void mRULE_F32() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8703:19: ( 'f32' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8703:21: 'f32'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8790:19: ( 'f32' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8790:21: 'f32'
             {
             match("f32"); 
 
@@ -2084,8 +2084,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_F64"
     public final void mRULE_F64() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8705:19: ( 'f64' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8705:21: 'f64'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8792:19: ( 'f64' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8792:21: 'f64'
             {
             match("f64"); 
 
@@ -2103,8 +2103,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_BOOLEAN_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8707:19: ( 'bool' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8707:21: 'bool'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8794:19: ( 'bool' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8794:21: 'bool'
             {
             match("bool"); 
 
@@ -2124,10 +2124,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_MACHINE_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8709:19: ( ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8709:21: ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8796:19: ( ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8796:21: ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8709:21: ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8796:21: ( RULE_MACHINE_INT_TYPE | RULE_MACHINE_UINT_TYPE )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2145,14 +2145,14 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8709:22: RULE_MACHINE_INT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8796:22: RULE_MACHINE_INT_TYPE
                     {
                     mRULE_MACHINE_INT_TYPE(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8709:44: RULE_MACHINE_UINT_TYPE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8796:44: RULE_MACHINE_UINT_TYPE
                     {
                     mRULE_MACHINE_UINT_TYPE(); 
 
@@ -2175,8 +2175,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_MACHINE_INT_TYPE"
     public final void mRULE_MACHINE_INT_TYPE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8711:32: ( 'int' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8711:34: 'int'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8798:32: ( 'int' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8798:34: 'int'
             {
             match("int"); 
 
@@ -2192,8 +2192,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_MACHINE_UINT_TYPE"
     public final void mRULE_MACHINE_UINT_TYPE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8713:33: ( 'uint' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8713:35: 'uint'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8800:33: ( 'uint' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8800:35: 'uint'
             {
             match("uint"); 
 
@@ -2211,8 +2211,8 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_MUT_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8715:18: ( 'mut' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8715:20: 'mut'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8802:18: ( 'mut' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8802:20: 'mut'
             {
             match("mut"); 
 
@@ -2232,11 +2232,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_CHAR_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:15: ( '\\'' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:17: '\\'' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:15: ( '\\'' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:17: '\\'' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:22: ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:22: ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop6:
             do {
                 int alt6=4;
@@ -2261,7 +2261,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:23: '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:23: '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='0'||input.LA(1)=='\\'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2277,14 +2277,14 @@ public class InternalRustLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:51: RULE_UNICODE_CHAR
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:51: RULE_UNICODE_CHAR
             	    {
             	    mRULE_UNICODE_CHAR(); 
 
             	    }
             	    break;
             	case 3 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8717:69: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8804:69: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2321,11 +2321,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_STRING_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:17: ( '\"' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:19: '\"' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:17: ( '\"' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:19: '\"' ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:23: ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:23: ( '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' ) | RULE_UNICODE_CHAR | ~ ( ( '\\\\' | '\"' ) ) )*
             loop7:
             do {
                 int alt7=4;
@@ -2350,7 +2350,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:24: '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:24: '\\\\' ( '\\\\' | 'n' | 'r' | 't' | '0' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='0'||input.LA(1)=='\\'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2366,14 +2366,14 @@ public class InternalRustLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:52: RULE_UNICODE_CHAR
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:52: RULE_UNICODE_CHAR
             	    {
             	    mRULE_UNICODE_CHAR(); 
 
             	    }
             	    break;
             	case 3 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8719:70: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8806:70: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2408,10 +2408,10 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_UNICODE_CHAR"
     public final void mRULE_UNICODE_CHAR() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:28: ( ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:30: ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:28: ( ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:30: ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR )
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:30: ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:30: ( RULE_UTF8_CHAR | RULE_UTF16_CHAR | RULE_UTF32_CHAR )
             int alt8=3;
             int LA8_0 = input.LA(1);
 
@@ -2448,21 +2448,21 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:31: RULE_UTF8_CHAR
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:31: RULE_UTF8_CHAR
                     {
                     mRULE_UTF8_CHAR(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:46: RULE_UTF16_CHAR
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:46: RULE_UTF16_CHAR
                     {
                     mRULE_UTF16_CHAR(); 
 
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8721:62: RULE_UTF32_CHAR
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8808:62: RULE_UTF32_CHAR
                     {
                     mRULE_UTF32_CHAR(); 
 
@@ -2483,8 +2483,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_UTF8_CHAR"
     public final void mRULE_UTF8_CHAR() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8723:25: ( '\\\\x' RULE_HEX_DIGIT RULE_HEX_DIGIT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8723:27: '\\\\x' RULE_HEX_DIGIT RULE_HEX_DIGIT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8810:25: ( '\\\\x' RULE_HEX_DIGIT RULE_HEX_DIGIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8810:27: '\\\\x' RULE_HEX_DIGIT RULE_HEX_DIGIT
             {
             match("\\x"); 
 
@@ -2502,8 +2502,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_UTF16_CHAR"
     public final void mRULE_UTF16_CHAR() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8725:26: ( '\\\\u' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8725:28: '\\\\u' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8812:26: ( '\\\\u' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8812:28: '\\\\u' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT
             {
             match("\\u"); 
 
@@ -2523,8 +2523,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_UTF32_CHAR"
     public final void mRULE_UTF32_CHAR() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8727:26: ( '\\\\U' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8727:28: '\\\\U' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8814:26: ( '\\\\U' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8814:28: '\\\\U' RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT RULE_HEX_DIGIT
             {
             match("\\U"); 
 
@@ -2550,11 +2550,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_FLOAT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:16: ( RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* '.' ( RULE_DEC_DIGIT | '_' )+ ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )? ( RULE_FLOAT_SIZE )? )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:18: RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* '.' ( RULE_DEC_DIGIT | '_' )+ ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )? ( RULE_FLOAT_SIZE )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:16: ( RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* '.' ( RULE_DEC_DIGIT | '_' )+ ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )? ( RULE_FLOAT_SIZE )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:18: RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* '.' ( RULE_DEC_DIGIT | '_' )+ ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )? ( RULE_FLOAT_SIZE )?
             {
             mRULE_DEC_DIGIT(); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:33: ( RULE_DEC_DIGIT | '_' )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:33: ( RULE_DEC_DIGIT | '_' )*
             loop9:
             do {
                 int alt9=2;
@@ -2588,7 +2588,7 @@ public class InternalRustLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:59: ( RULE_DEC_DIGIT | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:59: ( RULE_DEC_DIGIT | '_' )+
             int cnt10=0;
             loop10:
             do {
@@ -2626,7 +2626,7 @@ public class InternalRustLexer extends Lexer {
                 cnt10++;
             } while (true);
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:81: ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:81: ( ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+ )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2635,7 +2635,7 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:82: ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:82: ( 'E' | 'e' ) ( '+' | '-' )? ( RULE_DEC_DIGIT | '_' )+
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -2646,7 +2646,7 @@ public class InternalRustLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:92: ( '+' | '-' )?
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:92: ( '+' | '-' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -2672,7 +2672,7 @@ public class InternalRustLexer extends Lexer {
 
                     }
 
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:103: ( RULE_DEC_DIGIT | '_' )+
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:103: ( RULE_DEC_DIGIT | '_' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -2716,7 +2716,7 @@ public class InternalRustLexer extends Lexer {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:127: ( RULE_FLOAT_SIZE )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:127: ( RULE_FLOAT_SIZE )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2725,7 +2725,7 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8729:127: RULE_FLOAT_SIZE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8816:127: RULE_FLOAT_SIZE
                     {
                     mRULE_FLOAT_SIZE(); 
 
@@ -2750,10 +2750,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_INT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:14: ( ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT ) ( RULE_INT_SIZE )? )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:16: ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT ) ( RULE_INT_SIZE )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:14: ( ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT ) ( RULE_INT_SIZE )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:16: ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT ) ( RULE_INT_SIZE )?
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:16: ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:16: ( RULE_DEC_INT_LIT | RULE_BIN_INT_LIT | RULE_OCT_INT_LIT | RULE_HEX_INT_LIT )
             int alt15=4;
             int LA15_0 = input.LA(1);
 
@@ -2789,28 +2789,28 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:17: RULE_DEC_INT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:17: RULE_DEC_INT_LIT
                     {
                     mRULE_DEC_INT_LIT(); 
 
                     }
                     break;
                 case 2 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:34: RULE_BIN_INT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:34: RULE_BIN_INT_LIT
                     {
                     mRULE_BIN_INT_LIT(); 
 
                     }
                     break;
                 case 3 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:51: RULE_OCT_INT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:51: RULE_OCT_INT_LIT
                     {
                     mRULE_OCT_INT_LIT(); 
 
                     }
                     break;
                 case 4 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:68: RULE_HEX_INT_LIT
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:68: RULE_HEX_INT_LIT
                     {
                     mRULE_HEX_INT_LIT(); 
 
@@ -2819,7 +2819,7 @@ public class InternalRustLexer extends Lexer {
 
             }
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:86: ( RULE_INT_SIZE )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:86: ( RULE_INT_SIZE )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2828,7 +2828,7 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8731:86: RULE_INT_SIZE
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8818:86: RULE_INT_SIZE
                     {
                     mRULE_INT_SIZE(); 
 
@@ -2851,11 +2851,11 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_DEC_INT_LIT"
     public final void mRULE_DEC_INT_LIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8733:27: ( RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8733:29: RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8820:27: ( RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )* )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8820:29: RULE_DEC_DIGIT ( RULE_DEC_DIGIT | '_' )*
             {
             mRULE_DEC_DIGIT(); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8733:44: ( RULE_DEC_DIGIT | '_' )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8820:44: ( RULE_DEC_DIGIT | '_' )*
             loop17:
             do {
                 int alt17=2;
@@ -2900,12 +2900,12 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_BIN_INT_LIT"
     public final void mRULE_BIN_INT_LIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8735:27: ( '0b' ( '0' | '1' | '_' )+ )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8735:29: '0b' ( '0' | '1' | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8822:27: ( '0b' ( '0' | '1' | '_' )+ )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8822:29: '0b' ( '0' | '1' | '_' )+
             {
             match("0b"); 
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8735:34: ( '0' | '1' | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8822:34: ( '0' | '1' | '_' )+
             int cnt18=0;
             loop18:
             do {
@@ -2955,12 +2955,12 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_OCT_INT_LIT"
     public final void mRULE_OCT_INT_LIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8737:27: ( '0o' ( RULE_OCT_DIGIT | '_' )+ )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8737:29: '0o' ( RULE_OCT_DIGIT | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8824:27: ( '0o' ( RULE_OCT_DIGIT | '_' )+ )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8824:29: '0o' ( RULE_OCT_DIGIT | '_' )+
             {
             match("0o"); 
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8737:34: ( RULE_OCT_DIGIT | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8824:34: ( RULE_OCT_DIGIT | '_' )+
             int cnt19=0;
             loop19:
             do {
@@ -3010,12 +3010,12 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_HEX_INT_LIT"
     public final void mRULE_HEX_INT_LIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8739:27: ( '0x' ( RULE_HEX_DIGIT | '_' )+ )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8739:29: '0x' ( RULE_HEX_DIGIT | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8826:27: ( '0x' ( RULE_HEX_DIGIT | '_' )+ )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8826:29: '0x' ( RULE_HEX_DIGIT | '_' )+
             {
             match("0x"); 
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8739:34: ( RULE_HEX_DIGIT | '_' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8826:34: ( RULE_HEX_DIGIT | '_' )+
             int cnt20=0;
             loop20:
             do {
@@ -3065,8 +3065,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_OCT_DIGIT"
     public final void mRULE_OCT_DIGIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8741:25: ( '0' .. '7' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8741:27: '0' .. '7'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8828:25: ( '0' .. '7' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8828:27: '0' .. '7'
             {
             matchRange('0','7'); 
 
@@ -3081,8 +3081,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_DEC_DIGIT"
     public final void mRULE_DEC_DIGIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8743:25: ( '0' .. '9' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8743:27: '0' .. '9'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8830:25: ( '0' .. '9' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8830:27: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -3097,8 +3097,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_HEX_DIGIT"
     public final void mRULE_HEX_DIGIT() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8745:25: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8745:27: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8832:25: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8832:27: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -3121,8 +3121,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_XID_START"
     public final void mRULE_XID_START() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8747:25: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8747:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8834:25: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8834:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3145,8 +3145,8 @@ public class InternalRustLexer extends Lexer {
     // $ANTLR start "RULE_XID_CONTINUE"
     public final void mRULE_XID_CONTINUE() throws RecognitionException {
         try {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8749:28: ( ( RULE_XID_START | '0' .. '9' ) )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8749:30: ( RULE_XID_START | '0' .. '9' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8836:28: ( ( RULE_XID_START | '0' .. '9' ) )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8836:30: ( RULE_XID_START | '0' .. '9' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3171,11 +3171,11 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8751:12: ( RULE_XID_START ( RULE_XID_CONTINUE )* )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8751:14: RULE_XID_START ( RULE_XID_CONTINUE )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8838:12: ( RULE_XID_START ( RULE_XID_CONTINUE )* )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8838:14: RULE_XID_START ( RULE_XID_CONTINUE )*
             {
             mRULE_XID_START(); 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8751:29: ( RULE_XID_CONTINUE )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8838:29: ( RULE_XID_CONTINUE )*
             loop21:
             do {
                 int alt21=2;
@@ -3188,7 +3188,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt21) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8751:29: RULE_XID_CONTINUE
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8838:29: RULE_XID_CONTINUE
             	    {
             	    mRULE_XID_CONTINUE(); 
 
@@ -3216,10 +3216,10 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8753:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8753:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8840:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8840:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             {
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8753:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8840:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             int cnt22=0;
             loop22:
             do {
@@ -3273,12 +3273,12 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8755:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8755:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8842:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8842:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8755:24: ( options {greedy=false; } : . )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8842:24: ( options {greedy=false; } : . )*
             loop23:
             do {
                 int alt23=2;
@@ -3303,7 +3303,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt23) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8755:52: .
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8842:52: .
             	    {
             	    matchAny(); 
 
@@ -3333,12 +3333,12 @@ public class InternalRustLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop24:
             do {
                 int alt24=2;
@@ -3351,7 +3351,7 @@ public class InternalRustLexer extends Lexer {
 
                 switch (alt24) {
             	case 1 :
-            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3371,7 +3371,7 @@ public class InternalRustLexer extends Lexer {
                 }
             } while (true);
 
-            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:40: ( ( '\\r' )? '\\n' )?
+            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:40: ( ( '\\r' )? '\\n' )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3380,9 +3380,9 @@ public class InternalRustLexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:41: ( '\\r' )? '\\n'
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:41: ( '\\r' )? '\\n'
                     {
-                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:41: ( '\\r' )?
+                    // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:41: ( '\\r' )?
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -3391,7 +3391,7 @@ public class InternalRustLexer extends Lexer {
                     }
                     switch (alt25) {
                         case 1 :
-                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8757:41: '\\r'
+                            // ../de.redoxi.ruste/src-gen/de/redoxi/ruste/parser/antlr/internal/InternalRust.g:8844:41: '\\r'
                             {
                             match('\r'); 
 

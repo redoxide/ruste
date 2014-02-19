@@ -4,8 +4,6 @@ package de.redoxi.ruste.rust;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Fn Item</b></em>'.
@@ -26,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface FnItem extends EObject
+public interface FnItem extends Item
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

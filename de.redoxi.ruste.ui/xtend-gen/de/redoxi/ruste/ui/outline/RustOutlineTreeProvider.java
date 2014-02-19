@@ -3,6 +3,11 @@
  */
 package de.redoxi.ruste.ui.outline;
 
+import de.redoxi.ruste.rust.Item;
+import de.redoxi.ruste.rust.ItemAndAttrs;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 
 /**
@@ -12,4 +17,15 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
  */
 @SuppressWarnings("all")
 public class RustOutlineTreeProvider extends DefaultOutlineTreeProvider {
+  public void createChildren(final IOutlineNode parentNode, final EObject modelElement) {
+    EList<EObject> _eContents = modelElement.eContents();
+    for (final EObject childElement : _eContents) {
+      if ((!(childElement instanceof ItemAndAttrs))) {
+        this.createNode(parentNode, childElement);
+      } else {
+        Item _item = ((ItemAndAttrs) childElement).getItem();
+        this.createNode(parentNode, _item);
+      }
+    }
+  }
 }

@@ -55,7 +55,11 @@ LiteralAttr:
 
 // An item and any associated attributes
 ItemAndAttrs:
-	attrs+=ItemAttr* item=(ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem)
+	attrs+=ItemAttr* item=Item
+;
+
+Item:
+	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
 ;
 
 // A module declaration item
@@ -65,7 +69,7 @@ ModItem:
 
 // Function item
 FnItem:
-	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('('  (args += Arg  (','  args += Arg)*)? ')' | '()') ( "->"  returnType = Type)?  body = Block
+	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ( "->" returnType = Type)?  '{' body=Block '}'
 ;
 
 // TODO Reference Type?
@@ -90,7 +94,7 @@ TraitItem:
 ;
 
 TraitMethod:
-	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? (body=Block | ';')
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
 ;
 
 // TODO Crossreference struct and trait
@@ -99,7 +103,7 @@ ImplItem:
 ;
 
 ImplMethod:
-	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? body=Block
+	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
 ;
 
 ExternBlock:
@@ -111,7 +115,7 @@ ForeignFn:
 ;
 
 StaticItem:
-	"static" mutable?=MUT_KEYWORD name=IDENT (":" type=Type)? "=" expr=Expr ";"
+	"static" mutable?=MUT_KEYWORD? name=IDENT (":" type=Type)? "=" expr=Expr ";"
 ;
 
 Expr:
@@ -265,11 +269,11 @@ ExprLambda:
 ;
 
 ExprWhile:
-	"while" expr=Expr block=Block
+	"while" expr=Expr '{' block=Block '}'
 ;
 
 ExprLoop:
-	(lifetime=LIFETIME ':')? 'loop' block=Block
+	(lifetime=LIFETIME ':')? 'loop' '{' block=Block '}'
 ;
 
 ExprBreak:
@@ -281,19 +285,19 @@ ExprContinue:
 ;
 
 ExprDo:
-	'do' expr=Expr '|' (args+=IDENT (',' args+=IDENT)*)? '|' block=Block
+	'do' expr=Expr '|' (args+=IDENT (',' args+=IDENT)*)? '|' '{' block=Block '}'
 ;
 
 ExprFor:
-	'for' pat=Pat 'in' expr=Expr block=Block
+	'for' pat=Pat 'in' expr=Expr '{' block=Block '}'
 ;
 
 ExprIf:
-	'if' expr=Expr block=Block else=ElseTail?
+	'if' expr=Expr '{' block=Block '}' else=ElseTail?
 ;
 
 ElseTail:
-	'else' (ExprIf | block=Block)
+	'else' (ExprIf | '{' block=Block '}')
 ;
 
 ExprMatch:
@@ -301,7 +305,7 @@ ExprMatch:
 ;
 
 MatchArm:
-	matchPat=MatchPat '=>' (expr=Expr ',' | block=Block)
+	matchPat=(MatchPat | PatEnum) '=>' (expr=Expr ',' | '{' block=Block '}')
 ;
 
 MatchPat:
@@ -315,7 +319,7 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} '{' expr=Expr ({Block.stmts+=current} ';' stmts+=Stmt (';' stmts+=Stmt)* expr=Expr?)? '}'
+	{Block} (expr=Expr ({Block.stmts+=current} ';' stmts+=Stmt (';' stmts+=Stmt)* expr=Expr?)?)?
 ;
 
 Stmt:
@@ -333,7 +337,7 @@ ExprStmt:
 
 // TODO Crossreference Trait?
 GenericParamDecl:
-	name=IDENT (':' bounds+=IDENT ( '+' bounds+=IDENT)* )?
+	name=IDENT (':' bounds+=IDENT ('+' bounds+=IDENT)* )?
 ;
 
 // TODO Crossreference Type
@@ -351,8 +355,7 @@ Pat:
 	PatBorrowed |
 	PatTuple |
 	PatVector |
-	PatLiteral |
-	PatEnum
+	PatLiteral
 ;
 
 PatWildcard:
@@ -360,7 +363,7 @@ PatWildcard:
 ;
 
 PatIdent:
-	mutable?=MUT_KEYWORD name=IDENT
+	(mutable?=MUT_KEYWORD)? name=IDENT
 ;
 
 PatBoxed hidden(SL_COMMENT, ML_COMMENT):
@@ -395,11 +398,11 @@ FieldPat:
 	name=IDENT (':' pattern=Pat)?
 ;
 
-TypePath:
+TypePath hidden(ML_COMMENT):
 	segments+=IDENT ('::' segments+=IDENT)* (=>'<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))+ '>')?
 ;
 
-ExprPath:
+ExprPath hidden(ML_COMMENT):
 	segments+=IDENT ('::' segments+=IDENT)* ('::<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))* '>')?
 ;
 

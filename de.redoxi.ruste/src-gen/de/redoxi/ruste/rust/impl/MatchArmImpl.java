@@ -5,13 +5,13 @@ package de.redoxi.ruste.rust.impl;
 import de.redoxi.ruste.rust.Block;
 import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.MatchArm;
-import de.redoxi.ruste.rust.MatchPat;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -42,7 +42,7 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
    * @generated
    * @ordered
    */
-  protected MatchPat matchPat;
+  protected EObject matchPat;
 
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -90,7 +90,7 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
    * <!-- end-user-doc -->
    * @generated
    */
-  public MatchPat getMatchPat()
+  public EObject getMatchPat()
   {
     return matchPat;
   }
@@ -100,9 +100,9 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetMatchPat(MatchPat newMatchPat, NotificationChain msgs)
+  public NotificationChain basicSetMatchPat(EObject newMatchPat, NotificationChain msgs)
   {
-    MatchPat oldMatchPat = matchPat;
+    EObject oldMatchPat = matchPat;
     matchPat = newMatchPat;
     if (eNotificationRequired())
     {
@@ -117,7 +117,7 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMatchPat(MatchPat newMatchPat)
+  public void setMatchPat(EObject newMatchPat)
   {
     if (newMatchPat != matchPat)
     {
@@ -280,7 +280,7 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
     switch (featureID)
     {
       case RustPackage.MATCH_ARM__MATCH_PAT:
-        setMatchPat((MatchPat)newValue);
+        setMatchPat((EObject)newValue);
         return;
       case RustPackage.MATCH_ARM__EXPR:
         setExpr((Expr)newValue);
@@ -303,7 +303,7 @@ public class MatchArmImpl extends MinimalEObjectImpl.Container implements MatchA
     switch (featureID)
     {
       case RustPackage.MATCH_ARM__MATCH_PAT:
-        setMatchPat((MatchPat)null);
+        setMatchPat((EObject)null);
         return;
       case RustPackage.MATCH_ARM__EXPR:
         setExpr((Expr)null);

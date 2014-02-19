@@ -33,12 +33,12 @@ public interface MatchArm extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Match Pat</em>' containment reference.
-   * @see #setMatchPat(MatchPat)
+   * @see #setMatchPat(EObject)
    * @see de.redoxi.ruste.rust.RustPackage#getMatchArm_MatchPat()
    * @model containment="true"
    * @generated
    */
-  MatchPat getMatchPat();
+  EObject getMatchPat();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.MatchArm#getMatchPat <em>Match Pat</em>}' containment reference.
@@ -48,7 +48,7 @@ public interface MatchArm extends EObject
    * @see #getMatchPat()
    * @generated
    */
-  void setMatchPat(MatchPat value);
+  void setMatchPat(EObject value);
 
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

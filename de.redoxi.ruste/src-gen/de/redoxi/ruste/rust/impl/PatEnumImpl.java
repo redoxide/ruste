@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PatEnumImpl extends PatImpl implements PatEnum
+public class PatEnumImpl extends MinimalEObjectImpl.Container implements PatEnum
 {
   /**
    * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.

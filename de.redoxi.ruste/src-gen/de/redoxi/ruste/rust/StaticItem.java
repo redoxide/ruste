@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StaticItem extends EObject
+public interface StaticItem extends Item
 {
   /**
    * Returns the value of the '<em><b>Mutable</b></em>' attribute.

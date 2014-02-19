@@ -151,8 +151,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_Block(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getBlockAccess().getBlockStmtsAction_3_0()) {
-					sequence_Block_Block_3_0(context, (Block) semanticObject); 
+				else if(context == grammarAccess.getBlockAccess().getBlockStmtsAction_1_1_0()) {
+					sequence_Block_Block_1_1_0(context, (Block) semanticObject); 
 					return; 
 				}
 				else break;
@@ -270,7 +270,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.ENUM_ITEM:
-				if(context == grammarAccess.getEnumItemRule()) {
+				if(context == grammarAccess.getEnumItemRule() ||
+				   context == grammarAccess.getItemRule()) {
 					sequence_EnumItem(context, (EnumItem) semanticObject); 
 					return; 
 				}
@@ -875,7 +876,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXTERN_BLOCK:
-				if(context == grammarAccess.getExternBlockRule()) {
+				if(context == grammarAccess.getExternBlockRule() ||
+				   context == grammarAccess.getItemRule()) {
 					sequence_ExternBlock(context, (ExternBlock) semanticObject); 
 					return; 
 				}
@@ -901,7 +903,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.FN_ITEM:
-				if(context == grammarAccess.getFnItemRule()) {
+				if(context == grammarAccess.getFnItemRule() ||
+				   context == grammarAccess.getItemRule()) {
 					sequence_FnItem(context, (FnItem) semanticObject); 
 					return; 
 				}
@@ -919,7 +922,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.IMPL_ITEM:
-				if(context == grammarAccess.getImplItemRule()) {
+				if(context == grammarAccess.getImplItemRule() ||
+				   context == grammarAccess.getItemRule()) {
 					sequence_ImplItem(context, (ImplItem) semanticObject); 
 					return; 
 				}
@@ -1002,7 +1006,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.MOD_ITEM:
-				if(context == grammarAccess.getModItemRule()) {
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getModItemRule()) {
 					sequence_ModItem(context, (ModItem) semanticObject); 
 					return; 
 				}
@@ -1162,8 +1167,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.PAT_STRUCT_ENUM:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatEnumRule()) {
+				if(context == grammarAccess.getPatEnumRule()) {
 					sequence_PatEnum(context, (PatStructEnum) semanticObject); 
 					return; 
 				}
@@ -1176,8 +1180,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.PAT_TUPLE_ENUM:
-				if(context == grammarAccess.getPatRule() ||
-				   context == grammarAccess.getPatEnumRule()) {
+				if(context == grammarAccess.getPatEnumRule()) {
 					sequence_PatEnum(context, (PatTupleEnum) semanticObject); 
 					return; 
 				}
@@ -1210,7 +1213,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.STATIC_ITEM:
-				if(context == grammarAccess.getStaticItemRule()) {
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getStaticItemRule()) {
 					sequence_StaticItem(context, (StaticItem) semanticObject); 
 					return; 
 				}
@@ -1229,7 +1233,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.STRUCT_ITEM:
-				if(context == grammarAccess.getStructItemRule()) {
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getStructItemRule()) {
 					sequence_StructItem(context, (StructItem) semanticObject); 
 					return; 
 				}
@@ -1242,7 +1247,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.TRAIT_ITEM:
-				if(context == grammarAccess.getTraitItemRule()) {
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getTraitItemRule()) {
 					sequence_TraitItem(context, (TraitItem) semanticObject); 
 					return; 
 				}
@@ -1261,7 +1267,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.TYPE_ITEM:
-				if(context == grammarAccess.getTypeItemRule()) {
+				if(context == grammarAccess.getItemRule() ||
+				   context == grammarAccess.getTypeItemRule()) {
 					sequence_TypeItem(context, (TypeItem) semanticObject); 
 					return; 
 				}
@@ -1460,7 +1467,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((stmts+=Block_Block_3_0 stmts+=Stmt stmts+=Stmt* expr=Expr?) | expr=Expr)
+	 *     ((stmts+=Block_Block_1_1_0 stmts+=Stmt stmts+=Stmt* expr=Expr?) | expr=Expr)
 	 */
 	protected void sequence_Block(EObject context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1471,7 +1478,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     expr=Expr
 	 */
-	protected void sequence_Block_Block_3_0(EObject context, Block semanticObject) {
+	protected void sequence_Block_Block_1_1_0(EObject context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1747,7 +1754,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getElseTailAccess().getBlockBlockParserRuleCall_1_1_0(), semanticObject.getBlock());
+		feeder.accept(grammarAccess.getElseTailAccess().getBlockBlockParserRuleCall_1_1_1_0(), semanticObject.getBlock());
 		feeder.finish();
 	}
 	
@@ -1852,7 +1859,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getExprForAccess().getPatPatParserRuleCall_1_0(), semanticObject.getPat());
 		feeder.accept(grammarAccess.getExprForAccess().getExprExprParserRuleCall_3_0(), semanticObject.getExpr());
-		feeder.accept(grammarAccess.getExprForAccess().getBlockBlockParserRuleCall_4_0(), semanticObject.getBlock());
+		feeder.accept(grammarAccess.getExprForAccess().getBlockBlockParserRuleCall_5_0(), semanticObject.getBlock());
 		feeder.finish();
 	}
 	
@@ -2112,7 +2119,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getExprWhileAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
-		feeder.accept(grammarAccess.getExprWhileAccess().getBlockBlockParserRuleCall_2_0(), semanticObject.getBlock());
+		feeder.accept(grammarAccess.getExprWhileAccess().getBlockBlockParserRuleCall_3_0(), semanticObject.getBlock());
 		feeder.finish();
 	}
 	
@@ -2198,20 +2205,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         attrs+=ItemAttr* 
-	 *         (
-	 *             item=ModItem | 
-	 *             item=FnItem | 
-	 *             item=TypeItem | 
-	 *             item=StructItem | 
-	 *             item=EnumItem | 
-	 *             item=TraitItem | 
-	 *             item=ImplItem | 
-	 *             item=ExternBlock | 
-	 *             item=StaticItem
-	 *         )
-	 *     )
+	 *     (attrs+=ItemAttr* item=Item)
 	 */
 	protected void sequence_ItemAndAttrs(EObject context, ItemAndAttrs semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2299,7 +2293,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (matchPat=MatchPat (expr=Expr | block=Block))
+	 *     ((matchPat=MatchPat | matchPat=PatEnum) (expr=Expr | block=Block))
 	 */
 	protected void sequence_MatchArm(EObject context, MatchArm semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2465,20 +2459,10 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mutable?=MUT_KEYWORD name=IDENT)
+	 *     (mutable?=MUT_KEYWORD? name=IDENT)
 	 */
 	protected void sequence_PatIdent(EObject context, PatIdent semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_IDENT__MUTABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_IDENT__MUTABLE));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.PAT_IDENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.PAT_IDENT__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPatIdentAccess().getMutableMUT_KEYWORDTerminalRuleCall_0_0(), semanticObject.isMutable());
-		feeder.accept(grammarAccess.getPatIdentAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2644,7 +2628,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (mutable?=MUT_KEYWORD name=IDENT type=Type? expr=Expr)
+	 *     (mutable?=MUT_KEYWORD? name=IDENT type=Type? expr=Expr)
 	 */
 	protected void sequence_StaticItem(EObject context, StaticItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -2,6 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
+import de.redoxi.ruste.rust.Item;
 import de.redoxi.ruste.rust.ItemAndAttrs;
 import de.redoxi.ruste.rust.ItemAttr;
 import de.redoxi.ruste.rust.RustPackage;
@@ -14,7 +15,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -57,7 +57,7 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
    * @generated
    * @ordered
    */
-  protected EObject item;
+  protected Item item;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,7 +99,7 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getItem()
+  public Item getItem()
   {
     return item;
   }
@@ -109,9 +109,9 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetItem(EObject newItem, NotificationChain msgs)
+  public NotificationChain basicSetItem(Item newItem, NotificationChain msgs)
   {
-    EObject oldItem = item;
+    Item oldItem = item;
     item = newItem;
     if (eNotificationRequired())
     {
@@ -126,7 +126,7 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setItem(EObject newItem)
+  public void setItem(Item newItem)
   {
     if (newItem != item)
     {
@@ -194,7 +194,7 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
         getAttrs().addAll((Collection<? extends ItemAttr>)newValue);
         return;
       case RustPackage.ITEM_AND_ATTRS__ITEM:
-        setItem((EObject)newValue);
+        setItem((Item)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -214,7 +214,7 @@ public class ItemAndAttrsImpl extends MinimalEObjectImpl.Container implements It
         getAttrs().clear();
         return;
       case RustPackage.ITEM_AND_ATTRS__ITEM:
-        setItem((EObject)null);
+        setItem((Item)null);
         return;
     }
     super.eUnset(featureID);

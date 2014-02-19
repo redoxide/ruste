@@ -130,6 +130,11 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createItemAndAttrsAdapter();
       }
       @Override
+      public Adapter caseItem(Item object)
+      {
+        return createItemAdapter();
+      }
+      @Override
       public Adapter caseModItem(ModItem object)
       {
         return createModItemAdapter();
@@ -942,6 +947,21 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createItemAndAttrsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Item <em>Item</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.Item
+   * @generated
+   */
+  public Adapter createItemAdapter()
   {
     return null;
   }

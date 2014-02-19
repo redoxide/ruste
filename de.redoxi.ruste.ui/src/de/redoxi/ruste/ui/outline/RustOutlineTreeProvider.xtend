@@ -3,6 +3,10 @@
 */
 package de.redoxi.ruste.ui.outline
 
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.emf.ecore.EObject
+import de.redoxi.ruste.rust.ItemAndAttrs
+
 /**
  * Customization of the default outline structure.
  *
@@ -10,4 +14,13 @@ package de.redoxi.ruste.ui.outline
  */
 class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
 	
+	override void createChildren(IOutlineNode parentNode, EObject modelElement) {
+		for (EObject childElement : modelElement.eContents()) {
+			if (!(childElement instanceof ItemAndAttrs)) {
+				createNode(parentNode, childElement)
+			} else {
+				createNode(parentNode, (childElement as ItemAndAttrs).getItem())
+			}
+		}
+	}
 }

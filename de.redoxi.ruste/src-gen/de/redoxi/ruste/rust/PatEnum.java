@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PatEnum extends Pat
+public interface PatEnum extends EObject
 {
   /**
    * Returns the value of the '<em><b>Path</b></em>' containment reference.

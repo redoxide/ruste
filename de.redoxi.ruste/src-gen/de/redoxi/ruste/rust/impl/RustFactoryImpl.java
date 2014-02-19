@@ -76,6 +76,7 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.ATTR_WITH_LIST: return createAttrWithList();
       case RustPackage.LITERAL_ATTR: return createLiteralAttr();
       case RustPackage.ITEM_AND_ATTRS: return createItemAndAttrs();
+      case RustPackage.ITEM: return createItem();
       case RustPackage.MOD_ITEM: return createModItem();
       case RustPackage.FN_ITEM: return createFnItem();
       case RustPackage.TYPE_ITEM: return createTypeItem();
@@ -360,6 +361,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ItemAndAttrsImpl itemAndAttrs = new ItemAndAttrsImpl();
     return itemAndAttrs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Item createItem()
+  {
+    ItemImpl item = new ItemImpl();
+    return item;
   }
 
   /**

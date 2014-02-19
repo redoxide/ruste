@@ -153,10 +153,18 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RustPackage.ITEM:
+      {
+        Item item = (Item)theEObject;
+        T result = caseItem(item);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RustPackage.MOD_ITEM:
       {
         ModItem modItem = (ModItem)theEObject;
         T result = caseModItem(modItem);
+        if (result == null) result = caseItem(modItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -164,6 +172,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         FnItem fnItem = (FnItem)theEObject;
         T result = caseFnItem(fnItem);
+        if (result == null) result = caseItem(fnItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,6 +180,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         TypeItem typeItem = (TypeItem)theEObject;
         T result = caseTypeItem(typeItem);
+        if (result == null) result = caseItem(typeItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -178,6 +188,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         StructItem structItem = (StructItem)theEObject;
         T result = caseStructItem(structItem);
+        if (result == null) result = caseItem(structItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -185,6 +196,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         EnumItem enumItem = (EnumItem)theEObject;
         T result = caseEnumItem(enumItem);
+        if (result == null) result = caseItem(enumItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -199,6 +211,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         TraitItem traitItem = (TraitItem)theEObject;
         T result = caseTraitItem(traitItem);
+        if (result == null) result = caseItem(traitItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -213,6 +226,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ImplItem implItem = (ImplItem)theEObject;
         T result = caseImplItem(implItem);
+        if (result == null) result = caseItem(implItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -227,6 +241,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExternBlock externBlock = (ExternBlock)theEObject;
         T result = caseExternBlock(externBlock);
+        if (result == null) result = caseItem(externBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -241,6 +256,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         StaticItem staticItem = (StaticItem)theEObject;
         T result = caseStaticItem(staticItem);
+        if (result == null) result = caseItem(staticItem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1096,7 +1112,6 @@ public class RustSwitch<T> extends Switch<T>
       {
         PatEnum patEnum = (PatEnum)theEObject;
         T result = casePatEnum(patEnum);
-        if (result == null) result = casePat(patEnum);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1571,7 +1586,6 @@ public class RustSwitch<T> extends Switch<T>
         PatTupleEnum patTupleEnum = (PatTupleEnum)theEObject;
         T result = casePatTupleEnum(patTupleEnum);
         if (result == null) result = casePatEnum(patTupleEnum);
-        if (result == null) result = casePat(patTupleEnum);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1580,7 +1594,6 @@ public class RustSwitch<T> extends Switch<T>
         PatStructEnum patStructEnum = (PatStructEnum)theEObject;
         T result = casePatStructEnum(patStructEnum);
         if (result == null) result = casePatEnum(patStructEnum);
-        if (result == null) result = casePat(patStructEnum);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1841,6 +1854,22 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseItemAndAttrs(ItemAndAttrs object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Item</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseItem(Item object)
   {
     return null;
   }

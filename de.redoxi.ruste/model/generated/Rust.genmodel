@@ -51,6 +51,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAndAttrs/item"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Item"/>
     <genClasses ecoreClass="Rust.ecore#//ModItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ModItem/externalBody"/>
