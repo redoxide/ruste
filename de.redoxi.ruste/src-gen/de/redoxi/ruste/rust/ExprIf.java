@@ -20,7 +20,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprIf extends ExprLeaf, ElseTail
+public interface ExprIf extends Expr, ElseTail
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

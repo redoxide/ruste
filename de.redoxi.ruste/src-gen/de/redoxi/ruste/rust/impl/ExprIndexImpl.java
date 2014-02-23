@@ -4,7 +4,6 @@ package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.ExprIndex;
-import de.redoxi.ruste.rust.ExprLeaf;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,25 +21,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprIndexImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.impl.ExprIndexImpl#getIndexExpr <em>Index Expr</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
+public class ExprIndexImpl extends ExprLValueImpl implements ExprIndex
 {
-  /**
-   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExpr()
-   * @generated
-   * @ordered
-   */
-  protected ExprLeaf expr;
-
   /**
    * The cached value of the '{@link #getIndexExpr() <em>Index Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -70,54 +58,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   protected EClass eStaticClass()
   {
     return RustPackage.Literals.EXPR_INDEX;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprLeaf getExpr()
-  {
-    return expr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExpr(ExprLeaf newExpr, NotificationChain msgs)
-  {
-    ExprLeaf oldExpr = expr;
-    expr = newExpr;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_INDEX__EXPR, oldExpr, newExpr);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExpr(ExprLeaf newExpr)
-  {
-    if (newExpr != expr)
-    {
-      NotificationChain msgs = null;
-      if (expr != null)
-        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_INDEX__EXPR, null, msgs);
-      if (newExpr != null)
-        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_INDEX__EXPR, null, msgs);
-      msgs = basicSetExpr(newExpr, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_INDEX__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -178,8 +118,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_INDEX__EXPR:
-        return basicSetExpr(null, msgs);
       case RustPackage.EXPR_INDEX__INDEX_EXPR:
         return basicSetIndexExpr(null, msgs);
     }
@@ -196,8 +134,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_INDEX__EXPR:
-        return getExpr();
       case RustPackage.EXPR_INDEX__INDEX_EXPR:
         return getIndexExpr();
     }
@@ -214,9 +150,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_INDEX__EXPR:
-        setExpr((ExprLeaf)newValue);
-        return;
       case RustPackage.EXPR_INDEX__INDEX_EXPR:
         setIndexExpr((Expr)newValue);
         return;
@@ -234,9 +167,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_INDEX__EXPR:
-        setExpr((ExprLeaf)null);
-        return;
       case RustPackage.EXPR_INDEX__INDEX_EXPR:
         setIndexExpr((Expr)null);
         return;
@@ -254,8 +184,6 @@ public class ExprIndexImpl extends ExprRValue1Impl implements ExprIndex
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_INDEX__EXPR:
-        return expr != null;
       case RustPackage.EXPR_INDEX__INDEX_EXPR:
         return indexExpr != null;
     }

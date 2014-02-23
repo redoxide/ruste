@@ -4,7 +4,6 @@ package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.BooleanOr;
 import de.redoxi.ruste.rust.ExprAssign;
-import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -39,7 +38,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * @generated
    * @ordered
    */
-  protected ExprLValue left;
+  protected BooleanOr left;
 
   /**
    * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -77,7 +76,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprLValue getLeft()
+  public BooleanOr getLeft()
   {
     return left;
   }
@@ -87,9 +86,9 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(ExprLValue newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(BooleanOr newLeft, NotificationChain msgs)
   {
-    ExprLValue oldLeft = left;
+    BooleanOr oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -104,7 +103,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLeft(ExprLValue newLeft)
+  public void setLeft(BooleanOr newLeft)
   {
     if (newLeft != left)
     {
@@ -215,7 +214,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
     switch (featureID)
     {
       case RustPackage.EXPR_ASSIGN__LEFT:
-        setLeft((ExprLValue)newValue);
+        setLeft((BooleanOr)newValue);
         return;
       case RustPackage.EXPR_ASSIGN__RIGHT:
         setRight((BooleanOr)newValue);
@@ -235,7 +234,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
     switch (featureID)
     {
       case RustPackage.EXPR_ASSIGN__LEFT:
-        setLeft((ExprLValue)null);
+        setLeft((BooleanOr)null);
         return;
       case RustPackage.EXPR_ASSIGN__RIGHT:
         setRight((BooleanOr)null);

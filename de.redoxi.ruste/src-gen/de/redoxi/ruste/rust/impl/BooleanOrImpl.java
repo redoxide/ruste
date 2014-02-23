@@ -7,8 +7,6 @@ import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Boolean Or</b></em>'.
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class BooleanOrImpl extends MinimalEObjectImpl.Container implements BooleanOr
+public class BooleanOrImpl extends AssignImpl implements BooleanOr
 {
   /**
    * <!-- begin-user-doc -->

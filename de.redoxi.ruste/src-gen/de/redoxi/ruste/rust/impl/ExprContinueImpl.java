@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprContinueImpl extends ExprLeafImpl implements ExprContinue
+public class ExprContinueImpl extends ExprImpl implements ExprContinue
 {
   /**
    * The default value of the '{@link #getLifetime() <em>Lifetime</em>}' attribute.

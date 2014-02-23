@@ -19,7 +19,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprGroup extends ExprLeaf
+public interface ExprGroup extends ExprPrimary
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

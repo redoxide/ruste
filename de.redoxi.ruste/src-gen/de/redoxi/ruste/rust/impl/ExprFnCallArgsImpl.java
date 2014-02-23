@@ -3,8 +3,7 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprField;
-import de.redoxi.ruste.rust.ExprMethodCall;
+import de.redoxi.ruste.rust.ExprFnCallArgs;
 import de.redoxi.ruste.rust.RustPackage;
 
 import java.util.Collection;
@@ -18,36 +17,27 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Method Call</b></em>'.
+ * An implementation of the model object '<em><b>Expr Fn Call Args</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprMethodCallImpl#getMethod <em>Method</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprMethodCallImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallArgsImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallArgsImpl#getTail <em>Tail</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCall
+public class ExprFnCallArgsImpl extends MinimalEObjectImpl.Container implements ExprFnCallArgs
 {
-  /**
-   * The cached value of the '{@link #getMethod() <em>Method</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMethod()
-   * @generated
-   * @ordered
-   */
-  protected ExprField method;
-
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -59,11 +49,21 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   protected EList<Expr> args;
 
   /**
+   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTail()
+   * @generated
+   * @ordered
+   */
+  protected ExprFnCallArgs tail;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprMethodCallImpl()
+  protected ExprFnCallArgsImpl()
   {
     super();
   }
@@ -76,55 +76,7 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_METHOD_CALL;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprField getMethod()
-  {
-    return method;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMethod(ExprField newMethod, NotificationChain msgs)
-  {
-    ExprField oldMethod = method;
-    method = newMethod;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_METHOD_CALL__METHOD, oldMethod, newMethod);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMethod(ExprField newMethod)
-  {
-    if (newMethod != method)
-    {
-      NotificationChain msgs = null;
-      if (method != null)
-        msgs = ((InternalEObject)method).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_METHOD_CALL__METHOD, null, msgs);
-      if (newMethod != null)
-        msgs = ((InternalEObject)newMethod).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_METHOD_CALL__METHOD, null, msgs);
-      msgs = basicSetMethod(newMethod, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_METHOD_CALL__METHOD, newMethod, newMethod));
+    return RustPackage.Literals.EXPR_FN_CALL_ARGS;
   }
 
   /**
@@ -136,9 +88,57 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     if (args == null)
     {
-      args = new EObjectContainmentEList<Expr>(Expr.class, this, RustPackage.EXPR_METHOD_CALL__ARGS);
+      args = new EObjectContainmentEList<Expr>(Expr.class, this, RustPackage.EXPR_FN_CALL_ARGS__ARGS);
     }
     return args;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprFnCallArgs getTail()
+  {
+    return tail;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTail(ExprFnCallArgs newTail, NotificationChain msgs)
+  {
+    ExprFnCallArgs oldTail = tail;
+    tail = newTail;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL_ARGS__TAIL, oldTail, newTail);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTail(ExprFnCallArgs newTail)
+  {
+    if (newTail != tail)
+    {
+      NotificationChain msgs = null;
+      if (tail != null)
+        msgs = ((InternalEObject)tail).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL_ARGS__TAIL, null, msgs);
+      if (newTail != null)
+        msgs = ((InternalEObject)newTail).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL_ARGS__TAIL, null, msgs);
+      msgs = basicSetTail(newTail, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL_ARGS__TAIL, newTail, newTail));
   }
 
   /**
@@ -151,10 +151,10 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_METHOD_CALL__METHOD:
-        return basicSetMethod(null, msgs);
-      case RustPackage.EXPR_METHOD_CALL__ARGS:
+      case RustPackage.EXPR_FN_CALL_ARGS__ARGS:
         return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
+      case RustPackage.EXPR_FN_CALL_ARGS__TAIL:
+        return basicSetTail(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -169,10 +169,10 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_METHOD_CALL__METHOD:
-        return getMethod();
-      case RustPackage.EXPR_METHOD_CALL__ARGS:
+      case RustPackage.EXPR_FN_CALL_ARGS__ARGS:
         return getArgs();
+      case RustPackage.EXPR_FN_CALL_ARGS__TAIL:
+        return getTail();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -188,12 +188,12 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_METHOD_CALL__METHOD:
-        setMethod((ExprField)newValue);
-        return;
-      case RustPackage.EXPR_METHOD_CALL__ARGS:
+      case RustPackage.EXPR_FN_CALL_ARGS__ARGS:
         getArgs().clear();
         getArgs().addAll((Collection<? extends Expr>)newValue);
+        return;
+      case RustPackage.EXPR_FN_CALL_ARGS__TAIL:
+        setTail((ExprFnCallArgs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -209,11 +209,11 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_METHOD_CALL__METHOD:
-        setMethod((ExprField)null);
-        return;
-      case RustPackage.EXPR_METHOD_CALL__ARGS:
+      case RustPackage.EXPR_FN_CALL_ARGS__ARGS:
         getArgs().clear();
+        return;
+      case RustPackage.EXPR_FN_CALL_ARGS__TAIL:
+        setTail((ExprFnCallArgs)null);
         return;
     }
     super.eUnset(featureID);
@@ -229,12 +229,12 @@ public class ExprMethodCallImpl extends ExprRValue1Impl implements ExprMethodCal
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_METHOD_CALL__METHOD:
-        return method != null;
-      case RustPackage.EXPR_METHOD_CALL__ARGS:
+      case RustPackage.EXPR_FN_CALL_ARGS__ARGS:
         return args != null && !args.isEmpty();
+      case RustPackage.EXPR_FN_CALL_ARGS__TAIL:
+        return tail != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprMethodCallImpl
+} //ExprFnCallArgsImpl

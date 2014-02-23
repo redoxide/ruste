@@ -2,9 +2,9 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Block;
-import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprWhile;
+import de.redoxi.ruste.rust.ExprFnCall;
+import de.redoxi.ruste.rust.ExprFnCallArgs;
+import de.redoxi.ruste.rust.ExprPrimary;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,19 +17,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr While</b></em>'.
+ * An implementation of the model object '<em><b>Expr Fn Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprWhileImpl#getExpr <em>Expr</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprWhileImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl#getTail <em>Tail</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprWhileImpl extends ExprImpl implements ExprWhile
+public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -39,24 +39,24 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * @generated
    * @ordered
    */
-  protected Expr expr;
+  protected ExprPrimary expr;
 
   /**
-   * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBlock()
+   * @see #getTail()
    * @generated
    * @ordered
    */
-  protected Block block;
+  protected ExprFnCallArgs tail;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprWhileImpl()
+  protected ExprFnCallImpl()
   {
     super();
   }
@@ -69,7 +69,7 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_WHILE;
+    return RustPackage.Literals.EXPR_FN_CALL;
   }
 
   /**
@@ -77,7 +77,7 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getExpr()
+  public ExprPrimary getExpr()
   {
     return expr;
   }
@@ -87,13 +87,13 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
+  public NotificationChain basicSetExpr(ExprPrimary newExpr, NotificationChain msgs)
   {
-    Expr oldExpr = expr;
+    ExprPrimary oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_WHILE__EXPR, oldExpr, newExpr);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -104,20 +104,20 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExpr(Expr newExpr)
+  public void setExpr(ExprPrimary newExpr)
   {
     if (newExpr != expr)
     {
       NotificationChain msgs = null;
       if (expr != null)
-        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_WHILE__EXPR, null, msgs);
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__EXPR, null, msgs);
       if (newExpr != null)
-        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_WHILE__EXPR, null, msgs);
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__EXPR, null, msgs);
       msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_WHILE__EXPR, newExpr, newExpr));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -125,9 +125,9 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public Block getBlock()
+  public ExprFnCallArgs getTail()
   {
-    return block;
+    return tail;
   }
 
   /**
@@ -135,13 +135,13 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs)
+  public NotificationChain basicSetTail(ExprFnCallArgs newTail, NotificationChain msgs)
   {
-    Block oldBlock = block;
-    block = newBlock;
+    ExprFnCallArgs oldTail = tail;
+    tail = newTail;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_WHILE__BLOCK, oldBlock, newBlock);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__TAIL, oldTail, newTail);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -152,20 +152,20 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBlock(Block newBlock)
+  public void setTail(ExprFnCallArgs newTail)
   {
-    if (newBlock != block)
+    if (newTail != tail)
     {
       NotificationChain msgs = null;
-      if (block != null)
-        msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_WHILE__BLOCK, null, msgs);
-      if (newBlock != null)
-        msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_WHILE__BLOCK, null, msgs);
-      msgs = basicSetBlock(newBlock, msgs);
+      if (tail != null)
+        msgs = ((InternalEObject)tail).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__TAIL, null, msgs);
+      if (newTail != null)
+        msgs = ((InternalEObject)newTail).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__TAIL, null, msgs);
+      msgs = basicSetTail(newTail, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_WHILE__BLOCK, newBlock, newBlock));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__TAIL, newTail, newTail));
   }
 
   /**
@@ -178,10 +178,10 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_WHILE__EXPR:
+      case RustPackage.EXPR_FN_CALL__EXPR:
         return basicSetExpr(null, msgs);
-      case RustPackage.EXPR_WHILE__BLOCK:
-        return basicSetBlock(null, msgs);
+      case RustPackage.EXPR_FN_CALL__TAIL:
+        return basicSetTail(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,10 +196,10 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_WHILE__EXPR:
+      case RustPackage.EXPR_FN_CALL__EXPR:
         return getExpr();
-      case RustPackage.EXPR_WHILE__BLOCK:
-        return getBlock();
+      case RustPackage.EXPR_FN_CALL__TAIL:
+        return getTail();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -214,11 +214,11 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_WHILE__EXPR:
-        setExpr((Expr)newValue);
+      case RustPackage.EXPR_FN_CALL__EXPR:
+        setExpr((ExprPrimary)newValue);
         return;
-      case RustPackage.EXPR_WHILE__BLOCK:
-        setBlock((Block)newValue);
+      case RustPackage.EXPR_FN_CALL__TAIL:
+        setTail((ExprFnCallArgs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,11 +234,11 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_WHILE__EXPR:
-        setExpr((Expr)null);
+      case RustPackage.EXPR_FN_CALL__EXPR:
+        setExpr((ExprPrimary)null);
         return;
-      case RustPackage.EXPR_WHILE__BLOCK:
-        setBlock((Block)null);
+      case RustPackage.EXPR_FN_CALL__TAIL:
+        setTail((ExprFnCallArgs)null);
         return;
     }
     super.eUnset(featureID);
@@ -254,12 +254,12 @@ public class ExprWhileImpl extends ExprImpl implements ExprWhile
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_WHILE__EXPR:
+      case RustPackage.EXPR_FN_CALL__EXPR:
         return expr != null;
-      case RustPackage.EXPR_WHILE__BLOCK:
-        return block != null;
+      case RustPackage.EXPR_FN_CALL__TAIL:
+        return tail != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprWhileImpl
+} //ExprFnCallImpl

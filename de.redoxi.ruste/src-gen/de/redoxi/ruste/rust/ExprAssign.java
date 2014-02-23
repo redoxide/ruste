@@ -31,12 +31,12 @@ public interface ExprAssign extends Assign
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(ExprLValue)
+   * @see #setLeft(BooleanOr)
    * @see de.redoxi.ruste.rust.RustPackage#getExprAssign_Left()
    * @model containment="true"
    * @generated
    */
-  ExprLValue getLeft();
+  BooleanOr getLeft();
 
   /**
    * Sets the value of the '{@link de.redoxi.ruste.rust.ExprAssign#getLeft <em>Left</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface ExprAssign extends Assign
    * @see #getLeft()
    * @generated
    */
-  void setLeft(ExprLValue value);
+  void setLeft(BooleanOr value);
 
   /**
    * Returns the value of the '<em><b>Right</b></em>' containment reference.

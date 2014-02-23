@@ -2,12 +2,8 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Assign;
 import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprBinary;
-import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprPathHead;
-import de.redoxi.ruste.rust.ExprRValue;
 import de.redoxi.ruste.rust.ExprStruct;
 import de.redoxi.ruste.rust.RustPackage;
 import de.redoxi.ruste.rust.StructField;
@@ -44,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
+public class ExprStructImpl extends ExprPrimaryImpl implements ExprStruct
 {
   /**
    * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
@@ -393,41 +389,6 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
-    if (baseClass == Expr.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprRValue.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprBinary.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == Assign.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprLValue.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == ExprPathHead.class)
     {
       switch (derivedFeatureID)
@@ -447,41 +408,6 @@ public class ExprStructImpl extends ExprLeafImpl implements ExprStruct
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
-    if (baseClass == Expr.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprRValue.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprBinary.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == Assign.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
-    if (baseClass == ExprLValue.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == ExprPathHead.class)
     {
       switch (baseFeatureID)

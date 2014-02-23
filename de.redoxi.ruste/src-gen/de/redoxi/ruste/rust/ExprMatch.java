@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprMatch extends ExprLeaf
+public interface ExprMatch extends Expr
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

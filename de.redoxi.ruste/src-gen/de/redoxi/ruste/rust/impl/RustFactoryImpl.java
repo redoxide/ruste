@@ -92,9 +92,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.STATIC_ITEM: return createStaticItem();
       case RustPackage.EXPR: return createExpr();
       case RustPackage.EXPR_LVALUE: return createExprLValue();
-      case RustPackage.EXPR_RVALUE: return createExprRValue();
-      case RustPackage.EXPR_RVALUE1: return createExprRValue1();
       case RustPackage.EXPR_LEAF: return createExprLeaf();
+      case RustPackage.EXPR_FN_CALL: return createExprFnCall();
+      case RustPackage.EXPR_FN_CALL_ARGS: return createExprFnCallArgs();
+      case RustPackage.EXPR_PRIMARY: return createExprPrimary();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
       case RustPackage.EXPR_PATH_HEAD: return createExprPathHead();
       case RustPackage.EXPR_GROUP: return createExprGroup();
@@ -170,7 +171,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.NUMBER_LIT: return createNumberLit();
       case RustPackage.CHAR_LIT: return createCharLit();
       case RustPackage.EXPR_FIELD: return createExprField();
-      case RustPackage.EXPR_METHOD_CALL: return createExprMethodCall();
       case RustPackage.EXPR_INDEX: return createExprIndex();
       case RustPackage.DIVISION: return createDivision();
       case RustPackage.MULTIPLICATION: return createMultiplication();
@@ -544,32 +544,43 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprRValue createExprRValue()
-  {
-    ExprRValueImpl exprRValue = new ExprRValueImpl();
-    return exprRValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprRValue1 createExprRValue1()
-  {
-    ExprRValue1Impl exprRValue1 = new ExprRValue1Impl();
-    return exprRValue1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ExprLeaf createExprLeaf()
   {
     ExprLeafImpl exprLeaf = new ExprLeafImpl();
     return exprLeaf;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprFnCall createExprFnCall()
+  {
+    ExprFnCallImpl exprFnCall = new ExprFnCallImpl();
+    return exprFnCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprFnCallArgs createExprFnCallArgs()
+  {
+    ExprFnCallArgsImpl exprFnCallArgs = new ExprFnCallArgsImpl();
+    return exprFnCallArgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprPrimary createExprPrimary()
+  {
+    ExprPrimaryImpl exprPrimary = new ExprPrimaryImpl();
+    return exprPrimary;
   }
 
   /**
@@ -1395,17 +1406,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     ExprFieldImpl exprField = new ExprFieldImpl();
     return exprField;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprMethodCall createExprMethodCall()
-  {
-    ExprMethodCallImpl exprMethodCall = new ExprMethodCallImpl();
-    return exprMethodCall;
   }
 
   /**

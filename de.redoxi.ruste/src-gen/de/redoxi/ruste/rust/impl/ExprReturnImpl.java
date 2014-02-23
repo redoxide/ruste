@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprReturnImpl extends ExprLeafImpl implements ExprReturn
+public class ExprReturnImpl extends ExprImpl implements ExprReturn
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.

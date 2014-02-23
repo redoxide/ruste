@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *
  * @generated
  */
-public class ExprLambdaImpl extends ExprLeafImpl implements ExprLambda
+public class ExprLambdaImpl extends ExprImpl implements ExprLambda
 {
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' attribute list.

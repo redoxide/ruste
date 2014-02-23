@@ -21,7 +21,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprFor extends ExprLeaf
+public interface ExprFor extends Expr
 {
   /**
    * Returns the value of the '<em><b>Pat</b></em>' containment reference.

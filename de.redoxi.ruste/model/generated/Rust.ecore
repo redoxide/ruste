@@ -162,19 +162,33 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLValue" eSuperTypes="#//ExprLeaf #//Assign"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprRValue" eSuperTypes="#//Expr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprRValue1" eSuperTypes="#//DivisionMultiplicationOrModulo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLeaf" eSuperTypes="#//ExprRValue1"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLeaf" eSuperTypes="#//ExprUnary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprFnCall" eSuperTypes="#//ExprLeaf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tail" eType="#//ExprFnCallArgs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprFnCallArgs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tail" eType="#//ExprFnCallArgs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPrimary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPathHead" eSuperTypes="#//ExprLValue">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPathHead">
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprGroup" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprGroup" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprTuple" eSuperTypes="#//ExprPathHead #//ExprGroup">
@@ -183,7 +197,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprStruct" eSuperTypes="#//ExprLeaf #//ExprPathHead">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprStruct" eSuperTypes="#//ExprPrimary #//ExprPathHead">
     <eStructuralFeatures xsi:type="ecore:EReference" name="struct" eType="#//ExprStruct"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
@@ -191,24 +205,39 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprVec" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprVec" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
         eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lenExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//ExprLeaf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprLeaf"
+  <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//DivisionMultiplicationOrModulo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericNegation" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NumericNegation" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Dereference" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LogicalNegation" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ManagedBox" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OwnedBox" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Borrow" eSuperTypes="#//ExprUnary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprBinary" eSuperTypes="#//ExprRValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dereference" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalNegation" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ManagedBox" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OwnedBox" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Borrow" eSuperTypes="#//ExprUnary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBinary" eSuperTypes="#//Expr"/>
   <eClassifiers xsi:type="ecore:EClass" name="DivisionMultiplicationOrModulo" eSuperTypes="#//As"/>
   <eClassifiers xsi:type="ecore:EClass" name="As" eSuperTypes="#//AdditionOrSubtraction"/>
   <eClassifiers xsi:type="ecore:EClass" name="AdditionOrSubtraction" eSuperTypes="#//ShiftOperator"/>
@@ -219,43 +248,43 @@
   <eClassifiers xsi:type="ecore:EClass" name="ComparisonOperators" eSuperTypes="#//EqualityOperator"/>
   <eClassifiers xsi:type="ecore:EClass" name="EqualityOperator" eSuperTypes="#//BooleanAnd"/>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanAnd" eSuperTypes="#//BooleanOr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanOr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanOr" eSuperTypes="#//Assign"/>
   <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//ExprBinary"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLambda" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLambda" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprWhile" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprWhile" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprLoop" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprLoop" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprBreak" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBreak" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprContinue" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprContinue" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprDo" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprDo" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprFor" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprFor" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprIf" eSuperTypes="#//ExprLeaf #//ElseTail">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprIf" eSuperTypes="#//Expr #//ElseTail">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="else" eType="#//ElseTail"
         containment="true"/>
@@ -264,7 +293,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprMatch" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprMatch" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arms" upperBound="-1" eType="#//MatchArm"
         containment="true"/>
@@ -282,13 +311,12 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprReturn" eSuperTypes="#//ExprLeaf">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprReturn" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stmts" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+        eType="#//Stmt" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stmt">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
@@ -354,7 +382,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericTypes" upperBound="-1"
         eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPath">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
@@ -407,39 +435,29 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLit" eSuperTypes="#//Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="CharLit" eSuperTypes="#//Literal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprField" eSuperTypes="#//ExprRValue1">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprLeaf"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprField" eSuperTypes="#//ExprLValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprMethodCall" eSuperTypes="#//ExprRValue1">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="method" eType="#//ExprField"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprIndex" eSuperTypes="#//ExprRValue1">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprLeaf"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprIndex" eSuperTypes="#//ExprLValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//DivisionMultiplicationOrModulo">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprUnary"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//DivisionMultiplicationOrModulo">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprUnary"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Modulo" eSuperTypes="#//DivisionMultiplicationOrModulo">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprUnary"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprRValue1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprCast" eSuperTypes="#//As">
@@ -534,7 +552,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprAssign" eSuperTypes="#//Assign">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExprLValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BooleanOr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BooleanOr"
         containment="true"/>

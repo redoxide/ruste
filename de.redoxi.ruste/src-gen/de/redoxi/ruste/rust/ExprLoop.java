@@ -20,7 +20,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLoop extends ExprLeaf
+public interface ExprLoop extends Expr
 {
   /**
    * Returns the value of the '<em><b>Lifetime</b></em>' attribute.

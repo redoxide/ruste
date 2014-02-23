@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprIfImpl extends ExprLeafImpl implements ExprIf
+public class ExprIfImpl extends ExprImpl implements ExprIf
 {
   /**
    * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.

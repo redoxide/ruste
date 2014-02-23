@@ -266,24 +266,6 @@ public interface RustFactory extends EFactory
   ExprLValue createExprLValue();
 
   /**
-   * Returns a new object of class '<em>Expr RValue</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr RValue</em>'.
-   * @generated
-   */
-  ExprRValue createExprRValue();
-
-  /**
-   * Returns a new object of class '<em>Expr RValue1</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr RValue1</em>'.
-   * @generated
-   */
-  ExprRValue1 createExprRValue1();
-
-  /**
    * Returns a new object of class '<em>Expr Leaf</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -291,6 +273,33 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ExprLeaf createExprLeaf();
+
+  /**
+   * Returns a new object of class '<em>Expr Fn Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Fn Call</em>'.
+   * @generated
+   */
+  ExprFnCall createExprFnCall();
+
+  /**
+   * Returns a new object of class '<em>Expr Fn Call Args</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Fn Call Args</em>'.
+   * @generated
+   */
+  ExprFnCallArgs createExprFnCallArgs();
+
+  /**
+   * Returns a new object of class '<em>Expr Primary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Primary</em>'.
+   * @generated
+   */
+  ExprPrimary createExprPrimary();
 
   /**
    * Returns a new object of class '<em>Expr Literal</em>'.
@@ -966,15 +975,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ExprField createExprField();
-
-  /**
-   * Returns a new object of class '<em>Expr Method Call</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Method Call</em>'.
-   * @generated
-   */
-  ExprMethodCall createExprMethodCall();
 
   /**
    * Returns a new object of class '<em>Expr Index</em>'.

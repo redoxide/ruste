@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *
  * @generated
  */
-public class ExprDoImpl extends ExprLeafImpl implements ExprDo
+public class ExprDoImpl extends ExprImpl implements ExprDo
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.

@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -36,7 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprPathImpl extends MinimalEObjectImpl.Container implements ExprPath
+public class ExprPathImpl extends ExprPrimaryImpl implements ExprPath
 {
   /**
    * The cached value of the '{@link #getSegments() <em>Segments</em>}' attribute list.

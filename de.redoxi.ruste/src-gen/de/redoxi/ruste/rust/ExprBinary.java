@@ -13,6 +13,6 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprBinary extends ExprRValue
+public interface ExprBinary extends Expr
 {
 } // ExprBinary

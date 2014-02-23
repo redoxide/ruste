@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExprBinaryImpl extends ExprRValueImpl implements ExprBinary
+public class ExprBinaryImpl extends ExprImpl implements ExprBinary
 {
   /**
    * <!-- begin-user-doc -->

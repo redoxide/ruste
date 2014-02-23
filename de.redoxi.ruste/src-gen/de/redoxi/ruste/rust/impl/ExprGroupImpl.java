@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprGroupImpl extends ExprLeafImpl implements ExprGroup
+public class ExprGroupImpl extends ExprPrimaryImpl implements ExprGroup
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.

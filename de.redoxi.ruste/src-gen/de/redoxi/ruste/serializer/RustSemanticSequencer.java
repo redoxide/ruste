@@ -32,12 +32,15 @@ import de.redoxi.ruste.rust.ExprContinue;
 import de.redoxi.ruste.rust.ExprDo;
 import de.redoxi.ruste.rust.ExprEqualTo;
 import de.redoxi.ruste.rust.ExprField;
+import de.redoxi.ruste.rust.ExprFnCall;
+import de.redoxi.ruste.rust.ExprFnCallArgs;
 import de.redoxi.ruste.rust.ExprFor;
 import de.redoxi.ruste.rust.ExprGreaterThan;
 import de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprIf;
 import de.redoxi.ruste.rust.ExprIndex;
+import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLambda;
 import de.redoxi.ruste.rust.ExprLeftShift;
 import de.redoxi.ruste.rust.ExprLessThan;
@@ -45,7 +48,6 @@ import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprLoop;
 import de.redoxi.ruste.rust.ExprMatch;
-import de.redoxi.ruste.rust.ExprMethodCall;
 import de.redoxi.ruste.rust.ExprNotEqualTo;
 import de.redoxi.ruste.rust.ExprPath;
 import de.redoxi.ruste.rust.ExprPathHead;
@@ -151,10 +153,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					sequence_Block(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getBlockAccess().getBlockStmtsAction_1_1_0()) {
-					sequence_Block_Block_1_1_0(context, (Block) semanticObject); 
-					return; 
-				}
 				else break;
 			case RustPackage.BOOL_TYPE:
 				if(context == grammarAccess.getPrimitiveTypeRule() ||
@@ -164,11 +162,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.BORROW:
-				if(context == grammarAccess.getBorrowRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
-				   context == grammarAccess.getExprUnaryRule()) {
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBorrowRule() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_Borrow(context, (Borrow) semanticObject); 
 					return; 
 				}
@@ -222,11 +251,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.DEREFERENCE:
-				if(context == grammarAccess.getDereferenceRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
-				   context == grammarAccess.getExprUnaryRule()) {
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDereferenceRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_Dereference(context, (Dereference) semanticObject); 
 					return; 
 				}
@@ -237,6 +297,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getAsRule() ||
 				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -256,6 +318,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -284,6 +348,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				else break;
 			case RustPackage.EXPR_ADDITION:
 				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -302,6 +368,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -312,14 +380,15 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.EXPR_ASSIGN:
 				if(context == grammarAccess.getAssignRule() ||
 				   context == grammarAccess.getExprRule() ||
-				   context == grammarAccess.getExprBinaryRule() ||
-				   context == grammarAccess.getExprRValueRule()) {
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_Assign(context, (ExprAssign) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BITWISE_AND:
-				if(context == grammarAccess.getBitwiseAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
 				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseXorRule() ||
@@ -335,13 +404,17 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_BitwiseAnd(context, (ExprBitwiseAnd) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BITWISE_OR:
-				if(context == grammarAccess.getBitwiseOrRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
 				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
@@ -353,13 +426,17 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_BitwiseOr(context, (ExprBitwiseOr) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BITWISE_XOR:
-				if(context == grammarAccess.getBitwiseOrRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
 				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseXorRule() ||
 				   context == grammarAccess.getBooleanAndRule() ||
@@ -373,30 +450,38 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_BitwiseXor(context, (ExprBitwiseXor) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BOOLEAN_AND:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanOrRule() ||
-				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0()) {
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_BooleanAnd(context, (ExprBooleanAnd) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BOOLEAN_OR:
-				if(context == grammarAccess.getBooleanOrRule()) {
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_BooleanOr(context, (ExprBooleanOr) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_BREAK:
-				if(context == grammarAccess.getExprBreakRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBreakRule()) {
 					sequence_ExprBreak(context, (ExprBreak) semanticObject); 
 					return; 
 				}
@@ -406,6 +491,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -424,6 +511,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -432,39 +521,47 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_CONTINUE:
-				if(context == grammarAccess.getExprContinueRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprContinueRule()) {
 					sequence_ExprContinue(context, (ExprContinue) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_DO:
-				if(context == grammarAccess.getExprDoRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprDoRule()) {
 					sequence_ExprDo(context, (ExprDo) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_EQUAL_TO:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
 				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getEqualityOperatorRule()) {
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_EqualityOperator(context, (ExprEqualTo) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_FIELD:
+				if(context == grammarAccess.getExprLValueRule()) {
+					sequence_ExprLValue(context, (ExprField) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_FN_CALL:
 				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getAsRule() ||
 				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -487,46 +584,61 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getExprRValue1Rule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprMethodCallMethodAction_1_0_3_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
+				   context == grammarAccess.getExprFnCallRule() ||
+				   context == grammarAccess.getExprLeafRule() ||
+				   context == grammarAccess.getExprUnaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
-					sequence_ExprRValue1(context, (ExprField) semanticObject); 
+					sequence_ExprFnCall(context, (ExprFnCall) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_FN_CALL_ARGS:
+				if(context == grammarAccess.getExprFnCallArgsRule()) {
+					sequence_ExprFnCallArgs(context, (ExprFnCallArgs) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_FOR:
-				if(context == grammarAccess.getExprForRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprForRule()) {
 					sequence_ExprFor(context, (ExprFor) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_GREATER_THAN:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
 				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getComparisonOperatorsRule() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_ComparisonOperators(context, (ExprGreaterThan) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_GREATER_THAN_OR_EQUAL_TO:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
 				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getComparisonOperatorsRule() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_ComparisonOperators(context, (ExprGreaterThanOrEqualTo) semanticObject); 
 					return; 
 				}
@@ -534,29 +646,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case RustPackage.EXPR_GROUP:
 				if(context == grammarAccess.getExprGroupRule() ||
 				   context == grammarAccess.getExprGroupAccess().getExprTupleExprsAction_2_0() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				   context == grammarAccess.getExprPrimaryRule()) {
 					sequence_ExprGroup(context, (ExprGroup) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_IF:
 				if(context == grammarAccess.getElseTailRule() ||
-				   context == grammarAccess.getExprIfRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprIfRule()) {
 					sequence_ExprIf(context, (ExprIf) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_INDEX:
-				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
-				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getAsRule() ||
-				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				if(context == grammarAccess.getExprLValueRule()) {
+					sequence_ExprLValue(context, (ExprIndex) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_LVALUE:
+				if(context == grammarAccess.getExprLValueAccess().getExprFieldExprAction_1_0_0() ||
+				   context == grammarAccess.getExprLValueAccess().getExprIndexExprAction_1_1_0()) {
+					sequence_ExprLValue_ExprField_1_0_0_ExprIndex_1_1_0(context, (ExprLValue) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_LAMBDA:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLambdaRule()) {
+					sequence_ExprLambda(context, (ExprLambda) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_LEFT_SHIFT:
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -572,113 +697,110 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getExprRValue1Rule() ||
-				   context == grammarAccess.getShiftOperatorRule() ||
-				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
-					sequence_ExprRValue1(context, (ExprIndex) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_LAMBDA:
-				if(context == grammarAccess.getExprLambdaRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
-					sequence_ExprLambda(context, (ExprLambda) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_LEFT_SHIFT:
-				if(context == grammarAccess.getBitwiseAndRule() ||
-				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
-				   context == grammarAccess.getBitwiseOrRule() ||
-				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getBitwiseXorRule() ||
-				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
-				   context == grammarAccess.getBooleanAndRule() ||
-				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
-				   context == grammarAccess.getBooleanOrRule() ||
-				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getComparisonOperatorsRule() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorRule() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule()) {
 					sequence_ShiftOperator(context, (ExprLeftShift) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_LESS_THAN:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
 				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getComparisonOperatorsRule() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_ComparisonOperators(context, (ExprLessThan) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_LESS_THAN_OR_EQUAL_TO:
-				if(context == grammarAccess.getBooleanAndRule() ||
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
 				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBooleanOrRule() ||
 				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
 				   context == grammarAccess.getComparisonOperatorsRule() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0()) {
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
 					sequence_ComparisonOperators(context, (ExprLessThanOrEqualTo) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_LITERAL:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprLiteralRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprLiteralRule() ||
+				   context == grammarAccess.getExprPrimaryRule()) {
 					sequence_ExprLiteral(context, (ExprLiteral) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_LOOP:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprLoopRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprLoopRule()) {
 					sequence_ExprLoop(context, (ExprLoop) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_MATCH:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprMatchRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprMatchRule()) {
 					sequence_ExprMatch(context, (ExprMatch) semanticObject); 
 					return; 
 				}
 				else break;
-			case RustPackage.EXPR_METHOD_CALL:
-				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
-				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getAsRule() ||
-				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+			case RustPackage.EXPR_NOT_EQUAL_TO:
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule()) {
+					sequence_EqualityOperator(context, (ExprNotEqualTo) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_PATH:
+				if(context == grammarAccess.getExprPathRule() ||
+				   context == grammarAccess.getExprPrimaryRule()) {
+					sequence_ExprPath(context, (ExprPath) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_PATH_HEAD:
+				if(context == grammarAccess.getExprPathHeadRule() ||
+				   context == grammarAccess.getExprPathHeadAccess().getExprStructPathAction_1_0_0() ||
+				   context == grammarAccess.getExprPathHeadAccess().getExprTuplePathAction_1_1_0()) {
+					sequence_ExprPathHead(context, (ExprPathHead) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_RETURN:
+				if(context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprReturnRule()) {
+					sequence_ExprReturn(context, (ExprReturn) semanticObject); 
+					return; 
+				}
+				else break;
+			case RustPackage.EXPR_RIGHT_SHIFT:
+				if(context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -694,82 +816,11 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
 				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
-				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getExprRValue1Rule() ||
-				   context == grammarAccess.getShiftOperatorRule() ||
-				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
-					sequence_ExprRValue1(context, (ExprMethodCall) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_NOT_EQUAL_TO:
-				if(context == grammarAccess.getBooleanAndRule() ||
-				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
-				   context == grammarAccess.getBooleanOrRule() ||
-				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getEqualityOperatorRule()) {
-					sequence_EqualityOperator(context, (ExprNotEqualTo) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_PATH:
-				if(context == grammarAccess.getExprPathRule()) {
-					sequence_ExprPath(context, (ExprPath) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_PATH_HEAD:
-				if(context == grammarAccess.getAssignRule() ||
-				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getExprRule() ||
 				   context == grammarAccess.getExprBinaryRule() ||
-				   context == grammarAccess.getExprLValueRule() ||
-				   context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprPathHeadRule() ||
-				   context == grammarAccess.getExprPathHeadAccess().getExprStructPathAction_1_0_0() ||
-				   context == grammarAccess.getExprPathHeadAccess().getExprTuplePathAction_1_1_0() ||
-				   context == grammarAccess.getExprRValueRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
-					sequence_ExprPathHead(context, (ExprPathHead) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_RETURN:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
-				   context == grammarAccess.getExprReturnRule()) {
-					sequence_ExprReturn(context, (ExprReturn) semanticObject); 
-					return; 
-				}
-				else break;
-			case RustPackage.EXPR_RIGHT_SHIFT:
-				if(context == grammarAccess.getBitwiseAndRule() ||
-				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
-				   context == grammarAccess.getBitwiseOrRule() ||
-				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getBitwiseXorRule() ||
-				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
-				   context == grammarAccess.getBooleanAndRule() ||
-				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
-				   context == grammarAccess.getBooleanOrRule() ||
-				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
-				   context == grammarAccess.getComparisonOperatorsRule() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
-				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorRule() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
-				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getShiftOperatorRule()) {
 					sequence_ShiftOperator(context, (ExprRightShift) semanticObject); 
 					return; 
@@ -783,29 +834,20 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_STRUCT:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
-					sequence_ExprLeaf_ExprPathHead_ExprStruct(context, (ExprStruct) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAssignRule() ||
-				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
-				   context == grammarAccess.getExprRule() ||
-				   context == grammarAccess.getExprBinaryRule() ||
-				   context == grammarAccess.getExprLValueRule() ||
-				   context == grammarAccess.getExprPathHeadRule() ||
-				   context == grammarAccess.getExprRValueRule()) {
+				if(context == grammarAccess.getExprPathHeadRule()) {
 					sequence_ExprPathHead(context, (ExprStruct) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getExprStructRule()) {
+				else if(context == grammarAccess.getExprPrimaryRule() ||
+				   context == grammarAccess.getExprStructRule()) {
 					sequence_ExprStruct(context, (ExprStruct) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_SUBTRACTION:
 				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -824,6 +866,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -832,23 +876,12 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_TUPLE:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0()) {
-					sequence_ExprGroup_ExprLeaf_ExprPathHead(context, (ExprTuple) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getExprGroupRule()) {
+				if(context == grammarAccess.getExprGroupRule() ||
+				   context == grammarAccess.getExprPrimaryRule()) {
 					sequence_ExprGroup(context, (ExprTuple) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAssignRule() ||
-				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
-				   context == grammarAccess.getExprRule() ||
-				   context == grammarAccess.getExprBinaryRule() ||
-				   context == grammarAccess.getExprLValueRule() ||
-				   context == grammarAccess.getExprPathHeadRule() ||
-				   context == grammarAccess.getExprRValueRule()) {
+				else if(context == grammarAccess.getExprPathHeadRule()) {
 					sequence_ExprPathHead(context, (ExprTuple) semanticObject); 
 					return; 
 				}
@@ -858,18 +891,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.EXPR_VEC:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getExprPrimaryRule() ||
 				   context == grammarAccess.getExprVecRule()) {
 					sequence_ExprVec(context, (ExprVec) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.EXPR_WHILE:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getExprRule() ||
 				   context == grammarAccess.getExprWhileRule()) {
 					sequence_ExprWhile(context, (ExprWhile) semanticObject); 
 					return; 
@@ -967,11 +996,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.LOGICAL_NEGATION:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
-				   context == grammarAccess.getLogicalNegationRule()) {
+				   context == grammarAccess.getLogicalNegationRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_LogicalNegation(context, (LogicalNegation) semanticObject); 
 					return; 
 				}
@@ -984,11 +1044,42 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.MANAGED_BOX:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
-				   context == grammarAccess.getManagedBoxRule()) {
+				   context == grammarAccess.getManagedBoxRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_ManagedBox(context, (ManagedBox) semanticObject); 
 					return; 
 				}
@@ -1018,6 +1109,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getAsRule() ||
 				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -1037,6 +1130,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -1050,6 +1145,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
 				   context == grammarAccess.getAsRule() ||
 				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
 				   context == grammarAccess.getBitwiseAndRule() ||
 				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
 				   context == grammarAccess.getBitwiseOrRule() ||
@@ -1069,6 +1166,8 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				   context == grammarAccess.getEqualityOperatorRule() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getShiftOperatorRule() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
 				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
@@ -1091,21 +1190,83 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case RustPackage.NUMERIC_NEGATION:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
-				   context == grammarAccess.getNumericNegationRule()) {
+				   context == grammarAccess.getNumericNegationRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_NumericNegation(context, (NumericNegation) semanticObject); 
 					return; 
 				}
 				else break;
 			case RustPackage.OWNED_BOX:
-				if(context == grammarAccess.getExprLeafRule() ||
-				   context == grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0() ||
-				   context == grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0() ||
+				if(context == grammarAccess.getAdditionOrSubtractionRule() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprAdditionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getAdditionOrSubtractionAccess().getExprSubtractionLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getAsRule() ||
+				   context == grammarAccess.getAsAccess().getExprCastExprAction_1_0_0() ||
+				   context == grammarAccess.getAssignRule() ||
+				   context == grammarAccess.getAssignAccess().getExprAssignLeftAction_1_0() ||
+				   context == grammarAccess.getBitwiseAndRule() ||
+				   context == grammarAccess.getBitwiseAndAccess().getExprBitwiseAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseOrRule() ||
+				   context == grammarAccess.getBitwiseOrAccess().getExprBitwiseOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getBitwiseXorRule() ||
+				   context == grammarAccess.getBitwiseXorAccess().getExprBitwiseXorLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanAndRule() ||
+				   context == grammarAccess.getBooleanAndAccess().getExprBooleanAndLeftAction_1_0_0() ||
+				   context == grammarAccess.getBooleanOrRule() ||
+				   context == grammarAccess.getBooleanOrAccess().getExprBooleanOrLeftAction_1_0_0() ||
+				   context == grammarAccess.getComparisonOperatorsRule() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanOrEqualToLeftAction_1_0_3_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprGreaterThanLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanOrEqualToLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getComparisonOperatorsAccess().getExprLessThanLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloRule() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0() ||
+				   context == grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getEqualityOperatorRule() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprEqualToLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getEqualityOperatorAccess().getExprNotEqualToLeftAction_1_0_1_0() ||
+				   context == grammarAccess.getExprRule() ||
+				   context == grammarAccess.getExprBinaryRule() ||
 				   context == grammarAccess.getExprUnaryRule() ||
-				   context == grammarAccess.getOwnedBoxRule()) {
+				   context == grammarAccess.getOwnedBoxRule() ||
+				   context == grammarAccess.getShiftOperatorRule() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprLeftShiftLeftAction_1_0_0_0() ||
+				   context == grammarAccess.getShiftOperatorAccess().getExprRightShiftLeftAction_1_0_1_0()) {
 					sequence_OwnedBox(context, (OwnedBox) semanticObject); 
 					return; 
 				}
@@ -1467,18 +1628,9 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((stmts+=Block_Block_1_1_0 stmts+=Stmt stmts+=Stmt* expr=Expr?) | expr=Expr)
+	 *     (stmts+=Stmt stmts+=Stmt*)
 	 */
 	protected void sequence_Block(EObject context, Block semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     expr=Expr
-	 */
-	protected void sequence_Block_Block_1_1_0(EObject context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1523,16 +1675,16 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_Borrow(EObject context, Borrow semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.BORROW__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.BORROW__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBorrowAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getBorrowAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
@@ -1672,23 +1824,23 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_Dereference(EObject context, Dereference semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.DEREFERENCE__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.DEREFERENCE__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDereferenceAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getDereferenceAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (left=DivisionMultiplicationOrModulo_Division_1_0_0_0 right=ExprRValue1)
+	 *     (left=DivisionMultiplicationOrModulo_Division_1_0_0_0 right=ExprUnary)
 	 */
 	protected void sequence_DivisionMultiplicationOrModulo(EObject context, Division semanticObject) {
 		if(errorAcceptor != null) {
@@ -1700,14 +1852,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getDivisionLeftAction_1_0_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprRValue1ParserRuleCall_1_0_0_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprUnaryParserRuleCall_1_0_0_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (left=DivisionMultiplicationOrModulo_Modulo_1_0_2_0 right=ExprRValue1)
+	 *     (left=DivisionMultiplicationOrModulo_Modulo_1_0_2_0 right=ExprUnary)
 	 */
 	protected void sequence_DivisionMultiplicationOrModulo(EObject context, Modulo semanticObject) {
 		if(errorAcceptor != null) {
@@ -1719,14 +1871,14 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getModuloLeftAction_1_0_2_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprRValue1ParserRuleCall_1_0_2_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprUnaryParserRuleCall_1_0_2_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (left=DivisionMultiplicationOrModulo_Multiplication_1_0_1_0 right=ExprRValue1)
+	 *     (left=DivisionMultiplicationOrModulo_Multiplication_1_0_1_0 right=ExprUnary)
 	 */
 	protected void sequence_DivisionMultiplicationOrModulo(EObject context, Multiplication semanticObject) {
 		if(errorAcceptor != null) {
@@ -1738,7 +1890,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getMultiplicationLeftAction_1_0_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprRValue1ParserRuleCall_1_0_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getDivisionMultiplicationOrModuloAccess().getRightExprUnaryParserRuleCall_1_0_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -1844,6 +1996,24 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     ((args+=Expr args+=Expr*)? tail=ExprFnCallArgs?)
+	 */
+	protected void sequence_ExprFnCallArgs(EObject context, ExprFnCallArgs semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (expr=ExprPrimary tail=ExprFnCallArgs?)
+	 */
+	protected void sequence_ExprFnCall(EObject context, ExprFnCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (pat=Pat expr=Expr block=Block)
 	 */
 	protected void sequence_ExprFor(EObject context, ExprFor semanticObject) {
@@ -1882,19 +2052,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (exprs+=ExprGroup_ExprTuple_2_0 (exprs+=Expr exprs+=Expr*)?) | 
-	 *         exprs+=ExprGroup_ExprTuple_2_0 | 
-	 *         (path=ExprPathHead_ExprTuple_1_1_0 tuple=ExprTuple)
-	 *     )
-	 */
-	protected void sequence_ExprGroup_ExprLeaf_ExprPathHead(EObject context, ExprTuple semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     ((exprs+=ExprGroup_ExprTuple_2_0 (exprs+=Expr exprs+=Expr*)?) | exprs+=ExprGroup_ExprTuple_2_0)
 	 */
 	protected void sequence_ExprGroup(EObject context, ExprTuple semanticObject) {
@@ -1913,18 +2070,63 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((args+=IDENT args+=IDENT*)? expr=Expr)
+	 *     (expr=ExprLValue_ExprField_1_0_0 field=IDENT)
 	 */
-	protected void sequence_ExprLambda(EObject context, ExprLambda semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ExprLValue(EObject context, ExprField semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_FIELD__FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_FIELD__FIELD));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprLValueAccess().getExprFieldExprAction_1_0_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getExprLValueAccess().getFieldIDENTTerminalRuleCall_1_0_2_0(), semanticObject.getField());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     ((fields+=StructField fields+=StructField* baseExpr=Expr?) | (path=ExprPathHead_ExprStruct_1_0_0 struct=ExprStruct))
+	 *     expr=ExprLeaf
 	 */
-	protected void sequence_ExprLeaf_ExprPathHead_ExprStruct(EObject context, ExprStruct semanticObject) {
+	protected void sequence_ExprLValue_ExprField_1_0_0_ExprIndex_1_1_0(EObject context, ExprLValue semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprLValueAccess().getExprExprLeafParserRuleCall_0_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (expr=ExprLValue_ExprIndex_1_1_0 indexExpr=Expr)
+	 */
+	protected void sequence_ExprLValue(EObject context, ExprIndex semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_LVALUE__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_INDEX__INDEX_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_INDEX__INDEX_EXPR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExprLValueAccess().getExprIndexExprAction_1_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getExprLValueAccess().getIndexExprExprParserRuleCall_1_1_2_0(), semanticObject.getIndexExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((args+=IDENT args+=IDENT*)? expr=Expr)
+	 */
+	protected void sequence_ExprLambda(EObject context, ExprLambda semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2008,53 +2210,6 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (expr=ExprRValue1_ExprField_1_0_0 field=IDENT)
-	 */
-	protected void sequence_ExprRValue1(EObject context, ExprField semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_FIELD__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_FIELD__EXPR));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_FIELD__FIELD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_FIELD__FIELD));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getExprRValue1Access().getExprFieldExprAction_1_0_0(), semanticObject.getExpr());
-		feeder.accept(grammarAccess.getExprRValue1Access().getFieldIDENTTerminalRuleCall_1_0_2_0(), semanticObject.getField());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (expr=ExprRValue1_ExprIndex_1_1_0 indexExpr=Expr)
-	 */
-	protected void sequence_ExprRValue1(EObject context, ExprIndex semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_INDEX__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_INDEX__EXPR));
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_INDEX__INDEX_EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_INDEX__INDEX_EXPR));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getExprRValue1Access().getExprIndexExprAction_1_1_0(), semanticObject.getExpr());
-		feeder.accept(grammarAccess.getExprRValue1Access().getIndexExprExprParserRuleCall_1_1_2_0(), semanticObject.getIndexExpr());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (method=ExprRValue1_ExprMethodCall_1_0_3_0 (args+=Expr args+=Expr)?)
-	 */
-	protected void sequence_ExprRValue1(EObject context, ExprMethodCall semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (expr=Expr?)
 	 */
 	protected void sequence_ExprReturn(EObject context, ExprReturn semanticObject) {
@@ -2073,7 +2228,7 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getExprStmtAccess().getExprExprParserRuleCall_0_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getExprStmtAccess().getExprExprParserRuleCall_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
@@ -2261,32 +2416,32 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_LogicalNegation(EObject context, LogicalNegation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.LOGICAL_NEGATION__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.LOGICAL_NEGATION__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getLogicalNegationAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getLogicalNegationAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_ManagedBox(EObject context, ManagedBox semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.MANAGED_BOX__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.MANAGED_BOX__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getManagedBoxAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getManagedBoxAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
@@ -2345,32 +2500,32 @@ public class RustSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_NumericNegation(EObject context, NumericNegation semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.NUMERIC_NEGATION__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.NUMERIC_NEGATION__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getNumericNegationAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getNumericNegationAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     expr=ExprLeaf
+	 *     expr=ExprPrimary
 	 */
 	protected void sequence_OwnedBox(EObject context, OwnedBox semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.EXPR_UNARY__EXPR));
+			if(transientValues.isValueTransient(semanticObject, RustPackage.Literals.OWNED_BOX__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RustPackage.Literals.OWNED_BOX__EXPR));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getOwnedBoxAccess().getExprExprLeafParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getOwnedBoxAccess().getExprExprPrimaryParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	

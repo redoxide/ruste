@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExprMatchImpl extends ExprLeafImpl implements ExprMatch
+public class ExprMatchImpl extends ExprImpl implements ExprMatch
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.

@@ -2,28 +2,30 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ExprRValue;
+import de.redoxi.ruste.rust.ExprPrimary;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr RValue</b></em>'.
+ * An implementation of the model object '<em><b>Expr Primary</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ExprRValueImpl extends ExprImpl implements ExprRValue
+public class ExprPrimaryImpl extends MinimalEObjectImpl.Container implements ExprPrimary
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprRValueImpl()
+  protected ExprPrimaryImpl()
   {
     super();
   }
@@ -36,7 +38,7 @@ public class ExprRValueImpl extends ExprImpl implements ExprRValue
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_RVALUE;
+    return RustPackage.Literals.EXPR_PRIMARY;
   }
 
-} //ExprRValueImpl
+} //ExprPrimaryImpl

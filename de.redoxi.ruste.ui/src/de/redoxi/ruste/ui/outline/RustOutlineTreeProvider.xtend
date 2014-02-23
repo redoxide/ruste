@@ -23,4 +23,8 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 			}
 		}
 	}
+	
+	def Object _text(EObject element) {
+		"(" + element.getClass().name + ")";
+	}
 }

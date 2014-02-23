@@ -20,7 +20,7 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprWhile extends ExprLeaf
+public interface ExprWhile extends Expr
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

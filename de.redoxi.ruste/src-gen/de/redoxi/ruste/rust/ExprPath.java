@@ -4,8 +4,6 @@ package de.redoxi.ruste.rust;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Expr Path</b></em>'.
@@ -24,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ExprPath extends EObject
+public interface ExprPath extends ExprPrimary
 {
   /**
    * Returns the value of the '<em><b>Segments</b></em>' attribute list.

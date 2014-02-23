@@ -2,7 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ExprRValue1;
+import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.Multiplication;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -38,7 +38,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * @generated
    * @ordered
    */
-  protected ExprRValue1 left;
+  protected ExprUnary left;
 
   /**
    * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -48,7 +48,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * @generated
    * @ordered
    */
-  protected ExprRValue1 right;
+  protected ExprUnary right;
 
   /**
    * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprRValue1 getLeft()
+  public ExprUnary getLeft()
   {
     return left;
   }
@@ -86,9 +86,9 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(ExprRValue1 newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(ExprUnary newLeft, NotificationChain msgs)
   {
-    ExprRValue1 oldLeft = left;
+    ExprUnary oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -103,7 +103,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLeft(ExprRValue1 newLeft)
+  public void setLeft(ExprUnary newLeft)
   {
     if (newLeft != left)
     {
@@ -124,7 +124,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprRValue1 getRight()
+  public ExprUnary getRight()
   {
     return right;
   }
@@ -134,9 +134,9 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(ExprRValue1 newRight, NotificationChain msgs)
+  public NotificationChain basicSetRight(ExprUnary newRight, NotificationChain msgs)
   {
-    ExprRValue1 oldRight = right;
+    ExprUnary oldRight = right;
     right = newRight;
     if (eNotificationRequired())
     {
@@ -151,7 +151,7 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRight(ExprRValue1 newRight)
+  public void setRight(ExprUnary newRight)
   {
     if (newRight != right)
     {
@@ -214,10 +214,10 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
     switch (featureID)
     {
       case RustPackage.MULTIPLICATION__LEFT:
-        setLeft((ExprRValue1)newValue);
+        setLeft((ExprUnary)newValue);
         return;
       case RustPackage.MULTIPLICATION__RIGHT:
-        setRight((ExprRValue1)newValue);
+        setRight((ExprUnary)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,10 +234,10 @@ public class MultiplicationImpl extends DivisionMultiplicationOrModuloImpl imple
     switch (featureID)
     {
       case RustPackage.MULTIPLICATION__LEFT:
-        setLeft((ExprRValue1)null);
+        setLeft((ExprUnary)null);
         return;
       case RustPackage.MULTIPLICATION__RIGHT:
-        setRight((ExprRValue1)null);
+        setRight((ExprUnary)null);
         return;
     }
     super.eUnset(featureID);

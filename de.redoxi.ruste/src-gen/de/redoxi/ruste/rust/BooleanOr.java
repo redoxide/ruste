@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface BooleanOr extends EObject
+public interface BooleanOr extends Assign
 {
 } // BooleanOr

@@ -28,4 +28,12 @@ public class RustOutlineTreeProvider extends DefaultOutlineTreeProvider {
       }
     }
   }
+  
+  public Object _text(final EObject element) {
+    Class<? extends EObject> _class = element.getClass();
+    String _name = _class.getName();
+    String _plus = ("(" + _name);
+    String _plus_1 = (_plus + ")");
+    return _plus_1;
+  }
 }

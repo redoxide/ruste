@@ -4,6 +4,7 @@ package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.Expr;
 import de.redoxi.ruste.rust.ExprGroup;
+import de.redoxi.ruste.rust.ExprPrimary;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -317,6 +318,13 @@ public class ExprTupleImpl extends ExprPathHeadImpl implements ExprTuple
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
+    if (baseClass == ExprPrimary.class)
+    {
+      switch (derivedFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == ExprGroup.class)
     {
       switch (derivedFeatureID)
@@ -336,6 +344,13 @@ public class ExprTupleImpl extends ExprPathHeadImpl implements ExprTuple
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
+    if (baseClass == ExprPrimary.class)
+    {
+      switch (baseFeatureID)
+      {
+        default: return -1;
+      }
+    }
     if (baseClass == ExprGroup.class)
     {
       switch (baseFeatureID)

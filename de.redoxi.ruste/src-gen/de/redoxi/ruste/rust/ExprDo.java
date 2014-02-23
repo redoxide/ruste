@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprDo extends ExprLeaf
+public interface ExprDo extends Expr
 {
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprLiteralImpl extends ExprLeafImpl implements ExprLiteral
+public class ExprLiteralImpl extends ExprPrimaryImpl implements ExprLiteral
 {
   /**
    * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.

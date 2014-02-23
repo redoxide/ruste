@@ -69,7 +69,7 @@ ModItem:
 
 // Function item
 FnItem:
-	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ( "->" returnType = Type)?  '{' body=Block '}'
+	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ("->" returnType = Type)? '{' body=Block '}'
 ;
 
 // TODO Reference Type?
@@ -119,28 +119,7 @@ StaticItem:
 ;
 
 Expr:
-	ExprRValue
-;
-
-ExprLValue:
-	ExprPathHead
-;
-
-ExprRValue:
-	ExprBinary
-;
-
-ExprRValue1 hidden(ML_COMMENT):
-	ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT ({ExprMethodCall.method=current} ('(' (args+=Expr (',' args+=Expr))? ')'))? | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
-;
-
-// Expressions that avoid left recursion
-ExprLeaf:
-	ExprLiteral |
-	ExprGroup |
-	ExprStruct |
-	ExprVec |
-	ExprUnary |
+	ExprBinary |
 	ExprLambda |
 	ExprWhile |
 	ExprLoop |
@@ -150,8 +129,31 @@ ExprLeaf:
 	ExprFor |
 	ExprIf |
 	ExprMatch |
-	ExprReturn |
-	ExprLValue
+	ExprReturn
+;
+
+ExprLValue:
+	expr=ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
+;
+
+ExprLeaf:
+	ExprFnCall
+;
+
+ExprFnCall hidden():
+	expr=ExprPrimary tail=ExprFnCallArgs?
+;
+
+ExprFnCallArgs hidden():
+	{ExprFnCallArgs} ('()' | '(' WS? args+=Expr WS? (',' WS? args+=Expr WS?)* ')') tail=ExprFnCallArgs?
+;
+
+ExprPrimary:
+	ExprLiteral |
+	ExprGroup |
+	ExprStruct |
+	ExprVec |
+	ExprPath
 ;
 
 ExprLiteral:
@@ -184,31 +186,32 @@ ExprUnary:
 	LogicalNegation |
 	ManagedBox |
 	OwnedBox |
-	Borrow
+	Borrow |
+	ExprLeaf
 ;
 
 NumericNegation hidden(SL_COMMENT, ML_COMMENT):
-	"-" expr=ExprLeaf
+	"-" expr=ExprPrimary
 ;
 
 Dereference hidden(SL_COMMENT, ML_COMMENT):
-	"*" expr=ExprLeaf
+	"*" expr=ExprPrimary
 ;
 
 LogicalNegation hidden(SL_COMMENT, ML_COMMENT):
-	"!" expr=ExprLeaf
+	"!" expr=ExprPrimary
 ;
 
 ManagedBox hidden(SL_COMMENT, ML_COMMENT):
-	"@" expr=ExprLeaf
+	"@" expr=ExprPrimary
 ;
 
 OwnedBox hidden(SL_COMMENT, ML_COMMENT):
-	"~" expr=ExprLeaf
+	"~" expr=ExprPrimary
 ;
 
 Borrow hidden(SL_COMMENT, ML_COMMENT):
-	"&" expr=ExprLeaf
+	"&" expr=ExprPrimary
 ;
 
 ExprBinary:
@@ -216,7 +219,7 @@ ExprBinary:
 ;
 
 DivisionMultiplicationOrModulo:
-	ExprRValue1 =>({Division.left=current} "/" right=ExprRValue1 | {Multiplication.left=current} "*" right=ExprRValue1 | {Modulo.left=current} "%" right=ExprRValue1)?
+	ExprUnary =>({Division.left=current} "/" right=ExprUnary | {Multiplication.left=current} "*" right=ExprUnary | {Modulo.left=current} "%" right=ExprUnary)?
 ;
 
 As:
@@ -261,7 +264,7 @@ BooleanOr:
 
 // TODO Divide expressions into lvalues and rvalues
 Assign:
-	ExprLValue ({ExprAssign.left=current} "=" right=BooleanOr)?
+	BooleanOr ({ExprAssign.left=current} "=" right=BooleanOr)?
 ;
 
 ExprLambda:
@@ -319,7 +322,7 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} (expr=Expr ({Block.stmts+=current} ';' stmts+=Stmt (';' stmts+=Stmt)* expr=Expr?)?)?
+	{Block} stmts+=Stmt (';' stmts+=Stmt)* ';'?
 ;
 
 Stmt:
@@ -332,7 +335,7 @@ SlotDeclStmt:
 ;
 
 ExprStmt:
-	expr=Expr ';'
+	expr=Expr
 ;
 
 // TODO Crossreference Trait?

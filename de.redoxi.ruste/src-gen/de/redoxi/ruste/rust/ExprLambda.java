@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprLambda extends ExprLeaf
+public interface ExprLambda extends Expr
 {
   /**
    * Returns the value of the '<em><b>Args</b></em>' attribute list.

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprVec extends ExprLeaf
+public interface ExprVec extends ExprPrimary
 {
   /**
    * Returns the value of the '<em><b>Mutable</b></em>' attribute.

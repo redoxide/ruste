@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ExprForImpl extends ExprLeafImpl implements ExprFor
+public class ExprForImpl extends ExprImpl implements ExprFor
 {
   /**
    * The cached value of the '{@link #getPat() <em>Pat</em>}' containment reference.
