@@ -2,6 +2,7 @@
  */
 package de.redoxi.ruste.rust;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,8 +12,7 @@ package de.redoxi.ruste.rust;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.ExprAssign#getLeft <em>Left</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.ExprAssign#getRight <em>Right</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.ExprAssign#getExprs <em>Exprs</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,55 +23,19 @@ package de.redoxi.ruste.rust;
 public interface ExprAssign extends Assign
 {
   /**
-   * Returns the value of the '<em><b>Left</b></em>' containment reference.
+   * Returns the value of the '<em><b>Exprs</b></em>' containment reference list.
+   * The list contents are of type {@link de.redoxi.ruste.rust.BooleanOr}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Left</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Exprs</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(BooleanOr)
-   * @see de.redoxi.ruste.rust.RustPackage#getExprAssign_Left()
+   * @return the value of the '<em>Exprs</em>' containment reference list.
+   * @see de.redoxi.ruste.rust.RustPackage#getExprAssign_Exprs()
    * @model containment="true"
    * @generated
    */
-  BooleanOr getLeft();
-
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprAssign#getLeft <em>Left</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Left</em>' containment reference.
-   * @see #getLeft()
-   * @generated
-   */
-  void setLeft(BooleanOr value);
-
-  /**
-   * Returns the value of the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Right</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(BooleanOr)
-   * @see de.redoxi.ruste.rust.RustPackage#getExprAssign_Right()
-   * @model containment="true"
-   * @generated
-   */
-  BooleanOr getRight();
-
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprAssign#getRight <em>Right</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Right</em>' containment reference.
-   * @see #getRight()
-   * @generated
-   */
-  void setRight(BooleanOr value);
+  EList<BooleanOr> getExprs();
 
 } // ExprAssign

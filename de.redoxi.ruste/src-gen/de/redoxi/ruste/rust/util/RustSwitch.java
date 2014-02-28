@@ -278,6 +278,7 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprLeaf exprLeaf = (ExprLeaf)theEObject;
         T result = caseExprLeaf(exprLeaf);
+        if (result == null) result = caseExprFields(exprLeaf);
         if (result == null) result = caseExprUnary(exprLeaf);
         if (result == null) result = caseDivisionMultiplicationOrModulo(exprLeaf);
         if (result == null) result = caseAs(exprLeaf);
@@ -296,29 +297,6 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_FN_CALL:
-      {
-        ExprFnCall exprFnCall = (ExprFnCall)theEObject;
-        T result = caseExprFnCall(exprFnCall);
-        if (result == null) result = caseExprLeaf(exprFnCall);
-        if (result == null) result = caseExprUnary(exprFnCall);
-        if (result == null) result = caseDivisionMultiplicationOrModulo(exprFnCall);
-        if (result == null) result = caseAs(exprFnCall);
-        if (result == null) result = caseAdditionOrSubtraction(exprFnCall);
-        if (result == null) result = caseShiftOperator(exprFnCall);
-        if (result == null) result = caseBitwiseAnd(exprFnCall);
-        if (result == null) result = caseBitwiseXor(exprFnCall);
-        if (result == null) result = caseBitwiseOr(exprFnCall);
-        if (result == null) result = caseComparisonOperators(exprFnCall);
-        if (result == null) result = caseEqualityOperator(exprFnCall);
-        if (result == null) result = caseBooleanAnd(exprFnCall);
-        if (result == null) result = caseBooleanOr(exprFnCall);
-        if (result == null) result = caseAssign(exprFnCall);
-        if (result == null) result = caseExprBinary(exprFnCall);
-        if (result == null) result = caseExpr(exprFnCall);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case RustPackage.EXPR_FN_CALL_ARGS:
       {
         ExprFnCallArgs exprFnCallArgs = (ExprFnCallArgs)theEObject;
@@ -330,6 +308,23 @@ public class RustSwitch<T> extends Switch<T>
       {
         ExprPrimary exprPrimary = (ExprPrimary)theEObject;
         T result = caseExprPrimary(exprPrimary);
+        if (result == null) result = caseExprLeaf(exprPrimary);
+        if (result == null) result = caseExprFields(exprPrimary);
+        if (result == null) result = caseExprUnary(exprPrimary);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprPrimary);
+        if (result == null) result = caseAs(exprPrimary);
+        if (result == null) result = caseAdditionOrSubtraction(exprPrimary);
+        if (result == null) result = caseShiftOperator(exprPrimary);
+        if (result == null) result = caseBitwiseAnd(exprPrimary);
+        if (result == null) result = caseBitwiseXor(exprPrimary);
+        if (result == null) result = caseBitwiseOr(exprPrimary);
+        if (result == null) result = caseComparisonOperators(exprPrimary);
+        if (result == null) result = caseEqualityOperator(exprPrimary);
+        if (result == null) result = caseBooleanAnd(exprPrimary);
+        if (result == null) result = caseBooleanOr(exprPrimary);
+        if (result == null) result = caseAssign(exprPrimary);
+        if (result == null) result = caseExprBinary(exprPrimary);
+        if (result == null) result = caseExpr(exprPrimary);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -338,13 +333,23 @@ public class RustSwitch<T> extends Switch<T>
         ExprLiteral exprLiteral = (ExprLiteral)theEObject;
         T result = caseExprLiteral(exprLiteral);
         if (result == null) result = caseExprPrimary(exprLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_PATH_HEAD:
-      {
-        ExprPathHead exprPathHead = (ExprPathHead)theEObject;
-        T result = caseExprPathHead(exprPathHead);
+        if (result == null) result = caseExprLeaf(exprLiteral);
+        if (result == null) result = caseExprFields(exprLiteral);
+        if (result == null) result = caseExprUnary(exprLiteral);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprLiteral);
+        if (result == null) result = caseAs(exprLiteral);
+        if (result == null) result = caseAdditionOrSubtraction(exprLiteral);
+        if (result == null) result = caseShiftOperator(exprLiteral);
+        if (result == null) result = caseBitwiseAnd(exprLiteral);
+        if (result == null) result = caseBitwiseXor(exprLiteral);
+        if (result == null) result = caseBitwiseOr(exprLiteral);
+        if (result == null) result = caseComparisonOperators(exprLiteral);
+        if (result == null) result = caseEqualityOperator(exprLiteral);
+        if (result == null) result = caseBooleanAnd(exprLiteral);
+        if (result == null) result = caseBooleanOr(exprLiteral);
+        if (result == null) result = caseAssign(exprLiteral);
+        if (result == null) result = caseExprBinary(exprLiteral);
+        if (result == null) result = caseExpr(exprLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -353,16 +358,23 @@ public class RustSwitch<T> extends Switch<T>
         ExprGroup exprGroup = (ExprGroup)theEObject;
         T result = caseExprGroup(exprGroup);
         if (result == null) result = caseExprPrimary(exprGroup);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_TUPLE:
-      {
-        ExprTuple exprTuple = (ExprTuple)theEObject;
-        T result = caseExprTuple(exprTuple);
-        if (result == null) result = caseExprPathHead(exprTuple);
-        if (result == null) result = caseExprGroup(exprTuple);
-        if (result == null) result = caseExprPrimary(exprTuple);
+        if (result == null) result = caseExprLeaf(exprGroup);
+        if (result == null) result = caseExprFields(exprGroup);
+        if (result == null) result = caseExprUnary(exprGroup);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprGroup);
+        if (result == null) result = caseAs(exprGroup);
+        if (result == null) result = caseAdditionOrSubtraction(exprGroup);
+        if (result == null) result = caseShiftOperator(exprGroup);
+        if (result == null) result = caseBitwiseAnd(exprGroup);
+        if (result == null) result = caseBitwiseXor(exprGroup);
+        if (result == null) result = caseBitwiseOr(exprGroup);
+        if (result == null) result = caseComparisonOperators(exprGroup);
+        if (result == null) result = caseEqualityOperator(exprGroup);
+        if (result == null) result = caseBooleanAnd(exprGroup);
+        if (result == null) result = caseBooleanOr(exprGroup);
+        if (result == null) result = caseAssign(exprGroup);
+        if (result == null) result = caseExprBinary(exprGroup);
+        if (result == null) result = caseExpr(exprGroup);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -371,7 +383,23 @@ public class RustSwitch<T> extends Switch<T>
         ExprStruct exprStruct = (ExprStruct)theEObject;
         T result = caseExprStruct(exprStruct);
         if (result == null) result = caseExprPrimary(exprStruct);
-        if (result == null) result = caseExprPathHead(exprStruct);
+        if (result == null) result = caseExprLeaf(exprStruct);
+        if (result == null) result = caseExprFields(exprStruct);
+        if (result == null) result = caseExprUnary(exprStruct);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprStruct);
+        if (result == null) result = caseAs(exprStruct);
+        if (result == null) result = caseAdditionOrSubtraction(exprStruct);
+        if (result == null) result = caseShiftOperator(exprStruct);
+        if (result == null) result = caseBitwiseAnd(exprStruct);
+        if (result == null) result = caseBitwiseXor(exprStruct);
+        if (result == null) result = caseBitwiseOr(exprStruct);
+        if (result == null) result = caseComparisonOperators(exprStruct);
+        if (result == null) result = caseEqualityOperator(exprStruct);
+        if (result == null) result = caseBooleanAnd(exprStruct);
+        if (result == null) result = caseBooleanOr(exprStruct);
+        if (result == null) result = caseAssign(exprStruct);
+        if (result == null) result = caseExprBinary(exprStruct);
+        if (result == null) result = caseExpr(exprStruct);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -380,6 +408,23 @@ public class RustSwitch<T> extends Switch<T>
         ExprVec exprVec = (ExprVec)theEObject;
         T result = caseExprVec(exprVec);
         if (result == null) result = caseExprPrimary(exprVec);
+        if (result == null) result = caseExprLeaf(exprVec);
+        if (result == null) result = caseExprFields(exprVec);
+        if (result == null) result = caseExprUnary(exprVec);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprVec);
+        if (result == null) result = caseAs(exprVec);
+        if (result == null) result = caseAdditionOrSubtraction(exprVec);
+        if (result == null) result = caseShiftOperator(exprVec);
+        if (result == null) result = caseBitwiseAnd(exprVec);
+        if (result == null) result = caseBitwiseXor(exprVec);
+        if (result == null) result = caseBitwiseOr(exprVec);
+        if (result == null) result = caseComparisonOperators(exprVec);
+        if (result == null) result = caseEqualityOperator(exprVec);
+        if (result == null) result = caseBooleanAnd(exprVec);
+        if (result == null) result = caseBooleanOr(exprVec);
+        if (result == null) result = caseAssign(exprVec);
+        if (result == null) result = caseExprBinary(exprVec);
+        if (result == null) result = caseExpr(exprVec);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -533,6 +578,35 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = caseAssign(borrow);
         if (result == null) result = caseExprBinary(borrow);
         if (result == null) result = caseExpr(borrow);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_FIELDS:
+      {
+        ExprFields exprFields = (ExprFields)theEObject;
+        T result = caseExprFields(exprFields);
+        if (result == null) result = caseExprUnary(exprFields);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprFields);
+        if (result == null) result = caseAs(exprFields);
+        if (result == null) result = caseAdditionOrSubtraction(exprFields);
+        if (result == null) result = caseShiftOperator(exprFields);
+        if (result == null) result = caseBitwiseAnd(exprFields);
+        if (result == null) result = caseBitwiseXor(exprFields);
+        if (result == null) result = caseBitwiseOr(exprFields);
+        if (result == null) result = caseComparisonOperators(exprFields);
+        if (result == null) result = caseEqualityOperator(exprFields);
+        if (result == null) result = caseBooleanAnd(exprFields);
+        if (result == null) result = caseBooleanOr(exprFields);
+        if (result == null) result = caseAssign(exprFields);
+        if (result == null) result = caseExprBinary(exprFields);
+        if (result == null) result = caseExpr(exprFields);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL:
+      {
+        ExprFieldOrMethodCall exprFieldOrMethodCall = (ExprFieldOrMethodCall)theEObject;
+        T result = caseExprFieldOrMethodCall(exprFieldOrMethodCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -961,6 +1035,23 @@ public class RustSwitch<T> extends Switch<T>
         ExprPath exprPath = (ExprPath)theEObject;
         T result = caseExprPath(exprPath);
         if (result == null) result = caseExprPrimary(exprPath);
+        if (result == null) result = caseExprLeaf(exprPath);
+        if (result == null) result = caseExprFields(exprPath);
+        if (result == null) result = caseExprUnary(exprPath);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprPath);
+        if (result == null) result = caseAs(exprPath);
+        if (result == null) result = caseAdditionOrSubtraction(exprPath);
+        if (result == null) result = caseShiftOperator(exprPath);
+        if (result == null) result = caseBitwiseAnd(exprPath);
+        if (result == null) result = caseBitwiseXor(exprPath);
+        if (result == null) result = caseBitwiseOr(exprPath);
+        if (result == null) result = caseComparisonOperators(exprPath);
+        if (result == null) result = caseEqualityOperator(exprPath);
+        if (result == null) result = caseBooleanAnd(exprPath);
+        if (result == null) result = caseBooleanOr(exprPath);
+        if (result == null) result = caseAssign(exprPath);
+        if (result == null) result = caseExprBinary(exprPath);
+        if (result == null) result = caseExpr(exprPath);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1104,66 +1195,74 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.DIVISION:
+      case RustPackage.EXPR_CALL:
       {
-        Division division = (Division)theEObject;
-        T result = caseDivision(division);
-        if (result == null) result = caseDivisionMultiplicationOrModulo(division);
-        if (result == null) result = caseAs(division);
-        if (result == null) result = caseAdditionOrSubtraction(division);
-        if (result == null) result = caseShiftOperator(division);
-        if (result == null) result = caseBitwiseAnd(division);
-        if (result == null) result = caseBitwiseXor(division);
-        if (result == null) result = caseBitwiseOr(division);
-        if (result == null) result = caseComparisonOperators(division);
-        if (result == null) result = caseEqualityOperator(division);
-        if (result == null) result = caseBooleanAnd(division);
-        if (result == null) result = caseBooleanOr(division);
-        if (result == null) result = caseAssign(division);
-        if (result == null) result = caseExprBinary(division);
-        if (result == null) result = caseExpr(division);
+        ExprCall exprCall = (ExprCall)theEObject;
+        T result = caseExprCall(exprCall);
+        if (result == null) result = caseExprLeaf(exprCall);
+        if (result == null) result = caseExprFields(exprCall);
+        if (result == null) result = caseExprUnary(exprCall);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprCall);
+        if (result == null) result = caseAs(exprCall);
+        if (result == null) result = caseAdditionOrSubtraction(exprCall);
+        if (result == null) result = caseShiftOperator(exprCall);
+        if (result == null) result = caseBitwiseAnd(exprCall);
+        if (result == null) result = caseBitwiseXor(exprCall);
+        if (result == null) result = caseBitwiseOr(exprCall);
+        if (result == null) result = caseComparisonOperators(exprCall);
+        if (result == null) result = caseEqualityOperator(exprCall);
+        if (result == null) result = caseBooleanAnd(exprCall);
+        if (result == null) result = caseBooleanOr(exprCall);
+        if (result == null) result = caseAssign(exprCall);
+        if (result == null) result = caseExprBinary(exprCall);
+        if (result == null) result = caseExpr(exprCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.MULTIPLICATION:
+      case RustPackage.EXPR_TUPLE:
       {
-        Multiplication multiplication = (Multiplication)theEObject;
-        T result = caseMultiplication(multiplication);
-        if (result == null) result = caseDivisionMultiplicationOrModulo(multiplication);
-        if (result == null) result = caseAs(multiplication);
-        if (result == null) result = caseAdditionOrSubtraction(multiplication);
-        if (result == null) result = caseShiftOperator(multiplication);
-        if (result == null) result = caseBitwiseAnd(multiplication);
-        if (result == null) result = caseBitwiseXor(multiplication);
-        if (result == null) result = caseBitwiseOr(multiplication);
-        if (result == null) result = caseComparisonOperators(multiplication);
-        if (result == null) result = caseEqualityOperator(multiplication);
-        if (result == null) result = caseBooleanAnd(multiplication);
-        if (result == null) result = caseBooleanOr(multiplication);
-        if (result == null) result = caseAssign(multiplication);
-        if (result == null) result = caseExprBinary(multiplication);
-        if (result == null) result = caseExpr(multiplication);
+        ExprTuple exprTuple = (ExprTuple)theEObject;
+        T result = caseExprTuple(exprTuple);
+        if (result == null) result = caseExprGroup(exprTuple);
+        if (result == null) result = caseExprPrimary(exprTuple);
+        if (result == null) result = caseExprLeaf(exprTuple);
+        if (result == null) result = caseExprFields(exprTuple);
+        if (result == null) result = caseExprUnary(exprTuple);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprTuple);
+        if (result == null) result = caseAs(exprTuple);
+        if (result == null) result = caseAdditionOrSubtraction(exprTuple);
+        if (result == null) result = caseShiftOperator(exprTuple);
+        if (result == null) result = caseBitwiseAnd(exprTuple);
+        if (result == null) result = caseBitwiseXor(exprTuple);
+        if (result == null) result = caseBitwiseOr(exprTuple);
+        if (result == null) result = caseComparisonOperators(exprTuple);
+        if (result == null) result = caseEqualityOperator(exprTuple);
+        if (result == null) result = caseBooleanAnd(exprTuple);
+        if (result == null) result = caseBooleanOr(exprTuple);
+        if (result == null) result = caseAssign(exprTuple);
+        if (result == null) result = caseExprBinary(exprTuple);
+        if (result == null) result = caseExpr(exprTuple);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.MODULO:
+      case RustPackage.EXPR_MULTIPLICATIVE:
       {
-        Modulo modulo = (Modulo)theEObject;
-        T result = caseModulo(modulo);
-        if (result == null) result = caseDivisionMultiplicationOrModulo(modulo);
-        if (result == null) result = caseAs(modulo);
-        if (result == null) result = caseAdditionOrSubtraction(modulo);
-        if (result == null) result = caseShiftOperator(modulo);
-        if (result == null) result = caseBitwiseAnd(modulo);
-        if (result == null) result = caseBitwiseXor(modulo);
-        if (result == null) result = caseBitwiseOr(modulo);
-        if (result == null) result = caseComparisonOperators(modulo);
-        if (result == null) result = caseEqualityOperator(modulo);
-        if (result == null) result = caseBooleanAnd(modulo);
-        if (result == null) result = caseBooleanOr(modulo);
-        if (result == null) result = caseAssign(modulo);
-        if (result == null) result = caseExprBinary(modulo);
-        if (result == null) result = caseExpr(modulo);
+        ExprMultiplicative exprMultiplicative = (ExprMultiplicative)theEObject;
+        T result = caseExprMultiplicative(exprMultiplicative);
+        if (result == null) result = caseDivisionMultiplicationOrModulo(exprMultiplicative);
+        if (result == null) result = caseAs(exprMultiplicative);
+        if (result == null) result = caseAdditionOrSubtraction(exprMultiplicative);
+        if (result == null) result = caseShiftOperator(exprMultiplicative);
+        if (result == null) result = caseBitwiseAnd(exprMultiplicative);
+        if (result == null) result = caseBitwiseXor(exprMultiplicative);
+        if (result == null) result = caseBitwiseOr(exprMultiplicative);
+        if (result == null) result = caseComparisonOperators(exprMultiplicative);
+        if (result == null) result = caseEqualityOperator(exprMultiplicative);
+        if (result == null) result = caseBooleanAnd(exprMultiplicative);
+        if (result == null) result = caseBooleanOr(exprMultiplicative);
+        if (result == null) result = caseAssign(exprMultiplicative);
+        if (result == null) result = caseExprBinary(exprMultiplicative);
+        if (result == null) result = caseExpr(exprMultiplicative);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1187,77 +1286,40 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_ADDITION:
+      case RustPackage.EXPR_ADDITIVE:
       {
-        ExprAddition exprAddition = (ExprAddition)theEObject;
-        T result = caseExprAddition(exprAddition);
-        if (result == null) result = caseAdditionOrSubtraction(exprAddition);
-        if (result == null) result = caseShiftOperator(exprAddition);
-        if (result == null) result = caseBitwiseAnd(exprAddition);
-        if (result == null) result = caseBitwiseXor(exprAddition);
-        if (result == null) result = caseBitwiseOr(exprAddition);
-        if (result == null) result = caseComparisonOperators(exprAddition);
-        if (result == null) result = caseEqualityOperator(exprAddition);
-        if (result == null) result = caseBooleanAnd(exprAddition);
-        if (result == null) result = caseBooleanOr(exprAddition);
-        if (result == null) result = caseAssign(exprAddition);
-        if (result == null) result = caseExprBinary(exprAddition);
-        if (result == null) result = caseExpr(exprAddition);
+        ExprAdditive exprAdditive = (ExprAdditive)theEObject;
+        T result = caseExprAdditive(exprAdditive);
+        if (result == null) result = caseAdditionOrSubtraction(exprAdditive);
+        if (result == null) result = caseShiftOperator(exprAdditive);
+        if (result == null) result = caseBitwiseAnd(exprAdditive);
+        if (result == null) result = caseBitwiseXor(exprAdditive);
+        if (result == null) result = caseBitwiseOr(exprAdditive);
+        if (result == null) result = caseComparisonOperators(exprAdditive);
+        if (result == null) result = caseEqualityOperator(exprAdditive);
+        if (result == null) result = caseBooleanAnd(exprAdditive);
+        if (result == null) result = caseBooleanOr(exprAdditive);
+        if (result == null) result = caseAssign(exprAdditive);
+        if (result == null) result = caseExprBinary(exprAdditive);
+        if (result == null) result = caseExpr(exprAdditive);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_SUBTRACTION:
+      case RustPackage.EXPR_SHIFT:
       {
-        ExprSubtraction exprSubtraction = (ExprSubtraction)theEObject;
-        T result = caseExprSubtraction(exprSubtraction);
-        if (result == null) result = caseAdditionOrSubtraction(exprSubtraction);
-        if (result == null) result = caseShiftOperator(exprSubtraction);
-        if (result == null) result = caseBitwiseAnd(exprSubtraction);
-        if (result == null) result = caseBitwiseXor(exprSubtraction);
-        if (result == null) result = caseBitwiseOr(exprSubtraction);
-        if (result == null) result = caseComparisonOperators(exprSubtraction);
-        if (result == null) result = caseEqualityOperator(exprSubtraction);
-        if (result == null) result = caseBooleanAnd(exprSubtraction);
-        if (result == null) result = caseBooleanOr(exprSubtraction);
-        if (result == null) result = caseAssign(exprSubtraction);
-        if (result == null) result = caseExprBinary(exprSubtraction);
-        if (result == null) result = caseExpr(exprSubtraction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_LEFT_SHIFT:
-      {
-        ExprLeftShift exprLeftShift = (ExprLeftShift)theEObject;
-        T result = caseExprLeftShift(exprLeftShift);
-        if (result == null) result = caseShiftOperator(exprLeftShift);
-        if (result == null) result = caseBitwiseAnd(exprLeftShift);
-        if (result == null) result = caseBitwiseXor(exprLeftShift);
-        if (result == null) result = caseBitwiseOr(exprLeftShift);
-        if (result == null) result = caseComparisonOperators(exprLeftShift);
-        if (result == null) result = caseEqualityOperator(exprLeftShift);
-        if (result == null) result = caseBooleanAnd(exprLeftShift);
-        if (result == null) result = caseBooleanOr(exprLeftShift);
-        if (result == null) result = caseAssign(exprLeftShift);
-        if (result == null) result = caseExprBinary(exprLeftShift);
-        if (result == null) result = caseExpr(exprLeftShift);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_RIGHT_SHIFT:
-      {
-        ExprRightShift exprRightShift = (ExprRightShift)theEObject;
-        T result = caseExprRightShift(exprRightShift);
-        if (result == null) result = caseShiftOperator(exprRightShift);
-        if (result == null) result = caseBitwiseAnd(exprRightShift);
-        if (result == null) result = caseBitwiseXor(exprRightShift);
-        if (result == null) result = caseBitwiseOr(exprRightShift);
-        if (result == null) result = caseComparisonOperators(exprRightShift);
-        if (result == null) result = caseEqualityOperator(exprRightShift);
-        if (result == null) result = caseBooleanAnd(exprRightShift);
-        if (result == null) result = caseBooleanOr(exprRightShift);
-        if (result == null) result = caseAssign(exprRightShift);
-        if (result == null) result = caseExprBinary(exprRightShift);
-        if (result == null) result = caseExpr(exprRightShift);
+        ExprShift exprShift = (ExprShift)theEObject;
+        T result = caseExprShift(exprShift);
+        if (result == null) result = caseShiftOperator(exprShift);
+        if (result == null) result = caseBitwiseAnd(exprShift);
+        if (result == null) result = caseBitwiseXor(exprShift);
+        if (result == null) result = caseBitwiseOr(exprShift);
+        if (result == null) result = caseComparisonOperators(exprShift);
+        if (result == null) result = caseEqualityOperator(exprShift);
+        if (result == null) result = caseBooleanAnd(exprShift);
+        if (result == null) result = caseBooleanOr(exprShift);
+        if (result == null) result = caseAssign(exprShift);
+        if (result == null) result = caseExprBinary(exprShift);
+        if (result == null) result = caseExpr(exprShift);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1309,85 +1371,30 @@ public class RustSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_LESS_THAN:
+      case RustPackage.EXPR_COMPARISION:
       {
-        ExprLessThan exprLessThan = (ExprLessThan)theEObject;
-        T result = caseExprLessThan(exprLessThan);
-        if (result == null) result = caseComparisonOperators(exprLessThan);
-        if (result == null) result = caseEqualityOperator(exprLessThan);
-        if (result == null) result = caseBooleanAnd(exprLessThan);
-        if (result == null) result = caseBooleanOr(exprLessThan);
-        if (result == null) result = caseAssign(exprLessThan);
-        if (result == null) result = caseExprBinary(exprLessThan);
-        if (result == null) result = caseExpr(exprLessThan);
+        ExprComparision exprComparision = (ExprComparision)theEObject;
+        T result = caseExprComparision(exprComparision);
+        if (result == null) result = caseComparisonOperators(exprComparision);
+        if (result == null) result = caseEqualityOperator(exprComparision);
+        if (result == null) result = caseBooleanAnd(exprComparision);
+        if (result == null) result = caseBooleanOr(exprComparision);
+        if (result == null) result = caseAssign(exprComparision);
+        if (result == null) result = caseExprBinary(exprComparision);
+        if (result == null) result = caseExpr(exprComparision);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RustPackage.EXPR_GREATER_THAN:
+      case RustPackage.EXPR_EQUAL:
       {
-        ExprGreaterThan exprGreaterThan = (ExprGreaterThan)theEObject;
-        T result = caseExprGreaterThan(exprGreaterThan);
-        if (result == null) result = caseComparisonOperators(exprGreaterThan);
-        if (result == null) result = caseEqualityOperator(exprGreaterThan);
-        if (result == null) result = caseBooleanAnd(exprGreaterThan);
-        if (result == null) result = caseBooleanOr(exprGreaterThan);
-        if (result == null) result = caseAssign(exprGreaterThan);
-        if (result == null) result = caseExprBinary(exprGreaterThan);
-        if (result == null) result = caseExpr(exprGreaterThan);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_LESS_THAN_OR_EQUAL_TO:
-      {
-        ExprLessThanOrEqualTo exprLessThanOrEqualTo = (ExprLessThanOrEqualTo)theEObject;
-        T result = caseExprLessThanOrEqualTo(exprLessThanOrEqualTo);
-        if (result == null) result = caseComparisonOperators(exprLessThanOrEqualTo);
-        if (result == null) result = caseEqualityOperator(exprLessThanOrEqualTo);
-        if (result == null) result = caseBooleanAnd(exprLessThanOrEqualTo);
-        if (result == null) result = caseBooleanOr(exprLessThanOrEqualTo);
-        if (result == null) result = caseAssign(exprLessThanOrEqualTo);
-        if (result == null) result = caseExprBinary(exprLessThanOrEqualTo);
-        if (result == null) result = caseExpr(exprLessThanOrEqualTo);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_GREATER_THAN_OR_EQUAL_TO:
-      {
-        ExprGreaterThanOrEqualTo exprGreaterThanOrEqualTo = (ExprGreaterThanOrEqualTo)theEObject;
-        T result = caseExprGreaterThanOrEqualTo(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseComparisonOperators(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseEqualityOperator(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseBooleanAnd(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseBooleanOr(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseAssign(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseExprBinary(exprGreaterThanOrEqualTo);
-        if (result == null) result = caseExpr(exprGreaterThanOrEqualTo);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_EQUAL_TO:
-      {
-        ExprEqualTo exprEqualTo = (ExprEqualTo)theEObject;
-        T result = caseExprEqualTo(exprEqualTo);
-        if (result == null) result = caseEqualityOperator(exprEqualTo);
-        if (result == null) result = caseBooleanAnd(exprEqualTo);
-        if (result == null) result = caseBooleanOr(exprEqualTo);
-        if (result == null) result = caseAssign(exprEqualTo);
-        if (result == null) result = caseExprBinary(exprEqualTo);
-        if (result == null) result = caseExpr(exprEqualTo);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RustPackage.EXPR_NOT_EQUAL_TO:
-      {
-        ExprNotEqualTo exprNotEqualTo = (ExprNotEqualTo)theEObject;
-        T result = caseExprNotEqualTo(exprNotEqualTo);
-        if (result == null) result = caseEqualityOperator(exprNotEqualTo);
-        if (result == null) result = caseBooleanAnd(exprNotEqualTo);
-        if (result == null) result = caseBooleanOr(exprNotEqualTo);
-        if (result == null) result = caseAssign(exprNotEqualTo);
-        if (result == null) result = caseExprBinary(exprNotEqualTo);
-        if (result == null) result = caseExpr(exprNotEqualTo);
+        ExprEqual exprEqual = (ExprEqual)theEObject;
+        T result = caseExprEqual(exprEqual);
+        if (result == null) result = caseEqualityOperator(exprEqual);
+        if (result == null) result = caseBooleanAnd(exprEqual);
+        if (result == null) result = caseBooleanOr(exprEqual);
+        if (result == null) result = caseAssign(exprEqual);
+        if (result == null) result = caseExprBinary(exprEqual);
+        if (result == null) result = caseExpr(exprEqual);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1974,22 +1981,6 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Fn Call</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Fn Call</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprFnCall(ExprFnCall object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Expr Fn Call Args</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2038,22 +2029,6 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Path Head</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Path Head</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprPathHead(ExprPathHead object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Expr Group</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -2065,22 +2040,6 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprGroup(ExprGroup object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Tuple</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Tuple</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprTuple(ExprTuple object)
   {
     return null;
   }
@@ -2225,6 +2184,38 @@ public class RustSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBorrow(Borrow object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Fields</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Fields</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprFields(ExprFields object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expr Field Or Method Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expr Field Or Method Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExprFieldOrMethodCall(ExprFieldOrMethodCall object)
   {
     return null;
   }
@@ -3238,49 +3229,49 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Division</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Division</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDivision(Division object)
+  public T caseExprCall(ExprCall object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Multiplication</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Tuple</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Multiplication</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Tuple</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMultiplication(Multiplication object)
+  public T caseExprTuple(ExprTuple object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Modulo</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Multiplicative</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Modulo</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Multiplicative</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModulo(Modulo object)
+  public T caseExprMultiplicative(ExprMultiplicative object)
   {
     return null;
   }
@@ -3302,65 +3293,33 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Addition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Additive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Addition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Additive</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExprAddition(ExprAddition object)
+  public T caseExprAdditive(ExprAdditive object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Subtraction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Shift</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Subtraction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Shift</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExprSubtraction(ExprSubtraction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Left Shift</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Left Shift</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprLeftShift(ExprLeftShift object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Right Shift</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Right Shift</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprRightShift(ExprRightShift object)
+  public T caseExprShift(ExprShift object)
   {
     return null;
   }
@@ -3414,97 +3373,33 @@ public class RustSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Less Than</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Comparision</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Less Than</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Comparision</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExprLessThan(ExprLessThan object)
+  public T caseExprComparision(ExprComparision object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Greater Than</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr Equal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Greater Than</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr Equal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExprGreaterThan(ExprGreaterThan object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Less Than Or Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Less Than Or Equal To</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprLessThanOrEqualTo(ExprLessThanOrEqualTo object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Greater Than Or Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Greater Than Or Equal To</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprGreaterThanOrEqualTo(ExprGreaterThanOrEqualTo object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Equal To</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprEqualTo(ExprEqualTo object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Expr Not Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expr Not Equal To</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExprNotEqualTo(ExprNotEqualTo object)
+  public T caseExprEqual(ExprEqual object)
   {
     return null;
   }

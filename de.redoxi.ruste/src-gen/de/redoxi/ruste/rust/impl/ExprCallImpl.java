@@ -2,8 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.ExprFnCall;
-import de.redoxi.ruste.rust.ExprFnCallArgs;
+import de.redoxi.ruste.rust.ExprCall;
 import de.redoxi.ruste.rust.ExprPrimary;
 import de.redoxi.ruste.rust.RustPackage;
 
@@ -17,19 +16,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Fn Call</b></em>'.
+ * An implementation of the model object '<em><b>Expr Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl#getExpr <em>Expr</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl#getTail <em>Tail</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprCallImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
+public class ExprCallImpl extends ExprLeafImpl implements ExprCall
 {
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -42,21 +40,11 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   protected ExprPrimary expr;
 
   /**
-   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTail()
-   * @generated
-   * @ordered
-   */
-  protected ExprFnCallArgs tail;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprFnCallImpl()
+  protected ExprCallImpl()
   {
     super();
   }
@@ -69,7 +57,7 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_FN_CALL;
+    return RustPackage.Literals.EXPR_CALL;
   }
 
   /**
@@ -93,7 +81,7 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
     expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__EXPR, oldExpr, newExpr);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_CALL__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -110,62 +98,14 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
     {
       NotificationChain msgs = null;
       if (expr != null)
-        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__EXPR, null, msgs);
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_CALL__EXPR, null, msgs);
       if (newExpr != null)
-        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__EXPR, null, msgs);
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_CALL__EXPR, null, msgs);
       msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__EXPR, newExpr, newExpr));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprFnCallArgs getTail()
-  {
-    return tail;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTail(ExprFnCallArgs newTail, NotificationChain msgs)
-  {
-    ExprFnCallArgs oldTail = tail;
-    tail = newTail;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__TAIL, oldTail, newTail);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTail(ExprFnCallArgs newTail)
-  {
-    if (newTail != tail)
-    {
-      NotificationChain msgs = null;
-      if (tail != null)
-        msgs = ((InternalEObject)tail).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__TAIL, null, msgs);
-      if (newTail != null)
-        msgs = ((InternalEObject)newTail).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FN_CALL__TAIL, null, msgs);
-      msgs = basicSetTail(newTail, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FN_CALL__TAIL, newTail, newTail));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_CALL__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -178,10 +118,8 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_FN_CALL__EXPR:
+      case RustPackage.EXPR_CALL__EXPR:
         return basicSetExpr(null, msgs);
-      case RustPackage.EXPR_FN_CALL__TAIL:
-        return basicSetTail(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,10 +134,8 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_FN_CALL__EXPR:
+      case RustPackage.EXPR_CALL__EXPR:
         return getExpr();
-      case RustPackage.EXPR_FN_CALL__TAIL:
-        return getTail();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -214,11 +150,8 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_FN_CALL__EXPR:
+      case RustPackage.EXPR_CALL__EXPR:
         setExpr((ExprPrimary)newValue);
-        return;
-      case RustPackage.EXPR_FN_CALL__TAIL:
-        setTail((ExprFnCallArgs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,11 +167,8 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_FN_CALL__EXPR:
+      case RustPackage.EXPR_CALL__EXPR:
         setExpr((ExprPrimary)null);
-        return;
-      case RustPackage.EXPR_FN_CALL__TAIL:
-        setTail((ExprFnCallArgs)null);
         return;
     }
     super.eUnset(featureID);
@@ -254,12 +184,10 @@ public class ExprFnCallImpl extends ExprLeafImpl implements ExprFnCall
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_FN_CALL__EXPR:
+      case RustPackage.EXPR_CALL__EXPR:
         return expr != null;
-      case RustPackage.EXPR_FN_CALL__TAIL:
-        return tail != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprFnCallImpl
+} //ExprCallImpl

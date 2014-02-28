@@ -3,6 +3,7 @@
 package de.redoxi.ruste.rust.impl;
 
 import de.redoxi.ruste.rust.AdditionOrSubtraction;
+import de.redoxi.ruste.rust.AdditiveOp;
 import de.redoxi.ruste.rust.Arg;
 import de.redoxi.ruste.rust.As;
 import de.redoxi.ruste.rust.Assign;
@@ -22,17 +23,18 @@ import de.redoxi.ruste.rust.BoxedPointer;
 import de.redoxi.ruste.rust.BoxedStrType;
 import de.redoxi.ruste.rust.CharLit;
 import de.redoxi.ruste.rust.CharType;
+import de.redoxi.ruste.rust.ComparisonOp;
 import de.redoxi.ruste.rust.ComparisonOperators;
 import de.redoxi.ruste.rust.Crate;
 import de.redoxi.ruste.rust.Dereference;
-import de.redoxi.ruste.rust.Division;
 import de.redoxi.ruste.rust.DivisionMultiplicationOrModulo;
 import de.redoxi.ruste.rust.ElseTail;
 import de.redoxi.ruste.rust.EnumItem;
 import de.redoxi.ruste.rust.EnumVariant;
+import de.redoxi.ruste.rust.EqualityOp;
 import de.redoxi.ruste.rust.EqualityOperator;
 import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprAddition;
+import de.redoxi.ruste.rust.ExprAdditive;
 import de.redoxi.ruste.rust.ExprAssign;
 import de.redoxi.ruste.rust.ExprBinary;
 import de.redoxi.ruste.rust.ExprBitwiseAnd;
@@ -41,37 +43,33 @@ import de.redoxi.ruste.rust.ExprBitwiseXor;
 import de.redoxi.ruste.rust.ExprBooleanAnd;
 import de.redoxi.ruste.rust.ExprBooleanOr;
 import de.redoxi.ruste.rust.ExprBreak;
+import de.redoxi.ruste.rust.ExprCall;
 import de.redoxi.ruste.rust.ExprCast;
+import de.redoxi.ruste.rust.ExprComparision;
 import de.redoxi.ruste.rust.ExprContinue;
 import de.redoxi.ruste.rust.ExprDo;
-import de.redoxi.ruste.rust.ExprEqualTo;
+import de.redoxi.ruste.rust.ExprEqual;
 import de.redoxi.ruste.rust.ExprField;
-import de.redoxi.ruste.rust.ExprFnCall;
+import de.redoxi.ruste.rust.ExprFieldOrMethodCall;
+import de.redoxi.ruste.rust.ExprFields;
 import de.redoxi.ruste.rust.ExprFnCallArgs;
 import de.redoxi.ruste.rust.ExprFor;
-import de.redoxi.ruste.rust.ExprGreaterThan;
-import de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprGroup;
 import de.redoxi.ruste.rust.ExprIf;
 import de.redoxi.ruste.rust.ExprIndex;
 import de.redoxi.ruste.rust.ExprLValue;
 import de.redoxi.ruste.rust.ExprLambda;
 import de.redoxi.ruste.rust.ExprLeaf;
-import de.redoxi.ruste.rust.ExprLeftShift;
-import de.redoxi.ruste.rust.ExprLessThan;
-import de.redoxi.ruste.rust.ExprLessThanOrEqualTo;
 import de.redoxi.ruste.rust.ExprLiteral;
 import de.redoxi.ruste.rust.ExprLoop;
 import de.redoxi.ruste.rust.ExprMatch;
-import de.redoxi.ruste.rust.ExprNotEqualTo;
+import de.redoxi.ruste.rust.ExprMultiplicative;
 import de.redoxi.ruste.rust.ExprPath;
-import de.redoxi.ruste.rust.ExprPathHead;
 import de.redoxi.ruste.rust.ExprPrimary;
 import de.redoxi.ruste.rust.ExprReturn;
-import de.redoxi.ruste.rust.ExprRightShift;
+import de.redoxi.ruste.rust.ExprShift;
 import de.redoxi.ruste.rust.ExprStmt;
 import de.redoxi.ruste.rust.ExprStruct;
-import de.redoxi.ruste.rust.ExprSubtraction;
 import de.redoxi.ruste.rust.ExprTuple;
 import de.redoxi.ruste.rust.ExprUnary;
 import de.redoxi.ruste.rust.ExprVec;
@@ -98,8 +96,7 @@ import de.redoxi.ruste.rust.ManagedBox;
 import de.redoxi.ruste.rust.MatchArm;
 import de.redoxi.ruste.rust.MatchPat;
 import de.redoxi.ruste.rust.ModItem;
-import de.redoxi.ruste.rust.Modulo;
-import de.redoxi.ruste.rust.Multiplication;
+import de.redoxi.ruste.rust.MultiplicativeOp;
 import de.redoxi.ruste.rust.NamedType;
 import de.redoxi.ruste.rust.NumberLit;
 import de.redoxi.ruste.rust.NumericNegation;
@@ -122,6 +119,7 @@ import de.redoxi.ruste.rust.PathGlob;
 import de.redoxi.ruste.rust.PrimitiveType;
 import de.redoxi.ruste.rust.RustFactory;
 import de.redoxi.ruste.rust.RustPackage;
+import de.redoxi.ruste.rust.ShiftOp;
 import de.redoxi.ruste.rust.ShiftOperator;
 import de.redoxi.ruste.rust.SlotDeclStmt;
 import de.redoxi.ruste.rust.StaticItem;
@@ -361,13 +359,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprFnCallEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass exprFnCallArgsEClass = null;
 
   /**
@@ -389,21 +380,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprPathHeadEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass exprGroupEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprTupleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -467,6 +444,20 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass borrowEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprFieldsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprFieldOrMethodCallEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -914,21 +905,21 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass divisionEClass = null;
+  private EClass exprCallEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass multiplicationEClass = null;
+  private EClass exprTupleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass moduloEClass = null;
+  private EClass exprMultiplicativeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -942,28 +933,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprAdditionEClass = null;
+  private EClass exprAdditiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprSubtractionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprLeftShiftEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprRightShiftEClass = null;
+  private EClass exprShiftEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -991,42 +968,14 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprLessThanEClass = null;
+  private EClass exprComparisionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass exprGreaterThanEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprLessThanOrEqualToEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprGreaterThanOrEqualToEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprEqualToEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exprNotEqualToEClass = null;
+  private EClass exprEqualEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1125,6 +1074,41 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * @generated
    */
   private EClass borrowedStrTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum multiplicativeOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum additiveOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum shiftOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum comparisonOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum equalityOpEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2191,36 +2175,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprFnCall()
-  {
-    return exprFnCallEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprFnCall_Expr()
-  {
-    return (EReference)exprFnCallEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprFnCall_Tail()
-  {
-    return (EReference)exprFnCallEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExprFnCallArgs()
   {
     return exprFnCallArgsEClass;
@@ -2261,6 +2215,16 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getExprPrimary_Args()
+  {
+    return (EReference)exprPrimaryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExprLiteral()
   {
     return exprLiteralEClass;
@@ -2274,26 +2238,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getExprLiteral_Literal()
   {
     return (EReference)exprLiteralEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprPathHead()
-  {
-    return exprPathHeadEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprPathHead_Path()
-  {
-    return (EReference)exprPathHeadEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2321,36 +2265,6 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprTuple()
-  {
-    return exprTupleEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprTuple_Tuple()
-  {
-    return (EReference)exprTupleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprTuple_Exprs()
-  {
-    return (EReference)exprTupleEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExprStruct()
   {
     return exprStructEClass;
@@ -2361,7 +2275,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprStruct_Struct()
+  public EReference getExprStruct_Fields()
   {
     return (EReference)exprStructEClass.getEStructuralFeatures().get(0);
   }
@@ -2371,19 +2285,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprStruct_Fields()
-  {
-    return (EReference)exprStructEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getExprStruct_BaseExpr()
   {
-    return (EReference)exprStructEClass.getEStructuralFeatures().get(2);
+    return (EReference)exprStructEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2411,19 +2315,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprVec_Exprs()
-  {
-    return (EReference)exprVecEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getExprVec_LenExpr()
   {
-    return (EReference)exprVecEClass.getEStructuralFeatures().get(2);
+    return (EReference)exprVecEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2554,6 +2448,56 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EReference getBorrow_Expr()
   {
     return (EReference)borrowEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprFields()
+  {
+    return exprFieldsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprFields_Exprs()
+  {
+    return (EReference)exprFieldsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExprFieldOrMethodCall()
+  {
+    return exprFieldOrMethodCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprFieldOrMethodCall_Name()
+  {
+    return (EAttribute)exprFieldOrMethodCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprFieldOrMethodCall_Args()
+  {
+    return (EReference)exprFieldOrMethodCallEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3841,9 +3785,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDivision()
+  public EClass getExprCall()
   {
-    return divisionEClass;
+    return exprCallEClass;
   }
 
   /**
@@ -3851,9 +3795,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDivision_Left()
+  public EReference getExprCall_Expr()
   {
-    return (EReference)divisionEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprCallEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3861,9 +3805,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDivision_Right()
+  public EClass getExprTuple()
   {
-    return (EReference)divisionEClass.getEStructuralFeatures().get(1);
+    return exprTupleEClass;
   }
 
   /**
@@ -3871,9 +3815,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getMultiplication()
+  public EClass getExprMultiplicative()
   {
-    return multiplicationEClass;
+    return exprMultiplicativeEClass;
   }
 
   /**
@@ -3881,9 +3825,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMultiplication_Left()
+  public EReference getExprMultiplicative_Exprs()
   {
-    return (EReference)multiplicationEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprMultiplicativeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3891,39 +3835,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMultiplication_Right()
+  public EAttribute getExprMultiplicative_Ops()
   {
-    return (EReference)multiplicationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getModulo()
-  {
-    return moduloEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModulo_Left()
-  {
-    return (EReference)moduloEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModulo_Right()
-  {
-    return (EReference)moduloEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)exprMultiplicativeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3961,9 +3875,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprAddition()
+  public EClass getExprAdditive()
   {
-    return exprAdditionEClass;
+    return exprAdditiveEClass;
   }
 
   /**
@@ -3971,9 +3885,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprAddition_Left()
+  public EReference getExprAdditive_Exprs()
   {
-    return (EReference)exprAdditionEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprAdditiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3981,9 +3895,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprAddition_Right()
+  public EAttribute getExprAdditive_Ops()
   {
-    return (EReference)exprAdditionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)exprAdditiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3991,9 +3905,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprSubtraction()
+  public EClass getExprShift()
   {
-    return exprSubtractionEClass;
+    return exprShiftEClass;
   }
 
   /**
@@ -4001,9 +3915,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSubtraction_Left()
+  public EReference getExprShift_Exprs()
   {
-    return (EReference)exprSubtractionEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprShiftEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4011,69 +3925,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSubtraction_Right()
+  public EAttribute getExprShift_Ops()
   {
-    return (EReference)exprSubtractionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprLeftShift()
-  {
-    return exprLeftShiftEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprLeftShift_Left()
-  {
-    return (EReference)exprLeftShiftEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprLeftShift_Right()
-  {
-    return (EReference)exprLeftShiftEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprRightShift()
-  {
-    return exprRightShiftEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprRightShift_Left()
-  {
-    return (EReference)exprRightShiftEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprRightShift_Right()
-  {
-    return (EReference)exprRightShiftEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)exprShiftEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4091,19 +3945,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBitwiseAnd_Left()
+  public EReference getExprBitwiseAnd_Exprs()
   {
     return (EReference)exprBitwiseAndEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprBitwiseAnd_Right()
-  {
-    return (EReference)exprBitwiseAndEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4121,19 +3965,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBitwiseXor_Left()
+  public EReference getExprBitwiseXor_Exprs()
   {
     return (EReference)exprBitwiseXorEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprBitwiseXor_Right()
-  {
-    return (EReference)exprBitwiseXorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4151,7 +3985,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBitwiseOr_Left()
+  public EReference getExprBitwiseOr_Exprs()
   {
     return (EReference)exprBitwiseOrEClass.getEStructuralFeatures().get(0);
   }
@@ -4161,9 +3995,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBitwiseOr_Right()
+  public EClass getExprComparision()
   {
-    return (EReference)exprBitwiseOrEClass.getEStructuralFeatures().get(1);
+    return exprComparisionEClass;
   }
 
   /**
@@ -4171,9 +4005,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprLessThan()
+  public EReference getExprComparision_Exprs()
   {
-    return exprLessThanEClass;
+    return (EReference)exprComparisionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4181,9 +4015,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprLessThan_Left()
+  public EAttribute getExprComparision_Ops()
   {
-    return (EReference)exprLessThanEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)exprComparisionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4191,9 +4025,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprLessThan_Right()
+  public EClass getExprEqual()
   {
-    return (EReference)exprLessThanEClass.getEStructuralFeatures().get(1);
+    return exprEqualEClass;
   }
 
   /**
@@ -4201,9 +4035,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getExprGreaterThan()
+  public EReference getExprEqual_Exprs()
   {
-    return exprGreaterThanEClass;
+    return (EReference)exprEqualEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4211,139 +4045,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprGreaterThan_Left()
+  public EAttribute getExprEqual_Ops()
   {
-    return (EReference)exprGreaterThanEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprGreaterThan_Right()
-  {
-    return (EReference)exprGreaterThanEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprLessThanOrEqualTo()
-  {
-    return exprLessThanOrEqualToEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprLessThanOrEqualTo_Left()
-  {
-    return (EReference)exprLessThanOrEqualToEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprLessThanOrEqualTo_Right()
-  {
-    return (EReference)exprLessThanOrEqualToEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprGreaterThanOrEqualTo()
-  {
-    return exprGreaterThanOrEqualToEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprGreaterThanOrEqualTo_Left()
-  {
-    return (EReference)exprGreaterThanOrEqualToEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprGreaterThanOrEqualTo_Right()
-  {
-    return (EReference)exprGreaterThanOrEqualToEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprEqualTo()
-  {
-    return exprEqualToEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprEqualTo_Left()
-  {
-    return (EReference)exprEqualToEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprEqualTo_Right()
-  {
-    return (EReference)exprEqualToEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExprNotEqualTo()
-  {
-    return exprNotEqualToEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprNotEqualTo_Left()
-  {
-    return (EReference)exprNotEqualToEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprNotEqualTo_Right()
-  {
-    return (EReference)exprNotEqualToEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)exprEqualEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4361,19 +4065,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBooleanAnd_Left()
+  public EReference getExprBooleanAnd_Exprs()
   {
     return (EReference)exprBooleanAndEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprBooleanAnd_Right()
-  {
-    return (EReference)exprBooleanAndEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4391,19 +4085,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprBooleanOr_Left()
+  public EReference getExprBooleanOr_Exprs()
   {
     return (EReference)exprBooleanOrEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprBooleanOr_Right()
-  {
-    return (EReference)exprBooleanOrEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4421,19 +4105,9 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprAssign_Left()
+  public EReference getExprAssign_Exprs()
   {
     return (EReference)exprAssignEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprAssign_Right()
-  {
-    return (EReference)exprAssignEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4564,6 +4238,56 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
   public EClass getBorrowedStrType()
   {
     return borrowedStrTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getMultiplicativeOp()
+  {
+    return multiplicativeOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getAdditiveOp()
+  {
+    return additiveOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getShiftOp()
+  {
+    return shiftOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getComparisonOp()
+  {
+    return comparisonOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getEqualityOp()
+  {
+    return equalityOpEEnum;
   }
 
   /**
@@ -4733,37 +4457,25 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     exprLeafEClass = createEClass(EXPR_LEAF);
 
-    exprFnCallEClass = createEClass(EXPR_FN_CALL);
-    createEReference(exprFnCallEClass, EXPR_FN_CALL__EXPR);
-    createEReference(exprFnCallEClass, EXPR_FN_CALL__TAIL);
-
     exprFnCallArgsEClass = createEClass(EXPR_FN_CALL_ARGS);
     createEReference(exprFnCallArgsEClass, EXPR_FN_CALL_ARGS__ARGS);
     createEReference(exprFnCallArgsEClass, EXPR_FN_CALL_ARGS__TAIL);
 
     exprPrimaryEClass = createEClass(EXPR_PRIMARY);
+    createEReference(exprPrimaryEClass, EXPR_PRIMARY__ARGS);
 
     exprLiteralEClass = createEClass(EXPR_LITERAL);
     createEReference(exprLiteralEClass, EXPR_LITERAL__LITERAL);
 
-    exprPathHeadEClass = createEClass(EXPR_PATH_HEAD);
-    createEReference(exprPathHeadEClass, EXPR_PATH_HEAD__PATH);
-
     exprGroupEClass = createEClass(EXPR_GROUP);
     createEReference(exprGroupEClass, EXPR_GROUP__EXPR);
 
-    exprTupleEClass = createEClass(EXPR_TUPLE);
-    createEReference(exprTupleEClass, EXPR_TUPLE__TUPLE);
-    createEReference(exprTupleEClass, EXPR_TUPLE__EXPRS);
-
     exprStructEClass = createEClass(EXPR_STRUCT);
-    createEReference(exprStructEClass, EXPR_STRUCT__STRUCT);
     createEReference(exprStructEClass, EXPR_STRUCT__FIELDS);
     createEReference(exprStructEClass, EXPR_STRUCT__BASE_EXPR);
 
     exprVecEClass = createEClass(EXPR_VEC);
     createEAttribute(exprVecEClass, EXPR_VEC__MUTABLE);
-    createEReference(exprVecEClass, EXPR_VEC__EXPRS);
     createEReference(exprVecEClass, EXPR_VEC__LEN_EXPR);
 
     exprUnaryEClass = createEClass(EXPR_UNARY);
@@ -4785,6 +4497,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     borrowEClass = createEClass(BORROW);
     createEReference(borrowEClass, BORROW__EXPR);
+
+    exprFieldsEClass = createEClass(EXPR_FIELDS);
+    createEReference(exprFieldsEClass, EXPR_FIELDS__EXPRS);
+
+    exprFieldOrMethodCallEClass = createEClass(EXPR_FIELD_OR_METHOD_CALL);
+    createEAttribute(exprFieldOrMethodCallEClass, EXPR_FIELD_OR_METHOD_CALL__NAME);
+    createEReference(exprFieldOrMethodCallEClass, EXPR_FIELD_OR_METHOD_CALL__ARGS);
 
     exprBinaryEClass = createEClass(EXPR_BINARY);
 
@@ -4977,85 +4696,52 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     exprIndexEClass = createEClass(EXPR_INDEX);
     createEReference(exprIndexEClass, EXPR_INDEX__INDEX_EXPR);
 
-    divisionEClass = createEClass(DIVISION);
-    createEReference(divisionEClass, DIVISION__LEFT);
-    createEReference(divisionEClass, DIVISION__RIGHT);
+    exprCallEClass = createEClass(EXPR_CALL);
+    createEReference(exprCallEClass, EXPR_CALL__EXPR);
 
-    multiplicationEClass = createEClass(MULTIPLICATION);
-    createEReference(multiplicationEClass, MULTIPLICATION__LEFT);
-    createEReference(multiplicationEClass, MULTIPLICATION__RIGHT);
+    exprTupleEClass = createEClass(EXPR_TUPLE);
 
-    moduloEClass = createEClass(MODULO);
-    createEReference(moduloEClass, MODULO__LEFT);
-    createEReference(moduloEClass, MODULO__RIGHT);
+    exprMultiplicativeEClass = createEClass(EXPR_MULTIPLICATIVE);
+    createEReference(exprMultiplicativeEClass, EXPR_MULTIPLICATIVE__EXPRS);
+    createEAttribute(exprMultiplicativeEClass, EXPR_MULTIPLICATIVE__OPS);
 
     exprCastEClass = createEClass(EXPR_CAST);
     createEReference(exprCastEClass, EXPR_CAST__EXPR);
     createEReference(exprCastEClass, EXPR_CAST__TYPE);
 
-    exprAdditionEClass = createEClass(EXPR_ADDITION);
-    createEReference(exprAdditionEClass, EXPR_ADDITION__LEFT);
-    createEReference(exprAdditionEClass, EXPR_ADDITION__RIGHT);
+    exprAdditiveEClass = createEClass(EXPR_ADDITIVE);
+    createEReference(exprAdditiveEClass, EXPR_ADDITIVE__EXPRS);
+    createEAttribute(exprAdditiveEClass, EXPR_ADDITIVE__OPS);
 
-    exprSubtractionEClass = createEClass(EXPR_SUBTRACTION);
-    createEReference(exprSubtractionEClass, EXPR_SUBTRACTION__LEFT);
-    createEReference(exprSubtractionEClass, EXPR_SUBTRACTION__RIGHT);
-
-    exprLeftShiftEClass = createEClass(EXPR_LEFT_SHIFT);
-    createEReference(exprLeftShiftEClass, EXPR_LEFT_SHIFT__LEFT);
-    createEReference(exprLeftShiftEClass, EXPR_LEFT_SHIFT__RIGHT);
-
-    exprRightShiftEClass = createEClass(EXPR_RIGHT_SHIFT);
-    createEReference(exprRightShiftEClass, EXPR_RIGHT_SHIFT__LEFT);
-    createEReference(exprRightShiftEClass, EXPR_RIGHT_SHIFT__RIGHT);
+    exprShiftEClass = createEClass(EXPR_SHIFT);
+    createEReference(exprShiftEClass, EXPR_SHIFT__EXPRS);
+    createEAttribute(exprShiftEClass, EXPR_SHIFT__OPS);
 
     exprBitwiseAndEClass = createEClass(EXPR_BITWISE_AND);
-    createEReference(exprBitwiseAndEClass, EXPR_BITWISE_AND__LEFT);
-    createEReference(exprBitwiseAndEClass, EXPR_BITWISE_AND__RIGHT);
+    createEReference(exprBitwiseAndEClass, EXPR_BITWISE_AND__EXPRS);
 
     exprBitwiseXorEClass = createEClass(EXPR_BITWISE_XOR);
-    createEReference(exprBitwiseXorEClass, EXPR_BITWISE_XOR__LEFT);
-    createEReference(exprBitwiseXorEClass, EXPR_BITWISE_XOR__RIGHT);
+    createEReference(exprBitwiseXorEClass, EXPR_BITWISE_XOR__EXPRS);
 
     exprBitwiseOrEClass = createEClass(EXPR_BITWISE_OR);
-    createEReference(exprBitwiseOrEClass, EXPR_BITWISE_OR__LEFT);
-    createEReference(exprBitwiseOrEClass, EXPR_BITWISE_OR__RIGHT);
+    createEReference(exprBitwiseOrEClass, EXPR_BITWISE_OR__EXPRS);
 
-    exprLessThanEClass = createEClass(EXPR_LESS_THAN);
-    createEReference(exprLessThanEClass, EXPR_LESS_THAN__LEFT);
-    createEReference(exprLessThanEClass, EXPR_LESS_THAN__RIGHT);
+    exprComparisionEClass = createEClass(EXPR_COMPARISION);
+    createEReference(exprComparisionEClass, EXPR_COMPARISION__EXPRS);
+    createEAttribute(exprComparisionEClass, EXPR_COMPARISION__OPS);
 
-    exprGreaterThanEClass = createEClass(EXPR_GREATER_THAN);
-    createEReference(exprGreaterThanEClass, EXPR_GREATER_THAN__LEFT);
-    createEReference(exprGreaterThanEClass, EXPR_GREATER_THAN__RIGHT);
-
-    exprLessThanOrEqualToEClass = createEClass(EXPR_LESS_THAN_OR_EQUAL_TO);
-    createEReference(exprLessThanOrEqualToEClass, EXPR_LESS_THAN_OR_EQUAL_TO__LEFT);
-    createEReference(exprLessThanOrEqualToEClass, EXPR_LESS_THAN_OR_EQUAL_TO__RIGHT);
-
-    exprGreaterThanOrEqualToEClass = createEClass(EXPR_GREATER_THAN_OR_EQUAL_TO);
-    createEReference(exprGreaterThanOrEqualToEClass, EXPR_GREATER_THAN_OR_EQUAL_TO__LEFT);
-    createEReference(exprGreaterThanOrEqualToEClass, EXPR_GREATER_THAN_OR_EQUAL_TO__RIGHT);
-
-    exprEqualToEClass = createEClass(EXPR_EQUAL_TO);
-    createEReference(exprEqualToEClass, EXPR_EQUAL_TO__LEFT);
-    createEReference(exprEqualToEClass, EXPR_EQUAL_TO__RIGHT);
-
-    exprNotEqualToEClass = createEClass(EXPR_NOT_EQUAL_TO);
-    createEReference(exprNotEqualToEClass, EXPR_NOT_EQUAL_TO__LEFT);
-    createEReference(exprNotEqualToEClass, EXPR_NOT_EQUAL_TO__RIGHT);
+    exprEqualEClass = createEClass(EXPR_EQUAL);
+    createEReference(exprEqualEClass, EXPR_EQUAL__EXPRS);
+    createEAttribute(exprEqualEClass, EXPR_EQUAL__OPS);
 
     exprBooleanAndEClass = createEClass(EXPR_BOOLEAN_AND);
-    createEReference(exprBooleanAndEClass, EXPR_BOOLEAN_AND__LEFT);
-    createEReference(exprBooleanAndEClass, EXPR_BOOLEAN_AND__RIGHT);
+    createEReference(exprBooleanAndEClass, EXPR_BOOLEAN_AND__EXPRS);
 
     exprBooleanOrEClass = createEClass(EXPR_BOOLEAN_OR);
-    createEReference(exprBooleanOrEClass, EXPR_BOOLEAN_OR__LEFT);
-    createEReference(exprBooleanOrEClass, EXPR_BOOLEAN_OR__RIGHT);
+    createEReference(exprBooleanOrEClass, EXPR_BOOLEAN_OR__EXPRS);
 
     exprAssignEClass = createEClass(EXPR_ASSIGN);
-    createEReference(exprAssignEClass, EXPR_ASSIGN__LEFT);
-    createEReference(exprAssignEClass, EXPR_ASSIGN__RIGHT);
+    createEReference(exprAssignEClass, EXPR_ASSIGN__EXPRS);
 
     patTupleEnumEClass = createEClass(PAT_TUPLE_ENUM);
     createEReference(patTupleEnumEClass, PAT_TUPLE_ENUM__PATTERNS);
@@ -5082,6 +4768,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     borrowedStrTypeEClass = createEClass(BORROWED_STR_TYPE);
 
     // Create enums
+    multiplicativeOpEEnum = createEEnum(MULTIPLICATIVE_OP);
+    additiveOpEEnum = createEEnum(ADDITIVE_OP);
+    shiftOpEEnum = createEEnum(SHIFT_OP);
+    comparisonOpEEnum = createEEnum(COMPARISON_OP);
+    equalityOpEEnum = createEEnum(EQUALITY_OP);
     visibilityEEnum = createEEnum(VISIBILITY);
   }
 
@@ -5127,14 +4818,11 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     implItemEClass.getESuperTypes().add(this.getItem());
     externBlockEClass.getESuperTypes().add(this.getItem());
     staticItemEClass.getESuperTypes().add(this.getItem());
-    exprLeafEClass.getESuperTypes().add(this.getExprUnary());
-    exprFnCallEClass.getESuperTypes().add(this.getExprLeaf());
+    exprLeafEClass.getESuperTypes().add(this.getExprFields());
+    exprPrimaryEClass.getESuperTypes().add(this.getExprLeaf());
     exprLiteralEClass.getESuperTypes().add(this.getExprPrimary());
     exprGroupEClass.getESuperTypes().add(this.getExprPrimary());
-    exprTupleEClass.getESuperTypes().add(this.getExprPathHead());
-    exprTupleEClass.getESuperTypes().add(this.getExprGroup());
     exprStructEClass.getESuperTypes().add(this.getExprPrimary());
-    exprStructEClass.getESuperTypes().add(this.getExprPathHead());
     exprVecEClass.getESuperTypes().add(this.getExprPrimary());
     exprUnaryEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     numericNegationEClass.getESuperTypes().add(this.getExprUnary());
@@ -5143,6 +4831,7 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     managedBoxEClass.getESuperTypes().add(this.getExprUnary());
     ownedBoxEClass.getESuperTypes().add(this.getExprUnary());
     borrowEClass.getESuperTypes().add(this.getExprUnary());
+    exprFieldsEClass.getESuperTypes().add(this.getExprUnary());
     exprBinaryEClass.getESuperTypes().add(this.getExpr());
     divisionMultiplicationOrModuloEClass.getESuperTypes().add(this.getAs());
     asEClass.getESuperTypes().add(this.getAdditionOrSubtraction());
@@ -5192,23 +4881,17 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     charLitEClass.getESuperTypes().add(this.getLiteral());
     exprFieldEClass.getESuperTypes().add(this.getExprLValue());
     exprIndexEClass.getESuperTypes().add(this.getExprLValue());
-    divisionEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
-    multiplicationEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
-    moduloEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
+    exprCallEClass.getESuperTypes().add(this.getExprLeaf());
+    exprTupleEClass.getESuperTypes().add(this.getExprGroup());
+    exprMultiplicativeEClass.getESuperTypes().add(this.getDivisionMultiplicationOrModulo());
     exprCastEClass.getESuperTypes().add(this.getAs());
-    exprAdditionEClass.getESuperTypes().add(this.getAdditionOrSubtraction());
-    exprSubtractionEClass.getESuperTypes().add(this.getAdditionOrSubtraction());
-    exprLeftShiftEClass.getESuperTypes().add(this.getShiftOperator());
-    exprRightShiftEClass.getESuperTypes().add(this.getShiftOperator());
+    exprAdditiveEClass.getESuperTypes().add(this.getAdditionOrSubtraction());
+    exprShiftEClass.getESuperTypes().add(this.getShiftOperator());
     exprBitwiseAndEClass.getESuperTypes().add(this.getBitwiseAnd());
     exprBitwiseXorEClass.getESuperTypes().add(this.getBitwiseXor());
     exprBitwiseOrEClass.getESuperTypes().add(this.getBitwiseOr());
-    exprLessThanEClass.getESuperTypes().add(this.getComparisonOperators());
-    exprGreaterThanEClass.getESuperTypes().add(this.getComparisonOperators());
-    exprLessThanOrEqualToEClass.getESuperTypes().add(this.getComparisonOperators());
-    exprGreaterThanOrEqualToEClass.getESuperTypes().add(this.getComparisonOperators());
-    exprEqualToEClass.getESuperTypes().add(this.getEqualityOperator());
-    exprNotEqualToEClass.getESuperTypes().add(this.getEqualityOperator());
+    exprComparisionEClass.getESuperTypes().add(this.getComparisonOperators());
+    exprEqualEClass.getESuperTypes().add(this.getEqualityOperator());
     exprBooleanAndEClass.getESuperTypes().add(this.getBooleanAnd());
     exprBooleanOrEClass.getESuperTypes().add(this.getBooleanOr());
     exprAssignEClass.getESuperTypes().add(this.getAssign());
@@ -5352,37 +5035,25 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(exprLeafEClass, ExprLeaf.class, "ExprLeaf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(exprFnCallEClass, ExprFnCall.class, "ExprFnCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprFnCall_Expr(), this.getExprPrimary(), null, "expr", null, 0, 1, ExprFnCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprFnCall_Tail(), this.getExprFnCallArgs(), null, "tail", null, 0, 1, ExprFnCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(exprFnCallArgsEClass, ExprFnCallArgs.class, "ExprFnCallArgs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprFnCallArgs_Args(), this.getExpr(), null, "args", null, 0, -1, ExprFnCallArgs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprFnCallArgs_Tail(), this.getExprFnCallArgs(), null, "tail", null, 0, 1, ExprFnCallArgs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprPrimaryEClass, ExprPrimary.class, "ExprPrimary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprPrimary_Args(), this.getExpr(), null, "args", null, 0, -1, ExprPrimary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprLiteralEClass, ExprLiteral.class, "ExprLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprLiteral_Literal(), this.getLiteral(), null, "literal", null, 0, 1, ExprLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprPathHeadEClass, ExprPathHead.class, "ExprPathHead", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprPathHead_Path(), ecorePackage.getEObject(), null, "path", null, 0, 1, ExprPathHead.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(exprGroupEClass, ExprGroup.class, "ExprGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprGroup_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprTuple_Tuple(), this.getExprTuple(), null, "tuple", null, 0, 1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprTuple_Exprs(), ecorePackage.getEObject(), null, "exprs", null, 0, -1, ExprTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(exprStructEClass, ExprStruct.class, "ExprStruct", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprStruct_Struct(), this.getExprStruct(), null, "struct", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprStruct_Fields(), this.getStructField(), null, "fields", null, 0, -1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprStruct_BaseExpr(), this.getExpr(), null, "baseExpr", null, 0, 1, ExprStruct.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprVecEClass, ExprVec.class, "ExprVec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExprVec_Mutable(), ecorePackage.getEBoolean(), "mutable", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprVec_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprVec_LenExpr(), this.getExpr(), null, "lenExpr", null, 0, 1, ExprVec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprUnaryEClass, ExprUnary.class, "ExprUnary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -5404,6 +5075,13 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
 
     initEClass(borrowEClass, Borrow.class, "Borrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBorrow_Expr(), this.getExprPrimary(), null, "expr", null, 0, 1, Borrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprFieldsEClass, ExprFields.class, "ExprFields", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprFields_Exprs(), ecorePackage.getEObject(), null, "exprs", null, 0, -1, ExprFields.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprFieldOrMethodCallEClass, ExprFieldOrMethodCall.class, "ExprFieldOrMethodCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExprFieldOrMethodCall_Name(), ecorePackage.getEString(), "name", null, 0, 1, ExprFieldOrMethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprFieldOrMethodCall_Args(), this.getExprFnCallArgs(), null, "args", null, 0, 1, ExprFieldOrMethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBinaryEClass, ExprBinary.class, "ExprBinary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -5596,85 +5274,52 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(exprIndexEClass, ExprIndex.class, "ExprIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprIndex_IndexExpr(), this.getExpr(), null, "indexExpr", null, 0, 1, ExprIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(divisionEClass, Division.class, "Division", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDivision_Left(), this.getExprUnary(), null, "left", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDivision_Right(), this.getExprUnary(), null, "right", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprCallEClass, ExprCall.class, "ExprCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprCall_Expr(), this.getExprPrimary(), null, "expr", null, 0, 1, ExprCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(multiplicationEClass, Multiplication.class, "Multiplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMultiplication_Left(), this.getExprUnary(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMultiplication_Right(), this.getExprUnary(), null, "right", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprTupleEClass, ExprTuple.class, "ExprTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(moduloEClass, Modulo.class, "Modulo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModulo_Left(), this.getExprUnary(), null, "left", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModulo_Right(), this.getExprUnary(), null, "right", null, 0, 1, Modulo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprMultiplicativeEClass, ExprMultiplicative.class, "ExprMultiplicative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprMultiplicative_Exprs(), this.getExprUnary(), null, "exprs", null, 0, -1, ExprMultiplicative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprMultiplicative_Ops(), this.getMultiplicativeOp(), "ops", null, 0, -1, ExprMultiplicative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprCastEClass, ExprCast.class, "ExprCast", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprCast_Expr(), this.getDivisionMultiplicationOrModulo(), null, "expr", null, 0, 1, ExprCast.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprCast_Type(), this.getType(), null, "type", null, 0, 1, ExprCast.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprAdditionEClass, ExprAddition.class, "ExprAddition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprAddition_Left(), this.getAs(), null, "left", null, 0, 1, ExprAddition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprAddition_Right(), this.getAs(), null, "right", null, 0, 1, ExprAddition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprAdditiveEClass, ExprAdditive.class, "ExprAdditive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprAdditive_Exprs(), this.getAs(), null, "exprs", null, 0, -1, ExprAdditive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprAdditive_Ops(), this.getAdditiveOp(), "ops", null, 0, -1, ExprAdditive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprSubtractionEClass, ExprSubtraction.class, "ExprSubtraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprSubtraction_Left(), this.getAs(), null, "left", null, 0, 1, ExprSubtraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprSubtraction_Right(), this.getAs(), null, "right", null, 0, 1, ExprSubtraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprLeftShiftEClass, ExprLeftShift.class, "ExprLeftShift", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprLeftShift_Left(), this.getAdditionOrSubtraction(), null, "left", null, 0, 1, ExprLeftShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprLeftShift_Right(), this.getAdditionOrSubtraction(), null, "right", null, 0, 1, ExprLeftShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprRightShiftEClass, ExprRightShift.class, "ExprRightShift", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprRightShift_Left(), this.getAdditionOrSubtraction(), null, "left", null, 0, 1, ExprRightShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprRightShift_Right(), this.getAdditionOrSubtraction(), null, "right", null, 0, 1, ExprRightShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprShiftEClass, ExprShift.class, "ExprShift", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprShift_Exprs(), this.getAdditionOrSubtraction(), null, "exprs", null, 0, -1, ExprShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprShift_Ops(), this.getShiftOp(), "ops", null, 0, -1, ExprShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBitwiseAndEClass, ExprBitwiseAnd.class, "ExprBitwiseAnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprBitwiseAnd_Left(), this.getShiftOperator(), null, "left", null, 0, 1, ExprBitwiseAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprBitwiseAnd_Right(), this.getShiftOperator(), null, "right", null, 0, 1, ExprBitwiseAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprBitwiseAnd_Exprs(), this.getShiftOperator(), null, "exprs", null, 0, -1, ExprBitwiseAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBitwiseXorEClass, ExprBitwiseXor.class, "ExprBitwiseXor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprBitwiseXor_Left(), this.getBitwiseAnd(), null, "left", null, 0, 1, ExprBitwiseXor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprBitwiseXor_Right(), this.getBitwiseAnd(), null, "right", null, 0, 1, ExprBitwiseXor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprBitwiseXor_Exprs(), this.getBitwiseAnd(), null, "exprs", null, 0, -1, ExprBitwiseXor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBitwiseOrEClass, ExprBitwiseOr.class, "ExprBitwiseOr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprBitwiseOr_Left(), this.getBitwiseXor(), null, "left", null, 0, 1, ExprBitwiseOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprBitwiseOr_Right(), this.getBitwiseXor(), null, "right", null, 0, 1, ExprBitwiseOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprBitwiseOr_Exprs(), this.getBitwiseXor(), null, "exprs", null, 0, -1, ExprBitwiseOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprLessThanEClass, ExprLessThan.class, "ExprLessThan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprLessThan_Left(), this.getBitwiseOr(), null, "left", null, 0, 1, ExprLessThan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprLessThan_Right(), this.getBitwiseOr(), null, "right", null, 0, 1, ExprLessThan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprComparisionEClass, ExprComparision.class, "ExprComparision", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprComparision_Exprs(), this.getBitwiseOr(), null, "exprs", null, 0, -1, ExprComparision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprComparision_Ops(), this.getComparisonOp(), "ops", null, 0, -1, ExprComparision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(exprGreaterThanEClass, ExprGreaterThan.class, "ExprGreaterThan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprGreaterThan_Left(), this.getBitwiseOr(), null, "left", null, 0, 1, ExprGreaterThan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprGreaterThan_Right(), this.getBitwiseOr(), null, "right", null, 0, 1, ExprGreaterThan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprLessThanOrEqualToEClass, ExprLessThanOrEqualTo.class, "ExprLessThanOrEqualTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprLessThanOrEqualTo_Left(), this.getBitwiseOr(), null, "left", null, 0, 1, ExprLessThanOrEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprLessThanOrEqualTo_Right(), this.getBitwiseOr(), null, "right", null, 0, 1, ExprLessThanOrEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprGreaterThanOrEqualToEClass, ExprGreaterThanOrEqualTo.class, "ExprGreaterThanOrEqualTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprGreaterThanOrEqualTo_Left(), this.getBitwiseOr(), null, "left", null, 0, 1, ExprGreaterThanOrEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprGreaterThanOrEqualTo_Right(), this.getBitwiseOr(), null, "right", null, 0, 1, ExprGreaterThanOrEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprEqualToEClass, ExprEqualTo.class, "ExprEqualTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprEqualTo_Left(), this.getComparisonOperators(), null, "left", null, 0, 1, ExprEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprEqualTo_Right(), this.getComparisonOperators(), null, "right", null, 0, 1, ExprEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exprNotEqualToEClass, ExprNotEqualTo.class, "ExprNotEqualTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprNotEqualTo_Left(), this.getComparisonOperators(), null, "left", null, 0, 1, ExprNotEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprNotEqualTo_Right(), this.getComparisonOperators(), null, "right", null, 0, 1, ExprNotEqualTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exprEqualEClass, ExprEqual.class, "ExprEqual", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprEqual_Exprs(), this.getComparisonOperators(), null, "exprs", null, 0, -1, ExprEqual.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprEqual_Ops(), this.getEqualityOp(), "ops", null, 0, -1, ExprEqual.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBooleanAndEClass, ExprBooleanAnd.class, "ExprBooleanAnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprBooleanAnd_Left(), this.getEqualityOperator(), null, "left", null, 0, 1, ExprBooleanAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprBooleanAnd_Right(), this.getEqualityOperator(), null, "right", null, 0, 1, ExprBooleanAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprBooleanAnd_Exprs(), this.getEqualityOperator(), null, "exprs", null, 0, -1, ExprBooleanAnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprBooleanOrEClass, ExprBooleanOr.class, "ExprBooleanOr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprBooleanOr_Left(), this.getBooleanAnd(), null, "left", null, 0, 1, ExprBooleanOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprBooleanOr_Right(), this.getBooleanAnd(), null, "right", null, 0, 1, ExprBooleanOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprBooleanOr_Exprs(), this.getBooleanAnd(), null, "exprs", null, 0, -1, ExprBooleanOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprAssignEClass, ExprAssign.class, "ExprAssign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExprAssign_Left(), this.getBooleanOr(), null, "left", null, 0, 1, ExprAssign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprAssign_Right(), this.getBooleanOr(), null, "right", null, 0, 1, ExprAssign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprAssign_Exprs(), this.getBooleanOr(), null, "exprs", null, 0, -1, ExprAssign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patTupleEnumEClass, PatTupleEnum.class, "PatTupleEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPatTupleEnum_Patterns(), this.getPat(), null, "patterns", null, 0, -1, PatTupleEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5701,6 +5346,29 @@ public class RustPackageImpl extends EPackageImpl implements RustPackage
     initEClass(borrowedStrTypeEClass, BorrowedStrType.class, "BorrowedStrType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
+    initEEnum(multiplicativeOpEEnum, MultiplicativeOp.class, "MultiplicativeOp");
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.DIV);
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MUL);
+    addEEnumLiteral(multiplicativeOpEEnum, MultiplicativeOp.MOD);
+
+    initEEnum(additiveOpEEnum, AdditiveOp.class, "AdditiveOp");
+    addEEnumLiteral(additiveOpEEnum, AdditiveOp.ADD);
+    addEEnumLiteral(additiveOpEEnum, AdditiveOp.SUB);
+
+    initEEnum(shiftOpEEnum, ShiftOp.class, "ShiftOp");
+    addEEnumLiteral(shiftOpEEnum, ShiftOp.LSHIFT);
+    addEEnumLiteral(shiftOpEEnum, ShiftOp.RSHIFT);
+
+    initEEnum(comparisonOpEEnum, ComparisonOp.class, "ComparisonOp");
+    addEEnumLiteral(comparisonOpEEnum, ComparisonOp.LESS_THAN);
+    addEEnumLiteral(comparisonOpEEnum, ComparisonOp.GREATER_THAN);
+    addEEnumLiteral(comparisonOpEEnum, ComparisonOp.LESS_THAN_OR_EQUAL);
+    addEEnumLiteral(comparisonOpEEnum, ComparisonOp.GREATER_THAN_OR_EQUAL);
+
+    initEEnum(equalityOpEEnum, EqualityOp.class, "EqualityOp");
+    addEEnumLiteral(equalityOpEEnum, EqualityOp.EQUAL);
+    addEEnumLiteral(equalityOpEEnum, EqualityOp.NOT_EQUAL);
+
     initEEnum(visibilityEEnum, Visibility.class, "Visibility");
     addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
     addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);

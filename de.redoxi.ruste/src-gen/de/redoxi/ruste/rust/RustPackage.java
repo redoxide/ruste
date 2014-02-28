@@ -1253,7 +1253,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBinary()
    * @generated
    */
-  int EXPR_BINARY = 44;
+  int EXPR_BINARY = 43;
 
   /**
    * The number of structural features of the '<em>Expr Binary</em>' class.
@@ -1272,7 +1272,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAssign()
    * @generated
    */
-  int ASSIGN = 56;
+  int ASSIGN = 55;
 
   /**
    * The number of structural features of the '<em>Assign</em>' class.
@@ -1291,7 +1291,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanOr()
    * @generated
    */
-  int BOOLEAN_OR = 55;
+  int BOOLEAN_OR = 54;
 
   /**
    * The number of structural features of the '<em>Boolean Or</em>' class.
@@ -1310,7 +1310,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBooleanAnd()
    * @generated
    */
-  int BOOLEAN_AND = 54;
+  int BOOLEAN_AND = 53;
 
   /**
    * The number of structural features of the '<em>Boolean And</em>' class.
@@ -1329,7 +1329,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEqualityOperator()
    * @generated
    */
-  int EQUALITY_OPERATOR = 53;
+  int EQUALITY_OPERATOR = 52;
 
   /**
    * The number of structural features of the '<em>Equality Operator</em>' class.
@@ -1348,7 +1348,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getComparisonOperators()
    * @generated
    */
-  int COMPARISON_OPERATORS = 52;
+  int COMPARISON_OPERATORS = 51;
 
   /**
    * The number of structural features of the '<em>Comparison Operators</em>' class.
@@ -1367,7 +1367,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseOr()
    * @generated
    */
-  int BITWISE_OR = 51;
+  int BITWISE_OR = 50;
 
   /**
    * The number of structural features of the '<em>Bitwise Or</em>' class.
@@ -1386,7 +1386,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseXor()
    * @generated
    */
-  int BITWISE_XOR = 50;
+  int BITWISE_XOR = 49;
 
   /**
    * The number of structural features of the '<em>Bitwise Xor</em>' class.
@@ -1405,7 +1405,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBitwiseAnd()
    * @generated
    */
-  int BITWISE_AND = 49;
+  int BITWISE_AND = 48;
 
   /**
    * The number of structural features of the '<em>Bitwise And</em>' class.
@@ -1424,7 +1424,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getShiftOperator()
    * @generated
    */
-  int SHIFT_OPERATOR = 48;
+  int SHIFT_OPERATOR = 47;
 
   /**
    * The number of structural features of the '<em>Shift Operator</em>' class.
@@ -1443,7 +1443,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAdditionOrSubtraction()
    * @generated
    */
-  int ADDITION_OR_SUBTRACTION = 47;
+  int ADDITION_OR_SUBTRACTION = 46;
 
   /**
    * The number of structural features of the '<em>Addition Or Subtraction</em>' class.
@@ -1462,7 +1462,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAs()
    * @generated
    */
-  int AS = 46;
+  int AS = 45;
 
   /**
    * The number of structural features of the '<em>As</em>' class.
@@ -1481,7 +1481,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivisionMultiplicationOrModulo()
    * @generated
    */
-  int DIVISION_MULTIPLICATION_OR_MODULO = 45;
+  int DIVISION_MULTIPLICATION_OR_MODULO = 44;
 
   /**
    * The number of structural features of the '<em>Division Multiplication Or Modulo</em>' class.
@@ -1500,7 +1500,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprUnary()
    * @generated
    */
-  int EXPR_UNARY = 37;
+  int EXPR_UNARY = 34;
 
   /**
    * The number of structural features of the '<em>Expr Unary</em>' class.
@@ -1510,6 +1510,34 @@ public interface RustPackage extends EPackage
    * @ordered
    */
   int EXPR_UNARY_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprFieldsImpl <em>Expr Fields</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprFieldsImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFields()
+   * @generated
+   */
+  int EXPR_FIELDS = 41;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FIELDS__EXPRS = EXPR_UNARY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Expr Fields</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FIELDS_FEATURE_COUNT = EXPR_UNARY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLeafImpl <em>Expr Leaf</em>}' class.
@@ -1522,50 +1550,22 @@ public interface RustPackage extends EPackage
   int EXPR_LEAF = 27;
 
   /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_LEAF__EXPRS = EXPR_FIELDS__EXPRS;
+
+  /**
    * The number of structural features of the '<em>Expr Leaf</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LEAF_FEATURE_COUNT = EXPR_UNARY_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl <em>Expr Fn Call</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprFnCallImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFnCall()
-   * @generated
-   */
-  int EXPR_FN_CALL = 28;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_FN_CALL__EXPR = EXPR_LEAF_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Tail</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_FN_CALL__TAIL = EXPR_LEAF_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Fn Call</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_FN_CALL_FEATURE_COUNT = EXPR_LEAF_FEATURE_COUNT + 2;
+  int EXPR_LEAF_FEATURE_COUNT = EXPR_FIELDS_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprFnCallArgsImpl <em>Expr Fn Call Args</em>}' class.
@@ -1575,7 +1575,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFnCallArgs()
    * @generated
    */
-  int EXPR_FN_CALL_ARGS = 29;
+  int EXPR_FN_CALL_ARGS = 28;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -1612,7 +1612,25 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprPrimary()
    * @generated
    */
-  int EXPR_PRIMARY = 30;
+  int EXPR_PRIMARY = 29;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_PRIMARY__EXPRS = EXPR_LEAF__EXPRS;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_PRIMARY__ARGS = EXPR_LEAF_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Primary</em>' class.
@@ -1621,7 +1639,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_PRIMARY_FEATURE_COUNT = 0;
+  int EXPR_PRIMARY_FEATURE_COUNT = EXPR_LEAF_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLiteralImpl <em>Expr Literal</em>}' class.
@@ -1631,7 +1649,25 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLiteral()
    * @generated
    */
-  int EXPR_LITERAL = 31;
+  int EXPR_LITERAL = 30;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_LITERAL__EXPRS = EXPR_PRIMARY__EXPRS;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_LITERAL__ARGS = EXPR_PRIMARY__ARGS;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -1652,34 +1688,6 @@ public interface RustPackage extends EPackage
   int EXPR_LITERAL_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprPathHeadImpl <em>Expr Path Head</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprPathHeadImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprPathHead()
-   * @generated
-   */
-  int EXPR_PATH_HEAD = 32;
-
-  /**
-   * The feature id for the '<em><b>Path</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_PATH_HEAD__PATH = 0;
-
-  /**
-   * The number of structural features of the '<em>Expr Path Head</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_PATH_HEAD_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprGroupImpl <em>Expr Group</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1687,7 +1695,25 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGroup()
    * @generated
    */
-  int EXPR_GROUP = 33;
+  int EXPR_GROUP = 31;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_GROUP__EXPRS = EXPR_PRIMARY__EXPRS;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_GROUP__ARGS = EXPR_PRIMARY__ARGS;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1708,41 +1734,14 @@ public interface RustPackage extends EPackage
   int EXPR_GROUP_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprTupleImpl <em>Expr Tuple</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprStructImpl <em>Expr Struct</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprTupleImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprTuple()
+   * @see de.redoxi.ruste.rust.impl.ExprStructImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprStruct()
    * @generated
    */
-  int EXPR_TUPLE = 34;
-
-  /**
-   * The feature id for the '<em><b>Path</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_TUPLE__PATH = EXPR_PATH_HEAD__PATH;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_TUPLE__EXPR = EXPR_PATH_HEAD_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Tuple</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_TUPLE__TUPLE = EXPR_PATH_HEAD_FEATURE_COUNT + 1;
+  int EXPR_STRUCT = 32;
 
   /**
    * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
@@ -1751,44 +1750,16 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_TUPLE__EXPRS = EXPR_PATH_HEAD_FEATURE_COUNT + 2;
+  int EXPR_STRUCT__EXPRS = EXPR_PRIMARY__EXPRS;
 
   /**
-   * The number of structural features of the '<em>Expr Tuple</em>' class.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_TUPLE_FEATURE_COUNT = EXPR_PATH_HEAD_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprStructImpl <em>Expr Struct</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprStructImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprStruct()
-   * @generated
-   */
-  int EXPR_STRUCT = 35;
-
-  /**
-   * The feature id for the '<em><b>Path</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_STRUCT__PATH = EXPR_PRIMARY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Struct</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_STRUCT__STRUCT = EXPR_PRIMARY_FEATURE_COUNT + 1;
+  int EXPR_STRUCT__ARGS = EXPR_PRIMARY__ARGS;
 
   /**
    * The feature id for the '<em><b>Fields</b></em>' containment reference list.
@@ -1797,7 +1768,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_STRUCT__FIELDS = EXPR_PRIMARY_FEATURE_COUNT + 2;
+  int EXPR_STRUCT__FIELDS = EXPR_PRIMARY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Base Expr</b></em>' containment reference.
@@ -1806,7 +1777,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_STRUCT__BASE_EXPR = EXPR_PRIMARY_FEATURE_COUNT + 3;
+  int EXPR_STRUCT__BASE_EXPR = EXPR_PRIMARY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Expr Struct</em>' class.
@@ -1815,7 +1786,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_STRUCT_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 4;
+  int EXPR_STRUCT_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprVecImpl <em>Expr Vec</em>}' class.
@@ -1825,7 +1796,25 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprVec()
    * @generated
    */
-  int EXPR_VEC = 36;
+  int EXPR_VEC = 33;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC__EXPRS = EXPR_PRIMARY__EXPRS;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_VEC__ARGS = EXPR_PRIMARY__ARGS;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -1837,22 +1826,13 @@ public interface RustPackage extends EPackage
   int EXPR_VEC__MUTABLE = EXPR_PRIMARY_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_VEC__EXPRS = EXPR_PRIMARY_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Len Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_VEC__LEN_EXPR = EXPR_PRIMARY_FEATURE_COUNT + 2;
+  int EXPR_VEC__LEN_EXPR = EXPR_PRIMARY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Expr Vec</em>' class.
@@ -1861,7 +1841,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_VEC_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 3;
+  int EXPR_VEC_FEATURE_COUNT = EXPR_PRIMARY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.NumericNegationImpl <em>Numeric Negation</em>}' class.
@@ -1871,7 +1851,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumericNegation()
    * @generated
    */
-  int NUMERIC_NEGATION = 38;
+  int NUMERIC_NEGATION = 35;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1899,7 +1879,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDereference()
    * @generated
    */
-  int DEREFERENCE = 39;
+  int DEREFERENCE = 36;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1927,7 +1907,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLogicalNegation()
    * @generated
    */
-  int LOGICAL_NEGATION = 40;
+  int LOGICAL_NEGATION = 37;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1955,7 +1935,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getManagedBox()
    * @generated
    */
-  int MANAGED_BOX = 41;
+  int MANAGED_BOX = 38;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1983,7 +1963,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedBox()
    * @generated
    */
-  int OWNED_BOX = 42;
+  int OWNED_BOX = 39;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2011,7 +1991,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrow()
    * @generated
    */
-  int BORROW = 43;
+  int BORROW = 40;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2032,6 +2012,43 @@ public interface RustPackage extends EPackage
   int BORROW_FEATURE_COUNT = EXPR_UNARY_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl <em>Expr Field Or Method Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFieldOrMethodCall()
+   * @generated
+   */
+  int EXPR_FIELD_OR_METHOD_CALL = 42;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FIELD_OR_METHOD_CALL__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FIELD_OR_METHOD_CALL__ARGS = 1;
+
+  /**
+   * The number of structural features of the '<em>Expr Field Or Method Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FIELD_OR_METHOD_CALL_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLambdaImpl <em>Expr Lambda</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2039,7 +2056,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLambda()
    * @generated
    */
-  int EXPR_LAMBDA = 57;
+  int EXPR_LAMBDA = 56;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' attribute list.
@@ -2076,7 +2093,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprWhile()
    * @generated
    */
-  int EXPR_WHILE = 58;
+  int EXPR_WHILE = 57;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2113,7 +2130,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLoop()
    * @generated
    */
-  int EXPR_LOOP = 59;
+  int EXPR_LOOP = 58;
 
   /**
    * The feature id for the '<em><b>Lifetime</b></em>' attribute.
@@ -2150,7 +2167,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBreak()
    * @generated
    */
-  int EXPR_BREAK = 60;
+  int EXPR_BREAK = 59;
 
   /**
    * The feature id for the '<em><b>Lifetime</b></em>' attribute.
@@ -2178,7 +2195,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprContinue()
    * @generated
    */
-  int EXPR_CONTINUE = 61;
+  int EXPR_CONTINUE = 60;
 
   /**
    * The feature id for the '<em><b>Lifetime</b></em>' attribute.
@@ -2206,7 +2223,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprDo()
    * @generated
    */
-  int EXPR_DO = 62;
+  int EXPR_DO = 61;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2252,7 +2269,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFor()
    * @generated
    */
-  int EXPR_FOR = 63;
+  int EXPR_FOR = 62;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -2298,7 +2315,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprIf()
    * @generated
    */
-  int EXPR_IF = 64;
+  int EXPR_IF = 63;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -2344,7 +2361,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getElseTail()
    * @generated
    */
-  int ELSE_TAIL = 65;
+  int ELSE_TAIL = 64;
 
   /**
    * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -2372,7 +2389,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprMatch()
    * @generated
    */
-  int EXPR_MATCH = 66;
+  int EXPR_MATCH = 65;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2409,7 +2426,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMatchArm()
    * @generated
    */
-  int MATCH_ARM = 67;
+  int MATCH_ARM = 66;
 
   /**
    * The feature id for the '<em><b>Match Pat</b></em>' containment reference.
@@ -2455,7 +2472,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMatchPat()
    * @generated
    */
-  int MATCH_PAT = 68;
+  int MATCH_PAT = 67;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -2501,7 +2518,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprReturn()
    * @generated
    */
-  int EXPR_RETURN = 69;
+  int EXPR_RETURN = 68;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2529,7 +2546,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 70;
+  int BLOCK = 69;
 
   /**
    * The feature id for the '<em><b>Stmts</b></em>' containment reference list.
@@ -2557,7 +2574,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStmt()
    * @generated
    */
-  int STMT = 71;
+  int STMT = 70;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2585,7 +2602,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getSlotDeclStmt()
    * @generated
    */
-  int SLOT_DECL_STMT = 72;
+  int SLOT_DECL_STMT = 71;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2631,7 +2648,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprStmt()
    * @generated
    */
-  int EXPR_STMT = 73;
+  int EXPR_STMT = 72;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2659,7 +2676,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getGenericParamDecl()
    * @generated
    */
-  int GENERIC_PARAM_DECL = 74;
+  int GENERIC_PARAM_DECL = 73;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2696,7 +2713,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getArg()
    * @generated
    */
-  int ARG = 75;
+  int ARG = 74;
 
   /**
    * The feature id for the '<em><b>Pat</b></em>' containment reference.
@@ -2733,7 +2750,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPat()
    * @generated
    */
-  int PAT = 76;
+  int PAT = 75;
 
   /**
    * The number of structural features of the '<em>Pat</em>' class.
@@ -2752,7 +2769,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatWildcard()
    * @generated
    */
-  int PAT_WILDCARD = 77;
+  int PAT_WILDCARD = 76;
 
   /**
    * The number of structural features of the '<em>Pat Wildcard</em>' class.
@@ -2771,7 +2788,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatIdent()
    * @generated
    */
-  int PAT_IDENT = 78;
+  int PAT_IDENT = 77;
 
   /**
    * The feature id for the '<em><b>Mutable</b></em>' attribute.
@@ -2808,7 +2825,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBoxed()
    * @generated
    */
-  int PAT_BOXED = 79;
+  int PAT_BOXED = 78;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2836,7 +2853,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatOwned()
    * @generated
    */
-  int PAT_OWNED = 80;
+  int PAT_OWNED = 79;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2864,7 +2881,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatBorrowed()
    * @generated
    */
-  int PAT_BORROWED = 81;
+  int PAT_BORROWED = 80;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -2892,7 +2909,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTuple()
    * @generated
    */
-  int PAT_TUPLE = 82;
+  int PAT_TUPLE = 81;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -2920,7 +2937,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatVector()
    * @generated
    */
-  int PAT_VECTOR = 83;
+  int PAT_VECTOR = 82;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -2948,7 +2965,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatLiteral()
    * @generated
    */
-  int PAT_LITERAL = 84;
+  int PAT_LITERAL = 83;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' containment reference.
@@ -2976,7 +2993,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatEnum()
    * @generated
    */
-  int PAT_ENUM = 85;
+  int PAT_ENUM = 84;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -3004,7 +3021,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFieldPat()
    * @generated
    */
-  int FIELD_PAT = 86;
+  int FIELD_PAT = 85;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3041,7 +3058,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTypePath()
    * @generated
    */
-  int TYPE_PATH = 87;
+  int TYPE_PATH = 86;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -3087,7 +3104,25 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprPath()
    * @generated
    */
-  int EXPR_PATH = 88;
+  int EXPR_PATH = 87;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_PATH__EXPRS = EXPR_PRIMARY__EXPRS;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_PATH__ARGS = EXPR_PRIMARY__ARGS;
 
   /**
    * The feature id for the '<em><b>Segments</b></em>' attribute list.
@@ -3133,7 +3168,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getType()
    * @generated
    */
-  int TYPE = 89;
+  int TYPE = 88;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -3152,7 +3187,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPrimitiveType()
    * @generated
    */
-  int PRIMITIVE_TYPE = 90;
+  int PRIMITIVE_TYPE = 89;
 
   /**
    * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -3171,7 +3206,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTextualType()
    * @generated
    */
-  int TEXTUAL_TYPE = 91;
+  int TEXTUAL_TYPE = 90;
 
   /**
    * The number of structural features of the '<em>Textual Type</em>' class.
@@ -3190,7 +3225,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNamedType()
    * @generated
    */
-  int NAMED_TYPE = 92;
+  int NAMED_TYPE = 91;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -3218,7 +3253,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedPointer()
    * @generated
    */
-  int BOXED_POINTER = 93;
+  int BOXED_POINTER = 92;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -3246,7 +3281,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedPointer()
    * @generated
    */
-  int OWNED_POINTER = 94;
+  int OWNED_POINTER = 93;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -3274,7 +3309,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedPointer()
    * @generated
    */
-  int BORROWED_POINTER = 95;
+  int BORROWED_POINTER = 94;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -3302,7 +3337,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructField()
    * @generated
    */
-  int STRUCT_FIELD = 96;
+  int STRUCT_FIELD = 95;
 
   /**
    * The feature id for the '<em><b>Vis</b></em>' attribute.
@@ -3348,7 +3383,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVariant()
    * @generated
    */
-  int VARIANT = 97;
+  int VARIANT = 96;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3376,7 +3411,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStructVariant()
    * @generated
    */
-  int STRUCT_VARIANT = 98;
+  int STRUCT_VARIANT = 97;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3422,7 +3457,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getTupleVariant()
    * @generated
    */
-  int TUPLE_VARIANT = 99;
+  int TUPLE_VARIANT = 98;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3459,7 +3494,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitVariant()
    * @generated
    */
-  int UNIT_VARIANT = 100;
+  int UNIT_VARIANT = 99;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3487,7 +3522,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 102;
+  int LITERAL = 101;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3515,7 +3550,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getStringLit()
    * @generated
    */
-  int STRING_LIT = 101;
+  int STRING_LIT = 100;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3543,7 +3578,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getNumberLit()
    * @generated
    */
-  int NUMBER_LIT = 103;
+  int NUMBER_LIT = 102;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3571,7 +3606,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharLit()
    * @generated
    */
-  int CHAR_LIT = 104;
+  int CHAR_LIT = 103;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -3599,7 +3634,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprField()
    * @generated
    */
-  int EXPR_FIELD = 105;
+  int EXPR_FIELD = 104;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -3636,7 +3671,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprIndex()
    * @generated
    */
-  int EXPR_INDEX = 106;
+  int EXPR_INDEX = 105;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -3666,115 +3701,124 @@ public interface RustPackage extends EPackage
   int EXPR_INDEX_FEATURE_COUNT = EXPR_LVALUE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.DivisionImpl <em>Division</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprCallImpl <em>Expr Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.DivisionImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivision()
+   * @see de.redoxi.ruste.rust.impl.ExprCallImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprCall()
    * @generated
    */
-  int DIVISION = 107;
+  int EXPR_CALL = 106;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIVISION__LEFT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
+  int EXPR_CALL__EXPRS = EXPR_LEAF__EXPRS;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIVISION__RIGHT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 1;
+  int EXPR_CALL__EXPR = EXPR_LEAF_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Division</em>' class.
+   * The number of structural features of the '<em>Expr Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIVISION_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 2;
+  int EXPR_CALL_FEATURE_COUNT = EXPR_LEAF_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.MultiplicationImpl <em>Multiplication</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprTupleImpl <em>Expr Tuple</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.MultiplicationImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMultiplication()
+   * @see de.redoxi.ruste.rust.impl.ExprTupleImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprTuple()
    * @generated
    */
-  int MULTIPLICATION = 108;
+  int EXPR_TUPLE = 107;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULTIPLICATION__LEFT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__RIGHT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 1;
+  int EXPR_TUPLE__EXPRS = EXPR_GROUP__EXPRS;
 
   /**
-   * The number of structural features of the '<em>Multiplication</em>' class.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MULTIPLICATION_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 2;
+  int EXPR_TUPLE__ARGS = EXPR_GROUP__ARGS;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ModuloImpl <em>Modulo</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ModuloImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getModulo()
-   * @generated
-   */
-  int MODULO = 109;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODULO__LEFT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
+  int EXPR_TUPLE__EXPR = EXPR_GROUP__EXPR;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The number of structural features of the '<em>Expr Tuple</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODULO__RIGHT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 1;
+  int EXPR_TUPLE_FEATURE_COUNT = EXPR_GROUP_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Modulo</em>' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprMultiplicativeImpl <em>Expr Multiplicative</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprMultiplicativeImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprMultiplicative()
+   * @generated
+   */
+  int EXPR_MULTIPLICATIVE = 108;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODULO_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 2;
+  int EXPR_MULTIPLICATIVE__EXPRS = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ops</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_MULTIPLICATIVE__OPS = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Expr Multiplicative</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_MULTIPLICATIVE_FEATURE_COUNT = DIVISION_MULTIPLICATION_OR_MODULO_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprCastImpl <em>Expr Cast</em>}' class.
@@ -3784,7 +3828,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprCast()
    * @generated
    */
-  int EXPR_CAST = 110;
+  int EXPR_CAST = 109;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -3814,152 +3858,78 @@ public interface RustPackage extends EPackage
   int EXPR_CAST_FEATURE_COUNT = AS_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprAdditionImpl <em>Expr Addition</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprAdditiveImpl <em>Expr Additive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprAdditionImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAddition()
+   * @see de.redoxi.ruste.rust.impl.ExprAdditiveImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAdditive()
    * @generated
    */
-  int EXPR_ADDITION = 111;
+  int EXPR_ADDITIVE = 110;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_ADDITION__LEFT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 0;
+  int EXPR_ADDITIVE__EXPRS = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Ops</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_ADDITION__RIGHT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 1;
+  int EXPR_ADDITIVE__OPS = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Expr Addition</em>' class.
+   * The number of structural features of the '<em>Expr Additive</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_ADDITION_FEATURE_COUNT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 2;
+  int EXPR_ADDITIVE_FEATURE_COUNT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprSubtractionImpl <em>Expr Subtraction</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprShiftImpl <em>Expr Shift</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprSubtractionImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprSubtraction()
+   * @see de.redoxi.ruste.rust.impl.ExprShiftImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprShift()
    * @generated
    */
-  int EXPR_SUBTRACTION = 112;
+  int EXPR_SHIFT = 111;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SUBTRACTION__LEFT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SUBTRACTION__RIGHT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 1;
+  int EXPR_SHIFT__EXPRS = SHIFT_OPERATOR_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Expr Subtraction</em>' class.
+   * The feature id for the '<em><b>Ops</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SUBTRACTION_FEATURE_COUNT = ADDITION_OR_SUBTRACTION_FEATURE_COUNT + 2;
+  int EXPR_SHIFT__OPS = SHIFT_OPERATOR_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLeftShiftImpl <em>Expr Left Shift</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprLeftShiftImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLeftShift()
-   * @generated
-   */
-  int EXPR_LEFT_SHIFT = 113;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The number of structural features of the '<em>Expr Shift</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LEFT_SHIFT__LEFT = SHIFT_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_LEFT_SHIFT__RIGHT = SHIFT_OPERATOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Left Shift</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_LEFT_SHIFT_FEATURE_COUNT = SHIFT_OPERATOR_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprRightShiftImpl <em>Expr Right Shift</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprRightShiftImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprRightShift()
-   * @generated
-   */
-  int EXPR_RIGHT_SHIFT = 114;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_RIGHT_SHIFT__LEFT = SHIFT_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_RIGHT_SHIFT__RIGHT = SHIFT_OPERATOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Right Shift</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_RIGHT_SHIFT_FEATURE_COUNT = SHIFT_OPERATOR_FEATURE_COUNT + 2;
+  int EXPR_SHIFT_FEATURE_COUNT = SHIFT_OPERATOR_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseAndImpl <em>Expr Bitwise And</em>}' class.
@@ -3969,25 +3939,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseAnd()
    * @generated
    */
-  int EXPR_BITWISE_AND = 115;
+  int EXPR_BITWISE_AND = 112;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_AND__LEFT = BITWISE_AND_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BITWISE_AND__RIGHT = BITWISE_AND_FEATURE_COUNT + 1;
+  int EXPR_BITWISE_AND__EXPRS = BITWISE_AND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Bitwise And</em>' class.
@@ -3996,7 +3957,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_AND_FEATURE_COUNT = BITWISE_AND_FEATURE_COUNT + 2;
+  int EXPR_BITWISE_AND_FEATURE_COUNT = BITWISE_AND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseXorImpl <em>Expr Bitwise Xor</em>}' class.
@@ -4006,25 +3967,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseXor()
    * @generated
    */
-  int EXPR_BITWISE_XOR = 116;
+  int EXPR_BITWISE_XOR = 113;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_XOR__LEFT = BITWISE_XOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BITWISE_XOR__RIGHT = BITWISE_XOR_FEATURE_COUNT + 1;
+  int EXPR_BITWISE_XOR__EXPRS = BITWISE_XOR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Bitwise Xor</em>' class.
@@ -4033,7 +3985,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_XOR_FEATURE_COUNT = BITWISE_XOR_FEATURE_COUNT + 2;
+  int EXPR_BITWISE_XOR_FEATURE_COUNT = BITWISE_XOR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseOrImpl <em>Expr Bitwise Or</em>}' class.
@@ -4043,25 +3995,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBitwiseOr()
    * @generated
    */
-  int EXPR_BITWISE_OR = 117;
+  int EXPR_BITWISE_OR = 114;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_OR__LEFT = BITWISE_OR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BITWISE_OR__RIGHT = BITWISE_OR_FEATURE_COUNT + 1;
+  int EXPR_BITWISE_OR__EXPRS = BITWISE_OR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Bitwise Or</em>' class.
@@ -4070,229 +4013,81 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_BITWISE_OR_FEATURE_COUNT = BITWISE_OR_FEATURE_COUNT + 2;
+  int EXPR_BITWISE_OR_FEATURE_COUNT = BITWISE_OR_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLessThanImpl <em>Expr Less Than</em>}' class.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprComparisionImpl <em>Expr Comparision</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprLessThanImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThan()
+   * @see de.redoxi.ruste.rust.impl.ExprComparisionImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprComparision()
    * @generated
    */
-  int EXPR_LESS_THAN = 118;
+  int EXPR_COMPARISION = 115;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_LESS_THAN__LEFT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LESS_THAN__RIGHT = COMPARISON_OPERATORS_FEATURE_COUNT + 1;
+  int EXPR_COMPARISION__EXPRS = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Expr Less Than</em>' class.
+   * The feature id for the '<em><b>Ops</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LESS_THAN_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 2;
+  int EXPR_COMPARISION__OPS = COMPARISON_OPERATORS_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprGreaterThanImpl <em>Expr Greater Than</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprGreaterThanImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThan()
-   * @generated
-   */
-  int EXPR_GREATER_THAN = 119;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The number of structural features of the '<em>Expr Comparision</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_GREATER_THAN__LEFT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
+  int EXPR_COMPARISION_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprEqualImpl <em>Expr Equal</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.impl.ExprEqualImpl
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprEqual()
+   * @generated
+   */
+  int EXPR_EQUAL = 116;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_GREATER_THAN__RIGHT = COMPARISON_OPERATORS_FEATURE_COUNT + 1;
+  int EXPR_EQUAL__EXPRS = EQUALITY_OPERATOR_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Expr Greater Than</em>' class.
+   * The feature id for the '<em><b>Ops</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_GREATER_THAN_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 2;
+  int EXPR_EQUAL__OPS = EQUALITY_OPERATOR_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprLessThanOrEqualToImpl <em>Expr Less Than Or Equal To</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprLessThanOrEqualToImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThanOrEqualTo()
-   * @generated
-   */
-  int EXPR_LESS_THAN_OR_EQUAL_TO = 120;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The number of structural features of the '<em>Expr Equal</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_LESS_THAN_OR_EQUAL_TO__LEFT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_LESS_THAN_OR_EQUAL_TO__RIGHT = COMPARISON_OPERATORS_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Less Than Or Equal To</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_LESS_THAN_OR_EQUAL_TO_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprGreaterThanOrEqualToImpl <em>Expr Greater Than Or Equal To</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprGreaterThanOrEqualToImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThanOrEqualTo()
-   * @generated
-   */
-  int EXPR_GREATER_THAN_OR_EQUAL_TO = 121;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_GREATER_THAN_OR_EQUAL_TO__LEFT = COMPARISON_OPERATORS_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_GREATER_THAN_OR_EQUAL_TO__RIGHT = COMPARISON_OPERATORS_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Greater Than Or Equal To</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_GREATER_THAN_OR_EQUAL_TO_FEATURE_COUNT = COMPARISON_OPERATORS_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprEqualToImpl <em>Expr Equal To</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprEqualToImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprEqualTo()
-   * @generated
-   */
-  int EXPR_EQUAL_TO = 122;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_EQUAL_TO__LEFT = EQUALITY_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_EQUAL_TO__RIGHT = EQUALITY_OPERATOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Equal To</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_EQUAL_TO_FEATURE_COUNT = EQUALITY_OPERATOR_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprNotEqualToImpl <em>Expr Not Equal To</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.redoxi.ruste.rust.impl.ExprNotEqualToImpl
-   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprNotEqualTo()
-   * @generated
-   */
-  int EXPR_NOT_EQUAL_TO = 123;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_NOT_EQUAL_TO__LEFT = EQUALITY_OPERATOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_NOT_EQUAL_TO__RIGHT = EQUALITY_OPERATOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Expr Not Equal To</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_NOT_EQUAL_TO_FEATURE_COUNT = EQUALITY_OPERATOR_FEATURE_COUNT + 2;
+  int EXPR_EQUAL_FEATURE_COUNT = EQUALITY_OPERATOR_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBooleanAndImpl <em>Expr Boolean And</em>}' class.
@@ -4302,25 +4097,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBooleanAnd()
    * @generated
    */
-  int EXPR_BOOLEAN_AND = 124;
+  int EXPR_BOOLEAN_AND = 117;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_BOOLEAN_AND__LEFT = BOOLEAN_AND_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BOOLEAN_AND__RIGHT = BOOLEAN_AND_FEATURE_COUNT + 1;
+  int EXPR_BOOLEAN_AND__EXPRS = BOOLEAN_AND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Boolean And</em>' class.
@@ -4329,7 +4115,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_BOOLEAN_AND_FEATURE_COUNT = BOOLEAN_AND_FEATURE_COUNT + 2;
+  int EXPR_BOOLEAN_AND_FEATURE_COUNT = BOOLEAN_AND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprBooleanOrImpl <em>Expr Boolean Or</em>}' class.
@@ -4339,25 +4125,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprBooleanOr()
    * @generated
    */
-  int EXPR_BOOLEAN_OR = 125;
+  int EXPR_BOOLEAN_OR = 118;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_BOOLEAN_OR__LEFT = BOOLEAN_OR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_BOOLEAN_OR__RIGHT = BOOLEAN_OR_FEATURE_COUNT + 1;
+  int EXPR_BOOLEAN_OR__EXPRS = BOOLEAN_OR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Boolean Or</em>' class.
@@ -4366,7 +4143,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_BOOLEAN_OR_FEATURE_COUNT = BOOLEAN_OR_FEATURE_COUNT + 2;
+  int EXPR_BOOLEAN_OR_FEATURE_COUNT = BOOLEAN_OR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.ExprAssignImpl <em>Expr Assign</em>}' class.
@@ -4376,25 +4153,16 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAssign()
    * @generated
    */
-  int EXPR_ASSIGN = 126;
+  int EXPR_ASSIGN = 119;
 
   /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_ASSIGN__LEFT = ASSIGN_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_ASSIGN__RIGHT = ASSIGN_FEATURE_COUNT + 1;
+  int EXPR_ASSIGN__EXPRS = ASSIGN_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expr Assign</em>' class.
@@ -4403,7 +4171,7 @@ public interface RustPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_ASSIGN_FEATURE_COUNT = ASSIGN_FEATURE_COUNT + 2;
+  int EXPR_ASSIGN_FEATURE_COUNT = ASSIGN_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.impl.PatTupleEnumImpl <em>Pat Tuple Enum</em>}' class.
@@ -4413,7 +4181,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatTupleEnum()
    * @generated
    */
-  int PAT_TUPLE_ENUM = 127;
+  int PAT_TUPLE_ENUM = 120;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -4450,7 +4218,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getPatStructEnum()
    * @generated
    */
-  int PAT_STRUCT_ENUM = 128;
+  int PAT_STRUCT_ENUM = 121;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' containment reference.
@@ -4487,7 +4255,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 129;
+  int INT_TYPE = 122;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -4506,7 +4274,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getFloatType()
    * @generated
    */
-  int FLOAT_TYPE = 130;
+  int FLOAT_TYPE = 123;
 
   /**
    * The number of structural features of the '<em>Float Type</em>' class.
@@ -4525,7 +4293,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 131;
+  int BOOL_TYPE = 124;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -4544,7 +4312,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMachineType()
    * @generated
    */
-  int MACHINE_TYPE = 132;
+  int MACHINE_TYPE = 125;
 
   /**
    * The number of structural features of the '<em>Machine Type</em>' class.
@@ -4563,7 +4331,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getUnitType()
    * @generated
    */
-  int UNIT_TYPE = 133;
+  int UNIT_TYPE = 126;
 
   /**
    * The number of structural features of the '<em>Unit Type</em>' class.
@@ -4582,7 +4350,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getCharType()
    * @generated
    */
-  int CHAR_TYPE = 134;
+  int CHAR_TYPE = 127;
 
   /**
    * The number of structural features of the '<em>Char Type</em>' class.
@@ -4601,7 +4369,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBoxedStrType()
    * @generated
    */
-  int BOXED_STR_TYPE = 135;
+  int BOXED_STR_TYPE = 128;
 
   /**
    * The number of structural features of the '<em>Boxed Str Type</em>' class.
@@ -4620,7 +4388,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getOwnedStrType()
    * @generated
    */
-  int OWNED_STR_TYPE = 136;
+  int OWNED_STR_TYPE = 129;
 
   /**
    * The number of structural features of the '<em>Owned Str Type</em>' class.
@@ -4639,7 +4407,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getBorrowedStrType()
    * @generated
    */
-  int BORROWED_STR_TYPE = 137;
+  int BORROWED_STR_TYPE = 130;
 
   /**
    * The number of structural features of the '<em>Borrowed Str Type</em>' class.
@@ -4651,6 +4419,56 @@ public interface RustPackage extends EPackage
   int BORROWED_STR_TYPE_FEATURE_COUNT = TEXTUAL_TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.MultiplicativeOp
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMultiplicativeOp()
+   * @generated
+   */
+  int MULTIPLICATIVE_OP = 131;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.AdditiveOp <em>Additive Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.AdditiveOp
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAdditiveOp()
+   * @generated
+   */
+  int ADDITIVE_OP = 132;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.ShiftOp <em>Shift Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.ShiftOp
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getShiftOp()
+   * @generated
+   */
+  int SHIFT_OP = 133;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.ComparisonOp <em>Comparison Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.ComparisonOp
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getComparisonOp()
+   * @generated
+   */
+  int COMPARISON_OP = 134;
+
+  /**
+   * The meta object id for the '{@link de.redoxi.ruste.rust.EqualityOp <em>Equality Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.redoxi.ruste.rust.EqualityOp
+   * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEqualityOp()
+   * @generated
+   */
+  int EQUALITY_OP = 135;
+
+  /**
    * The meta object id for the '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4658,7 +4476,7 @@ public interface RustPackage extends EPackage
    * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 138;
+  int VISIBILITY = 136;
 
 
   /**
@@ -5723,38 +5541,6 @@ public interface RustPackage extends EPackage
   EClass getExprLeaf();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprFnCall <em>Expr Fn Call</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Fn Call</em>'.
-   * @see de.redoxi.ruste.rust.ExprFnCall
-   * @generated
-   */
-  EClass getExprFnCall();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprFnCall#getExpr <em>Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr</em>'.
-   * @see de.redoxi.ruste.rust.ExprFnCall#getExpr()
-   * @see #getExprFnCall()
-   * @generated
-   */
-  EReference getExprFnCall_Expr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprFnCall#getTail <em>Tail</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Tail</em>'.
-   * @see de.redoxi.ruste.rust.ExprFnCall#getTail()
-   * @see #getExprFnCall()
-   * @generated
-   */
-  EReference getExprFnCall_Tail();
-
-  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprFnCallArgs <em>Expr Fn Call Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5797,6 +5583,17 @@ public interface RustPackage extends EPackage
   EClass getExprPrimary();
 
   /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprPrimary#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.ExprPrimary#getArgs()
+   * @see #getExprPrimary()
+   * @generated
+   */
+  EReference getExprPrimary_Args();
+
+  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprLiteral <em>Expr Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5816,27 +5613,6 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getExprLiteral_Literal();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprPathHead <em>Expr Path Head</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Path Head</em>'.
-   * @see de.redoxi.ruste.rust.ExprPathHead
-   * @generated
-   */
-  EClass getExprPathHead();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprPathHead#getPath <em>Path</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Path</em>'.
-   * @see de.redoxi.ruste.rust.ExprPathHead#getPath()
-   * @see #getExprPathHead()
-   * @generated
-   */
-  EReference getExprPathHead_Path();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprGroup <em>Expr Group</em>}'.
@@ -5860,38 +5636,6 @@ public interface RustPackage extends EPackage
   EReference getExprGroup_Expr();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprTuple <em>Expr Tuple</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Tuple</em>'.
-   * @see de.redoxi.ruste.rust.ExprTuple
-   * @generated
-   */
-  EClass getExprTuple();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprTuple#getTuple <em>Tuple</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Tuple</em>'.
-   * @see de.redoxi.ruste.rust.ExprTuple#getTuple()
-   * @see #getExprTuple()
-   * @generated
-   */
-  EReference getExprTuple_Tuple();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprTuple#getExprs <em>Exprs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Exprs</em>'.
-   * @see de.redoxi.ruste.rust.ExprTuple#getExprs()
-   * @see #getExprTuple()
-   * @generated
-   */
-  EReference getExprTuple_Exprs();
-
-  /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprStruct <em>Expr Struct</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5900,17 +5644,6 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getExprStruct();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprStruct#getStruct <em>Struct</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Struct</em>'.
-   * @see de.redoxi.ruste.rust.ExprStruct#getStruct()
-   * @see #getExprStruct()
-   * @generated
-   */
-  EReference getExprStruct_Struct();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprStruct#getFields <em>Fields</em>}'.
@@ -5954,17 +5687,6 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EAttribute getExprVec_Mutable();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprVec#getExprs <em>Exprs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Exprs</em>'.
-   * @see de.redoxi.ruste.rust.ExprVec#getExprs()
-   * @see #getExprVec()
-   * @generated
-   */
-  EReference getExprVec_Exprs();
 
   /**
    * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprVec#getLenExpr <em>Len Expr</em>}'.
@@ -6112,6 +5834,59 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EReference getBorrow_Expr();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprFields <em>Expr Fields</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Fields</em>'.
+   * @see de.redoxi.ruste.rust.ExprFields
+   * @generated
+   */
+  EClass getExprFields();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprFields#getExprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprFields#getExprs()
+   * @see #getExprFields()
+   * @generated
+   */
+  EReference getExprFields_Exprs();
+
+  /**
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprFieldOrMethodCall <em>Expr Field Or Method Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Field Or Method Call</em>'.
+   * @see de.redoxi.ruste.rust.ExprFieldOrMethodCall
+   * @generated
+   */
+  EClass getExprFieldOrMethodCall();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.redoxi.ruste.rust.ExprFieldOrMethodCall#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see de.redoxi.ruste.rust.ExprFieldOrMethodCall#getName()
+   * @see #getExprFieldOrMethodCall()
+   * @generated
+   */
+  EAttribute getExprFieldOrMethodCall_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprFieldOrMethodCall#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Args</em>'.
+   * @see de.redoxi.ruste.rust.ExprFieldOrMethodCall#getArgs()
+   * @see #getExprFieldOrMethodCall()
+   * @generated
+   */
+  EReference getExprFieldOrMethodCall_Args();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBinary <em>Expr Binary</em>}'.
@@ -7459,100 +7234,67 @@ public interface RustPackage extends EPackage
   EReference getExprIndex_IndexExpr();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Division <em>Division</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprCall <em>Expr Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Division</em>'.
-   * @see de.redoxi.ruste.rust.Division
+   * @return the meta object for class '<em>Expr Call</em>'.
+   * @see de.redoxi.ruste.rust.ExprCall
    * @generated
    */
-  EClass getDivision();
+  EClass getExprCall();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Division#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprCall#getExpr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.Division#getLeft()
-   * @see #getDivision()
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see de.redoxi.ruste.rust.ExprCall#getExpr()
+   * @see #getExprCall()
    * @generated
    */
-  EReference getDivision_Left();
+  EReference getExprCall_Expr();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Division#getRight <em>Right</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprTuple <em>Expr Tuple</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.Division#getRight()
-   * @see #getDivision()
+   * @return the meta object for class '<em>Expr Tuple</em>'.
+   * @see de.redoxi.ruste.rust.ExprTuple
    * @generated
    */
-  EReference getDivision_Right();
+  EClass getExprTuple();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Multiplication <em>Multiplication</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprMultiplicative <em>Expr Multiplicative</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Multiplication</em>'.
-   * @see de.redoxi.ruste.rust.Multiplication
+   * @return the meta object for class '<em>Expr Multiplicative</em>'.
+   * @see de.redoxi.ruste.rust.ExprMultiplicative
    * @generated
    */
-  EClass getMultiplication();
+  EClass getExprMultiplicative();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Multiplication#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprMultiplicative#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.Multiplication#getLeft()
-   * @see #getMultiplication()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprMultiplicative#getExprs()
+   * @see #getExprMultiplicative()
    * @generated
    */
-  EReference getMultiplication_Left();
+  EReference getExprMultiplicative_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Multiplication#getRight <em>Right</em>}'.
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.ExprMultiplicative#getOps <em>Ops</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.Multiplication#getRight()
-   * @see #getMultiplication()
+   * @return the meta object for the attribute list '<em>Ops</em>'.
+   * @see de.redoxi.ruste.rust.ExprMultiplicative#getOps()
+   * @see #getExprMultiplicative()
    * @generated
    */
-  EReference getMultiplication_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.Modulo <em>Modulo</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Modulo</em>'.
-   * @see de.redoxi.ruste.rust.Modulo
-   * @generated
-   */
-  EClass getModulo();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Modulo#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.Modulo#getLeft()
-   * @see #getModulo()
-   * @generated
-   */
-  EReference getModulo_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.Modulo#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.Modulo#getRight()
-   * @see #getModulo()
-   * @generated
-   */
-  EReference getModulo_Right();
+  EAttribute getExprMultiplicative_Ops();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprCast <em>Expr Cast</em>}'.
@@ -7587,132 +7329,68 @@ public interface RustPackage extends EPackage
   EReference getExprCast_Type();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprAddition <em>Expr Addition</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprAdditive <em>Expr Additive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Addition</em>'.
-   * @see de.redoxi.ruste.rust.ExprAddition
+   * @return the meta object for class '<em>Expr Additive</em>'.
+   * @see de.redoxi.ruste.rust.ExprAdditive
    * @generated
    */
-  EClass getExprAddition();
+  EClass getExprAdditive();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprAddition#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprAdditive#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprAddition#getLeft()
-   * @see #getExprAddition()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprAdditive#getExprs()
+   * @see #getExprAdditive()
    * @generated
    */
-  EReference getExprAddition_Left();
+  EReference getExprAdditive_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprAddition#getRight <em>Right</em>}'.
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.ExprAdditive#getOps <em>Ops</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprAddition#getRight()
-   * @see #getExprAddition()
+   * @return the meta object for the attribute list '<em>Ops</em>'.
+   * @see de.redoxi.ruste.rust.ExprAdditive#getOps()
+   * @see #getExprAdditive()
    * @generated
    */
-  EReference getExprAddition_Right();
+  EAttribute getExprAdditive_Ops();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprSubtraction <em>Expr Subtraction</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprShift <em>Expr Shift</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Subtraction</em>'.
-   * @see de.redoxi.ruste.rust.ExprSubtraction
+   * @return the meta object for class '<em>Expr Shift</em>'.
+   * @see de.redoxi.ruste.rust.ExprShift
    * @generated
    */
-  EClass getExprSubtraction();
+  EClass getExprShift();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprSubtraction#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprShift#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprSubtraction#getLeft()
-   * @see #getExprSubtraction()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprShift#getExprs()
+   * @see #getExprShift()
    * @generated
    */
-  EReference getExprSubtraction_Left();
+  EReference getExprShift_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprSubtraction#getRight <em>Right</em>}'.
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.ExprShift#getOps <em>Ops</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprSubtraction#getRight()
-   * @see #getExprSubtraction()
+   * @return the meta object for the attribute list '<em>Ops</em>'.
+   * @see de.redoxi.ruste.rust.ExprShift#getOps()
+   * @see #getExprShift()
    * @generated
    */
-  EReference getExprSubtraction_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprLeftShift <em>Expr Left Shift</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Left Shift</em>'.
-   * @see de.redoxi.ruste.rust.ExprLeftShift
-   * @generated
-   */
-  EClass getExprLeftShift();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLeftShift#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprLeftShift#getLeft()
-   * @see #getExprLeftShift()
-   * @generated
-   */
-  EReference getExprLeftShift_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLeftShift#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprLeftShift#getRight()
-   * @see #getExprLeftShift()
-   * @generated
-   */
-  EReference getExprLeftShift_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprRightShift <em>Expr Right Shift</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Right Shift</em>'.
-   * @see de.redoxi.ruste.rust.ExprRightShift
-   * @generated
-   */
-  EClass getExprRightShift();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprRightShift#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprRightShift#getLeft()
-   * @see #getExprRightShift()
-   * @generated
-   */
-  EReference getExprRightShift_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprRightShift#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprRightShift#getRight()
-   * @see #getExprRightShift()
-   * @generated
-   */
-  EReference getExprRightShift_Right();
+  EAttribute getExprShift_Ops();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBitwiseAnd <em>Expr Bitwise And</em>}'.
@@ -7725,26 +7403,15 @@ public interface RustPackage extends EPackage
   EClass getExprBitwiseAnd();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseAnd#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprBitwiseAnd#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseAnd#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprBitwiseAnd#getExprs()
    * @see #getExprBitwiseAnd()
    * @generated
    */
-  EReference getExprBitwiseAnd_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseAnd#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseAnd#getRight()
-   * @see #getExprBitwiseAnd()
-   * @generated
-   */
-  EReference getExprBitwiseAnd_Right();
+  EReference getExprBitwiseAnd_Exprs();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBitwiseXor <em>Expr Bitwise Xor</em>}'.
@@ -7757,26 +7424,15 @@ public interface RustPackage extends EPackage
   EClass getExprBitwiseXor();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseXor#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprBitwiseXor#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseXor#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprBitwiseXor#getExprs()
    * @see #getExprBitwiseXor()
    * @generated
    */
-  EReference getExprBitwiseXor_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseXor#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseXor#getRight()
-   * @see #getExprBitwiseXor()
-   * @generated
-   */
-  EReference getExprBitwiseXor_Right();
+  EReference getExprBitwiseXor_Exprs();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBitwiseOr <em>Expr Bitwise Or</em>}'.
@@ -7789,218 +7445,79 @@ public interface RustPackage extends EPackage
   EClass getExprBitwiseOr();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseOr#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprBitwiseOr#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseOr#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprBitwiseOr#getExprs()
    * @see #getExprBitwiseOr()
    * @generated
    */
-  EReference getExprBitwiseOr_Left();
+  EReference getExprBitwiseOr_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBitwiseOr#getRight <em>Right</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprComparision <em>Expr Comparision</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprBitwiseOr#getRight()
-   * @see #getExprBitwiseOr()
+   * @return the meta object for class '<em>Expr Comparision</em>'.
+   * @see de.redoxi.ruste.rust.ExprComparision
    * @generated
    */
-  EReference getExprBitwiseOr_Right();
+  EClass getExprComparision();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprLessThan <em>Expr Less Than</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprComparision#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Less Than</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThan
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprComparision#getExprs()
+   * @see #getExprComparision()
    * @generated
    */
-  EClass getExprLessThan();
+  EReference getExprComparision_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLessThan#getLeft <em>Left</em>}'.
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.ExprComparision#getOps <em>Ops</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThan#getLeft()
-   * @see #getExprLessThan()
+   * @return the meta object for the attribute list '<em>Ops</em>'.
+   * @see de.redoxi.ruste.rust.ExprComparision#getOps()
+   * @see #getExprComparision()
    * @generated
    */
-  EReference getExprLessThan_Left();
+  EAttribute getExprComparision_Ops();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLessThan#getRight <em>Right</em>}'.
+   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprEqual <em>Expr Equal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThan#getRight()
-   * @see #getExprLessThan()
+   * @return the meta object for class '<em>Expr Equal</em>'.
+   * @see de.redoxi.ruste.rust.ExprEqual
    * @generated
    */
-  EReference getExprLessThan_Right();
+  EClass getExprEqual();
 
   /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprGreaterThan <em>Expr Greater Than</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprEqual#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Greater Than</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThan
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprEqual#getExprs()
+   * @see #getExprEqual()
    * @generated
    */
-  EClass getExprGreaterThan();
+  EReference getExprEqual_Exprs();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprGreaterThan#getLeft <em>Left</em>}'.
+   * Returns the meta object for the attribute list '{@link de.redoxi.ruste.rust.ExprEqual#getOps <em>Ops</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThan#getLeft()
-   * @see #getExprGreaterThan()
+   * @return the meta object for the attribute list '<em>Ops</em>'.
+   * @see de.redoxi.ruste.rust.ExprEqual#getOps()
+   * @see #getExprEqual()
    * @generated
    */
-  EReference getExprGreaterThan_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprGreaterThan#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThan#getRight()
-   * @see #getExprGreaterThan()
-   * @generated
-   */
-  EReference getExprGreaterThan_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprLessThanOrEqualTo <em>Expr Less Than Or Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Less Than Or Equal To</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThanOrEqualTo
-   * @generated
-   */
-  EClass getExprLessThanOrEqualTo();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLessThanOrEqualTo#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThanOrEqualTo#getLeft()
-   * @see #getExprLessThanOrEqualTo()
-   * @generated
-   */
-  EReference getExprLessThanOrEqualTo_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprLessThanOrEqualTo#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprLessThanOrEqualTo#getRight()
-   * @see #getExprLessThanOrEqualTo()
-   * @generated
-   */
-  EReference getExprLessThanOrEqualTo_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo <em>Expr Greater Than Or Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Greater Than Or Equal To</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo
-   * @generated
-   */
-  EClass getExprGreaterThanOrEqualTo();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo#getLeft()
-   * @see #getExprGreaterThanOrEqualTo()
-   * @generated
-   */
-  EReference getExprGreaterThanOrEqualTo_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo#getRight()
-   * @see #getExprGreaterThanOrEqualTo()
-   * @generated
-   */
-  EReference getExprGreaterThanOrEqualTo_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprEqualTo <em>Expr Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Equal To</em>'.
-   * @see de.redoxi.ruste.rust.ExprEqualTo
-   * @generated
-   */
-  EClass getExprEqualTo();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprEqualTo#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprEqualTo#getLeft()
-   * @see #getExprEqualTo()
-   * @generated
-   */
-  EReference getExprEqualTo_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprEqualTo#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprEqualTo#getRight()
-   * @see #getExprEqualTo()
-   * @generated
-   */
-  EReference getExprEqualTo_Right();
-
-  /**
-   * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprNotEqualTo <em>Expr Not Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expr Not Equal To</em>'.
-   * @see de.redoxi.ruste.rust.ExprNotEqualTo
-   * @generated
-   */
-  EClass getExprNotEqualTo();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprNotEqualTo#getLeft <em>Left</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprNotEqualTo#getLeft()
-   * @see #getExprNotEqualTo()
-   * @generated
-   */
-  EReference getExprNotEqualTo_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprNotEqualTo#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprNotEqualTo#getRight()
-   * @see #getExprNotEqualTo()
-   * @generated
-   */
-  EReference getExprNotEqualTo_Right();
+  EAttribute getExprEqual_Ops();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBooleanAnd <em>Expr Boolean And</em>}'.
@@ -8013,26 +7530,15 @@ public interface RustPackage extends EPackage
   EClass getExprBooleanAnd();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBooleanAnd#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprBooleanAnd#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprBooleanAnd#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprBooleanAnd#getExprs()
    * @see #getExprBooleanAnd()
    * @generated
    */
-  EReference getExprBooleanAnd_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBooleanAnd#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprBooleanAnd#getRight()
-   * @see #getExprBooleanAnd()
-   * @generated
-   */
-  EReference getExprBooleanAnd_Right();
+  EReference getExprBooleanAnd_Exprs();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprBooleanOr <em>Expr Boolean Or</em>}'.
@@ -8045,26 +7551,15 @@ public interface RustPackage extends EPackage
   EClass getExprBooleanOr();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBooleanOr#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprBooleanOr#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprBooleanOr#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprBooleanOr#getExprs()
    * @see #getExprBooleanOr()
    * @generated
    */
-  EReference getExprBooleanOr_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprBooleanOr#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprBooleanOr#getRight()
-   * @see #getExprBooleanOr()
-   * @generated
-   */
-  EReference getExprBooleanOr_Right();
+  EReference getExprBooleanOr_Exprs();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.ExprAssign <em>Expr Assign</em>}'.
@@ -8077,26 +7572,15 @@ public interface RustPackage extends EPackage
   EClass getExprAssign();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprAssign#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.redoxi.ruste.rust.ExprAssign#getExprs <em>Exprs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see de.redoxi.ruste.rust.ExprAssign#getLeft()
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see de.redoxi.ruste.rust.ExprAssign#getExprs()
    * @see #getExprAssign()
    * @generated
    */
-  EReference getExprAssign_Left();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.redoxi.ruste.rust.ExprAssign#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.redoxi.ruste.rust.ExprAssign#getRight()
-   * @see #getExprAssign()
-   * @generated
-   */
-  EReference getExprAssign_Right();
+  EReference getExprAssign_Exprs();
 
   /**
    * Returns the meta object for class '{@link de.redoxi.ruste.rust.PatTupleEnum <em>Pat Tuple Enum</em>}'.
@@ -8229,6 +7713,56 @@ public interface RustPackage extends EPackage
    * @generated
    */
   EClass getBorrowedStrType();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.MultiplicativeOp <em>Multiplicative Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Multiplicative Op</em>'.
+   * @see de.redoxi.ruste.rust.MultiplicativeOp
+   * @generated
+   */
+  EEnum getMultiplicativeOp();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.AdditiveOp <em>Additive Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Additive Op</em>'.
+   * @see de.redoxi.ruste.rust.AdditiveOp
+   * @generated
+   */
+  EEnum getAdditiveOp();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.ShiftOp <em>Shift Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Shift Op</em>'.
+   * @see de.redoxi.ruste.rust.ShiftOp
+   * @generated
+   */
+  EEnum getShiftOp();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.ComparisonOp <em>Comparison Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Comparison Op</em>'.
+   * @see de.redoxi.ruste.rust.ComparisonOp
+   * @generated
+   */
+  EEnum getComparisonOp();
+
+  /**
+   * Returns the meta object for enum '{@link de.redoxi.ruste.rust.EqualityOp <em>Equality Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Equality Op</em>'.
+   * @see de.redoxi.ruste.rust.EqualityOp
+   * @generated
+   */
+  EEnum getEqualityOp();
 
   /**
    * Returns the meta object for enum '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}'.
@@ -9112,32 +8646,6 @@ public interface RustPackage extends EPackage
     EClass EXPR_LEAF = eINSTANCE.getExprLeaf();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprFnCallImpl <em>Expr Fn Call</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprFnCallImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFnCall()
-     * @generated
-     */
-    EClass EXPR_FN_CALL = eINSTANCE.getExprFnCall();
-
-    /**
-     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_FN_CALL__EXPR = eINSTANCE.getExprFnCall_Expr();
-
-    /**
-     * The meta object literal for the '<em><b>Tail</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_FN_CALL__TAIL = eINSTANCE.getExprFnCall_Tail();
-
-    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprFnCallArgsImpl <em>Expr Fn Call Args</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9174,6 +8682,14 @@ public interface RustPackage extends EPackage
     EClass EXPR_PRIMARY = eINSTANCE.getExprPrimary();
 
     /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_PRIMARY__ARGS = eINSTANCE.getExprPrimary_Args();
+
+    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprLiteralImpl <em>Expr Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9190,24 +8706,6 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference EXPR_LITERAL__LITERAL = eINSTANCE.getExprLiteral_Literal();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprPathHeadImpl <em>Expr Path Head</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprPathHeadImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprPathHead()
-     * @generated
-     */
-    EClass EXPR_PATH_HEAD = eINSTANCE.getExprPathHead();
-
-    /**
-     * The meta object literal for the '<em><b>Path</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_PATH_HEAD__PATH = eINSTANCE.getExprPathHead_Path();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprGroupImpl <em>Expr Group</em>}' class.
@@ -9228,32 +8726,6 @@ public interface RustPackage extends EPackage
     EReference EXPR_GROUP__EXPR = eINSTANCE.getExprGroup_Expr();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprTupleImpl <em>Expr Tuple</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprTupleImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprTuple()
-     * @generated
-     */
-    EClass EXPR_TUPLE = eINSTANCE.getExprTuple();
-
-    /**
-     * The meta object literal for the '<em><b>Tuple</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_TUPLE__TUPLE = eINSTANCE.getExprTuple_Tuple();
-
-    /**
-     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_TUPLE__EXPRS = eINSTANCE.getExprTuple_Exprs();
-
-    /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprStructImpl <em>Expr Struct</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9262,14 +8734,6 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass EXPR_STRUCT = eINSTANCE.getExprStruct();
-
-    /**
-     * The meta object literal for the '<em><b>Struct</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_STRUCT__STRUCT = eINSTANCE.getExprStruct_Struct();
 
     /**
      * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
@@ -9304,14 +8768,6 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EAttribute EXPR_VEC__MUTABLE = eINSTANCE.getExprVec_Mutable();
-
-    /**
-     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_VEC__EXPRS = eINSTANCE.getExprVec_Exprs();
 
     /**
      * The meta object literal for the '<em><b>Len Expr</b></em>' containment reference feature.
@@ -9438,6 +8894,50 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EReference BORROW__EXPR = eINSTANCE.getBorrow_Expr();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprFieldsImpl <em>Expr Fields</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprFieldsImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFields()
+     * @generated
+     */
+    EClass EXPR_FIELDS = eINSTANCE.getExprFields();
+
+    /**
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_FIELDS__EXPRS = eINSTANCE.getExprFields_Exprs();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl <em>Expr Field Or Method Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprFieldOrMethodCall()
+     * @generated
+     */
+    EClass EXPR_FIELD_OR_METHOD_CALL = eINSTANCE.getExprFieldOrMethodCall();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_FIELD_OR_METHOD_CALL__NAME = eINSTANCE.getExprFieldOrMethodCall_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_FIELD_OR_METHOD_CALL__ARGS = eINSTANCE.getExprFieldOrMethodCall_Args();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBinaryImpl <em>Expr Binary</em>}' class.
@@ -10590,82 +10090,58 @@ public interface RustPackage extends EPackage
     EReference EXPR_INDEX__INDEX_EXPR = eINSTANCE.getExprIndex_IndexExpr();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.DivisionImpl <em>Division</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprCallImpl <em>Expr Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.DivisionImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getDivision()
+     * @see de.redoxi.ruste.rust.impl.ExprCallImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprCall()
      * @generated
      */
-    EClass DIVISION = eINSTANCE.getDivision();
+    EClass EXPR_CALL = eINSTANCE.getExprCall();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DIVISION__LEFT = eINSTANCE.getDivision_Left();
+    EReference EXPR_CALL__EXPR = eINSTANCE.getExprCall_Expr();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprTupleImpl <em>Expr Tuple</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprTupleImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprTuple()
      * @generated
      */
-    EReference DIVISION__RIGHT = eINSTANCE.getDivision_Right();
+    EClass EXPR_TUPLE = eINSTANCE.getExprTuple();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.MultiplicationImpl <em>Multiplication</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprMultiplicativeImpl <em>Expr Multiplicative</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.MultiplicationImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMultiplication()
+     * @see de.redoxi.ruste.rust.impl.ExprMultiplicativeImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprMultiplicative()
      * @generated
      */
-    EClass MULTIPLICATION = eINSTANCE.getMultiplication();
+    EClass EXPR_MULTIPLICATIVE = eINSTANCE.getExprMultiplicative();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MULTIPLICATION__LEFT = eINSTANCE.getMultiplication_Left();
+    EReference EXPR_MULTIPLICATIVE__EXPRS = eINSTANCE.getExprMultiplicative_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ops</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MULTIPLICATION__RIGHT = eINSTANCE.getMultiplication_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ModuloImpl <em>Modulo</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ModuloImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getModulo()
-     * @generated
-     */
-    EClass MODULO = eINSTANCE.getModulo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODULO__LEFT = eINSTANCE.getModulo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODULO__RIGHT = eINSTANCE.getModulo_Right();
+    EAttribute EXPR_MULTIPLICATIVE__OPS = eINSTANCE.getExprMultiplicative_Ops();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprCastImpl <em>Expr Cast</em>}' class.
@@ -10694,108 +10170,56 @@ public interface RustPackage extends EPackage
     EReference EXPR_CAST__TYPE = eINSTANCE.getExprCast_Type();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprAdditionImpl <em>Expr Addition</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprAdditiveImpl <em>Expr Additive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprAdditionImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAddition()
+     * @see de.redoxi.ruste.rust.impl.ExprAdditiveImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprAdditive()
      * @generated
      */
-    EClass EXPR_ADDITION = eINSTANCE.getExprAddition();
+    EClass EXPR_ADDITIVE = eINSTANCE.getExprAdditive();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_ADDITION__LEFT = eINSTANCE.getExprAddition_Left();
+    EReference EXPR_ADDITIVE__EXPRS = eINSTANCE.getExprAdditive_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ops</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_ADDITION__RIGHT = eINSTANCE.getExprAddition_Right();
+    EAttribute EXPR_ADDITIVE__OPS = eINSTANCE.getExprAdditive_Ops();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprSubtractionImpl <em>Expr Subtraction</em>}' class.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprShiftImpl <em>Expr Shift</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprSubtractionImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprSubtraction()
+     * @see de.redoxi.ruste.rust.impl.ExprShiftImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprShift()
      * @generated
      */
-    EClass EXPR_SUBTRACTION = eINSTANCE.getExprSubtraction();
+    EClass EXPR_SHIFT = eINSTANCE.getExprShift();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_SUBTRACTION__LEFT = eINSTANCE.getExprSubtraction_Left();
+    EReference EXPR_SHIFT__EXPRS = eINSTANCE.getExprShift_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ops</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_SUBTRACTION__RIGHT = eINSTANCE.getExprSubtraction_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprLeftShiftImpl <em>Expr Left Shift</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprLeftShiftImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLeftShift()
-     * @generated
-     */
-    EClass EXPR_LEFT_SHIFT = eINSTANCE.getExprLeftShift();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_LEFT_SHIFT__LEFT = eINSTANCE.getExprLeftShift_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_LEFT_SHIFT__RIGHT = eINSTANCE.getExprLeftShift_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprRightShiftImpl <em>Expr Right Shift</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprRightShiftImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprRightShift()
-     * @generated
-     */
-    EClass EXPR_RIGHT_SHIFT = eINSTANCE.getExprRightShift();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_RIGHT_SHIFT__LEFT = eINSTANCE.getExprRightShift_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_RIGHT_SHIFT__RIGHT = eINSTANCE.getExprRightShift_Right();
+    EAttribute EXPR_SHIFT__OPS = eINSTANCE.getExprShift_Ops();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseAndImpl <em>Expr Bitwise And</em>}' class.
@@ -10808,20 +10232,12 @@ public interface RustPackage extends EPackage
     EClass EXPR_BITWISE_AND = eINSTANCE.getExprBitwiseAnd();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_BITWISE_AND__LEFT = eINSTANCE.getExprBitwiseAnd_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_BITWISE_AND__RIGHT = eINSTANCE.getExprBitwiseAnd_Right();
+    EReference EXPR_BITWISE_AND__EXPRS = eINSTANCE.getExprBitwiseAnd_Exprs();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseXorImpl <em>Expr Bitwise Xor</em>}' class.
@@ -10834,20 +10250,12 @@ public interface RustPackage extends EPackage
     EClass EXPR_BITWISE_XOR = eINSTANCE.getExprBitwiseXor();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_BITWISE_XOR__LEFT = eINSTANCE.getExprBitwiseXor_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_BITWISE_XOR__RIGHT = eINSTANCE.getExprBitwiseXor_Right();
+    EReference EXPR_BITWISE_XOR__EXPRS = eINSTANCE.getExprBitwiseXor_Exprs();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBitwiseOrImpl <em>Expr Bitwise Or</em>}' class.
@@ -10860,176 +10268,64 @@ public interface RustPackage extends EPackage
     EClass EXPR_BITWISE_OR = eINSTANCE.getExprBitwiseOr();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_BITWISE_OR__LEFT = eINSTANCE.getExprBitwiseOr_Left();
+    EReference EXPR_BITWISE_OR__EXPRS = eINSTANCE.getExprBitwiseOr_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprComparisionImpl <em>Expr Comparision</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprComparisionImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprComparision()
      * @generated
      */
-    EReference EXPR_BITWISE_OR__RIGHT = eINSTANCE.getExprBitwiseOr_Right();
+    EClass EXPR_COMPARISION = eINSTANCE.getExprComparision();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprLessThanImpl <em>Expr Less Than</em>}' class.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprLessThanImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThan()
      * @generated
      */
-    EClass EXPR_LESS_THAN = eINSTANCE.getExprLessThan();
+    EReference EXPR_COMPARISION__EXPRS = eINSTANCE.getExprComparision_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ops</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_LESS_THAN__LEFT = eINSTANCE.getExprLessThan_Left();
+    EAttribute EXPR_COMPARISION__OPS = eINSTANCE.getExprComparision_Ops();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprEqualImpl <em>Expr Equal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.impl.ExprEqualImpl
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprEqual()
      * @generated
      */
-    EReference EXPR_LESS_THAN__RIGHT = eINSTANCE.getExprLessThan_Right();
+    EClass EXPR_EQUAL = eINSTANCE.getExprEqual();
 
     /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprGreaterThanImpl <em>Expr Greater Than</em>}' class.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprGreaterThanImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThan()
      * @generated
      */
-    EClass EXPR_GREATER_THAN = eINSTANCE.getExprGreaterThan();
+    EReference EXPR_EQUAL__EXPRS = eINSTANCE.getExprEqual_Exprs();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ops</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_GREATER_THAN__LEFT = eINSTANCE.getExprGreaterThan_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_GREATER_THAN__RIGHT = eINSTANCE.getExprGreaterThan_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprLessThanOrEqualToImpl <em>Expr Less Than Or Equal To</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprLessThanOrEqualToImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprLessThanOrEqualTo()
-     * @generated
-     */
-    EClass EXPR_LESS_THAN_OR_EQUAL_TO = eINSTANCE.getExprLessThanOrEqualTo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_LESS_THAN_OR_EQUAL_TO__LEFT = eINSTANCE.getExprLessThanOrEqualTo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_LESS_THAN_OR_EQUAL_TO__RIGHT = eINSTANCE.getExprLessThanOrEqualTo_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprGreaterThanOrEqualToImpl <em>Expr Greater Than Or Equal To</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprGreaterThanOrEqualToImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprGreaterThanOrEqualTo()
-     * @generated
-     */
-    EClass EXPR_GREATER_THAN_OR_EQUAL_TO = eINSTANCE.getExprGreaterThanOrEqualTo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_GREATER_THAN_OR_EQUAL_TO__LEFT = eINSTANCE.getExprGreaterThanOrEqualTo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_GREATER_THAN_OR_EQUAL_TO__RIGHT = eINSTANCE.getExprGreaterThanOrEqualTo_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprEqualToImpl <em>Expr Equal To</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprEqualToImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprEqualTo()
-     * @generated
-     */
-    EClass EXPR_EQUAL_TO = eINSTANCE.getExprEqualTo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_EQUAL_TO__LEFT = eINSTANCE.getExprEqualTo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_EQUAL_TO__RIGHT = eINSTANCE.getExprEqualTo_Right();
-
-    /**
-     * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprNotEqualToImpl <em>Expr Not Equal To</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.redoxi.ruste.rust.impl.ExprNotEqualToImpl
-     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getExprNotEqualTo()
-     * @generated
-     */
-    EClass EXPR_NOT_EQUAL_TO = eINSTANCE.getExprNotEqualTo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_NOT_EQUAL_TO__LEFT = eINSTANCE.getExprNotEqualTo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_NOT_EQUAL_TO__RIGHT = eINSTANCE.getExprNotEqualTo_Right();
+    EAttribute EXPR_EQUAL__OPS = eINSTANCE.getExprEqual_Ops();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBooleanAndImpl <em>Expr Boolean And</em>}' class.
@@ -11042,20 +10338,12 @@ public interface RustPackage extends EPackage
     EClass EXPR_BOOLEAN_AND = eINSTANCE.getExprBooleanAnd();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_BOOLEAN_AND__LEFT = eINSTANCE.getExprBooleanAnd_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_BOOLEAN_AND__RIGHT = eINSTANCE.getExprBooleanAnd_Right();
+    EReference EXPR_BOOLEAN_AND__EXPRS = eINSTANCE.getExprBooleanAnd_Exprs();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprBooleanOrImpl <em>Expr Boolean Or</em>}' class.
@@ -11068,20 +10356,12 @@ public interface RustPackage extends EPackage
     EClass EXPR_BOOLEAN_OR = eINSTANCE.getExprBooleanOr();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_BOOLEAN_OR__LEFT = eINSTANCE.getExprBooleanOr_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_BOOLEAN_OR__RIGHT = eINSTANCE.getExprBooleanOr_Right();
+    EReference EXPR_BOOLEAN_OR__EXPRS = eINSTANCE.getExprBooleanOr_Exprs();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.ExprAssignImpl <em>Expr Assign</em>}' class.
@@ -11094,20 +10374,12 @@ public interface RustPackage extends EPackage
     EClass EXPR_ASSIGN = eINSTANCE.getExprAssign();
 
     /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_ASSIGN__LEFT = eINSTANCE.getExprAssign_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_ASSIGN__RIGHT = eINSTANCE.getExprAssign_Right();
+    EReference EXPR_ASSIGN__EXPRS = eINSTANCE.getExprAssign_Exprs();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.impl.PatTupleEnumImpl <em>Pat Tuple Enum</em>}' class.
@@ -11234,6 +10506,56 @@ public interface RustPackage extends EPackage
      * @generated
      */
     EClass BORROWED_STR_TYPE = eINSTANCE.getBorrowedStrType();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.MultiplicativeOp <em>Multiplicative Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.MultiplicativeOp
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getMultiplicativeOp()
+     * @generated
+     */
+    EEnum MULTIPLICATIVE_OP = eINSTANCE.getMultiplicativeOp();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.AdditiveOp <em>Additive Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.AdditiveOp
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getAdditiveOp()
+     * @generated
+     */
+    EEnum ADDITIVE_OP = eINSTANCE.getAdditiveOp();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.ShiftOp <em>Shift Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.ShiftOp
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getShiftOp()
+     * @generated
+     */
+    EEnum SHIFT_OP = eINSTANCE.getShiftOp();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.ComparisonOp <em>Comparison Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.ComparisonOp
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getComparisonOp()
+     * @generated
+     */
+    EEnum COMPARISON_OP = eINSTANCE.getComparisonOp();
+
+    /**
+     * The meta object literal for the '{@link de.redoxi.ruste.rust.EqualityOp <em>Equality Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.redoxi.ruste.rust.EqualityOp
+     * @see de.redoxi.ruste.rust.impl.RustPackageImpl#getEqualityOp()
+     * @generated
+     */
+    EEnum EQUALITY_OP = eINSTANCE.getEqualityOp();
 
     /**
      * The meta object literal for the '{@link de.redoxi.ruste.rust.Visibility <em>Visibility</em>}' enum.

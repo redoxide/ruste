@@ -25,7 +25,10 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ExprFnCallArgs_WSTerminalRuleCall_1_1_4_1_q;
 	protected AbstractElementAlias match_ExprFnCallArgs_WSTerminalRuleCall_1_1_4_3_q;
 	protected AbstractElementAlias match_ExprGroup_CommaKeyword_2_2_2_q;
-	protected AbstractElementAlias match_ExprTuple_CommaKeyword_3_q;
+	protected AbstractElementAlias match_ExprLeaf_WSTerminalRuleCall_1_1_1_q;
+	protected AbstractElementAlias match_ExprLeaf_WSTerminalRuleCall_1_1_3_q;
+	protected AbstractElementAlias match_ExprLeaf_WSTerminalRuleCall_1_1_4_1_q;
+	protected AbstractElementAlias match_ExprLeaf_WSTerminalRuleCall_1_1_4_3_q;
 	protected AbstractElementAlias match_FnItem_LeftParenthesisRightParenthesisKeyword_3_1_or___LeftParenthesisKeyword_3_0_0_RightParenthesisKeyword_3_0_2__;
 	protected AbstractElementAlias match_ForeignFn_LeftParenthesisRightParenthesisKeyword_2_1_or___LeftParenthesisKeyword_2_0_0_RightParenthesisKeyword_2_0_2__;
 	protected AbstractElementAlias match_ImplMethod_LeftParenthesisRightParenthesisKeyword_4_1_or___LeftParenthesisKeyword_4_0_0_RightParenthesisKeyword_4_0_2__;
@@ -41,7 +44,10 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ExprFnCallArgs_WSTerminalRuleCall_1_1_4_1_q = new TokenAlias(false, true, grammarAccess.getExprFnCallArgsAccess().getWSTerminalRuleCall_1_1_4_1());
 		match_ExprFnCallArgs_WSTerminalRuleCall_1_1_4_3_q = new TokenAlias(false, true, grammarAccess.getExprFnCallArgsAccess().getWSTerminalRuleCall_1_1_4_3());
 		match_ExprGroup_CommaKeyword_2_2_2_q = new TokenAlias(false, true, grammarAccess.getExprGroupAccess().getCommaKeyword_2_2_2());
-		match_ExprTuple_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getExprTupleAccess().getCommaKeyword_3());
+		match_ExprLeaf_WSTerminalRuleCall_1_1_1_q = new TokenAlias(false, true, grammarAccess.getExprLeafAccess().getWSTerminalRuleCall_1_1_1());
+		match_ExprLeaf_WSTerminalRuleCall_1_1_3_q = new TokenAlias(false, true, grammarAccess.getExprLeafAccess().getWSTerminalRuleCall_1_1_3());
+		match_ExprLeaf_WSTerminalRuleCall_1_1_4_1_q = new TokenAlias(false, true, grammarAccess.getExprLeafAccess().getWSTerminalRuleCall_1_1_4_1());
+		match_ExprLeaf_WSTerminalRuleCall_1_1_4_3_q = new TokenAlias(false, true, grammarAccess.getExprLeafAccess().getWSTerminalRuleCall_1_1_4_3());
 		match_FnItem_LeftParenthesisRightParenthesisKeyword_3_1_or___LeftParenthesisKeyword_3_0_0_RightParenthesisKeyword_3_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFnItemAccess().getLeftParenthesisKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getFnItemAccess().getRightParenthesisKeyword_3_0_2())), new TokenAlias(false, false, grammarAccess.getFnItemAccess().getLeftParenthesisRightParenthesisKeyword_3_1()));
 		match_ForeignFn_LeftParenthesisRightParenthesisKeyword_2_1_or___LeftParenthesisKeyword_2_0_0_RightParenthesisKeyword_2_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getForeignFnAccess().getLeftParenthesisKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getForeignFnAccess().getRightParenthesisKeyword_2_0_2())), new TokenAlias(false, false, grammarAccess.getForeignFnAccess().getLeftParenthesisRightParenthesisKeyword_2_1()));
 		match_ImplMethod_LeftParenthesisRightParenthesisKeyword_4_1_or___LeftParenthesisKeyword_4_0_0_RightParenthesisKeyword_4_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getImplMethodAccess().getLeftParenthesisKeyword_4_0_0()), new TokenAlias(false, false, grammarAccess.getImplMethodAccess().getRightParenthesisKeyword_4_0_2())), new TokenAlias(false, false, grammarAccess.getImplMethodAccess().getLeftParenthesisRightParenthesisKeyword_4_1()));
@@ -140,8 +146,14 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ExprFnCallArgs_WSTerminalRuleCall_1_1_4_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ExprGroup_CommaKeyword_2_2_2_q.equals(syntax))
 				emit_ExprGroup_CommaKeyword_2_2_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ExprTuple_CommaKeyword_3_q.equals(syntax))
-				emit_ExprTuple_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_ExprLeaf_WSTerminalRuleCall_1_1_1_q.equals(syntax))
+				emit_ExprLeaf_WSTerminalRuleCall_1_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_ExprLeaf_WSTerminalRuleCall_1_1_3_q.equals(syntax))
+				emit_ExprLeaf_WSTerminalRuleCall_1_1_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_ExprLeaf_WSTerminalRuleCall_1_1_4_1_q.equals(syntax))
+				emit_ExprLeaf_WSTerminalRuleCall_1_1_4_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_ExprLeaf_WSTerminalRuleCall_1_1_4_3_q.equals(syntax))
+				emit_ExprLeaf_WSTerminalRuleCall_1_1_4_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_FnItem_LeftParenthesisRightParenthesisKeyword_3_1_or___LeftParenthesisKeyword_3_0_0_RightParenthesisKeyword_3_0_2__.equals(syntax))
 				emit_FnItem_LeftParenthesisRightParenthesisKeyword_3_1_or___LeftParenthesisKeyword_3_0_0_RightParenthesisKeyword_3_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ForeignFn_LeftParenthesisRightParenthesisKeyword_2_1_or___LeftParenthesisKeyword_2_0_0_RightParenthesisKeyword_2_0_2__.equals(syntax))
@@ -206,9 +218,33 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ','?
+	 *     WS?
 	 */
-	protected void emit_ExprTuple_CommaKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ExprLeaf_WSTerminalRuleCall_1_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS?
+	 */
+	protected void emit_ExprLeaf_WSTerminalRuleCall_1_1_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS?
+	 */
+	protected void emit_ExprLeaf_WSTerminalRuleCall_1_1_4_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     WS?
+	 */
+	protected void emit_ExprLeaf_WSTerminalRuleCall_1_1_4_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -222,7 +258,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ('(' ')') | '()'
+	 *     '()' | ('(' ')')
 	 */
 	protected void emit_ForeignFn_LeftParenthesisRightParenthesisKeyword_2_1_or___LeftParenthesisKeyword_2_0_0_RightParenthesisKeyword_2_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -230,7 +266,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ('(' ')') | '()'
+	 *     '()' | ('(' ')')
 	 */
 	protected void emit_ImplMethod_LeftParenthesisRightParenthesisKeyword_4_1_or___LeftParenthesisKeyword_4_0_0_RightParenthesisKeyword_4_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -246,7 +282,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '()' | ('(' ')')
+	 *     ('(' ')') | '()'
 	 */
 	protected void emit_TraitMethod_LeftParenthesisRightParenthesisKeyword_5_1_or___LeftParenthesisKeyword_5_0_0_RightParenthesisKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

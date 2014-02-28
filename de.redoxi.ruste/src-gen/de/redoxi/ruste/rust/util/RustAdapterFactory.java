@@ -215,11 +215,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprLeafAdapter();
       }
       @Override
-      public Adapter caseExprFnCall(ExprFnCall object)
-      {
-        return createExprFnCallAdapter();
-      }
-      @Override
       public Adapter caseExprFnCallArgs(ExprFnCallArgs object)
       {
         return createExprFnCallArgsAdapter();
@@ -235,19 +230,9 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprLiteralAdapter();
       }
       @Override
-      public Adapter caseExprPathHead(ExprPathHead object)
-      {
-        return createExprPathHeadAdapter();
-      }
-      @Override
       public Adapter caseExprGroup(ExprGroup object)
       {
         return createExprGroupAdapter();
-      }
-      @Override
-      public Adapter caseExprTuple(ExprTuple object)
-      {
-        return createExprTupleAdapter();
       }
       @Override
       public Adapter caseExprStruct(ExprStruct object)
@@ -293,6 +278,16 @@ public class RustAdapterFactory extends AdapterFactoryImpl
       public Adapter caseBorrow(Borrow object)
       {
         return createBorrowAdapter();
+      }
+      @Override
+      public Adapter caseExprFields(ExprFields object)
+      {
+        return createExprFieldsAdapter();
+      }
+      @Override
+      public Adapter caseExprFieldOrMethodCall(ExprFieldOrMethodCall object)
+      {
+        return createExprFieldOrMethodCallAdapter();
       }
       @Override
       public Adapter caseExprBinary(ExprBinary object)
@@ -610,19 +605,19 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprIndexAdapter();
       }
       @Override
-      public Adapter caseDivision(Division object)
+      public Adapter caseExprCall(ExprCall object)
       {
-        return createDivisionAdapter();
+        return createExprCallAdapter();
       }
       @Override
-      public Adapter caseMultiplication(Multiplication object)
+      public Adapter caseExprTuple(ExprTuple object)
       {
-        return createMultiplicationAdapter();
+        return createExprTupleAdapter();
       }
       @Override
-      public Adapter caseModulo(Modulo object)
+      public Adapter caseExprMultiplicative(ExprMultiplicative object)
       {
-        return createModuloAdapter();
+        return createExprMultiplicativeAdapter();
       }
       @Override
       public Adapter caseExprCast(ExprCast object)
@@ -630,24 +625,14 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprCastAdapter();
       }
       @Override
-      public Adapter caseExprAddition(ExprAddition object)
+      public Adapter caseExprAdditive(ExprAdditive object)
       {
-        return createExprAdditionAdapter();
+        return createExprAdditiveAdapter();
       }
       @Override
-      public Adapter caseExprSubtraction(ExprSubtraction object)
+      public Adapter caseExprShift(ExprShift object)
       {
-        return createExprSubtractionAdapter();
-      }
-      @Override
-      public Adapter caseExprLeftShift(ExprLeftShift object)
-      {
-        return createExprLeftShiftAdapter();
-      }
-      @Override
-      public Adapter caseExprRightShift(ExprRightShift object)
-      {
-        return createExprRightShiftAdapter();
+        return createExprShiftAdapter();
       }
       @Override
       public Adapter caseExprBitwiseAnd(ExprBitwiseAnd object)
@@ -665,34 +650,14 @@ public class RustAdapterFactory extends AdapterFactoryImpl
         return createExprBitwiseOrAdapter();
       }
       @Override
-      public Adapter caseExprLessThan(ExprLessThan object)
+      public Adapter caseExprComparision(ExprComparision object)
       {
-        return createExprLessThanAdapter();
+        return createExprComparisionAdapter();
       }
       @Override
-      public Adapter caseExprGreaterThan(ExprGreaterThan object)
+      public Adapter caseExprEqual(ExprEqual object)
       {
-        return createExprGreaterThanAdapter();
-      }
-      @Override
-      public Adapter caseExprLessThanOrEqualTo(ExprLessThanOrEqualTo object)
-      {
-        return createExprLessThanOrEqualToAdapter();
-      }
-      @Override
-      public Adapter caseExprGreaterThanOrEqualTo(ExprGreaterThanOrEqualTo object)
-      {
-        return createExprGreaterThanOrEqualToAdapter();
-      }
-      @Override
-      public Adapter caseExprEqualTo(ExprEqualTo object)
-      {
-        return createExprEqualToAdapter();
-      }
-      @Override
-      public Adapter caseExprNotEqualTo(ExprNotEqualTo object)
-      {
-        return createExprNotEqualToAdapter();
+        return createExprEqualAdapter();
       }
       @Override
       public Adapter caseExprBooleanAnd(ExprBooleanAnd object)
@@ -1207,21 +1172,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprFnCall <em>Expr Fn Call</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprFnCall
-   * @generated
-   */
-  public Adapter createExprFnCallAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprFnCallArgs <em>Expr Fn Call Args</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1267,21 +1217,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprPathHead <em>Expr Path Head</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprPathHead
-   * @generated
-   */
-  public Adapter createExprPathHeadAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprGroup <em>Expr Group</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1292,21 +1227,6 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprGroupAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprTuple <em>Expr Tuple</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprTuple
-   * @generated
-   */
-  public Adapter createExprTupleAdapter()
   {
     return null;
   }
@@ -1442,6 +1362,36 @@ public class RustAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBorrowAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprFields <em>Expr Fields</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprFields
+   * @generated
+   */
+  public Adapter createExprFieldsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprFieldOrMethodCall <em>Expr Field Or Method Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.redoxi.ruste.rust.ExprFieldOrMethodCall
+   * @generated
+   */
+  public Adapter createExprFieldOrMethodCallAdapter()
   {
     return null;
   }
@@ -2392,46 +2342,46 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Division <em>Division</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprCall <em>Expr Call</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.Division
+   * @see de.redoxi.ruste.rust.ExprCall
    * @generated
    */
-  public Adapter createDivisionAdapter()
+  public Adapter createExprCallAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Multiplication <em>Multiplication</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprTuple <em>Expr Tuple</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.Multiplication
+   * @see de.redoxi.ruste.rust.ExprTuple
    * @generated
    */
-  public Adapter createMultiplicationAdapter()
+  public Adapter createExprTupleAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.Modulo <em>Modulo</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprMultiplicative <em>Expr Multiplicative</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.Modulo
+   * @see de.redoxi.ruste.rust.ExprMultiplicative
    * @generated
    */
-  public Adapter createModuloAdapter()
+  public Adapter createExprMultiplicativeAdapter()
   {
     return null;
   }
@@ -2452,61 +2402,31 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprAddition <em>Expr Addition</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprAdditive <em>Expr Additive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprAddition
+   * @see de.redoxi.ruste.rust.ExprAdditive
    * @generated
    */
-  public Adapter createExprAdditionAdapter()
+  public Adapter createExprAdditiveAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprSubtraction <em>Expr Subtraction</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprShift <em>Expr Shift</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprSubtraction
+   * @see de.redoxi.ruste.rust.ExprShift
    * @generated
    */
-  public Adapter createExprSubtractionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLeftShift <em>Expr Left Shift</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprLeftShift
-   * @generated
-   */
-  public Adapter createExprLeftShiftAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprRightShift <em>Expr Right Shift</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprRightShift
-   * @generated
-   */
-  public Adapter createExprRightShiftAdapter()
+  public Adapter createExprShiftAdapter()
   {
     return null;
   }
@@ -2557,91 +2477,31 @@ public class RustAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLessThan <em>Expr Less Than</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprComparision <em>Expr Comparision</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprLessThan
+   * @see de.redoxi.ruste.rust.ExprComparision
    * @generated
    */
-  public Adapter createExprLessThanAdapter()
+  public Adapter createExprComparisionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprGreaterThan <em>Expr Greater Than</em>}'.
+   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprEqual <em>Expr Equal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprGreaterThan
+   * @see de.redoxi.ruste.rust.ExprEqual
    * @generated
    */
-  public Adapter createExprGreaterThanAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprLessThanOrEqualTo <em>Expr Less Than Or Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprLessThanOrEqualTo
-   * @generated
-   */
-  public Adapter createExprLessThanOrEqualToAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo <em>Expr Greater Than Or Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprGreaterThanOrEqualTo
-   * @generated
-   */
-  public Adapter createExprGreaterThanOrEqualToAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprEqualTo <em>Expr Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprEqualTo
-   * @generated
-   */
-  public Adapter createExprEqualToAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.redoxi.ruste.rust.ExprNotEqualTo <em>Expr Not Equal To</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.redoxi.ruste.rust.ExprNotEqualTo
-   * @generated
-   */
-  public Adapter createExprNotEqualToAdapter()
+  public Adapter createExprEqualAdapter()
   {
     return null;
   }

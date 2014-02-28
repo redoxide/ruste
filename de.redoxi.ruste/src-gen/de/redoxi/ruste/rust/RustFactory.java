@@ -275,15 +275,6 @@ public interface RustFactory extends EFactory
   ExprLeaf createExprLeaf();
 
   /**
-   * Returns a new object of class '<em>Expr Fn Call</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Fn Call</em>'.
-   * @generated
-   */
-  ExprFnCall createExprFnCall();
-
-  /**
    * Returns a new object of class '<em>Expr Fn Call Args</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -311,15 +302,6 @@ public interface RustFactory extends EFactory
   ExprLiteral createExprLiteral();
 
   /**
-   * Returns a new object of class '<em>Expr Path Head</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Path Head</em>'.
-   * @generated
-   */
-  ExprPathHead createExprPathHead();
-
-  /**
    * Returns a new object of class '<em>Expr Group</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -327,15 +309,6 @@ public interface RustFactory extends EFactory
    * @generated
    */
   ExprGroup createExprGroup();
-
-  /**
-   * Returns a new object of class '<em>Expr Tuple</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Tuple</em>'.
-   * @generated
-   */
-  ExprTuple createExprTuple();
 
   /**
    * Returns a new object of class '<em>Expr Struct</em>'.
@@ -417,6 +390,24 @@ public interface RustFactory extends EFactory
    * @generated
    */
   Borrow createBorrow();
+
+  /**
+   * Returns a new object of class '<em>Expr Fields</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Fields</em>'.
+   * @generated
+   */
+  ExprFields createExprFields();
+
+  /**
+   * Returns a new object of class '<em>Expr Field Or Method Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Field Or Method Call</em>'.
+   * @generated
+   */
+  ExprFieldOrMethodCall createExprFieldOrMethodCall();
 
   /**
    * Returns a new object of class '<em>Expr Binary</em>'.
@@ -986,31 +977,31 @@ public interface RustFactory extends EFactory
   ExprIndex createExprIndex();
 
   /**
-   * Returns a new object of class '<em>Division</em>'.
+   * Returns a new object of class '<em>Expr Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Division</em>'.
+   * @return a new object of class '<em>Expr Call</em>'.
    * @generated
    */
-  Division createDivision();
+  ExprCall createExprCall();
 
   /**
-   * Returns a new object of class '<em>Multiplication</em>'.
+   * Returns a new object of class '<em>Expr Tuple</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Multiplication</em>'.
+   * @return a new object of class '<em>Expr Tuple</em>'.
    * @generated
    */
-  Multiplication createMultiplication();
+  ExprTuple createExprTuple();
 
   /**
-   * Returns a new object of class '<em>Modulo</em>'.
+   * Returns a new object of class '<em>Expr Multiplicative</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Modulo</em>'.
+   * @return a new object of class '<em>Expr Multiplicative</em>'.
    * @generated
    */
-  Modulo createModulo();
+  ExprMultiplicative createExprMultiplicative();
 
   /**
    * Returns a new object of class '<em>Expr Cast</em>'.
@@ -1022,40 +1013,22 @@ public interface RustFactory extends EFactory
   ExprCast createExprCast();
 
   /**
-   * Returns a new object of class '<em>Expr Addition</em>'.
+   * Returns a new object of class '<em>Expr Additive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Addition</em>'.
+   * @return a new object of class '<em>Expr Additive</em>'.
    * @generated
    */
-  ExprAddition createExprAddition();
+  ExprAdditive createExprAdditive();
 
   /**
-   * Returns a new object of class '<em>Expr Subtraction</em>'.
+   * Returns a new object of class '<em>Expr Shift</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Subtraction</em>'.
+   * @return a new object of class '<em>Expr Shift</em>'.
    * @generated
    */
-  ExprSubtraction createExprSubtraction();
-
-  /**
-   * Returns a new object of class '<em>Expr Left Shift</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Left Shift</em>'.
-   * @generated
-   */
-  ExprLeftShift createExprLeftShift();
-
-  /**
-   * Returns a new object of class '<em>Expr Right Shift</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Right Shift</em>'.
-   * @generated
-   */
-  ExprRightShift createExprRightShift();
+  ExprShift createExprShift();
 
   /**
    * Returns a new object of class '<em>Expr Bitwise And</em>'.
@@ -1085,58 +1058,22 @@ public interface RustFactory extends EFactory
   ExprBitwiseOr createExprBitwiseOr();
 
   /**
-   * Returns a new object of class '<em>Expr Less Than</em>'.
+   * Returns a new object of class '<em>Expr Comparision</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Less Than</em>'.
+   * @return a new object of class '<em>Expr Comparision</em>'.
    * @generated
    */
-  ExprLessThan createExprLessThan();
+  ExprComparision createExprComparision();
 
   /**
-   * Returns a new object of class '<em>Expr Greater Than</em>'.
+   * Returns a new object of class '<em>Expr Equal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Greater Than</em>'.
+   * @return a new object of class '<em>Expr Equal</em>'.
    * @generated
    */
-  ExprGreaterThan createExprGreaterThan();
-
-  /**
-   * Returns a new object of class '<em>Expr Less Than Or Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Less Than Or Equal To</em>'.
-   * @generated
-   */
-  ExprLessThanOrEqualTo createExprLessThanOrEqualTo();
-
-  /**
-   * Returns a new object of class '<em>Expr Greater Than Or Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Greater Than Or Equal To</em>'.
-   * @generated
-   */
-  ExprGreaterThanOrEqualTo createExprGreaterThanOrEqualTo();
-
-  /**
-   * Returns a new object of class '<em>Expr Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Equal To</em>'.
-   * @generated
-   */
-  ExprEqualTo createExprEqualTo();
-
-  /**
-   * Returns a new object of class '<em>Expr Not Equal To</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expr Not Equal To</em>'.
-   * @generated
-   */
-  ExprNotEqualTo createExprNotEqualTo();
+  ExprEqual createExprEqual();
 
   /**
    * Returns a new object of class '<em>Expr Boolean And</em>'.

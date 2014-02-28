@@ -2,7 +2,6 @@
  */
 package de.redoxi.ruste.rust;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.redoxi.ruste.rust.ExprVec#isMutable <em>Mutable</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.ExprVec#getExprs <em>Exprs</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.ExprVec#getLenExpr <em>Len Expr</em>}</li>
  * </ul>
  * </p>
@@ -49,22 +47,6 @@ public interface ExprVec extends ExprPrimary
    * @generated
    */
   void setMutable(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Exprs</b></em>' containment reference list.
-   * The list contents are of type {@link de.redoxi.ruste.rust.Expr}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Exprs</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Exprs</em>' containment reference list.
-   * @see de.redoxi.ruste.rust.RustPackage#getExprVec_Exprs()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Expr> getExprs();
 
   /**
    * Returns the value of the '<em><b>Len Expr</b></em>' containment reference.

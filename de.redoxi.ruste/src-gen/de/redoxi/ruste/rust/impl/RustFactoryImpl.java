@@ -93,13 +93,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.EXPR: return createExpr();
       case RustPackage.EXPR_LVALUE: return createExprLValue();
       case RustPackage.EXPR_LEAF: return createExprLeaf();
-      case RustPackage.EXPR_FN_CALL: return createExprFnCall();
       case RustPackage.EXPR_FN_CALL_ARGS: return createExprFnCallArgs();
       case RustPackage.EXPR_PRIMARY: return createExprPrimary();
       case RustPackage.EXPR_LITERAL: return createExprLiteral();
-      case RustPackage.EXPR_PATH_HEAD: return createExprPathHead();
       case RustPackage.EXPR_GROUP: return createExprGroup();
-      case RustPackage.EXPR_TUPLE: return createExprTuple();
       case RustPackage.EXPR_STRUCT: return createExprStruct();
       case RustPackage.EXPR_VEC: return createExprVec();
       case RustPackage.EXPR_UNARY: return createExprUnary();
@@ -109,6 +106,8 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.MANAGED_BOX: return createManagedBox();
       case RustPackage.OWNED_BOX: return createOwnedBox();
       case RustPackage.BORROW: return createBorrow();
+      case RustPackage.EXPR_FIELDS: return createExprFields();
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL: return createExprFieldOrMethodCall();
       case RustPackage.EXPR_BINARY: return createExprBinary();
       case RustPackage.DIVISION_MULTIPLICATION_OR_MODULO: return createDivisionMultiplicationOrModulo();
       case RustPackage.AS: return createAs();
@@ -172,23 +171,17 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
       case RustPackage.CHAR_LIT: return createCharLit();
       case RustPackage.EXPR_FIELD: return createExprField();
       case RustPackage.EXPR_INDEX: return createExprIndex();
-      case RustPackage.DIVISION: return createDivision();
-      case RustPackage.MULTIPLICATION: return createMultiplication();
-      case RustPackage.MODULO: return createModulo();
+      case RustPackage.EXPR_CALL: return createExprCall();
+      case RustPackage.EXPR_TUPLE: return createExprTuple();
+      case RustPackage.EXPR_MULTIPLICATIVE: return createExprMultiplicative();
       case RustPackage.EXPR_CAST: return createExprCast();
-      case RustPackage.EXPR_ADDITION: return createExprAddition();
-      case RustPackage.EXPR_SUBTRACTION: return createExprSubtraction();
-      case RustPackage.EXPR_LEFT_SHIFT: return createExprLeftShift();
-      case RustPackage.EXPR_RIGHT_SHIFT: return createExprRightShift();
+      case RustPackage.EXPR_ADDITIVE: return createExprAdditive();
+      case RustPackage.EXPR_SHIFT: return createExprShift();
       case RustPackage.EXPR_BITWISE_AND: return createExprBitwiseAnd();
       case RustPackage.EXPR_BITWISE_XOR: return createExprBitwiseXor();
       case RustPackage.EXPR_BITWISE_OR: return createExprBitwiseOr();
-      case RustPackage.EXPR_LESS_THAN: return createExprLessThan();
-      case RustPackage.EXPR_GREATER_THAN: return createExprGreaterThan();
-      case RustPackage.EXPR_LESS_THAN_OR_EQUAL_TO: return createExprLessThanOrEqualTo();
-      case RustPackage.EXPR_GREATER_THAN_OR_EQUAL_TO: return createExprGreaterThanOrEqualTo();
-      case RustPackage.EXPR_EQUAL_TO: return createExprEqualTo();
-      case RustPackage.EXPR_NOT_EQUAL_TO: return createExprNotEqualTo();
+      case RustPackage.EXPR_COMPARISION: return createExprComparision();
+      case RustPackage.EXPR_EQUAL: return createExprEqual();
       case RustPackage.EXPR_BOOLEAN_AND: return createExprBooleanAnd();
       case RustPackage.EXPR_BOOLEAN_OR: return createExprBooleanOr();
       case RustPackage.EXPR_ASSIGN: return createExprAssign();
@@ -218,6 +211,16 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case RustPackage.MULTIPLICATIVE_OP:
+        return createMultiplicativeOpFromString(eDataType, initialValue);
+      case RustPackage.ADDITIVE_OP:
+        return createAdditiveOpFromString(eDataType, initialValue);
+      case RustPackage.SHIFT_OP:
+        return createShiftOpFromString(eDataType, initialValue);
+      case RustPackage.COMPARISON_OP:
+        return createComparisonOpFromString(eDataType, initialValue);
+      case RustPackage.EQUALITY_OP:
+        return createEqualityOpFromString(eDataType, initialValue);
       case RustPackage.VISIBILITY:
         return createVisibilityFromString(eDataType, initialValue);
       default:
@@ -235,6 +238,16 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case RustPackage.MULTIPLICATIVE_OP:
+        return convertMultiplicativeOpToString(eDataType, instanceValue);
+      case RustPackage.ADDITIVE_OP:
+        return convertAdditiveOpToString(eDataType, instanceValue);
+      case RustPackage.SHIFT_OP:
+        return convertShiftOpToString(eDataType, instanceValue);
+      case RustPackage.COMPARISON_OP:
+        return convertComparisonOpToString(eDataType, instanceValue);
+      case RustPackage.EQUALITY_OP:
+        return convertEqualityOpToString(eDataType, instanceValue);
       case RustPackage.VISIBILITY:
         return convertVisibilityToString(eDataType, instanceValue);
       default:
@@ -555,17 +568,6 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprFnCall createExprFnCall()
-  {
-    ExprFnCallImpl exprFnCall = new ExprFnCallImpl();
-    return exprFnCall;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ExprFnCallArgs createExprFnCallArgs()
   {
     ExprFnCallArgsImpl exprFnCallArgs = new ExprFnCallArgsImpl();
@@ -599,32 +601,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprPathHead createExprPathHead()
-  {
-    ExprPathHeadImpl exprPathHead = new ExprPathHeadImpl();
-    return exprPathHead;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ExprGroup createExprGroup()
   {
     ExprGroupImpl exprGroup = new ExprGroupImpl();
     return exprGroup;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprTuple createExprTuple()
-  {
-    ExprTupleImpl exprTuple = new ExprTupleImpl();
-    return exprTuple;
   }
 
   /**
@@ -724,6 +704,28 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     BorrowImpl borrow = new BorrowImpl();
     return borrow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprFields createExprFields()
+  {
+    ExprFieldsImpl exprFields = new ExprFieldsImpl();
+    return exprFields;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprFieldOrMethodCall createExprFieldOrMethodCall()
+  {
+    ExprFieldOrMethodCallImpl exprFieldOrMethodCall = new ExprFieldOrMethodCallImpl();
+    return exprFieldOrMethodCall;
   }
 
   /**
@@ -1424,10 +1426,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Division createDivision()
+  public ExprCall createExprCall()
   {
-    DivisionImpl division = new DivisionImpl();
-    return division;
+    ExprCallImpl exprCall = new ExprCallImpl();
+    return exprCall;
   }
 
   /**
@@ -1435,10 +1437,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Multiplication createMultiplication()
+  public ExprTuple createExprTuple()
   {
-    MultiplicationImpl multiplication = new MultiplicationImpl();
-    return multiplication;
+    ExprTupleImpl exprTuple = new ExprTupleImpl();
+    return exprTuple;
   }
 
   /**
@@ -1446,10 +1448,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Modulo createModulo()
+  public ExprMultiplicative createExprMultiplicative()
   {
-    ModuloImpl modulo = new ModuloImpl();
-    return modulo;
+    ExprMultiplicativeImpl exprMultiplicative = new ExprMultiplicativeImpl();
+    return exprMultiplicative;
   }
 
   /**
@@ -1468,10 +1470,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprAddition createExprAddition()
+  public ExprAdditive createExprAdditive()
   {
-    ExprAdditionImpl exprAddition = new ExprAdditionImpl();
-    return exprAddition;
+    ExprAdditiveImpl exprAdditive = new ExprAdditiveImpl();
+    return exprAdditive;
   }
 
   /**
@@ -1479,32 +1481,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprSubtraction createExprSubtraction()
+  public ExprShift createExprShift()
   {
-    ExprSubtractionImpl exprSubtraction = new ExprSubtractionImpl();
-    return exprSubtraction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprLeftShift createExprLeftShift()
-  {
-    ExprLeftShiftImpl exprLeftShift = new ExprLeftShiftImpl();
-    return exprLeftShift;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprRightShift createExprRightShift()
-  {
-    ExprRightShiftImpl exprRightShift = new ExprRightShiftImpl();
-    return exprRightShift;
+    ExprShiftImpl exprShift = new ExprShiftImpl();
+    return exprShift;
   }
 
   /**
@@ -1545,10 +1525,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprLessThan createExprLessThan()
+  public ExprComparision createExprComparision()
   {
-    ExprLessThanImpl exprLessThan = new ExprLessThanImpl();
-    return exprLessThan;
+    ExprComparisionImpl exprComparision = new ExprComparisionImpl();
+    return exprComparision;
   }
 
   /**
@@ -1556,54 +1536,10 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprGreaterThan createExprGreaterThan()
+  public ExprEqual createExprEqual()
   {
-    ExprGreaterThanImpl exprGreaterThan = new ExprGreaterThanImpl();
-    return exprGreaterThan;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprLessThanOrEqualTo createExprLessThanOrEqualTo()
-  {
-    ExprLessThanOrEqualToImpl exprLessThanOrEqualTo = new ExprLessThanOrEqualToImpl();
-    return exprLessThanOrEqualTo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprGreaterThanOrEqualTo createExprGreaterThanOrEqualTo()
-  {
-    ExprGreaterThanOrEqualToImpl exprGreaterThanOrEqualTo = new ExprGreaterThanOrEqualToImpl();
-    return exprGreaterThanOrEqualTo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprEqualTo createExprEqualTo()
-  {
-    ExprEqualToImpl exprEqualTo = new ExprEqualToImpl();
-    return exprEqualTo;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprNotEqualTo createExprNotEqualTo()
-  {
-    ExprNotEqualToImpl exprNotEqualTo = new ExprNotEqualToImpl();
-    return exprNotEqualTo;
+    ExprEqualImpl exprEqual = new ExprEqualImpl();
+    return exprEqual;
   }
 
   /**
@@ -1758,6 +1694,116 @@ public class RustFactoryImpl extends EFactoryImpl implements RustFactory
   {
     BorrowedStrTypeImpl borrowedStrType = new BorrowedStrTypeImpl();
     return borrowedStrType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MultiplicativeOp createMultiplicativeOpFromString(EDataType eDataType, String initialValue)
+  {
+    MultiplicativeOp result = MultiplicativeOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertMultiplicativeOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AdditiveOp createAdditiveOpFromString(EDataType eDataType, String initialValue)
+  {
+    AdditiveOp result = AdditiveOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAdditiveOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ShiftOp createShiftOpFromString(EDataType eDataType, String initialValue)
+  {
+    ShiftOp result = ShiftOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertShiftOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComparisonOp createComparisonOpFromString(EDataType eDataType, String initialValue)
+  {
+    ComparisonOp result = ComparisonOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertComparisonOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EqualityOp createEqualityOpFromString(EDataType eDataType, String initialValue)
+  {
+    EqualityOp result = EqualityOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertEqualityOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.ExprStruct#getStruct <em>Struct</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.ExprStruct#getFields <em>Fields</em>}</li>
  *   <li>{@link de.redoxi.ruste.rust.ExprStruct#getBaseExpr <em>Base Expr</em>}</li>
  * </ul>
@@ -22,34 +21,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExprStruct extends ExprPrimary, ExprPathHead
+public interface ExprStruct extends ExprPrimary
 {
-  /**
-   * Returns the value of the '<em><b>Struct</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Struct</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Struct</em>' containment reference.
-   * @see #setStruct(ExprStruct)
-   * @see de.redoxi.ruste.rust.RustPackage#getExprStruct_Struct()
-   * @model containment="true"
-   * @generated
-   */
-  ExprStruct getStruct();
-
-  /**
-   * Sets the value of the '{@link de.redoxi.ruste.rust.ExprStruct#getStruct <em>Struct</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Struct</em>' containment reference.
-   * @see #getStruct()
-   * @generated
-   */
-  void setStruct(ExprStruct value);
-
   /**
    * Returns the value of the '<em><b>Fields</b></em>' containment reference list.
    * The list contents are of type {@link de.redoxi.ruste.rust.StructField}.

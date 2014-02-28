@@ -13,6 +13,6 @@ package de.redoxi.ruste.rust;
  * @model
  * @generated
  */
-public interface ExprLeaf extends ExprUnary
+public interface ExprLeaf extends ExprFields
 {
 } // ExprLeaf

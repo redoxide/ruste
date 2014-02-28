@@ -2,8 +2,8 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.Expr;
-import de.redoxi.ruste.rust.ExprVec;
+import de.redoxi.ruste.rust.ExprFieldOrMethodCall;
+import de.redoxi.ruste.rust.ExprFnCallArgs;
 import de.redoxi.ruste.rust.RustPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,59 +13,60 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Vec</b></em>'.
+ * An implementation of the model object '<em><b>Expr Field Or Method Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprVecImpl#isMutable <em>Mutable</em>}</li>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprVecImpl#getLenExpr <em>Len Expr</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFieldOrMethodCallImpl#getArgs <em>Args</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
+public class ExprFieldOrMethodCallImpl extends MinimalEObjectImpl.Container implements ExprFieldOrMethodCall
 {
   /**
-   * The default value of the '{@link #isMutable() <em>Mutable</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isMutable()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final boolean MUTABLE_EDEFAULT = false;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isMutable() <em>Mutable</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isMutable()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected boolean mutable = MUTABLE_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getLenExpr() <em>Len Expr</em>}' containment reference.
+   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLenExpr()
+   * @see #getArgs()
    * @generated
    * @ordered
    */
-  protected Expr lenExpr;
+  protected ExprFnCallArgs args;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprVecImpl()
+  protected ExprFieldOrMethodCallImpl()
   {
     super();
   }
@@ -78,7 +79,7 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_VEC;
+    return RustPackage.Literals.EXPR_FIELD_OR_METHOD_CALL;
   }
 
   /**
@@ -86,9 +87,9 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isMutable()
+  public String getName()
   {
-    return mutable;
+    return name;
   }
 
   /**
@@ -96,12 +97,12 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMutable(boolean newMutable)
+  public void setName(String newName)
   {
-    boolean oldMutable = mutable;
-    mutable = newMutable;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_VEC__MUTABLE, oldMutable, mutable));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FIELD_OR_METHOD_CALL__NAME, oldName, name));
   }
 
   /**
@@ -109,9 +110,9 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getLenExpr()
+  public ExprFnCallArgs getArgs()
   {
-    return lenExpr;
+    return args;
   }
 
   /**
@@ -119,13 +120,13 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLenExpr(Expr newLenExpr, NotificationChain msgs)
+  public NotificationChain basicSetArgs(ExprFnCallArgs newArgs, NotificationChain msgs)
   {
-    Expr oldLenExpr = lenExpr;
-    lenExpr = newLenExpr;
+    ExprFnCallArgs oldArgs = args;
+    args = newArgs;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_VEC__LEN_EXPR, oldLenExpr, newLenExpr);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS, oldArgs, newArgs);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -136,20 +137,20 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLenExpr(Expr newLenExpr)
+  public void setArgs(ExprFnCallArgs newArgs)
   {
-    if (newLenExpr != lenExpr)
+    if (newArgs != args)
     {
       NotificationChain msgs = null;
-      if (lenExpr != null)
-        msgs = ((InternalEObject)lenExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_VEC__LEN_EXPR, null, msgs);
-      if (newLenExpr != null)
-        msgs = ((InternalEObject)newLenExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_VEC__LEN_EXPR, null, msgs);
-      msgs = basicSetLenExpr(newLenExpr, msgs);
+      if (args != null)
+        msgs = ((InternalEObject)args).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS, null, msgs);
+      if (newArgs != null)
+        msgs = ((InternalEObject)newArgs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS, null, msgs);
+      msgs = basicSetArgs(newArgs, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_VEC__LEN_EXPR, newLenExpr, newLenExpr));
+      eNotify(new ENotificationImpl(this, Notification.SET, RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS, newArgs, newArgs));
   }
 
   /**
@@ -162,8 +163,8 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_VEC__LEN_EXPR:
-        return basicSetLenExpr(null, msgs);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS:
+        return basicSetArgs(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -178,10 +179,10 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_VEC__MUTABLE:
-        return isMutable();
-      case RustPackage.EXPR_VEC__LEN_EXPR:
-        return getLenExpr();
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__NAME:
+        return getName();
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS:
+        return getArgs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -196,11 +197,11 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_VEC__MUTABLE:
-        setMutable((Boolean)newValue);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__NAME:
+        setName((String)newValue);
         return;
-      case RustPackage.EXPR_VEC__LEN_EXPR:
-        setLenExpr((Expr)newValue);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS:
+        setArgs((ExprFnCallArgs)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -216,11 +217,11 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_VEC__MUTABLE:
-        setMutable(MUTABLE_EDEFAULT);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__NAME:
+        setName(NAME_EDEFAULT);
         return;
-      case RustPackage.EXPR_VEC__LEN_EXPR:
-        setLenExpr((Expr)null);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS:
+        setArgs((ExprFnCallArgs)null);
         return;
     }
     super.eUnset(featureID);
@@ -236,10 +237,10 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_VEC__MUTABLE:
-        return mutable != MUTABLE_EDEFAULT;
-      case RustPackage.EXPR_VEC__LEN_EXPR:
-        return lenExpr != null;
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case RustPackage.EXPR_FIELD_OR_METHOD_CALL__ARGS:
+        return args != null;
     }
     return super.eIsSet(featureID);
   }
@@ -255,10 +256,10 @@ public class ExprVecImpl extends ExprPrimaryImpl implements ExprVec
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (mutable: ");
-    result.append(mutable);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }
 
-} //ExprVecImpl
+} //ExprFieldOrMethodCallImpl

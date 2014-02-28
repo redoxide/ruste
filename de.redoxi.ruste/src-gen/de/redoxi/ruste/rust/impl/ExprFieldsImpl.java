@@ -2,8 +2,7 @@
  */
 package de.redoxi.ruste.rust.impl;
 
-import de.redoxi.ruste.rust.BooleanOr;
-import de.redoxi.ruste.rust.ExprAssign;
+import de.redoxi.ruste.rust.ExprFields;
 import de.redoxi.ruste.rust.RustPackage;
 
 import java.util.Collection;
@@ -13,6 +12,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -20,18 +20,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Assign</b></em>'.
+ * An implementation of the model object '<em><b>Expr Fields</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.redoxi.ruste.rust.impl.ExprAssignImpl#getExprs <em>Exprs</em>}</li>
+ *   <li>{@link de.redoxi.ruste.rust.impl.ExprFieldsImpl#getExprs <em>Exprs</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExprAssignImpl extends AssignImpl implements ExprAssign
+public class ExprFieldsImpl extends ExprUnaryImpl implements ExprFields
 {
   /**
    * The cached value of the '{@link #getExprs() <em>Exprs</em>}' containment reference list.
@@ -41,14 +41,14 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * @generated
    * @ordered
    */
-  protected EList<BooleanOr> exprs;
+  protected EList<EObject> exprs;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprAssignImpl()
+  protected ExprFieldsImpl()
   {
     super();
   }
@@ -61,7 +61,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   @Override
   protected EClass eStaticClass()
   {
-    return RustPackage.Literals.EXPR_ASSIGN;
+    return RustPackage.Literals.EXPR_FIELDS;
   }
 
   /**
@@ -69,11 +69,11 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<BooleanOr> getExprs()
+  public EList<EObject> getExprs()
   {
     if (exprs == null)
     {
-      exprs = new EObjectContainmentEList<BooleanOr>(BooleanOr.class, this, RustPackage.EXPR_ASSIGN__EXPRS);
+      exprs = new EObjectContainmentEList<EObject>(EObject.class, this, RustPackage.EXPR_FIELDS__EXPRS);
     }
     return exprs;
   }
@@ -88,7 +88,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_ASSIGN__EXPRS:
+      case RustPackage.EXPR_FIELDS__EXPRS:
         return ((InternalEList<?>)getExprs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -104,7 +104,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_ASSIGN__EXPRS:
+      case RustPackage.EXPR_FIELDS__EXPRS:
         return getExprs();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -121,9 +121,9 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_ASSIGN__EXPRS:
+      case RustPackage.EXPR_FIELDS__EXPRS:
         getExprs().clear();
-        getExprs().addAll((Collection<? extends BooleanOr>)newValue);
+        getExprs().addAll((Collection<? extends EObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,7 +139,7 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_ASSIGN__EXPRS:
+      case RustPackage.EXPR_FIELDS__EXPRS:
         getExprs().clear();
         return;
     }
@@ -156,10 +156,10 @@ public class ExprAssignImpl extends AssignImpl implements ExprAssign
   {
     switch (featureID)
     {
-      case RustPackage.EXPR_ASSIGN__EXPRS:
+      case RustPackage.EXPR_FIELDS__EXPRS:
         return exprs != null && !exprs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprAssignImpl
+} //ExprFieldsImpl
