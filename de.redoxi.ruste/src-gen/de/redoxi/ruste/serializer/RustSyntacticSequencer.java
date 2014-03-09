@@ -250,7 +250,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '()' | ('(' ')')
+	 *     ('(' ')') | '()'
 	 */
 	protected void emit_FnItem_LeftParenthesisRightParenthesisKeyword_3_1_or___LeftParenthesisKeyword_3_0_0_RightParenthesisKeyword_3_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -258,7 +258,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '()' | ('(' ')')
+	 *     ('(' ')') | '()'
 	 */
 	protected void emit_ForeignFn_LeftParenthesisRightParenthesisKeyword_2_1_or___LeftParenthesisKeyword_2_0_0_RightParenthesisKeyword_2_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -266,7 +266,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '()' | ('(' ')')
+	 *     ('(' ')') | '()'
 	 */
 	protected void emit_ImplMethod_LeftParenthesisRightParenthesisKeyword_4_1_or___LeftParenthesisKeyword_4_0_0_RightParenthesisKeyword_4_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -274,7 +274,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '*' | '..'
+	 *     '..' | '*'
 	 */
 	protected void emit_PatEnum_AsteriskKeyword_1_0_2_0_or_FullStopFullStopKeyword_1_0_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -282,7 +282,7 @@ public class RustSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     ('(' ')') | '()'
+	 *     '()' | ('(' ')')
 	 */
 	protected void emit_TraitMethod_LeftParenthesisRightParenthesisKeyword_5_1_or___LeftParenthesisKeyword_5_0_0_RightParenthesisKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
