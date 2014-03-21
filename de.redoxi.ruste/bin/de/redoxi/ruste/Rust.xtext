@@ -92,7 +92,7 @@ ImplMethod:
 ;
 
 ExternItem:
-	"extern" ({ExternModDecl} "mod" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING_LIT? "{" (functions += ForeignFn)* "}")
+	"extern" ({ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING_LIT? "{" (functions += ForeignFn)* "}")
 ;
 
 ForeignFn:
