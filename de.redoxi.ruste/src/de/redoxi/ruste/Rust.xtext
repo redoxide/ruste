@@ -6,51 +6,36 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // Top level crate and its implicit module
 Crate:
-	viewItems+=ViewItem* items+=ItemAndAttrs*
+	items+=(ViewItem | ItemAndAttrs)*
 ;
 
 ViewItem:
-	ExternModDecl | UseDecl
-;
-
-ExternModDecl:
-	"extern" "mod" name=IDENT ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'
+	UseDecl
 ;
 
 LinkAttr:
-	ident=IDENT '=' value=Literal
+	ident=ID ('=' value=Literal)?
 ;
 
 // TODO Match rules for internal vs external paths
 UseDecl:
-	vis=Visibility? "use" name=IDENT ('=' externPath=TypePath | "::" path=PathGlob) ';'
+	vis=Visibility? "use" name=ID ('=' externPath=TypePath | "::" path=PathGlob) ';'
 ;
 
 PathGlob:
-	head += IDENT ("::" tail=PathGlob)? |
+	head += ID ("::" tail=PathGlob)? |
 	head += "*" |
-	'{' head+=IDENT (',' head+=IDENT)* '}'
+	'{' head+=ID (',' head+=ID)* '}'
 ;
 
 // Attribute for an item
-ItemAttr:
-	'#[' attrs+=Attr (',' attrs+=Attr)* ']'
+ItemAttr hidden ():
+	'#[' WS? attrs+=Attr WS? (',' WS? attrs+=Attr WS?)* ']' WS? ';'?
 ;
 
 // Individual attribute within an item
-Attr:
-	LiteralAttr |
-	AttrWithList
-;
-
-// Attribute with a list of other attributes
-AttrWithList:
-	name=IDENT  '('  attrs+=Attr  (','  attrs+=Attr )* ')'
-;
-
-// An attribute with a literal value
-LiteralAttr:
-	name=IDENT '=' value=Literal
+Attr: 
+	name=ID ('=' value=Literal | '(' attrs+=Attr (',' attrs+=Attr)* ')')?
 ;
 
 // An item and any associated attributes
@@ -59,63 +44,63 @@ ItemAndAttrs:
 ;
 
 Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternBlock | StaticItem
+	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternItem | StaticItem
 ;
 
 // A module declaration item
 ModItem:
-	"mod" name=IDENT (externalBody?=';' | '{' viewItems+=ViewItem* items+=ItemAndAttrs* '}')
+	vis=Visibility? "mod" name=ID (externalBody?=';' | '{' items+=(ViewItem | ItemAndAttrs)* '}')
 ;
 
 // Function item
 FnItem:
-	"fn" name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ("->" returnType = Type)? '{' body=Block '}'
+	vis=Visibility? "fn" name=ID ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
 ;
 
 // TODO Reference Type?
 TypeItem:
-	"type" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '=' type=Type ';'
+	vis=Visibility? "type" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '=' type=Type ';'
 ;
 
 StructItem:
-	"struct" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	vis=Visibility? "struct" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
 ;
 
 EnumItem:
-	"enum" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" variants+=EnumVariant ("," variants+=EnumVariant)* "}"
+	vis=Visibility? "enum" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" variants+=EnumVariant ("," variants+=EnumVariant)* ','? "}"
 ;
 
 EnumVariant:
-	name=IDENT ('<' params+=IDENT (',' params+=IDENT)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
+	name=ID ('<' params+=ID (',' params+=ID)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
 ;
 
 TraitItem:
-	"trait" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" (methods+=TraitMethod)* "}"
+	vis=Visibility? "trait" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? "{" (methods+=TraitMethod)* "}"
 ;
 
 TraitMethod:
-	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
 ;
 
 // TODO Crossreference struct and trait
 ImplItem:
-	"impl" (trait=IDENT "for")? struct=IDENT "{" (methods+=ImplMethod)* "}"
+	"impl" (trait=ID "for")? struct=ID "{" (methods+=ImplMethod)* "}"
 ;
 
 ImplMethod:
-	(unsafe?="unsafe" | extern?="extern")? "fn" name=IDENT ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
+	(unsafe?="unsafe" | extern?="extern")? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
 ;
 
-ExternBlock:
-	{ExternBlock} "extern" abi=STRING_LIT? "{" (functions += ForeignFn)* "}" 
+ExternItem:
+	"extern" ({ExternModDecl} "mod" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING_LIT? "{" (functions += ForeignFn)* "}")
 ;
 
 ForeignFn:
-	"fn" name=IDENT ("(" (args+=Arg ("," args+=Arg)*)? ")" | '()') ("->" returnType=Type)? ";"
+	"fn" name=ID ("(" (args+=Arg ("," args+=Arg)*)? ")" | '()') ("->" returnType=Type)? ";"
 ;
 
 StaticItem:
-	"static" mutable?=MUT_KEYWORD? name=IDENT (":" type=Type)? "=" expr=Expr ";"
+	vis=Visibility? "static" mutable?=MUT_KEYWORD? name=ID (":" type=Type)? "=" expr=Expr ";"
 ;
 
 Expr:
@@ -133,7 +118,7 @@ Expr:
 ;
 
 ExprLValue:
-	expr=ExprLeaf ({ExprField.expr=current} =>'.' field=IDENT | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
+	expr=ExprLeaf ({ExprField.expr=current} =>'.' field=ID | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
 ;
 
 ExprLeaf hidden():
@@ -207,7 +192,7 @@ ExprFields:
 ;
 
 ExprFieldOrMethodCall:
-	name=IDENT (args=ExprFnCallArgs)?
+	name=ID (args=ExprFnCallArgs)?
 ;
 
 ExprBinary:
@@ -235,7 +220,7 @@ enum EqualityOp:
 ;
 
 DivisionMultiplicationOrModulo:
-	ExprUnary ({ExprMultiplicative.exprs+=current} ops+=MultiplicativeOp exprs+=ExprUnary)*
+	ExprUnary ({ExprMultiplicative.exprs+=current} ops+=MultiplicativeOp exprs+=ExprUnary (ops+=MultiplicativeOp exprs+=ExprUnary)*)?
 ;
 
 As:
@@ -247,44 +232,44 @@ AdditionOrSubtraction:
 ;
 
 ShiftOperator:
-	AdditionOrSubtraction ({ExprShift.exprs+=current} ops+=ShiftOp exprs+=AdditionOrSubtraction)*
+	AdditionOrSubtraction ({ExprShift.exprs+=current} ops+=ShiftOp exprs+=AdditionOrSubtraction (ops+=ShiftOp exprs+=AdditionOrSubtraction)*)?
 ;
 
 BitwiseAnd:
-	ShiftOperator ({ExprBitwiseAnd.exprs+=current} "&" exprs+=ShiftOperator)*
+	ShiftOperator ({ExprBitwiseAnd.exprs+=current} "&" exprs+=ShiftOperator ("&" exprs+=ShiftOperator)*)?
 ;
 
 BitwiseXor:
-	BitwiseAnd ({ExprBitwiseXor.exprs+=current} "^" exprs+=BitwiseAnd)*
+	BitwiseAnd ({ExprBitwiseXor.exprs+=current} "^" exprs+=BitwiseAnd ("^" exprs+=BitwiseAnd)*)?
 ;
 
 BitwiseOr:
-	BitwiseXor ({ExprBitwiseOr.exprs+=current} "|" exprs+=BitwiseXor)*
+	BitwiseXor ({ExprBitwiseOr.exprs+=current} "|" exprs+=BitwiseXor ("|" exprs+=BitwiseXor)*)?
 ;
 
 ComparisonOperators:
-	BitwiseOr ({ExprComparision.exprs+=current} ops+=ComparisonOp exprs+=BitwiseOr)*
+	BitwiseOr ({ExprComparision.exprs+=current} ops+=ComparisonOp exprs+=BitwiseOr (ops+=ComparisonOp exprs+=BitwiseOr)*)?
 ;
 
 EqualityOperator:
-	ComparisonOperators ({ExprEqual.exprs+=current} ops+=EqualityOp exprs+=ComparisonOperators)*
+	ComparisonOperators ({ExprEqual.exprs+=current} ops+=EqualityOp exprs+=ComparisonOperators (ops+=EqualityOp exprs+=ComparisonOperators)*)?
 ;
 
 BooleanAnd:
-	EqualityOperator ({ExprBooleanAnd.exprs+=current} "&&" exprs+=EqualityOperator)*
+	EqualityOperator ({ExprBooleanAnd.exprs+=current} "&&" exprs+=EqualityOperator ("&&" exprs+=EqualityOperator)*)?
 ;
 
 BooleanOr:
-	BooleanAnd ({ExprBooleanOr.exprs+=current} "||" exprs+=BooleanAnd)*
+	BooleanAnd ({ExprBooleanOr.exprs+=current} "||" exprs+=BooleanAnd ("||" exprs+=BooleanAnd)*)?
 ;
 
 // TODO Divide expressions into lvalues and rvalues
 Assign:
-	BooleanOr ({ExprAssign.exprs+=current} "=" exprs+=BooleanOr)*
+	BooleanOr ({ExprAssign.exprs+=current} "=" exprs+=BooleanOr ("=" exprs+=BooleanOr)*)?
 ;
 
 ExprLambda:
-	'|' (args+=IDENT (',' args+=IDENT)*)? '|' expr=Expr
+	'|' (args+=ID (',' args+=ID)*)? '|' expr=Expr
 ;
 
 ExprWhile:
@@ -292,19 +277,19 @@ ExprWhile:
 ;
 
 ExprLoop:
-	(lifetime=LIFETIME ':')? 'loop' '{' block=Block '}'
+	(lifetime=[Lifetime] ':')? 'loop' '{' block=Block '}'
 ;
 
 ExprBreak:
-	{ExprBreak} 'break' lifetime=LIFETIME?
+	{ExprBreak} 'break' lifetime=[Lifetime]?
 ;
 
 ExprContinue:
-	{ExprContinue} 'continue' lifetime=LIFETIME?
+	{ExprContinue} 'continue' lifetime=[Lifetime]?
 ;
 
 ExprDo:
-	'do' expr=Expr '|' (args+=IDENT (',' args+=IDENT)*)? '|' '{' block=Block '}'
+	'do' expr=Expr '|' (args+=ID (',' args+=ID)*)? '|' '{' block=Block '}'
 ;
 
 ExprFor:
@@ -356,7 +341,7 @@ ExprStmt:
 
 // TODO Crossreference Trait?
 GenericParamDecl:
-	name=IDENT (':' bounds+=IDENT ('+' bounds+=IDENT)* )?
+	name=ID (':' bounds+=ID ('+' bounds+=ID)* )?
 ;
 
 // TODO Crossreference Type
@@ -382,7 +367,7 @@ PatWildcard:
 ;
 
 PatIdent:
-	(mutable?=MUT_KEYWORD)? name=IDENT
+	(mutable?=MUT_KEYWORD)? name=ID
 ;
 
 PatBoxed hidden(SL_COMMENT, ML_COMMENT):
@@ -414,47 +399,40 @@ PatEnum:
 ;
 
 FieldPat:
-	name=IDENT (':' pattern=Pat)?
+	name=ID (':' pattern=Pat)?
 ;
 
 TypePath hidden(ML_COMMENT):
-	segments+=IDENT ('::' segments+=IDENT)* (=>'<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))+ '>')?
+	segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])+ '>')?
 ;
 
 ExprPath hidden(ML_COMMENT):
-	segments+=IDENT ('::' segments+=IDENT)* ('::<' (lifetimes+=LIFETIME | genericTypes+=Type) (',' (lifetimes+=LIFETIME | genericTypes+=Type))* '>')?
+	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')?
+;
+
+GenericParam:
+	Type | {Lifetime} name=LIFETIME
 ;
 
 terminal LIFETIME:
-	"'" IDENT
+	"'" ID
 ;
 
 Type:
-	PrimitiveType |
-	TextualType |
+	UnitType |
 	NamedType |
 	BoxedPointer |
 	OwnedPointer |
-	BorrowedPointer
+	BorrowedPointer |
+	TypeItem
 ;
 
-PrimitiveType:
-	{IntType} INT_TYPE |
-	{FloatType} FLOAT_TYPE |
-	{BoolType} BOOLEAN_TYPE |
-	{MachineType} MACHINE_TYPE |
+UnitType:
 	{UnitType} '()'
 ;
 
-TextualType:
-	{CharType} 'char' |
-	{BoxedStrType} '@str' |
-	{OwnedStrType} '~str' |
-	{BorrowedStrType} '&str'
-;
-
 NamedType:
-	path=TypePath
+	name=ID ('::' path=TypePath)?
 ;
 
 BoxedPointer hidden(SL_COMMENT, ML_COMMENT):
@@ -466,11 +444,11 @@ OwnedPointer hidden(SL_COMMENT, ML_COMMENT):
 ;
 
 BorrowedPointer hidden(SL_COMMENT, ML_COMMENT):
-	"&" type=Type
+	"&"(lifetime=LIFETIME WS)? type=Type
 ;
 
 StructField:
-	vis=Visibility? name=IDENT ':' type=Type
+	vis=Visibility? name=ID ':' type=Type
 ;
 
 Variant:
@@ -478,22 +456,25 @@ Variant:
 ;
 
 StructVariant:
-	name=IDENT ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	name=ID ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
 ;
 
 TupleVariant:
-	name=IDENT '(' types+=Type (',' types+=Type)* ')'
+	name=ID '(' types+=Type (',' types+=Type)* ')'
 ;
 
 UnitVariant:
-	name=IDENT
+	name=ID
 ;
 
 enum Visibility:
 	PRIVATE="priv" | PUBLIC="pub"	
 ;
 
-terminal INT_TYPE: INT_SIZE;
+terminal MUT_KEYWORD: 'mut';
+// TODO Add all keywords
+
+// terminal INT_TYPE: INT_SIZE;
 terminal fragment INT_SIZE: SIGNED_INT_TYPE | UNSIGNED_INT_TYPE;
 terminal fragment SIGNED_INT_TYPE: I8 | I16 | I32 | I64;
 terminal fragment I8: "i8";
@@ -505,17 +486,14 @@ terminal fragment U8: "u8";
 terminal fragment U16: "u16";
 terminal fragment U32: "u32";
 terminal fragment U64: "u64";
-terminal FLOAT_TYPE: FLOAT_SIZE;
+// terminal FLOAT_TYPE: FLOAT_SIZE;
 terminal fragment FLOAT_SIZE: F32 | F64;
 terminal fragment F32: "f32";
 terminal fragment F64: "f64";
 terminal BOOLEAN_TYPE: "bool";
-terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
+// terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
 terminal fragment MACHINE_INT_TYPE: "int";
 terminal fragment MACHINE_UINT_TYPE: "uint";
-
-terminal MUT_KEYWORD: 'mut';
-// TODO Add all keywords
 
 StringLit: 
 	value = STRING_LIT
@@ -536,7 +514,7 @@ CharLit:
 	value = CHAR_LIT
 ;
 
-terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | "'"))* "'";
+terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | "'")) "'";
 terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | '"'))* '"';
 
 terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
@@ -568,9 +546,7 @@ terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 
 // terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
 
-terminal fragment XID_START: 'a'..'z' | 'A'..'Z' | '_'; // TODO Expand
-terminal fragment XID_CONTINUE: XID_START | '0'..'9'; // TODO Expand
-terminal IDENT: XID_START XID_CONTINUE*;
+terminal ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 
 terminal WS:
 	(' ' | '\t' | '\n' | '\r')+

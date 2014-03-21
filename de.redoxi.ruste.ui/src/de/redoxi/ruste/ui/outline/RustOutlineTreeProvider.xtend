@@ -19,12 +19,10 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 			if (!(childElement instanceof ItemAndAttrs)) {
 				createNode(parentNode, childElement)
 			} else {
-				createNode(parentNode, (childElement as ItemAndAttrs).getItem())
+				if ((childElement as ItemAndAttrs).getItem() != null) {
+					createNode(parentNode, (childElement as ItemAndAttrs).getItem())
+				}
 			}
 		}
-	}
-	
-	def Object _text(EObject element) {
-		"(" + element.getClass().name + ")";
 	}
 }

@@ -1,9 +1,0 @@
-[submodule "rust-antlr"]
-	path = rust-antlr
-	url = git@github.com:jbclements/rust-antlr.git
-[submodule "guava-libraries"]
-	path = guava-libraries
-	url = https://code.google.com/p/guava-libraries/
-[submodule "rust"]
-	path = rust
-	url = git@github.com:mozilla/rust.git

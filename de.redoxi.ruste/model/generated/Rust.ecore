@@ -2,20 +2,10 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rust" nsURI="http://www.redoxi.de/ruste/grammar/Rust" nsPrefix="rust">
   <eClassifiers xsi:type="ecore:EClass" name="Crate">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewItems" upperBound="-1"
-        eType="#//ViewItem" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
-        eType="#//ItemAndAttrs" containment="true"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewItem">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternModDecl" eSuperTypes="#//ViewItem">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
-        eType="#//LinkAttr" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="externalIdent" eType="#//StringLit"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewItem"/>
   <eClassifiers xsi:type="ecore:EClass" name="LinkAttr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ident" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
@@ -23,6 +13,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseDecl" eSuperTypes="#//ViewItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="externPath" eType="#//TypePath"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathGlob"
@@ -40,14 +31,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttrWithList" eSuperTypes="#//Attr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
-        eType="#//Attr" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LiteralAttr" eSuperTypes="#//Attr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Literal"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
+        eType="#//Attr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ItemAndAttrs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
@@ -56,14 +43,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Item"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalBody" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewItems" upperBound="-1"
-        eType="#//ViewItem" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
-        eType="#//ItemAndAttrs" containment="true"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FnItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
@@ -74,13 +61,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeItem" eSuperTypes="#//Item">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeItem" eSuperTypes="#//Item #//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
@@ -88,6 +77,7 @@
         eType="#//StructField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
@@ -104,6 +94,7 @@
         eType="#//StructField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TraitItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
@@ -143,11 +134,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternBlock" eSuperTypes="#//Item">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
-        eType="#//ForeignFn" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternItem" eSuperTypes="#//Item"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignFn">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
@@ -156,6 +143,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StaticItem" eSuperTypes="#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
@@ -276,15 +264,15 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprLoop" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprBreak" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprContinue" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprDo" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
@@ -392,23 +380,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypePath">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genericTypes" upperBound="-1"
-        eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" unique="false"
+        upperBound="-1" eType="#//GenericParam"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genericTypes" upperBound="-1"
-        eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" unique="false"
+        upperBound="-1" eType="#//GenericParam"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TextualType" eSuperTypes="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericParam"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenericParam"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//TypePath"
         containment="true"/>
   </eClassifiers>
@@ -419,6 +404,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BorrowedPointer" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructField">
@@ -450,6 +436,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberLit" eSuperTypes="#//Literal"/>
   <eClassifiers xsi:type="ecore:EClass" name="CharLit" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternModDecl" eSuperTypes="#//ExternItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
+        eType="#//LinkAttr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="externalIdent" eType="#//StringLit"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternBlock" eSuperTypes="#//ExternItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
+        eType="#//ForeignFn" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprField" eSuperTypes="#//ExprLValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -529,13 +527,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fieldPatterns" upperBound="-1"
         eType="#//FieldPat" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MachineType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CharType" eSuperTypes="#//TextualType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BoxedStrType" eSuperTypes="#//TextualType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OwnedStrType" eSuperTypes="#//TextualType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BorrowedStrType" eSuperTypes="#//TextualType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Lifetime" eSuperTypes="#//GenericParam">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
