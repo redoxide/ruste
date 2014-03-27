@@ -115,7 +115,6 @@ Expr:
 	ExprBreak |
 	ExprContinue |
 	ExprDo |
-	ExprFor |
 	ExprIf |
 	ExprMatch |
 	ExprReturn
@@ -351,20 +350,21 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} stmts+=Stmt (';' stmts+=Stmt)*
+	{Block} (stmts+=Stmt)*
 ;
 
 Stmt:
 	SlotDeclStmt |
-	ExprStmt
+	ExprStmt |
+	ExprFor
 ;
 
 SlotDeclStmt:
-	'let' pat=Pat (':' type=Type)? '=' expr=Expr
+	'let' pat=Pat (':' type=Type)? '=' expr=Expr =>';'
 ;
 
 ExprStmt:
-	expr=Expr
+	expr=Expr =>';'
 ;
 
 // TODO Crossreference Trait?

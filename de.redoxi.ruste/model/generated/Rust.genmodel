@@ -261,7 +261,6 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprFor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/pat"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/expr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFor/block"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprIf">
@@ -290,6 +289,7 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Block">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/stmts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Stmt">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Stmt/expr"/>
