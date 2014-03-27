@@ -3,6 +3,9 @@
 */
 package de.redoxi.ruste.ui.labeling
 
+import de.redoxi.ruste.rust.Crate
+import de.redoxi.ruste.rust.UseDecl
+
 //import org.eclipse.xtext.resource.IEObjectDescription
 
 /**
@@ -20,5 +23,22 @@ class RustDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDes
 //	 
 //	override image(IEObjectDescription ele) {
 //		ele.EClass.name + '.gif'
-//	}	 
+//	}
+
+		def text(Crate crate) {
+			"Crate"
+			// TODO Look up the name of the crate from the crate_id attribute
+		}
+		
+		def image(Crate crate) {
+			"crate_obj.png"
+		}
+		
+		def text(UseDecl useDecl) {
+			useDecl.name.toString
+		}
+		
+		def image(UseDecl useDecl) {
+			'use_obj.png'
+		}
 }

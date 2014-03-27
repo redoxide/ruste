@@ -74,7 +74,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-        eType="#//StructField" containment="true"/>
+        eType="#//StructDeclField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumItem" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
@@ -91,7 +91,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
         eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-        eType="#//StructField" containment="true"/>
+        eType="#//StructDeclField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TraitItem" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
@@ -108,6 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="self" eType="#//Self" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
@@ -122,18 +123,22 @@
         eType="#//ImplMethod" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplMethod">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
+        eType="#//ItemAttr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unsafe" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//FirstArg"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Self" eSuperTypes="#//FirstArg"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExternItem" eSuperTypes="#//Item"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignFn">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -169,12 +174,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprPrimary">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" unique="false"
+        upperBound="-1" eType="#//GenericParam"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//StructField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpr" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprSelf" eSuperTypes="#//ExprPrimary"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprGroup" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprStruct" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-        eType="#//StructField" containment="true"/>
+        eType="#//StructDeclField" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
@@ -185,27 +201,27 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//DivisionMultiplicationOrModulo"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericNegation" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dereference" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LogicalNegation" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ManagedBox" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OwnedBox" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Borrow" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprFields" eSuperTypes="#//ExprUnary">
@@ -241,6 +257,19 @@
     <eLiterals name="EQUAL" literal="=="/>
     <eLiterals name="NOT_EQUAL" value="1" literal="!="/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssignmentOp">
+    <eLiterals name="ASSIGN" literal="="/>
+    <eLiterals name="ADD_ASSIGN" value="1" literal="+="/>
+    <eLiterals name="SUB_ASSIGN" value="2" literal="-="/>
+    <eLiterals name="MUL_ASSIGN" value="3" literal="*="/>
+    <eLiterals name="DIV_ASSIGN" value="4" literal="/="/>
+    <eLiterals name="MOD_ASSIGN" value="5" literal="%="/>
+    <eLiterals name="AND_ASSIGN" value="6" literal="&amp;="/>
+    <eLiterals name="OR_ASSIGN" value="7" literal="|="/>
+    <eLiterals name="XOR_ASSIGN" value="8" literal="^="/>
+    <eLiterals name="LSHIFT_ASSIGN" value="9" literal="&lt;&lt;="/>
+    <eLiterals name="RSHIFT_ASSIGN" value="10" literal=">>="/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DivisionMultiplicationOrModulo" eSuperTypes="#//As"/>
   <eClassifiers xsi:type="ecore:EClass" name="As" eSuperTypes="#//AdditionOrSubtraction"/>
   <eClassifiers xsi:type="ecore:EClass" name="AdditionOrSubtraction" eSuperTypes="#//ShiftOperator"/>
@@ -257,6 +286,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprWhile" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
@@ -302,7 +333,9 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MatchArm">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="matchPat" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchPats" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifExpr" eType="#//Expr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
@@ -312,7 +345,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endPat" eType="#//Pat"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprReturn" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
@@ -334,37 +366,39 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bounds" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Arg">
+  <eClassifiers xsi:type="ecore:EClass" name="Arg" eSuperTypes="#//FirstArg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pat"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatWildcard" eSuperTypes="#//Pat"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatIdent" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="FirstArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pat" eSuperTypes="#//FirstArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatBoxed" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatWildcard" eSuperTypes="#//FirstArg #//Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatIdent" eSuperTypes="#//Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatBoxed" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatOwned" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatOwned" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatBorrowed" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatBorrowed" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatTuple" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatTuple" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatVector" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatVector" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatLiteral" eSuperTypes="#//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatLiteral" eSuperTypes="#//FirstArg #//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
@@ -377,26 +411,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypePath">
+  <eClassifiers xsi:type="ecore:EClass" name="TypePath" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" unique="false"
-        upperBound="-1" eType="#//GenericParam"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprPrimary">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" unique="false"
-        upperBound="-1" eType="#//GenericParam"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" upperBound="-1"
+        eType="#//GenericParam" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericParam"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenericParam"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnitType" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//TypePath"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoxedPointer" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
@@ -407,10 +430,23 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructField">
+  <eClassifiers xsi:type="ecore:EClass" name="VectorType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructDeclField">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -419,7 +455,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-        eType="#//StructField" containment="true"/>
+        eType="#//StructDeclField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleVariant" eSuperTypes="#//Variant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
@@ -518,6 +554,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprAssign" eSuperTypes="#//Assign">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
         eType="#//BooleanOr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ops" unique="false" upperBound="-1"
+        eType="#//AssignmentOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatTupleEnum" eSuperTypes="#//PatEnum">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"

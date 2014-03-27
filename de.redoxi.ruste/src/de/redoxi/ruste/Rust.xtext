@@ -19,7 +19,7 @@ LinkAttr:
 
 // TODO Match rules for internal vs external paths
 UseDecl:
-	vis=Visibility? "use" name=ID ('=' externPath=TypePath | "::" path=PathGlob) ';'
+	vis=Visibility? "use" name=ID ('=' externPath=TypePath | "::" path=PathGlob)? ';'
 ;
 
 PathGlob:
@@ -29,8 +29,8 @@ PathGlob:
 ;
 
 // Attribute for an item
-ItemAttr hidden ():
-	'#[' WS? attrs+=Attr WS? (',' WS? attrs+=Attr WS?)* ']' WS? ';'?
+ItemAttr:
+	'#[' attrs+=Attr (',' attrs+=Attr)* ']' ';'?
 ;
 
 // Individual attribute within an item
@@ -63,7 +63,7 @@ TypeItem:
 ;
 
 StructItem:
-	vis=Visibility? "struct" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	vis=Visibility? "struct" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructDeclField (',' fields+=StructDeclField)* '}'
 ;
 
 EnumItem:
@@ -71,7 +71,7 @@ EnumItem:
 ;
 
 EnumVariant:
-	name=ID ('<' params+=ID (',' params+=ID)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructField ("," fields+=StructField)* /* TODO Wildcard pattern? */ "}")?
+	name=ID ('<' params+=ID (',' params+=ID)* '>')? ("(" types+=Type ("," types+=Type)* ")" | "{" fields+=StructDeclField ("," fields+=StructDeclField)* /* TODO Wildcard pattern? */ "}")?
 ;
 
 TraitItem:
@@ -79,7 +79,7 @@ TraitItem:
 ;
 
 TraitMethod:
-	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' self=Self (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
 ;
 
 // TODO Crossreference struct and trait
@@ -88,7 +88,11 @@ ImplItem:
 ;
 
 ImplMethod:
-	(unsafe?="unsafe" | extern?="extern")? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=Arg (',' args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
+	attrs+=ItemAttr* (unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=FirstArg)? (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
+;
+
+Self hidden(ML_COMMENT):
+	{Self} '&' (mutable?="mut" WS)? "self"
 ;
 
 ExternItem:
@@ -100,7 +104,7 @@ ForeignFn:
 ;
 
 StaticItem:
-	vis=Visibility? "static" mutable?=MUT_KEYWORD? name=ID (":" type=Type)? "=" expr=Expr ";"
+	vis=Visibility? "static" mutable?="mut"? name=ID (":" type=Type)? "=" expr=Expr ";"
 ;
 
 Expr:
@@ -121,12 +125,12 @@ ExprLValue:
 	expr=ExprLeaf ({ExprField.expr=current} =>'.' field=ID | {ExprIndex.expr=current} =>'[' indexExpr=Expr ']')
 ;
 
-ExprLeaf hidden():
-	ExprPrimary ({ExprCall.expr=current} '()' | '(' WS? args+=Expr WS? (',' WS? args+=Expr WS?)* ')')?
+ExprLeaf:
+	ExprPrimary ({ExprCall.expr=current} '()' | '(' args+=Expr (',' args+=Expr)* ')')?
 ;
 
-ExprFnCallArgs hidden():
-	{ExprFnCallArgs} ('()' | '(' WS? args+=Expr WS? (',' WS? args+=Expr WS?)* ')') tail=ExprFnCallArgs?
+ExprFnCallArgs:
+	{ExprFnCallArgs} ('()' | '(' args+=Expr (',' args+=Expr)* ')') tail=ExprFnCallArgs?
 ;
 
 ExprPrimary:
@@ -134,11 +138,20 @@ ExprPrimary:
 	ExprGroup |
 	ExprStruct |
 	ExprVec |
-	ExprPath
+	ExprPath |
+	ExprSelf
 ;
 
 ExprLiteral:
 	literal=Literal
+;
+
+ExprPath:
+	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')? (=>"{" fields+=StructField ("," fields+=StructField)* "}" | =>'(' exprs+=Expr (',' exprs+=Expr)* ')' | =>'[' indexExpr=Expr ']')?
+;
+
+ExprSelf:
+	{ExprSelf} "self"
 ;
 
 ExprGroup:
@@ -146,11 +159,11 @@ ExprGroup:
 ;
 
 ExprStruct:
-	"{" fields+=StructField ("," fields+=StructField)* (".." baseExpr = Expr)? "}"
+	"{" fields+=StructDeclField ("," fields+=StructDeclField)* (".." baseExpr = Expr)? "}"
 ;
 
 ExprVec:
-	'[' mutable?=MUT_KEYWORD (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+))? ']'
+	{ExprVec} '[' mutable?="mut"? (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+ ','?))? ']'
 ;
 
 ExprUnary:
@@ -163,28 +176,29 @@ ExprUnary:
 	ExprFields
 ;
 
-NumericNegation hidden(SL_COMMENT, ML_COMMENT):
-	"-" expr=ExprPrimary
+// TODO ExprPrimary should include field access and method calls
+NumericNegation:
+	"-" expr=ExprUnary
 ;
 
-Dereference hidden(SL_COMMENT, ML_COMMENT):
-	"*" expr=ExprPrimary
+Dereference:
+	"*" expr=ExprUnary
 ;
 
-LogicalNegation hidden(SL_COMMENT, ML_COMMENT):
-	"!" expr=ExprPrimary
+LogicalNegation:
+	"!" expr=ExprUnary
 ;
 
-ManagedBox hidden(SL_COMMENT, ML_COMMENT):
-	"@" expr=ExprPrimary
+ManagedBox:
+	"@" expr=ExprUnary
 ;
 
-OwnedBox hidden(SL_COMMENT, ML_COMMENT):
-	"~" expr=ExprPrimary
+OwnedBox:
+	"~" expr=ExprUnary
 ;
 
-Borrow hidden(SL_COMMENT, ML_COMMENT):
-	"&" expr=ExprPrimary
+Borrow:
+	"&" expr=ExprUnary
 ;
 
 ExprFields:
@@ -217,6 +231,20 @@ enum ComparisonOp:
 
 enum EqualityOp:
 	EQUAL="==" | NOT_EQUAL="!="
+;
+
+enum AssignmentOp:
+	ASSIGN="=" |
+	ADD_ASSIGN="+=" |
+	SUB_ASSIGN="-=" |
+	MUL_ASSIGN="*=" |
+	DIV_ASSIGN="/=" |
+	MOD_ASSIGN="%=" |
+	AND_ASSIGN="&=" |
+	OR_ASSIGN="|=" |
+	XOR_ASSIGN="^=" |
+	LSHIFT_ASSIGN="<<=" |
+	RSHIFT_ASSIGN=">>="
 ;
 
 DivisionMultiplicationOrModulo:
@@ -265,11 +293,11 @@ BooleanOr:
 
 // TODO Divide expressions into lvalues and rvalues
 Assign:
-	BooleanOr ({ExprAssign.exprs+=current} "=" exprs+=BooleanOr ("=" exprs+=BooleanOr)*)?
+	BooleanOr ({ExprAssign.exprs+=current} ops+=AssignmentOp exprs+=BooleanOr (ops+=AssignmentOp exprs+=BooleanOr)*)?
 ;
 
 ExprLambda:
-	'|' (args+=ID (',' args+=ID)*)? '|' expr=Expr
+	'|' (args+=ID (',' args+=ID)*)? '|' (expr=Expr | '{' block=Block '}')
 ;
 
 ExprWhile:
@@ -305,25 +333,25 @@ ElseTail:
 ;
 
 ExprMatch:
-	'match' expr=Expr '{' arms+=MatchArm ('|' arms+=MatchArm)* '}'
+	'match' expr=Expr '{' arms+=MatchArm* '}'
 ;
 
 MatchArm:
-	matchPat=(MatchPat | PatEnum) '=>' (expr=Expr ',' | '{' block=Block '}')
+	matchPats+=(MatchPat | PatEnum) ('|' matchPats+=(MatchPat | PatEnum))* ('if' ifExpr=Expr)? '=>' (expr=Expr ',' | '{' block=Block '}')
 ;
 
 MatchPat:
-	pat=Pat ('..' endPat=Pat)? ('if' expr=Expr)
+	pat=Pat ('..' endPat=Pat)?
 ;
 
 // TODO Expression is optional
 ExprReturn:
-	{ExprReturn} 'return' expr=Expr?
+	{ExprReturn} 'return' =>expr=Expr?
 ;
 
 // Left-factored. Bit messy
 Block:
-	{Block} stmts+=Stmt (';' stmts+=Stmt)* ';'?
+	{Block} stmts+=Stmt (';' stmts+=Stmt)*
 ;
 
 Stmt:
@@ -332,7 +360,7 @@ Stmt:
 ;
 
 SlotDeclStmt:
-	'let' pat=Pat (':' type=Type)? '=' expr=Expr ';'
+	'let' pat=Pat (':' type=Type)? '=' expr=Expr
 ;
 
 ExprStmt:
@@ -347,6 +375,26 @@ GenericParamDecl:
 // TODO Crossreference Type
 Arg:
 	pat=Pat ':' type=Type
+;
+
+// TODO Messy :/
+FirstArg hidden(ML_COMMENT):
+	('&' (((mutable?="mut" WS)? ({Self} "self" | {Pat} name=ID {Arg.pat=current} WS? ':' WS? type=Type)) | 
+				PatWildcard |														
+				PatBoxed |
+				PatOwned |
+				PatBorrowed |
+				PatTuple |
+				PatVector |
+				PatLiteral
+			) | {Arg} pat=(PatWildcard |														
+		PatIdent |
+		PatBoxed |
+		PatOwned |
+		PatTuple |
+		PatVector |
+		PatLiteral) WS? ':' WS? type=Type
+	)
 ;
 
 // TODO Expand
@@ -367,18 +415,18 @@ PatWildcard:
 ;
 
 PatIdent:
-	(mutable?=MUT_KEYWORD)? name=ID
+	(mutable?="mut")? name=ID
 ;
 
-PatBoxed hidden(SL_COMMENT, ML_COMMENT):
+PatBoxed:
 	"@" pattern=Pat
 ;
 
-PatOwned hidden(SL_COMMENT, ML_COMMENT):
+PatOwned:
 	"~" pattern=Pat
 ;
 
-PatBorrowed hidden(SL_COMMENT, ML_COMMENT):
+PatBorrowed:
 	"&" pattern=Pat
 ;
 
@@ -402,12 +450,8 @@ FieldPat:
 	name=ID (':' pattern=Pat)?
 ;
 
-TypePath hidden(ML_COMMENT):
-	segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])+ '>')?
-;
-
-ExprPath hidden(ML_COMMENT):
-	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')?
+TypePath:
+	segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 GenericParam:
@@ -420,35 +464,45 @@ terminal LIFETIME:
 
 Type:
 	UnitType |
-	NamedType |
+	TypePath |
 	BoxedPointer |
 	OwnedPointer |
 	BorrowedPointer |
-	TypeItem
+	VectorType |
+	TypeItem |
+	LambdaType 
 ;
 
 UnitType:
 	{UnitType} '()'
 ;
 
-NamedType:
-	name=ID ('::' path=TypePath)?
-;
-
-BoxedPointer hidden(SL_COMMENT, ML_COMMENT):
+BoxedPointer:
 	"@" type=Type
 ;
 
-OwnedPointer hidden(SL_COMMENT, ML_COMMENT):
+OwnedPointer:
 	"~" type=Type
 ;
 
-BorrowedPointer hidden(SL_COMMENT, ML_COMMENT):
-	"&"(lifetime=LIFETIME WS)? type=Type
+BorrowedPointer:
+	"&"(lifetime=LIFETIME)? type=Type
+;
+
+VectorType:
+	'[' type=Type ']'
+;
+
+LambdaType:
+	{LambdaType} '|' (args+=Arg (',' args+=Arg)*)? '|' ('->' returnType=Type)?
+;
+
+StructDeclField:
+	vis=Visibility? name=ID ':' type=Type
 ;
 
 StructField:
-	vis=Visibility? name=ID ':' type=Type
+	name=ID ':' expr=Expr
 ;
 
 Variant:
@@ -456,7 +510,7 @@ Variant:
 ;
 
 StructVariant:
-	name=ID ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructField (',' fields+=StructField)* '}'
+	name=ID ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? '{' fields+=StructDeclField (',' fields+=StructDeclField)* '}'
 ;
 
 TupleVariant:
@@ -471,7 +525,6 @@ enum Visibility:
 	PRIVATE="priv" | PUBLIC="pub"	
 ;
 
-terminal MUT_KEYWORD: 'mut';
 // TODO Add all keywords
 
 // terminal INT_TYPE: INT_SIZE;
@@ -490,10 +543,7 @@ terminal fragment U64: "u64";
 terminal fragment FLOAT_SIZE: F32 | F64;
 terminal fragment F32: "f32";
 terminal fragment F64: "f64";
-terminal BOOLEAN_TYPE: "bool";
 // terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
-terminal fragment MACHINE_INT_TYPE: "int";
-terminal fragment MACHINE_UINT_TYPE: "uint";
 
 StringLit: 
 	value = STRING_LIT
@@ -514,8 +564,8 @@ CharLit:
 	value = CHAR_LIT
 ;
 
-terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | "'")) "'";
-terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
+terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"')) | UNICODE_CHAR | !('\\' | '"'))* '"';
 
 terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
 terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
@@ -548,9 +598,8 @@ terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
 
 terminal ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 
-terminal WS:
-	(' ' | '\t' | '\n' | '\r')+
-;
-
 terminal ML_COMMENT	: '/*' -> '*/';
 terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS: (' ' | '\t' | '\r' | '\n')+;
+terminal ANY_OTHER: .;

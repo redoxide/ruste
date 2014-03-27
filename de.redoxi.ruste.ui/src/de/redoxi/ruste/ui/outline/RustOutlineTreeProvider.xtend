@@ -6,6 +6,10 @@ package de.redoxi.ruste.ui.outline
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.emf.ecore.EObject
 import de.redoxi.ruste.rust.ItemAndAttrs
+import de.redoxi.ruste.rust.UseDecl
+import de.redoxi.ruste.rust.StaticItem
+import de.redoxi.ruste.rust.StructField
+import de.redoxi.ruste.rust.FnItem
 
 /**
  * Customization of the default outline structure.
@@ -25,4 +29,22 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 			}
 		}
 	}
+	
+	/*
+	def _isLeaf(UseDecl useDecl) {
+		true
+	}
+	
+	def _isLeaf(StaticItem staticItem) {
+		true
+	}
+	
+	def _isLeaf(StructField structField) {
+		true
+	}
+	
+	def _isLeaf(FnItem fnItem) {
+		true
+	}
+	*/
 }
