@@ -79,20 +79,16 @@ TraitItem:
 ;
 
 TraitMethod:
-	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' self=Self (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
+	(unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' args+=FirstArg (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? ('{' body=Block '}' | ';')
 ;
 
 // TODO Crossreference struct and trait
 ImplItem:
-	"impl" (trait=ID "for")? struct=ID "{" (methods+=ImplMethod)* "}"
+	"impl" ('<' params+=ID (',' params+=ID)* '>')? (trait=ExprPath "for")? struct=ID "{" (methods+=ImplMethod)* "}"
 ;
 
 ImplMethod:
 	attrs+=ItemAttr* (unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=FirstArg)? (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
-;
-
-Self hidden(ML_COMMENT):
-	{Self} '&' (mutable?="mut" WS)? "self"
 ;
 
 ExternItem:
@@ -151,8 +147,9 @@ ExprPath:
 
 ExprPathOrCreate:
 	path=ExprPath (
-		=>"{" fields+=StructField ("," fields+=StructField)* "}" | 
-		=>'(' exprs+=Expr (',' exprs+=Expr)* ')' | 
+		// TODO Struct literal can have ".." token here (see line 2611 of parser.rs)
+		"{" =>fields+=StructField ("," fields+=StructField)* "}" | 
+		macro?='!'? =>'(' exprs+=Expr (',' exprs+=Expr)* ')' | 
 		=>'[' indexExpr=Expr ']'
 	)?
 ;
@@ -170,7 +167,8 @@ ExprStruct:
 ;
 
 ExprVec:
-	{ExprVec} '[' mutable?="mut"? (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+ ','?))? ']'
+	// {ExprVec} '[' mutable?="mut"? (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+ ','?))? ']'
+	{ExprVec} '[' mutable?="mut"? (exprs+=Expr (',' (".." lenExpr=Expr | exprs+=Expr (',' exprs+=Expr)* ','?))?)? ']'
 ;
 
 ExprUnary:
@@ -348,8 +346,7 @@ MatchArm:
 ;
 
 MatchPat:
-	pat=Pat ('..' endPat=Pat)? |
-	PatEnum
+	pat=Pat ('..' endPat=Pat)?
 ;
 
 // TODO Expression is optional
@@ -359,12 +356,11 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} stmts=StmtList?
+	{Block} stmts=StmtList
 ;
 
 StmtList:
-	=>head=ExprBlock (tail=StmtList)? |
-	head=Stmt (';' tail=StmtList?)?
+	{StmtList} ((=>head=ExprBlock tail=StmtList) | (head=Stmt (';' tail=StmtList)?))?
 ;
 
 // Expressions ending in a block that don't need to have a trailing semicolon in a list of statements
@@ -395,31 +391,16 @@ Arg:
 	pat=Pat ':' type=Type
 ;
 
-// TODO Messy :/
-FirstArg hidden(ML_COMMENT):
-	('&' (((mutable?="mut" WS)? ({Self} "self" | {Pat} name=ID {Arg.pat=current} WS? ':' WS? type=Type)) | 
-				PatWildcard |														
-				PatBoxed |
-				PatOwned |
-				PatBorrowed |
-				PatTuple |
-				PatVector |
-				PatLiteral
-			) | {Arg} pat=(PatWildcard |														
-		PatIdent |
-		PatBoxed |
-		PatOwned |
-		PatTuple |
-		PatVector |
-		PatLiteral) WS? ':' WS? type=Type
-	)
+FirstArg:
+	// TODO Reduce rule set for pattern
+	pat=Pat (':' type=Type)?
 ;
 
 // TODO Expand
 // See line 2869 of libsyntax/parse/parser.rs
 Pat:
 	PatWildcard |														
-	PatIdent |
+	PatEnum |
 	PatBoxed |
 	PatOwned |
 	PatBorrowed |
@@ -430,10 +411,6 @@ Pat:
 
 PatWildcard:
 	{PatWildcard} '_'
-;
-
-PatIdent:
-	(mutable?="mut")? name=ID
 ;
 
 PatBoxed:
@@ -461,10 +438,10 @@ PatLiteral:
 ;
 
 PatEnum:
-	path=ExprPath //(
-		{PatTupleEnum.path=current} =>'(' ('*' | '..' | (patterns+=Pat (',' patterns+=Pat)*)) ')'/* | 
-		{PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}' */
-	//)
+	{PatEnum} mutable?="mut"? ("self" | path=ExprPath (
+		{PatTupleEnum.path=current} '(' ('*' | '..' | (patterns+=Pat (',' patterns+=Pat)*)) ')' | 
+		{PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}' 
+	)?)
 ;
 
 FieldPat:
@@ -472,7 +449,7 @@ FieldPat:
 ;
 
 TypePath:
-	segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	mutable?="mut"? segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 GenericParam:

@@ -108,8 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="self" eType="#//Self" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Arg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
         containment="true"/>
@@ -117,7 +116,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplItem" eSuperTypes="#//Item">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trait" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="params" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trait" eType="#//ExprPath"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="struct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
         eType="#//ImplMethod" containment="true"/>
@@ -131,14 +133,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//GenericParamDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//FirstArg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Self" eSuperTypes="#//FirstArg"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExternItem" eSuperTypes="#//Item"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForeignFn">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -185,6 +186,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
         eType="#//StructField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="macro" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpr" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
@@ -375,43 +377,42 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bounds" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Arg" eSuperTypes="#//FirstArg">
+  <eClassifiers xsi:type="ecore:EClass" name="Arg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FirstArg">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pat" eSuperTypes="#//FirstArg">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatWildcard" eSuperTypes="#//FirstArg #//Pat"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatIdent" eSuperTypes="#//Pat"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatBoxed" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatWildcard" eSuperTypes="#//Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatBoxed" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatOwned" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatOwned" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatBorrowed" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatBorrowed" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pat"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatTuple" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatTuple" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatVector" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatVector" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatLiteral" eSuperTypes="#//FirstArg #//Pat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatLiteral" eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatEnum" eSuperTypes="#//MatchPat">
+  <eClassifiers xsi:type="ecore:EClass" name="PatEnum" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
@@ -421,6 +422,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypePath" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" upperBound="-1"
@@ -573,6 +575,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="PatTupleEnum" eSuperTypes="#//PatEnum">
     <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
         eType="#//Pat" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatStructEnum" eSuperTypes="#//PatEnum">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fieldPatterns" upperBound="-1"
+        eType="#//FieldPat" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lifetime" eSuperTypes="#//GenericParam">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
