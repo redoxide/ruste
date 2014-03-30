@@ -121,7 +121,7 @@ ExprLValue:
 ;
 
 ExprLeaf:
-	ExprPrimary ({ExprCall.expr=current} '()' | '(' args+=Expr (',' args+=Expr)* ')')?
+	ExprPrimary ({ExprCall.expr=current} '()' /*| '(' args+=Expr (',' args+=Expr)* ')'*/)?
 ;
 
 ExprFnCallArgs:
@@ -148,7 +148,7 @@ ExprPath:
 ExprPathOrCreate:
 	path=ExprPath (
 		// TODO Struct literal can have ".." token here (see line 2611 of parser.rs)
-		"{" =>fields+=StructField ("," fields+=StructField)* "}" | 
+		=>("{" fields+=StructField) ("," fields+=StructField)* "}" | 
 		macro?='!'? =>'(' exprs+=Expr (',' exprs+=Expr)* ')' | 
 		=>'[' indexExpr=Expr ']'
 	)?
@@ -505,7 +505,7 @@ StructDeclField:
 ;
 
 StructField:
-	name=ID ':' expr=Expr
+	(name=ID ':' expr=Expr)
 ;
 
 Variant:

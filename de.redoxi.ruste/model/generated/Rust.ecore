@@ -167,10 +167,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tail" eType="#//ExprFnCallArgs"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPrimary" eSuperTypes="#//ExprLeaf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPrimary" eSuperTypes="#//ExprLeaf"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprLiteral" eSuperTypes="#//ExprPrimary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="literal" eType="#//Literal"
         containment="true"/>

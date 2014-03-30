@@ -171,9 +171,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnCallArgs/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnCallArgs/tail"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprPrimary">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPrimary/args"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprPrimary"/>
     <genClasses ecoreClass="Rust.ecore#//ExprLiteral">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLiteral/literal"/>
     </genClasses>
