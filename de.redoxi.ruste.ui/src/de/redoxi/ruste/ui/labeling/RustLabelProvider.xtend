@@ -89,11 +89,11 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 		}
 		
 		def image(StructField structField) {
-			switch (structField.vis) {
-				case Visibility.PUBLIC:
+			/*switch (structField.vis) {
+				case Visibility.PUBLIC:*/
 					return 'static_field_public_obj.png'
-				default:
+				/*default:
 					return 'static_field_private_obj.png'
-			}
+			}*/
 		}
 }

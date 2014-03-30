@@ -30,6 +30,10 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 		}
 	}
 	
+	override void createNode(IOutlineNode parentNode, EObject modelElement) {
+		createEObjectNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), modelElement.eContainingFeature.name + "=" + textDispatcher.invoke(modelElement), isLeafDispatcher.invoke(modelElement));
+	}
+	
 	/*
 	def _isLeaf(UseDecl useDecl) {
 		true

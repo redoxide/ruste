@@ -3,6 +3,11 @@
 	<name>ruste</name>
 	<comment></comment>
 	<projects>
+		<project>de.redoxi.ruste</project>
+		<project>de.redoxi.ruste.ui</project>
+		<project>de.redoxi.ruste.sdk</project>
+		<project>de.redoxi.ruste.tests</project>
+		<project>rust</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

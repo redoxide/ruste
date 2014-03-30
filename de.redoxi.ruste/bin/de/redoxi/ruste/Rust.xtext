@@ -137,7 +137,7 @@ ExprPrimary:
 	ExprGroup |
 	ExprStruct |
 	ExprVec |
-	ExprPath |
+	ExprPathOrCreate |
 	ExprSelf
 ;
 
@@ -146,7 +146,15 @@ ExprLiteral:
 ;
 
 ExprPath:
-	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')? (=>"{" fields+=StructField ("," fields+=StructField)* "}" | =>'(' exprs+=Expr (',' exprs+=Expr)* ')' | =>'[' indexExpr=Expr ']')?
+	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')?
+;
+
+ExprPathOrCreate:
+	path=ExprPath (
+		=>"{" fields+=StructField ("," fields+=StructField)* "}" | 
+		=>'(' exprs+=Expr (',' exprs+=Expr)* ')' | 
+		=>'[' indexExpr=Expr ']'
+	)?
 ;
 
 ExprSelf:
@@ -336,11 +344,12 @@ ExprMatch:
 ;
 
 MatchArm:
-	matchPats+=(MatchPat | PatEnum) ('|' matchPats+=(MatchPat | PatEnum))* ('if' ifExpr=Expr)? '=>' (expr=Expr ',' | '{' block=Block '}')
+	matchPats+=MatchPat ('|' matchPats+=MatchPat)* ("if" ifExpr=Expr)? '=>' (expr=Expr ',' | '{' block=Block '}')
 ;
 
 MatchPat:
-	pat=Pat ('..' endPat=Pat)?
+	pat=Pat ('..' endPat=Pat)? |
+	PatEnum
 ;
 
 // TODO Expression is optional
@@ -350,21 +359,30 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} (stmts+=Stmt)*
+	{Block} stmts=StmtList?
+;
+
+StmtList:
+	=>head=ExprBlock (tail=StmtList)? |
+	head=Stmt (';' tail=StmtList?)?
+;
+
+// Expressions ending in a block that don't need to have a trailing semicolon in a list of statements
+ExprBlock:
+	ExprMatch | ExprIf | ExprFor | ExprDo
 ;
 
 Stmt:
 	SlotDeclStmt |
-	ExprStmt |
-	ExprFor
+	ExprStmt
 ;
 
 SlotDeclStmt:
-	'let' pat=Pat (':' type=Type)? '=' expr=Expr =>';'
+	'let' pat=Pat (':' type=Type)? '=' expr=Expr
 ;
 
 ExprStmt:
-	expr=Expr =>';'
+	expr=Expr
 ;
 
 // TODO Crossreference Trait?
@@ -443,7 +461,10 @@ PatLiteral:
 ;
 
 PatEnum:
-	path=ExprPath ({PatTupleEnum.path=current} '(' ('*' | '..' | patterns+=Pat (',' patterns+=Pat)*) ')' | {PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}')
+	path=ExprPath //(
+		{PatTupleEnum.path=current} =>'(' ('*' | '..' | (patterns+=Pat (',' patterns+=Pat)*)) ')'/* | 
+		{PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* '}' */
+	//)
 ;
 
 FieldPat:
@@ -470,7 +491,8 @@ Type:
 	BorrowedPointer |
 	VectorType |
 	TypeItem |
-	LambdaType 
+	LambdaType |
+	TupleType
 ;
 
 UnitType:
@@ -495,6 +517,10 @@ VectorType:
 
 LambdaType:
 	{LambdaType} '|' (args+=Arg (',' args+=Arg)*)? '|' ('->' returnType=Type)?
+;
+
+TupleType:
+	'(' types+=Type (',' types+=Type)+ ')'
 ;
 
 StructDeclField:
