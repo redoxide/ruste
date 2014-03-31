@@ -63,7 +63,7 @@ TypeItem:
 ;
 
 StructItem:
-	vis=Visibility? "struct" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructDeclField (',' fields+=StructDeclField)* '}'
+	vis=Visibility? "struct" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? '{' fields+=StructDeclField (',' fields+=StructDeclField)* ','? '}'
 ;
 
 EnumItem:
@@ -84,7 +84,7 @@ TraitMethod:
 
 // TODO Crossreference struct and trait
 ImplItem:
-	"impl" ('<' params+=ID (',' params+=ID)* '>')? (trait=ExprPath "for")? struct=ID "{" (methods+=ImplMethod)* "}"
+	"impl" ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? types+=TypePath ("for" types+=TypePath)? "{" (methods+=ImplMethod)* "}"
 ;
 
 ImplMethod:
@@ -134,7 +134,8 @@ ExprPrimary:
 	ExprStruct |
 	ExprVec |
 	ExprPathOrCreate |
-	ExprSelf
+	ExprSelf |
+	ExprUnit
 ;
 
 ExprLiteral:
@@ -148,8 +149,8 @@ ExprPath:
 ExprPathOrCreate:
 	path=ExprPath (
 		// TODO Struct literal can have ".." token here (see line 2611 of parser.rs)
-		=>("{" fields+=StructField) ("," fields+=StructField)* "}" | 
-		macro?='!'? =>'(' exprs+=Expr (',' exprs+=Expr)* ')' | 
+		=>("{" fields+=StructField) ("," fields+=StructField)* ','? "}" | 
+		macro?='!'? =>('()' | '(' exprs+=Expr (',' exprs+=Expr)* ','? ')') | 
 		=>'[' indexExpr=Expr ']'
 	)?
 ;
@@ -181,6 +182,10 @@ ExprUnary:
 	ExprFields
 ;
 
+ExprUnit:
+	{ExprUnit} '()'
+;
+
 // TODO ExprPrimary should include field access and method calls
 NumericNegation:
 	"-" expr=ExprUnary
@@ -203,7 +208,7 @@ OwnedBox:
 ;
 
 Borrow:
-	"&" expr=ExprUnary
+	"&" mutable?="mut"? expr=ExprUnary
 ;
 
 ExprFields:
@@ -302,7 +307,7 @@ Assign:
 ;
 
 ExprLambda:
-	'|' (args+=ID (',' args+=ID)*)? '|' (expr=Expr | '{' block=Block '}')
+	'|' (args+=Pat (',' args+=Pat)*)? '|' (expr=Expr | '{' block=Block '}')
 ;
 
 ExprWhile:
@@ -338,11 +343,11 @@ ElseTail:
 ;
 
 ExprMatch:
-	'match' expr=Expr '{' arms+=MatchArm* '}'
+	'match' expr=Expr '{' arms=MatchArm? '}'
 ;
 
 MatchArm:
-	matchPats+=MatchPat ('|' matchPats+=MatchPat)* ("if" ifExpr=Expr)? '=>' (expr=Expr ',' | '{' block=Block '}')
+	matchPats+=MatchPat ('|' matchPats+=MatchPat)* ("if" ifExpr=Expr)? '=>' (expr=Expr (',' nextMatch=MatchArm?)? | '{' block=Block '}' nextMatch=MatchArm?) 
 ;
 
 MatchPat:
@@ -360,7 +365,7 @@ Block:
 ;
 
 StmtList:
-	{StmtList} ((=>head=ExprBlock tail=StmtList) | (head=Stmt (';' tail=StmtList)?))?
+	{StmtList} ((=>head=ExprBlock ';'? tail=StmtList) | (head=Stmt (';' tail=StmtList)?))?
 ;
 
 // Expressions ending in a block that don't need to have a trailing semicolon in a list of statements
@@ -383,7 +388,8 @@ ExprStmt:
 
 // TODO Crossreference Trait?
 GenericParamDecl:
-	name=ID (':' bounds+=ID ('+' bounds+=ID)* )?
+	name=ID (':' bounds+=ID ('+' bounds+=ID)* )? |
+	{Lifetime} LIFETIME
 ;
 
 // TODO Crossreference Type
@@ -406,7 +412,8 @@ Pat:
 	PatBorrowed |
 	PatTuple |
 	PatVector |
-	PatLiteral
+	PatLiteral |
+	PatRef
 ;
 
 PatWildcard:
@@ -435,6 +442,10 @@ PatVector:
 
 PatLiteral:
 	literal=Literal
+;
+
+PatRef:
+	"ref" pat=Pat
 ;
 
 PatEnum:
@@ -493,7 +504,8 @@ VectorType:
 ;
 
 LambdaType:
-	{LambdaType} '|' (args+=Arg (',' args+=Arg)*)? '|' ('->' returnType=Type)?
+	// TODO This should really be a list of types
+	{LambdaType} '|' (=>types+=Type (',' types+=Type)*)? '|' ('->' returnType=Type)?
 ;
 
 TupleType:
@@ -532,12 +544,14 @@ enum Visibility:
 
 // terminal INT_TYPE: INT_SIZE;
 terminal fragment INT_SIZE: SIGNED_INT_TYPE | UNSIGNED_INT_TYPE;
-terminal fragment SIGNED_INT_TYPE: I8 | I16 | I32 | I64;
+terminal fragment SIGNED_INT_TYPE: I | I8 | I16 | I32 | I64;
+terminal fragment I: "i";
 terminal fragment I8: "i8";
 terminal fragment I16: "i16";
 terminal fragment I32: "i32";
 terminal fragment I64: "i64";
-terminal fragment UNSIGNED_INT_TYPE: U8 | U16 | U32 | U64;
+terminal fragment UNSIGNED_INT_TYPE: U | U8 | U16 | U32 | U64;
+terminal fragment U: "u";
 terminal fragment U8: "u8";
 terminal fragment U16: "u16";
 terminal fragment U32: "u32";

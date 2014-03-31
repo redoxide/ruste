@@ -39,7 +39,7 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 //	}
 
 		override text(Object element) {
-			element.toString
+			element.class.simpleName
 		}
 
 		// Use declarations
