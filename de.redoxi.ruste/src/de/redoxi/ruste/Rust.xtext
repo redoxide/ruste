@@ -112,7 +112,6 @@ Expr:
 	ExprContinue |
 	ExprDo |
 	ExprIf |
-	ExprMatch |
 	ExprReturn
 ;
 
@@ -179,7 +178,8 @@ ExprUnary:
 	ManagedBox |
 	OwnedBox |
 	Borrow |
-	ExprFields
+	ExprFields |
+	ExprMatch
 ;
 
 ExprUnit:
@@ -361,16 +361,17 @@ ExprReturn:
 
 // Left-factored. Bit messy
 Block:
-	{Block} stmts=StmtList
+	{Block} viewItems+=ViewItem* stmts=StmtList
 ;
 
+// TODO Fix
 StmtList:
-	{StmtList} ((=>head=ExprBlock ';'? tail=StmtList) | (head=Stmt (';' tail=StmtList)?))?
+	{StmtList} ((=>head=ExprBlock ';'? tail=StmtList) | (=>head=Stmt (';' tail=StmtList)?) | (=>head=Item tail=StmtList))?
 ;
 
 // Expressions ending in a block that don't need to have a trailing semicolon in a list of statements
 ExprBlock:
-	ExprMatch | ExprIf | ExprFor | ExprDo
+	ExprMatch | ExprIf | ExprFor | ExprDo | ExprWhile
 ;
 
 Stmt:
@@ -379,7 +380,7 @@ Stmt:
 ;
 
 SlotDeclStmt:
-	'let' pat=Pat (':' type=Type)? '=' expr=Expr
+	'let' pat=Pat (':' type=Type)? ('=' expr=Expr)?
 ;
 
 ExprStmt:
@@ -413,7 +414,8 @@ Pat:
 	PatTuple |
 	PatVector |
 	PatLiteral |
-	PatRef
+	PatRef |
+	PatRaw
 ;
 
 PatWildcard:
@@ -430,6 +432,10 @@ PatOwned:
 
 PatBorrowed:
 	"&" pattern=Pat
+;
+
+PatRaw:
+	'*' pattern=Pat
 ;
 
 PatTuple:
@@ -477,6 +483,7 @@ Type:
 	BoxedPointer |
 	OwnedPointer |
 	BorrowedPointer |
+	RawPointer |
 	VectorType |
 	TypeItem |
 	LambdaType |
@@ -497,6 +504,10 @@ OwnedPointer:
 
 BorrowedPointer:
 	"&"(lifetime=LIFETIME)? type=Type
+;
+
+RawPointer:
+	'*' type=Type
 ;
 
 VectorType:
@@ -586,7 +597,7 @@ CharLit:
 ;
 
 terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
-terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
 
 terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
 terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
