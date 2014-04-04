@@ -448,10 +448,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LambdaType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//OptionallyNamedArg"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
-        eType="#//Type" containment="true"/>
+        eType="#//OptionallyNamedArg" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//Type"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionallyNamedArg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TupleType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
@@ -507,10 +513,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprIndex" eSuperTypes="#//ExprLValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="indexExpr" eType="#//Expr"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprCall" eSuperTypes="#//ExprLeaf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprPrimary"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprTuple" eSuperTypes="#//ExprGroup"/>

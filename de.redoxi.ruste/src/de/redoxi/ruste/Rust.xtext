@@ -121,7 +121,7 @@ ExprLValue:
 ;
 
 ExprLeaf:
-	ExprPrimary ({ExprCall.expr=current} '()' /*| '(' args+=Expr (',' args+=Expr)* ')'*/)?
+	ExprPrimary
 ;
 
 ExprFnCallArgs:
@@ -505,7 +505,11 @@ VectorType:
 
 LambdaType:
 	// TODO This should really be a list of types
-	{LambdaType} '|' (=>types+=Type (',' types+=Type)*)? '|' ('->' returnType=Type)?
+	{LambdaType} '|' (=>args+=OptionallyNamedArg (',' types+=OptionallyNamedArg)*)? '|' ('->' returnType=Type)?
+;
+
+OptionallyNamedArg:
+	=>(pat=Pat ':')? type=Type
 ;
 
 TupleType:

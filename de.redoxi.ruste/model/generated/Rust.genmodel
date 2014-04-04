@@ -370,8 +370,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//VectorType/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//LambdaType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LambdaType/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LambdaType/types"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LambdaType/returnType"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//OptionallyNamedArg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OptionallyNamedArg/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OptionallyNamedArg/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TupleType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TupleType/types"/>
@@ -416,9 +421,6 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprIndex">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/indexExpr"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprTuple"/>
     <genClasses ecoreClass="Rust.ecore#//ExprMultiplicative">
