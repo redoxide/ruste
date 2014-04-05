@@ -10,6 +10,7 @@ import de.redoxi.ruste.rust.UseDecl
 import de.redoxi.ruste.rust.StaticItem
 import de.redoxi.ruste.rust.StructField
 import de.redoxi.ruste.rust.FnItem
+import de.redoxi.ruste.rust.CrateItem
 
 /**
  * Customization of the default outline structure.
@@ -20,21 +21,18 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 	
 	override void createChildren(IOutlineNode parentNode, EObject modelElement) {
 		for (EObject childElement : modelElement.eContents()) {
-			if (!(childElement instanceof ItemAndAttrs)) {
-				createNode(parentNode, childElement)
-			} else {
-				if ((childElement as ItemAndAttrs).getItem() != null) {
-					createNode(parentNode, (childElement as ItemAndAttrs).getItem())
-				}
+			var EObject child = childElement
+			
+			if (childElement instanceof ItemAndAttrs) {
+				child = (childElement as ItemAndAttrs).item
+			} else if (childElement instanceof CrateItem) {
+				child = (childElement as CrateItem).item
 			}
+			
+			createNode(parentNode, child)
 		}
 	}
 	
-	override void createNode(IOutlineNode parentNode, EObject modelElement) {
-		createEObjectNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), modelElement.eContainingFeature.name + "=" + textDispatcher.invoke(modelElement), isLeafDispatcher.invoke(modelElement));
-	}
-	
-	/*
 	def _isLeaf(UseDecl useDecl) {
 		true
 	}
@@ -50,5 +48,4 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 	def _isLeaf(FnItem fnItem) {
 		true
 	}
-	*/
 }

@@ -12,7 +12,7 @@ import de.redoxi.ruste.rust.ModItem
 import de.redoxi.ruste.rust.FnItem
 import de.redoxi.ruste.rust.Visibility
 import de.redoxi.ruste.rust.StaticItem
-import de.redoxi.ruste.rust.StructField
+import de.redoxi.ruste.rust.StructDeclField
 
 /**
  * Provides labels for a EObjects.
@@ -27,20 +27,6 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
-	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
-
-		override text(Object element) {
-			element.class.simpleName
-		}
 
 		// Use declarations
 		/*def text(UseDecl useDecl) {
@@ -88,12 +74,12 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 			}
 		}
 		
-		def image(StructField structField) {
-			/*switch (structField.vis) {
-				case Visibility.PUBLIC:*/
+		def image(StructDeclField structField) {
+			switch (structField.vis) {
+				case Visibility.PUBLIC:
 					return 'static_field_public_obj.png'
-				/*default:
+				default:
 					return 'static_field_private_obj.png'
-			}*/
+			}
 		}
 }

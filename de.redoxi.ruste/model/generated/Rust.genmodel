@@ -416,12 +416,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TupleVariant/types"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnitVariant"/>
-    <genClasses ecoreClass="Rust.ecore#//StringLit"/>
-    <genClasses ecoreClass="Rust.ecore#//Literal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Literal/value"/>
+    <genClasses ecoreClass="Rust.ecore#//StringLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StringLit/value"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//NumberLit"/>
-    <genClasses ecoreClass="Rust.ecore#//CharLit"/>
+    <genClasses ecoreClass="Rust.ecore#//Literal"/>
+    <genClasses ecoreClass="Rust.ecore#//NumberLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/floatValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NumberLit/intValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//CharLit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//CharLit/value"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExternModDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExternModDecl/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternModDecl/attrs"/>

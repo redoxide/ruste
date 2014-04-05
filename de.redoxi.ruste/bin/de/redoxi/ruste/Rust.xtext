@@ -96,7 +96,7 @@ ImplMethod:
 ;
 
 ExternItem:
-	"extern" ({ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING_LIT? "{" (functions += ForeignFn)* "}")
+	"extern" ({ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING? "{" (functions += ForeignFn)* "}")
 ;
 
 ForeignFn:
@@ -585,7 +585,7 @@ terminal fragment F64: "f64";
 // terminal MACHINE_TYPE: MACHINE_INT_TYPE | MACHINE_UINT_TYPE;
 
 StringLit: 
-	value = STRING_LIT
+	value = STRING
 	// | {RawStringLit} 'r' '#' body = RawString? '#'
 ;
 
@@ -595,16 +595,16 @@ Literal:
 ;
 
 NumberLit:
-	value = (FLOAT_LIT | INT_LIT)
+	floatValue=FLOAT | intValue=INT
 ;
 
 // Single character literal
 CharLit:
-	value = CHAR_LIT
+	value=CHAR
 ;
 
-terminal CHAR_LIT: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
-terminal STRING_LIT: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+terminal CHAR: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
+terminal STRING: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
 
 terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
 terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
@@ -612,10 +612,10 @@ terminal fragment UTF16_CHAR: '\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 terminal fragment UTF32_CHAR: '\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 
 // Floating point literal
-terminal FLOAT_LIT: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;
+terminal FLOAT returns ecore::EFloat: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;
 
 // Integer literal
-terminal INT_LIT: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT) INT_SIZE?;
+terminal INT returns ecore::EInt: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT) INT_SIZE?;
 
 // Decimal (base 10) integer
 terminal fragment DEC_INT_LIT: DEC_DIGIT (DEC_DIGIT | '_')*;
