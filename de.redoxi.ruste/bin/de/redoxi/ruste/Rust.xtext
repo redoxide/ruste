@@ -194,6 +194,7 @@ ExprVec:
 ;
 
 ExprOwnedClosure:
+	// TODO Expr rather than block as optional tail
 	"proc" ('()' | '(' args+=Pat (',' args+=Pat)* ')') '{' block=Block '}'
 ;
 
@@ -379,12 +380,10 @@ MatchPat:
 	pat=Pat ('..' endPat=Pat)?
 ;
 
-// TODO Expression is optional
 ExprReturn:
 	{ExprReturn} 'return' =>expr=Expr?
 ;
 
-// Left-factored. Bit messy
 Block:
 	{Block} =>(viewItems+=ViewItem)* =>(stmts+=Stmt)* expr=Expr?
 ;
