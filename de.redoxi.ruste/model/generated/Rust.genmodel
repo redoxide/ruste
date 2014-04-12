@@ -48,6 +48,7 @@
       <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//Visibility/PUBLIC"/>
     </genEnums>
     <genClasses ecoreClass="Rust.ecore#//Crate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ViewItem">
@@ -67,6 +68,9 @@
     <genClasses ecoreClass="Rust.ecore#//PathGlob">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PathGlob/head"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathGlob/tail"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//CrateAttr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//CrateAttr/attrs"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ItemAttr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemAttr/attrs"/>
@@ -185,7 +189,7 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprPath">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprPath/segments"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPath/genericParams"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPath/genericParams"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprPathOrCreate">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPathOrCreate/path"/>
@@ -204,6 +208,10 @@
     <genClasses ecoreClass="Rust.ecore#//ExprVec">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprVec/mutable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/lenExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprOwnedClosure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprOwnedClosure/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprOwnedClosure/block"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary"/>
     <genClasses ecoreClass="Rust.ecore#//ExprUnit"/>

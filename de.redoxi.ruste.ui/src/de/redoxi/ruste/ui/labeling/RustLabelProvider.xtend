@@ -13,6 +13,7 @@ import de.redoxi.ruste.rust.FnItem
 import de.redoxi.ruste.rust.Visibility
 import de.redoxi.ruste.rust.StaticItem
 import de.redoxi.ruste.rust.StructDeclField
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Provides labels for a EObjects.
@@ -27,11 +28,6 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-		// Use declarations
-		/*def text(UseDecl useDecl) {
-			useDecl.toString
-		}*/
 		
 		def image(UseDecl useDecl) {
 			'use_obj.png'

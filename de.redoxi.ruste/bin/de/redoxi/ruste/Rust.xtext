@@ -6,6 +6,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // Top level crate and its implicit module
 Crate:
+	attrs+=CrateAttr*
 	items+=CrateItem*
 ;
 
@@ -26,6 +27,11 @@ PathGlob:
 	head += ID ("::" tail=PathGlob)? |
 	head += "*" |
 	'{' head+=ID (',' head+=ID)* '}'
+;
+
+// Attribute for a crate
+CrateAttr:
+	'#![' attrs+=Attr (',' attrs+=Attr)* ']' ';'?
 ;
 
 // Attribute for an item
@@ -146,6 +152,7 @@ ExprPrimary:
 	ExprGroup |
 	ExprStruct |
 	ExprVec |
+	ExprOwnedClosure |
 	ExprPathOrCreate |
 	ExprSelf |
 	ExprUnit |
@@ -157,7 +164,7 @@ ExprLiteral:
 ;
 
 ExprPath:
-	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=[GenericParam] (',' genericParams+=[GenericParam])* '>')?
+	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 ExprPathOrCreate:
@@ -184,6 +191,10 @@ ExprStruct:
 ExprVec:
 	// {ExprVec} '[' mutable?="mut"? (exprs+=Expr ',' (('..' lenExpr=Expr) | exprs+=Expr (',' exprs+=Expr)+ ','?))? ']'
 	{ExprVec} '[' mutable?="mut"? (exprs+=Expr (',' (".." lenExpr=Expr | exprs+=Expr (',' exprs+=Expr)* ','?))?)? ']'
+;
+
+ExprOwnedClosure:
+	"proc" ('()' | '(' args+=Pat (',' args+=Pat)* ')') '{' block=Block '}'
 ;
 
 ExprUnary:
@@ -321,7 +332,7 @@ Assign:
 ;
 
 ExprLambda:
-	'|' (args+=Pat (',' args+=Pat)*)? '|' (expr=Expr | '{' block=Block '}')
+	('|' (args+=Pat (',' args+=Pat)*)? '|' | "||") (expr=Expr | '{' block=Block '}')
 ;
 
 ExprWhile:
@@ -523,7 +534,7 @@ VectorType:
 
 LambdaType:
 	// TODO This should really be a list of types
-	{LambdaType} '|' (=>args+=OptionallyNamedArg (',' types+=OptionallyNamedArg)*)? '|' ('->' returnType=Type)?
+	{LambdaType} ('|' (=>args+=OptionallyNamedArg (',' types+=OptionallyNamedArg)*)? '|' | "||") ('->' returnType=Type)?
 ;
 
 OptionallyNamedArg:
@@ -612,10 +623,10 @@ terminal fragment UTF16_CHAR: '\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 terminal fragment UTF32_CHAR: '\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 
 // Floating point literal
-terminal FLOAT returns ecore::EFloat: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;
+terminal FLOAT: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)? FLOAT_SIZE?;
 
 // Integer literal
-terminal INT returns ecore::EInt: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT) INT_SIZE?;
+terminal INT: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT) INT_SIZE?;
 
 // Decimal (base 10) integer
 terminal fragment DEC_INT_LIT: DEC_DIGIT (DEC_DIGIT | '_')*;

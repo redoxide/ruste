@@ -21,14 +21,15 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.redoxi.ruste,
- de.redoxi.ruste.services,
+ de.redoxi.ruste.conversion,
+ de.redoxi.ruste.formatting,
+ de.redoxi.ruste.generator,
+ de.redoxi.ruste.parser.antlr,
+ de.redoxi.ruste.parser.antlr.internal,
  de.redoxi.ruste.rust,
  de.redoxi.ruste.rust.impl,
  de.redoxi.ruste.rust.util,
- de.redoxi.ruste.serializer,
- de.redoxi.ruste.parser.antlr,
- de.redoxi.ruste.parser.antlr.internal,
- de.redoxi.ruste.validation,
  de.redoxi.ruste.scoping,
- de.redoxi.ruste.generator,
- de.redoxi.ruste.formatting
+ de.redoxi.ruste.serializer,
+ de.redoxi.ruste.services,
+ de.redoxi.ruste.validation

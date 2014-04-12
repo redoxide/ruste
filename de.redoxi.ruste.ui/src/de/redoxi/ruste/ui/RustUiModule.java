@@ -4,9 +4,11 @@
 package de.redoxi.ruste.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
+import de.redoxi.ruste.conversion.RustValueConverterService;
 import de.redoxi.ruste.ui.syntaxcolouring.RustAntlrTokenToAttributeIdMapper;
 import de.redoxi.ruste.ui.syntaxcolouring.RustHighlightingConfiguration;
 
@@ -14,15 +16,19 @@ import de.redoxi.ruste.ui.syntaxcolouring.RustHighlightingConfiguration;
  * Use this class to register components to be used within the IDE.
  */
 public class RustUiModule extends de.redoxi.ruste.ui.AbstractRustUiModule {
-	public RustUiModule(AbstractUIPlugin plugin) {
-		super(plugin);
-	}
-	
-	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
-	    return RustHighlightingConfiguration.class;
-	}
-	
-	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
-		return RustAntlrTokenToAttributeIdMapper.class;
-	}
+    public RustUiModule(AbstractUIPlugin plugin) {
+	super(plugin);
+    }
+
+    public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+	return RustHighlightingConfiguration.class;
+    }
+
+    public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+	return RustAntlrTokenToAttributeIdMapper.class;
+    }
+
+    public Class<? extends IValueConverterService> bindIValueConverterService() {
+	return RustValueConverterService.class;
+    }
 }

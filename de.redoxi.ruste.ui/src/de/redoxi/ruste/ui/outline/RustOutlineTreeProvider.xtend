@@ -23,16 +23,21 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 		for (EObject childElement : modelElement.eContents()) {
 			var EObject child = childElement
 			
-			if (childElement instanceof ItemAndAttrs) {
+			/*if (childElement instanceof ItemAndAttrs) {
 				child = (childElement as ItemAndAttrs).item
 			} else if (childElement instanceof CrateItem) {
 				child = (childElement as CrateItem).item
-			}
+			}*/
 			
 			createNode(parentNode, child)
 		}
 	}
 	
+	override void createNode(IOutlineNode parentNode, EObject modelElement) {
+		createEObjectNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), modelElement.eContainingFeature.name + "=" + textDispatcher.invoke(modelElement) + "(" + modelElement.class.simpleName + ")", isLeafDispatcher.invoke(modelElement));
+	}
+	
+	/*
 	def _isLeaf(UseDecl useDecl) {
 		true
 	}
@@ -48,4 +53,5 @@ class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.D
 	def _isLeaf(FnItem fnItem) {
 		true
 	}
+	*/
 }
