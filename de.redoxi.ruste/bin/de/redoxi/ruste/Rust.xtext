@@ -20,13 +20,26 @@ LinkAttr:
 
 // TODO Match rules for internal vs external paths
 UseDecl:
-	vis=Visibility? "use" name=ID ('=' externPath=TypePath | "::" path=PathGlob)? ';'
+	vis=Visibility? "use" (name=ID '=' aliasedPath=Path | path=PathGlob) ';'
+;
+
+
+// Declarations or imports of types that can be referenced in place of types
+TypeDecl:
+	UseDecl | TypeItem | StructItem | EnumItem | TraitItem
+;
+
+Container:
+	UseDecl | ModItem
+;
+
+Path:
+	// External items can only be the first item in the path, if a path references them
+	(mods+=[Container] "::" (mods+=[ModItem] "::")*)? name=ID
 ;
 
 PathGlob:
-	head += ID ("::" tail=PathGlob)? |
-	head += "*" |
-	'{' head+=ID (',' head+=ID)* '}'
+	(mods+=[ModItem] "::")* (name=ID | wildcard?='*' | '{' items+=ID (',' items+=ID)* '}')
 ;
 
 // Attribute for a crate
@@ -45,7 +58,7 @@ Attr:
 ;
 
 CrateItem:
-	attrs+=ItemAttr* item=(Item | UseDecl)
+	attrs+=ItemAttr* item=Item
 ;
 
 // An item and any associated attributes
@@ -54,12 +67,17 @@ ItemAndAttrs:
 ;
 
 Item:
-	ModItem | FnItem | TypeItem | StructItem | EnumItem | TraitItem | ImplItem | ExternItem | StaticItem
+	ModItem | ImplItem | TypeDecl | FnItem
+;
+
+NamedItem:
+	ModItem | TypeDecl | FnItem | TraitItem | EnumVariant | StructItem | StaticItem | UseDecl | SlotDeclStmt | FieldPat | PatVariable
 ;
 
 // A module declaration item
 ModItem:
-	vis=Visibility? "mod" name=ID (externalBody?=';' | '{' items+=ItemAndAttrs* '}')
+	vis=Visibility? "mod" name=ID (externalBody?=';' | '{' items+=ItemAndAttrs* '}') |
+	{ExternModDecl} ("extern" "crate") name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'
 ;
 
 // Function item
@@ -101,9 +119,9 @@ ImplMethod:
 	attrs+=ItemAttr* (unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=FirstArg)? (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
 ;
 
-ExternItem:
+/*ExternItem:
 	"extern" ({ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING? "{" (functions += ForeignFn)* "}")
-;
+;*/
 
 ForeignFn:
 	"fn" name=ID ("(" (args+=Arg ("," args+=Arg)*)? ")" | '()') ("->" returnType=Type)? ";"
@@ -164,7 +182,7 @@ ExprLiteral:
 ;
 
 ExprPath:
-	segments+=ID ('::' segments+=ID)* ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	{ExprPath} (segments+=[Container] "::" (mods+=[ModItem] "::")*)? segments+=[NamedItem] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 ExprPathOrCreate:
@@ -424,6 +442,7 @@ FirstArg:
 Pat:
 	PatWildcard |														
 	PatEnum |
+	PatVariable |
 	PatBoxed |
 	PatOwned |
 	PatBorrowed |
@@ -475,15 +494,20 @@ PatEnum:
 		{PatTupleEnum.path=current} '(' ('*' | '..' | (patterns+=Pat (',' patterns+=Pat)*)) ')' | 
 		// TODO Check parser for production after ".."
 		{PatStructEnum.path=current} '{' fieldPatterns+=FieldPat (',' fieldPatterns+=FieldPat)* (',' ".." expr=Expr?)? '}' 
-	)?)
+	))
+;
+
+PatVariable:
+	mutable?="mut"? name=ID
 ;
 
 FieldPat:
+	// TODO Shouldn't this be a Type?
 	name=ID (':' pattern=Pat)?
 ;
 
 TypePath:
-	mutable?="mut"? segments+=ID ('::' segments+=ID)* (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	mutable?="mut"? type=[TypeDecl] (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 GenericParam:
@@ -519,6 +543,7 @@ OwnedPointer:
 	"~" type=Type
 ;
 
+// TODO Reference lifetime in generic parameter declaration
 BorrowedPointer:
 	"&"(lifetime=LIFETIME)? type=Type
 ;
