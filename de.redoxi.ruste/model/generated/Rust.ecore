@@ -19,10 +19,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseDecl" eSuperTypes="#//TypeDecl #//Container">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aliasedPath" eType="#//Path"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathGlob"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDecl" eSuperTypes="#//Item #//NamedItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vis" eType="#//Visibility"/>
@@ -33,14 +30,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
         eType="#//Container"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathGlob">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
-        eType="#//ModItem"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="items" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CrateAttr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
@@ -192,10 +181,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprPath">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" unique="false"
-        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
-        eType="#//ModItem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//NamedItem"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" upperBound="-1"
         eType="#//GenericParam" containment="true"/>
   </eClassifiers>
@@ -462,6 +448,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypePath" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" unique="false"
+        upperBound="-1" eType="#//Container"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
+        eType="#//ModItem"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDecl"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" upperBound="-1"
         eType="#//GenericParam" containment="true"/>
@@ -624,4 +614,5 @@
         eType="#//FieldPat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type"/>
 </ecore:EPackage>

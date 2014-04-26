@@ -20,9 +20,17 @@ LinkAttr:
 
 // TODO Match rules for internal vs external paths
 UseDecl:
-	vis=Visibility? "use" (name=ID '=' aliasedPath=Path | path=PathGlob) ';'
+	// vis=Visibility? "use" (name=ID '=' aliasedPath=/*Path*/QualifiedNameWithWildcard | (mods+=[ModItem] "::")* (name=ID | wildcard?='*' | '{' items+=ID (',' items+=ID)* '}')) ';'
+	vis=Visibility? "use" (name=ID '=' importedNamespace=QualifiedName | importedNamespace=QualifiedNameWithWildcard) ';'
 ;
 
+QualifiedName:
+	ID ("::" ID)*
+;
+
+QualifiedNameWithWildcard:
+	 QualifiedName ("::*" | "::{" ID (',' ID)* '}')?
+;
 
 // Declarations or imports of types that can be referenced in place of types
 TypeDecl:
@@ -36,10 +44,6 @@ Container:
 Path:
 	// External items can only be the first item in the path, if a path references them
 	(mods+=[Container] "::" (mods+=[ModItem] "::")*)? name=ID
-;
-
-PathGlob:
-	(mods+=[ModItem] "::")* (name=ID | wildcard?='*' | '{' items+=ID (',' items+=ID)* '}')
 ;
 
 // Attribute for a crate
@@ -182,7 +186,8 @@ ExprLiteral:
 ;
 
 ExprPath:
-	{ExprPath} (segments+=[Container] "::" (mods+=[ModItem] "::")*)? segments+=[NamedItem] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	//{ExprPath} (segments+=[Container] "::" (mods+=[ModItem] "::")*)? segments+=[NamedItem] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	{ExprPath} path=[NamedItem|QualifiedName] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 ExprPathOrCreate:
@@ -414,7 +419,7 @@ Stmt:
 ;
 
 SlotDeclStmt:
-	'let' pat=Pat (':' type=Type)? ('=' expr=Expr)? ';'
+	"let" pat=Pat (':' type=Type)? ('=' expr=Expr)? ';'
 ;
 
 ExprStmt:
@@ -507,7 +512,7 @@ FieldPat:
 ;
 
 TypePath:
-	mutable?="mut"? type=[TypeDecl] (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	mutable?="mut"? (segments+=[Container] "::" (mods+=[ModItem] "::")*)? type=[TypeDecl] (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 GenericParam:
@@ -528,7 +533,8 @@ Type:
 	VectorType |
 	TypeItem |
 	LambdaType |
-	TupleType
+	TupleType |
+	{PrimitiveType} PrimitiveType
 ;
 
 UnitType:
@@ -568,6 +574,16 @@ OptionallyNamedArg:
 TupleType:
 	'(' types+=Type (',' types+=Type)+ ')'
 ;
+
+PrimitiveType:
+	INT_TYPE | UINT_TYPE | FLOAT_TYPE | BOOL_TYPE | TEXT_TYPE
+;
+
+terminal TEXT_TYPE: "char" | "str";
+terminal INT_TYPE: "int" | I8 | I16 | I32 | I64;
+terminal UINT_TYPE: "uint" | U8 | U16 | U32 | U64;
+terminal FLOAT_TYPE: F32 | F64;
+terminal BOOL_TYPE:	"bool";
 
 StructDeclField:
 	vis=Visibility? name=ID ':' type=Type
