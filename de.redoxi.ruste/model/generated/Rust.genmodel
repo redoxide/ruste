@@ -364,8 +364,6 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TypePath">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypePath/mutable"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rust.ecore#//TypePath/segments"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rust.ecore#//TypePath/mods"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rust.ecore#//TypePath/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypePath/genericParams"/>
     </genClasses>

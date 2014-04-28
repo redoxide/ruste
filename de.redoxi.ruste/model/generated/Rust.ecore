@@ -443,11 +443,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypePath" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" unique="false"
-        upperBound="-1" eType="#//Container"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
-        eType="#//ModItem"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//NamedItem"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericParams" upperBound="-1"
         eType="#//GenericParam" containment="true"/>
   </eClassifiers>

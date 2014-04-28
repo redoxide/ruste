@@ -521,7 +521,7 @@ FieldPat:
 ;
 
 TypePath:
-	mutable?="mut"? (segments+=[Container] "::" (mods+=[ModItem] "::")*)? type=[TypeDecl] (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
+	mutable?="mut"? type=[NamedItem|QualifiedName] (=>'<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 
 GenericParam:
