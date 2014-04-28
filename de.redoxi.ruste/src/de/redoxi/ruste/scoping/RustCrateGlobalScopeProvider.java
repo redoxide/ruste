@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -12,6 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
@@ -29,6 +33,7 @@ import com.google.inject.Provider;
 
 import de.redoxi.ruste.rust.CrateItem;
 import de.redoxi.ruste.rust.ExternModDecl;
+import de.redoxi.ruste.rust.ModItem;
 
 public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
@@ -41,6 +46,12 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
     @Inject
     private IResourceScopeCache cache;
     
+    @Inject
+    private IQualifiedNameConverter qualifiedNameConverter;
+    
+    @Inject
+    private IQualifiedNameProvider qualifiedNameProvider;
+    
     @Override
     protected IScope getScope(Resource resource, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
 	final LinkedHashSet<URI> externCrateURIs = getCrateURIs(resource);
@@ -51,6 +62,10 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	for (URI uri : urisAsList) {
 	    scope = createLazyResourceScope(scope, uri, descriptions, type, filter, ignoreCase);
 	}
+	
+	// Include std::* source
+	scope = createLazyResourceScope(scope, RUST_SRC_URI.appendSegment("libstd").appendSegment("lib").appendFileExtension("rs"), descriptions, type, filter, ignoreCase);
+	
 	return scope;
     }
 
@@ -62,6 +77,9 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		TreeIterator<EObject> iterator = resource.getAllContents();
 		while (iterator.hasNext()) {
 		    EObject object = iterator.next();
+		    
+		    collectModURIs(object, resource.getURI(), uris);
+		    
 		    URI uri = null;
 		    
 		    if (object instanceof CrateItem) {
@@ -117,5 +135,40 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	// TODO Overwrite with path attribute if given
 	
 	return RUST_SRC_URI.appendSegment("lib" + crateName).appendSegment("lib").appendFileExtension("rs");
+    }
+    
+    // TODO Check for `mod <name>;' items?
+    private void collectModURIs(EObject root, URI relativeTo, Set<URI> uris) {
+	if (root instanceof ModItem && ((ModItem) root).isExternalBody()) {
+	    uris.add(getCrateURI((ModItem) root, relativeTo));
+	} else {
+	    TreeIterator<EObject> iter = root.eAllContents();
+	    while (iter.hasNext()) {
+		collectModURIs(iter.next(), relativeTo, uris);
+	    }
+	}
+    }
+    
+    // TODO Move to local scope provider
+    // TODO Look at attributes for `path'
+    protected URI getCrateURI(ModItem modItem, URI relativeToURI) {
+	QualifiedName modQN = qualifiedNameProvider.getFullyQualifiedName(modItem);
+	URI crateURI = relativeToURI.trimSegments(1);
+	
+	// First segment is crate name
+	modQN = modQN.skipFirst(1);
+	
+	for (String segment : modQN.getSegments()) {
+	    crateURI = crateURI.appendSegment(segment);
+	}
+	
+	// Look for `<mod name>.rs'
+	crateURI = crateURI.appendFileExtension("rs");
+	
+	// Try `<mod name>/mod.rs' instead
+	if (crateURI.isEmpty())
+	    crateURI = crateURI.appendSegment("mod").appendFileExtension("rs");
+	
+	return crateURI;
     }
 }

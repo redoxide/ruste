@@ -67,10 +67,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeDecl/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Container"/>
-    <genClasses ecoreClass="Rust.ecore#//Path">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Rust.ecore#//Path/mods"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Path/name"/>
-    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//CrateAttr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//CrateAttr/attrs"/>
     </genClasses>

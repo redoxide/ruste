@@ -26,11 +26,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Container"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Path">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mods" unique="false" upperBound="-1"
-        eType="#//Container"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CrateAttr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
         eType="#//Attr" containment="true"/>

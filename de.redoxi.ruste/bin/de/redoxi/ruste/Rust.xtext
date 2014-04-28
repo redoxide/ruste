@@ -41,10 +41,19 @@ Container:
 	UseDecl | ModItem
 ;
 
-Path:
-	// External items can only be the first item in the path, if a path references them
-	(mods+=[Container] "::" (mods+=[ModItem] "::")*)? name=ID
+/*Path:
+	FullyQualifiedPath |
+	AliasedPath
 ;
+
+FullyQualifiedPath:
+	
+;
+
+// Path starting with a reference to a `use' statement
+AliasedPath:
+	head=[UseDecl] ("::" )
+;*/
 
 // Attribute for a crate
 CrateAttr:
