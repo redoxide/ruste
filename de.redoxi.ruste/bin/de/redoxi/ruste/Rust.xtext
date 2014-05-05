@@ -20,8 +20,15 @@ LinkAttr:
 
 // TODO Match rules for internal vs external paths
 UseDecl:
-	// vis=Visibility? "use" (name=ID '=' aliasedPath=/*Path*/QualifiedNameWithWildcard | (mods+=[ModItem] "::")* (name=ID | wildcard?='*' | '{' items+=ID (',' items+=ID)* '}')) ';'
-	vis=Visibility? "use" (name=ID '=' importedNamespace=QualifiedName | importedNamespace=QualifiedNameWithWildcard) ';'
+	NamedUseDecl | UnnamedUseDecl
+;
+
+NamedUseDecl:
+	vis=Visibility? "use" name=ID '=' importedNamespace=QualifiedName ';'
+;
+
+UnnamedUseDecl:
+	vis=Visibility? "use" importedNamespace=QualifiedNameWithWildcard ';'
 ;
 
 QualifiedName:
@@ -195,7 +202,6 @@ ExprLiteral:
 ;
 
 ExprPath:
-	//{ExprPath} (segments+=[Container] "::" (mods+=[ModItem] "::")*)? segments+=[NamedItem] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 	{ExprPath} path=[NamedItem|QualifiedName] ('::<' genericParams+=GenericParam (',' genericParams+=GenericParam)* '>')?
 ;
 

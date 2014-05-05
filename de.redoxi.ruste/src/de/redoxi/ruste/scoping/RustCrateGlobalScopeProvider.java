@@ -21,7 +21,6 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
-import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider;
 import org.eclipse.xtext.scoping.impl.LoadOnDemandResourceDescriptions;
 import org.eclipse.xtext.scoping.impl.SelectableBasedScope;
 import org.eclipse.xtext.util.IResourceScopeCache;
@@ -34,6 +33,7 @@ import com.google.inject.Provider;
 import de.redoxi.ruste.rust.CrateItem;
 import de.redoxi.ruste.rust.ExternModDecl;
 import de.redoxi.ruste.rust.ModItem;
+import de.redoxi.ruste.rust.UseDecl;
 
 public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
@@ -70,7 +70,7 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
     }
 
     protected LinkedHashSet<URI> getCrateURIs(final Resource resource) {
-	return cache.get(ImportUriGlobalScopeProvider.class.getName(), resource, new Provider<LinkedHashSet<URI>>() {
+	return cache.get(RustCrateGlobalScopeProvider.class.getName(), resource, new Provider<LinkedHashSet<URI>>() {
 	    public LinkedHashSet<URI> get() {
 		final LinkedHashSet<URI> uris = new LinkedHashSet<URI>(5);
 		
@@ -113,13 +113,7 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	return SelectableBasedScope.createScope(parent, description, filter, type, ignoreCase);
     }
     
-    protected URI getCrateURI(CrateItem crateItem) {
-	if (!(crateItem.getItem() instanceof ExternModDecl)) {
-	    return null;
-	}
-	
-	ExternModDecl externCrateDecl = (ExternModDecl) crateItem.getItem();
-	
+    private URI getExternCrateURI(ExternModDecl externCrateDecl) {
 	String crateName = externCrateDecl.getName();
 	
 	if (externCrateDecl.getExternalIdent() != null) {
@@ -137,10 +131,21 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	return RUST_SRC_URI.appendSegment("lib" + crateName).appendSegment("lib").appendFileExtension("rs");
     }
     
+    protected URI getCrateURI(CrateItem crateItem) {
+	if (crateItem.getItem() instanceof ExternModDecl) {
+	    return getExternCrateURI((ExternModDecl) crateItem.getItem());
+	}
+	
+	return null;
+    }
+    
     // TODO Check for `mod <name>;' items?
     private void collectModURIs(EObject root, URI relativeTo, Set<URI> uris) {
 	if (root instanceof ModItem && ((ModItem) root).isExternalBody()) {
 	    uris.add(getCrateURI((ModItem) root, relativeTo));
+	} else if (root instanceof UseDecl) {
+	    // TODO Get scope
+	    uris.add(getUseURI((UseDecl) root, null, relativeTo));
 	} else {
 	    TreeIterator<EObject> iter = root.eAllContents();
 	    while (iter.hasNext()) {
@@ -157,6 +162,26 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
 	// First segment is crate name
 	modQN = modQN.skipFirst(1);
+	
+	for (String segment : modQN.getSegments()) {
+	    crateURI = crateURI.appendSegment(segment);
+	}
+	
+	// Look for `<mod name>.rs'
+	crateURI = crateURI.appendFileExtension("rs");
+	
+	// Try `<mod name>/mod.rs' instead
+	if (crateURI.isEmpty())
+	    crateURI = crateURI.appendSegment("mod").appendFileExtension("rs");
+	
+	return crateURI;
+    }
+    
+    // TODO Move to local scope provider
+    // TODO Look at attributes for `path'
+    protected URI getUseURI(UseDecl useDecl, IScope scope, URI relativeToURI) {
+	QualifiedName modQN = qualifiedNameConverter.toQualifiedName(useDecl.getImportedNamespace());
+	URI crateURI = RUST_SRC_URI;
 	
 	for (String segment : modQN.getSegments()) {
 	    crateURI = crateURI.appendSegment(segment);

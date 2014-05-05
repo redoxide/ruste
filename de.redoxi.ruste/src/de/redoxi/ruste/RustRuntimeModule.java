@@ -3,18 +3,21 @@
  */
 package de.redoxi.ruste;
 
+import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
+import de.redoxi.ruste.linking.RustLinkingService;
 import de.redoxi.ruste.naming.RustQualifiedNameConverter;
 import de.redoxi.ruste.naming.RustQualifiedNameProvider;
 import de.redoxi.ruste.scoping.RustCrateGlobalScopeProvider;
 import de.redoxi.ruste.scoping.RustUseModuleAwareLocalScopeProvider;
 
 /**
- * Use this class to register components to be used at runtime / without the Equinox extension registry.
+ * Use this class to register components to be used at runtime / without the
+ * Equinox extension registry.
  */
 public class RustRuntimeModule extends de.redoxi.ruste.AbstractRustRuntimeModule {
 
@@ -22,18 +25,23 @@ public class RustRuntimeModule extends de.redoxi.ruste.AbstractRustRuntimeModule
     public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 	return RustQualifiedNameProvider.class;
     }
-    
+
     public Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
 	return RustQualifiedNameConverter.class;
     }
-    
+
     @Override
     public Class<? extends IScopeProvider> bindIScopeProvider() {
 	return RustUseModuleAwareLocalScopeProvider.class;
     }
-    
+
     @Override
     public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 	return RustCrateGlobalScopeProvider.class;
+    }
+
+    @Override
+    public Class<? extends ILinkingService> bindILinkingService() {
+	return RustLinkingService.class;
     }
 }

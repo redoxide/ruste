@@ -62,9 +62,12 @@
     <genClasses ecoreClass="Rust.ecore#//UseDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//UseDecl/importedNamespace"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//NamedUseDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//NamedUseDecl/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnnamedUseDecl"/>
     <genClasses ecoreClass="Rust.ecore#//TypeDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeDecl/vis"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeDecl/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Container"/>
     <genClasses ecoreClass="Rust.ecore#//CrateAttr">
@@ -103,14 +106,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/body"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TypeItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypeItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypeItem/type"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//StructItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//StructItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StructItem/fields"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//EnumItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//EnumItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumItem/variants"/>
     </genClasses>
@@ -121,6 +127,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//EnumVariant/fields"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TraitItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TraitItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitItem/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TraitItem/methods"/>
     </genClasses>

@@ -5,6 +5,7 @@ package de.redoxi.ruste.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
@@ -30,5 +31,9 @@ public class RustUiModule extends de.redoxi.ruste.ui.AbstractRustUiModule {
 
     public Class<? extends IValueConverterService> bindIValueConverterService() {
 	return RustValueConverterService.class;
+    }
+
+    public Class<? extends IXtextEditorCallback> bindIXtextEditorCallback() {
+	return IXtextEditorCallback.NullImpl.class;
     }
 }
