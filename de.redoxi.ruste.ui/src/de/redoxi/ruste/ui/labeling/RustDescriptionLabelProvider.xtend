@@ -5,6 +5,7 @@ package de.redoxi.ruste.ui.labeling
 
 import de.redoxi.ruste.rust.Crate
 import de.redoxi.ruste.rust.UseDecl
+import de.redoxi.ruste.rust.NamedUseDecl
 
 //import org.eclipse.xtext.resource.IEObjectDescription
 
@@ -34,7 +35,7 @@ class RustDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDes
 			"crate_obj.png"
 		}
 		
-		def text(UseDecl useDecl) {
+		def text(NamedUseDecl useDecl) {
 			useDecl.name.toString
 		}
 		

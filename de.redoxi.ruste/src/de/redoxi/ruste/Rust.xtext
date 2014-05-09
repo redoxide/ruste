@@ -32,7 +32,7 @@ UnnamedUseDecl:
 ;
 
 QualifiedName:
-	ID ("::" ID)*
+	("super"? "::")? ID ("::" ID)*
 ;
 
 QualifiedNameWithWildcard:
@@ -47,20 +47,6 @@ TypeDecl:
 Container:
 	UseDecl | ModItem
 ;
-
-/*Path:
-	FullyQualifiedPath |
-	AliasedPath
-;
-
-FullyQualifiedPath:
-	
-;
-
-// Path starting with a reference to a `use' statement
-AliasedPath:
-	head=[UseDecl] ("::" )
-;*/
 
 // Attribute for a crate
 CrateAttr:
@@ -78,6 +64,7 @@ Attr:
 ;
 
 CrateItem:
+	// TODO ItemExcludingBlock?
 	attrs+=ItemAttr* item=Item
 ;
 
@@ -87,22 +74,25 @@ ItemAndAttrs:
 ;
 
 Item:
-	ModItem | ImplItem | TypeDecl | FnItem
+	ModItem | ImplItem | TypeDecl | FnItem | StaticItem | UnsafeItem | ExternItem
 ;
 
 NamedItem:
-	ModItem | TypeDecl | FnItem | TraitItem | EnumVariant | StructItem | StaticItem | UseDecl | SlotDeclStmt | FieldPat | PatVariable
+	ModItem | TypeDecl | FnItem | TraitItem | EnumVariant | StructItem | StaticItem | UseDecl | SlotDeclStmt | FieldPat | PatVariable | ForeignFn
 ;
 
 // A module declaration item
 ModItem:
-	vis=Visibility? "mod" name=ID (externalBody?=';' | '{' items+=ItemAndAttrs* '}') |
-	{ExternModDecl} ("extern" "crate") name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'
+	vis=Visibility? "mod" name=ID (externalBody?=';' | '{' items+=ItemAndAttrs* '}')
 ;
 
 // Function item
 FnItem:
 	vis=Visibility? "fn" name=ID ('<' params += GenericParamDecl (',' params += GenericParamDecl)* '>')? ('(' (args+=Arg (','  args+=Arg)*)? ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
+;
+
+UnsafeItem:
+	"unsafe" ({UnsafeBlock} '{' block=Block '}' | FnItem)
 ;
 
 // TODO Reference Type?
@@ -139,9 +129,12 @@ ImplMethod:
 	attrs+=ItemAttr* (unsafe?="unsafe" | extern?="extern")? vis=Visibility? "fn" name=ID ('<' params+=GenericParamDecl (',' params+=GenericParamDecl)* '>')? ('(' (args+=FirstArg)? (',' args+=Arg)* ')' | '()') ("->" returnType=Type)? '{' body=Block '}'
 ;
 
-/*ExternItem:
-	"extern" ({ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';'| {ExternBlock} abi=STRING? "{" (functions += ForeignFn)* "}")
-;*/
+ExternItem:
+	"extern" (
+		{ExternModDecl} "crate" name=ID ('(' attrs += LinkAttr (',' attrs += LinkAttr)* ')')? ('=' externalIdent=StringLit)? ';' | 
+		{ExternBlock} abi=STRING? "{" (functions += ForeignFn)* "}"
+	)
+;
 
 ForeignFn:
 	"fn" name=ID ("(" (args+=Arg ("," args+=Arg)*)? ")" | '()') ("->" returnType=Type)? ";"
@@ -423,7 +416,7 @@ ExprReturn:
 ;
 
 Block:
-	{Block} =>(viewItems+=ViewItem)* =>(stmts+=Stmt)* expr=Expr?
+	{Block} =>(viewItems+=ViewItem)* =>(stmts+=Stmt)* expr=Expr? ';'?
 ;
 
 Stmt:
@@ -548,8 +541,7 @@ Type:
 	VectorType |
 	TypeItem |
 	LambdaType |
-	TupleType |
-	{PrimitiveType} PrimitiveType
+	TupleType
 ;
 
 UnitType:
@@ -590,7 +582,7 @@ TupleType:
 	'(' types+=Type (',' types+=Type)+ ')'
 ;
 
-PrimitiveType:
+/*PrimitiveType:
 	INT_TYPE | UINT_TYPE | FLOAT_TYPE | BOOL_TYPE | TEXT_TYPE
 ;
 
@@ -598,7 +590,7 @@ terminal TEXT_TYPE: "char" | "str";
 terminal INT_TYPE: "int" | I8 | I16 | I32 | I64;
 terminal UINT_TYPE: "uint" | U8 | U16 | U32 | U64;
 terminal FLOAT_TYPE: F32 | F64;
-terminal BOOL_TYPE:	"bool";
+terminal BOOL_TYPE:	"bool";*/
 
 StructDeclField:
 	vis=Visibility? name=ID ':' type=Type

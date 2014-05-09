@@ -1,5 +1,6 @@
 package de.redoxi.ruste.scoping;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -61,6 +62,12 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	IScope scope = IScope.NULLSCOPE;
 	for (URI uri : urisAsList) {
 	    scope = createLazyResourceScope(scope, uri, descriptions, type, filter, ignoreCase);
+	}
+	
+	for(UseDecl useDecl : getUseDecls(resource)) {
+	    QualifiedName prefix = qualifiedNameConverter.toQualifiedName(useDecl.getImportedNamespace());
+	    IScope fileScope = createLazyResourceScope(IScope.NULLSCOPE, getUseURI(useDecl, null, resource.getURI()), descriptions, type, filter, ignoreCase);
+	    scope = new RustUseScope(fileScope, scope, prefix, ignoreCase);
 	}
 	
 	// Include std::* source
@@ -143,10 +150,10 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
     private void collectModURIs(EObject root, URI relativeTo, Set<URI> uris) {
 	if (root instanceof ModItem && ((ModItem) root).isExternalBody()) {
 	    uris.add(getCrateURI((ModItem) root, relativeTo));
-	} else if (root instanceof UseDecl) {
+	} /*else if (root instanceof UseDecl) {
 	    // TODO Get scope
 	    uris.add(getUseURI((UseDecl) root, null, relativeTo));
-	} else {
+	}*/ else {
 	    TreeIterator<EObject> iter = root.eAllContents();
 	    while (iter.hasNext()) {
 		collectModURIs(iter.next(), relativeTo, uris);
@@ -183,7 +190,9 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	QualifiedName modQN = qualifiedNameConverter.toQualifiedName(useDecl.getImportedNamespace());
 	URI crateURI = RUST_SRC_URI;
 	
-	for (String segment : modQN.getSegments()) {
+	crateURI = crateURI.appendSegment("lib" + modQN.getFirstSegment());
+	
+	for (String segment : modQN.skipFirst(1).getSegments()) {
 	    crateURI = crateURI.appendSegment(segment);
 	}
 	
@@ -195,5 +204,18 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	    crateURI = crateURI.appendSegment("mod").appendFileExtension("rs");
 	
 	return crateURI;
+    }
+    
+    protected List<UseDecl> getUseDecls(Resource resource) {
+	ArrayList<UseDecl> useDecls = new ArrayList<UseDecl>();
+	TreeIterator<EObject> iterator = resource.getAllContents();
+	while (iterator.hasNext()) {
+	    EObject object = iterator.next();
+	    
+	    if (object instanceof UseDecl) {
+		useDecls.add((UseDecl) object);
+	    }
+	}
+	return useDecls;
     }
 }

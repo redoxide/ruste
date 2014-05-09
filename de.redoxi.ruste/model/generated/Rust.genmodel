@@ -6,7 +6,7 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="de.redoxi.ruste.edit"
     editorPluginID="de.redoxi.ruste.editor" runtimeVersion="2.9">
   <genPackages prefix="Rust" basePackage="de.redoxi.ruste" disposableProviderFactory="true"
-      fileExtensions="rs" ecorePackage="Rust.ecore#/">
+      loadInitialization="true" literalsInterface="false" fileExtensions="rs" ecorePackage="Rust.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//MultiplicativeOp">
       <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//MultiplicativeOp/DIV"/>
       <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//MultiplicativeOp/MUL"/>
@@ -105,6 +105,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/returnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/body"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnsafeItem"/>
     <genClasses ecoreClass="Rust.ecore#//TypeItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TypeItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TypeItem/params"/>
@@ -157,6 +158,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/returnType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ImplMethod/body"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExternItem"/>
     <genClasses ecoreClass="Rust.ecore#//ForeignFn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ForeignFn/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignFn/args"/>
@@ -436,9 +438,17 @@
     <genClasses ecoreClass="Rust.ecore#//CharLit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//CharLit/value"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnsafeBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnsafeBlock/block"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExternModDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExternModDecl/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternModDecl/attrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternModDecl/externalIdent"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExternBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExternBlock/abi"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExternBlock/functions"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprField/field"/>
@@ -498,6 +508,5 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatStructEnum/fieldPatterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatStructEnum/expr"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//PrimitiveType"/>
   </genPackages>
 </genmodel:GenModel>

@@ -23,7 +23,7 @@ public class RustUseModuleAwareLocalScopeProvider extends ImportedNamespaceAware
 
     @Inject
     protected IQualifiedNameProvider qualifiedNameProvider;
-    
+
     @Inject
     protected IQualifiedNameConverter qualifiedNameConverter;
 
@@ -65,7 +65,7 @@ public class RustUseModuleAwareLocalScopeProvider extends ImportedNamespaceAware
      */
     protected List<ImportNormalizer> createImportedNamespaceResolvers(final String namespace, boolean ignoreCase) {
 	ArrayList<ImportNormalizer> normalizers = new ArrayList<ImportNormalizer>();
-	
+
 	if (Strings.isEmpty(namespace))
 	    return normalizers;
 	QualifiedName importedNamespace = qualifiedNameConverter.toQualifiedName(namespace);
@@ -75,7 +75,7 @@ public class RustUseModuleAwareLocalScopeProvider extends ImportedNamespaceAware
 	boolean hasWildCard = ignoreCase ? importedNamespace.getLastSegment().equalsIgnoreCase(getWildCard()) : importedNamespace.getLastSegment().equals(
 		getWildCard());
 	boolean hasGlob = importedNamespace.getLastSegment().startsWith("{");
-	
+
 	if (hasWildCard) {
 	    if (importedNamespace.getSegmentCount() <= 1)
 		return null;
@@ -89,16 +89,20 @@ public class RustUseModuleAwareLocalScopeProvider extends ImportedNamespaceAware
 	} else {
 	    normalizers.add(doCreateImportNormalizer(importedNamespace, false, ignoreCase));
 	}
-	
+
 	return normalizers;
+    }
+
+    protected RustNormalizer doCreateImportNormalizer(QualifiedName importedNamespace, boolean wildcard, boolean ignoreCase) {
+	return new RustNormalizer(importedNamespace, wildcard, ignoreCase);
     }
 
     @Override
     protected List<ImportNormalizer> getImplicitImports(boolean ignoreCase) {
 	List<ImportNormalizer> implicitNamespaces = new ArrayList<ImportNormalizer>(1);
 
-	// Implicitly include std::*;
-	implicitNamespaces.add(new ImportNormalizer(QualifiedName.create("std"), true, false));
+	// Implicitly include std::prelude::*;
+	implicitNamespaces.add(new RustNormalizer(QualifiedName.create("std", "prelude"), true, false));
 
 	return implicitNamespaces;
     }
