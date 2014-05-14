@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/de/redoxi/ruste/Rust.xtext"
+var grammarURI = "classpath:/de/redoxi/ruste/RustNew.xtext"
 var fileExtensions = "rs"
 var projectName = "de.redoxi.ruste"
 var runtimeProject = "../${projectName}"

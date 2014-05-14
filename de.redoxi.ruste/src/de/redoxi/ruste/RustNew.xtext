@@ -1,0 +1,547 @@
+grammar de.redoxi.ruste.Rust hidden(WS, SL_COMMENT, ML_COMMENT)
+
+generate rust "http://www.redoxi.de/ruste/grammar/Rust" 
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+// parse_crate_mod, libsyntax/parser/parser.rs, line 5087
+Crate:
+	// parse_inner_attrs_and_next
+	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
+	(innerAttrs+=InnerAttr)*
+	// parse_mod_items
+	(items+=(ViewItem /*| Item*/))*
+;
+
+
+InnerAttr:
+	'#' '!' '[' metaItem=MetaItem ']'
+;
+
+// parse_attribute, libsyntax/parser/attr.rs, line 62
+Attribute:
+	'#' '[' metaItem=MetaItem ']'
+;
+
+// parse_meta_item, libsyntax/parser/attr.rs, line 154
+MetaItem:
+	name=ID (
+		'=' value=Lit |
+		'(' value=MetaList ')'
+	)?
+;
+
+// parse_lit, libsyntax/parser/parser.rs, line 1426
+Lit hidden():
+	{BoolLit} value=BOOL |
+	// lit_from_token, libsyntax/parser/parser.rs, line 1402
+	{LitChar} value=CHAR |
+	{LitInt} value=INT |
+	{LitUint} value=UINT |
+	{LitIntSuffixed} value=INT_UNSUFFIXED |
+	{LitFloat} value=FLOAT |
+	{LitFloatUnsuffixed} value=FLOAT_UNSUFFIXED |
+	{LitString} value=STRING |
+	// TODO {LitRawString}
+	{LitUnit} '(' ')'
+;
+
+enum BOOL: TRUE="true" | FALSE="false";
+
+// parse_meta_seq, libsyntax/parser/attr.rs, line 196
+MetaList:
+	metaItems+=MetaItem (',' metaItems+=MetaItem)
+;
+
+ViewItem:
+	// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
+	ViewItemUse |
+	ViewExternItem
+;
+
+ViewItemUse:
+	// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
+	"use" path=ViewPath
+;
+
+// parse_view_paths, libsyntax/parser/parser.rs, line 4951
+ViewPath:
+	ViewPathSimple |
+	ViewPathGlob |
+	ViewPathList
+;
+
+// TODO NonGlobalPath?
+Path:
+	segments+=ID ("::" segments+=ID)*
+;
+
+// parse_view_paths, libsyntax/parser/parser.rs, line 4848
+ViewPathSimple:
+	name=ID =>'=' path=Path 
+;
+
+// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+ViewPathGlob:
+	path=Path =>"::*"
+;
+
+// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+ViewPathList:
+	path=Path =>"::{" identifiers+=ID (',' identifiers+=ID)* '}'
+;
+
+ViewExternItem:
+	ViewItemExternCrate |
+	ViewItemExternFn
+;
+
+// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
+ViewItemExternCrate:
+	"extern" =>"crate" name=ID ('=' path=STRING)? ';'
+;
+
+ViewItemExternFn:
+	"extern" (abi=STRING)? =>fn=FnItem
+;
+
+// parse_item_fn, libsyntax/parser/parser.rs, line 3791
+FnItem:
+	// parse_fn_header
+	// parse_fn_decl
+	// parse_inner_attrs_and_block
+	"fn" name=ID generics=Generics decl=FnDecl
+;
+
+// parse_generics, libsyntax/parser/parser.rs, line 3457
+Generics:
+	{Generics} (
+		// The grammar allows for out-of-order lifetimes/generic params,
+		// but that is solely to throw a warning about them being out of order.
+		// Lifetimes are supposed to proceed type parameters
+		'<' tyParams=TyParams ','? '>'
+	)?
+;
+
+// parse_lifetime, libsyntax/parser/parser.rs, line 1566
+Lifetime hidden():
+	'\'' name=ID
+;
+
+TyParams:
+	{TyParams} (values+=TyParam =>(',' values+=TyParam)*)?
+;
+
+// parse_ty_param, libsyntax/parser/parser.rs, line 3429
+TyParam:
+	// parse_sized
+	// parse_optional_ty_param_bounds
+	dynamicSized?="type"? name=ID bounds=TyParamBounds
+;
+
+// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
+TyParamBounds:
+	{TyParamBounds} (':' bounds+=TyParamBound ('+' bounds+=TyParamBound))?
+;
+
+TyParamBound:
+	StaticRegionTyParamBound |
+	OtherRegionTyParamBound
+;
+
+StaticRegionTyParamBound:
+	{StaticRegionTyParamBound} "'static"
+;
+
+OtherRegionTyParamBound:
+	Lifetime
+;
+
+// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
+FnDecl:
+	// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
+	'(' args+=NamedArg (',' args+=NamedArg)* ')'
+	// parse_ret_ty (TODO Separate into named/unnamed args, or treat as error?)
+;
+
+// parse_arg_general, libsyntax/parser/parser.rs, line 1342
+NamedArg:
+	{Arg} pat=Pat ':' ty=Ty
+;
+
+Arg:
+	(=>pat=Pat ':')? ty=Ty	
+;
+
+// parse_pat, libsyntax/parser/parser.rs, line 2764
+Pat:
+	{PatWild} '_' |
+	{PatUniq} '@' pat=Pat |			// TODO This pattern is obsolete
+	{PatOwned} '~' pat=Pat | 		// TODO This pattern is obsolete
+	{PatRegion} '&' pat=Pat |
+	// {PatNil} '(' =>')' |	TODO PatLit includes this production
+	{PatTup} '(' pats+=Pat (',' pats+=Pat) ')' |
+	PatVec |
+	// {PatRange} start=LiteralMaybeMinus =>".." end=LiteralMaybeMinus |
+	// {PatLit} value=LiteralMaybeMinus
+	LiteralMaybeMinus ({PatRange.start=current} ".." end=LiteralMaybeMinus | {PatLit.value=current})
+;
+
+// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
+PatVec:
+	{PatVec} '[' before+=Pat (',' (before+=Pat ',')*)? (".." (after+=Pat (',' after+=Pat)*)?)? ']'
+;
+
+// parse_literal_maybe_minus, libsyntax/parser/parser.rs, line 1441
+LiteralMaybeMinus:
+	{UnNeg} '-' lit=Lit | 
+	{ExprLit} lit=Lit
+;
+
+// parse_ty, libsyntax/parser/parser.rs, line 1195
+Ty:
+	{TyNil} '(' =>')' |
+	// {TyTup} '(' tys+=Ty =>',' (tys+=Ty =>(',' tys+=Ty)* ','?)? ')' |
+	// {Ty} '(' ty=Ty =>')' |
+	{TyBox} '@' ty=Ty |
+	{TyUniq} '~' /* Can match a string here for now */ ty=Ty |
+	{TyPtr} '*' mutTy=MutTy |
+	{TyVec} '[' ty=Ty (',' ".." suffix=Expr)? ']' |
+	TyRptr |
+	TyBareFn |
+	TyClosure |
+	{TyTypeof} "typeof" '(' expr=Expr ')' |
+	TyProc |
+	TyPath |
+	{TyInfer} '_'
+;
+
+// parse_mt, libsytnax/parser/parser.rs, line 1141
+MutTy:
+	// parse_mutability
+	// parse_ty
+	mutbl=Mutability ty=Ty
+;
+
+Mutability:
+	{MutMutable} "mut" | 
+	{MutImmutable} "const"?
+;
+
+// parse_expr, libsyntax/parser/parser.rs, line 2606
+// Assumes UNRESTRICTED restriction in parser
+Expr:
+	AssignExpr
+;
+
+// parse_assign_expr, libsyntax/parser/parser.rs, line 2383
+AssignExpr:
+	ExprBinary (
+		{ExprAssign.lhs=current} =>'=' rhs=Expr |
+		{ExprAdd.lhs=current} =>'+' rhs=Expr |
+		{ExprSub.lhs=current} =>'-' rhs=Expr |
+		{ExprMul.lhs=current} =>'*' rhs=Expr |
+		{ExprDiv.lhs=current} =>'/' rhs=Expr |
+		{ExprMod.lhs=current} =>'%' rhs=Expr |
+		{ExprBitXor.lhs=current} =>'^' rhs=Expr |
+		{ExprBitOr.lhs=current} =>'|' rhs=Expr |
+		{ExprBitAnd.lhs=current} =>'&' rhs=Expr |
+		{ExprShl.lhs=current} =>('<' '<') rhs=Expr |
+		{ExprShr.lhs=current} =>('>' '>') rhs=Expr |
+		{ExprBreak.lhs=current} =>"<->" rhs=Expr
+	)?
+;
+
+ExprBinary:
+	ExprUnary
+;
+
+// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
+ExprUnary:
+	{UnNot} '!' expr=ExprUnary |
+	{UnNeg} '-' expr=ExprUnary |
+	{UnDeref} '*' expr=ExprUnary |
+	// TODO Parser includes a hack here to parse &[] vector expressions
+	{ExprAddrOf} '&' lifetime=Lifetime? mutbl=Mutability expr=ExprUnary |
+	// TODO Parser includes a hack here to parse @[] vector expressions
+	{UnBox} '@' expr=ExprUnary |
+	// TODO Parser includes a hack here to parse @[] vector expressions
+	{UnUniq} '~' expr=ExprUnary |
+	{ExprBox} "box" '(' place=Expr? ')' expr=ExprUnary |
+	DotOrCallExpr
+; 
+
+// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
+DotOrCallExpr:
+	ExprBottom (
+		{ExprMethodCall.expr=current} '.' method=ID ("::" genericValues=GenericValues)? =>'(' (args+=Expr (',' args+=Expr)*)? ')' |
+		{ExprMethodCall.expr=current} '.' method=ID ("::" genericValues=GenericValues)? |
+		{ExprCall.expr=current} =>'(' (args+=Expr (',' args+=Expr)*)? ')'
+		{ExprIndex.expr=current} =>'[' index=Expr ']'
+	)?
+;
+
+// parse_bottom_expr, libsyntax/parser/parser.rs, line 1716
+ExprBottom:
+	// See maybe_whole_expr! macro, libsyntax/parser/parser.rs, line 131
+	{ExprParen} '(' expr=Expr =>')' |
+	{ExprTup} '(' exprs+=Expr =>',' (exprs+=Expr ',')* exprs+=Expr? ')' |
+	ExprBlock |
+	ExprFnBlock |
+	ExprProc |
+	ExprSelf |
+	ExprIf |
+	ExprFor |
+	ExprWhile |
+	// TODO Lifetime
+	ExprLoop |
+	ExprContinue |
+	// TODO ExprMatch |
+	UnsafeBlock |
+	'[' (
+		Expr (
+			{ExprRepeat.firstExpr=current} =>(',' "..") count=Expr |
+			{ExprVec.exprs+=current} (',' exprs+=Expr)*
+		)
+	)? ']' |
+	ExprRet |
+	ExprBreak |
+	// TODO Path
+		// TODO Macro invocation
+		// TODO Struct creation
+	{ExprLit} expr=Lit
+;
+
+ExprBlock:
+	{ExprBlock} '{' /* TODO block contents */ '}'
+;
+
+// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
+ExprFnBlock:
+	decl=FnBlockDecl body=Expr
+;
+
+// parse_fn_block_decl, libsyntax/parser/parser.rs, line 3713
+FnBlockDecl:
+	{FnBlockDecl} '|' (args+=FnBlockArg (',' args+=FnBlockArg)*)? '|' ("->" returnTy=Ty)?
+;
+
+// parse_fn_block_arg, libsyntax/parser/parser.rs, line 1372
+FnBlockArg:
+	pat=Pat (':' ty=Ty)?
+;
+
+ExprProc:
+	decl=ProcDecl body=Expr
+;
+
+// parse_proc_decl, libsyntax/parser/parser.rs, line 3745
+ProcDecl:
+	{FnBlockDecl} '(' (args+=FnBlockArg (',' args+=FnBlockArg)*)? ')' ("->" returnTy=Ty)?
+;
+
+ExprSelf:
+	{ExprPath} "self" // TODO Parser parses further path here
+;
+
+// parse_if_expr, libsyntax/parser/parser.rs, line 2424
+ExprIf:
+	"if" cond=Expr thn=ExprBlock ("else" els=ExprBlock)?
+;
+
+// parse_for_expr, libsyntax/parser/parser.rs, line 2505
+ExprFor:
+	{ExprForLoop} "for" pat=Pat "in" expr=Expr loopBlock=ExprBlock
+;
+
+// parse_while_expr, libsyntax/parser/parser.rs, line 2518
+ExprWhile:
+	"while" cond=Expr body=ExprBlock
+;
+
+// parse_loop_expr, libsyntax/parser/parser.rs, line 2526
+ExprLoop:
+	{ExprLoop} name=ID? body=ExprBlock |
+	{ExprAgain} lifetime=Lifetime?
+;
+
+ExprContinue:
+	{ExprAgain} "continue" lifetime=Lifetime
+;
+
+/*ExprMatch:
+	
+;*/
+
+UnsafeBlock:
+	"unsafe" block=ExprBlock
+;
+
+ExprRet:
+	// can_begin_expr
+	{ExprRet} "return" expr=Expr?
+;
+
+ExprBreak:
+	{ExprBreak} "break" lifetime=Lifetime?
+;
+
+// parse_borrowed_pointee, libsyntax/parser/parser.rs, line 1313
+TyRptr:
+	'&' lifetime=Lifetime? mutTy=MutTy
+;
+
+// parse_ty_bare_fn, libsyntax/parser/parser.rs, line 890
+/*
+  [unsafe] [extern "ABI"] fn <'lt> (S) -> T
+   ^~~~^           ^~~~^     ^~~~^ ^~^    ^
+     |               |         |    |     |
+     |               |         |    |   Return type
+     |               |         |  Argument types
+     |               |     Lifetimes
+     |              ABI
+  Function Style
+*/
+TyBareFn:
+	fnStyle=FnStyle ("extern" abi=STRING?)? decl=FnDecl
+;
+
+// parse_unsafety, libsyntax/parser/parser.rs, line 1026
+FnStyle:
+	unsafeFn?="unsafe"	// AST implements this as UnsafeFn and NormalFn
+;
+
+// parse_ty_closure, libsyntax/parse/parser.rs, line 969
+/*
+  [unsafe] [once] <'lt> |S| [:Bounds] -> T
+  ^~~~~~~^ ^~~~~^ ^~~~^  ^  ^~~~~~~~^    ^
+    |        |      |    |      |        |
+    |        |      |    |      |      Return type
+    |        |      |    |  Closure bounds
+    |        |      |  Argument types
+    |        |    Lifetimes
+    |     Once-ness (a.k.a., affine)
+  Function Style
+*/
+TyClosure:
+	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? ("||" | '|' args+=Arg (',' args+=Arg)* '|') bounds=TyParamBounds retTy=RetTy
+;
+
+Onceness:
+	once?="once"
+;
+
+// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
+Lifetimes:
+	'<' lifetimes+=Lifetime =>(',' lifetimes+=Lifetime)* ','? '>'
+;
+
+// parse_ret_ty, libsyntax/parse/parser.rs
+RetTy:
+	{RetTy} ("->" ty=Ty)?
+;
+
+// parse_proc_type, libsyntax/parser/parser.rs, line 928
+/*
+  proc <'lt> (S) [:Bounds] -> T
+  ^~~^ ^~~~^  ^  ^~~~~~~~^    ^
+   |     |    |      |        |
+   |     |    |      |      Return type
+   |     |    |    Bounds
+   |     |  Argument types
+   |   Lifetimes
+  the `proc` keyword
+*/
+TyProc:
+	"proc" lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy
+;
+
+// parse_fn_args, libsyntax/parser/parser.rs, line 3485
+FnArgs:
+	'(' args+=Arg =>(',' args+=Arg)* ','? ')'
+;
+
+// parse_path, libsyntax/parser/parser.rs, line 1463
+TyPath:
+	path=PathWithLifetimesTypesAndBounds
+;
+
+PathWithLifetimesTypesAndBounds:
+	global?="::" segments+=PathSegment ("::" segments+=PathSegment)* bounds=TyParamBounds
+;
+
+PathSegment:
+	name=ID genericValues=GenericValues?
+;
+
+// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
+GenericValues:
+	'<'
+		(lifetimes+=Lifetime =>(',' lifetimes+=Lifetime)* ',')? tys+=Ty =>(',' tys+=Ty)* ','?
+	'>'
+;
+
+// parse_mod_items, libsyntax/parser/parser.rs, line 4059
+/*Mod:
+	// parse_items_and_view_items
+;
+
+ItemsAndViewItems:
+	
+;*/
+
+terminal CHAR: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
+terminal STRING: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+
+terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
+terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
+terminal fragment UTF16_CHAR: '\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+terminal fragment UTF32_CHAR: '\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+
+terminal fragment SIGNED_INT_TYPE: I | I8 | I16 | I32 | I64;
+terminal fragment I: "i";
+terminal fragment I8: "i8";
+terminal fragment I16: "i16";
+terminal fragment I32: "i32";
+terminal fragment I64: "i64";
+terminal fragment UNSIGNED_INT_TYPE: U | U8 | U16 | U32 | U64;
+terminal fragment U: "u";
+terminal fragment U8: "u8";
+terminal fragment U16: "u16";
+terminal fragment U32: "u32";
+terminal fragment U64: "u64";
+terminal fragment FLOAT_SUFFIX: F32 | F64;
+terminal fragment F32: "f32";
+terminal fragment F64: "f64";
+
+// Floating point literal
+terminal FLOAT_UNSUFFIXED: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)?;
+terminal FLOAT: FLOAT_UNSUFFIXED FLOAT_SUFFIX;
+
+// Integer literal
+terminal INT_UNSUFFIXED: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT);
+terminal INT: INT_UNSUFFIXED SIGNED_INT_TYPE;
+terminal UINT: INT_UNSUFFIXED UNSIGNED_INT_TYPE;
+
+// Decimal (base 10) integer
+terminal fragment DEC_INT_LIT: DEC_DIGIT (DEC_DIGIT | '_')*;
+
+// Binary (base 2) integer
+terminal fragment BIN_INT_LIT: "0b" ('0' | '1' | '_')+;
+
+// Octal (base 8) integer
+terminal fragment OCT_INT_LIT: "0o" (OCT_DIGIT | '_')+;
+
+// Hex (base 16) integer
+terminal fragment HEX_INT_LIT: "0x" (HEX_DIGIT | '_')+;
+
+terminal fragment OCT_DIGIT: '0'..'7';
+terminal fragment DEC_DIGIT: '0'..'9';
+terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
+
+// terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
+
+terminal ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
+terminal WS: (' ' | '\t' | '\r' | '\n')+;
