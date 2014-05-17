@@ -15,8 +15,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/innerAttrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//InnerAttr">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//InnerAttr/metaItem"/>
+    <genClasses ecoreClass="Rust.ecore#//InnerAttributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//InnerAttributes/metaItem"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//OuterAttributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OuterAttributes/attributes"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Attribute">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Attribute/metaItem"/>
@@ -90,18 +93,115 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Pat"/>
     <genClasses ecoreClass="Rust.ecore#//PatVec">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVec/before"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVec/after"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVec/before"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//LiteralMaybeMinus">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//LiteralMaybeMinus/lit"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//LiteralMaybeMinus"/>
     <genClasses ecoreClass="Rust.ecore#//Ty"/>
     <genClasses ecoreClass="Rust.ecore#//MutTy">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MutTy/mutbl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MutTy/ty"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Mutability"/>
+    <genClasses ecoreClass="Rust.ecore#//Expr"/>
+    <genClasses ecoreClass="Rust.ecore#//Expr_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//AssignExpr"/>
+    <genClasses ecoreClass="Rust.ecore#//AssignExpr_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpEq"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec11"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec10"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec09"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec08"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec07"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec06"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec04"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec03"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec02"/>
+    <genClasses ecoreClass="Rust.ecore#//BinOpPrec01"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence0"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence1"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence2"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence0_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence3"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence4"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence6"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence7"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence8"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence9"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence10"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence1_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence2_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence3_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence4_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence6_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence7_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence8_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence9_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence10_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprUnary"/>
+    <genClasses ecoreClass="Rust.ecore#//DotOrCallExpr"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBottom">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBlock"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprFnBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnBlock/decl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnBlock/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//FnBlockDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnBlockDecl/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnBlockDecl/returnTy"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//FnBlockArg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnBlockArg/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnBlockArg/ty"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprProc">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprProc/decl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprProc/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ProcDecl"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprSelf"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprIf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIf/cond"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIf/thn"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIf/els"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprFor"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprWhile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprWhile/cond"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprWhile/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLoop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprLoop/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoop/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprContinue"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprMatch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprMatch/discriminant"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprMatch/arms"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Arm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arm/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arm/pats"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arm/guard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Arm/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//HeadArm"/>
+    <genClasses ecoreClass="Rust.ecore#//TailArm"/>
+    <genClasses ecoreClass="Rust.ecore#//Pats">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Pats/pats"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnsafeBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnsafeBlock/block"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprRet"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBreak">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/rhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lifetime"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyRptr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/mutTy"/>
@@ -201,8 +301,13 @@
     <genClasses ecoreClass="Rust.ecore#//PatLit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatLit/value"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//UnNeg"/>
-    <genClasses ecoreClass="Rust.ecore#//ExprLit"/>
+    <genClasses ecoreClass="Rust.ecore#//UnNeg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNeg/lit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNeg/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLit/lit"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyNil"/>
     <genClasses ecoreClass="Rust.ecore#//TyBox">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyBox/ty"/>
@@ -215,13 +320,103 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyVec">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyVec/ty"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyVec/suffix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyVec/suffix"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyTypeof">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyTypeof/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyTypeof/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyInfer"/>
     <genClasses ecoreClass="Rust.ecore#//MutMutable"/>
     <genClasses ecoreClass="Rust.ecore#//MutImmutable"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprAssign">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAssign/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAssign/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//BiDiv"/>
+    <genClasses ecoreClass="Rust.ecore#//BiMul"/>
+    <genClasses ecoreClass="Rust.ecore#//BiRem"/>
+    <genClasses ecoreClass="Rust.ecore#//BiAdd"/>
+    <genClasses ecoreClass="Rust.ecore#//BiSub"/>
+    <genClasses ecoreClass="Rust.ecore#//BiShl"/>
+    <genClasses ecoreClass="Rust.ecore#//BiShr"/>
+    <genClasses ecoreClass="Rust.ecore#//BiBitAnd"/>
+    <genClasses ecoreClass="Rust.ecore#//BiBitXor"/>
+    <genClasses ecoreClass="Rust.ecore#//BiBitOr"/>
+    <genClasses ecoreClass="Rust.ecore#//BiLt"/>
+    <genClasses ecoreClass="Rust.ecore#//BiLe"/>
+    <genClasses ecoreClass="Rust.ecore#//BiGt"/>
+    <genClasses ecoreClass="Rust.ecore#//BiGe"/>
+    <genClasses ecoreClass="Rust.ecore#//BiEq"/>
+    <genClasses ecoreClass="Rust.ecore#//BiNe"/>
+    <genClasses ecoreClass="Rust.ecore#//BiAnd"/>
+    <genClasses ecoreClass="Rust.ecore#//BiOr"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBinary/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBinary/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBinary/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnNot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNot/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnDeref">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnDeref/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprAddrOf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/lifetime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/mutbl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnBox">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnBox/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//UnUniq">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnUniq/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprBox">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBox/place"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBox/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprField">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprField/method"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/genericValues"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/index"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprParen">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprParen/exprs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprTup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprTup/exprs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprForWithLifetime">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForWithLifetime/lifetime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForWithLifetime/for"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprLoopWithLifetime">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoopWithLifetime/lifetime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoopWithLifetime/loop"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprVec">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprVec/exprs"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprRepeat">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRepeat/exprs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRepeat/count"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprPath"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprForLoop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/loopBlock"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprAgain">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAgain/lifetime"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

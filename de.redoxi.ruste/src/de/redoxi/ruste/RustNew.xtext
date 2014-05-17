@@ -1,206 +1,166 @@
 grammar de.redoxi.ruste.Rust hidden(WS, SL_COMMENT, ML_COMMENT)
 
-generate rust "http://www.redoxi.de/ruste/grammar/Rust" 
-
+generate rust "http://www.redoxi.de/ruste/grammar/Rust"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // parse_crate_mod, libsyntax/parser/parser.rs, line 5087
 Crate:
-	// parse_inner_attrs_and_next
-	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
-	(innerAttrs+=InnerAttr)*
+// parse_inner_attrs_and_next
+// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
+	(innerAttrs+=InnerAttributes)*
 	// parse_mod_items
-	(items+=(ViewItem /*| Item*/))*
-;
+	(items+=(ViewItem /*| Item*/))*;
 
+InnerAttributes:
+	'#' '!' '[' metaItem=MetaItem ']';
 
-InnerAttr:
-	'#' '!' '[' metaItem=MetaItem ']'
-;
+OuterAttributes:
+	attributes+=Attribute+;
 
-// parse_attribute, libsyntax/parser/attr.rs, line 62
+	// parse_attribute, libsyntax/parser/attr.rs, line 62
 Attribute:
-	'#' '[' metaItem=MetaItem ']'
-;
+	'#' '[' metaItem=MetaItem ']';
 
-// parse_meta_item, libsyntax/parser/attr.rs, line 154
+	// parse_meta_item, libsyntax/parser/attr.rs, line 154
 MetaItem:
-	name=ID (
-		'=' value=Lit |
-		'(' value=MetaList ')'
-	)?
-;
+	name=ID ('=' value=Lit | '(' value=MetaList ')')?;
 
-// parse_lit, libsyntax/parser/parser.rs, line 1426
+	// parse_lit, libsyntax/parser/parser.rs, line 1426
 Lit hidden():
 	{BoolLit} value=BOOL |
 	// lit_from_token, libsyntax/parser/parser.rs, line 1402
-	{LitChar} value=CHAR |
-	{LitInt} value=INT |
-	{LitUint} value=UINT |
-	{LitIntSuffixed} value=INT_UNSUFFIXED |
-	{LitFloat} value=FLOAT |
-	{LitFloatUnsuffixed} value=FLOAT_UNSUFFIXED |
-	{LitString} value=STRING |
+	{LitChar} value=CHAR | {LitInt} value=INT | {LitUint} value=UINT | {LitIntSuffixed} value=INT_UNSUFFIXED | {LitFloat}
+	value=FLOAT | {LitFloatUnsuffixed} value=FLOAT_UNSUFFIXED | {LitString} value=STRING |
 	// TODO {LitRawString}
-	{LitUnit} '(' ')'
-;
+	{LitUnit} '(' ')';
 
-enum BOOL: TRUE="true" | FALSE="false";
+enum BOOL:
+	TRUE="true" | FALSE="false";
 
-// parse_meta_seq, libsyntax/parser/attr.rs, line 196
+	// parse_meta_seq, libsyntax/parser/attr.rs, line 196
 MetaList:
-	metaItems+=MetaItem (',' metaItems+=MetaItem)
-;
+	metaItems+=MetaItem (',' metaItems+=MetaItem);
 
 ViewItem:
-	// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
+// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
 	ViewItemUse |
-	ViewExternItem
-;
+	ViewExternItem;
 
 ViewItemUse:
-	// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
-	"use" path=ViewPath
-;
+// parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
+	"use" path=ViewPath;
 
-// parse_view_paths, libsyntax/parser/parser.rs, line 4951
+	// parse_view_paths, libsyntax/parser/parser.rs, line 4951
 ViewPath:
-	ViewPathSimple |
-	ViewPathGlob |
-	ViewPathList
-;
+	ViewPathSimple | ViewPathGlob | ViewPathList;
 
-// TODO NonGlobalPath?
+	// TODO NonGlobalPath?
 Path:
-	segments+=ID ("::" segments+=ID)*
-;
+	segments+=ID ("::" segments+=ID)*;
 
-// parse_view_paths, libsyntax/parser/parser.rs, line 4848
+	// parse_view_paths, libsyntax/parser/parser.rs, line 4848
 ViewPathSimple:
-	name=ID =>'=' path=Path 
-;
+	name=ID => '=' path=Path;
 
-// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
 ViewPathGlob:
-	path=Path =>"::*"
-;
+	path=Path => "::*";
 
-// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
 ViewPathList:
-	path=Path =>"::{" identifiers+=ID (',' identifiers+=ID)* '}'
-;
+	path=Path => "::{" identifiers+=ID (',' identifiers+=ID)* '}';
 
 ViewExternItem:
-	ViewItemExternCrate |
-	ViewItemExternFn
-;
+	ViewItemExternCrate | ViewItemExternFn;
 
-// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
+	// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
 ViewItemExternCrate:
-	"extern" =>"crate" name=ID ('=' path=STRING)? ';'
-;
+	"extern" => "crate" name=ID ('=' path=STRING)? ';';
 
 ViewItemExternFn:
-	"extern" (abi=STRING)? =>fn=FnItem
-;
+	"extern" (abi=STRING)? => fn=FnItem;
 
-// parse_item_fn, libsyntax/parser/parser.rs, line 3791
+	// parse_item_fn, libsyntax/parser/parser.rs, line 3791
 FnItem:
-	// parse_fn_header
-	// parse_fn_decl
-	// parse_inner_attrs_and_block
-	"fn" name=ID generics=Generics decl=FnDecl
-;
+// parse_fn_header
+// parse_fn_decl
+// parse_inner_attrs_and_block
+	"fn" name=ID generics=Generics decl=FnDecl;
 
-// parse_generics, libsyntax/parser/parser.rs, line 3457
+	// parse_generics, libsyntax/parser/parser.rs, line 3457
 Generics:
 	{Generics} (
-		// The grammar allows for out-of-order lifetimes/generic params,
-		// but that is solely to throw a warning about them being out of order.
-		// Lifetimes are supposed to proceed type parameters
-		'<' tyParams=TyParams ','? '>'
-	)?
-;
+	// The grammar allows for out-of-order lifetimes/generic params,
+	// but that is solely to throw a warning about them being out of order.
+	// Lifetimes are supposed to proceed type parameters
+	'<' tyParams=TyParams ','? '>')?;
 
-// parse_lifetime, libsyntax/parser/parser.rs, line 1566
+	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
 Lifetime hidden():
-	'\'' name=ID
-;
+	'\'' name=ID;
 
 TyParams:
-	{TyParams} (values+=TyParam =>(',' values+=TyParam)*)?
-;
+	{TyParams} (values+=TyParam => (',' values+=TyParam)*)?;
 
-// parse_ty_param, libsyntax/parser/parser.rs, line 3429
+	// parse_ty_param, libsyntax/parser/parser.rs, line 3429
 TyParam:
-	// parse_sized
-	// parse_optional_ty_param_bounds
-	dynamicSized?="type"? name=ID bounds=TyParamBounds
-;
+// parse_sized
+// parse_optional_ty_param_bounds
+	dynamicSized?="type"? name=ID bounds=TyParamBounds;
 
-// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
+	// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
 TyParamBounds:
-	{TyParamBounds} (':' bounds+=TyParamBound ('+' bounds+=TyParamBound))?
-;
+	{TyParamBounds} (':' bounds+=TyParamBound ('+' bounds+=TyParamBound))?;
 
 TyParamBound:
-	StaticRegionTyParamBound |
-	OtherRegionTyParamBound
-;
+	StaticRegionTyParamBound | OtherRegionTyParamBound;
 
 StaticRegionTyParamBound:
-	{StaticRegionTyParamBound} "'static"
-;
+	{StaticRegionTyParamBound} "'static";
 
 OtherRegionTyParamBound:
-	Lifetime
-;
+	Lifetime;
 
-// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
+	// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
 FnDecl:
-	// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
+// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
 	'(' args+=NamedArg (',' args+=NamedArg)* ')'
 	// parse_ret_ty (TODO Separate into named/unnamed args, or treat as error?)
 ;
 
 // parse_arg_general, libsyntax/parser/parser.rs, line 1342
 NamedArg:
-	{Arg} pat=Pat ':' ty=Ty
-;
+	{Arg} pat=Pat ':' ty=Ty;
 
 Arg:
-	(=>pat=Pat ':')? ty=Ty	
-;
+	(=> pat=Pat ':')? ty=Ty;
 
-// parse_pat, libsyntax/parser/parser.rs, line 2764
+	// parse_pat, libsyntax/parser/parser.rs, line 2764
 Pat:
 	{PatWild} '_' |
-	{PatUniq} '@' pat=Pat |			// TODO This pattern is obsolete
-	{PatOwned} '~' pat=Pat | 		// TODO This pattern is obsolete
+	{PatUniq} '@' pat=Pat | // TODO This pattern is obsolete
+	{PatOwned} '~' pat=Pat | // TODO This pattern is obsolete
 	{PatRegion} '&' pat=Pat |
 	// {PatNil} '(' =>')' |	TODO PatLit includes this production
 	{PatTup} '(' pats+=Pat (',' pats+=Pat) ')' |
 	PatVec |
 	// {PatRange} start=LiteralMaybeMinus =>".." end=LiteralMaybeMinus |
 	// {PatLit} value=LiteralMaybeMinus
-	LiteralMaybeMinus ({PatRange.start=current} ".." end=LiteralMaybeMinus | {PatLit.value=current})
-;
+	LiteralMaybeMinus ({PatRange.start=current} => ".." end=LiteralMaybeMinus | {PatLit.value=current});
 
-// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
+	// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
 PatVec:
-	{PatVec} '[' before+=Pat (',' (before+=Pat ',')*)? (".." (after+=Pat (',' after+=Pat)*)?)? ']'
-;
+	{PatVec} '[' (".." after+=Pat+ |
+	(before+=Pat ',')+ ".." (after+=Pat (',' after+=Pat)*)?) ']';
 
-// parse_literal_maybe_minus, libsyntax/parser/parser.rs, line 1441
+	// parse_literal_maybe_minus, libsyntax/parser/parser.rs, line 1441
 LiteralMaybeMinus:
-	{UnNeg} '-' lit=Lit | 
-	{ExprLit} lit=Lit
-;
+	{UnNeg} '-' lit=Lit |
+	{ExprLit} lit=Lit;
 
-// parse_ty, libsyntax/parser/parser.rs, line 1195
+	// parse_ty, libsyntax/parser/parser.rs, line 1195
 Ty:
-	{TyNil} '(' =>')' |
+	{TyNil} '(' => ')' |
 	// {TyTup} '(' tys+=Ty =>',' (tys+=Ty =>(',' tys+=Ty)* ','?)? ')' |
 	// {Ty} '(' ty=Ty =>')' |
 	{TyBox} '@' ty=Ty |
@@ -213,79 +173,158 @@ Ty:
 	{TyTypeof} "typeof" '(' expr=Expr ')' |
 	TyProc |
 	TyPath |
-	{TyInfer} '_'
-;
+	{TyInfer} '_';
 
-// parse_mt, libsytnax/parser/parser.rs, line 1141
+	// parse_mt, libsytnax/parser/parser.rs, line 1141
 MutTy:
-	// parse_mutability
-	// parse_ty
-	mutbl=Mutability ty=Ty
-;
+// parse_mutability
+// parse_ty
+	mutbl=Mutability ty=Ty;
 
 Mutability:
-	{MutMutable} "mut" | 
-	{MutImmutable} "const"?
-;
+	{MutMutable} "mut" | {MutImmutable} "const"?;
 
-// parse_expr, libsyntax/parser/parser.rs, line 2606
+	// parse_expr, libsyntax/parser/parser.rs, line 2606
 // Assumes UNRESTRICTED restriction in parser
 Expr:
-	AssignExpr
-;
+	AssignExpr;
 
-// parse_assign_expr, libsyntax/parser/parser.rs, line 2383
+	// parse_expr with RESTRICT_STMT_EXPR
+Expr_RestrictStmt:
+	AssignExpr_RestrictStmt;
+
+	// parse_assign_expr, libsyntax/parser/parser.rs, line 2383
 AssignExpr:
-	ExprBinary (
-		{ExprAssign.lhs=current} =>'=' rhs=Expr |
-		{ExprAdd.lhs=current} =>'+' rhs=Expr |
-		{ExprSub.lhs=current} =>'-' rhs=Expr |
-		{ExprMul.lhs=current} =>'*' rhs=Expr |
-		{ExprDiv.lhs=current} =>'/' rhs=Expr |
-		{ExprMod.lhs=current} =>'%' rhs=Expr |
-		{ExprBitXor.lhs=current} =>'^' rhs=Expr |
-		{ExprBitOr.lhs=current} =>'|' rhs=Expr |
-		{ExprBitAnd.lhs=current} =>'&' rhs=Expr |
-		{ExprShl.lhs=current} =>('<' '<') rhs=Expr |
-		{ExprShr.lhs=current} =>('>' '>') rhs=Expr |
-		{ExprBreak.lhs=current} =>"<->" rhs=Expr
-	)?
-;
+	ExprBinaryPrecedence0 => ({ExprAssign.lhs=current} '=' rhs=Expr | {ExprBreak.lhs=current} "<->" rhs=Expr)?;
 
-ExprBinary:
-	ExprUnary
-;
+	// parse_expr with RESTRICT_STMT_EXPR set as condition
+AssignExpr_RestrictStmt:
+	ExprBinaryPrecedence0_RestrictStmt => ({ExprAssign.lhs=current} => '=' rhs=ExprStmt |
+	// TODO Compound assignment
+	{ExprBreak.lhs=current} => "<->" rhs=ExprStmt)?;
 
-// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
+	// operator_prec, libsyntax/ast_util.rs, line 319
+BinOpEq hidden():
+	(BinOpPrec06 | BinOpPrec07 | BinOpPrec08 | BinOpPrec09 | BinOpPrec10 | BinOpPrec11) '=';
+
+BinOpPrec11:
+	{BiDiv} '/' | {BiMul} '*' | {BiRem} '%';
+
+BinOpPrec10:
+	{BiAdd} '+' | {BiSub} '-';
+	// "<<" and ">>" are divided into individual tokens to prevent nested generic parameters from being consumed together
+BinOpPrec09 hidden():
+	({BiShl} '<' => '<' | {BiShr} '>' => '>');
+
+BinOpPrec08:
+	{BiBitAnd} '&';
+
+BinOpPrec07:
+	{BiBitXor} '^';
+
+BinOpPrec06:
+	{BiBitOr} '|';
+
+BinOpPrec04:
+	{BiLt} '<' | {BiLe} "<=" | {BiGt} '>' | {BiGe} ">=";
+
+BinOpPrec03:
+	{BiEq} "==" | {BiNe} "!=";
+
+BinOpPrec02 hidden():
+	{BiAnd} "&&";
+
+BinOpPrec01 hidden():
+	{BiOr} "||";
+
+	// parse_binops, libsyntax/parser/parser.rs, line 2328
+// min_prec = 0
+ExprBinaryPrecedence0:
+	ExprBinaryPrecedence1 => ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprBinaryPrecedence1)?;
+
+ExprBinaryPrecedence1:
+	ExprBinaryPrecedence2 => ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprBinaryPrecedence2)?;
+
+ExprBinaryPrecedence2:
+	ExprBinaryPrecedence3 => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprBinaryPrecedence3)?;
+
+ExprBinaryPrecedence0_RestrictStmt:
+	ExprBinaryPrecedence1_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence3:
+	ExprBinaryPrecedence4 => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprBinaryPrecedence4)?;
+
+ExprBinaryPrecedence4:
+	ExprBinaryPrecedence6 => ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprBinaryPrecedence6)?;
+
+ExprBinaryPrecedence6:
+	ExprBinaryPrecedence7 => ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprBinaryPrecedence7)?;
+
+ExprBinaryPrecedence7:
+	ExprBinaryPrecedence8 => ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprBinaryPrecedence8)?;
+
+ExprBinaryPrecedence8:
+	ExprBinaryPrecedence9 => ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprBinaryPrecedence9)?;
+
+ExprBinaryPrecedence9:
+	ExprBinaryPrecedence10 => ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprBinaryPrecedence10)?;
+
+ExprBinaryPrecedence10:
+	ExprUnary => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprUnary)?;
+
+ExprBinaryPrecedence1_RestrictStmt:
+	ExprBinaryPrecedence2_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence2_RestrictStmt:
+	ExprBinaryPrecedence3_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence3_RestrictStmt:
+	ExprBinaryPrecedence4_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence4_RestrictStmt:
+	ExprBinaryPrecedence6_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence6_RestrictStmt:
+	ExprBinaryPrecedence7_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence7_RestrictStmt:
+	ExprBinaryPrecedence8_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence8_RestrictStmt:
+	ExprBinaryPrecedence9_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence9_RestrictStmt:
+	ExprBinaryPrecedence10_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprStmt)?;
+
+ExprBinaryPrecedence10_RestrictStmt:
+	ExprStmt /* | ExprUnary */ => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprStmt)?;
+
+ExprStmt:
+	ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor;
+
+	// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
 ExprUnary:
-	{UnNot} '!' expr=ExprUnary |
-	{UnNeg} '-' expr=ExprUnary |
-	{UnDeref} '*' expr=ExprUnary |
+	{UnNot} '!' expr=ExprUnary | {UnNeg} '-' expr=ExprUnary | {UnDeref} '*' expr=ExprUnary |
 	// TODO Parser includes a hack here to parse &[] vector expressions
 	{ExprAddrOf} '&' lifetime=Lifetime? mutbl=Mutability expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
 	{UnBox} '@' expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
-	{UnUniq} '~' expr=ExprUnary |
-	{ExprBox} "box" '(' place=Expr? ')' expr=ExprUnary |
-	DotOrCallExpr
-; 
+	{UnUniq} '~' expr=ExprUnary | {ExprBox} "box" '(' place=Expr? ')' expr=ExprUnary | DotOrCallExpr;
 
-// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
+	// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
 DotOrCallExpr:
-	ExprBottom (
-		{ExprMethodCall.expr=current} '.' method=ID ("::" genericValues=GenericValues)? =>'(' (args+=Expr (',' args+=Expr)*)? ')' |
-		{ExprMethodCall.expr=current} '.' method=ID ("::" genericValues=GenericValues)? |
-		{ExprCall.expr=current} =>'(' (args+=Expr (',' args+=Expr)*)? ')'
-		{ExprIndex.expr=current} =>'[' index=Expr ']'
-	)?
-;
+	ExprBottom =>(
+		// Dropped ExprMethodCall from here, although syn. pred. would have fixed it.
+		{ExprField.expr=current} '.' method=ID ("::" genericValues=GenericValues)? |
+		{ExprCall.expr=current} '(' (args+=Expr (',' args+=Expr)*)? ')'
+		{ExprIndex.expr=current} '[' index=Expr ']'
+	)*;
 
 // parse_bottom_expr, libsyntax/parser/parser.rs, line 1716
 ExprBottom:
-	// See maybe_whole_expr! macro, libsyntax/parser/parser.rs, line 131
-	{ExprParen} '(' expr=Expr =>')' |
-	{ExprTup} '(' exprs+=Expr =>',' (exprs+=Expr ',')* exprs+=Expr? ')' |
+// See maybe_whole_expr! macro, libsyntax/parser/parser.rs, line 131
+	'(' expr=Expr ({ExprParen.exprs=current} ')' | {ExprTup.exprs+=current} ',' => (exprs+=Expr ',')* exprs+=Expr? ')') |
 	ExprBlock |
 	ExprFnBlock |
 	ExprProc |
@@ -293,52 +332,42 @@ ExprBottom:
 	ExprIf |
 	ExprFor |
 	ExprWhile |
-	// TODO Lifetime
+	Lifetime ':' ({ExprForWithLifetime.lifetime=current} for=ExprFor | {ExprLoopWithLifetime.lifetime=current}
+	loop=ExprLoop) |
 	ExprLoop |
 	ExprContinue |
-	// TODO ExprMatch |
+	ExprMatch |
 	UnsafeBlock |
-	'[' (
-		Expr (
-			{ExprRepeat.firstExpr=current} =>(',' "..") count=Expr |
-			{ExprVec.exprs+=current} (',' exprs+=Expr)*
-		)
-	)? ']' |
+	{ExprVec} '[' (exprs+=Expr ((',' exprs+=Expr)* |
+	{ExprRepeat.exprs=current} => (',' "..") count=Expr))? ']' |
 	ExprRet |
 	ExprBreak |
 	// TODO Path
-		// TODO Macro invocation
-		// TODO Struct creation
-	{ExprLit} expr=Lit
-;
+	// TODO Macro invocation
+	// TODO Struct creation
+	{ExprLit} expr=Lit;
 
 ExprBlock:
-	{ExprBlock} '{' /* TODO block contents */ '}'
-;
+	{ExprBlock} '{' /* TODO block contents */ '}';
 
-// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
+	// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
 ExprFnBlock:
-	decl=FnBlockDecl body=Expr
-;
+	decl=FnBlockDecl body=Expr;
 
-// parse_fn_block_decl, libsyntax/parser/parser.rs, line 3713
+	// parse_fn_block_decl, libsyntax/parser/parser.rs, line 3713
 FnBlockDecl:
-	{FnBlockDecl} '|' (args+=FnBlockArg (',' args+=FnBlockArg)*)? '|' ("->" returnTy=Ty)?
-;
+	{FnBlockDecl} '|' (args+=FnBlockArg (',' args+=FnBlockArg)*)? '|' returnTy=RetTy?;
 
-// parse_fn_block_arg, libsyntax/parser/parser.rs, line 1372
+	// parse_fn_block_arg, libsyntax/parser/parser.rs, line 1372
 FnBlockArg:
-	pat=Pat (':' ty=Ty)?
-;
+	pat=Pat (':' ty=Ty)?;
 
 ExprProc:
-	decl=ProcDecl body=Expr
-;
+	decl=ProcDecl body=Expr;
 
-// parse_proc_decl, libsyntax/parser/parser.rs, line 3745
+	// parse_proc_decl, libsyntax/parser/parser.rs, line 3745
 ProcDecl:
-	{FnBlockDecl} '(' (args+=FnBlockArg (',' args+=FnBlockArg)*)? ')' ("->" returnTy=Ty)?
-;
+	{FnBlockDecl} "proc" '(' (args+=FnBlockArg (',' args+=FnBlockArg)*)? ')' ("->" returnTy=Ty)?;
 
 ExprSelf:
 	{ExprPath} "self" // TODO Parser parses further path here
@@ -346,52 +375,58 @@ ExprSelf:
 
 // parse_if_expr, libsyntax/parser/parser.rs, line 2424
 ExprIf:
-	"if" cond=Expr thn=ExprBlock ("else" els=ExprBlock)?
-;
+	"if" cond=Expr thn=ExprBlock ("else" els=ExprBlock)?;
 
-// parse_for_expr, libsyntax/parser/parser.rs, line 2505
+	// parse_for_expr, libsyntax/parser/parser.rs, line 2505
 ExprFor:
-	{ExprForLoop} "for" pat=Pat "in" expr=Expr loopBlock=ExprBlock
-;
+	{ExprForLoop} "for" pat=Pat "in" expr=Expr loopBlock=ExprBlock;
 
-// parse_while_expr, libsyntax/parser/parser.rs, line 2518
+	// parse_while_expr, libsyntax/parser/parser.rs, line 2518
 ExprWhile:
-	"while" cond=Expr body=ExprBlock
-;
+	"while" cond=Expr body=ExprBlock;
 
-// parse_loop_expr, libsyntax/parser/parser.rs, line 2526
+	// parse_loop_expr, libsyntax/parser/parser.rs, line 2526
 ExprLoop:
-	{ExprLoop} name=ID? body=ExprBlock |
-	{ExprAgain} lifetime=Lifetime?
-;
+	"loop" ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
 
 ExprContinue:
-	{ExprAgain} "continue" lifetime=Lifetime
-;
+	{ExprAgain} "continue" lifetime=Lifetime;
 
-/*ExprMatch:
-	
-;*/
+	// parse_match_expr, libsyntax/parser/parser.rs, line 2568
+ExprMatch:
+	"match" discriminant=Expr '{' (=> arms+=HeadArm* arms+=TailArm)? '}';
+
+Arm:
+	HeadArm | TailArm;
+
+HeadArm:
+// parse_outer_attributes
+// parse_pats
+	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? "=>" (=> expr=ExprBlock | expr=Expr_RestrictStmt ',');
+
+TailArm:
+// TODO Check that this correct?
+	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? "=>" (=> expr=ExprBlock | expr=Expr_RestrictStmt);
+
+	// parse_pats, libsyntax/parser/parser.rs, line 2630
+Pats:
+	pats+=Pat ('|' pats+=Pat)*;
 
 UnsafeBlock:
-	"unsafe" block=ExprBlock
-;
+	"unsafe" block=ExprBlock;
 
 ExprRet:
-	// can_begin_expr
-	{ExprRet} "return" expr=Expr?
-;
+// can_begin_expr
+	{ExprRet} "return" => expr=Expr?;
 
 ExprBreak:
-	{ExprBreak} "break" lifetime=Lifetime?
-;
+	{ExprBreak} "break" lifetime=Lifetime?;
 
-// parse_borrowed_pointee, libsyntax/parser/parser.rs, line 1313
+	// parse_borrowed_pointee, libsyntax/parser/parser.rs, line 1313
 TyRptr:
-	'&' lifetime=Lifetime? mutTy=MutTy
-;
+	'&' lifetime=Lifetime? mutTy=MutTy;
 
-// parse_ty_bare_fn, libsyntax/parser/parser.rs, line 890
+	// parse_ty_bare_fn, libsyntax/parser/parser.rs, line 890
 /*
   [unsafe] [extern "ABI"] fn <'lt> (S) -> T
    ^~~~^           ^~~~^     ^~~~^ ^~^    ^
@@ -403,12 +438,11 @@ TyRptr:
   Function Style
 */
 TyBareFn:
-	fnStyle=FnStyle ("extern" abi=STRING?)? decl=FnDecl
-;
+	fnStyle=FnStyle ("extern" abi=STRING?)? "fn" decl=FnDecl;
 
-// parse_unsafety, libsyntax/parser/parser.rs, line 1026
+	// parse_unsafety, libsyntax/parser/parser.rs, line 1026
 FnStyle:
-	unsafeFn?="unsafe"	// AST implements this as UnsafeFn and NormalFn
+	unsafeFn?="unsafe" // AST implements this as UnsafeFn and NormalFn
 ;
 
 // parse_ty_closure, libsyntax/parse/parser.rs, line 969
@@ -424,24 +458,21 @@ FnStyle:
   Function Style
 */
 TyClosure:
-	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? ("||" | '|' args+=Arg (',' args+=Arg)* '|') bounds=TyParamBounds retTy=RetTy
-;
+	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? ("||" | '|' args+=Arg (',' args+=Arg)* '|')
+	bounds=TyParamBounds retTy=RetTy;
 
 Onceness:
-	once?="once"
-;
+	once?="once";
 
-// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
+	// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
 Lifetimes:
-	'<' lifetimes+=Lifetime =>(',' lifetimes+=Lifetime)* ','? '>'
-;
+	'<' lifetimes+=Lifetime => (',' lifetimes+=Lifetime)* ','? '>';
 
-// parse_ret_ty, libsyntax/parse/parser.rs
+	// parse_ret_ty, libsyntax/parse/parser.rs
 RetTy:
-	{RetTy} ("->" ty=Ty)?
-;
+	{RetTy} "->" ty=Ty;
 
-// parse_proc_type, libsyntax/parser/parser.rs, line 928
+	// parse_proc_type, libsyntax/parser/parser.rs, line 928
 /*
   proc <'lt> (S) [:Bounds] -> T
   ^~~^ ^~~~^  ^  ^~~~~~~~^    ^
@@ -453,35 +484,27 @@ RetTy:
   the `proc` keyword
 */
 TyProc:
-	"proc" lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy
-;
+	"proc" lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy;
 
-// parse_fn_args, libsyntax/parser/parser.rs, line 3485
+	// parse_fn_args, libsyntax/parser/parser.rs, line 3485
 FnArgs:
-	'(' args+=Arg =>(',' args+=Arg)* ','? ')'
-;
+	'(' args+=Arg => (',' args+=Arg)* ','? ')';
 
-// parse_path, libsyntax/parser/parser.rs, line 1463
+	// parse_path, libsyntax/parser/parser.rs, line 1463
 TyPath:
-	path=PathWithLifetimesTypesAndBounds
-;
+	path=PathWithLifetimesTypesAndBounds;
 
 PathWithLifetimesTypesAndBounds:
-	global?="::" segments+=PathSegment ("::" segments+=PathSegment)* bounds=TyParamBounds
-;
+	global?="::" segments+=PathSegment ("::" segments+=PathSegment)* bounds=TyParamBounds;
 
 PathSegment:
-	name=ID genericValues=GenericValues?
-;
+	name=ID genericValues=GenericValues?;
 
-// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
+	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 GenericValues:
-	'<'
-		(lifetimes+=Lifetime =>(',' lifetimes+=Lifetime)* ',')? tys+=Ty =>(',' tys+=Ty)* ','?
-	'>'
-;
+	'<' (lifetimes+=Lifetime => (',' lifetimes+=Lifetime)* ',')? tys+=Ty => (',' tys+=Ty)* ','? '>';
 
-// parse_mod_items, libsyntax/parser/parser.rs, line 4059
+	// parse_mod_items, libsyntax/parser/parser.rs, line 4059
 /*Mod:
 	// parse_items_and_view_items
 ;
@@ -489,59 +512,121 @@ GenericValues:
 ItemsAndViewItems:
 	
 ;*/
+terminal CHAR:
+	"'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
 
-terminal CHAR: "'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
-terminal STRING: '"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
+terminal STRING:
+	'"' (('\\' ('\\' | 'n' | 'r' | 't' | '0' | '"' | '\n')) | UNICODE_CHAR | !('\\' | '"'))* '"';
 
-terminal fragment UNICODE_CHAR: UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
-terminal fragment UTF8_CHAR: '\\x' HEX_DIGIT HEX_DIGIT;
-terminal fragment UTF16_CHAR: '\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
-terminal fragment UTF32_CHAR: '\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
+terminal fragment UNICODE_CHAR:
+	UTF8_CHAR | UTF16_CHAR | UTF32_CHAR;
 
-terminal fragment SIGNED_INT_TYPE: I | I8 | I16 | I32 | I64;
-terminal fragment I: "i";
-terminal fragment I8: "i8";
-terminal fragment I16: "i16";
-terminal fragment I32: "i32";
-terminal fragment I64: "i64";
-terminal fragment UNSIGNED_INT_TYPE: U | U8 | U16 | U32 | U64;
-terminal fragment U: "u";
-terminal fragment U8: "u8";
-terminal fragment U16: "u16";
-terminal fragment U32: "u32";
-terminal fragment U64: "u64";
-terminal fragment FLOAT_SUFFIX: F32 | F64;
-terminal fragment F32: "f32";
-terminal fragment F64: "f64";
+terminal fragment UTF8_CHAR:
+	'\\x' HEX_DIGIT HEX_DIGIT;
 
-// Floating point literal
-terminal FLOAT_UNSUFFIXED: DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)?;
-terminal FLOAT: FLOAT_UNSUFFIXED FLOAT_SUFFIX;
+terminal fragment UTF16_CHAR:
+	'\\u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 
-// Integer literal
-terminal INT_UNSUFFIXED: (DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT);
-terminal INT: INT_UNSUFFIXED SIGNED_INT_TYPE;
-terminal UINT: INT_UNSUFFIXED UNSIGNED_INT_TYPE;
+terminal fragment UTF32_CHAR:
+	'\\U' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT;
 
-// Decimal (base 10) integer
-terminal fragment DEC_INT_LIT: DEC_DIGIT (DEC_DIGIT | '_')*;
+terminal fragment SIGNED_INT_TYPE:
+	I | I8 | I16 | I32 | I64;
 
-// Binary (base 2) integer
-terminal fragment BIN_INT_LIT: "0b" ('0' | '1' | '_')+;
+terminal fragment I:
+	"i";
 
-// Octal (base 8) integer
-terminal fragment OCT_INT_LIT: "0o" (OCT_DIGIT | '_')+;
+terminal fragment I8:
+	"i8";
 
-// Hex (base 16) integer
-terminal fragment HEX_INT_LIT: "0x" (HEX_DIGIT | '_')+;
+terminal fragment I16:
+	"i16";
 
-terminal fragment OCT_DIGIT: '0'..'7';
-terminal fragment DEC_DIGIT: '0'..'9';
-terminal fragment HEX_DIGIT: '0'..'9' | 'a'..'f' | 'A'..'F';
+terminal fragment I32:
+	"i32";
 
-// terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
+terminal fragment I64:
+	"i64";
 
-terminal ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
-terminal ML_COMMENT	: '/*' -> '*/';
-terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
-terminal WS: (' ' | '\t' | '\r' | '\n')+;
+terminal fragment UNSIGNED_INT_TYPE:
+	U | U8 | U16 | U32 | U64;
+
+terminal fragment U:
+	"u";
+
+terminal fragment U8:
+	"u8";
+
+terminal fragment U16:
+	"u16";
+
+terminal fragment U32:
+	"u32";
+
+terminal fragment U64:
+	"u64";
+
+terminal fragment FLOAT_SUFFIX:
+	F32 | F64;
+
+terminal fragment F32:
+	"f32";
+
+terminal fragment F64:
+	"f64";
+
+	// Floating point literal
+terminal FLOAT_UNSUFFIXED:
+	DEC_DIGIT (DEC_DIGIT | '_')* ('.' (DEC_DIGIT | '_')+) (('E' | 'e') ('+' | '-')? (DEC_DIGIT | '_')+)?;
+
+terminal FLOAT:
+	FLOAT_UNSUFFIXED FLOAT_SUFFIX;
+
+	// Integer literal
+terminal INT_UNSUFFIXED:
+	(DEC_INT_LIT | BIN_INT_LIT | OCT_INT_LIT | HEX_INT_LIT);
+
+terminal INT:
+	INT_UNSUFFIXED SIGNED_INT_TYPE;
+
+terminal UINT:
+	INT_UNSUFFIXED UNSIGNED_INT_TYPE;
+
+	// Decimal (base 10) integer
+terminal fragment DEC_INT_LIT:
+	DEC_DIGIT (DEC_DIGIT | '_')*;
+
+	// Binary (base 2) integer
+terminal fragment BIN_INT_LIT:
+	"0b" ('0' | '1' | '_')+;
+
+	// Octal (base 8) integer
+terminal fragment OCT_INT_LIT:
+	"0o" (OCT_DIGIT | '_')+;
+
+	// Hex (base 16) integer
+terminal fragment HEX_INT_LIT:
+	"0x" (HEX_DIGIT | '_')+;
+
+terminal fragment OCT_DIGIT:
+	'0'..'7';
+
+terminal fragment DEC_DIGIT:
+	'0'..'9';
+
+terminal fragment HEX_DIGIT:
+	'0'..'9' | 'a'..'f' | 'A'..'F';
+
+	// terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
+
+terminal ID:
+	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+terminal ML_COMMENT:
+	'/*'->'*/';
+
+terminal SL_COMMENT:
+	'//' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
