@@ -31,7 +31,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaItems" upperBound="-1"
         eType="#//MetaItem" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewItem">
+  <eClassifiers xsi:type="ecore:EClass" name="ViewItem" eSuperTypes="#//Stmt">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" eType="#//OuterAttributes"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
@@ -74,7 +74,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Visibility" eSuperTypes="#//Variant"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Item"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Item" eSuperTypes="#//Stmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="ItemStatic" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
@@ -162,8 +162,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mutability"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Expr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Expr_RestrictStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//Initializer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr_RestrictStmt" eSuperTypes="#//Stmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssignExpr" eSuperTypes="#//Expr"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssignExpr_RestrictStmt" eSuperTypes="#//Expr_RestrictStmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="BinOpEq"/>
@@ -224,8 +224,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="innerAttrs" upperBound="-1"
         eType="#//InnerAttributes" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+        eType="#//Stmt" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StmtDecl" eSuperTypes="#//Stmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decls" upperBound="-1"
+        eType="#//Local" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Local">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="#//Initializer"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Initializer"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprFnBlock" eSuperTypes="#//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="decl" eType="#//FnBlockDecl"
         containment="true"/>
@@ -398,7 +410,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="innerAttrs" upperBound="-1"
         eType="#//InnerAttributes" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+        eType="#//Stmt" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TT"/>
   <eClassifiers xsi:type="ecore:EClass" name="NonDelimTTToken" eSuperTypes="#//TT"/>

@@ -186,6 +186,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBlock/innerAttrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBlock/items"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Stmt"/>
+    <genClasses ecoreClass="Rust.ecore#//StmtDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//StmtDecl/decls"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Local">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Local/pat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Local/ty"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Local/init"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Initializer"/>
     <genClasses ecoreClass="Rust.ecore#//ExprFnBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnBlock/decl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprFnBlock/body"/>
