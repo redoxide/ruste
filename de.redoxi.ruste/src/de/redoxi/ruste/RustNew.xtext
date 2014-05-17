@@ -52,6 +52,7 @@ ViewPath:
 	ViewPathSimple | ViewPathGlob | ViewPathList;
 
 	// TODO NonGlobalPath?
+	// TODO Use TypePath or ExprPath as appropriate
 Path:
 	segments+=ID (MOD_SEP segments+=ID)*;
 
@@ -93,6 +94,7 @@ Generics:
 	LT tyParams=TyParams COMMA? GT)?;
 
 	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
+	// TODO Should be a token
 Lifetime hidden():
 	'\'' name=ID;
 

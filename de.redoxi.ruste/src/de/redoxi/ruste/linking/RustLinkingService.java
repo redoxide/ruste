@@ -18,8 +18,6 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 
 import com.google.inject.Inject;
 
-import de.redoxi.ruste.rust.NamedItem;
-
 /**
  * Resolves links between {@link NamedItem}s in the grammar and fully-qualified or aliased names that reference
  * them in types or expressions.

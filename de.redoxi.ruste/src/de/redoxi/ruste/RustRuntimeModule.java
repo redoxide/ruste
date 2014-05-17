@@ -30,15 +30,15 @@ public class RustRuntimeModule extends de.redoxi.ruste.AbstractRustRuntimeModule
 	return RustQualifiedNameConverter.class;
     }
 
-    @Override
+    /*@Override
     public Class<? extends IScopeProvider> bindIScopeProvider() {
 	return RustUseModuleAwareLocalScopeProvider.class;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 	return RustCrateGlobalScopeProvider.class;
-    }
+    }*/
 
     @Override
     public Class<? extends ILinkingService> bindILinkingService() {
