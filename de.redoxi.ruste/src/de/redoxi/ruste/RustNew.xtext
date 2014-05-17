@@ -12,34 +12,31 @@ Crate:
 	(items+=(ViewItem /*| Item*/))*;
 
 InnerAttributes:
-	'#' '!' '[' metaItem=MetaItem ']';
+	POUND NOT LBRACKET metaItem=MetaItem RBRACKET;
 
 OuterAttributes:
 	attributes+=Attribute+;
 
 	// parse_attribute, libsyntax/parser/attr.rs, line 62
 Attribute:
-	'#' '[' metaItem=MetaItem ']';
+	POUND LBRACKET metaItem=MetaItem RBRACKET;
 
 	// parse_meta_item, libsyntax/parser/attr.rs, line 154
 MetaItem:
-	name=ID ('=' value=Lit | '(' value=MetaList ')')?;
+	name=ID (EQ value=Lit | LPAREN value=MetaList RPAREN)?;
 
 	// parse_lit, libsyntax/parser/parser.rs, line 1426
 Lit hidden():
-	{BoolLit} value=BOOL |
+	{BoolLit} value=(TRUE_KW | FALSE_KW) |
 	// lit_from_token, libsyntax/parser/parser.rs, line 1402
 	{LitChar} value=CHAR | {LitInt} value=INT | {LitUint} value=UINT | {LitIntSuffixed} value=INT_UNSUFFIXED | {LitFloat}
 	value=FLOAT | {LitFloatUnsuffixed} value=FLOAT_UNSUFFIXED | {LitString} value=STRING |
 	// TODO {LitRawString}
-	{LitUnit} '(' ')';
-
-enum BOOL:
-	TRUE="true" | FALSE="false";
+	{LitUnit} LPAREN RPAREN;
 
 	// parse_meta_seq, libsyntax/parser/attr.rs, line 196
 MetaList:
-	metaItems+=MetaItem (',' metaItems+=MetaItem);
+	metaItems+=MetaItem (COMMA metaItems+=MetaItem);
 
 ViewItem:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
@@ -48,7 +45,7 @@ ViewItem:
 
 ViewItemUse:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
-	"use" path=ViewPath;
+	USE_KW path=ViewPath;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4951
 ViewPath:
@@ -56,11 +53,11 @@ ViewPath:
 
 	// TODO NonGlobalPath?
 Path:
-	segments+=ID ("::" segments+=ID)*;
+	segments+=ID (MOD_SEP segments+=ID)*;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4848
 ViewPathSimple:
-	name=ID => '=' path=Path;
+	name=ID => EQ path=Path;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
 ViewPathGlob:
@@ -68,24 +65,24 @@ ViewPathGlob:
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
 ViewPathList:
-	path=Path => "::{" identifiers+=ID (',' identifiers+=ID)* '}';
+	path=Path => "::{" identifiers+=ID (COMMA identifiers+=ID)* RBRACE;
 
 ViewExternItem:
 	ViewItemExternCrate | ViewItemExternFn;
 
 	// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
 ViewItemExternCrate:
-	"extern" => "crate" name=ID ('=' path=STRING)? ';';
+	EXTERN_KW => CRATE_KW name=ID (EQ path=STRING)? SEMI;
 
 ViewItemExternFn:
-	"extern" (abi=STRING)? => fn=FnItem;
+	EXTERN_KW (abi=STRING)? => fn=FnItem;
 
 	// parse_item_fn, libsyntax/parser/parser.rs, line 3791
 FnItem:
 // parse_fn_header
 // parse_fn_decl
 // parse_inner_attrs_and_block
-	"fn" name=ID generics=Generics decl=FnDecl;
+	FN_KW name=ID generics=Generics decl=FnDecl;
 
 	// parse_generics, libsyntax/parser/parser.rs, line 3457
 Generics:
@@ -93,24 +90,24 @@ Generics:
 	// The grammar allows for out-of-order lifetimes/generic params,
 	// but that is solely to throw a warning about them being out of order.
 	// Lifetimes are supposed to proceed type parameters
-	'<' tyParams=TyParams ','? '>')?;
+	LT tyParams=TyParams COMMA? GT)?;
 
 	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
 Lifetime hidden():
 	'\'' name=ID;
 
 TyParams:
-	{TyParams} (values+=TyParam => (',' values+=TyParam)*)?;
+	{TyParams} (values+=TyParam => (COMMA values+=TyParam)*)?;
 
 	// parse_ty_param, libsyntax/parser/parser.rs, line 3429
 TyParam:
 // parse_sized
 // parse_optional_ty_param_bounds
-	dynamicSized?="type"? name=ID bounds=TyParamBounds;
+	dynamicSized?=TYPE_KW? name=ID bounds=TyParamBounds;
 
 	// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
 TyParamBounds:
-	{TyParamBounds} (':' bounds+=TyParamBound ('+' bounds+=TyParamBound))?;
+	{TyParamBounds} COLON bounds+=TyParamBound (PLUS bounds+=TyParamBound);
 
 TyParamBound:
 	StaticRegionTyParamBound | OtherRegionTyParamBound;
@@ -124,53 +121,55 @@ OtherRegionTyParamBound:
 	// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
 FnDecl:
 // parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
-	'(' args+=NamedArg (',' args+=NamedArg)* ')'
+	LPAREN args+=NamedArg (COMMA args+=NamedArg)* RPAREN
 	// parse_ret_ty (TODO Separate into named/unnamed args, or treat as error?)
 ;
 
 // parse_arg_general, libsyntax/parser/parser.rs, line 1342
 NamedArg:
-	{Arg} pat=Pat ':' ty=Ty;
+	{Arg} pat=Pat COLON ty=Ty;
 
 Arg:
-	(=> pat=Pat ':')? ty=Ty;
+	(=> pat=Pat COLON)? ty=Ty;
 
 	// parse_pat, libsyntax/parser/parser.rs, line 2764
 Pat:
 	{PatWild} '_' |
-	{PatUniq} '@' pat=Pat | // TODO This pattern is obsolete
-	{PatOwned} '~' pat=Pat | // TODO This pattern is obsolete
-	{PatRegion} '&' pat=Pat |
-	// {PatNil} '(' =>')' |	TODO PatLit includes this production
-	{PatTup} '(' pats+=Pat (',' pats+=Pat) ')' |
+	{PatUniq} AT pat=Pat | // TODO This pattern is obsolete
+	{PatOwned} TILDE pat=Pat | // TODO This pattern is obsolete
+	{PatRegion} AND pat=Pat |
+	{PatTup} LPAREN pats+=Pat (COMMA pats+=Pat) RPAREN |
 	PatVec |
-	// {PatRange} start=LiteralMaybeMinus =>".." end=LiteralMaybeMinus |
-	// {PatLit} value=LiteralMaybeMinus
-	LiteralMaybeMinus ({PatRange.start=current} => ".." end=LiteralMaybeMinus | {PatLit.value=current});
+	LiteralMaybeMinus ({PatRange.start=current} => DOTDOT end=LiteralMaybeMinus | {PatLit.value=current});
 
 	// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
 PatVec:
-	{PatVec} '[' (".." after+=Pat+ |
-	(before+=Pat ',')+ ".." (after+=Pat (',' after+=Pat)*)?) ']';
+	{PatVec} LBRACKET (DOTDOT after+=Pat+ |
+	(before+=Pat COMMA)+ DOTDOT (after+=Pat (COMMA after+=Pat)*)?) RBRACKET;
 
 	// parse_literal_maybe_minus, libsyntax/parser/parser.rs, line 1441
 LiteralMaybeMinus:
-	{UnNeg} '-' lit=Lit |
+	{UnNeg} MINUS lit=Lit |
 	{ExprLit} lit=Lit;
 
-	// parse_ty, libsyntax/parser/parser.rs, line 1195
+// parse_ty, libsyntax/parser/parser.rs, line 1195
 Ty:
-	{TyNil} '(' => ')' |
-	// {TyTup} '(' tys+=Ty =>',' (tys+=Ty =>(',' tys+=Ty)* ','?)? ')' |
-	// {Ty} '(' ty=Ty =>')' |
-	{TyBox} '@' ty=Ty |
-	{TyUniq} '~' /* Can match a string here for now */ ty=Ty |
-	{TyPtr} '*' mutTy=MutTy |
-	{TyVec} '[' ty=Ty (',' ".." suffix=Expr)? ']' |
+	// Match "()", "(ty)", and "(ty,..)"
+	LPAREN (
+		{TyNil} RPAREN |
+		Ty (
+			{TyParen.ty=current} RPAREN |
+			{TyTup.tys+=current} COMMA (tys+=Ty =>(COMMA tys+=Ty)* COMMA?)? RPAREN
+		)		
+	) |
+	{TyBox} AT ty=Ty |
+	{TyUniq} TILDE /* Can match a string here for now */ ty=Ty |
+	{TyPtr} STAR mutTy=MutTy |
+	{TyVec} LBRACKET ty=Ty (COMMA DOTDOT suffix=Expr)? RBRACKET |
 	TyRptr |
 	TyBareFn |
 	TyClosure |
-	{TyTypeof} "typeof" '(' expr=Expr ')' |
+	{TyTypeof} "typeof" LPAREN expr=Expr RPAREN |
 	TyProc |
 	TyPath |
 	{TyInfer} '_';
@@ -182,7 +181,7 @@ MutTy:
 	mutbl=Mutability ty=Ty;
 
 Mutability:
-	{MutMutable} "mut" | {MutImmutable} "const"?;
+	{MutMutable} MUT_KW | {MutImmutable} CONST_KW?;
 
 	// parse_expr, libsyntax/parser/parser.rs, line 2606
 // Assumes UNRESTRICTED restriction in parser
@@ -195,47 +194,47 @@ Expr_RestrictStmt:
 
 	// parse_assign_expr, libsyntax/parser/parser.rs, line 2383
 AssignExpr:
-	ExprBinaryPrecedence0 => ({ExprAssign.lhs=current} '=' rhs=Expr | {ExprBreak.lhs=current} "<->" rhs=Expr)?;
+	ExprBinaryPrecedence0 => ({ExprAssign.lhs=current} EQ rhs=Expr | {ExprBreak.lhs=current} DARROW rhs=Expr)?;
 
 	// parse_expr with RESTRICT_STMT_EXPR set as condition
 AssignExpr_RestrictStmt:
-	ExprBinaryPrecedence0_RestrictStmt => ({ExprAssign.lhs=current} => '=' rhs=ExprStmt |
+	ExprBinaryPrecedence0_RestrictStmt => ({ExprAssign.lhs=current} => EQ rhs=ExprStmt |
 	// TODO Compound assignment
-	{ExprBreak.lhs=current} => "<->" rhs=ExprStmt)?;
+	{ExprBreak.lhs=current} => DARROW rhs=ExprStmt)?;
 
 	// operator_prec, libsyntax/ast_util.rs, line 319
 BinOpEq hidden():
-	(BinOpPrec06 | BinOpPrec07 | BinOpPrec08 | BinOpPrec09 | BinOpPrec10 | BinOpPrec11) '=';
+	(BinOpPrec06 | BinOpPrec07 | BinOpPrec08 | BinOpPrec09 | BinOpPrec10 | BinOpPrec11) EQ;
 
 BinOpPrec11:
-	{BiDiv} '/' | {BiMul} '*' | {BiRem} '%';
+	{BiDiv} SLASH | {BiMul} STAR | {BiRem} PERCENT;
 
 BinOpPrec10:
-	{BiAdd} '+' | {BiSub} '-';
+	{BiAdd} PLUS | {BiSub} MINUS;
 	// "<<" and ">>" are divided into individual tokens to prevent nested generic parameters from being consumed together
 BinOpPrec09 hidden():
-	({BiShl} '<' => '<' | {BiShr} '>' => '>');
+	({BiShl} LT => LT | {BiShr} GT => GT);
 
 BinOpPrec08:
-	{BiBitAnd} '&';
+	{BiBitAnd} AND;
 
 BinOpPrec07:
-	{BiBitXor} '^';
+	{BiBitXor} CARET;
 
 BinOpPrec06:
-	{BiBitOr} '|';
+	{BiBitOr} OR;
 
 BinOpPrec04:
-	{BiLt} '<' | {BiLe} "<=" | {BiGt} '>' | {BiGe} ">=";
+	{BiLt} LT | {BiLe} LE | {BiGt} GT | {BiGe} GE;
 
 BinOpPrec03:
-	{BiEq} "==" | {BiNe} "!=";
+	{BiEq} EQEQ | {BiNe} NE;
 
 BinOpPrec02 hidden():
-	{BiAnd} "&&";
+	{BiAnd} ANDAND;
 
 BinOpPrec01 hidden():
-	{BiOr} "||";
+	{BiOr} OROR;
 
 	// parse_binops, libsyntax/parser/parser.rs, line 2328
 // min_prec = 0
@@ -304,27 +303,27 @@ ExprStmt:
 
 	// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
 ExprUnary:
-	{UnNot} '!' expr=ExprUnary | {UnNeg} '-' expr=ExprUnary | {UnDeref} '*' expr=ExprUnary |
+	{UnNot} NOT expr=ExprUnary | {UnNeg} MINUS expr=ExprUnary | {UnDeref} STAR expr=ExprUnary |
 	// TODO Parser includes a hack here to parse &[] vector expressions
-	{ExprAddrOf} '&' lifetime=Lifetime? mutbl=Mutability expr=ExprUnary |
+	{ExprAddrOf} AND lifetime=Lifetime? mutbl=Mutability expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
-	{UnBox} '@' expr=ExprUnary |
+	{UnBox} AT expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
-	{UnUniq} '~' expr=ExprUnary | {ExprBox} "box" '(' place=Expr? ')' expr=ExprUnary | DotOrCallExpr;
+	{UnUniq} TILDE expr=ExprUnary | {ExprBox} BOX_KW LPAREN place=Expr? RPAREN expr=ExprUnary | DotOrCallExpr;
 
 	// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
 DotOrCallExpr:
 	ExprBottom =>(
 		// Dropped ExprMethodCall from here, although syn. pred. would have fixed it.
-		{ExprField.expr=current} '.' method=ID ("::" genericValues=GenericValues)? |
-		{ExprCall.expr=current} '(' (args+=Expr (',' args+=Expr)*)? ')'
-		{ExprIndex.expr=current} '[' index=Expr ']'
+		{ExprField.expr=current} DOT method=ID (MOD_SEP genericValues=GenericValues)? |
+		{ExprCall.expr=current} LPAREN (args+=Expr (COMMA args+=Expr)*)? RPAREN
+		{ExprIndex.expr=current} LBRACKET index=Expr RBRACKET
 	)*;
 
 // parse_bottom_expr, libsyntax/parser/parser.rs, line 1716
 ExprBottom:
 // See maybe_whole_expr! macro, libsyntax/parser/parser.rs, line 131
-	'(' expr=Expr ({ExprParen.exprs=current} ')' | {ExprTup.exprs+=current} ',' => (exprs+=Expr ',')* exprs+=Expr? ')') |
+	LPAREN expr=Expr ({ExprParen.exprs=current} RPAREN | {ExprTup.exprs+=current} COMMA => (exprs+=Expr COMMA)* exprs+=Expr? RPAREN) |
 	ExprBlock |
 	ExprFnBlock |
 	ExprProc |
@@ -332,23 +331,24 @@ ExprBottom:
 	ExprIf |
 	ExprFor |
 	ExprWhile |
-	Lifetime ':' ({ExprForWithLifetime.lifetime=current} for=ExprFor | {ExprLoopWithLifetime.lifetime=current}
+	Lifetime COLON ({ExprForWithLifetime.lifetime=current} for=ExprFor | {ExprLoopWithLifetime.lifetime=current}
 	loop=ExprLoop) |
 	ExprLoop |
 	ExprContinue |
 	ExprMatch |
 	UnsafeBlock |
-	{ExprVec} '[' (exprs+=Expr ((',' exprs+=Expr)* |
-	{ExprRepeat.exprs=current} => (',' "..") count=Expr))? ']' |
+	{ExprVec} LBRACKET (exprs+=Expr ((COMMA exprs+=Expr)* |
+	{ExprRepeat.exprs=current} => (COMMA DOTDOT) count=Expr))? RBRACKET |
 	ExprRet |
 	ExprBreak |
-	// TODO Path
-	// TODO Macro invocation
-	// TODO Struct creation
+	path=ExprPath (
+		{MacInvocTT.path=current} NOT (LBRACE tts+=TT* RBRACE | LPAREN tts+=TT* RPAREN | LBRACKET tts+=TT* RBRACKET)
+		// TODO Struct creation
+	)? |
 	{ExprLit} expr=Lit;
 
 ExprBlock:
-	{ExprBlock} '{' /* TODO block contents */ '}';
+	{ExprBlock} LBRACE /* TODO block contents */ RBRACE;
 
 	// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
 ExprFnBlock:
@@ -356,45 +356,45 @@ ExprFnBlock:
 
 	// parse_fn_block_decl, libsyntax/parser/parser.rs, line 3713
 FnBlockDecl:
-	{FnBlockDecl} '|' (args+=FnBlockArg (',' args+=FnBlockArg)*)? '|' returnTy=RetTy?;
+	{FnBlockDecl} (OROR | OR (args+=FnBlockArg (COMMA args+=FnBlockArg)*)?) OR returnTy=RetTy?;
 
 	// parse_fn_block_arg, libsyntax/parser/parser.rs, line 1372
 FnBlockArg:
-	pat=Pat (':' ty=Ty)?;
+	pat=Pat (COLON ty=Ty)?;
 
 ExprProc:
 	decl=ProcDecl body=Expr;
 
 	// parse_proc_decl, libsyntax/parser/parser.rs, line 3745
 ProcDecl:
-	{FnBlockDecl} "proc" '(' (args+=FnBlockArg (',' args+=FnBlockArg)*)? ')' ("->" returnTy=Ty)?;
+	{FnBlockDecl} PROC_KW LPAREN (args+=FnBlockArg (COMMA args+=FnBlockArg)*)? RPAREN (RARROW returnTy=Ty)?;
 
 ExprSelf:
-	{ExprPath} "self" // TODO Parser parses further path here
+	{ExprPath} SELF_KW // TODO Parser parses further path here
 ;
 
 // parse_if_expr, libsyntax/parser/parser.rs, line 2424
 ExprIf:
-	"if" cond=Expr thn=ExprBlock ("else" els=ExprBlock)?;
+	IF_KW cond=Expr thn=ExprBlock (ELSE_KW els=ExprBlock)?;
 
 	// parse_for_expr, libsyntax/parser/parser.rs, line 2505
 ExprFor:
-	{ExprForLoop} "for" pat=Pat "in" expr=Expr loopBlock=ExprBlock;
+	{ExprForLoop} FOR_KW pat=Pat IN_KW expr=Expr loopBlock=ExprBlock;
 
 	// parse_while_expr, libsyntax/parser/parser.rs, line 2518
 ExprWhile:
-	"while" cond=Expr body=ExprBlock;
+	WHILE_KW cond=Expr body=ExprBlock;
 
 	// parse_loop_expr, libsyntax/parser/parser.rs, line 2526
 ExprLoop:
-	"loop" ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
+	LOOP_KW ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
 
 ExprContinue:
-	{ExprAgain} "continue" lifetime=Lifetime;
+	{ExprAgain} CONTINUE_KW lifetime=Lifetime;
 
 	// parse_match_expr, libsyntax/parser/parser.rs, line 2568
 ExprMatch:
-	"match" discriminant=Expr '{' (=> arms+=HeadArm* arms+=TailArm)? '}';
+	MATCH_KW discriminant=Expr LBRACE (=> arms+=HeadArm* arms+=TailArm)? RBRACE;
 
 Arm:
 	HeadArm | TailArm;
@@ -402,29 +402,32 @@ Arm:
 HeadArm:
 // parse_outer_attributes
 // parse_pats
-	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? "=>" (=> expr=ExprBlock | expr=Expr_RestrictStmt ',');
+	attributes=OuterAttributes? pats=Pats (IF_KW guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt COMMA);
 
 TailArm:
 // TODO Check that this correct?
-	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? "=>" (=> expr=ExprBlock | expr=Expr_RestrictStmt);
+	attributes=OuterAttributes? pats=Pats (IF_KW guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt);
 
 	// parse_pats, libsyntax/parser/parser.rs, line 2630
 Pats:
-	pats+=Pat ('|' pats+=Pat)*;
+	pats+=Pat (OR pats+=Pat)*;
 
 UnsafeBlock:
-	"unsafe" block=ExprBlock;
+	UNSAFE_KW block=ExprBlock;
 
 ExprRet:
 // can_begin_expr
-	{ExprRet} "return" => expr=Expr?;
+	{ExprRet} RETURN_KW => expr=Expr?;
 
 ExprBreak:
-	{ExprBreak} "break" lifetime=Lifetime?;
+	{ExprBreak} BREAK_KW lifetime=Lifetime?;
 
+ExprPath:
+	path=PathWithLifetimeAndTypesWithColons;
+	
 	// parse_borrowed_pointee, libsyntax/parser/parser.rs, line 1313
 TyRptr:
-	'&' lifetime=Lifetime? mutTy=MutTy;
+	AND lifetime=Lifetime? mutTy=MutTy;
 
 	// parse_ty_bare_fn, libsyntax/parser/parser.rs, line 890
 /*
@@ -438,11 +441,11 @@ TyRptr:
   Function Style
 */
 TyBareFn:
-	fnStyle=FnStyle ("extern" abi=STRING?)? "fn" decl=FnDecl;
+	fnStyle=FnStyle (EXTERN_KW abi=STRING?)? FN_KW decl=FnDecl;
 
 	// parse_unsafety, libsyntax/parser/parser.rs, line 1026
 FnStyle:
-	unsafeFn?="unsafe" // AST implements this as UnsafeFn and NormalFn
+	unsafeFn?=UNSAFE_KW // AST implements this as UnsafeFn and NormalFn
 ;
 
 // parse_ty_closure, libsyntax/parse/parser.rs, line 969
@@ -458,19 +461,19 @@ FnStyle:
   Function Style
 */
 TyClosure:
-	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? ("||" | '|' args+=Arg (',' args+=Arg)* '|')
+	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? (OROR | OR args+=Arg (COMMA args+=Arg)* OR)
 	bounds=TyParamBounds retTy=RetTy;
 
 Onceness:
-	once?="once";
+	once?=ONCE_KW;
 
 	// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
 Lifetimes:
-	'<' lifetimes+=Lifetime => (',' lifetimes+=Lifetime)* ','? '>';
+	LT lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA? GT;
 
 	// parse_ret_ty, libsyntax/parse/parser.rs
 RetTy:
-	{RetTy} "->" ty=Ty;
+	{RetTy} RARROW ty=Ty;
 
 	// parse_proc_type, libsyntax/parser/parser.rs, line 928
 /*
@@ -484,25 +487,39 @@ RetTy:
   the `proc` keyword
 */
 TyProc:
-	"proc" lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy;
+	PROC_KW lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy;
 
 	// parse_fn_args, libsyntax/parser/parser.rs, line 3485
 FnArgs:
-	'(' args+=Arg => (',' args+=Arg)* ','? ')';
+	LPAREN args+=Arg => (COMMA args+=Arg)* COMMA? RPAREN;
 
-	// parse_path, libsyntax/parser/parser.rs, line 1463
+// parse_path, libsyntax/parser/parser.rs, line 1463
 TyPath:
 	path=PathWithLifetimesTypesAndBounds;
 
 PathWithLifetimesTypesAndBounds:
-	global?="::" segments+=PathSegment ("::" segments+=PathSegment)* bounds=TyParamBounds;
+	// TODO Is this missing the trailing generic params?
+	// TODO Cross-reference modules
+	global?=MOD_SEP segments+=PathSegment =>(MOD_SEP segments+=PathSegment)* (bounds=TyParamBounds genericValues=GenericValues?)?;
+
+PathWithLifetimeAndTypesWithColons:
+	// TODO Cross-reference modules
+	global?=MOD_SEP segments+=ExprPathSegment (MOD_SEP segments+=ExprPathSegment)*;
 
 PathSegment:
 	name=ID genericValues=GenericValues?;
+	
+ExprPathSegment:
+	name=ID genericValues=ExprGenericValues?;
 
 	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 GenericValues:
-	'<' (lifetimes+=Lifetime => (',' lifetimes+=Lifetime)* ',')? tys+=Ty => (',' tys+=Ty)* ','? '>';
+	LT (lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
+
+	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
+ExprGenericValues:
+	"::<" (lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
+
 
 	// parse_mod_items, libsyntax/parser/parser.rs, line 4059
 /*Mod:
@@ -512,6 +529,143 @@ GenericValues:
 ItemsAndViewItems:
 	
 ;*/
+
+// parse_token_tree, libsyntax/parser/parser.rs, line 2043
+TT:
+	// TODO Invoke maybe_whole!
+	{TTDelim} LBRACKET tts+=TT* RBRACKET |
+	{TTDelim} LPAREN tts+=TT* RPAREN |
+	{TTDelim} LBRACE tts+=TT* RBRACE |
+	NonDelimTTToken
+;
+
+// parse_token_tree::parse_non_delim_tt_tok, libsyntax/parser/parser.rs, line 2043
+NonDelimTTToken:
+	// TODO Invoke maybe_whole!
+	DOLLAR ({TTSeq} LPAREN tts+=TT* RPAREN (separator=(NOT_MACRO_TOKEN | DOLLAR)? (zerok?=STAR | PLUS)) | {TTNonterminal} name=ID) |
+	// parse_token_tree::parse_any_tt_tok, libsyntax/parser/parser.rs, line 2099
+	{TTTok} token=(NOT_MACRO_TOKEN | STAR | PLUS)
+;
+
+terminal AS_KW: "as";
+terminal BREAK_KW: "break";
+terminal CONST_KW: "const";
+terminal CRATE_KW: "crate";
+terminal ELSE_KW: "else";
+terminal ENUM_KW: "enum";
+terminal EXTERN_KW: "extern";
+terminal FALSE_KW: "false";
+terminal FN_KW: "fn";
+terminal FOR_KW: "for";
+terminal IF_KW: "if";
+terminal IMPL_KW: "impl";
+terminal IN_KW: "in";
+terminal LET_KW: "let";
+terminal LOOP_KW: "loop";
+terminal MATCH_KW: "match";
+terminal MOD_KW: "mod";
+terminal MUT_KW: "mut";
+terminal ONCE_KW: "once";
+terminal PUB_KW: "pub";
+terminal REF_KW: "ref";
+terminal RETURN_KW: "return";
+terminal STATIC_KW: "static";
+terminal SELF_KW: "self";
+terminal STRUCT_KW: "struct";
+terminal SUPER_KW: "super";
+terminal TRUE_KW: "true";
+terminal TRAIT_KW: "trait";
+terminal TYPE_KW: "type";
+terminal UNSAFE_KW: "unsafe";
+terminal USE_KW: "use";
+terminal VIRTUAL_KW: "virtual";
+terminal WHILE_KW: "while";
+terminal CONTINUE_KW: "continue";
+terminal PROC_KW: "proc";
+terminal BOX_KW: "box";
+
+/*terminal KEYWORD:
+	AS_KW |
+	BREAK_KW |
+	CONST_KW |
+	CRATE_KW |
+	ELSE_KW |
+	ENUM_KW |
+	EXTERN_KW |
+	FALSE_KW |
+	FN_KW |
+	FOR_KW |
+	IF_KW |
+	IMPL_KW |
+	IN_KW |
+	LET_KW |
+	LOOP_KW |
+	MATCH_KW |
+	MOD_KW |
+	MUT_KW |
+	ONCE_KW |
+	PUB_KW |
+	REF_KW |
+	RETURN_KW |
+	STATIC_KW |
+	SELF_KW |
+	STRUCT_KW |
+	SUPER_KW |
+	TRUE_KW |
+	TRAIT_KW |
+	TYPE_KW |
+	UNSAFE_KW |
+	USE_KW |
+	VIRTUAL_KW |
+	WHILE_KW |
+	CONTINUE_KW |
+	PROC_KW |
+	BOX_KW;*/
+
+terminal EQ: '=';
+terminal LT: '<';
+terminal LE: '<=';
+terminal EQEQ: '==';
+terminal NE: '!=';
+terminal GE: '>=';
+terminal GT: '>';
+terminal AND: '&';
+terminal OR: '|';
+terminal CARET: '^';
+terminal ANDAND: '&&';
+terminal OROR: '||';
+terminal NOT: '!';
+terminal TILDE: '~';
+terminal PLUS: '+';
+terminal MINUS: '-';
+terminal STAR: '*';
+terminal SLASH: '/';
+terminal PERCENT: '%';
+terminal SHL: "<<";
+terminal SHR: ">>";
+
+// Structural
+terminal AT: '@';
+terminal DOT: '.';
+terminal DOTDOT: '..';
+terminal DOTDOTDOT: '...';
+terminal COMMA: ',';
+terminal SEMI: ';';
+terminal COLON: ':';
+terminal MOD_SEP: '::';
+terminal RARROW: '->';
+terminal LARROW: '<-';
+terminal DARROW: '<->';
+terminal FAT_ARROW: '=>';
+terminal LPAREN: '(';
+terminal RPAREN: ')';
+terminal LBRACKET: '[';
+terminal RBRACKET: ']';
+terminal LBRACE: '{';
+terminal RBRACE: '}';
+terminal POUND: '#';
+terminal DOLLAR: '$';
+
 terminal CHAR:
 	"'" (('\\' ('\\' | 'n' | 'r' | 't' | '0' | "'")) | UNICODE_CHAR | !('\\' | "'")) "'";
 
@@ -630,3 +784,7 @@ terminal SL_COMMENT:
 
 terminal WS:
 	(' ' | '\t' | '\r' | '\n')+;
+	
+terminal NOT_MACRO_TOKEN:
+	!(DOLLAR | STAR | PLUS)
+;

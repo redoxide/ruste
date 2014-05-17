@@ -25,10 +25,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lit"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="BOOL">
-    <eLiterals name="TRUE" literal="true"/>
-    <eLiterals name="FALSE" value="1" literal="false"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetaList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaItems" upperBound="-1"
         eType="#//MetaItem" containment="true"/>
@@ -168,6 +164,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprBottom" eSuperTypes="#//DotOrCallExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprBlock" eSuperTypes="#//ExprStmt #//ExprBottom"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprFnBlock" eSuperTypes="#//ExprBottom">
@@ -245,6 +243,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprSelf"/>
   <eClassifiers xsi:type="ecore:EClass" name="TyRptr" eSuperTypes="#//Ty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
         containment="true"/>
@@ -309,10 +308,22 @@
         eType="#//PathSegment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#//TyParamBounds"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//GenericValues"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathWithLifetimeAndTypesWithColons">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="global" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
+        eType="#//ExprPathSegment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSegment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//GenericValues"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPathSegment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//ExprGenericValues"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericValues">
@@ -321,8 +332,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprGenericValues">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetimes" upperBound="-1"
+        eType="#//Lifetime" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TT"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonDelimTTToken" eSuperTypes="#//TT"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoolLit" eSuperTypes="#//Lit">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//BOOL"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LitChar" eSuperTypes="#//Lit">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -379,6 +398,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lit" eType="#//Lit" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TyNil" eSuperTypes="#//Ty"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TyParen" eSuperTypes="#//Ty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TyTup" eSuperTypes="#//Ty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TyBox" eSuperTypes="#//Ty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
   </eClassifiers>
@@ -511,7 +537,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="count" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprSelf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MacInvocTT" eSuperTypes="#//ExprBottom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tts" upperBound="-1" eType="#//TT"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprForLoop" eSuperTypes="#//ExprFor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="loopBlock" eType="#//ExprBlock"
@@ -520,5 +549,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprAgain" eSuperTypes="#//ExprContinue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TTDelim" eSuperTypes="#//TT">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tts" upperBound="-1" eType="#//TT"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TTSeq" eSuperTypes="#//NonDelimTTToken">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tts" upperBound="-1" eType="#//TT"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="separator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zerok" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TTNonterminal" eSuperTypes="#//NonDelimTTToken">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TTTok" eSuperTypes="#//NonDelimTTToken">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="token" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

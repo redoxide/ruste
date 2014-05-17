@@ -6,11 +6,7 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="de.redoxi.ruste.edit"
     editorPluginID="de.redoxi.ruste.editor" runtimeVersion="2.9">
   <genPackages prefix="Rust" basePackage="de.redoxi.ruste" disposableProviderFactory="true"
-      fileExtensions="rs" ecorePackage="Rust.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Rust.ecore#//BOOL">
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//BOOL/TRUE"/>
-      <genEnumLiterals ecoreEnumLiteral="Rust.ecore#//BOOL/FALSE"/>
-    </genEnums>
+      loadInitialization="true" literalsInterface="false" fileExtensions="rs" ecorePackage="Rust.ecore#/">
     <genClasses ecoreClass="Rust.ecore#//Crate">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/innerAttrs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Crate/items"/>
@@ -143,6 +139,7 @@
     <genClasses ecoreClass="Rust.ecore#//DotOrCallExpr"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBottom">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/path"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprBlock"/>
     <genClasses ecoreClass="Rust.ecore#//ExprFnBlock">
@@ -202,6 +199,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/rhs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lifetime"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprPath"/>
     <genClasses ecoreClass="Rust.ecore#//TyRptr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/mutTy"/>
@@ -247,15 +245,30 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PathWithLifetimesTypesAndBounds/global"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathWithLifetimesTypesAndBounds/segments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathWithLifetimesTypesAndBounds/bounds"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathWithLifetimesTypesAndBounds/genericValues"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PathWithLifetimeAndTypesWithColons">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PathWithLifetimeAndTypesWithColons/global"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathWithLifetimeAndTypesWithColons/segments"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PathSegment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PathSegment/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PathSegment/genericValues"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprPathSegment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprPathSegment/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPathSegment/genericValues"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//GenericValues">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//GenericValues/lifetimes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//GenericValues/tys"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprGenericValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGenericValues/lifetimes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGenericValues/tys"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TT"/>
+    <genClasses ecoreClass="Rust.ecore#//NonDelimTTToken"/>
     <genClasses ecoreClass="Rust.ecore#//BoolLit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//BoolLit/value"/>
     </genClasses>
@@ -309,6 +322,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLit/lit"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyNil"/>
+    <genClasses ecoreClass="Rust.ecore#//TyParen">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyParen/ty"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TyTup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyTup/tys"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyBox">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyBox/ty"/>
     </genClasses>
@@ -410,13 +429,29 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRepeat/exprs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRepeat/count"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprPath"/>
+    <genClasses ecoreClass="Rust.ecore#//MacInvocTT">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MacInvocTT/tts"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprForLoop">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/pat"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/loopBlock"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprAgain">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAgain/lifetime"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TTDelim">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TTDelim/tts"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TTSeq">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TTSeq/tts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTSeq/separator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTSeq/zerok"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TTNonterminal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTNonterminal/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//TTTok">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTTok/token"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
