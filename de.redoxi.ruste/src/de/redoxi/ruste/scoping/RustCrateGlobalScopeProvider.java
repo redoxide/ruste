@@ -30,11 +30,11 @@ public class RustCrateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 //	    scope = createLazyResourceScope(scope, uri, descriptions, type, filter, ignoreCase);
 //	}
 //	
-//	/*for(UseDecl useDecl : getUseDecls(resource)) {
+//	for(UseDecl useDecl : getUseDecls(resource)) {
 //	    QualifiedName prefix = qualifiedNameConverter.toQualifiedName(useDecl.getImportedNamespace());
 //	    IScope fileScope = createLazyResourceScope(IScope.NULLSCOPE, getUseURI(useDecl, null, resource.getURI()), descriptions, type, filter, ignoreCase);
 //	    scope = new RustUseScope(fileScope, scope, prefix, ignoreCase);
-//	}*/
+//	}
 //	
 //	// Include std::* source
 //	scope = createLazyResourceScope(scope, RUST_SRC_URI.appendSegment("libstd").appendSegment("lib").appendFileExtension("rs"), descriptions, type, filter, ignoreCase);

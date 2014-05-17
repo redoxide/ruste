@@ -5,14 +5,13 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // parse_crate_mod, libsyntax/parser/parser.rs, line 5087
 Crate:
-// parse_inner_attrs_and_next
-// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
-	(innerAttrs+=InnerAttributes)*
-	// parse_mod_items
-	(items+=(ViewItem /*| Item*/))*;
+	module=Mod;
 
 InnerAttributes:
-	POUND NOT LBRACKET metaItem=MetaItem RBRACKET;
+	attributes+=InnerAttribute+;
+
+InnerAttribute:
+	=>(POUND NOT) LBRACKET metaItem=MetaItem RBRACKET;
 
 OuterAttributes:
 	attributes+=Attribute+;
@@ -40,8 +39,7 @@ MetaList:
 
 ViewItem:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
-	ViewItemUse |
-	ViewExternItem;
+	attrs=OuterAttributes? node=(ViewItemUse | ViewExternItem);
 
 ViewItemUse:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
@@ -69,21 +67,104 @@ ViewPathList:
 	path=Path => "::{" identifiers+=ID (COMMA identifiers+=ID)* RBRACE;
 
 ViewExternItem:
-	ViewItemExternCrate | ViewItemExternFn;
+	EXTERN_KW (
+		// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
+		{ViewItemExternCrate} CRATE_KW name=ID (EQ path=STRING)? SEMI | 
+		{ViewItemExternFn} abi=STRING? fn=FnItem | 
+		// parse_item_foreign_mod, libsyntax/parser/parser.rs, line 4362
+		{ItemForeignMod} abi=STRING? LBRACE innerAttrs=InnerAttributes? items+=ForeignItem* RBRACE
+	);
 
-	// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
-ViewItemExternCrate:
-	EXTERN_KW => CRATE_KW name=ID (EQ path=STRING)? SEMI;
+// parse_foreign_item, libsyntax/parser/parser.rs, line 4718
+ForeignItem:
+	visibility=Visibility EXTERN_KW node=(ItemForeignStatic | ItemForeignFn)
+	// TODO Fall-through to parse_macro_use_or_failure here
+;
 
-ViewItemExternFn:
-	EXTERN_KW (abi=STRING)? => fn=FnItem;
+// parse_item_foreign_static, libsyntax/parser/parser.rs, line 4257
+ItemForeignStatic:
+	{ForeignItemStatic} STATIC_KW mutbl=Mutability name=ID COLON ty=Ty SEMI
+;
+
+// parse_item_foreign_fn, libsyntax/parser/parser.rs, line 4234
+ItemForeignFn:
+	fnStyle=FnStyle name=ID generics=Generics decl=FnDecl
+;
+
+// parse_visibility, libsyntax/parser/parser.rs, line 4035
+Visibility:
+	({Public} PUB_KW | {Inherited})
+;
+
+Item:
+	ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum
+;
+
+// parse_item_const, libsyntax/parser/parser.rs, line 4114
+ItemStatic:
+	STATIC_KW name=ID COLON ty=Ty EQ expr=Expr /* commit_expr_expecting(expr, SEMI) */ SEMI
+;
 
 	// parse_item_fn, libsyntax/parser/parser.rs, line 3791
 FnItem:
 // parse_fn_header
 // parse_fn_decl
-// parse_inner_attrs_and_block
+// TODO parse_inner_attrs_and_block
 	FN_KW name=ID generics=Generics decl=FnDecl;
+	
+UnsafeFnItem:
+	UNSAFE_KW fn=FnItem 
+;
+
+// parse_item_mod, libsyntax/parser/parser.rs, line 4126
+ItemMod:
+	MOD_KW name=ID (
+		external?=SEMI |
+		LBRACE 
+		module=Mod
+		RBRACE	
+	)
+;
+
+// parse_item_type, libsyntax/parser/parser.rs, line 4387
+ItemType:
+	{ItemTy} TYPE_KW name=ID generics=Generics EQ ty=Ty SEMI
+;
+
+// parse_item_enum, libsyntax/parser/parser.rs, line 4478
+ItemEnum:
+	ENUM_KW name=ID generics=Generics
+	// parse_enum_def
+	LBRACE
+	enumDefinition=EnumDef
+	RBRACE
+;
+
+// parse_enum_def, libsyntax/parser/parser.rs, line 
+EnumDef:
+	{EnumDef} (variants+=Variant (COMMA variants+=Variant)* COMMA?)?
+;
+
+Variant:
+	Visibility (
+		{StructVariantKind.vis=current} def=StructDef | 
+		{TupleVariantKind.vis=current} (
+			LPAREN (tys+=Ty (COMMA tys+=Ty)*)? /* ERROR if empty list given - nullary enums are written without '(' ')' */ RPAREN | 
+			EQ disrExpr=Expr
+		)
+	)
+;
+
+// parse_struct_def, libsyntax/parser/parser.rs, line 4398
+StructDef:
+	{StructDef} LBRACE (fields+=StructDeclField (COMMA fields+=StructDeclField)* COMMA?)? RBRACE
+;
+
+// parse_struct_decl_field, libsyntax/parser/parser.rs, line 4023
+StructDeclField:
+	// parse_single_struct_field
+	{NamedField} attrs=OuterAttributes? name=ID COLON /* parse_ty(false) */ ty=Ty 
+;
 
 	// parse_generics, libsyntax/parser/parser.rs, line 3457
 Generics:
@@ -94,7 +175,7 @@ Generics:
 	LT tyParams=TyParams COMMA? GT)?;
 
 	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
-	// TODO Should be a token
+	// TODO Should be a token?
 Lifetime hidden():
 	'\'' name=ID;
 
@@ -105,7 +186,7 @@ TyParams:
 TyParam:
 // parse_sized
 // parse_optional_ty_param_bounds
-	dynamicSized?=TYPE_KW? name=ID bounds=TyParamBounds;
+	dynamicSized?=TYPE_KW? name=ID bounds=TyParamBounds?;
 
 	// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
 TyParamBounds:
@@ -345,12 +426,24 @@ ExprBottom:
 	ExprBreak |
 	path=ExprPath (
 		{MacInvocTT.path=current} NOT (LBRACE tts+=TT* RBRACE | LPAREN tts+=TT* RPAREN | LBRACKET tts+=TT* RBRACKET)
-		// TODO Struct creation
+		{ExprStruct} LBRACE (fields+=Field)* (DOTDOT base=Expr)? RBRACE
 	)? |
 	{ExprLit} expr=Lit;
 
+// parse_field, libsyntax/parser/parser.rs, line 1638
+Field:
+	name=ID COLON expr=Expr
+;
+
+// parse_block_tail_, libsyntax/parser/parser.rs, line 3248
 ExprBlock:
-	{ExprBlock} LBRACE /* TODO block contents */ RBRACE;
+	{ExprBlock} LBRACE 
+	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
+	=>innerAttrs+=InnerAttributes*
+	// parse_mod_items
+	items+=(ViewItem | Item | ForeignItem)* 
+	// ERROR Parse outer attributes here, and use to raise an error
+	RBRACE;
 
 	// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
 ExprFnBlock:
@@ -447,7 +540,7 @@ TyBareFn:
 
 	// parse_unsafety, libsyntax/parser/parser.rs, line 1026
 FnStyle:
-	unsafeFn?=UNSAFE_KW // AST implements this as UnsafeFn and NormalFn
+	({UnstafeFn} UNSAFE_KW | {NormalFn})
 ;
 
 // parse_ty_closure, libsyntax/parse/parser.rs, line 969
@@ -524,11 +617,16 @@ ExprGenericValues:
 
 
 	// parse_mod_items, libsyntax/parser/parser.rs, line 4059
-/*Mod:
-	// parse_items_and_view_items
+Mod:
+	{Mod}
+	// parse_inner_attrs_and_next
+	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
+	innerAttrs+=InnerAttributes*
+	// parse_mod_items
+	items+=(ViewItem | Item)*
 ;
 
-ItemsAndViewItems:
+/*ItemsAndViewItems:
 	
 ;*/
 
