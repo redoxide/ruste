@@ -26,7 +26,7 @@ MetaItem:
 
 	// parse_lit, libsyntax/parser/parser.rs, line 1426
 Lit hidden():
-	{BoolLit} value=(TRUE_KW | FALSE_KW) |
+	{BoolLit} value=("true" | "false") |
 	// lit_from_token, libsyntax/parser/parser.rs, line 1402
 	{LitChar} value=CHAR | {LitInt} value=INT | {LitUint} value=UINT | {LitIntSuffixed} value=INT_UNSUFFIXED | {LitFloat}
 	value=FLOAT | {LitFloatUnsuffixed} value=FLOAT_UNSUFFIXED | {LitString} value=STRING |
@@ -35,15 +35,15 @@ Lit hidden():
 
 	// parse_meta_seq, libsyntax/parser/attr.rs, line 196
 MetaList:
-	metaItems+=MetaItem (COMMA metaItems+=MetaItem);
+	metaItems+=MetaItem (COMMA metaItems+=MetaItem)*;
 
 ViewItem:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
-	attrs=OuterAttributes? node=(ViewItemUse | ViewExternItem);
+	attrs=OuterAttributes? (node=ViewItemUse SEMI | node=ViewExternItem);
 
 ViewItemUse:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
-	USE_KW path=ViewPath;
+	"use" path=ViewPath;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4951
 ViewPath:
@@ -67,9 +67,9 @@ ViewPathList:
 	path=Path => "::{" identifiers+=ID (COMMA identifiers+=ID)* RBRACE;
 
 ViewExternItem:
-	EXTERN_KW (
+	"extern" (
 		// parse_item_extern_crate, libsyntax/parser/parser.rs, line 4318
-		{ViewItemExternCrate} CRATE_KW name=ID (EQ path=STRING)? SEMI | 
+		{ViewItemExternCrate} "crate" name=ID (EQ path=STRING)? SEMI | 
 		{ViewItemExternFn} abi=STRING? fn=FnItem | 
 		// parse_item_foreign_mod, libsyntax/parser/parser.rs, line 4362
 		{ItemForeignMod} abi=STRING? LBRACE innerAttrs=InnerAttributes? items+=ForeignItem* RBRACE
@@ -83,7 +83,7 @@ ForeignItem:
 
 // parse_item_foreign_static, libsyntax/parser/parser.rs, line 4257
 ItemForeignStatic:
-	{ForeignItemStatic} STATIC_KW mutbl=Mutability name=ID COLON ty=Ty SEMI
+	{ForeignItemStatic} "static" mutbl=Mutability name=ID COLON ty=Ty SEMI
 ;
 
 // parse_item_foreign_fn, libsyntax/parser/parser.rs, line 4234
@@ -93,7 +93,7 @@ ItemForeignFn:
 
 // parse_visibility, libsyntax/parser/parser.rs, line 4035
 Visibility:
-	({Public} PUB_KW | {Inherited})
+	({Public} "pub" | {Inherited})
 ;
 
 Item:
@@ -102,7 +102,7 @@ Item:
 
 // parse_item_const, libsyntax/parser/parser.rs, line 4114
 ItemStatic:
-	STATIC_KW name=ID COLON ty=Ty EQ expr=Expr /* commit_expr_expecting(expr, SEMI) */ SEMI
+	"static" name=ID COLON ty=Ty EQ expr=Expr /* commit_expr_expecting(expr, SEMI) */ SEMI
 ;
 
 	// parse_item_fn, libsyntax/parser/parser.rs, line 3791
@@ -110,15 +110,15 @@ FnItem:
 // parse_fn_header
 // parse_fn_decl
 // TODO parse_inner_attrs_and_block
-	FN_KW name=ID generics=Generics decl=FnDecl;
+	"fn" name=ID generics=Generics decl=FnDecl;
 	
 UnsafeFnItem:
-	UNSAFE_KW fn=FnItem 
+	"unsafe" fn=FnItem 
 ;
 
 // parse_item_mod, libsyntax/parser/parser.rs, line 4126
 ItemMod:
-	MOD_KW name=ID (
+	"mod" name=ID (
 		external?=SEMI |
 		LBRACE 
 		module=Mod
@@ -128,12 +128,12 @@ ItemMod:
 
 // parse_item_type, libsyntax/parser/parser.rs, line 4387
 ItemType:
-	{ItemTy} TYPE_KW name=ID generics=Generics EQ ty=Ty SEMI
+	{ItemTy} "type" name=ID generics=Generics EQ ty=Ty SEMI
 ;
 
 // parse_item_enum, libsyntax/parser/parser.rs, line 4478
 ItemEnum:
-	ENUM_KW name=ID generics=Generics
+	"enum" name=ID generics=Generics
 	// parse_enum_def
 	LBRACE
 	enumDefinition=EnumDef
@@ -186,7 +186,7 @@ TyParams:
 TyParam:
 // parse_sized
 // parse_optional_ty_param_bounds
-	dynamicSized?=TYPE_KW? name=ID bounds=TyParamBounds?;
+	dynamicSized?="type"? name=ID bounds=TyParamBounds?;
 
 	// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
 TyParamBounds:
@@ -264,7 +264,7 @@ MutTy:
 	mutbl=Mutability ty=Ty;
 
 Mutability:
-	{MutMutable} MUT_KW | {MutImmutable} CONST_KW?;
+	{MutMutable} "mut" | {MutImmutable} "const"?;
 
 	// parse_expr, libsyntax/parser/parser.rs, line 2606
 // Assumes UNRESTRICTED restriction in parser
@@ -392,7 +392,7 @@ ExprUnary:
 	// TODO Parser includes a hack here to parse @[] vector expressions
 	{UnBox} AT expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
-	{UnUniq} TILDE expr=ExprUnary | {ExprBox} BOX_KW LPAREN place=Expr? RPAREN expr=ExprUnary | DotOrCallExpr;
+	{UnUniq} TILDE expr=ExprUnary | {ExprBox} "box" LPAREN place=Expr? RPAREN expr=ExprUnary | DotOrCallExpr;
 
 	// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
 DotOrCallExpr:
@@ -463,7 +463,7 @@ Stmt:
 
 // parse_let, libsyntax/parser/parser.rs, line 3602
 StmtDecl:
-	LET_KW decls+=Local (COMMA decls+=Local)*
+	"let" decls+=Local (COMMA decls+=Local)*
 ;
 
 // parse_local, libsyntax/parser/parser.rs, line 3041
@@ -493,34 +493,34 @@ ExprProc:
 
 	// parse_proc_decl, libsyntax/parser/parser.rs, line 3745
 ProcDecl:
-	{FnBlockDecl} PROC_KW LPAREN (args+=FnBlockArg (COMMA args+=FnBlockArg)*)? RPAREN (RARROW returnTy=Ty)?;
+	{FnBlockDecl} "proc" LPAREN (args+=FnBlockArg (COMMA args+=FnBlockArg)*)? RPAREN (RARROW returnTy=Ty)?;
 
 ExprSelf:
-	{ExprPath} SELF_KW // TODO Parser parses further path here
+	{ExprPath} "self" // TODO Parser parses further path here
 ;
 
 // parse_if_expr, libsyntax/parser/parser.rs, line 2424
 ExprIf:
-	IF_KW cond=Expr thn=ExprBlock (ELSE_KW els=ExprBlock)?;
+	"if" cond=Expr thn=ExprBlock ("else" els=ExprBlock)?;
 
 	// parse_for_expr, libsyntax/parser/parser.rs, line 2505
 ExprFor:
-	{ExprForLoop} FOR_KW pat=Pat IN_KW expr=Expr loopBlock=ExprBlock;
+	{ExprForLoop} "for" pat=Pat "in" expr=Expr loopBlock=ExprBlock;
 
 	// parse_while_expr, libsyntax/parser/parser.rs, line 2518
 ExprWhile:
-	WHILE_KW cond=Expr body=ExprBlock;
+	"while" cond=Expr body=ExprBlock;
 
 	// parse_loop_expr, libsyntax/parser/parser.rs, line 2526
 ExprLoop:
-	LOOP_KW ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
+	"loop" ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
 
 ExprContinue:
-	{ExprAgain} CONTINUE_KW lifetime=Lifetime;
+	{ExprAgain} "continue" lifetime=Lifetime;
 
 	// parse_match_expr, libsyntax/parser/parser.rs, line 2568
 ExprMatch:
-	MATCH_KW discriminant=Expr LBRACE (=> arms+=HeadArm* arms+=TailArm)? RBRACE;
+	"match" discriminant=Expr LBRACE (=> arms+=HeadArm* arms+=TailArm)? RBRACE;
 
 Arm:
 	HeadArm | TailArm;
@@ -528,25 +528,25 @@ Arm:
 HeadArm:
 // parse_outer_attributes
 // parse_pats
-	attributes=OuterAttributes? pats=Pats (IF_KW guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt COMMA);
+	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt COMMA);
 
 TailArm:
 // TODO Check that this correct?
-	attributes=OuterAttributes? pats=Pats (IF_KW guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt);
+	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt);
 
 	// parse_pats, libsyntax/parser/parser.rs, line 2630
 Pats:
 	pats+=Pat (OR pats+=Pat)*;
 
 UnsafeBlock:
-	UNSAFE_KW block=ExprBlock;
+	"unsafe" block=ExprBlock;
 
 ExprRet:
 // can_begin_expr
-	{ExprRet} RETURN_KW => expr=Expr?;
+	{ExprRet} "return" => expr=Expr?;
 
 ExprBreak:
-	{ExprBreak} BREAK_KW lifetime=Lifetime?;
+	{ExprBreak} "break" lifetime=Lifetime?;
 
 ExprPath:
 	path=PathWithLifetimeAndTypesWithColons;
@@ -567,11 +567,11 @@ TyRptr:
   Function Style
 */
 TyBareFn:
-	fnStyle=FnStyle (EXTERN_KW abi=STRING?)? FN_KW decl=FnDecl;
+	fnStyle=FnStyle ("extern" abi=STRING?)? "fn" decl=FnDecl;
 
 	// parse_unsafety, libsyntax/parser/parser.rs, line 1026
 FnStyle:
-	({UnstafeFn} UNSAFE_KW | {NormalFn})
+	({UnstafeFn} "unsafe" | {NormalFn})
 ;
 
 // parse_ty_closure, libsyntax/parse/parser.rs, line 969
@@ -591,7 +591,7 @@ TyClosure:
 	bounds=TyParamBounds retTy=RetTy;
 
 Onceness:
-	once?=ONCE_KW;
+	once?="once";
 
 	// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
 Lifetimes:
@@ -613,7 +613,7 @@ RetTy:
   the `proc` keyword
 */
 TyProc:
-	PROC_KW lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy;
+	"proc" lifetimes=Lifetimes? /* not named, not variadic */ fnArgs=FnArgs bounds=TyParamBounds retTy=RetTy;
 
 	// parse_fn_args, libsyntax/parser/parser.rs, line 3485
 FnArgs:
@@ -677,81 +677,6 @@ NonDelimTTToken:
 	// parse_token_tree::parse_any_tt_tok, libsyntax/parser/parser.rs, line 2099
 	{TTTok} token=(NOT_MACRO_TOKEN | STAR | PLUS)
 ;
-
-terminal AS_KW: "as";
-terminal BREAK_KW: "break";
-terminal CONST_KW: "const";
-terminal CRATE_KW: "crate";
-terminal ELSE_KW: "else";
-terminal ENUM_KW: "enum";
-terminal EXTERN_KW: "extern";
-terminal FALSE_KW: "false";
-terminal FN_KW: "fn";
-terminal FOR_KW: "for";
-terminal IF_KW: "if";
-terminal IMPL_KW: "impl";
-terminal IN_KW: "in";
-terminal LET_KW: "let";
-terminal LOOP_KW: "loop";
-terminal MATCH_KW: "match";
-terminal MOD_KW: "mod";
-terminal MUT_KW: "mut";
-terminal ONCE_KW: "once";
-terminal PUB_KW: "pub";
-terminal REF_KW: "ref";
-terminal RETURN_KW: "return";
-terminal STATIC_KW: "static";
-terminal SELF_KW: "self";
-terminal STRUCT_KW: "struct";
-terminal SUPER_KW: "super";
-terminal TRUE_KW: "true";
-terminal TRAIT_KW: "trait";
-terminal TYPE_KW: "type";
-terminal UNSAFE_KW: "unsafe";
-terminal USE_KW: "use";
-terminal VIRTUAL_KW: "virtual";
-terminal WHILE_KW: "while";
-terminal CONTINUE_KW: "continue";
-terminal PROC_KW: "proc";
-terminal BOX_KW: "box";
-
-/*terminal KEYWORD:
-	AS_KW |
-	BREAK_KW |
-	CONST_KW |
-	CRATE_KW |
-	ELSE_KW |
-	ENUM_KW |
-	EXTERN_KW |
-	FALSE_KW |
-	FN_KW |
-	FOR_KW |
-	IF_KW |
-	IMPL_KW |
-	IN_KW |
-	LET_KW |
-	LOOP_KW |
-	MATCH_KW |
-	MOD_KW |
-	MUT_KW |
-	ONCE_KW |
-	PUB_KW |
-	REF_KW |
-	RETURN_KW |
-	STATIC_KW |
-	SELF_KW |
-	STRUCT_KW |
-	SUPER_KW |
-	TRUE_KW |
-	TRAIT_KW |
-	TYPE_KW |
-	UNSAFE_KW |
-	USE_KW |
-	VIRTUAL_KW |
-	WHILE_KW |
-	CONTINUE_KW |
-	PROC_KW |
-	BOX_KW;*/
 
 terminal EQ: '=';
 terminal LT: '<';
