@@ -19,8 +19,8 @@
     <genClasses ecoreClass="Rust.ecore#//OuterAttributes">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OuterAttributes/attributes"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Attribute">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Attribute/metaItem"/>
+    <genClasses ecoreClass="Rust.ecore#//OuterAttribute">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//OuterAttribute/metaItem"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//MetaItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//MetaItem/name"/>
@@ -30,10 +30,7 @@
     <genClasses ecoreClass="Rust.ecore#//MetaList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MetaList/metaItems"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ViewItem">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewItem/attrs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewItem/node"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ViewItem"/>
     <genClasses ecoreClass="Rust.ecore#//ViewItemUse">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewItemUse/path"/>
     </genClasses>
@@ -62,8 +59,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemForeignFn/generics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemForeignFn/decl"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Visibility"/>
-    <genClasses ecoreClass="Rust.ecore#//Item"/>
+    <genClasses ecoreClass="Rust.ecore#//Visibility">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Visibility/public"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Item">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Item/attrs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Item/vis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Item/node"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ItemStatic">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ItemStatic/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemStatic/ty"/>
@@ -73,6 +76,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//FnItem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/generics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/decl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnItem/block"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnsafeFnItem">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnsafeFnItem/fn"/>
@@ -118,6 +122,7 @@
     <genClasses ecoreClass="Rust.ecore#//OtherRegionTyParamBound"/>
     <genClasses ecoreClass="Rust.ecore#//FnDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnDecl/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnDecl/retTy"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//NamedArg"/>
     <genClasses ecoreClass="Rust.ecore#//Arg">
@@ -130,6 +135,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVec/before"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//LiteralMaybeMinus"/>
+    <genClasses ecoreClass="Rust.ecore#//PatIdent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/name"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Ty"/>
     <genClasses ecoreClass="Rust.ecore#//MutTy">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//MutTy/mutbl"/>
@@ -154,7 +162,6 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence0"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence1"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence2"/>
-    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence0_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence3"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence4"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence6"/>
@@ -162,6 +169,7 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence8"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence9"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence10"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence0_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence1_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence2_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence3_RestrictStmt"/>
@@ -171,7 +179,7 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence8_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence9_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence10_RestrictStmt"/>
-    <genClasses ecoreClass="Rust.ecore#//ExprStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprUnary_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary"/>
     <genClasses ecoreClass="Rust.ecore#//DotOrCallExpr"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBottom">
@@ -183,8 +191,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Field/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprBlock">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBlock/innerAttrs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBlock/items"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBlock/block"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/innerAttrs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/items"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Block/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Stmt"/>
     <genClasses ecoreClass="Rust.ecore#//StmtDecl">
@@ -280,6 +292,7 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//RetTy">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//RetTy/ty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//RetTy/noReturn"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyProc">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyProc/lifetimes"/>
@@ -368,8 +381,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ForeignItemStatic/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ForeignItemStatic/ty"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Public"/>
-    <genClasses ecoreClass="Rust.ecore#//Inherited"/>
     <genClasses ecoreClass="Rust.ecore#//ItemTy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ItemTy/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ItemTy/generics"/>
@@ -408,6 +419,9 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatLit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatLit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatRef/pat"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnNeg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNeg/lit"/>

@@ -14,10 +14,10 @@ InnerAttribute:
 	=>(POUND NOT) LBRACKET metaItem=MetaItem RBRACKET;
 
 OuterAttributes:
-	attributes+=Attribute+;
+	attributes+=OuterAttribute+;
 
 	// parse_attribute, libsyntax/parser/attr.rs, line 62
-Attribute:
+OuterAttribute:
 	POUND LBRACKET metaItem=MetaItem RBRACKET;
 
 	// parse_meta_item, libsyntax/parser/attr.rs, line 154
@@ -39,10 +39,11 @@ MetaList:
 
 ViewItem:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4546
-	attrs=OuterAttributes? (node=ViewItemUse SEMI | node=ViewExternItem);
+	ViewItemUse SEMI | ViewExternItem;
 
 ViewItemUse:
 // parse_item_or_view_item, libsyntax/parser/parser.rs, line 4818
+// TODO Alias?
 	"use" path=ViewPath;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4951
@@ -93,11 +94,14 @@ ItemForeignFn:
 
 // parse_visibility, libsyntax/parser/parser.rs, line 4035
 Visibility:
-	({Public} "pub" | {Inherited})
+	{Visibility} public?="pub"?
 ;
 
 Item:
-	ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum
+	attrs=OuterAttributes? (
+		vis=Visibility node=(ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum) |
+		node=ViewItem	
+	)
 ;
 
 // parse_item_const, libsyntax/parser/parser.rs, line 4114
@@ -109,8 +113,8 @@ ItemStatic:
 FnItem:
 // parse_fn_header
 // parse_fn_decl
-// TODO parse_inner_attrs_and_block
-	"fn" name=ID generics=Generics decl=FnDecl;
+// parse_inner_attrs_and_block
+	"fn" name=ID generics=Generics decl=FnDecl block=Block;
 	
 UnsafeFnItem:
 	"unsafe" fn=FnItem 
@@ -203,9 +207,11 @@ OtherRegionTyParamBound:
 
 	// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
 FnDecl:
-// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
-	LPAREN args+=NamedArg (COMMA args+=NamedArg)* RPAREN
+	{FnDecl}
+	// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
+	LPAREN (args+=NamedArg (COMMA args+=NamedArg)*)? RPAREN
 	// parse_ret_ty (TODO Separate into named/unnamed args, or treat as error?)
+	retTy=RetTy?
 ;
 
 // parse_arg_general, libsyntax/parser/parser.rs, line 1342
@@ -223,7 +229,10 @@ Pat:
 	{PatRegion} AND pat=Pat |
 	{PatTup} LPAREN pats+=Pat (COMMA pats+=Pat) RPAREN |
 	PatVec |
-	LiteralMaybeMinus ({PatRange.start=current} => DOTDOT end=LiteralMaybeMinus | {PatLit.value=current});
+	LiteralMaybeMinus ({PatRange.start=current} => DOTDOT end=LiteralMaybeMinus | {PatLit.value=current}) |
+	{PatUniq} "box" pat=PatIdent |
+	{PatRef} "ref" pat=PatIdent |
+	PatIdent /* TODO Path pattern that can potentially be an enum variant or struct */;
 
 	// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
 PatVec:
@@ -234,6 +243,12 @@ PatVec:
 LiteralMaybeMinus:
 	{UnNeg} MINUS lit=Lit |
 	{ExprLit} lit=Lit;
+
+// parse_pat_ident, libsyntax/parser/parser.rs, line 3010
+PatIdent:
+	// TODO parser allows NoTypesAllowed path here
+	name=ID
+;
 
 // parse_ty, libsyntax/parser/parser.rs, line 1195
 Ty:
@@ -281,9 +296,9 @@ AssignExpr:
 
 	// parse_expr with RESTRICT_STMT_EXPR set as condition
 AssignExpr_RestrictStmt:
-	ExprBinaryPrecedence0_RestrictStmt => ({ExprAssign.lhs=current} => EQ rhs=ExprStmt |
+	ExprBinaryPrecedence0_RestrictStmt => ({ExprAssign.lhs=current} => EQ rhs=ExprUnary_RestrictStmt |
 	// TODO Compound assignment
-	{ExprBreak.lhs=current} => DARROW rhs=ExprStmt)?;
+	{ExprBreak.lhs=current} => DARROW rhs=ExprUnary_RestrictStmt)?;
 
 	// operator_prec, libsyntax/ast_util.rs, line 319
 BinOpEq hidden():
@@ -330,9 +345,6 @@ ExprBinaryPrecedence1:
 ExprBinaryPrecedence2:
 	ExprBinaryPrecedence3 => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprBinaryPrecedence3)?;
 
-ExprBinaryPrecedence0_RestrictStmt:
-	ExprBinaryPrecedence1_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprStmt)?;
-
 ExprBinaryPrecedence3:
 	ExprBinaryPrecedence4 => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprBinaryPrecedence4)?;
 
@@ -354,36 +366,40 @@ ExprBinaryPrecedence9:
 ExprBinaryPrecedence10:
 	ExprUnary => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprUnary)?;
 
+ExprBinaryPrecedence0_RestrictStmt:
+	ExprBinaryPrecedence1_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprBinaryPrecedence1_RestrictStmt)?;
+
 ExprBinaryPrecedence1_RestrictStmt:
-	ExprBinaryPrecedence2_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprStmt)?;
+	ExprBinaryPrecedence2_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprBinaryPrecedence2_RestrictStmt)?;
 
 ExprBinaryPrecedence2_RestrictStmt:
-	ExprBinaryPrecedence3_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprStmt)?;
+	ExprBinaryPrecedence3_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprBinaryPrecedence3_RestrictStmt)?;
 
 ExprBinaryPrecedence3_RestrictStmt:
-	ExprBinaryPrecedence4_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprStmt)?;
+	ExprBinaryPrecedence4_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprBinaryPrecedence4_RestrictStmt)?;
 
 ExprBinaryPrecedence4_RestrictStmt:
-	ExprBinaryPrecedence6_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprStmt)?;
+	ExprBinaryPrecedence6_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprBinaryPrecedence6_RestrictStmt)?;
 
 ExprBinaryPrecedence6_RestrictStmt:
-	ExprBinaryPrecedence7_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprStmt)?;
+	ExprBinaryPrecedence7_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprBinaryPrecedence7_RestrictStmt)?;
 
 ExprBinaryPrecedence7_RestrictStmt:
-	ExprBinaryPrecedence8_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprStmt)?;
+	ExprBinaryPrecedence8_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprBinaryPrecedence8_RestrictStmt)?;
 
 ExprBinaryPrecedence8_RestrictStmt:
-	ExprBinaryPrecedence9_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprStmt)?;
+	ExprBinaryPrecedence9_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprBinaryPrecedence9_RestrictStmt)?;
 
 ExprBinaryPrecedence9_RestrictStmt:
-	ExprBinaryPrecedence10_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprStmt)?;
+	ExprBinaryPrecedence10_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprBinaryPrecedence10_RestrictStmt)?;
 
 ExprBinaryPrecedence10_RestrictStmt:
-	ExprStmt /* | ExprUnary */ => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprStmt)?;
+	ExprUnary_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprUnary_RestrictStmt)?;
 
-ExprStmt:
-	ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor;
-
+ExprUnary_RestrictStmt:
+	// Match any expressions ending in a block, then the unary production
+	=>(ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor) | ExprUnary
+;
 	// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
 ExprUnary:
 	{UnNot} NOT expr=ExprUnary | {UnNeg} MINUS expr=ExprUnary | {UnDeref} STAR expr=ExprUnary |
@@ -437,7 +453,10 @@ Field:
 
 // parse_block_tail_, libsyntax/parser/parser.rs, line 3248
 ExprBlock:
-	{ExprBlock} LBRACE 
+	block=Block;
+	
+Block:
+	{Block} LBRACE 
 	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
 	=>innerAttrs+=InnerAttributes*
 	// parse_mod_items
@@ -454,7 +473,6 @@ Stmt:
 	StmtDecl SEMI |
 	// TODO macro invocation
 	// TODO Semi-colon statement terminators
-	ViewItem | 
 	Item | 
 	// TODO Grammar refers to foreign item, but this grammar expects foreign items in expect blocks
 	// ForeignItem | 
@@ -599,7 +617,7 @@ Lifetimes:
 
 	// parse_ret_ty, libsyntax/parse/parser.rs
 RetTy:
-	{RetTy} RARROW ty=Ty;
+	{RetTy} RARROW (ty=Ty | noReturn?=NOT);
 
 	// parse_proc_type, libsyntax/parser/parser.rs, line 928
 /*
@@ -617,7 +635,7 @@ TyProc:
 
 	// parse_fn_args, libsyntax/parser/parser.rs, line 3485
 FnArgs:
-	LPAREN args+=Arg => (COMMA args+=Arg)* COMMA? RPAREN;
+	{FnArgs} LPAREN (args+=Arg => (COMMA args+=Arg)* COMMA?)? RPAREN;
 
 // parse_path, libsyntax/parser/parser.rs, line 1463
 TyPath:
@@ -626,11 +644,11 @@ TyPath:
 PathWithLifetimesTypesAndBounds:
 	// TODO Is this missing the trailing generic params?
 	// TODO Cross-reference modules
-	global?=MOD_SEP segments+=PathSegment =>(MOD_SEP segments+=PathSegment)* (bounds=TyParamBounds genericValues=GenericValues?)?;
+	global?=MOD_SEP? segments+=PathSegment =>(MOD_SEP segments+=PathSegment)* (bounds=TyParamBounds genericValues=GenericValues?)?;
 
 PathWithLifetimeAndTypesWithColons:
 	// TODO Cross-reference modules
-	global?=MOD_SEP segments+=ExprPathSegment (MOD_SEP segments+=ExprPathSegment)*;
+	global?=MOD_SEP? segments+=ExprPathSegment (MOD_SEP segments+=ExprPathSegment)*;
 
 PathSegment:
 	name=ID genericValues=GenericValues?;
@@ -654,7 +672,7 @@ Mod:
 	// parse_items_and_view_items, libsyntax/parser/parser.rs, line 4965
 	innerAttrs+=InnerAttributes*
 	// parse_mod_items
-	items+=(ViewItem | Item)*
+	items+=Item*
 ;
 
 /*ItemsAndViewItems:
