@@ -34,18 +34,9 @@
     <genClasses ecoreClass="Rust.ecore#//ViewItemUse">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewItemUse/path"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ViewPath">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewPath/path"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ViewPath"/>
     <genClasses ecoreClass="Rust.ecore#//Path">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Path/segments"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ViewPathSimple">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewPathSimple/name"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ViewPathGlob"/>
-    <genClasses ecoreClass="Rust.ecore#//ViewPathList">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewPathList/identifiers"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ViewExternItem"/>
     <genClasses ecoreClass="Rust.ecore#//ForeignItem">
@@ -103,13 +94,11 @@
     <genClasses ecoreClass="Rust.ecore#//Generics">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Generics/tyParams"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//Lifetime">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Lifetime/name"/>
-    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyParams">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyParams/values"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyParam">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyParam/lifetime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyParam/dynamicSized"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyParam/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyParam/bounds"/>
@@ -119,7 +108,9 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyParamBound"/>
     <genClasses ecoreClass="Rust.ecore#//StaticRegionTyParamBound"/>
-    <genClasses ecoreClass="Rust.ecore#//OtherRegionTyParamBound"/>
+    <genClasses ecoreClass="Rust.ecore#//OtherRegionTyParamBound">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//OtherRegionTyParamBound/lifetime"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//FnDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnDecl/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FnDecl/retTy"/>
@@ -198,6 +189,7 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBottom">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprBottom/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/path"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Field">
@@ -279,11 +271,10 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBreak">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lhs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/rhs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lifetime"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprPath"/>
     <genClasses ecoreClass="Rust.ecore#//TyRptr">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/lifetime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TyRptr/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyRptr/mutTy"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TyBareFn">
@@ -304,7 +295,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Onceness/once"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Lifetimes">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Lifetimes/lifetimes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Lifetimes/lifetimes"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//RetTy">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//RetTy/ty"/>
@@ -341,11 +332,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprPathSegment/genericValues"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//GenericValues">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//GenericValues/lifetimes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//GenericValues/lifetimes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//GenericValues/tys"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprGenericValues">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGenericValues/lifetimes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprGenericValues/lifetimes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprGenericValues/tys"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Mod">
@@ -382,6 +373,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//LitString/value"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//LitUnit"/>
+    <genClasses ecoreClass="Rust.ecore#//ViewPathSimple">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewPathSimple/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewPathSimple/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ViewPathGlob">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewPathGlob/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ViewPathList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ViewPathList/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewPathList/ids"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ViewItemExternCrate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewItemExternCrate/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ViewItemExternCrate/path"/>
@@ -509,7 +511,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnDeref/expr"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprAddrOf">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/lifetime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprAddrOf/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/mutbl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAddrOf/expr"/>
     </genClasses>
@@ -530,11 +532,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprTup/exprs"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprForWithLifetime">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForWithLifetime/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForWithLifetime/for"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprLoopWithLifetime">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoopWithLifetime/lifetime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLoopWithLifetime/loop"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprVec">
@@ -555,9 +555,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/pat"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprForLoop/loopBlock"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprAgain">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprAgain/lifetime"/>
-    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprAgain"/>
     <genClasses ecoreClass="Rust.ecore#//UnstafeFn"/>
     <genClasses ecoreClass="Rust.ecore#//NormalFn"/>
     <genClasses ecoreClass="Rust.ecore#//TTDelim">

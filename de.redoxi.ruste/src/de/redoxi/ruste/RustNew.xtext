@@ -47,25 +47,21 @@ ViewItemUse:
 	"use" path=ViewPath;
 
 	// parse_view_paths, libsyntax/parser/parser.rs, line 4951
-ViewPath:
-	ViewPathSimple | ViewPathGlob | ViewPathList;
+ViewPath hidden():
+	// parse_view_paths, libsyntax/parser/parser.rs, line 4848
+	{ViewPathSimple} name=ID EQ path=Path |
+	Path (
+		{ViewPathSimple.path=current} |
+		// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+		{ViewPathGlob.path=current} (MOD_SEP STAR) |
+		// parse_view_paths, libsyntax/parser/parser.rs, line 4875
+		{ViewPathList.path=current} (MOD_SEP LBRACE) WS? ids+=ID (WS? COMMA WS? ids+=ID)* WS? RBRACE
+	);
 
 	// TODO NonGlobalPath?
-// TODO Use TypePath or ExprPath as appropriate
+	// TODO Use TypePath or ExprPath as appropriate
 Path:
 	segments+=ID (MOD_SEP segments+=ID)*;
-
-	// parse_view_paths, libsyntax/parser/parser.rs, line 4848
-ViewPathSimple:
-	name=ID => EQ path=Path;
-
-	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
-ViewPathGlob:
-	path=Path => "::*";
-
-	// parse_view_paths, libsyntax/parser/parser.rs, line 4875
-ViewPathList:
-	path=Path => "::{" identifiers+=ID (COMMA identifiers+=ID)* RBRACE;
 
 ViewExternItem:
 	"extern" (
@@ -150,11 +146,6 @@ Generics:
 	// Lifetimes are supposed to proceed type parameters
 	LT tyParams=TyParams COMMA? GT)?;
 
-	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
-// TODO Should be a token?
-Lifetime hidden():
-	'\'' name=ID;
-
 TyParams:
 	{TyParams} (values+=TyParam => (COMMA values+=TyParam)*)?;
 
@@ -162,7 +153,7 @@ TyParams:
 TyParam:
 // parse_sized
 // parse_optional_ty_param_bounds
-	dynamicSized?="type"? name=ID bounds=TyParamBounds?;
+	lifetime=LIFETIME | dynamicSized?="type"? name=ID bounds=TyParamBounds?;
 
 	// parse_optional_ty_param_bounds, libsyntax/parser/parser.rs, line 3380
 TyParamBounds:
@@ -175,7 +166,7 @@ StaticRegionTyParamBound:
 	{StaticRegionTyParamBound} "'static";
 
 OtherRegionTyParamBound:
-	Lifetime;
+	lifetime=LIFETIME;
 
 	// parse_fn_decl, libsyntax/parser/parser.rs, line 3533
 FnDecl:
@@ -361,7 +352,7 @@ ExprUnary_RestrictStmt:
 ExprUnary:
 	{UnNot} NOT expr=ExprUnary | {UnNeg} MINUS expr=ExprUnary | {UnDeref} STAR expr=ExprUnary |
 	// TODO Parser includes a hack here to parse &[] vector expressions
-	{ExprAddrOf} AND lifetime=Lifetime? mutbl=Mutability expr=ExprUnary |
+	{ExprAddrOf} AND lifetime=LIFETIME? mutbl=Mutability expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
 	{UnBox} AT expr=ExprUnary |
 	// TODO Parser includes a hack here to parse @[] vector expressions
@@ -395,7 +386,7 @@ ExprBottom:
 	ExprIf |
 	ExprFor |
 	ExprWhile |
-	Lifetime COLON ({ExprForWithLifetime.lifetime=current} for=ExprFor | {ExprLoopWithLifetime.lifetime=current}
+	lifetime=LIFETIME COLON ({ExprForWithLifetime} for=ExprFor | {ExprLoopWithLifetime}
 	loop=ExprLoop) |
 	ExprLoop |
 	ExprContinue |
@@ -493,7 +484,7 @@ ExprLoop:
 	"loop" ({ExprLoop} name=ID? body=ExprBlock /* TODO Hide obsolete syntax for now | {ExprAgain} lifetime=Lifetime? */);
 
 ExprContinue:
-	{ExprAgain} "continue" lifetime=Lifetime;
+	{ExprAgain} "continue" lifetime=LIFETIME;
 
 	// parse_match_expr, libsyntax/parser/parser.rs, line 2568
 ExprMatch:
@@ -523,14 +514,14 @@ ExprRet:
 	{ExprRet} "return" => expr=Expr?;
 
 ExprBreak:
-	{ExprBreak} "break" lifetime=Lifetime?;
+	{ExprBreak} "break" lifetime=LIFETIME?;
 
 ExprPath:
 	path=PathWithLifetimeAndTypesWithColons;
 
 	// parse_borrowed_pointee, libsyntax/parser/parser.rs, line 1313
 TyRptr:
-	AND lifetime=Lifetime? mutTy=MutTy;
+	AND lifetime=LIFETIME? mutTy=MutTy;
 
 	// parse_ty_bare_fn, libsyntax/parser/parser.rs, line 890
 /*
@@ -571,7 +562,7 @@ Onceness:
 
 	// parse_lifetimes, libsyntax/parser/parser.rs, line 1586
 Lifetimes:
-	LT lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA? GT;
+	LT lifetimes+=LIFETIME => (COMMA lifetimes+=LIFETIME)* COMMA? GT;
 
 	// parse_ret_ty, libsyntax/parse/parser.rs
 RetTy:
@@ -617,11 +608,11 @@ ExprPathSegment:
 
 	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 GenericValues:
-	LT (lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
+	LT (lifetimes+=LIFETIME => (COMMA lifetimes+=LIFETIME)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
 
 	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 ExprGenericValues:
-	"::<" (lifetimes+=Lifetime => (COMMA lifetimes+=Lifetime)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
+	"::<" (lifetimes+=LIFETIME => (COMMA lifetimes+=LIFETIME)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
 
 	// parse_mod_items, libsyntax/parser/parser.rs, line 4059
 Mod:
@@ -705,7 +696,8 @@ TTTok:
 	ML_COMMENT |
 	SL_COMMENT |
 	WS |
-	NOT_MACRO_TOKEN
+	NOT_MACRO_TOKEN |
+	LIFETIME
 	/* TODO Keywords */);
 
 terminal EQ:
@@ -936,6 +928,11 @@ terminal fragment DEC_DIGIT:
 
 terminal fragment HEX_DIGIT:
 	'0'..'9' | 'a'..'f' | 'A'..'F';
+
+	// parse_lifetime, libsyntax/parser/parser.rs, line 1566
+// TODO Should be a token?
+terminal LIFETIME:
+	"'" ID;
 
 	// terminal fragment NON_SPECIAL_CHAR: !('"' | '\'' | '\\' | 'n' | 'r' | 't' | '0');
 terminal ID:

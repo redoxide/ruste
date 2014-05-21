@@ -36,19 +36,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//ViewPath"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewPath">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//Path" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Path">
+  <eClassifiers xsi:type="ecore:EClass" name="ViewPath"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//ViewPath">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="segments" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewPathSimple" eSuperTypes="#//ViewPath">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewPathGlob" eSuperTypes="#//ViewPath"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ViewPathList" eSuperTypes="#//ViewPath">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewExternItem" eSuperTypes="#//ViewItem"/>
@@ -124,14 +114,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tyParams" eType="#//TyParams"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Lifetime" eSuperTypes="#//OtherRegionTyParamBound #//ExprBottom">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TyParams">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//TyParam" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TyParam">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamicSized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#//TyParamBounds"
@@ -143,7 +131,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TyParamBound"/>
   <eClassifiers xsi:type="ecore:EClass" name="StaticRegionTyParamBound" eSuperTypes="#//TyParamBound"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OtherRegionTyParamBound" eSuperTypes="#//TyParamBound"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OtherRegionTyParamBound" eSuperTypes="#//TyParamBound">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FnDecl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//NamedArg"
         containment="true"/>
@@ -243,6 +233,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
@@ -348,13 +339,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprPath" eSuperTypes="#//ExprSelf"/>
   <eClassifiers xsi:type="ecore:EClass" name="TyRptr" eSuperTypes="#//Ty">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mutTy" eType="#//MutTy"
         containment="true"/>
   </eClassifiers>
@@ -384,8 +372,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="once" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lifetimes">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetimes" upperBound="-1"
-        eType="#//Lifetime" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RetTy">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
@@ -434,14 +422,14 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericValues">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetimes" upperBound="-1"
-        eType="#//Lifetime" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprGenericValues">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetimes" upperBound="-1"
-        eType="#//Lifetime" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
         containment="true"/>
   </eClassifiers>
@@ -481,6 +469,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LitUnit" eSuperTypes="#//Lit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewPathSimple" eSuperTypes="#//ViewPath">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//Path" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewPathGlob" eSuperTypes="#//ViewPath">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//Path" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewPathList" eSuperTypes="#//ViewPath">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//Path" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ids" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewItemExternCrate" eSuperTypes="#//ViewExternItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -634,8 +634,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprAddrOf" eSuperTypes="#//ExprUnary">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mutbl" eType="#//Mutability"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
@@ -664,14 +663,10 @@
         eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprForWithLifetime" eSuperTypes="#//ExprBottom">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="for" eType="#//ExprFor"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprLoopWithLifetime" eSuperTypes="#//ExprBottom">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="#//ExprLoop"
         containment="true"/>
   </eClassifiers>
@@ -699,10 +694,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="loopBlock" eType="#//ExprBlock"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprAgain" eSuperTypes="#//ExprContinue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lifetime" eType="#//Lifetime"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprAgain" eSuperTypes="#//ExprContinue"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnstafeFn" eSuperTypes="#//FnStyle"/>
   <eClassifiers xsi:type="ecore:EClass" name="NormalFn" eSuperTypes="#//FnStyle"/>
   <eClassifiers xsi:type="ecore:EClass" name="TTDelim" eSuperTypes="#//TT">
