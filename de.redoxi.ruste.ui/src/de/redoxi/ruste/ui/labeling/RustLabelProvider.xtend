@@ -4,69 +4,63 @@
 package de.redoxi.ruste.ui.labeling
 
 import com.google.inject.Inject
-import de.redoxi.ruste.rust.UseDecl
-import de.redoxi.ruste.rust.StructItem
-import de.redoxi.ruste.rust.EnumItem
-import de.redoxi.ruste.rust.TraitItem
-import de.redoxi.ruste.rust.ModItem
-import de.redoxi.ruste.rust.FnItem
-import de.redoxi.ruste.rust.Visibility
-import de.redoxi.ruste.rust.StaticItem
-import de.redoxi.ruste.rust.StructDeclField
-import org.eclipse.emf.ecore.EObject
+import de.redoxi.ruste.rust.Item
+import de.redoxi.ruste.rust.ItemEnum
+import de.redoxi.ruste.rust.ItemMod
+import de.redoxi.ruste.rust.ViewItemUse
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
 /**
  * Provides labels for a EObjects.
  * 
  * see http://www.eclipse.org/Xtext/documentation.html#labelProvider
  */
-class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
+class RustLabelProvider extends DefaultEObjectLabelProvider {
 
 	
 
 	@Inject
-	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
+	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 		
-		def image(UseDecl useDecl) {
+		def image(ViewItemUse useDecl) {
 			'use_obj.png'
 		}
 
-		def image(StructItem structItem) {
+		/*def image(StructItem structItem) {
 			'struct_obj.png'
-		}
+		}*/
 
-		def image(EnumItem enumItem) {
+		def image(ItemEnum enumItem) {
 			'enum_obj.png'
 		}
 		
-		def image(TraitItem traitItem) {
+		/*def image(TraitItem traitItem) {
 			'trait_obj.png'
-		}
+		}*/
 		
-		def image(ModItem modItem) {
-			if (modItem.items.empty) 
+		def image(ItemMod modItem) {
+			if (modItem.module.items.empty) 
 				'empty_module_obj.png'
 			else
 				'module_obj.png'
 		}
 		
-		def image(FnItem fnItem) {
-			switch (fnItem.vis) {
-				case Visibility.PUBLIC:
-					return 'methpub_obj.png'
-				default:
+		def image(Item item) {
+			if (item.vis.public) {
+				return 'methpub_obj.png'
+			} else {
 					return 'methpri_obj.png'
 			}
 		}
 		
-		def image(StaticItem staticItem) {
-			switch (staticItem.vis) {
-				case Visibility.PUBLIC:
-					return 'static_field_public_obj.png'
-				default:
-					return 'static_field_private_obj.png'
+		/*def image(ItemStatic staticItem) {
+			if (staticItem.public) {
+				return 'static_field_public_obj.png'
+			} else {
+				return 'static_field_private_obj.png'
 			}
 		}
 		
@@ -77,5 +71,5 @@ class RustLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPr
 				default:
 					return 'static_field_private_obj.png'
 			}
-		}
+		}*/
 }

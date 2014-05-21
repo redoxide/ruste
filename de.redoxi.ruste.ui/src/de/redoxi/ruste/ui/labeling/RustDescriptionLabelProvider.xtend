@@ -4,8 +4,8 @@
 package de.redoxi.ruste.ui.labeling
 
 import de.redoxi.ruste.rust.Crate
-import de.redoxi.ruste.rust.UseDecl
-import de.redoxi.ruste.rust.NamedUseDecl
+import de.redoxi.ruste.rust.ViewItemUse
+import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider
 
 //import org.eclipse.xtext.resource.IEObjectDescription
 
@@ -14,7 +14,7 @@ import de.redoxi.ruste.rust.NamedUseDecl
  * 
  * see http://www.eclipse.org/Xtext/documentation.html#labelProvider
  */
-class RustDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider {
+class RustDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
 
 	// Labels and icons can be computed like this:
 	
@@ -35,11 +35,12 @@ class RustDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDes
 			"crate_obj.png"
 		}
 		
-		def text(NamedUseDecl useDecl) {
-			useDecl.name.toString
+		def text(ViewItemUse useDecl) {
+			// TODO "use" statements have optional name
+			useDecl.path.toString
 		}
 		
-		def image(UseDecl useDecl) {
+		def image(ViewItemUse useDecl) {
 			'use_obj.png'
 		}
 }

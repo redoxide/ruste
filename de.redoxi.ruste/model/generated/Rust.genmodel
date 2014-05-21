@@ -182,7 +182,21 @@
     <genClasses ecoreClass="Rust.ecore#//ExprUnary_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary"/>
     <genClasses ecoreClass="Rust.ecore#//DotOrCallExpr"/>
+    <genClasses ecoreClass="Rust.ecore#//DotOrCallExprTail">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//DotOrCallExprTail/tail"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprField/method"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/genericValues"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//ExprIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/index"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprBottom">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/op"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/expr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBottom/path"/>
     </genClasses>
@@ -259,7 +273,9 @@
     <genClasses ecoreClass="Rust.ecore#//UnsafeBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnsafeBlock/block"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprRet"/>
+    <genClasses ecoreClass="Rust.ecore#//ExprRet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprRet/expr"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprBreak">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/lhs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBreak/rhs"/>
@@ -338,6 +354,9 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TT"/>
     <genClasses ecoreClass="Rust.ecore#//NonDelimTTToken"/>
+    <genClasses ecoreClass="Rust.ecore#//TTTok">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTTok/token"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//BoolLit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//BoolLit/value"/>
     </genClasses>
@@ -504,19 +523,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBox/place"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprBox/expr"/>
     </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprField">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/expr"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//ExprField/method"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprField/genericValues"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/expr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprCall/args"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//ExprIndex">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/expr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprIndex/index"/>
-    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//ExprParen">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprParen/exprs"/>
     </genClasses>
@@ -564,9 +570,6 @@
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//TTNonterminal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTNonterminal/name"/>
-    </genClasses>
-    <genClasses ecoreClass="Rust.ecore#//TTTok">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//TTTok/token"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

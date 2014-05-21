@@ -3,21 +3,16 @@
 */
 package de.redoxi.ruste.ui.outline
 
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.emf.ecore.EObject
-import de.redoxi.ruste.rust.ItemAndAttrs
-import de.redoxi.ruste.rust.UseDecl
-import de.redoxi.ruste.rust.StaticItem
-import de.redoxi.ruste.rust.StructField
-import de.redoxi.ruste.rust.FnItem
-import de.redoxi.ruste.rust.CrateItem
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 
 /**
  * Customization of the default outline structure.
  *
  * see http://www.eclipse.org/Xtext/documentation.html#outline
  */
-class RustOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
+class RustOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	override void createChildren(IOutlineNode parentNode, EObject modelElement) {
 		for (EObject childElement : modelElement.eContents()) {
