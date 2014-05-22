@@ -153,7 +153,25 @@
         eType="#//Pat" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralMaybeMinus" eSuperTypes="#//Pat"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatFields">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//FieldPat" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tailingWildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FieldPat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="binding" eType="#//Binding"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Binding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mut" eType="#//Mutability"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatIdent" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathWithLifetimeAndTypesWithColons"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ty"/>
@@ -209,6 +227,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprBinaryPrecedence10_RestrictStmt"
       eSuperTypes="#//ExprBinaryPrecedence9_RestrictStmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprUnary_RestrictStmt" eSuperTypes="#//ExprBinaryPrecedence10_RestrictStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr_NoSemi" eSuperTypes="#//ExprUnary_RestrictStmt #//Stmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprUnary" eSuperTypes="#//ExprBinaryPrecedence10 #//ExprUnary_RestrictStmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="DotOrCallExpr" eSuperTypes="#//ExprUnary"/>
   <eClassifiers xsi:type="ecore:EClass" name="DotOrCallExprTail">
@@ -241,7 +260,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprBlock" eSuperTypes="#//ExprUnary_RestrictStmt #//ExprBottom">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprBlock" eSuperTypes="#//Expr_NoSemi #//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
@@ -287,15 +306,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcDecl"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExprSelf" eSuperTypes="#//ExprBottom"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprIf" eSuperTypes="#//ExprUnary_RestrictStmt #//ExprBottom">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprIf" eSuperTypes="#//Expr_NoSemi #//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thn" eType="#//ExprBlock"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="els" eType="#//ExprBlock"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprFor" eSuperTypes="#//ExprUnary_RestrictStmt #//ExprBottom"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprWhile" eSuperTypes="#//ExprUnary_RestrictStmt #//ExprBottom">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprFor" eSuperTypes="#//Expr_NoSemi #//ExprBottom"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprWhile" eSuperTypes="#//Expr_NoSemi #//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//ExprBlock"
         containment="true"/>
@@ -306,7 +325,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprContinue" eSuperTypes="#//ExprBottom"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprMatch" eSuperTypes="#//ExprUnary_RestrictStmt #//ExprBottom">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprMatch" eSuperTypes="#//Expr_NoSemi #//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="discriminant" eType="#//Expr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arms" upperBound="-1" eType="#//Arm"
@@ -406,7 +425,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//GenericValues"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathWithLifetimeAndTypesWithColons">
+  <eClassifiers xsi:type="ecore:EClass" name="PathWithLifetimeAndTypesWithColons"
+      eSuperTypes="#//Pat">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="global" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
         eType="#//ExprPathSegment" containment="true"/>
@@ -556,6 +576,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//PatIdent"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatStruct" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathWithLifetimeAndTypesWithColons"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" eType="#//PatFields"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatEnum" eSuperTypes="#//Pat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathWithLifetimeAndTypesWithColons"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Pat"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnNeg" eSuperTypes="#//LiteralMaybeMinus #//ExprUnary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lit" eType="#//Lit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//ExprUnary"
@@ -564,6 +597,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExprLit" eSuperTypes="#//LiteralMaybeMinus #//ExprBottom">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lit" eType="#//Lit" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BindByRef" eSuperTypes="#//Binding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BindByValue" eSuperTypes="#//Binding"/>
   <eClassifiers xsi:type="ecore:EClass" name="TyNil" eSuperTypes="#//Ty"/>
   <eClassifiers xsi:type="ecore:EClass" name="TyParen" eSuperTypes="#//Ty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>

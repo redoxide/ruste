@@ -189,15 +189,32 @@ Pat:
 	{PatOwned} TILDE pat=Pat | // TODO This pattern is obsolete
 	{PatRegion} AND pat=Pat | {PatTup} LPAREN pats+=Pat (COMMA pats+=Pat) RPAREN | PatVec | LiteralMaybeMinus
 	({PatRange.start=current} => DOTDOT end=LiteralMaybeMinus | {PatLit.value=current}) | {PatUniq} "box" pat=PatIdent |
-	{PatRef} "ref" pat=PatIdent | PatIdent /* TODO Path pattern that can potentially be an enum variant or struct */;
+	{PatRef} "ref" pat=PatIdent | 
+	PathWithLifetimeAndTypesWithColons ({PatIdent.path=current} |
+		{PatStruct.path=current} LBRACE fields=PatFields RBRACE |
+		{PatEnum.path=current} LPAREN (wildcard=DOTDOT | wildcard=STAR | args+=Pat (COMMA args+=Pat)*)? RPAREN
+	);
 
 	// parse_pat_vec_elements, libsyntax/parser/parser.rs, line 2639
 PatVec:
-	{PatVec} LBRACKET (DOTDOT after+=Pat+ | (before+=Pat COMMA)+ DOTDOT (after+=Pat (COMMA after+=Pat)*)?) RBRACKET;
+	{PatVec} LBRACKET (DOTDOT after+=Pat (COMMA after+=Pat)* | (before+=Pat COMMA)+ DOTDOT (after+=Pat (COMMA after+=Pat)*)?) RBRACKET;
 
 	// parse_literal_maybe_minus, libsyntax/parser/parser.rs, line 1441
 LiteralMaybeMinus:
 	{UnNeg} MINUS lit=Lit | {ExprLit} lit=Lit;
+
+// parse_pat_fields, libsyntax/parser/parser.rs, line 2701
+PatFields:
+	{PatFields} (wildcard?=(DOTDOT | STAR) | fields+=FieldPat (COMMA fields+=FieldPat)* tailingWildcard?=DOTDOT?)?
+;
+
+FieldPat:
+	binding=Binding
+;
+
+Binding:
+	({BindByRef} "ref" mut=Mutability | {BindByValue} mut=Mutability) name=ID /* TODO path here */ (COLON pat=Pat)?
+;
 
 	// parse_pat_ident, libsyntax/parser/parser.rs, line 3010
 PatIdent:
@@ -347,7 +364,11 @@ ExprBinaryPrecedence10_RestrictStmt:
 
 ExprUnary_RestrictStmt:
 // Match any expressions ending in a block, then the unary production
-	=> (ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor) | ExprUnary;
+	=> Expr_NoSemi | ExprUnary;
+	
+Expr_NoSemi:
+	ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor;
+	
 	// parse_prefix_expr, libsyntax/parser/parser.rs, line 2210
 ExprUnary:
 	{UnNot} NOT expr=ExprUnary | {UnNeg} MINUS expr=ExprUnary | {UnDeref} STAR expr=ExprUnary |
@@ -429,6 +450,7 @@ Stmt:
 	// TODO Semi-colon statement terminators
 	Item |
 	// TODO Grammar refers to foreign item, but this grammar expects foreign items in expect blocks
+	=>Expr_NoSemi SEMI? |
 	// ForeignItem | 
 	Expr_RestrictStmt SEMI;
 

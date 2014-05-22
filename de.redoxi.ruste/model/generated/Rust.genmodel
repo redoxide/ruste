@@ -126,7 +126,21 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatVec/before"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//LiteralMaybeMinus"/>
+    <genClasses ecoreClass="Rust.ecore#//PatFields">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatFields/wildcard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatFields/fields"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatFields/tailingWildcard"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//FieldPat">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//FieldPat/binding"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//Binding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Binding/mut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//Binding/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//Binding/pat"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//PatIdent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatIdent/path"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatIdent/name"/>
     </genClasses>
     <genClasses ecoreClass="Rust.ecore#//Ty"/>
@@ -171,6 +185,7 @@
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence9_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprBinaryPrecedence10_RestrictStmt"/>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary_RestrictStmt"/>
+    <genClasses ecoreClass="Rust.ecore#//Expr_NoSemi"/>
     <genClasses ecoreClass="Rust.ecore#//ExprUnary"/>
     <genClasses ecoreClass="Rust.ecore#//DotOrCallExpr"/>
     <genClasses ecoreClass="Rust.ecore#//DotOrCallExprTail">
@@ -444,6 +459,15 @@
     <genClasses ecoreClass="Rust.ecore#//PatRef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatRef/pat"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatStruct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatStruct/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatStruct/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//PatEnum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Rust.ecore#//PatEnum/wildcard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//PatEnum/args"/>
+    </genClasses>
     <genClasses ecoreClass="Rust.ecore#//UnNeg">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNeg/lit"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//UnNeg/expr"/>
@@ -451,6 +475,8 @@
     <genClasses ecoreClass="Rust.ecore#//ExprLit">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//ExprLit/lit"/>
     </genClasses>
+    <genClasses ecoreClass="Rust.ecore#//BindByRef"/>
+    <genClasses ecoreClass="Rust.ecore#//BindByValue"/>
     <genClasses ecoreClass="Rust.ecore#//TyNil"/>
     <genClasses ecoreClass="Rust.ecore#//TyParen">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Rust.ecore#//TyParen/ty"/>
