@@ -100,6 +100,53 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="enumDefinition" eType="#//EnumDef"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemTrait">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//Generics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sized" eType="#//ForSized"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="traits" eType="#//TraitRefList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meths" eType="#//TraitMethods"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TraitRefList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="traits" upperBound="-1"
+        eType="#//TraitRef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TraitRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//PathWithLifetimeAndTypesWithoutColons"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForSized"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TraitMethods">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//TraitMethod" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TraitMethod">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" eType="#//OuterAttributes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vis" eType="#//Visibility"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fnStyle" eType="#//FnStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//Generics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decl" eType="#//FnDeclWithSelf_ArgGeneral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FnDeclWithSelf_ArgGeneral">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="self" eType="#//FnDeclWithSelf_Self"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//ArgGeneral"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FnDeclWithSelf_Self"/>
   <eClassifiers xsi:type="ecore:EClass" name="EnumDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variants" upperBound="-1"
         eType="#//Variant" containment="true"/>
@@ -135,13 +182,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FnDecl">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//NamedArg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//ArgGeneral"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="retTy" eType="#//RetTy"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Arg" eSuperTypes="#//NamedArg">
+  <eClassifiers xsi:type="ecore:EClass" name="ArgGeneral"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Arg" eSuperTypes="#//ArgGeneral">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pat" eType="#//Pat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
   </eClassifiers>
@@ -183,7 +230,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mutability" eSuperTypes="#//Mutability_Required"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Mutability_Required"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mutability_Required" eSuperTypes="#//FnDeclWithSelf_Self"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//Initializer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Expr_RestrictStmt" eSuperTypes="#//Stmt"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssignExpr" eSuperTypes="#//Expr"/>
@@ -424,28 +471,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
         eType="#//ExprPathSegment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathSegment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//GenericValues"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PathWithLifetimeAndTypesWithoutColons">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="global" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
+        eType="#//PathWithLifetimeAndTypesWithoutColonsSegment" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprPathSegment">
+  <eClassifiers xsi:type="ecore:EClass" name="PathSegment" eSuperTypes="#//ExprPathSegment #//PathWithLifetimeAndTypesWithoutColonsSegment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genericValues" eType="#//ExprGenericValues"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericValues">
+  <eClassifiers xsi:type="ecore:EClass" name="ExprPathSegment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PathWithLifetimeAndTypesWithoutColonsSegment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericValues" eSuperTypes="#//ExprGenericValues">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprGenericValues">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetimes" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tys" upperBound="-1" eType="#//Ty"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprGenericValues"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mod">
     <eStructuralFeatures xsi:type="ecore:EReference" name="innerAttrs" upperBound="-1"
         eType="#//InnerAttributes" containment="true"/>
@@ -520,6 +564,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//Generics"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DynSize" eSuperTypes="#//ForSized"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticSize" eSuperTypes="#//ForSized"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfRegion" eSuperTypes="#//FnDeclWithSelf_Self">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lifetime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mutbl" eType="#//Mutability"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfUniq" eSuperTypes="#//FnDeclWithSelf_Self">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mutbl" eType="#//Mutability_Required"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfStatic" eSuperTypes="#//FnDeclWithSelf_Self"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfValue" eSuperTypes="#//FnDeclWithSelf_Self">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mutbl" eType="#//Mutability_Required"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructVariantKind" eSuperTypes="#//Variant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="vis" eType="#//Visibility"

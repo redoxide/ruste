@@ -90,7 +90,7 @@ Visibility:
 	{Visibility} public?="pub"?;
 
 Item:
-	attrs=OuterAttributes? (vis=Visibility node=(ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum) |
+	attrs=OuterAttributes? (vis=Visibility node=(ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum | ItemTrait) |
 	node=ViewItem);
 
 	// parse_item_const, libsyntax/parser/parser.rs, line 4114
@@ -120,6 +120,50 @@ ItemEnum:
 	"enum" name=ID generics=Generics
 	// parse_enum_def
 	LBRACE enumDefinition=EnumDef RBRACE;
+
+// parse_item_trait, libsyntax/parser/parser.rs, line 3834
+ItemTrait:
+	"trait" name=ID generics=Generics sized=ForSized traits=TraitRefList meths=TraitMethods
+;
+
+// parse_trait_ref_list, libsyntax/parser/parser.rs, line 3916
+TraitRefList:
+	{TraitRefList} (COLON traits+=TraitRef (PLUS traits+=TraitRef)*)?;
+
+// parse_trait_ref, libsyntax/parser/parser.rs, line 3809
+TraitRef:
+	path=PathWithLifetimeAndTypesWithoutColons;
+
+// parse_for_sized, libsyntax/parser/parser.rs, line 4045
+ForSized:
+	({DynSize} "for" "type" | {StaticSize})
+;
+
+// parse_trait_methods, libsyntax/parser/parser.rs, line 1067
+TraitMethods:
+	{TraitMethods} LBRACE methods+=TraitMethod* RBRACE
+;
+
+TraitMethod:
+	attrs=OuterAttributes? vis=Visibility fnStyle=FnStyle name=ID generics=Generics decl=FnDeclWithSelf_ArgGeneral (required?=SEMI | body=Block)
+;
+
+// parse_fn_decl_with_self, libsyntax/parser/parser.rs, line 3563
+FnDeclWithSelf_ArgGeneral:
+	LPAREN self=FnDeclWithSelf_Self (COMMA args+=ArgGeneral)* RPAREN
+;
+
+FnDeclWithSelf_Self:
+	{SelfRegion} AND lifetime=LIFETIME? mutbl=Mutability "self" |
+	TILDE ({SelfUniq} "self" | {SelfStatic}) |
+	STAR ({SelfValue} mutbl=Mutability "self") |	// ERROR
+	{SelfValue} "self" |
+	Mutability_Required (
+		{SelfValue.mutbl=current} "self" |
+		{SelfUniq.mutbl=current} TILDE "self"
+	) |
+	{SelfStatic}
+;
 
 	// parse_enum_def, libsyntax/parser/parser.rs, line 
 EnumDef:
@@ -172,12 +216,12 @@ OtherRegionTyParamBound:
 FnDecl:
 	{FnDecl}
 	// parse_fn_args (non-variadic, named) (TODO Separate into variadic/non-variadic grammar, or treat as error?)
-	LPAREN (args+=NamedArg (COMMA args+=NamedArg)*)? RPAREN
+	LPAREN (args+=ArgGeneral (COMMA args+=ArgGeneral)*)? RPAREN
 	// parse_ret_ty (TODO Separate into named/unnamed args, or treat as error?)
 	retTy=RetTy?;
 
 	// parse_arg_general, libsyntax/parser/parser.rs, line 1342
-NamedArg:
+ArgGeneral:
 	{Arg} pat=Pat COLON ty=Ty;
 
 Arg:
@@ -617,12 +661,19 @@ PathWithLifetimesTypesAndBounds:
 PathWithLifetimeAndTypesWithColons:
 // TODO Cross-reference modules
 	global?=MOD_SEP? segments+=ExprPathSegment (MOD_SEP segments+=ExprPathSegment)*;
+	
+PathWithLifetimeAndTypesWithoutColons:
+// TODO Cross-reference modules
+	global?=MOD_SEP? segments+=PathWithLifetimeAndTypesWithoutColonsSegment (MOD_SEP segments+=PathWithLifetimeAndTypesWithoutColonsSegment)*;
 
 PathSegment:
 	name=ID genericValues=GenericValues?;
 
 ExprPathSegment:
-	name=ID genericValues=ExprGenericValues?;
+	{PathSegment} name=ID genericValues=ExprGenericValues?;
+	
+PathWithLifetimeAndTypesWithoutColonsSegment:
+	{PathSegment} name=ID genericValues=GenericValues?;
 
 	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 GenericValues:
@@ -630,7 +681,7 @@ GenericValues:
 
 	// parse_generic_values_after_lt, libsyntax/parser/parser.rs, line 
 ExprGenericValues:
-	"::<" (lifetimes+=LIFETIME => (COMMA lifetimes+=LIFETIME)* COMMA)? tys+=Ty => (COMMA tys+=Ty)* COMMA? GT;
+	MOD_SEP GenericValues;
 
 	// parse_mod_items, libsyntax/parser/parser.rs, line 4059
 Mod:
