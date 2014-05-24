@@ -111,6 +111,31 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="meths" eType="#//TraitMethods"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemImpl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//Generics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optTrait" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ty" eType="#//Ty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="atts" eType="#//InnerAttributes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meths" upperBound="-1"
+        eType="#//Method" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" eType="#//OuterAttributes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vis" eType="#//Visibility"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fnStyle" eType="#//FnStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generics" eType="#//Generics"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decl" eType="#//FnDeclWithSelf_ArgGeneral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TraitRefList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="traits" upperBound="-1"
         eType="#//TraitRef" containment="true"/>

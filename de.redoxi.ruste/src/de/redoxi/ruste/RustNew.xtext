@@ -90,7 +90,7 @@ Visibility:
 	{Visibility} public?="pub"?;
 
 Item:
-	attrs=OuterAttributes? (vis=Visibility node=(ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum | ItemTrait) |
+	attrs=OuterAttributes? (vis=Visibility node=(ItemStatic | FnItem | UnsafeFnItem | ItemMod | ItemType | ItemEnum | ItemTrait | ItemImpl) |
 	node=ViewItem);
 
 	// parse_item_const, libsyntax/parser/parser.rs, line 4114
@@ -124,6 +124,22 @@ ItemEnum:
 // parse_item_trait, libsyntax/parser/parser.rs, line 3834
 ItemTrait:
 	"trait" name=ID generics=Generics sized=ForSized traits=TraitRefList meths=TraitMethods
+;
+
+// parse_item_impl, libsyntax/parser/parser.rs, line 3855
+ItemImpl:
+	generics=Generics /* TODO special rule for LPAREN here */
+	(optTrait=ID "for")? // TODO crossreference trait
+	ty=Ty // TODO crossreference struct
+	LBRACE
+	atts=InnerAttributes?
+	meths+=Method*
+	RBRACE
+;
+
+// parse_method, libsyntax/parser/parser.rs, line 3799
+Method:
+	attrs=OuterAttributes? vis=Visibility fnStyle=FnStyle name=ID generics=Generics decl=FnDeclWithSelf_ArgGeneral body=Block
 ;
 
 // parse_trait_ref_list, libsyntax/parser/parser.rs, line 3916
