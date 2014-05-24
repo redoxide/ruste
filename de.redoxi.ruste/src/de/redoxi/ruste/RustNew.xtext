@@ -189,7 +189,8 @@ Pat:
 	{PatOwned} TILDE pat=Pat | // TODO This pattern is obsolete
 	{PatRegion} AND pat=Pat | {PatTup} LPAREN pats+=Pat (COMMA pats+=Pat) RPAREN | PatVec | LiteralMaybeMinus
 	({PatRange.start=current} => DOTDOT end=LiteralMaybeMinus | {PatLit.value=current}) | {PatUniq} "box" pat=PatIdent |
-	{PatRef} "ref" pat=PatIdent | 
+	{PatIdent} (mutbl=Mutability_Required name=ID) |
+	{PatRef} "ref" mutbl=Mutability pat=PatIdent | 
 	PathWithLifetimeAndTypesWithColons ({PatIdent.path=current} |
 		{PatStruct.path=current} LBRACE fields=PatFields RBRACE |
 		{PatEnum.path=current} LPAREN (wildcard=DOTDOT | wildcard=STAR | args+=Pat (COMMA args+=Pat)*)? RPAREN
@@ -237,6 +238,9 @@ MutTy:
 
 Mutability:
 	{MutMutable} "mut" | {MutImmutable} "const"?;
+
+Mutability_Required:
+	{Mutability} "mut";
 
 	// parse_expr, libsyntax/parser/parser.rs, line 2606
 // Assumes UNRESTRICTED restriction in parser
@@ -294,77 +298,77 @@ BinOpPrec01 hidden():
 	// parse_binops, libsyntax/parser/parser.rs, line 2328
 // min_prec = 0
 ExprBinaryPrecedence0:
-	ExprBinaryPrecedence1 => ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprBinaryPrecedence1)?;
+	ExprBinaryPrecedence1 ({ExprBinary.lhs=current} op=BinOpPrec01 rhs=ExprBinaryPrecedence0)?;
 
 ExprBinaryPrecedence1:
-	ExprBinaryPrecedence2 => ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprBinaryPrecedence2)?;
+	ExprBinaryPrecedence2 ({ExprBinary.lhs=current} op=BinOpPrec02 rhs=ExprBinaryPrecedence1)?;
 
 ExprBinaryPrecedence2:
-	ExprBinaryPrecedence3 => ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprBinaryPrecedence3)?;
+	ExprBinaryPrecedence3 ({ExprBinary.lhs=current} op=BinOpPrec03 rhs=ExprBinaryPrecedence2)?;
 
 ExprBinaryPrecedence3:
-	ExprBinaryPrecedence4 => ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprBinaryPrecedence4)?;
+	ExprBinaryPrecedence4 ({ExprBinary.lhs=current} op=BinOpPrec04 rhs=ExprBinaryPrecedence3)?;
 
 ExprBinaryPrecedence4:
-	ExprBinaryPrecedence6 => ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprBinaryPrecedence6)?;
+	ExprBinaryPrecedence6 ({ExprBinary.lhs=current} op=BinOpPrec06 rhs=ExprBinaryPrecedence4)?;
 
 ExprBinaryPrecedence6:
-	ExprBinaryPrecedence7 => ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprBinaryPrecedence7)?;
+	ExprBinaryPrecedence7 ({ExprBinary.lhs=current} op=BinOpPrec07 rhs=ExprBinaryPrecedence6)?;
 
 ExprBinaryPrecedence7:
-	ExprBinaryPrecedence8 => ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprBinaryPrecedence8)?;
+	ExprBinaryPrecedence8 ({ExprBinary.lhs=current} op=BinOpPrec08 rhs=ExprBinaryPrecedence7)?;
 
 ExprBinaryPrecedence8:
-	ExprBinaryPrecedence9 => ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprBinaryPrecedence9)?;
+	ExprBinaryPrecedence9 ({ExprBinary.lhs=current} op=BinOpPrec09 rhs=ExprBinaryPrecedence8)?;
 
 ExprBinaryPrecedence9:
-	ExprBinaryPrecedence10 => ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprBinaryPrecedence10)?;
+	ExprBinaryPrecedence10 ({ExprBinary.lhs=current} op=BinOpPrec10 rhs=ExprBinaryPrecedence9)?;
 
 ExprBinaryPrecedence10:
-	ExprUnary => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprUnary)?;
+	ExprUnary ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprBinaryPrecedence10)?;
 
 ExprBinaryPrecedence0_RestrictStmt:
-	ExprBinaryPrecedence1_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec01
-	rhs=ExprBinaryPrecedence1_RestrictStmt)?;
+	ExprBinaryPrecedence1_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec01
+	rhs=ExprBinaryPrecedence0_RestrictStmt)?;
 
 ExprBinaryPrecedence1_RestrictStmt:
-	ExprBinaryPrecedence2_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec02
-	rhs=ExprBinaryPrecedence2_RestrictStmt)?;
+	ExprBinaryPrecedence2_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec02
+	rhs=ExprBinaryPrecedence1_RestrictStmt)?;
 
 ExprBinaryPrecedence2_RestrictStmt:
-	ExprBinaryPrecedence3_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec03
-	rhs=ExprBinaryPrecedence3_RestrictStmt)?;
+	ExprBinaryPrecedence3_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec03
+	rhs=ExprBinaryPrecedence2_RestrictStmt)?;
 
 ExprBinaryPrecedence3_RestrictStmt:
-	ExprBinaryPrecedence4_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec04
-	rhs=ExprBinaryPrecedence4_RestrictStmt)?;
+	ExprBinaryPrecedence4_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec04
+	rhs=ExprBinaryPrecedence3_RestrictStmt)?;
 
 ExprBinaryPrecedence4_RestrictStmt:
-	ExprBinaryPrecedence6_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec06
-	rhs=ExprBinaryPrecedence6_RestrictStmt)?;
+	ExprBinaryPrecedence6_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec06
+	rhs=ExprBinaryPrecedence4_RestrictStmt)?;
 
 ExprBinaryPrecedence6_RestrictStmt:
-	ExprBinaryPrecedence7_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec07
-	rhs=ExprBinaryPrecedence7_RestrictStmt)?;
+	ExprBinaryPrecedence7_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec07
+	rhs=ExprBinaryPrecedence6_RestrictStmt)?;
 
 ExprBinaryPrecedence7_RestrictStmt:
-	ExprBinaryPrecedence8_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec08
-	rhs=ExprBinaryPrecedence8_RestrictStmt)?;
+	ExprBinaryPrecedence8_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec08
+	rhs=ExprBinaryPrecedence7_RestrictStmt)?;
 
 ExprBinaryPrecedence8_RestrictStmt:
-	ExprBinaryPrecedence9_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec09
-	rhs=ExprBinaryPrecedence9_RestrictStmt)?;
+	ExprBinaryPrecedence9_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec09
+	rhs=ExprBinaryPrecedence8_RestrictStmt)?;
 
 ExprBinaryPrecedence9_RestrictStmt:
-	ExprBinaryPrecedence10_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec10
-	rhs=ExprBinaryPrecedence10_RestrictStmt)?;
+	ExprBinaryPrecedence10_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec10
+	rhs=ExprBinaryPrecedence9_RestrictStmt)?;
 
 ExprBinaryPrecedence10_RestrictStmt:
-	ExprUnary_RestrictStmt => ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprUnary_RestrictStmt)?;
+	ExprUnary_RestrictStmt ({ExprBinary.lhs=current} op=BinOpPrec11 rhs=ExprBinaryPrecedence10_RestrictStmt)?;
 
 ExprUnary_RestrictStmt:
 // Match any expressions ending in a block, then the unary production
-	=> Expr_NoSemi | ExprUnary;
+	=> Expr_NoSemi | ExprUnary /* TODO check parser */;
 	
 Expr_NoSemi:
 	ExprIf | ExprMatch | ExprBlock | ExprWhile | ExprFor;
@@ -381,10 +385,11 @@ ExprUnary:
 
 	// parse_dot_or_call_expr, libsyntax/parser/parser.rs, line 1934
 DotOrCallExpr:
-	ExprBottom op=DotOrCallExprTail?;
+	// TODO Hack. Not sure if syntatic predicate needed here
+	ExprBottom ops+=DotOrCallExprTail*;
 
 DotOrCallExprTail:
-	(ExprField | ExprCall | ExprIndex) tail=DotOrCallExprTail?;
+	(ExprField | ExprCall | ExprIndex);
 
 ExprField:
 	DOT method=ID (MOD_SEP genericValues=GenericValues)?;
@@ -401,8 +406,8 @@ ExprBottom:
 	LPAREN expr=Expr ({ExprParen.exprs=current} RPAREN | {ExprTup.exprs+=current} COMMA => (exprs+=Expr COMMA)*
 	exprs+=Expr? RPAREN) |
 	ExprBlock |
-	// ExprFnBlock |
-	// ExprProc |
+	LambdaExpr |
+	ExprProc |
 	ExprSelf |
 	ExprIf |
 	ExprFor |
@@ -414,12 +419,12 @@ ExprBottom:
 	ExprMatch |
 	UnsafeBlock |
 	{ExprVec} LBRACKET (exprs+=Expr ((COMMA exprs+=Expr)* |
-	{ExprRepeat.exprs=current} => (COMMA DOTDOT) count=Expr))? RBRACKET |
-	// ExprRet |
+	{ExprRepeat.exprs=current} (COMMA DOTDOT) count=Expr))? RBRACKET |
+	ExprRet |
 	ExprBreak |
 	path=ExprPath (
 		{MacInvocTT.path=current} NOT (LBRACE tts+=TT* RBRACE | LPAREN tts+=TT* RPAREN | LBRACKET tts+=TT* RBRACKET) |
-		{ExprStruct.path=current} LBRACE (fields+=Field)* (DOTDOT base=Expr)? RBRACE)? |
+		{ExprStruct.path=current} LBRACE (fields+=Field =>(COMMA fields+=Field)* COMMA?)? (DOTDOT base=Expr)? RBRACE)? |
 	{ExprLit} expr=Lit;
 
 	// parse_field, libsyntax/parser/parser.rs, line 1638
@@ -467,8 +472,8 @@ Initializer:
 	EQ Expr;
 
 	// parse_lambda_expr, libsyntax/parser/parser.rs, line 2468
-ExprFnBlock:
-	decl=FnBlockDecl body=Expr;
+LambdaExpr:
+	{ExprFnBlock} decl=FnBlockDecl body=Expr;
 
 	// parse_fn_block_decl, libsyntax/parser/parser.rs, line 3713
 FnBlockDecl:
@@ -510,19 +515,10 @@ ExprContinue:
 
 	// parse_match_expr, libsyntax/parser/parser.rs, line 2568
 ExprMatch:
-	"match" discriminant=Expr LBRACE (=> arms+=HeadArm* arms+=TailArm)? RBRACE;
+	"match" discriminant=Expr LBRACE arm=Arm? RBRACE;
 
 Arm:
-	HeadArm | TailArm;
-
-HeadArm:
-// parse_outer_attributes
-// parse_pats
-	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt COMMA);
-
-TailArm:
-// TODO Check that this correct?
-	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? FAT_ARROW (=> expr=ExprBlock | expr=Expr_RestrictStmt);
+	attributes=OuterAttributes? pats=Pats ("if" guard=Expr)? FAT_ARROW (=>expr=ExprBlock nextArm=Arm? | expr=Expr_RestrictStmt (COMMA nextArm=Arm?)?);
 
 	// parse_pats, libsyntax/parser/parser.rs, line 2630
 Pats:
@@ -533,7 +529,7 @@ UnsafeBlock:
 
 ExprRet:
 // can_begin_expr
-	{ExprRet} "return" => expr=Expr?;
+	{ExprRet} "return" =>expr=Expr?;
 
 ExprBreak:
 	{ExprBreak} "break" lifetime=LIFETIME?;
@@ -576,8 +572,8 @@ FnStyle:
   Function Style
 */
 TyClosure:
-	fnStyle=FnStyle onceness=Onceness lifetimes=Lifetimes? (OROR | OR args+=Arg (COMMA args+=Arg)* OR)
-	bounds=TyParamBounds retTy=RetTy;
+	fnStyle=FnStyle onceness=Onceness? lifetimes=Lifetimes? (OROR | OR args+=Arg (COMMA args+=Arg)* OR)
+	bounds=TyParamBounds? retTy=RetTy;
 
 Onceness:
 	once?="once";
