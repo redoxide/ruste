@@ -40,6 +40,10 @@ public class Plugin extends AbstractUIPlugin {
     
     public static final String PLUGIN_ID = "de.redoxi.ruste.core";
 
+    static {
+    	System.loadLibrary("nativeparser");
+    }
+    
     public Plugin() {
 	super();
 	instance = this;

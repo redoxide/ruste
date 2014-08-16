@@ -32,6 +32,13 @@ public interface IRustParser {
      * @param root
      */
     public abstract void setRoot(ASTNode root);
+    
+    /**
+     * Set the name of crate
+     * 
+     * @param name
+     */
+    public void setName(String name);
 
     /**
      * Parse the given Rust source

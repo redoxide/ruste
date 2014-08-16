@@ -17,14 +17,7 @@
 
 Generates an abstract syntax tree for the publicly visible items within the given source crate
 
-*/
-
-#[link(name = "xmlast",
-       package_id = "xmlast",
-       vers = "0.0.1",
-       uuid = "7d940ca0-5949-11e3-9cb8-ce3f5508acd9",
-       url = "https://github.com/redoxide/ruste")];
-       
+*/       
 #[feature(managed_boxes)];
 
 extern mod rustc;

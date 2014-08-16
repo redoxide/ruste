@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/de.redoxi.ruste.core.native"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/de.redoxi.ruste.core.native/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="libnativeparser" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="dylib" artifactName="libnativeparser" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522" name="Debug" parent="cdt.managedbuild.config.llvm.clang.macosx.so.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522." name="/" resourcePath="">
+						<toolChain errorParsers="" id="cdt.managedbuild.toolchain.llvm.clang.macosx.so.debug.855157469" name="LLVM with Clang (MacOSX)" superClass="cdt.managedbuild.toolchain.llvm.clang.macosx.so.debug">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.llvm.clang.macosx.platform.so.debug.1662133215" name="Debug Platform" superClass="cdt.managedbuild.target.llvm.clang.macosx.platform.so.debug"/>
+							<builder buildPath="${workspace_loc:/de.redoxi.ruste.core.native}/Debug" errorParsers="" id="cdt.managedbuild.target.llvm.clang.macosx.builder.so.debug.864584011" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.target.llvm.clang.macosx.builder.so.debug"/>
+							<tool command="llvm-as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.tool.llvm.clang.macosx.assembler.so.debug.1723547466" name="LLVM assembler" superClass="cdt.managedbuild.tool.llvm.clang.macosx.assembler.so.debug"/>
+							<tool id="cdt.managedbuild.tool.llvm.archiver.base.1647533469" name="LLVM archiver" superClass="cdt.managedbuild.tool.llvm.archiver.base"/>
+							<tool command="clang" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX} ${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="cdt.managedbuild.tool.llvm.clang.macosx.c.linker.so.debug.2004515312" name="LLVM C linker" superClass="cdt.managedbuild.tool.llvm.clang.macosx.c.linker.so.debug">
+								<option defaultValue="true" id="llvm.c.link.option.linkaslibrary.1423124425" name="Create a library" superClass="llvm.c.link.option.linkaslibrary" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.native.1283328080" name="Create native binary (with LLVM native code generator)" superClass="llvm.c.link.option.native" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.ldflags.958427860" name="Linker flags" superClass="llvm.c.link.option.ldflags" value="-dynamiclib" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.llvm.c.linker.input.2109999526" superClass="cdt.managedbuild.tool.llvm.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+								<outputType id="cdt.managedbuild.tool.llvm.c.linker.output.exe.bc.1017447617" outputPrefix="" superClass="cdt.managedbuild.tool.llvm.c.linker.output.exe.bc"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.cpp.linker.so.debug.1362703635" name="LLVM C++ linker" superClass="cdt.managedbuild.tool.llvm.clang.macosx.cpp.linker.so.debug">
+								<option defaultValue="true" id="llvm.c.link.option.linkaslibrary.2003044685" name="Create a library" superClass="llvm.c.link.option.linkaslibrary" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.native.1619053803" name="Create native binary (with LLVM native code generator)" superClass="llvm.c.link.option.native" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.base.option.ldflags.1901975710" name="Linker flags" superClass="llvm.c.link.base.option.ldflags" value="-dynamiclib" valueType="string"/>
+							</tool>
+							<tool command="clang" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.debug.1908503563" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.debug">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.1469243646" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.1702733034" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.include.paths.1825273687" name="Include paths (-I)" superClass="llvm.c_cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/include/darwin"/>
+									<listOptionValue builtIn="false" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/include"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.llvm.c.compiler.input.1221054461" superClass="cdt.managedbuild.tool.llvm.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.cpp.compiler.so.debug.1313363366" name="LLVM Clang++" superClass="cdt.managedbuild.tool.llvm.clang.macosx.cpp.compiler.so.debug">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.1527843129" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.568509379" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.max" valueType="enumerated"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/de.redoxi.ruste.core.native"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/de.redoxi.ruste.core.native/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="libnativeparser" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="dylib" artifactName="libnativeparser" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170" name="Release" parent="cdt.managedbuild.config.llvm.clang.macosx.so.release">
+					<folderInfo id="cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.llvm.clang.macosx.so.release.439625902" name="LLVM with Clang (MacOSX)" superClass="cdt.managedbuild.toolchain.llvm.clang.macosx.so.release">
+							<targetPlatform archList="all" id="cdt.managedbuild.target.llvm.clang.macosx.platform.so.release.1821488560" name="Debug Platform" osList="macosx" superClass="cdt.managedbuild.target.llvm.clang.macosx.platform.so.release"/>
+							<builder buildPath="${workspace_loc:/de.redoxi.ruste.core.native}/Release" id="cdt.managedbuild.target.llvm.clang.macosx.builder.so.release.1080092850" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.target.llvm.clang.macosx.builder.so.release"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.assembler.so.release.385624355" name="LLVM assembler" superClass="cdt.managedbuild.tool.llvm.clang.macosx.assembler.so.release"/>
+							<tool id="cdt.managedbuild.tool.llvm.archiver.base.251638041" name="LLVM archiver" superClass="cdt.managedbuild.tool.llvm.archiver.base"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.c.linker.so.release.2114981093" name="LLVM C linker" superClass="cdt.managedbuild.tool.llvm.clang.macosx.c.linker.so.release">
+								<option defaultValue="true" id="llvm.c.link.option.linkaslibrary.243040996" name="Create a library" superClass="llvm.c.link.option.linkaslibrary" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.native.769905595" name="Create native binary (with LLVM native code generator)" superClass="llvm.c.link.option.native" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.ldflags.257929324" name="Linker flags" superClass="llvm.c.link.option.ldflags" value="-dynamiclib" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.llvm.c.linker.input.932700837" superClass="cdt.managedbuild.tool.llvm.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.cpp.linker.so.release.303832727" name="LLVM C++ linker" superClass="cdt.managedbuild.tool.llvm.clang.macosx.cpp.linker.so.release">
+								<option defaultValue="true" id="llvm.c.link.option.linkaslibrary.154654673" name="Create a library" superClass="llvm.c.link.option.linkaslibrary" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.option.native.1537632257" name="Create native binary (with LLVM native code generator)" superClass="llvm.c.link.option.native" value="false" valueType="boolean"/>
+								<option id="llvm.c.link.base.option.ldflags.189900163" name="Linker flags" superClass="llvm.c.link.base.option.ldflags" value="-dynamiclib" valueType="string"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.release.433158992" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.release">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.2054434000" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.447890657" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.include.paths.1029137279" name="Include paths (-I)" superClass="llvm.c_cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${env_var:JAVA_HOME}/include&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.llvm.c.compiler.input.1052323347" superClass="cdt.managedbuild.tool.llvm.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.macosx.cpp.compiler.so.release.2049373504" name="LLVM Clang++" superClass="cdt.managedbuild.tool.llvm.clang.macosx.cpp.compiler.so.release">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.1041023604" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.337524266" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.none" valueType="enumerated"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="de.redoxi.ruste.core.native.cdt.managedbuild.target.llvm.clang.macosx.so.1422382340" name="Shared Library" projectType="cdt.managedbuild.target.llvm.clang.macosx.so"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170;cdt.managedbuild.config.llvm.clang.macosx.so.release.425686170.;cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.release.433158992;cdt.managedbuild.tool.llvm.c.compiler.input.1052323347">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileClang"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522;cdt.managedbuild.config.llvm.clang.macosx.so.debug.2068941522.;cdt.managedbuild.tool.llvm.clang.macosx.c.compiler.so.debug.1908503563;cdt.managedbuild.tool.llvm.c.compiler.input.1221054461">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileClang"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/de.redoxi.ruste.core.native"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/de.redoxi.ruste.core.native"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>

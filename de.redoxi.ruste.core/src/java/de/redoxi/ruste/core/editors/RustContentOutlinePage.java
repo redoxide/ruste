@@ -337,11 +337,15 @@ public class RustContentOutlinePage extends ContentOutlinePage {
 		    input.getName().lastIndexOf('.'));
 
 	    final IRustParser parser = new NativeParser();
+	    parser.setName(crateIdentifier);
 	    parser.setSource(document);
 	    parser.parse();
 
 	    crate = (Crate) parser.getRoot();
-	    crate.setIdentifier(crateIdentifier);
+	    
+	    if (crate != null) {
+	    	crate.setIdentifier(crateIdentifier);
+	    }
 	}
 
 	@Override
